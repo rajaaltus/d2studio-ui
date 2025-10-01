@@ -3,9 +3,6 @@
   "outputDirectory": ".next",
   "installCommand": "pnpm install",
   "framework": "nextjs",
-  "env": {
-    "CONVEX_DEPLOY_KEY": "@convex-deploy-key"
-  },
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30
