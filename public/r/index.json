@@ -1,0 +1,75 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "d2-studio",
+  "homepage": "https://d2studio.dev",
+  "description": "Ultra modern monospace component library",
+  "aliases": {
+    "utils": "@/lib/utils",
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "items": [
+    {
+      "name": "hero-section",
+      "type": "registry:component",
+      "title": "Hero Section",
+      "description": "Modern hero section with gradient text and feature cards",
+      "author": "D2 Studio",
+      "registryDependencies": ["button", "card"],
+      "files": [
+        {
+          "path": "registry/new-york/hero-section/hero-section.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["marketing", "landing-page"]
+    },
+    {
+      "name": "component-showcase",
+      "type": "registry:component",
+      "title": "Component Showcase",
+      "description": "Interactive component preview with code examples",
+      "author": "D2 Studio",
+      "registryDependencies": ["button", "card", "avatar"],
+      "files": [
+        {
+          "path": "registry/new-york/component-showcase/component-showcase.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["marketing", "showcase"]
+    },
+    {
+      "name": "navigation",
+      "type": "registry:component",
+      "title": "Navigation",
+      "description": "Modern sticky navigation with mobile menu",
+      "author": "D2 Studio",
+      "registryDependencies": ["button", "card"],
+      "files": [
+        {
+          "path": "registry/new-york/navigation/navigation.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["navigation", "header"]
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "title": "Footer",
+      "description": "Complete footer with links, newsletter signup, and branding",
+      "author": "D2 Studio",
+      "registryDependencies": ["button", "card"],
+      "files": [
+        {
+          "path": "registry/new-york/footer/footer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["footer", "marketing"]
+    }
+  ]
+}

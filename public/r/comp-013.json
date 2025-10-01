@@ -1,0 +1,17 @@
+{
+  "name": "comp-013",
+  "type": "registry:component",
+  "title": "Feature Section",
+  "description": "Modern feature section with stats, call-to-action buttons, and feature cards",
+  "author": "D2 Studio",
+  "registryDependencies": ["button", "card", "badge"],
+  "files": [
+    {
+      "path": "registry/default/components/comp-013.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "layouts"
+  ]
+}

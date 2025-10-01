@@ -1,0 +1,53 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-003",
+  "type": "registry:component",
+  "title": "Login Form",
+  "author": "D2 Studio",
+  "description": "Complete login form with email, password, and forgot password link",
+  "dependencies": [
+    "@radix-ui/react-label",
+    "class-variance-authority",
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "card",
+    "input",
+    "label",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-003.tsx",
+      "content": "\"use client\"\n\nimport { Input } from \"@/registry/default/ui/input\"\nimport { Label } from \"@/registry/default/ui/label\"\nimport { Button } from \"@/registry/default/ui/button\"\nimport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/registry/default/ui/card\"\nimport { useState } from \"react\"\n\nexport default function Component() {\n  const [email, setEmail] = useState(\"\")\n  const [password, setPassword] = useState(\"\")\n  const [isLoading, setIsLoading] = useState(false)\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault()\n    setIsLoading(true)\n\n    // Simulate API call\n    await new Promise((resolve) => setTimeout(resolve, 1500))\n\n    console.log(\"Login attempt:\", { email, password: \"***\" })\n    setIsLoading(false)\n  }\n\n  return (\n    <Card className=\"w-full max-w-md\">\n      <CardHeader>\n        <CardTitle className=\"text-2xl\">Sign In</CardTitle>\n        <CardDescription>\n          Enter your email and password to access your account\n        </CardDescription>\n      </CardHeader>\n      <form onSubmit={handleSubmit}>\n        <CardContent className=\"space-y-4\">\n          <div className=\"space-y-2\">\n            <Label htmlFor=\"email-003\">Email</Label>\n            <Input\n              id=\"email-003\"\n              type=\"email\"\n              placeholder=\"name@example.com\"\n              value={email}\n              onChange={(e) => setEmail(e.target.value)}\n              required\n              disabled={isLoading}\n            />\n          </div>\n          <div className=\"space-y-2\">\n            <div className=\"flex items-center justify-between\">\n              <Label htmlFor=\"password-003\">Password</Label>\n              <Button\n                type=\"button\"\n                variant=\"link\"\n                className=\"px-0 font-normal\"\n                onClick={() => console.log(\"Forgot password clicked\")}\n              >\n                Forgot password?\n              </Button>\n            </div>\n            <Input\n              id=\"password-003\"\n              type=\"password\"\n              value={password}\n              onChange={(e) => setPassword(e.target.value)}\n              required\n              disabled={isLoading}\n            />\n          </div>\n        </CardContent>\n        <CardFooter className=\"flex flex-col space-y-4\">\n          <Button type=\"submit\" className=\"w-full\" disabled={isLoading}>\n            {isLoading ? \"Signing in...\" : \"Sign In\"}\n          </Button>\n          <div className=\"text-sm text-center text-muted-foreground\">\n            Don't have an account?{\" \"}\n            <Button\n              type=\"button\"\n              variant=\"link\"\n              className=\"px-0 font-normal\"\n              onClick={() => console.log(\"Sign up clicked\")}\n            >\n              Sign up\n            </Button>\n          </div>\n        </CardFooter>\n      </form>\n    </Card>\n  )\n}",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/input.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport interface InputProps\n  extends React.InputHTMLAttributes<HTMLInputElement> {}\n\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type, ...props }, ref) => {\n    return (\n      <input\n        type={type}\n        className={cn(\n          \"flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n          className\n        )}\n        ref={ref}\n        {...props}\n      />\n    )\n  }\n)\nInput.displayName = \"Input\"\n\nexport { Input }",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/ui/label.tsx",
+      "content": "import * as React from \"react\"\nimport * as LabelPrimitive from \"@radix-ui/react-label\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/lib/utils\"\n\nconst labelVariants = cva(\n  \"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70\"\n)\n\nconst Label = React.forwardRef<\n  React.ElementRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &\n    VariantProps<typeof labelVariants>\n>(({ className, ...props }, ref) => (\n  <LabelPrimitive.Root\n    ref={ref}\n    className={cn(labelVariants(), className)}\n    {...props}\n  />\n))\nLabel.displayName = LabelPrimitive.Root.displayName\n\nexport { Label }",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/ui/button.tsx",
+      "content": "import * as React from \"react\"\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/lib/utils\"\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-primary text-primary-foreground shadow hover:bg-primary/90\",\n        destructive:\n          \"bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90\",\n        outline:\n          \"border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground\",\n        secondary:\n          \"bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80\",\n        ghost: \"hover:bg-accent hover:text-accent-foreground\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-9 px-4 py-2\",\n        sm: \"h-8 rounded-md px-3 text-xs\",\n        lg: \"h-10 rounded-md px-8\",\n        icon: \"h-9 w-9\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean\n}\n\nconst Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ className, variant, size, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\"\n    return (\n      <Comp\n        className={cn(buttonVariants({ variant, size, className }))}\n        ref={ref}\n        {...props}\n      />\n    )\n  }\n)\nButton.displayName = \"Button\"\n\nexport { Button, buttonVariants }",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/ui/card.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nconst Card = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"rounded-xl border bg-card text-card-foreground shadow\",\n      className\n    )}\n    {...props}\n  />\n))\nCard.displayName = \"Card\"\n\nconst CardHeader = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex flex-col space-y-1.5 p-6\", className)}\n    {...props}\n  />\n))\nCardHeader.displayName = \"CardHeader\"\n\nconst CardTitle = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"font-semibold leading-none tracking-tight\", className)}\n    {...props}\n  />\n))\nCardTitle.displayName = \"CardTitle\"\n\nconst CardDescription = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n))\nCardDescription.displayName = \"CardDescription\"\n\nconst CardContent = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"p-6 pt-0\", className)} {...props} />\n))\nCardContent.displayName = \"CardContent\"\n\nconst CardFooter = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"flex items-center p-6 pt-0\", className)}\n    {...props}\n  />\n))\nCardFooter.displayName = \"CardFooter\"\n\nexport { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ],
+  "categories": [
+    "authentication"
+  ]
+}

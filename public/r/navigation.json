@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation",
+  "type": "registry:component",
+  "title": "Navigation",
+  "author": "D2 Studio",
+  "description": "Modern sticky navigation with mobile menu",
+  "registryDependencies": [
+    "button",
+    "card"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/navigation/navigation.tsx",
+      "content": "\"use client\";\n\nimport Link from \"next/link\";\nimport { Button } from \"@/components/ui/button\";\nimport { Card } from \"@/components/ui/card\";\nimport { Code2, Github, Menu, X } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport { useState } from \"react\";\nimport { ThemeToggle } from \"@/components/theme-toggle\";\n\nexport function Navigation() {\n  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);\n\n  const navigation = [\n    { name: \"Components\", href: \"/components\" },\n    { name: \"Docs\", href: \"/docs\" },\n    { name: \"Examples\", href: \"/examples\" },\n    { name: \"Registry\", href: \"/registry\" },\n  ];\n\n  return (\n    <header className=\"sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-sm\">\n      <nav className=\"container mx-auto px-4\">\n        <div className=\"flex h-16 items-center justify-between\">\n\n          {/* Logo */}\n          <Link href=\"/\" className=\"flex items-center gap-2 font-bold text-lg\">\n            <div className=\"w-8 h-8 bg-foreground text-background flex items-center justify-center rounded-md text-sm\">\n              D2\n            </div>\n            <span>Studio</span>\n          </Link>\n\n          {/* Desktop Navigation */}\n          <div className=\"hidden md:flex items-center gap-8\">\n            {navigation.map((item) => (\n              <Link\n                key={item.name}\n                href={item.href}\n                className=\"text-sm font-medium text-muted-foreground hover:text-foreground transition-colors\"\n              >\n                {item.name}\n              </Link>\n            ))}\n          </div>\n\n          {/* Actions */}\n          <div className=\"flex items-center gap-2\">\n            <ThemeToggle />\n\n            <Button variant=\"ghost\" size=\"sm\" className=\"gap-2 hidden sm:flex\">\n              <Github size={16} />\n              GitHub\n            </Button>\n\n            <Button size=\"sm\" className=\"gap-2 bg-foreground text-background hover:bg-foreground/90\">\n              <Code2 size={16} />\n              <span className=\"hidden sm:inline\">Get Started</span>\n            </Button>\n\n            {/* Mobile menu button */}\n            <Button\n              variant=\"ghost\"\n              size=\"sm\"\n              className=\"md:hidden\"\n              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}\n            >\n              {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}\n            </Button>\n          </div>\n        </div>\n\n        {/* Mobile Navigation */}\n        {mobileMenuOpen && (\n          <div className=\"md:hidden\">\n            <Card className=\"m-4 p-4 bg-card border-border\">\n              <div className=\"flex flex-col space-y-4\">\n                {navigation.map((item) => (\n                  <Link\n                    key={item.name}\n                    href={item.href}\n                    className=\"text-sm font-medium text-muted-foreground hover:text-foreground transition-colors\"\n                    onClick={() => setMobileMenuOpen(false)}\n                  >\n                    {item.name}\n                  </Link>\n                ))}\n                <div className=\"border-t border-border pt-4 flex gap-2\">\n                  <Button variant=\"outline\" size=\"sm\" className=\"flex-1 gap-2\">\n                    <Github size={16} />\n                    GitHub\n                  </Button>\n                  <ThemeToggle />\n                </div>\n              </div>\n            </Card>\n          </div>\n        )}\n      </nav>\n    </header>\n  );\n}",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "navigation",
+    "header"
+  ]
+}

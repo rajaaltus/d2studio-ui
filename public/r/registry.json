@@ -1,0 +1,440 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "d2-studio",
+  "homepage": "https://d2studio.dev",
+  "description": "Ultra modern monospace component library",
+  "registries": {
+    "@d2": {
+      "url": "https://d2studio.dev/r/{name}.json"
+    }
+  },
+  "aliases": {
+    "utils": "@/lib/utils",
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Displays a form input field or a component that looks like an input field.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Displays a form textarea or a component that looks like a textarea.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from—triggered by a button.",
+      "author": "D2 Studio",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/default/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Displays a callout for user attention.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "A drawer component that slides in from the bottom or sides of the screen.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": ["ui"]
+    },
+    {
+      "name": "comp-001",
+      "type": "registry:component",
+      "title": "Newsletter Form",
+      "description": "Simple newsletter subscription form with email input and submit button",
+      "author": "D2 Studio",
+      "registryDependencies": ["input", "label", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-001.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["forms"]
+    },
+    {
+      "name": "comp-002",
+      "type": "registry:component",
+      "title": "Feature Card",
+      "description": "Feature showcase card with checklist and call-to-action button",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-002.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["marketing"]
+    },
+    {
+      "name": "comp-003",
+      "type": "registry:component",
+      "title": "Login Form",
+      "description": "Complete login form with email, password, and forgot password link",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "input", "label", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-003.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["authentication"]
+    },
+    {
+      "name": "comp-010",
+      "type": "registry:component",
+      "title": "Hero Section",
+      "description": "Modern hero section with badge, heading, call-to-action buttons, and infinite slider",
+      "author": "D2 Studio",
+      "registryDependencies": ["button", "badge", "avatar"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-010.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "public/registry/assets/company.png",
+          "type": "registry:file",
+          "target": "public/registry/assets/company.png"
+        },
+        {
+          "path": "public/registry/assets/trophy.png",
+          "type": "registry:file",
+          "target": "public/registry/assets/trophy.png"
+        },
+        {
+          "path": "public/registry/assets/certificate.png",
+          "type": "registry:file",
+          "target": "public/registry/assets/certificate.png"
+        },
+        {
+          "path": "public/registry/assets/desktop.png",
+          "type": "registry:file",
+          "target": "public/registry/assets/desktop.png"
+        },
+        {
+          "path": "public/registry/assets/bag.png",
+          "type": "registry:file",
+          "target": "public/registry/assets/bag.png"
+        },
+        {
+          "path": "public/registry/assets/consulting.png",
+          "type": "registry:file",
+          "target": "public/registry/assets/consulting.png"
+        }
+      ],
+      "categories": ["marketing", "landing-page"]
+    },
+    {
+      "name": "comp-011",
+      "type": "registry:component",
+      "title": "Features Section",
+      "description": "Two-column features section with icons, benefits list, and feature cards",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "badge", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-011.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["marketing"]
+    },
+    {
+      "name": "comp-012",
+      "type": "registry:component",
+      "title": "Pricing Table",
+      "description": "Three-tier pricing table with feature comparison and popular plan highlighting",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "button", "badge"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-012.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["marketing"]
+    },
+    {
+      "name": "comp-020",
+      "type": "registry:component",
+      "title": "Contact Form",
+      "description": "Comprehensive contact form with validation and contact information",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "input", "label", "textarea", "button", "select"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-020.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["forms"]
+    },
+    {
+      "name": "comp-021",
+      "type": "registry:component",
+      "title": "Search & Filter",
+      "description": "Advanced search bar with tag-based filtering and active filter management",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "input", "button", "badge"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-021.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["forms"]
+    },
+    {
+      "name": "comp-030",
+      "type": "registry:component",
+      "title": "Product Card",
+      "description": "E-commerce product card with wishlist, quick actions, and color options",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "button", "badge"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-030.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["ecommerce"]
+    },
+    {
+      "name": "comp-040",
+      "type": "registry:component",
+      "title": "Navigation Header",
+      "description": "Responsive navigation header with mobile menu and user actions",
+      "author": "D2 Studio",
+      "registryDependencies": ["button", "badge"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-040.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["navigation"]
+    },
+    {
+      "name": "comp-050",
+      "type": "registry:component",
+      "title": "Article Cards",
+      "description": "Blog article cards with author info, tags, and social actions",
+      "author": "D2 Studio",
+      "registryDependencies": ["card", "badge", "button", "avatar"],
+      "files": [
+        {
+          "path": "registry/default/components/comp-050.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["display"]
+    }
+  ]
+}
