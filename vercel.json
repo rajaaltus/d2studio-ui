@@ -1,8 +1,11 @@
 {
-  "buildCommand": "pnpm build && pnpm registry:build",
+  "buildCommand": "npx convex deploy --cmd 'pnpm build && pnpm registry:build'",
   "outputDirectory": ".next",
   "installCommand": "pnpm install",
   "framework": "nextjs",
+  "env": {
+    "CONVEX_DEPLOY_KEY": "@convex-deploy-key"
+  },
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30
@@ -59,7 +62,7 @@
   "redirects": [
     {
       "source": "/github",
-      "destination": "https://github.com/d2studio",
+      "destination": "https://github.com/rajaltus",
       "permanent": false
     },
     {
