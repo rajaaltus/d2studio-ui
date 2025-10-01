@@ -12,10 +12,9 @@ import {
 export default function DownloadsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sourceFilter, setSourceFilter] = useState<string>("all");
-  const [refreshKey, setRefreshKey] = useState(0);
 
   const handleRefresh = () => {
-    setRefreshKey(prev => prev + 1);
+    // Refresh handled by Convex reactivity
   };
 
   return (

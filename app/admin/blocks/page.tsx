@@ -1,8 +1,6 @@
-import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { PageHeader } from "./components/PageHeader";
 import { StatsCards } from "./components/StatsCards";
-import { LoadingState } from "./components/LoadingState";
 import { DataTable } from "./components/data-table";
 import { columns } from "./components/columns";
 import { preloadedQueryResult, preloadQuery } from "convex/nextjs";

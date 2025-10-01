@@ -1,29 +1,21 @@
-"use client";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ComponentPreview } from "@/components/preview/component-preview";
 import { categories } from "@/config/components";
+import { ComponentPageClient } from "./component-page-client";
 
-// Component imports - dynamically loaded
-import Comp001 from "@/registry/default/components/comp-001";
-import Comp002 from "@/registry/default/components/comp-002";
-import Comp010 from "@/registry/default/components/comp-010";
-
-// Component registry
+// Component registry metadata (no actual component imports here)
 const componentRegistry: Record<
   string,
   {
-    component: React.ComponentType;
     code: string;
     description: string;
     tags: string[];
   }
 > = {
   "comp-001": {
-    component: Comp001,
     code: `"use client"
 
 import { Input } from "@/registry/default/ui/input"
@@ -69,7 +61,6 @@ export default function Component() {
     tags: ["form", "newsletter", "email", "input"],
   },
   "comp-002": {
-    component: Comp002,
     code: `"use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/default/ui/card"
@@ -118,7 +109,6 @@ export default function Component({
     tags: ["card", "marketing", "features", "cta"],
   },
   "comp-010": {
-    component: Comp010,
     code: `"use client"
 
 import { Button } from "@/registry/default/ui/button"
@@ -244,12 +234,9 @@ export default async function ComponentPage({
           </div>
         </div>
 
-        <ComponentPreview
-          component={componentData.component}
-          componentName={componentKey}
+        <ComponentPageClient
+          componentKey={componentKey}
           code={componentData.code}
-          description={componentData.description}
-          tags={componentData.tags}
         />
 
         {/* Installation Instructions */}

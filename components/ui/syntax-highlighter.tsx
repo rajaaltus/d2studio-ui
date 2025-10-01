@@ -41,7 +41,7 @@ export function SyntaxHighlighter({
                 // Add custom classes to the code element
                 this.addClassToHast(node, "grid min-w-full break-words rounded-none border-0 bg-transparent p-0")
               },
-              line(node, line) {
+              line(node) {
                 // Add line styling
                 this.addClassToHast(node, "px-4 py-0.5 min-h-[1rem] w-full inline-block")
                 if (node.children.length === 0) {

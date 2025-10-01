@@ -92,12 +92,10 @@ export function LoginForm({
         flow: isSignUp ? "signUp" : "signIn",
       });
       router.push("/");
-    } catch (err: any) {
+    } catch (err) {
       console.error("Auth error:", err);
-      setError(
-        err.message ||
-          `Failed to ${isSignUp ? "sign up" : "sign in"}. Please try again.`,
-      );
+      const errorMessage = err instanceof Error ? err.message : `Failed to ${isSignUp ? "sign up" : "sign in"}. Please try again.`;
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

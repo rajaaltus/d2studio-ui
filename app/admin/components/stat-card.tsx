@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { TrendingUp, TrendingDown, Minus, LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 interface StatCardProps {
   title: string;
   value: string | number;
-  icon: any;
+  icon: LucideIcon;
   trend?: "up" | "down" | "stable";
   trendValue?: string;
   href?: string;

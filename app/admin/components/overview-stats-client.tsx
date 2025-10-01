@@ -1,7 +1,6 @@
 "use client";
 import { StatCard } from "./stat-card";
 import { BarChart3, Blocks, Download, Eye } from "lucide-react";
-import { DashboardStats } from "../types";
 import { Preloaded, usePreloadedQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 

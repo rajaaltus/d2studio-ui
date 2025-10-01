@@ -1,7 +1,6 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { DashboardStats } from "../types";
 import { api } from "@/convex/_generated/api";
 import { Preloaded, usePreloadedQuery } from "convex/react";
 

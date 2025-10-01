@@ -1,9 +1,6 @@
 "use client";
 
 import { PreviewWrapper } from "@/components/preview/preview-wrapper";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 
 // Featured component imports
 import Comp010 from "@/registry/default/components/comp-010";

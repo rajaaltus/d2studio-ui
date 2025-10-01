@@ -15,17 +15,16 @@ import {
 
 export default function AnalyticsPage() {
   const [timeframe, setTimeframe] = useState<TimeFrame>("total");
-  const [refreshKey, setRefreshKey] = useState(0);
 
   const dashboardStats = useQuery(api.blocks.getDashboardStats, {});
-
-  const handleRefresh = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
 
   if (!dashboardStats) {
     return <LoadingState />;
   }
+
+  const handleRefresh = () => {
+    // TODO
+  };
 
   return (
     <div className="space-y-6">

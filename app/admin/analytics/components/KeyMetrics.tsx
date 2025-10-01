@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, Target, Activity, BarChart3 } from "lucide-react";
-import { MetricCard, TrendType } from "./MetricCard";
+import { MetricCard } from "./MetricCard";
 
 interface DashboardStats {
   totalBlocks: number;

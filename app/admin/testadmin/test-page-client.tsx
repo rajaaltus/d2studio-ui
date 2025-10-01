@@ -1,7 +1,7 @@
 "use client";
 
 interface TestPageClientProps {
-  data: any[];
+  data: unknown[];
 }
 
 export default function TestPageClient({ data }: TestPageClientProps) {

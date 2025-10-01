@@ -37,12 +37,6 @@ const structuredData = {
 };
 
 export default function HomePage() {
-  const stats = [
-    { label: "Components", value: "50+" },
-    { label: "Categories", value: "8" },
-    { label: "Weekly Updates", value: "✓" },
-    { label: "MIT Licensed", value: "✓" },
-  ];
 
   const features = [
     {

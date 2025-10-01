@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, BookText, Sparkles, Users } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import React from "react";
 import { brandData } from "./brand-data";
 import GoldenRatioSpiral from "./golden-ratio-spiral";
@@ -116,7 +116,7 @@ export function GoldenRatioHero() {
           Golden Ratio Design
         </h1>
         <p className="text-xl md:text-2xl text-amber-800 text-center max-w-2xl mb-8">
-          Nature's perfect proportion, now in your design
+          Nature&apos;s perfect proportion, now in your design
         </p>
         <Button className="px-8 py-4 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 transition-colors shadow-lg">
           Get Started

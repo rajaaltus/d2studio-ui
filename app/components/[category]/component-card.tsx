@@ -397,6 +397,23 @@ export default function ComponentCard({ componentName }: { componentName: string
   const resizablePanelRef = useRef<ImperativePanelHandle>(null)
 
   const componentData = componentRegistry[componentName]
+  const Component = componentData?.component
+  const installCommand = `npx shadcn@latest add https://d2studio.dev/r/${componentName.toLowerCase()}.json`
+
+  const handleCopyInstall = useCallback(async () => {
+    await navigator.clipboard.writeText(installCommand)
+    setCopiedInstall(true)
+    setTimeout(() => setCopiedInstall(false), 2000)
+  }, [installCommand])
+
+  const handleSizeChange = useCallback((value: string) => {
+    const size = parseInt(value)
+    setDeviceSize(value)
+    setCurrentSize(size)
+    if (resizablePanelRef?.current) {
+      resizablePanelRef.current.resize(size)
+    }
+  }, [])
 
   if (!componentData) {
     return (
@@ -418,24 +435,6 @@ export default function ComponentCard({ componentName }: { componentName: string
       </div>
     )
   }
-
-  const Component = componentData.component
-  const installCommand = `npx shadcn@latest add https://d2studio.dev/r/${componentName.toLowerCase()}.json`
-
-  const handleCopyInstall = useCallback(async () => {
-    await navigator.clipboard.writeText(installCommand)
-    setCopiedInstall(true)
-    setTimeout(() => setCopiedInstall(false), 2000)
-  }, [installCommand])
-
-  const handleSizeChange = useCallback((value: string) => {
-    const size = parseInt(value)
-    setDeviceSize(value)
-    setCurrentSize(size)
-    if (resizablePanelRef?.current) {
-      resizablePanelRef.current.resize(size)
-    }
-  }, [])
 
   const getPreviewScale = () => {
     const size = parseInt(deviceSize)
