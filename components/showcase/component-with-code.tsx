@@ -1,7 +1,7 @@
 "use client";
 
 import { PreviewWrapper } from "@/components/preview/preview-wrapper";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface ComponentWithCodeProps {
   componentName: string;
@@ -13,7 +13,7 @@ export function ComponentWithCode({
   component: Component,
 }: ComponentWithCodeProps) {
   const [code, setCode] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCode = async () => {

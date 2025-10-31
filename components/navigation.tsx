@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/registry/default/ui/button";
 import { Card } from "@/registry/default/ui/card";
-import { Code2, Github, Menu, X, Search } from "lucide-react";
+import { Code2, Github, Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
 import Logo from "./logo";
 
 export function Navigation() {
