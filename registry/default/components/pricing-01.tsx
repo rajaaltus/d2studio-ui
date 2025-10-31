@@ -1,11 +1,16 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader } from "@/registry/default/ui/card"
-import { Button } from "@/registry/default/ui/button"
-import { Badge } from "@/registry/default/ui/badge"
-import { Check, X } from "lucide-react"
+import { Button } from "@/registry/default/ui/button";
+import { Badge } from "@/registry/default/ui/badge";
+import { Check, X } from "lucide-react";
+import {
+  D2Card,
+  CardContent,
+  CardHeader,
+  CardDescription,
+} from "../ui/d2-card";
 
-export default function Component() {
+export default function PricingSection() {
   const plans = [
     {
       name: "Starter",
@@ -51,28 +56,27 @@ export default function Component() {
         { name: "White-label options", included: true },
       ],
     },
-  ]
+  ];
 
   return (
-    <section className="w-full py-16 lg:py-24">
-      <div className="container px-4 md:px-6">
+    <section className="@container font-sans w-full py-12 @md:py-16 @xl:py-24">
+      <div className="container px-4 @md:px-6">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl @md:text-4xl @xl:text-5xl font-bold tracking-tight">
             Choose Your Plan
           </h2>
-          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-lg">
-            Select the perfect plan for your needs. Upgrade or downgrade at any time.
+          <p className="mx-auto max-w-[600px] text-muted-foreground @md:text-lg">
+            Select the perfect plan for your needs. Upgrade or downgrade at any
+            time.
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+        <div className="grid gap-6  @xl:grid-cols-3 @xl:gap-8 max-w-7xl mx-auto">
           {plans.map((plan, index) => (
-            <Card
+            <D2Card
               key={index}
-              className={`relative ${
-                plan.popular
-                  ? "border-primary shadow-lg scale-105"
-                  : "border-border"
+              className={`relative transition-all ${
+                plan.popular ? "border-primary shadow-lg @xl:scale-105" : ""
               }`}
             >
               {plan.popular && (
@@ -81,17 +85,21 @@ export default function Component() {
                 </div>
               )}
 
-              <CardHeader className="text-center pb-8">
+              <CardHeader className="flex flex-col items-start pb-8">
                 <h3 className="text-xl font-semibold">{plan.name}</h3>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
+                <div className="">
+                  <span className="text-4xl @xl:text-5xl font-bold">
+                    {plan.price}
+                  </span>
                   {plan.period && (
                     <span className="text-muted-foreground">{plan.period}</span>
                   )}
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">
-                  {plan.description}
-                </p>
+                <CardDescription>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {plan.description}
+                  </p>
+                </CardDescription>
               </CardHeader>
 
               <CardContent className="space-y-6">
@@ -102,29 +110,24 @@ export default function Component() {
                   Get Started
                 </Button>
 
-                <div className="space-y-3">
+                <div className="space-y-3 pt-4">
                   {plan.features.map((feature, featureIndex) => (
-                    <div
-                      key={featureIndex}
-                      className="flex items-center gap-3"
-                    >
-                      <div className="flex-shrink-0">
-                        {feature.included ? (
-                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                            <Check className="h-3 w-3 text-green-600 dark:text-green-400" />
-                          </div>
-                        ) : (
-                          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800">
-                            <X className="h-3 w-3 text-gray-400" />
-                          </div>
-                        )}
-                      </div>
+                    <div key={featureIndex} className="flex items-center gap-3">
+                      {feature.included ? (
+                        <div className="flex size-5 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                          <Check className="size-3 text-green-600 dark:text-green-400" />
+                        </div>
+                      ) : (
+                        <div className="flex size-5 items-center justify-center rounded-full bg-muted">
+                          <X className="size-3 text-muted-foreground" />
+                        </div>
+                      )}
                       <span
-                        className={`text-sm ${
+                        className={
                           feature.included
-                            ? "text-foreground"
-                            : "text-muted-foreground"
-                        }`}
+                            ? "text-sm"
+                            : "text-sm text-muted-foreground"
+                        }
                       >
                         {feature.name}
                       </span>
@@ -132,7 +135,7 @@ export default function Component() {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </D2Card>
           ))}
         </div>
 
@@ -143,5 +146,5 @@ export default function Component() {
         </div>
       </div>
     </section>
-  )
+  );
 }

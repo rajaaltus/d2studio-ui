@@ -1,16 +1,20 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Preloaded, usePreloadedQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 
 interface TopCategoriesCardProps {
-  dashboardStats: Preloaded<typeof api.blocks.getDashboardStats>;
+  dashboardStats: {
+    totalBlocks: number;
+    totalDownloads: number;
+    downloadsToday: number;
+    downloadsThisWeek: number;
+    topBlocks: Array<{ name: string; downloads: number; trend: string }>;
+    topCategories: Array<{ category: string; downloads: number }>;
+  };
 }
 
 export function TopCategoriesCard({ dashboardStats }: TopCategoriesCardProps) {
-  const statsData = usePreloadedQuery(dashboardStats);
-  const categories = statsData.topCategories;
+  const categories = dashboardStats.topCategories;
   return (
     <Card>
       <CardHeader>

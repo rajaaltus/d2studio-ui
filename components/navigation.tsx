@@ -6,15 +6,15 @@ import { Card } from "@/registry/default/ui/card";
 import { Code2, Github, Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import Logo from "./logo";
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: "Components", href: "/components" },
-    { name: "Search", href: "/search" },
+    { name: "Blocks", href: "/blocks" },
     { name: "Docs", href: "/docs" },
-    { name: "Registry", href: "/registry" },
+    { name: "Blog", href: "/blog" },
   ];
 
   return (
@@ -22,12 +22,13 @@ export function Navigation() {
       <nav className="max-w-6xl border-x mx-auto px-4 w-full">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-lg">
+          {/* <Link href="/" className="flex items-center gap-2 font-bold text-lg">
             <div className="w-8 h-8 bg-foreground text-background flex items-center justify-center rounded-md text-sm">
               D2
             </div>
             <span>Studio</span>
-          </Link>
+          </Link> */}
+          <Logo />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -44,23 +45,7 @@ export function Navigation() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              asChild
-              className="hidden lg:flex"
-            >
-              <Link href="/search">
-                <Search size={16} />
-              </Link>
-            </Button>
-
             <ThemeToggle />
-
-            <Button variant="ghost" size="sm" className="gap-2 hidden sm:flex">
-              <Github size={16} />
-              GitHub
-            </Button>
 
             <Button
               size="sm"

@@ -1,14 +1,18 @@
-"use client"
+"use client";
 
-import { useState, useRef, useCallback } from "react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable"
-import { SyntaxHighlighter } from "@/components/ui/syntax-highlighter"
-import Link from "next/link"
-import { useParams } from "next/navigation"
+import { useState, useRef, useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
+import { SyntaxHighlighter } from "@/components/ui/syntax-highlighter";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   Monitor,
   Tablet,
@@ -16,30 +20,33 @@ import {
   Copy,
   Check,
   Terminal,
-  ExternalLink
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import type { ImperativePanelHandle } from "react-resizable-panels"
+  ExternalLink,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { ImperativePanelHandle } from "react-resizable-panels";
 
 // Component imports for previews
-import Comp001 from "@/registry/default/components/comp-001"
-import Comp002 from "@/registry/default/components/comp-002"
-import Comp003 from "@/registry/default/components/comp-003"
-import Comp010 from "@/registry/default/components/comp-010"
-import Comp011 from "@/registry/default/components/comp-011"
-import Comp012 from "@/registry/default/components/comp-012"
-import Comp020 from "@/registry/default/components/comp-020"
-import Comp021 from "@/registry/default/components/comp-021"
-import Comp030 from "@/registry/default/components/comp-030"
-import Comp040 from "@/registry/default/components/comp-040"
-import Comp050 from "@/registry/default/components/comp-050"
+import Comp001 from "@/registry/default/components/comp-001";
+import Comp002 from "@/registry/default/components/comp-002";
+import Comp003 from "@/registry/default/components/comp-003";
+import Comp010 from "@/registry/default/components/hero-01";
+import Comp011 from "@/registry/default/components/comp-011";
+import Comp012 from "@/registry/default/components/pricing-01";
+import Comp020 from "@/registry/default/components/comp-020";
+import Comp021 from "@/registry/default/components/comp-021";
+import Comp030 from "@/registry/default/components/comp-030";
+import Comp040 from "@/registry/default/components/comp-040";
+import Comp050 from "@/registry/default/components/comp-050";
 
-const componentRegistry: Record<string, {
-  component: React.ComponentType
-  description: string
-  tags: string[]
-  code?: string
-}> = {
+const componentRegistry: Record<
+  string,
+  {
+    component: React.ComponentType;
+    description: string;
+    tags: string[];
+    code?: string;
+  }
+> = {
   "comp-001": {
     component: Comp001,
     description: "Simple newsletter subscription form with email input",
@@ -83,7 +90,7 @@ export default function Component() {
       </Button>
     </form>
   )
-}`
+}`,
   },
   "comp-002": {
     component: Comp002,
@@ -131,7 +138,7 @@ export default function Component({
       </CardContent>
     </Card>
   )
-}`
+}`,
   },
   "comp-003": {
     component: Comp003,
@@ -157,7 +164,7 @@ export default function Component() {
       </button>
     </div>
   )
-}`
+}`,
   },
   "comp-010": {
     component: Comp010,
@@ -201,7 +208,7 @@ export default function Component() {
       </div>
     </section>
   )
-}`
+}`,
   },
   "comp-011": {
     component: Comp011,
@@ -225,7 +232,7 @@ export default function Component() {
       </div>
     </section>
   )
-}`
+}`,
   },
   "comp-012": {
     component: Comp012,
@@ -254,7 +261,7 @@ export default function Component() {
       </div>
     </div>
   )
-}`
+}`,
   },
   "comp-020": {
     component: Comp020,
@@ -283,7 +290,7 @@ export default function Component() {
       </button>
     </form>
   )
-}`
+}`,
   },
   "comp-021": {
     component: Comp021,
@@ -308,7 +315,7 @@ export default function Component() {
       </div>
     </div>
   )
-}`
+}`,
   },
   "comp-030": {
     component: Comp030,
@@ -331,7 +338,7 @@ export default function Component() {
       </div>
     </div>
   )
-}`
+}`,
   },
   "comp-040": {
     component: Comp040,
@@ -357,7 +364,7 @@ export default function Component() {
       </button>
     </nav>
   )
-}`
+}`,
   },
   "comp-050": {
     component: Comp050,
@@ -383,37 +390,41 @@ export default function Component() {
       </div>
     </article>
   )
-}`
-  }
-}
+}`,
+  },
+};
 
-export default function ComponentCard({ componentName }: { componentName: string }) {
-  const params = useParams()
-  const category = params?.category as string
-  const [view, setView] = useState<"preview" | "code">("preview")
-  const [deviceSize, setDeviceSize] = useState("100")
-  const [copiedInstall, setCopiedInstall] = useState(false)
-  const [currentSize, setCurrentSize] = useState(100)
-  const resizablePanelRef = useRef<ImperativePanelHandle>(null)
+export default function ComponentCard({
+  componentName,
+}: {
+  componentName: string;
+}) {
+  const params = useParams();
+  const category = params?.category as string;
+  const [view, setView] = useState<"preview" | "code">("preview");
+  const [deviceSize, setDeviceSize] = useState("100");
+  const [copiedInstall, setCopiedInstall] = useState(false);
+  const [currentSize, setCurrentSize] = useState(100);
+  const resizablePanelRef = useRef<ImperativePanelHandle>(null);
 
-  const componentData = componentRegistry[componentName]
-  const Component = componentData?.component
-  const installCommand = `npx shadcn@latest add https://d2studio.dev/r/${componentName.toLowerCase()}.json`
+  const componentData = componentRegistry[componentName];
+  const Component = componentData?.component;
+  const installCommand = `npx shadcn@latest add https://d2studio.dev/r/${componentName.toLowerCase()}.json`;
 
   const handleCopyInstall = useCallback(async () => {
-    await navigator.clipboard.writeText(installCommand)
-    setCopiedInstall(true)
-    setTimeout(() => setCopiedInstall(false), 2000)
-  }, [installCommand])
+    await navigator.clipboard.writeText(installCommand);
+    setCopiedInstall(true);
+    setTimeout(() => setCopiedInstall(false), 2000);
+  }, [installCommand]);
 
   const handleSizeChange = useCallback((value: string) => {
-    const size = parseInt(value)
-    setDeviceSize(value)
-    setCurrentSize(size)
+    const size = parseInt(value);
+    setDeviceSize(value);
+    setCurrentSize(size);
     if (resizablePanelRef?.current) {
-      resizablePanelRef.current.resize(size)
+      resizablePanelRef.current.resize(size);
     }
-  }, [])
+  }, []);
 
   if (!componentData) {
     return (
@@ -433,15 +444,15 @@ export default function ComponentCard({ componentName }: { componentName: string
           </Button>
         </div>
       </div>
-    )
+    );
   }
 
   const getPreviewScale = () => {
-    const size = parseInt(deviceSize)
-    if (size <= 30) return "scale-[0.4]"
-    if (size <= 60) return "scale-[0.6]"
-    return "scale-75"
-  }
+    const size = parseInt(deviceSize);
+    if (size <= 30) return "scale-[0.4]";
+    if (size <= 60) return "scale-[0.6]";
+    return "scale-75";
+  };
 
   return (
     <div className="group relative overflow-hidden rounded-lg border bg-card hover:shadow-lg transition-all">
@@ -532,8 +543,8 @@ export default function ComponentCard({ componentName }: { componentName: string
               linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
               linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
             `,
-            backgroundSize: '20px 20px',
-            backgroundPosition: 'center center',
+            backgroundSize: "20px 20px",
+            backgroundPosition: "center center",
             opacity: 0.2,
           }}
         />
@@ -543,7 +554,7 @@ export default function ComponentCard({ componentName }: { componentName: string
             direction="horizontal"
             className="relative z-10 h-full"
             onLayout={(sizes) => {
-              setCurrentSize(Math.round(sizes[0] || 100))
+              setCurrentSize(Math.round(sizes[0] || 100));
             }}
           >
             <ResizablePanel
@@ -556,7 +567,7 @@ export default function ComponentCard({ componentName }: { componentName: string
                 className={cn(
                   "relative flex h-full w-full items-center justify-center p-4 transition-transform duration-300",
                   getPreviewScale(),
-                  "origin-center"
+                  "origin-center",
                 )}
               >
                 <Component />
@@ -592,7 +603,6 @@ export default function ComponentCard({ componentName }: { componentName: string
             )}
           </div>
         )}
-
       </div>
 
       {/* Component Info */}
@@ -617,22 +627,13 @@ export default function ComponentCard({ componentName }: { componentName: string
 
         {/* Actions */}
         <div className="flex gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex-1"
-            asChild
-          >
+          <Button size="sm" variant="outline" className="flex-1" asChild>
             <Link href={`/components/${category}/${componentName}`}>
               View Details
               <ExternalLink className="ml-2 h-3 w-3" />
             </Link>
           </Button>
-          <Button
-            size="sm"
-            className="flex-1"
-            onClick={handleCopyInstall}
-          >
+          <Button size="sm" className="flex-1" onClick={handleCopyInstall}>
             {copiedInstall ? (
               <>
                 <Check className="mr-2 h-3 w-3" />
@@ -648,5 +649,5 @@ export default function ComponentCard({ componentName }: { componentName: string
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -19,6 +19,7 @@
     "hooks": "@/hooks"
   },
   "registries": {
-    "@d2": "https://d2studio.dev/r/{name}.json"
+    "@d2": "https://d2studio.dev/r/{name}.json",
+    "@magicui": "https://magicui.design/r/{name}.json"
   }
 }

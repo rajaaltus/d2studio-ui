@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowRight,
@@ -37,7 +39,6 @@ const structuredData = {
 };
 
 export default function HomePage() {
-
   const features = [
     {
       icon: <Code2 className="h-5 w-5" />,

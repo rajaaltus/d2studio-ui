@@ -1,59 +1,80 @@
 "use client";
 
-import { PreviewWrapper } from "@/components/preview/preview-wrapper";
+import { ComponentWithCode } from "@/components/showcase/component-with-code";
+import dynamic from "next/dynamic";
+import registryData from "@/registry.json";
 
-// Featured component imports
-import Comp010 from "@/registry/default/components/comp-010";
-import Comp012 from "@/registry/default/components/comp-012";
-import Comp020 from "@/registry/default/components/comp-020";
+interface RegistryItem {
+  name: string;
+  type: string;
+  title?: string;
+  description?: string;
+  categories?: string[];
+}
 
-const featuredComponents = [
-  {
-    name: "comp-010",
-    title: "Hero Section",
-    description:
-      "Modern hero section with gradient text and call-to-action buttons",
-    component: Comp010,
-    category: "marketing",
-    tags: ["hero", "marketing", "landing"],
+interface FeaturedComponent {
+  name: string;
+  title: string;
+  description: string;
+  categories: string[];
+}
+
+// Get featured components from registry (marketing and pricing categories)
+const getFeaturedComponents = (): FeaturedComponent[] => {
+  return (registryData.items as RegistryItem[])
+    .filter(
+      (item) =>
+        item.type === "registry:component" &&
+        (item.categories?.includes("marketing") ||
+          item.categories?.includes("pricing")),
+    )
+    .map((item) => ({
+      name: item.name,
+      title: item.title || item.name,
+      description: item.description || "",
+      categories: item.categories || [],
+    }));
+};
+
+const featuredComponents = getFeaturedComponents();
+
+// Dynamic imports for components
+const componentMap = featuredComponents.reduce(
+  (acc, item) => {
+    acc[item.name] = dynamic(
+      () => import(`@/registry/default/components/${item.name}`),
+      {
+        loading: () => (
+          <div className="flex items-center justify-center min-h-[500px]">
+            <div className="text-sm text-muted-foreground">Loading...</div>
+          </div>
+        ),
+        ssr: true,
+      },
+    );
+    return acc;
   },
-  {
-    name: "comp-012",
-    title: "Pricing Table",
-    description:
-      "Three-tier pricing table with feature comparison and popular plan highlighting",
-    component: Comp012,
-    category: "marketing",
-    tags: ["pricing", "marketing", "saas"],
-  },
-  {
-    name: "comp-020",
-    title: "Contact Form",
-    description:
-      "Comprehensive contact form with validation and contact information",
-    component: Comp020,
-    category: "forms",
-    tags: ["form", "contact", "validation"],
-  },
-];
+  {} as Record<string, React.ComponentType>,
+);
 
 export function FeaturedComponents() {
   return (
     <section className="w-full">
-      <div className="border-x  mx-auto">
-        <div className="space-y-16  mx-auto">
+      <div className="border-x mx-auto">
+        <div className="space-y-16 mx-auto">
           {featuredComponents.map((item) => {
-            const Component = item.component;
+            const Component = componentMap[item.name];
+
+            if (!Component) return null;
 
             return (
-              <div key={item.name} className="space-y-8  screen-line-after ">
-                {/* Component Preview */}
-                <div className="w-full">
-                  <PreviewWrapper componentName={item.name} minHeight="500px">
-                    <div className="origin-center  w-full">
-                      <Component />
-                    </div>
-                  </PreviewWrapper>
+              <div key={item.name} className="space-y-8 screen-line-after">
+                {/* Component Preview with Code */}
+                <div className="w-full ">
+                  <ComponentWithCode
+                    componentName={item.name}
+                    component={Component}
+                  />
                 </div>
               </div>
             );

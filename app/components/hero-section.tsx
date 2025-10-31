@@ -89,10 +89,10 @@ const HeroSection2 = () => {
                 key={index}
                 className="relative group w-full duration-200 hover:bg-accent dark:hover:bg-background bg-white dark:bg-black h-full min-h-[7.5rem]  flex items-center justify-center"
               >
-                <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)]  duration-200 rounded-full bg-border top-2 left-2 group-hover:translate-1" />
+                {/* <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)]  duration-200 rounded-full bg-border top-2 left-2 group-hover:translate-1" />
                 <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border top-2 right-2 group-hover:-translate-x-1 group-hover:translate-y-1" />
                 <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 right-2 group-hover:-translate-x-1 group-hover:-translate-y-1" />
-                <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 left-2 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 left-2 group-hover:translate-x-1 group-hover:-translate-y-1" /> */}
                 <IconComponent className="h-6 p-1 w-auto mx-auto mt-4 group-hover:scale-95 duration-200 dark:brightness-200" />
               </div>
             );

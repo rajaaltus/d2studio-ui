@@ -3,18 +3,6 @@
   "name": "d2-studio",
   "homepage": "https://d2studio.dev",
   "description": "Ultra modern monospace component library",
-  "registries": {
-    "@d2": {
-      "url": "https://d2studio.dev/r/{name}.json"
-    }
-  },
-  "aliases": {
-    "utils": "@/lib/utils",
-    "components": "@/components",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
   "items": [
     {
       "name": "button",
@@ -28,7 +16,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "input",
@@ -42,7 +32,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "label",
@@ -56,7 +48,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "card",
@@ -70,7 +64,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "badge",
@@ -84,7 +80,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "textarea",
@@ -98,7 +96,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "select",
@@ -106,14 +106,18 @@
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "author": "D2 Studio",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/ui/select.tsx",
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "checkbox",
@@ -127,7 +131,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "switch",
@@ -141,7 +147,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "separator",
@@ -155,7 +163,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "avatar",
@@ -169,7 +179,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "skeleton",
@@ -183,7 +195,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "progress",
@@ -197,7 +211,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "tooltip",
@@ -211,7 +227,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "alert",
@@ -225,7 +243,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "drawer",
@@ -239,7 +259,9 @@
           "type": "registry:ui"
         }
       ],
-      "categories": ["ui"]
+      "categories": [
+        "ui"
+      ]
     },
     {
       "name": "comp-001",
@@ -247,14 +269,20 @@
       "title": "Newsletter Form",
       "description": "Simple newsletter subscription form with email input and submit button",
       "author": "D2 Studio",
-      "registryDependencies": ["input", "label", "button"],
+      "registryDependencies": [
+        "input",
+        "label",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-001.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["forms"]
+      "categories": [
+        "forms"
+      ]
     },
     {
       "name": "comp-002",
@@ -262,14 +290,19 @@
       "title": "Feature Card",
       "description": "Feature showcase card with checklist and call-to-action button",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "button"],
+      "registryDependencies": [
+        "card",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-002.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["marketing"]
+      "categories": [
+        "marketing"
+      ]
     },
     {
       "name": "comp-003",
@@ -277,25 +310,36 @@
       "title": "Login Form",
       "description": "Complete login form with email, password, and forgot password link",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "input", "label", "button"],
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-003.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["authentication"]
+      "categories": [
+        "authentication"
+      ]
     },
     {
-      "name": "comp-010",
+      "name": "hero-01",
       "type": "registry:component",
       "title": "Hero Section",
       "description": "Modern hero section with badge, heading, call-to-action buttons, and infinite slider",
       "author": "D2 Studio",
-      "registryDependencies": ["button", "badge", "avatar"],
+      "registryDependencies": [
+        "button",
+        "badge",
+        "avatar"
+      ],
       "files": [
         {
-          "path": "registry/default/components/comp-010.tsx",
+          "path": "registry/default/components/hero-01.tsx",
           "type": "registry:component"
         },
         {
@@ -329,7 +373,34 @@
           "target": "public/registry/assets/consulting.png"
         }
       ],
-      "categories": ["marketing", "landing-page"]
+      "css": {
+        "@keyframes marquee": {
+          "from": {
+            "transform": "translateX(0)"
+          },
+          "to": {
+            "transform": "translateX(calc(-100% - var(--gap)))"
+          }
+        },
+        "@keyframes marquee-vertical": {
+          "from": {
+            "transform": "translateY(0)"
+          },
+          "to": {
+            "transform": "translateY(calc(-100% - var(--gap)))"
+          }
+        },
+        ".animate-marquee": {
+          "animation": "marquee var(--duration) linear infinite"
+        },
+        ".animate-marquee-vertical": {
+          "animation": "marquee-vertical var(--duration) linear infinite"
+        }
+      },
+      "categories": [
+        "marketing",
+        "landing-page"
+      ]
     },
     {
       "name": "comp-011",
@@ -337,29 +408,42 @@
       "title": "Features Section",
       "description": "Two-column features section with icons, benefits list, and feature cards",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "badge", "button"],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-011.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["marketing"]
+      "categories": [
+        "marketing"
+      ]
     },
     {
-      "name": "comp-012",
+      "name": "pricing-01",
       "type": "registry:component",
-      "title": "Pricing Table",
-      "description": "Three-tier pricing table with feature comparison and popular plan highlighting",
+      "title": "Pricing Cards",
+      "description": "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "button", "badge"],
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge"
+      ],
       "files": [
         {
-          "path": "registry/default/components/comp-012.tsx",
+          "path": "registry/default/components/pricing-01.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["marketing"]
+      "categories": [
+        "marketing",
+        "pricing"
+      ]
     },
     {
       "name": "comp-020",
@@ -367,14 +451,23 @@
       "title": "Contact Form",
       "description": "Comprehensive contact form with validation and contact information",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "input", "label", "textarea", "button", "select"],
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "textarea",
+        "button",
+        "select"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-020.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["forms"]
+      "categories": [
+        "forms"
+      ]
     },
     {
       "name": "comp-021",
@@ -382,14 +475,21 @@
       "title": "Search & Filter",
       "description": "Advanced search bar with tag-based filtering and active filter management",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "input", "button", "badge"],
+      "registryDependencies": [
+        "card",
+        "input",
+        "button",
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-021.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["forms"]
+      "categories": [
+        "forms"
+      ]
     },
     {
       "name": "comp-030",
@@ -397,14 +497,20 @@
       "title": "Product Card",
       "description": "E-commerce product card with wishlist, quick actions, and color options",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "button", "badge"],
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-030.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["ecommerce"]
+      "categories": [
+        "ecommerce"
+      ]
     },
     {
       "name": "comp-040",
@@ -412,14 +518,19 @@
       "title": "Navigation Header",
       "description": "Responsive navigation header with mobile menu and user actions",
       "author": "D2 Studio",
-      "registryDependencies": ["button", "badge"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-040.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["navigation"]
+      "categories": [
+        "navigation"
+      ]
     },
     {
       "name": "comp-050",
@@ -427,14 +538,21 @@
       "title": "Article Cards",
       "description": "Blog article cards with author info, tags, and social actions",
       "author": "D2 Studio",
-      "registryDependencies": ["card", "badge", "button", "avatar"],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button",
+        "avatar"
+      ],
       "files": [
         {
           "path": "registry/default/components/comp-050.tsx",
           "type": "registry:component"
         }
       ],
-      "categories": ["display"]
+      "categories": [
+        "display"
+      ]
     }
   ]
 }

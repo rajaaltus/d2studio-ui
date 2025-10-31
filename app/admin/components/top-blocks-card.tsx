@@ -2,16 +2,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
-import { Preloaded, usePreloadedQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 
 interface TopBlocksCardProps {
-  dashboardStats: Preloaded<typeof api.blocks.getDashboardStats>;
+  dashboardStats: {
+    totalBlocks: number;
+    totalDownloads: number;
+    downloadsToday: number;
+    downloadsThisWeek: number;
+    topBlocks: Array<{ name: string; downloads: number; trend: string }>;
+    topCategories: Array<{ category: string; downloads: number }>;
+  };
 }
 
 export function TopBlocksCard({ dashboardStats }: TopBlocksCardProps) {
-  const statsData = usePreloadedQuery(dashboardStats);
-  const blocks = statsData.topBlocks;
+  const blocks = dashboardStats.topBlocks;
   const getTrendBadge = (trend: string) => {
     const variant =
       trend === "up"

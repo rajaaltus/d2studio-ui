@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { AdminNavigation } from "@/components/admin/admin-navigation";
 import { AdminBreadcrumb } from "@/components/admin/admin-breadcrumb";
+export const dynamic = "force-dynamic";
+
 
 export const metadata: Metadata = {
   title: {

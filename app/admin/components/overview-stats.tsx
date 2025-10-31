@@ -1,15 +1,20 @@
 "use client";
-import { Preloaded, usePreloadedQuery } from "convex/react";
 import { StatCard } from "./stat-card";
 import { BarChart3, Blocks, Download, Eye } from "lucide-react";
-import { api } from "@/convex/_generated/api";
 
 interface OverviewStatsProps {
-  dashboardStats: Preloaded<typeof api.blocks.getDashboardStats>;
+  dashboardStats: {
+    totalBlocks: number;
+    totalDownloads: number;
+    downloadsToday: number;
+    downloadsThisWeek: number;
+    topBlocks: Array<{ name: string; downloads: number; trend: string }>;
+    topCategories: Array<{ category: string; downloads: number }>;
+  };
 }
 
 export function OverviewStats({ dashboardStats }: OverviewStatsProps) {
-  const statsData = usePreloadedQuery(dashboardStats);
+  const statsData = dashboardStats;
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <StatCard

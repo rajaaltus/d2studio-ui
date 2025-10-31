@@ -1,3 +1,5 @@
+"use client";
+
 import { categories } from "@/config/components"
 import { ComponentSearch } from "@/components/search/component-search"
 import Link from "next/link"

@@ -14,7 +14,6 @@ import {
   Monitor,
   Tablet,
   Smartphone,
-  Copy,
   Check,
   Terminal,
   Maximize2,
@@ -23,6 +22,7 @@ import {
   Code,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SyntaxHighlighter } from "@/components/ui/syntax-highlighter";
 
 interface PreviewWrapperProps {
   children: React.ReactNode;
@@ -42,21 +42,12 @@ export function PreviewWrapper({
   iframeHeight = 930,
 }: PreviewWrapperProps) {
   const [view, setView] = React.useState<"preview" | "code">("preview");
-  const [copied, setCopied] = React.useState(false);
   const [copiedInstall, setCopiedInstall] = React.useState(false);
   const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
   const [currentSize, setCurrentSize] = React.useState(100);
   const [key, setKey] = React.useState(0);
 
   const installCommand = `npx shadcn@latest add https://d2studio.dev/r/${componentName.toLowerCase()}.json`;
-
-  const handleCopyCode = React.useCallback(async () => {
-    if (code) {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  }, [code]);
 
   const handleCopyInstall = React.useCallback(async () => {
     await navigator.clipboard.writeText(installCommand);
@@ -96,26 +87,26 @@ export function PreviewWrapper({
           <Tabs
             value={view}
             onValueChange={(value) => setView(value as "preview" | "code")}
-            className="hidden sm:flex bg-muted items-center justify-center rounded-md  py-2 px-1"
+            className="hidden sm:flex bg-muted  items-center justify-center rounded-md  py-2 px-1"
           >
             <TabsList className="h-7 gap-1 rounded-md bg-muted p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)]">
               <TabsTrigger
                 value="preview"
-                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
               >
                 <Eye />
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value="code"
-                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
               >
                 <Code />
                 Code
               </TabsTrigger>
               <TabsTrigger
                 value="figma"
-                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
               >
                 <svg
                   width="18"
@@ -214,23 +205,6 @@ export function PreviewWrapper({
             </Button>
           )}
 
-          {/* Copy Code Button - Only in code mode */}
-          {view === "code" && code && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-[22px] rounded-sm px-2 gap-1"
-              onClick={handleCopyCode}
-            >
-              {copied ? (
-                <Check className="h-3.5 w-3.5 text-green-500" />
-              ) : (
-                <Copy className="h-3.5 w-3.5" />
-              )}
-              <span className="sr-only">Copy code</span>
-            </Button>
-          )}
-
           <div className="h-4 w-px bg-border" />
 
           {/* Install Command */}
@@ -313,16 +287,22 @@ export function PreviewWrapper({
             </ResizablePanelGroup>
           </div>
         ) : (
-          <div className="relative overflow-hidden rounded-xl">
+          <div className="relative">
             {code ? (
-              <div className="relative">
-                <pre className="overflow-x-auto bg-zinc-950 p-4 text-xs text-white dark:bg-zinc-900">
-                  <code className="language-tsx">{code}</code>
-                </pre>
-              </div>
+              <SyntaxHighlighter
+                code={code}
+                language="tsx"
+                filename={`${componentName}.tsx`}
+                withMeta={true}
+              />
             ) : (
-              <div className="flex min-h-[400px] items-center justify-center text-sm text-muted-foreground">
-                No code available for this component
+              <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-zinc-950 text-sm text-muted-foreground dark:bg-zinc-900">
+                <div className="text-center space-y-2">
+                  <p>Loading code...</p>
+                  <p className="text-xs opacity-60">
+                    Fetching component source
+                  </p>
+                </div>
               </div>
             )}
           </div>

@@ -1,11 +1,18 @@
-import { ComponentSearch } from "@/components/search/component-search"
+"use client";
 
-export const metadata = {
-  title: "Search Components | D2 Studio",
-  description: "Search through our collection of React components built with shadcn/ui and Tailwind CSS",
-}
+import { ComponentSearch } from "@/components/search/component-search"
+import { useEffect } from "react";
 
 export default function SearchPage() {
+  // Set page metadata using useEffect for client components
+  useEffect(() => {
+    document.title = "Search Components | D2 Studio";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Search through our collection of React components built with shadcn/ui and Tailwind CSS');
+    }
+  }, []);
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-8">

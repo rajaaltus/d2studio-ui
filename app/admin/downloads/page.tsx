@@ -9,6 +9,8 @@ import {
   RecentDownloadsTable,
 } from "./components";
 
+export const dynamic = "force-dynamic";
+
 export default function DownloadsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sourceFilter, setSourceFilter] = useState<string>("all");

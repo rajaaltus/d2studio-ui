@@ -189,7 +189,7 @@
     @apply bg-foreground text-background;
   }
 
-  /* Infinite scroll animation */
+  /* Infinite scroll animation (legacy) */
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -205,5 +205,32 @@
 
   .animate-infinite-scroll:hover {
     animation-play-state: paused;
+  }
+
+  /* Marquee animations */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee var(--duration) linear infinite;
+  }
+
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration) linear infinite;
   }
 }

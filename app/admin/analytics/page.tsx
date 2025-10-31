@@ -13,6 +13,8 @@ import {
   type TimeFrame,
 } from "./components";
 
+export const dynamic = "force-dynamic";
+
 export default function AnalyticsPage() {
   const [timeframe, setTimeframe] = useState<TimeFrame>("total");
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 
 const inter = Inter({
@@ -103,21 +102,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ConvexAuthNextjsServerProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ConvexClientProvider>{children}</ConvexClientProvider>
-          </ThemeProvider>
-        </body>
-      </html>
-    </ConvexAuthNextjsServerProvider>
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

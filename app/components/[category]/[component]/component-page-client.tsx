@@ -5,7 +5,7 @@ import { ComponentPreview } from "@/components/preview/component-preview";
 // Component imports - dynamically loaded
 import Comp001 from "@/registry/default/components/comp-001";
 import Comp002 from "@/registry/default/components/comp-002";
-import Comp010 from "@/registry/default/components/comp-010";
+import Comp010 from "@/registry/default/components/hero-01";
 
 const componentMap: Record<string, React.ComponentType> = {
   "comp-001": Comp001,
