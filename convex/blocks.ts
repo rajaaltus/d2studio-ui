@@ -2,6 +2,32 @@ import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
 import { api } from "./_generated/api";
 
+// File Upload Functions
+
+export const generateUploadUrl = mutation({
+  args: {},
+  returns: v.string(),
+  handler: async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+
+export const getFileUrl = query({
+  args: { storageId: v.id("_storage") },
+  returns: v.union(v.string(), v.null()),
+  handler: async (ctx, args) => {
+    return await ctx.storage.getUrl(args.storageId);
+  },
+});
+
+export const getFileUrlFromStorageId = mutation({
+  args: { storageId: v.id("_storage") },
+  returns: v.union(v.string(), v.null()),
+  handler: async (ctx, args) => {
+    return await ctx.storage.getUrl(args.storageId);
+  },
+});
+
 // Block Management Functions
 
 export const createBlock = mutation({
@@ -17,7 +43,9 @@ export const createBlock = mutation({
     tags: v.optional(v.array(v.string())),
     previewImage: v.optional(v.string()), // Temporarily optional for migration
     figmaUrl: v.optional(v.string()), // Temporarily optional for migration
-    codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+    codeStatus: v.optional(
+      v.union(v.literal("coming_soon"), v.literal("available")),
+    ),
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
   },
@@ -35,7 +63,7 @@ export const createBlock = mutation({
     const now = Date.now();
     const blockId = await ctx.db.insert("blocks", {
       ...args,
-      previewImage: args.previewImage || "https://via.placeholder.com/800x600?text=Preview+Coming+Soon",
+      previewImage: args.previewImage || "/placeholder.svg",
       figmaUrl: args.figmaUrl || "https://www.figma.com",
       codeStatus: args.codeStatus ?? "coming_soon",
       isActive: true,
@@ -86,7 +114,9 @@ export const getBlock = query({
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
       figmaUrl: v.optional(v.string()),
-      codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+      codeStatus: v.optional(
+        v.union(v.literal("coming_soon"), v.literal("available")),
+      ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
       createdAt: v.number(),
@@ -125,7 +155,9 @@ export const listBlocks = query({
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
       figmaUrl: v.optional(v.string()),
-      codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+      codeStatus: v.optional(
+        v.union(v.literal("coming_soon"), v.literal("available")),
+      ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
       createdAt: v.number(),
@@ -176,7 +208,9 @@ export const getBlocksByType = query({
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
       figmaUrl: v.optional(v.string()),
-      codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+      codeStatus: v.optional(
+        v.union(v.literal("coming_soon"), v.literal("available")),
+      ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
       createdAt: v.number(),
@@ -210,7 +244,9 @@ export const updateBlock = mutation({
     tags: v.optional(v.array(v.string())),
     previewImage: v.optional(v.string()),
     figmaUrl: v.optional(v.string()),
-    codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+    codeStatus: v.optional(
+      v.union(v.literal("coming_soon"), v.literal("available")),
+    ),
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
     isActive: v.optional(v.boolean()),
@@ -586,7 +622,7 @@ export const migrateBlocksSchema = mutation({
 
       // Add missing previewImage
       if (!block.previewImage) {
-        updates.previewImage = "https://via.placeholder.com/800x600?text=Preview+Coming+Soon";
+        updates.previewImage = "/placeholder.svg";
         needsUpdate = true;
       }
 

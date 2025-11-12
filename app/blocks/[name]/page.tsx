@@ -96,21 +96,15 @@ export default function BlockPage() {
           minHeight="500px"
         >
           <div className="origin-center w-full flex items-center justify-center flex-1 h-full font-sans p-8">
-            {block.previewImage ? (
-              <div className="relative w-full max-w-4xl aspect-video">
-                <Image
-                  src={block.previewImage}
-                  alt={block.title}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                />
-              </div>
-            ) : (
-              <div className="text-center text-muted-foreground">
-                <p>Preview image not available</p>
-              </div>
-            )}
+            <div className="relative w-full max-w-4xl aspect-video">
+              <Image
+                src={block.previewImage || "/placeholder.svg"}
+                alt={block.title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+            </div>
           </div>
         </PreviewWrapper>
       </section>
@@ -135,7 +129,9 @@ export default function BlockPage() {
             <div>
               <p className="text-sm text-muted-foreground mb-1">Code Status</p>
               <p className="font-medium capitalize">
-                {block.codeStatus === "coming_soon" ? "Coming Soon" : "Available"}
+                {block.codeStatus === "coming_soon"
+                  ? "Coming Soon"
+                  : "Available"}
               </p>
             </div>
           </div>
@@ -156,4 +152,3 @@ export default function BlockPage() {
     </div>
   );
 }
-

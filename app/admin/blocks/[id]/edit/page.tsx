@@ -18,8 +18,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface BlockFormData {
   name: string;
@@ -50,8 +51,16 @@ export default function EditBlockPage() {
   const params = useParams();
   const blockId = params.id as string;
   const updateBlock = useMutation(api.blocks.updateBlock);
+  const generateUploadUrl = useMutation(api.blocks.generateUploadUrl);
+  const getFileUrlFromStorageId = useMutation(
+    api.blocks.getFileUrlFromStorageId,
+  );
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isUploading, setIsUploading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [previewImageUrl, setPreviewImageUrl] = React.useState<string | null>(
+    null,
+  );
 
   // Fetch block data - we need to get it by ID
   // Since we don't have getBlockById, we'll need to use listBlocks and find the block
@@ -104,34 +113,110 @@ export default function EditBlockPage() {
       setValue("codeUrl", block.codeUrl);
       setValue("categories", block.categories.join(", "));
       setValue("tags", block.tags?.join(", ") || "");
+      setPreviewImageUrl(block.previewImage || null);
     }
   }, [block, setValue]);
+
+  const handleImageChange = React.useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      setError(null);
+      setIsUploading(true);
+
+      try {
+        // Generate upload URL
+        const uploadUrl = await generateUploadUrl();
+
+        // Upload file to Convex storage
+        const result = await fetch(uploadUrl, {
+          method: "POST",
+          headers: { "Content-Type": file.type },
+          body: file,
+        });
+
+        if (!result.ok) {
+          throw new Error("Failed to upload file");
+        }
+
+        const { storageId } = await result.json();
+
+        // Get the file URL from Convex
+        // storageId from upload response needs to be cast to Id<"_storage">
+        const fileUrl = await getFileUrlFromStorageId({
+          storageId: storageId as Id<"_storage">,
+        });
+
+        if (fileUrl) {
+          setPreviewImageUrl(fileUrl);
+          setValue("previewImage", fileUrl);
+        } else {
+          throw new Error("Failed to get file URL");
+        }
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to upload image. Please try again.",
+        );
+        setPreviewImageUrl(null);
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [generateUploadUrl, getFileUrlFromStorageId, setValue],
+  );
 
   const onSubmit = async (data: BlockFormData) => {
     setIsSubmitting(true);
     setError(null);
 
     try {
+      // Ensure type is valid
+      if (!data.type || (data.type !== "ui" && data.type !== "component")) {
+        setError("Please select a valid type (UI or Component)");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Ensure codeStatus is valid
+      if (
+        !data.codeStatus ||
+        (data.codeStatus !== "coming_soon" && data.codeStatus !== "available")
+      ) {
+        setError("Please select a valid code status");
+        setIsSubmitting(false);
+        return;
+      }
+
       const categories = data.categories
         .split(",")
         .map((c) => c.trim())
         .filter((c) => c.length > 0);
       const tags = data.tags
-        ? data.tags.split(",").map((t) => t.trim()).filter((t) => t.length > 0)
+        ? data.tags
+            .split(",")
+            .map((t) => t.trim())
+            .filter((t) => t.length > 0)
         : undefined;
+
+      // Use uploaded image URL, or existing preview image, or placeholder as fallback
+      const finalPreviewImage =
+        previewImageUrl || data.previewImage || "/placeholder.svg";
 
       await updateBlock({
         id: blockId as Id<"blocks">,
         name: data.name,
-        type: data.type,
+        type: data.type as "ui" | "component",
         title: data.title,
         description: data.description,
         author: data.author,
         version: data.version,
         blockType: data.blockType,
-        previewImage: data.previewImage,
+        previewImage: finalPreviewImage,
         figmaUrl: data.figmaUrl,
-        codeStatus: data.codeStatus,
+        codeStatus: data.codeStatus as "coming_soon" | "available",
         codeUrl: data.codeStatus === "available" ? data.codeUrl : undefined,
         categories,
         tags,
@@ -139,9 +224,7 @@ export default function EditBlockPage() {
 
       router.push("/admin/blocks");
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to update block",
-      );
+      setError(err instanceof Error ? err.message : "Failed to update block");
     } finally {
       setIsSubmitting(false);
     }
@@ -189,9 +272,12 @@ export default function EditBlockPage() {
                   <Label htmlFor="codeStatus">Code Status</Label>
                   <Select
                     onValueChange={(value) =>
-                      setValue("codeStatus", value as "coming_soon" | "available")
+                      setValue(
+                        "codeStatus",
+                        value as "coming_soon" | "available",
+                      )
                     }
-                    value={codeStatus}
+                    value={codeStatus || block?.codeStatus || "coming_soon"}
                   >
                     <SelectTrigger id="codeStatus">
                       <SelectValue />
@@ -239,7 +325,9 @@ export default function EditBlockPage() {
                   {...register("name", { required: "Block name is required" })}
                 />
                 {errors.name && (
-                  <p className="text-sm text-destructive">{errors.name.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -251,7 +339,7 @@ export default function EditBlockPage() {
                   onValueChange={(value) =>
                     setValue("type", value as "ui" | "component")
                   }
-                  value={watch("type")}
+                  value={watch("type") || block?.type || "component"}
                 >
                   <SelectTrigger id="type">
                     <SelectValue />
@@ -273,7 +361,9 @@ export default function EditBlockPage() {
                 {...register("title", { required: "Title is required" })}
               />
               {errors.title && (
-                <p className="text-sm text-destructive">{errors.title.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.title.message}
+                </p>
               )}
             </div>
 
@@ -283,7 +373,9 @@ export default function EditBlockPage() {
               </Label>
               <Textarea
                 id="description"
-                {...register("description", { required: "Description is required" })}
+                {...register("description", {
+                  required: "Description is required",
+                })}
                 rows={3}
               />
               {errors.description && (
@@ -303,7 +395,9 @@ export default function EditBlockPage() {
                   {...register("author", { required: "Author is required" })}
                 />
                 {errors.author && (
-                  <p className="text-sm text-destructive">{errors.author.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.author.message}
+                  </p>
                 )}
               </div>
 
@@ -316,7 +410,9 @@ export default function EditBlockPage() {
                   {...register("version", { required: "Version is required" })}
                 />
                 {errors.version && (
-                  <p className="text-sm text-destructive">{errors.version.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.version.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -344,20 +440,58 @@ export default function EditBlockPage() {
 
             <div className="space-y-2">
               <Label htmlFor="previewImage">
-                Preview Image URL <span className="text-destructive">*</span>
+                Preview Image <span className="text-destructive">*</span>
               </Label>
+              {previewImageUrl && (
+                <div className="mb-2 relative inline-block">
+                  <Image
+                    src={previewImageUrl}
+                    alt="Current preview"
+                    className="h-96 w-full rounded-md border object-cover"
+                    width={1280}
+                    height={750}
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="icon"
+                    className="absolute top-1 right-1 h-6 w-6"
+                    onClick={() => {
+                      setPreviewImageUrl(null);
+                      setValue("previewImage", "");
+                    }}
+                    aria-label="Remove image"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Current preview image - Click X to remove
+                  </p>
+                </div>
+              )}
               <Input
                 id="previewImage"
-                type="url"
-                {...register("previewImage", {
-                  required: "Preview image URL is required",
-                })}
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                disabled={isUploading}
+                className="cursor-pointer"
               />
+              {isUploading && (
+                <p className="text-sm text-muted-foreground">
+                  Uploading image...
+                </p>
+              )}
               {errors.previewImage && (
                 <p className="text-sm text-destructive">
                   {errors.previewImage.message}
                 </p>
               )}
+              <p className="text-xs text-muted-foreground">
+                {previewImageUrl
+                  ? "Upload a new image file to replace the current preview (PNG, JPG, etc.)"
+                  : "Upload an image file (PNG, JPG, etc.)"}
+              </p>
             </div>
 
             <div className="space-y-2">
@@ -370,7 +504,9 @@ export default function EditBlockPage() {
                 {...register("figmaUrl", { required: "Figma URL is required" })}
               />
               {errors.figmaUrl && (
-                <p className="text-sm text-destructive">{errors.figmaUrl.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.figmaUrl.message}
+                </p>
               )}
             </div>
 
@@ -380,11 +516,15 @@ export default function EditBlockPage() {
               </Label>
               <Input
                 id="categories"
-                {...register("categories", { required: "Categories are required" })}
+                {...register("categories", {
+                  required: "Categories are required",
+                })}
                 placeholder="marketing, hero, landing (comma-separated)"
               />
               {errors.categories && (
-                <p className="text-sm text-destructive">{errors.categories.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.categories.message}
+                </p>
               )}
               <p className="text-xs text-muted-foreground">
                 Separate multiple categories with commas
@@ -405,7 +545,9 @@ export default function EditBlockPage() {
 
             <div className="flex gap-4">
               <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isSubmitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
                 Update Block
               </Button>
               <Button
@@ -423,4 +565,3 @@ export default function EditBlockPage() {
     </div>
   );
 }
-

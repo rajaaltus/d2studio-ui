@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code2, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import type { Doc } from "@/convex/_generated/dataModel";
 
 interface BlockCardProps {
@@ -17,19 +17,13 @@ export function BlockCard({ block }: BlockCardProps) {
     <Link href={`/blocks/${block.name}`}>
       <Card className="group relative overflow-hidden rounded-lg border bg-card hover:shadow-lg transition-all hover:border-foreground/20 h-full flex flex-col">
         <div className="relative aspect-video w-full overflow-hidden bg-muted">
-          {block.previewImage ? (
-            <Image
-              src={block.previewImage}
-              alt={block.title}
-              fill
-              className="object-cover transition-transform group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center bg-muted text-muted-foreground">
-              <Code2 className="h-12 w-12" />
-            </div>
-          )}
+          <Image
+            src={block.previewImage || "/placeholder.svg"}
+            alt={block.title}
+            fill
+            className="object-cover transition-transform group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
           {block.codeStatus === "coming_soon" && (
             <div className="absolute top-2 right-2">
               <Badge variant="secondary" className="text-xs">
@@ -65,4 +59,3 @@ export function BlockCard({ block }: BlockCardProps) {
     </Link>
   );
 }
-

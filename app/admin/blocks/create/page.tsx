@@ -4,6 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,8 +18,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface BlockFormData {
   name: string;
@@ -47,8 +49,16 @@ const BLOCK_TYPES = [
 export default function CreateBlockPage() {
   const router = useRouter();
   const createBlock = useMutation(api.blocks.createBlock);
+  const generateUploadUrl = useMutation(api.blocks.generateUploadUrl);
+  const getFileUrlFromStorageId = useMutation(
+    api.blocks.getFileUrlFromStorageId,
+  );
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isUploading, setIsUploading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [previewImageUrl, setPreviewImageUrl] = React.useState<string | null>(
+    null,
+  );
 
   const {
     register,
@@ -67,6 +77,57 @@ export default function CreateBlockPage() {
 
   const codeStatus = watch("codeStatus");
 
+  const handleImageChange = React.useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      setError(null);
+      setIsUploading(true);
+
+      try {
+        // Generate upload URL
+        const uploadUrl = await generateUploadUrl();
+
+        // Upload file to Convex storage
+        const result = await fetch(uploadUrl, {
+          method: "POST",
+          headers: { "Content-Type": file.type },
+          body: file,
+        });
+
+        if (!result.ok) {
+          throw new Error("Failed to upload file");
+        }
+
+        const { storageId } = await result.json();
+
+        // Get the file URL from Convex
+        // storageId from upload response needs to be cast to Id<"_storage">
+        const fileUrl = await getFileUrlFromStorageId({
+          storageId: storageId as Id<"_storage">,
+        });
+
+        if (fileUrl) {
+          setPreviewImageUrl(fileUrl);
+          setValue("previewImage", fileUrl);
+        } else {
+          throw new Error("Failed to get file URL");
+        }
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to upload image. Please try again.",
+        );
+        setPreviewImageUrl(null);
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [generateUploadUrl, getFileUrlFromStorageId, setValue],
+  );
+
   const onSubmit = async (data: BlockFormData) => {
     setIsSubmitting(true);
     setError(null);
@@ -77,8 +138,15 @@ export default function CreateBlockPage() {
         .map((c) => c.trim())
         .filter((c) => c.length > 0);
       const tags = data.tags
-        ? data.tags.split(",").map((t) => t.trim()).filter((t) => t.length > 0)
+        ? data.tags
+            .split(",")
+            .map((t) => t.trim())
+            .filter((t) => t.length > 0)
         : undefined;
+
+      // Use uploaded image URL or placeholder as fallback
+      const finalPreviewImage =
+        previewImageUrl || data.previewImage || "/placeholder.svg";
 
       await createBlock({
         name: data.name,
@@ -88,7 +156,7 @@ export default function CreateBlockPage() {
         author: data.author,
         version: data.version,
         blockType: data.blockType,
-        previewImage: data.previewImage,
+        previewImage: finalPreviewImage,
         figmaUrl: data.figmaUrl,
         codeStatus: data.codeStatus,
         codeUrl: data.codeStatus === "available" ? data.codeUrl : undefined,
@@ -98,9 +166,7 @@ export default function CreateBlockPage() {
 
       router.push("/admin/blocks");
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to create block",
-      );
+      setError(err instanceof Error ? err.message : "Failed to create block");
     } finally {
       setIsSubmitting(false);
     }
@@ -140,7 +206,9 @@ export default function CreateBlockPage() {
                   placeholder="e.g., hero-01"
                 />
                 {errors.name && (
-                  <p className="text-sm text-destructive">{errors.name.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -175,7 +243,9 @@ export default function CreateBlockPage() {
                 placeholder="e.g., Modern Hero Section"
               />
               {errors.title && (
-                <p className="text-sm text-destructive">{errors.title.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.title.message}
+                </p>
               )}
             </div>
 
@@ -185,7 +255,9 @@ export default function CreateBlockPage() {
               </Label>
               <Textarea
                 id="description"
-                {...register("description", { required: "Description is required" })}
+                {...register("description", {
+                  required: "Description is required",
+                })}
                 placeholder="A brief description of the block"
                 rows={3}
               />
@@ -207,7 +279,9 @@ export default function CreateBlockPage() {
                   placeholder="D2 Studio"
                 />
                 {errors.author && (
-                  <p className="text-sm text-destructive">{errors.author.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.author.message}
+                  </p>
                 )}
               </div>
 
@@ -221,7 +295,9 @@ export default function CreateBlockPage() {
                   placeholder="1.0.0"
                 />
                 {errors.version && (
-                  <p className="text-sm text-destructive">{errors.version.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.version.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -249,21 +325,56 @@ export default function CreateBlockPage() {
 
             <div className="space-y-2">
               <Label htmlFor="previewImage">
-                Preview Image URL <span className="text-destructive">*</span>
+                Preview Image <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="previewImage"
-                type="url"
-                {...register("previewImage", {
-                  required: "Preview image URL is required",
-                })}
-                placeholder="https://example.com/preview.png"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                disabled={isUploading}
+                className="cursor-pointer"
               />
+              {isUploading && (
+                <p className="text-sm text-muted-foreground">
+                  Uploading image...
+                </p>
+              )}
+              {previewImageUrl && (
+                <div className="mt-2 relative inline-block">
+                  <Image
+                    src={previewImageUrl}
+                    alt="Preview"
+                    className="h-96 w-full rounded-md border object-cover"
+                    width={1920}
+                    height={750}
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="icon"
+                    className="absolute top-1 right-1 h-6 w-6"
+                    onClick={() => {
+                      setPreviewImageUrl(null);
+                      setValue("previewImage", "");
+                    }}
+                    aria-label="Remove image"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Image uploaded successfully - Click X to remove
+                  </p>
+                </div>
+              )}
               {errors.previewImage && (
                 <p className="text-sm text-destructive">
                   {errors.previewImage.message}
                 </p>
               )}
+              <p className="text-xs text-muted-foreground">
+                Upload an image file (PNG, JPG, etc.)
+              </p>
             </div>
 
             <div className="space-y-2">
@@ -277,7 +388,9 @@ export default function CreateBlockPage() {
                 placeholder="https://www.figma.com/file/..."
               />
               {errors.figmaUrl && (
-                <p className="text-sm text-destructive">{errors.figmaUrl.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.figmaUrl.message}
+                </p>
               )}
             </div>
 
@@ -316,7 +429,9 @@ export default function CreateBlockPage() {
                   placeholder="https://d2studio.dev/r/block-name.json"
                 />
                 {errors.codeUrl && (
-                  <p className="text-sm text-destructive">{errors.codeUrl.message}</p>
+                  <p className="text-sm text-destructive">
+                    {errors.codeUrl.message}
+                  </p>
                 )}
               </div>
             )}
@@ -327,11 +442,15 @@ export default function CreateBlockPage() {
               </Label>
               <Input
                 id="categories"
-                {...register("categories", { required: "Categories are required" })}
+                {...register("categories", {
+                  required: "Categories are required",
+                })}
                 placeholder="marketing, hero, landing (comma-separated)"
               />
               {errors.categories && (
-                <p className="text-sm text-destructive">{errors.categories.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.categories.message}
+                </p>
               )}
               <p className="text-xs text-muted-foreground">
                 Separate multiple categories with commas
@@ -352,7 +471,9 @@ export default function CreateBlockPage() {
 
             <div className="flex gap-4">
               <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isSubmitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
                 Create Block
               </Button>
               <Button
@@ -370,4 +491,3 @@ export default function CreateBlockPage() {
     </div>
   );
 }
-
