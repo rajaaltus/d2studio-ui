@@ -21,6 +21,11 @@ export default defineSchema({
     registryDependencies: v.optional(v.array(v.string())),
     tags: v.optional(v.array(v.string())),
     isActive: v.boolean(),
+    previewImage: v.optional(v.string()), // Temporarily optional for migration
+    figmaUrl: v.optional(v.string()), // Temporarily optional for migration
+    codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))), // Temporarily optional for migration
+    codeUrl: v.optional(v.string()),
+    blockType: v.optional(v.string()),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -28,7 +33,9 @@ export default defineSchema({
     .index("by_type", ["type"])
     .index("by_category", ["categories"])
     .index("by_active", ["isActive"])
-    .index("by_created", ["createdAt"]),
+    .index("by_created", ["createdAt"])
+    .index("by_blockType", ["blockType"])
+    .index("by_codeStatus", ["codeStatus"]),
 
   // Download tracking events
   blockDownloads: defineTable({

@@ -58,6 +58,11 @@ export const importBlocksFromRegistry = action({
             categories,
             registryDependencies: item.registryDependencies,
             tags: item.tags,
+            previewImage: item.previewImage || "https://via.placeholder.com/800x600?text=Preview+Coming+Soon",
+            figmaUrl: item.figmaUrl || "https://www.figma.com",
+            codeStatus: item.codeStatus || "coming_soon",
+            codeUrl: item.codeUrl,
+            blockType: item.blockType,
           });
 
           imported++;
@@ -153,6 +158,9 @@ export const seedSampleBlocks = mutation({
       if (!existing) {
         await ctx.db.insert("blocks", {
           ...blockData,
+          previewImage: "https://via.placeholder.com/800x600?text=Preview+Coming+Soon",
+          figmaUrl: "https://www.figma.com",
+          codeStatus: "coming_soon",
           isActive: true,
           createdAt: now,
           updatedAt: now,

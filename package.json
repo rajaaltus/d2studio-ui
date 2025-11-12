@@ -6,7 +6,6 @@
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "dev:frontend": "next dev --port 4000",
     "dev:backend": "convex dev",
-    "predev": "convex dev --until-success && convex dashboard",
     "build": "next build",
     "build:registry": "npx shadcn registry:build",
     "registry:build": "shadcn build",

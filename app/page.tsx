@@ -103,8 +103,10 @@ export default function HomePage() {
             Built by developers, for developers. Every component is crafted with
             care and optimized for real-world use.
           </p>
-          <Button className="h-12">
-            Explore blocks <ArrowUpRight />
+          <Button className="h-12" asChild>
+            <Link href="/blocks">
+              Explore blocks <ArrowUpRight />
+            </Link>
           </Button>
         </div>
 

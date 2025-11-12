@@ -31,6 +31,8 @@ interface PreviewWrapperProps {
   className?: string;
   minHeight?: string;
   iframeHeight?: number;
+  figmaUrl?: string;
+  codeStatus?: "coming_soon" | "available";
 }
 
 export function PreviewWrapper({
@@ -40,8 +42,10 @@ export function PreviewWrapper({
   className,
   minHeight = "400px",
   iframeHeight = 930,
+  figmaUrl,
+  codeStatus = "available",
 }: PreviewWrapperProps) {
-  const [view, setView] = React.useState<"preview" | "code">("preview");
+  const [view, setView] = React.useState<"preview" | "code" | "figma">("preview");
   const [copiedInstall, setCopiedInstall] = React.useState(false);
   const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
   const [currentSize, setCurrentSize] = React.useState(100);
@@ -83,10 +87,10 @@ export function PreviewWrapper({
             {componentName}
           </div>
           <div className="hidden h-4 w-px bg-border sm:block" />
-          {/* Preview/Code Toggle */}
+          {/* Preview/Code/Figma Toggle */}
           <Tabs
             value={view}
-            onValueChange={(value) => setView(value as "preview" | "code")}
+            onValueChange={(value) => setView(value as "preview" | "code" | "figma")}
             className="hidden sm:flex bg-muted  items-center justify-center rounded-md  py-2 px-1"
           >
             <TabsList className="h-7 gap-1 rounded-md bg-muted p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)]">
@@ -104,40 +108,42 @@ export function PreviewWrapper({
                 <Code />
                 Code
               </TabsTrigger>
-              <TabsTrigger
-                value="figma"
-                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              {figmaUrl && (
+                <TabsTrigger
+                  value="figma"
+                  className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
                 >
-                  <path
-                    d="M9.02106 8.99999C9.02106 7.34314 10.3642 6 12.021 6C13.6779 6 15.021 7.34318 15.021 8.99999C15.021 10.6569 13.6779 12 12.021 12C10.3642 12 9.02106 10.6568 9.02106 8.99999Z"
-                    fill="#00BCFF"
-                  />
-                  <path
-                    d="M3.02106 15.0001C3.02106 13.3432 4.3642 12.0001 6.02105 12.0001L7.61978 11.156L9.02103 12.0001V15.0001C9.02103 16.6569 7.67789 18 6.02105 18C4.3642 18 3.02106 16.6569 3.02106 15.0001Z"
-                    fill="#00CF7F"
-                  />
-                  <path
-                    d="M9.02106 0L7.38861 2.83605L9.02106 5.99998H11.979C13.6358 5.99998 14.979 4.65683 14.979 2.99999C14.979 1.34314 13.6358 0 11.979 0H9.02106Z"
-                    fill="#FF7361"
-                  />
-                  <path
-                    d="M2.97894 2.99999C2.97894 4.65683 4.32209 5.99998 5.97893 5.99998L7.57035 6.61465L9.021 5.99998V0H5.9789C4.32209 0 2.97894 1.34314 2.97894 2.99999Z"
-                    fill="#FF4D12"
-                  />
-                  <path
-                    d="M3.02106 9.00002C3.02106 10.6569 4.3642 12 6.02105 12H9.02103V6H6.02105C4.3642 6 3.02106 7.34318 3.02106 9.00002Z"
-                    fill="#B659FF"
-                  />
-                </svg>
-                Figma
-              </TabsTrigger>
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.02106 8.99999C9.02106 7.34314 10.3642 6 12.021 6C13.6779 6 15.021 7.34318 15.021 8.99999C15.021 10.6569 13.6779 12 12.021 12C10.3642 12 9.02106 10.6568 9.02106 8.99999Z"
+                      fill="#00BCFF"
+                    />
+                    <path
+                      d="M3.02106 15.0001C3.02106 13.3432 4.3642 12.0001 6.02105 12.0001L7.61978 11.156L9.02103 12.0001V15.0001C9.02103 16.6569 7.67789 18 6.02105 18C4.3642 18 3.02106 16.6569 3.02106 15.0001Z"
+                      fill="#00CF7F"
+                    />
+                    <path
+                      d="M9.02106 0L7.38861 2.83605L9.02106 5.99998H11.979C13.6358 5.99998 14.979 4.65683 14.979 2.99999C14.979 1.34314 13.6358 0 11.979 0H9.02106Z"
+                      fill="#FF7361"
+                    />
+                    <path
+                      d="M2.97894 2.99999C2.97894 4.65683 4.32209 5.99998 5.97893 5.99998L7.57035 6.61465L9.021 5.99998V0H5.9789C4.32209 0 2.97894 1.34314 2.97894 2.99999Z"
+                      fill="#FF4D12"
+                    />
+                    <path
+                      d="M3.02106 9.00002C3.02106 10.6569 4.3642 12 6.02105 12H9.02103V6H6.02105C4.3642 6 3.02106 7.34318 3.02106 9.00002Z"
+                      fill="#B659FF"
+                    />
+                  </svg>
+                  Figma
+                </TabsTrigger>
+              )}
             </TabsList>
           </Tabs>
 
@@ -226,7 +232,7 @@ export function PreviewWrapper({
         </div>
       </div>
 
-      {/* Preview/Code Content */}
+      {/* Preview/Code/Figma Content */}
       <div
         className="relative"
         style={
@@ -286,9 +292,75 @@ export function PreviewWrapper({
               <ResizablePanel defaultSize={100 - currentSize} minSize={0} />
             </ResizablePanelGroup>
           </div>
+        ) : view === "figma" ? (
+          <div className="relative min-h-[400px] w-full">
+            {figmaUrl ? (
+              <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border bg-background">
+                <div className="mb-4 text-center space-y-2">
+                  <p className="text-sm font-medium">Figma File</p>
+                  <p className="text-xs text-muted-foreground">
+                    Open this block in Figma
+                  </p>
+                </div>
+                <Button asChild>
+                  <a
+                    href={figmaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.02106 8.99999C9.02106 7.34314 10.3642 6 12.021 6C13.6779 6 15.021 7.34318 15.021 8.99999C15.021 10.6569 13.6779 12 12.021 12C10.3642 12 9.02106 10.6568 9.02106 8.99999Z"
+                        fill="#00BCFF"
+                      />
+                      <path
+                        d="M3.02106 15.0001C3.02106 13.3432 4.3642 12.0001 6.02105 12.0001L7.61978 11.156L9.02103 12.0001V15.0001C9.02103 16.6569 7.67789 18 6.02105 18C4.3642 18 3.02106 16.6569 3.02106 15.0001Z"
+                        fill="#00CF7F"
+                      />
+                      <path
+                        d="M9.02106 0L7.38861 2.83605L9.02106 5.99998H11.979C13.6358 5.99998 14.979 4.65683 14.979 2.99999C14.979 1.34314 13.6358 0 11.979 0H9.02106Z"
+                        fill="#FF7361"
+                      />
+                      <path
+                        d="M2.97894 2.99999C2.97894 4.65683 4.32209 5.99998 5.97893 5.99998L7.57035 6.61465L9.021 5.99998V0H5.9789C4.32209 0 2.97894 1.34314 2.97894 2.99999Z"
+                        fill="#FF4D12"
+                      />
+                      <path
+                        d="M3.02106 9.00002C3.02106 10.6569 4.3642 12 6.02105 12H9.02103V6H6.02105C4.3642 6 3.02106 7.34318 3.02106 9.00002Z"
+                        fill="#B659FF"
+                      />
+                    </svg>
+                    Open in Figma
+                  </a>
+                </Button>
+              </div>
+            ) : (
+              <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-zinc-950 text-sm text-muted-foreground dark:bg-zinc-900">
+                <div className="text-center space-y-2">
+                  <p>No Figma file available</p>
+                </div>
+              </div>
+            )}
+          </div>
         ) : (
           <div className="relative">
-            {code ? (
+            {codeStatus === "coming_soon" ? (
+              <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-zinc-950 text-sm text-muted-foreground dark:bg-zinc-900">
+                <div className="text-center space-y-2">
+                  <p className="text-base font-medium">Coming Soon</p>
+                  <p className="text-xs opacity-60">
+                    Code for this block will be available soon
+                  </p>
+                </div>
+              </div>
+            ) : code ? (
               <SyntaxHighlighter
                 code={code}
                 language="tsx"

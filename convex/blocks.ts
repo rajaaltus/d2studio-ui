@@ -15,6 +15,11 @@ export const createBlock = mutation({
     categories: v.array(v.string()),
     registryDependencies: v.optional(v.array(v.string())),
     tags: v.optional(v.array(v.string())),
+    previewImage: v.optional(v.string()), // Temporarily optional for migration
+    figmaUrl: v.optional(v.string()), // Temporarily optional for migration
+    codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+    codeUrl: v.optional(v.string()),
+    blockType: v.optional(v.string()),
   },
   returns: v.id("blocks"),
   handler: async (ctx, args) => {
@@ -30,6 +35,9 @@ export const createBlock = mutation({
     const now = Date.now();
     const blockId = await ctx.db.insert("blocks", {
       ...args,
+      previewImage: args.previewImage || "https://via.placeholder.com/800x600?text=Preview+Coming+Soon",
+      figmaUrl: args.figmaUrl || "https://www.figma.com",
+      codeStatus: args.codeStatus ?? "coming_soon",
       isActive: true,
       createdAt: now,
       updatedAt: now,
@@ -76,6 +84,11 @@ export const getBlock = query({
       registryDependencies: v.optional(v.array(v.string())),
       tags: v.optional(v.array(v.string())),
       isActive: v.boolean(),
+      previewImage: v.optional(v.string()),
+      figmaUrl: v.optional(v.string()),
+      codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+      codeUrl: v.optional(v.string()),
+      blockType: v.optional(v.string()),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -93,6 +106,7 @@ export const listBlocks = query({
   args: {
     type: v.optional(v.union(v.literal("ui"), v.literal("component"))),
     category: v.optional(v.string()),
+    blockType: v.optional(v.string()),
     limit: v.optional(v.number()),
   },
   returns: v.array(
@@ -109,6 +123,11 @@ export const listBlocks = query({
       registryDependencies: v.optional(v.array(v.string())),
       tags: v.optional(v.array(v.string())),
       isActive: v.boolean(),
+      previewImage: v.optional(v.string()),
+      figmaUrl: v.optional(v.string()),
+      codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+      codeUrl: v.optional(v.string()),
+      blockType: v.optional(v.string()),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -122,6 +141,10 @@ export const listBlocks = query({
       query = query.filter((q) => q.eq(q.field("type"), args.type));
     }
 
+    if (args.blockType) {
+      query = query.filter((q) => q.eq(q.field("blockType"), args.blockType));
+    }
+
     // Note: Category filtering can be added later with proper index support
     // if (args.category) {
     //   query = query.filter((q) => q.field("categories").includes(args.category));
@@ -129,6 +152,113 @@ export const listBlocks = query({
 
     const limit = args.limit ?? 50;
     return await query.order("desc").take(limit);
+  },
+});
+
+export const getBlocksByType = query({
+  args: {
+    blockType: v.string(),
+    limit: v.optional(v.number()),
+  },
+  returns: v.array(
+    v.object({
+      _id: v.id("blocks"),
+      _creationTime: v.number(),
+      name: v.string(),
+      type: v.union(v.literal("ui"), v.literal("component")),
+      title: v.string(),
+      description: v.string(),
+      author: v.string(),
+      version: v.string(),
+      categories: v.array(v.string()),
+      registryDependencies: v.optional(v.array(v.string())),
+      tags: v.optional(v.array(v.string())),
+      isActive: v.boolean(),
+      previewImage: v.optional(v.string()),
+      figmaUrl: v.optional(v.string()),
+      codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+      codeUrl: v.optional(v.string()),
+      blockType: v.optional(v.string()),
+      createdAt: v.number(),
+      updatedAt: v.number(),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 50;
+    return await ctx.db
+      .query("blocks")
+      .withIndex("by_blockType", (q) => q.eq("blockType", args.blockType))
+      .filter((q) => q.eq(q.field("isActive"), true))
+      .order("desc")
+      .take(limit);
+  },
+});
+
+// Block Update Functions
+
+export const updateBlock = mutation({
+  args: {
+    id: v.id("blocks"),
+    name: v.optional(v.string()),
+    type: v.optional(v.union(v.literal("ui"), v.literal("component"))),
+    title: v.optional(v.string()),
+    description: v.optional(v.string()),
+    author: v.optional(v.string()),
+    version: v.optional(v.string()),
+    categories: v.optional(v.array(v.string())),
+    registryDependencies: v.optional(v.array(v.string())),
+    tags: v.optional(v.array(v.string())),
+    previewImage: v.optional(v.string()),
+    figmaUrl: v.optional(v.string()),
+    codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))),
+    codeUrl: v.optional(v.string()),
+    blockType: v.optional(v.string()),
+    isActive: v.optional(v.boolean()),
+  },
+  returns: v.null(),
+  handler: async (ctx, args) => {
+    const { id, ...updates } = args;
+    const now = Date.now();
+
+    const block = await ctx.db.get(id);
+    if (!block) {
+      throw new Error("Block not found");
+    }
+
+    await ctx.db.patch(id, {
+      ...updates,
+      updatedAt: now,
+    });
+
+    return null;
+  },
+});
+
+export const updateBlockCodeStatus = mutation({
+  args: {
+    id: v.id("blocks"),
+    codeStatus: v.union(v.literal("coming_soon"), v.literal("available")),
+    codeUrl: v.optional(v.string()),
+  },
+  returns: v.null(),
+  handler: async (ctx, args) => {
+    const block = await ctx.db.get(args.id);
+    if (!block) {
+      throw new Error("Block not found");
+    }
+
+    if (args.codeStatus === "available" && !args.codeUrl) {
+      throw new Error("codeUrl is required when codeStatus is 'available'");
+    }
+
+    const now = Date.now();
+    await ctx.db.patch(args.id, {
+      codeStatus: args.codeStatus,
+      codeUrl: args.codeUrl,
+      updatedAt: now,
+    });
+
+    return null;
   },
 });
 
@@ -435,6 +565,56 @@ export const getBlockStats = query({
       .query("blockStats")
       .withIndex("by_block", (q) => q.eq("blockName", args.blockName))
       .unique();
+  },
+});
+
+// Migration Functions
+
+export const migrateBlocksSchema = mutation({
+  args: {},
+  returns: v.object({
+    updated: v.number(),
+    message: v.string(),
+  }),
+  handler: async (ctx) => {
+    const allBlocks = await ctx.db.query("blocks").collect();
+    let updated = 0;
+
+    for (const block of allBlocks) {
+      const updates: any = {};
+      let needsUpdate = false;
+
+      // Add missing previewImage
+      if (!block.previewImage) {
+        updates.previewImage = "https://via.placeholder.com/800x600?text=Preview+Coming+Soon";
+        needsUpdate = true;
+      }
+
+      // Add missing figmaUrl
+      if (!block.figmaUrl) {
+        updates.figmaUrl = "https://www.figma.com";
+        needsUpdate = true;
+      }
+
+      // Add missing codeStatus
+      if (!block.codeStatus) {
+        updates.codeStatus = "coming_soon";
+        needsUpdate = true;
+      }
+
+      if (needsUpdate) {
+        await ctx.db.patch(block._id, {
+          ...updates,
+          updatedAt: Date.now(),
+        });
+        updated++;
+      }
+    }
+
+    return {
+      updated,
+      message: `Updated ${updated} blocks with missing required fields`,
+    };
   },
 });
 

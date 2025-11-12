@@ -167,6 +167,20 @@ export const columns: ColumnDef<Doc<"blocks">>[] = [
     ),
   },
   {
+    accessorKey: "codeStatus",
+    header: "Code Status",
+    cell: ({ row }) => {
+      const status = row.getValue("codeStatus") as string;
+      return (
+        <Badge
+          variant={status === "available" ? "default" : "secondary"}
+        >
+          {status === "available" ? "Available" : "Coming Soon"}
+        </Badge>
+      );
+    },
+  },
+  {
     accessorKey: "isActive",
     header: "Status",
     cell: ({ row }) => (
