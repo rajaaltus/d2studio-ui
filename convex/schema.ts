@@ -109,4 +109,15 @@ export default defineSchema({
     .index("by_total_downloads", ["totalDownloads"])
     .index("by_avg_downloads", ["avgDownloadsPerBlock"])
     .index("by_last_updated", ["lastUpdated"]),
+
+  // Core Categories table
+  categories: defineTable({
+    name: v.string(),
+    slug: v.string(),
+    sortOrder: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_slug", ["slug"])
+    .index("by_sortOrder", ["sortOrder"]),
 });

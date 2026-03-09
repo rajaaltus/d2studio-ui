@@ -25,6 +25,7 @@ import {
   ChevronDown,
   Bell,
   LogOut,
+  LayoutGrid,
 } from "lucide-react";
 
 const navigation = [
@@ -37,6 +38,11 @@ const navigation = [
     name: "Blocks",
     href: "/admin/blocks",
     icon: Blocks,
+  },
+  {
+    name: "Categories",
+    href: "/admin/categories",
+    icon: LayoutGrid,
   },
   {
     name: "Analytics",

@@ -207,13 +207,13 @@ export const columns: ColumnDef<Doc<"blocks">>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem asChild>
-              <Link href={`/admin/blocks/${block._id}`}>
+              <Link href={`/admin/blocks/${block.name}`}>
                 <Eye className="mr-2 h-4 w-4" />
                 View Details
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href={`/admin/blocks/${block._id}/edit`}>
+              <Link href={`/admin/blocks/${block.name}/edit`}>
                 <Edit className="mr-2 h-4 w-4" />
                 Edit
               </Link>
