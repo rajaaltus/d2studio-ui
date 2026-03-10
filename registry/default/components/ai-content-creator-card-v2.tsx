@@ -742,21 +742,18 @@ export default function AIContentCreatorCard() {
                     </div>
 
                     <div className="mt-10 space-y-4">
-                        {/* Light Mode Button */}
-                        <Button className="relative flex h-12 w-full items-center justify-center gap-3 rounded-[16px] border border-[#18181B] bg-[#18181B] text-white hover:bg-[#18181B]/95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:hidden">
-                            <IconSparkle className="size-4 text-white" />
-                            <span className="text-[14px] font-medium">Generate Content</span>
-                        </Button>
+                        <Button className="relative flex h-12 w-full items-center justify-center gap-3 rounded-[16px] border border-[#18181B] bg-[#18181B] text-white hover:bg-[#18181B]/95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:border-2 dark:border-[#9761F6] dark:bg-gradient-to-b dark:from-[#CDC2FF] dark:to-[#100618] dark:text-[#FFEBFE] dark:hover:opacity-90 dark:shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]">
+                            {/* Light Mode Icon */}
+                            <IconSparkle className="size-4 text-white dark:hidden" />
 
-                        {/* Dark Mode Button */}
-                        <Button className="relative hidden h-12 w-full items-center justify-center gap-3 rounded-[16px] border-2 border-[#9761F6] bg-gradient-to-b from-[#CDC2FF] to-[#100618] text-[#FFEBFE] hover:opacity-90 active:scale-[0.98] shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] dark:flex">
+                            {/* Dark Mode Icon */}
                             <svg
                                 width="16"
                                 height="16"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="shrink-0"
+                                className="shrink-0 hidden dark:flex"
                             >
                                 <g clipPath="url(#sparkle_clip)">
                                     <mask id="sparkle_mask" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
