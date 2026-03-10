@@ -190,7 +190,7 @@ export default function AIContentCreatorCard() {
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <span className="text-[12px] font-bold text-black dark:text-white">Pro</span>
+                            <span className="text-[12px] font-medium text-black dark:text-white">Pro</span>
                         </div>
 
                         {/* Token count */}
