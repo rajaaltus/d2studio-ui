@@ -357,34 +357,9 @@ export default function AIContentCreatorCard() {
 
                     <div className="mt-10 space-y-4">
                         {/* Light Mode Button */}
-                        <button className="group relative flex h-[51px] w-full transform transition-all active:scale-[0.98] outline-none dark:hidden">
-                            <svg
-                                width="100%"
-                                height="51"
-                                viewBox="0 0 507 51"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-full w-full drop-shadow-sm transition-opacity group-hover:opacity-90"
-                            >
-                                <g filter="url(#cta-light-filter)">
-                                    <rect width="507" height="51" rx="12" fill="#0A0A0A" />
-                                    <rect x="0.5" y="0.5" width="506" height="50" rx="11.5" stroke="#C4C4C4" />
-                                </g>
-                                <foreignObject x="0" y="0" width="507" height="51">
-                                    <div className="flex h-full w-full items-center justify-center gap-2.5">
-                                        <IconSparkle className="size-5 text-white" />
-                                        <span className="select-none text-[14px] font-normal text-white">Generate Content</span>
-                                    </div>
-                                </foreignObject>
-                                <defs>
-                                    <filter id="cta-light-filter" x="0" y="0" width="507" height="51" filterUnits="userSpaceOnUse">
-                                        <feOffset dy="1" />
-                                        <feGaussianBlur stdDeviation="1" />
-                                        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                                        <feBlend in2="SourceGraphic" />
-                                    </filter>
-                                </defs>
-                            </svg>
+                        <button className="relative flex h-[52px] w-full transform items-center justify-center gap-3 rounded-[16px] border border-[#C4C4C4] bg-[#0A0A0A] text-white transition-all hover:opacity-90 active:scale-[0.98] shadow-sm dark:hidden">
+                            <IconSparkle className="size-5 text-white" />
+                            <span className="select-none text-[14px] font-normal">Generate Content</span>
                         </button>
 
                         {/* Dark Mode Button */}

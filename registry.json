@@ -425,16 +425,9 @@
       "name": "ai-content-creator-card",
       "type": "registry:component",
       "title": "AI Content Creator Card",
-      "description": "Premium structured content generator card with Pro badge and token count.",
+      "description": "Pro version content creation card",
       "author": "Admin",
-      "registryDependencies": [
-        "badge",
-        "button",
-        "input",
-        "label",
-        "select",
-        "textarea"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/default/components/ai-content-creator-card.tsx",
@@ -442,7 +435,7 @@
         }
       ],
       "categories": [
-        "ai-components"
+        "card"
       ]
     }
   ]

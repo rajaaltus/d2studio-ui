@@ -420,6 +420,23 @@
       "categories": [
         "blocks"
       ]
+    },
+    {
+      "name": "ai-content-creator-card",
+      "type": "registry:component",
+      "title": "AI Content Creator Card",
+      "description": "Pro version content creation card",
+      "author": "Admin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/ai-content-creator-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card"
+      ]
     }
   ]
 }
