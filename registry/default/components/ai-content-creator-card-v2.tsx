@@ -763,7 +763,7 @@ export default function AIContentCreatorCard() {
                     </div>
 
                     <div className="mt-10 space-y-4">
-                        <Button className="relative flex h-12 w-full items-center justify-center gap-3 rounded-[16px] border-2 border-[#18181B] bg-[#18181B] text-white transition-all duration-200 hover:bg-[#18181B]/95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:border-[#9761F6] dark:bg-gradient-to-b dark:from-[#CDC2FF] dark:to-[#100618] dark:text-[#FFEBFE] dark:hover:opacity-90 dark:shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]">
+                        <Button className="relative flex h-12 w-full items-center justify-center gap-3 rounded-[16px] border-2 border-[#18181B] bg-[#18181B] text-white transition-all duration-200 hover:bg-[#18181B]/95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:border-[#AEFF62] dark:bg-gradient-to-b dark:from-[#0F6107] dark:to-[#7CBB66] dark:text-white dark:hover:opacity-90 dark:shadow-[inset_0_2px_4px_rgba(15,97,7,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]">
                             {/* Light Mode Icon */}
                             <IconSparkle className="size-4 text-white dark:hidden" />
 
