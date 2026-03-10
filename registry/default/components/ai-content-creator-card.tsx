@@ -388,10 +388,10 @@ export default function AIContentCreatorCard() {
                         </button>
 
                         {/* Dark Mode Button */}
-                        <button className="relative hidden h-[52px] w-full transform items-center justify-center gap-3 rounded-[16px] border-2 border-[#9761F6] bg-gradient-to-b from-[#CDC2FF] to-[#100618] text-[#FFEBFE] transition-all hover:opacity-90 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] dark:flex">
+                        <button className="relative hidden h-[52px] w-full transform items-center justify-center gap-3 rounded-[16px] border-2 border-[#9761F6] bg-gradient-to-b from-[#CDC2FF] to-[#100618] text-[#FFEBFE] transition-all hover:opacity-90 active:scale-[0.98] shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] dark:flex">
                             <svg
-                                width="24"
-                                height="24"
+                                width="20"
+                                height="20"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
