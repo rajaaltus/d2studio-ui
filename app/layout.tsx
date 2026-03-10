@@ -104,7 +104,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased font-sans`}
       >
         <ThemeProvider
           attribute="class"
