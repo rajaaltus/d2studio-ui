@@ -86,7 +86,7 @@ export default function AIContentCreatorCard() {
                     {/* Header */}
                     <div className="mb-6 flex items-center justify-between">
                         {/* Pro Badge */}
-                        <div className="flex items-center gap-1 rounded-md border border-[#E4E4E4] bg-gradient-to-b from-[#FEFEFE] to-[#E5E5E5] pl-1 pr-2 py-0.5 shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] dark:border-zinc-800 dark:bg-zinc-900/50 dark:bg-none">
+                        <div className="flex items-center gap-1 rounded-md border border-[#E4E4E4] bg-gradient-to-b from-[#FEFEFE] to-[#E5E5E5] pl-1 pr-2 py-0.5 shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] dark:border-[#505050] dark:bg-gradient-to-b dark:from-[#3D3D3D] dark:to-[#0D0D0D]">
                             <div className="flex items-center justify-center">
                                 <svg
                                     width={20}
@@ -196,7 +196,7 @@ export default function AIContentCreatorCard() {
                         </div>
 
                         {/* Token count */}
-                        <span className="text-[13px] font-medium text-[#371CFF] dark:text-[#8A7BFF]">12514 tokens left</span>
+                        <span className="text-[13px] font-medium text-[#371CFF] dark:text-[#A89CFF]">12514 tokens left</span>
                     </div>
 
                     <div className="mb-8">
@@ -211,7 +211,7 @@ export default function AIContentCreatorCard() {
                     {/* Prompt Textarea Section */}
                     <div className="mb-8 overflow-hidden rounded-[24px] border border-[#D3D3D7] bg-[#F3F3F4] p-[4px] dark:bg-zinc-900/50 dark:border-zinc-800">
                         {/* Top white container */}
-                        <div className="flex flex-col rounded-[16px] border border-[#E3E3E6] bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.08)] dark:bg-[#0A0A0A] dark:border-zinc-800">
+                        <div className="flex flex-col rounded-[16px] border border-[#E3E3E6] bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.08)] dark:bg-[#0A0A0A] dark:border-zinc-800 dark:shadow-[inset_0_-2px_4px_0_rgba(110,110,110,0.12)]">
                             <div className="p-4">
                                 <textarea
                                     placeholder="Describe the content you want to generate..."
@@ -225,7 +225,7 @@ export default function AIContentCreatorCard() {
                                     {/* Action Icons */}
                                     <div className="flex items-center gap-3">
                                         {/* Custom Styled Plus Icon (Add Glass) */}
-                                        <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95">
+                                        <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95 [--plus-glass-1:#E3E3E5] [--plus-glass-2:#BBBBC0] [--plus-outline-1:white] [--plus-outline-2:white] dark:[--plus-glass-1:white] dark:[--plus-glass-2:#FF54F6] dark:[--plus-outline-1:#F9A9FF] dark:[--plus-outline-2:#AE2BFF]">
                                             <svg
                                                 width={16}
                                                 height={16}
@@ -339,12 +339,12 @@ export default function AIContentCreatorCard() {
                                                         <stop offset={1} stopColor="#151515" />
                                                     </linearGradient>
                                                     <linearGradient id="paint2_plus_glass_v2" x1={9.66683} y1={4.33325} x2={9.66683} y2={14.9999} gradientUnits="userSpaceOnUse">
-                                                        <stop stopColor="#E3E3E5" stopOpacity={0.6} />
-                                                        <stop offset={1} stopColor="#BBBBC0" stopOpacity={0.6} />
+                                                        <stop stopColor="var(--plus-glass-1)" stopOpacity={0.6} />
+                                                        <stop offset={1} stopColor="var(--plus-glass-2)" stopOpacity={0.6} />
                                                     </linearGradient>
                                                     <linearGradient id="paint3_plus_glass_v2" x1={9.66683} y1={4.33325} x2={9.66683} y2={10.9999} gradientUnits="userSpaceOnUse">
-                                                        <stop stopColor="white" />
-                                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                        <stop stopColor="var(--plus-outline-1)" />
+                                                        <stop offset={1} stopColor="var(--plus-outline-2)" stopOpacity={0} />
                                                     </linearGradient>
                                                     <clipPath id="clip0_plus_glass_v2">
                                                         <rect width={16} height={16} fill="white" />
@@ -354,7 +354,7 @@ export default function AIContentCreatorCard() {
                                         </button>
 
                                         {/* Custom Styled Settings Icon */}
-                                        <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95">
+                                        <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95 [--settings-glass-1:#E3E3E5] [--settings-glass-2:#BBBBC0] [--settings-top-1:white] [--settings-top-2:white] [--settings-bot-1:white] [--settings-bot-2:white] dark:[--settings-glass-1:#E3E3E5] dark:[--settings-glass-2:#0C5969] dark:[--settings-top-1:#7EF032] dark:[--settings-top-2:#09CC09] dark:[--settings-bot-1:#00CCFF] dark:[--settings-bot-2:#00A1E1]">
                                             <svg
                                                 width={16}
                                                 height={16}
@@ -433,16 +433,16 @@ export default function AIContentCreatorCard() {
                                                         <stop offset={1} stopColor="#151515" />
                                                     </linearGradient>
                                                     <linearGradient id="paint2_settings_glass" x1={12} y1={2.5} x2={12} y2={21.5} gradientUnits="userSpaceOnUse">
-                                                        <stop stopColor="#E3E3E5" stopOpacity={0.6} />
-                                                        <stop offset={1} stopColor="#BBBBC0" stopOpacity={0.6} />
+                                                        <stop stopColor="var(--settings-glass-1)" stopOpacity={0.6} />
+                                                        <stop offset={1} stopColor="var(--settings-glass-2)" stopOpacity={0.6} />
                                                     </linearGradient>
                                                     <linearGradient id="paint3_settings_glass" x1={17.5} y1={2.5} x2={17.5} y2={7.712} gradientUnits="userSpaceOnUse">
-                                                        <stop stopColor="white" />
-                                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                        <stop stopColor="var(--settings-top-1)" />
+                                                        <stop offset={1} stopColor="var(--settings-top-2)" stopOpacity={0} />
                                                     </linearGradient>
                                                     <linearGradient id="paint4_settings_glass" x1={6.5} y1={12.5} x2={6.5} y2={17.712} gradientUnits="userSpaceOnUse">
-                                                        <stop stopColor="white" />
-                                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                        <stop stopColor="var(--settings-bot-1)" />
+                                                        <stop offset={1} stopColor="var(--settings-bot-2)" stopOpacity={0} />
                                                     </linearGradient>
                                                     <clipPath id="clip0_settings_glass">
                                                         <rect width={24} height={24} fill="white" />
@@ -453,7 +453,7 @@ export default function AIContentCreatorCard() {
 
                                         <div className="flex items-center gap-1">
                                             {/* Custom Styled Flash Icon (Sparkle/Star Glass) */}
-                                            <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95">
+                                            <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95 [--sparkle-bg1:#575757] [--sparkle-bg2:#151515] [--sparkle-glass1:#E3E3E5] [--sparkle-glass2:#BBBBC0] [--sparkle-outline:white] dark:[--sparkle-bg1:#AD8933] dark:[--sparkle-bg2:#241B03] dark:[--sparkle-glass1:#FF8731] dark:[--sparkle-glass2:#FFE877] dark:[--sparkle-outline:white]">
                                                 <svg
                                                     width={16}
                                                     height={16}
@@ -520,20 +520,20 @@ export default function AIContentCreatorCard() {
                                                             <feGaussianBlur stdDeviation={2} result="effect1_foregroundBlur_flash_v2" />
                                                         </filter>
                                                         <linearGradient id="paint0_flash_glass_v2" x1={10.336} y1={5.33328} x2={10.336} y2={15.338} gradientUnits="userSpaceOnUse">
-                                                            <stop stopColor="#575757" />
-                                                            <stop offset={1} stopColor="#151515" />
+                                                            <stop stopColor="var(--sparkle-bg1)" />
+                                                            <stop offset={1} stopColor="var(--sparkle-bg2)" />
                                                         </linearGradient>
                                                         <linearGradient id="paint1_flash_glass_v2" x1={10.3361} y1={5.33328} x2={10.3361} y2={15.338} gradientUnits="userSpaceOnUse">
-                                                            <stop stopColor="#575757" />
-                                                            <stop offset={1} stopColor="#151515" />
+                                                            <stop stopColor="var(--sparkle-bg1)" />
+                                                            <stop offset={1} stopColor="var(--sparkle-bg2)" />
                                                         </linearGradient>
                                                         <linearGradient id="paint2_flash_glass_v2" x1={5.66404} y1={0.662} x2={5.66404} y2={10.6667} gradientUnits="userSpaceOnUse">
-                                                            <stop stopColor="#E3E3E5" stopOpacity={0.6} />
-                                                            <stop offset={1} stopColor="#BBBBC0" stopOpacity={0.6} />
+                                                            <stop stopColor="var(--sparkle-glass1)" stopOpacity={0.6} />
+                                                            <stop offset={1} stopColor="var(--sparkle-glass2)" stopOpacity={0.6} />
                                                         </linearGradient>
                                                         <linearGradient id="paint3_flash_glass_v2" x1={5.63271} y1={0.662041} x2={5.63271} y2={6.41937} gradientUnits="userSpaceOnUse">
-                                                            <stop stopColor="white" />
-                                                            <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                            <stop stopColor="var(--sparkle-outline)" />
+                                                            <stop offset={1} stopColor="var(--sparkle-outline)" stopOpacity={0} />
                                                         </linearGradient>
                                                         <clipPath id="clip0_flash_glass_v2">
                                                             <rect width={16} height={16} fill="white" />
@@ -565,8 +565,8 @@ export default function AIContentCreatorCard() {
                                             d="M19.4773 19.9659V14.3409H20.4318V19.9659H19.4773ZM17.142 17.6307V16.6761H22.767V17.6307H17.142ZM27.382 21.5V12.7727H32.649V13.7102H28.4388V16.6591H32.3763V17.5966H28.4388V20.5625H32.7172V21.5H27.382ZM34.9432 17.5625V21.5H33.9375V14.9545H34.9091V15.9773H34.9943C35.1477 15.6449 35.3807 15.3778 35.6932 15.1761C36.0057 14.9716 36.4091 14.8693 36.9034 14.8693C37.3466 14.8693 37.7344 14.9602 38.0667 15.142C38.3991 15.321 38.6577 15.5938 38.8423 15.9602C39.027 16.3239 39.1193 16.7841 39.1193 17.3409V21.5H38.1136V17.4091C38.1136 16.8949 37.9801 16.4943 37.7131 16.2074C37.446 15.9176 37.0795 15.7727 36.6136 15.7727C36.2926 15.7727 36.0057 15.8423 35.7528 15.9815C35.5028 16.1207 35.3054 16.3239 35.1605 16.5909C35.0156 16.858 34.9432 17.1818 34.9432 17.5625ZM43.3236 14.9545V15.8068H39.9316V14.9545H43.3236ZM40.9202 13.3864H41.9259V19.625C41.9259 19.9091 41.9671 20.1222 42.0495 20.2642C42.1347 20.4034 42.2426 20.4972 42.3733 20.5455C42.5068 20.5909 42.6475 20.6136 42.7952 20.6136C42.906 20.6136 42.9969 20.608 43.0679 20.5966C43.1389 20.5824 43.1958 20.571 43.2384 20.5625L43.4429 21.4659C43.3747 21.4915 43.2796 21.517 43.1574 21.5426C43.0353 21.571 42.8804 21.5852 42.6929 21.5852C42.4088 21.5852 42.1304 21.5241 41.8577 21.402C41.5878 21.2798 41.3634 21.0938 41.1844 20.8438C41.0083 20.5938 40.9202 20.2784 40.9202 19.8977V13.3864ZM47.0304 21.6364C46.3997 21.6364 45.8557 21.4972 45.3983 21.2188C44.9438 20.9375 44.5929 20.5455 44.3457 20.0426C44.1014 19.5369 43.9793 18.9489 43.9793 18.2784C43.9793 17.608 44.1014 17.017 44.3457 16.5057C44.5929 15.9915 44.9366 15.5909 45.377 15.304C45.8202 15.0142 46.3372 14.8693 46.9281 14.8693C47.269 14.8693 47.6057 14.9261 47.9381 15.0398C48.2705 15.1534 48.573 15.3381 48.8457 15.5938C49.1185 15.8466 49.3358 16.1818 49.4977 16.5994C49.6597 17.017 49.7406 17.5312 49.7406 18.142V18.5682H44.6952V17.6989H48.7179C48.7179 17.3295 48.644 17 48.4963 16.7102C48.3514 16.4205 48.144 16.1918 47.8741 16.0241C47.6071 15.8565 47.2918 15.7727 46.9281 15.7727C46.5276 15.7727 46.181 15.8722 45.8884 16.071C45.5986 16.267 45.3756 16.5227 45.2193 16.8381C45.0631 17.1534 44.9849 17.4915 44.9849 17.8523V18.4318C44.9849 18.9261 45.0702 19.3452 45.2406 19.6889C45.4139 20.0298 45.654 20.2898 45.9608 20.4688C46.2676 20.6449 46.6241 20.733 47.0304 20.733C47.2946 20.733 47.5332 20.696 47.7463 20.6222C47.9622 20.5455 48.1483 20.4318 48.3045 20.2812C48.4608 20.1278 48.5815 19.9375 48.6668 19.7102L49.6384 19.983C49.5361 20.3125 49.3642 20.6023 49.1227 20.8523C48.8813 21.0994 48.583 21.2926 48.2278 21.4318C47.8727 21.5682 47.4736 21.6364 47.0304 21.6364ZM50.7905 21.5V14.9545H51.762V15.9432H51.8302C51.9495 15.6193 52.1655 15.3565 52.478 15.1548C52.7905 14.9531 53.1427 14.8523 53.5348 14.8523C53.6086 14.8523 53.701 14.8537 53.8118 14.8565C53.9226 14.8594 54.0064 14.8636 54.0632 14.8693V15.892C54.0291 15.8835 53.951 15.8707 53.8288 15.8537C53.7095 15.8338 53.5831 15.8239 53.4495 15.8239C53.1314 15.8239 52.8473 15.8906 52.5973 16.0241C52.3501 16.1548 52.1541 16.3366 52.0092 16.5696C51.8672 16.7997 51.7961 17.0625 51.7961 17.358V21.5H50.7905Z"
                                             fill="#807F7F"
                                         />
-                                        <g filter="url(#filter_enter_arrow)">
-                                            <rect x={67} y={2} width={30} height={30} rx={8} fill="#FD5E29" />
+                                        <g filter="url(#filter_enter_arrow)" className="dark:[filter:url(#filter_enter_arrow_dark)]">
+                                            <rect x={67} y={2} width={30} height={30} rx={8} fill="#FD5E29" className="dark:fill-[url(#paint_enter_button_bg_dark)]" />
                                             <rect
                                                 x={68}
                                                 y={3}
@@ -574,6 +574,7 @@ export default function AIContentCreatorCard() {
                                                 height={28}
                                                 rx={7}
                                                 stroke="#FEB31D"
+                                                className="dark:stroke-[#27780A]"
                                                 strokeWidth={2}
                                             />
                                             <path
@@ -585,6 +586,10 @@ export default function AIContentCreatorCard() {
                                             />
                                         </g>
                                         <defs>
+                                            <linearGradient id="paint_enter_button_bg_dark" x1={82} y1={2} x2={82} y2={32} gradientUnits="userSpaceOnUse">
+                                                <stop stopColor="#157714" />
+                                                <stop offset={1} stopColor="#1A4107" />
+                                            </linearGradient>
                                             <filter
                                                 id="filter_enter_arrow"
                                                 x={67}
@@ -616,13 +621,29 @@ export default function AIContentCreatorCard() {
                                                     values="0 0 0 0 1 0 0 0 0 0.851227 0 0 0 0 0.782283 0 0 0 0.5 0"
                                                     result="innerShadowColor"
                                                 />
-                                                <feBlend
-                                                    mode="normal"
-                                                    in="innerShadowColor"
-                                                    in2="SourceGraphic"
-                                                    result="buttonWithInner"
-                                                />
-                                                {/* Final Blend with Drop Shadow behind */}
+                                                <feBlend mode="normal" in="innerShadowColor" in2="SourceGraphic" result="buttonWithInner" />
+                                                <feBlend mode="normal" in="buttonWithInner" in2="shadowBlur" result="final" />
+                                            </filter>
+                                            <filter
+                                                id="filter_enter_arrow_dark"
+                                                x={67}
+                                                y={-2}
+                                                width={40}
+                                                height={46}
+                                                filterUnits="userSpaceOnUse"
+                                                colorInterpolationFilters="sRGB"
+                                            >
+                                                <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" result="shadowAlpha" />
+                                                <feOffset in="shadowAlpha" dx={0} dy={2} result="shadowOffset" />
+                                                <feGaussianBlur in="shadowOffset" stdDeviation={1} result="shadowBlur" />
+
+                                                <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                                <feOffset dy={-4} />
+                                                <feGaussianBlur stdDeviation={4} />
+                                                <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} result="innerShadowMask" />
+                                                <feColorMatrix in="innerShadowMask" type="matrix" values="0 0 0 0 0.6745 0 0 0 0 0.9529 0 0 0 0 0.6784 0 0 0 0.5 0" result="innerShadowColor" />
+                                                <feBlend mode="normal" in="innerShadowColor" in2="SourceGraphic" result="buttonWithInner" />
                                                 <feBlend mode="normal" in="buttonWithInner" in2="shadowBlur" result="final" />
                                             </filter>
                                         </defs>
@@ -670,7 +691,7 @@ export default function AIContentCreatorCard() {
                     {/* Form */}
                     <div className="space-y-5">
                         <div className="space-y-2">
-                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Content Type</Label>
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-orange-300">Content Type</Label>
                             <Select defaultValue="social-media">
                                 <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus:ring-1 focus:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200">
                                     <SelectValue placeholder="Select content type" />
@@ -685,7 +706,7 @@ export default function AIContentCreatorCard() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Topic / Product</Label>
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-cyan-300">Topic / Product</Label>
                             <Input
                                 defaultValue="Benefits of Remote Jobs"
                                 className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
@@ -693,7 +714,7 @@ export default function AIContentCreatorCard() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Key Points (oner per line)</Label>
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-violet-300">Key Points (oner per line)</Label>
                             <Textarea
                                 defaultValue={`Increased flexibility and work-life balance\nAccess to a global talent pool for companies\nReduced commuting time and costs`}
                                 className="min-h-[120px] resize-none rounded-lg border-[#E3E3E6] py-3 text-[14px] leading-relaxed shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
@@ -701,7 +722,7 @@ export default function AIContentCreatorCard() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Target Audience</Label>
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-emerald-300">Target Audience</Label>
                             <Input
                                 defaultValue="Benefits of Remote Jobs"
                                 className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
@@ -710,7 +731,7 @@ export default function AIContentCreatorCard() {
 
                         <div className="flex gap-4">
                             <div className="flex-1 space-y-2">
-                                <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Tone</Label>
+                                <Label className="text-[12px] font-medium text-[#18181B] dark:text-emerald-300">Tone</Label>
                                 <Select defaultValue="informative">
                                     <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus:ring-1 focus:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200">
                                         <SelectValue placeholder="Select tone" />
@@ -724,7 +745,7 @@ export default function AIContentCreatorCard() {
                                 </Select>
                             </div>
                             <div className="flex-1 space-y-2">
-                                <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Length</Label>
+                                <Label className="text-[12px] font-medium text-[#18181B] dark:text-emerald-300">Length</Label>
                                 <Input
                                     defaultValue="500 words"
                                     className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
@@ -733,7 +754,7 @@ export default function AIContentCreatorCard() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Keywords (Optional)</Label>
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-pink-300">Keywords (Optional)</Label>
                             <Input
                                 defaultValue="remote work, productivity"
                                 className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-[0_2px_2px_0_rgba(0,0,0,0.15)] focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
@@ -742,7 +763,7 @@ export default function AIContentCreatorCard() {
                     </div>
 
                     <div className="mt-10 space-y-4">
-                        <Button className="relative flex h-12 w-full items-center justify-center gap-3 rounded-[16px] border border-[#18181B] bg-[#18181B] text-white hover:bg-[#18181B]/95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:border-2 dark:border-[#9761F6] dark:bg-gradient-to-b dark:from-[#CDC2FF] dark:to-[#100618] dark:text-[#FFEBFE] dark:hover:opacity-90 dark:shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]">
+                        <Button className="relative flex h-12 w-full items-center justify-center gap-3 rounded-[16px] border-2 border-[#18181B] bg-[#18181B] text-white transition-all duration-200 hover:bg-[#18181B]/95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:border-[#9761F6] dark:bg-gradient-to-b dark:from-[#CDC2FF] dark:to-[#100618] dark:text-[#FFEBFE] dark:hover:opacity-90 dark:shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]">
                             {/* Light Mode Icon */}
                             <IconSparkle className="size-4 text-white dark:hidden" />
 
@@ -753,7 +774,7 @@ export default function AIContentCreatorCard() {
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="shrink-0 hidden dark:flex"
+                                className="shrink-0 hidden dark:block"
                             >
                                 <g clipPath="url(#sparkle_clip)">
                                     <mask id="sparkle_mask" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
