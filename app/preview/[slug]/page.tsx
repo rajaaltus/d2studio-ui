@@ -27,26 +27,29 @@ function PreviewContent() {
         const cleanType = type.split(":").pop() || "component";
         const folder = (cleanType === "ui" || cleanType === "registry:ui") ? "ui" : "components";
 
-        // Use more specific dynamic imports to help Next.js compiler
         if (folder === "ui") {
             return dynamic(() => import(`@/registry/default/ui/${slug}`).catch((err) => {
                 console.error(`Failed to load UI component: ${slug}`, err);
-                return () => (
-                    <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
-                        <p className="font-medium text-destructive">UI Component Not Found</p>
-                        <p className="text-sm">Could not find "@registry/default/ui/${slug}.tsx"</p>
-                    </div>
-                );
+                return function UIComponentNotFound() {
+                    return (
+                        <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
+                            <p className="font-medium text-destructive">UI Component Not Found</p>
+                            <p className="text-sm">Could not find &quot;@registry/default/ui/${slug}.tsx&quot;</p>
+                        </div>
+                    );
+                };
             }), { ssr: false });
         } else {
             return dynamic(() => import(`@/registry/default/components/${slug}`).catch((err) => {
                 console.error(`Failed to load component: ${slug}`, err);
-                return () => (
-                    <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
-                        <p className="font-medium text-destructive">Component Not Found</p>
-                        <p className="text-sm">Could not find "@registry/default/components/${slug}.tsx"</p>
-                    </div>
-                );
+                return function ComponentNotFound() {
+                    return (
+                        <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
+                            <p className="font-medium text-destructive">Component Not Found</p>
+                            <p className="text-sm">Could not find &quot;@registry/default/components/${slug}.tsx&quot;</p>
+                        </div>
+                    );
+                };
             }), { ssr: false });
         }
     }, [slug, type]);

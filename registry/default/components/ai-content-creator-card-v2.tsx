@@ -1,0 +1,680 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import {
+    ArrowUp,
+    ChevronDown,
+    Plus,
+    Settings2
+} from "lucide-react"
+import { IconSparkle, IconSparkle2, IconSlider, IconDuplicatePlus, IconCircleWrench } from "nucleo-glass"
+import * as React from "react"
+
+const AI_MODELS = [
+    {
+        id: "gemini",
+        name: "Gemini",
+        logo: (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                <path d="M12 3L14.5 9L21 12L14.5 15L12 21L9.5 15L3 12L9.5 9L12 3Z" fill="#4285F4" />
+                <path d="M12 3L14.5 9L21 12L14.5 15L12 21L9.5 15L3 12L9.5 9L12 3Z" fill="url(#gemini_grad)" fillOpacity="0.8" />
+                <defs>
+                    <linearGradient id="gemini_grad" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#4285F4" />
+                        <stop offset="1" stopColor="#9B72CB" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        )
+    },
+    {
+        id: "chatgpt",
+        name: "ChatGPT",
+        logo: (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#10A37F" />
+                <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="#10A37F" />
+            </svg>
+        )
+    },
+    {
+        id: "claude",
+        name: "Claude",
+        logo: (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                <circle cx="12" cy="12" r="10" fill="#D97757" fillOpacity="0.2" />
+                <path d="M12 8v8M8 12h8" stroke="#D97757" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+        )
+    },
+    {
+        id: "grok",
+        name: "Grok",
+        logo: (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                <rect x="3" y="3" width="18" height="18" rx="4" fill="black" />
+                <path d="M8 8l8 8M16 8l-8 8" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+        )
+    }
+]
+
+export default function AIContentCreatorCard() {
+    const [selectedModel, setSelectedModel] = React.useState(AI_MODELS[0])
+    return (
+        <div className="flex items-center justify-center p-4">
+            {/* Outer frame matching the designers #F9F9F9 rect with rx=32 */}
+            <div className="w-full max-w-[571px] rounded-[32px] border border-[#E3E3E6] bg-[#F9F9F9] p-[8px] dark:bg-[#09090B] dark:border-[#18181B]">
+                {/* Inner white card matching the white rect with rx=24 */}
+                <div className="rounded-[24px] border border-[#D3D3D7] bg-white p-4 sm:p-8 shadow-[0_2px_2px_0_rgba(0,0,0,0.12)] dark:bg-[#0A0A0A] dark:border-[#27272A] dark:shadow-none">
+                    {/* Header */}
+                    <div className="mb-6 flex items-center justify-between">
+                        {/* Pro Badge */}
+                        <div className="flex items-center gap-1 rounded-md border border-[#E4E4E4] bg-[#F5F5F5] pl-1 pr-2 py-0.5 dark:border-zinc-800 dark:bg-zinc-900/50">
+                            <svg
+                                width={20}
+                                height={21}
+                                viewBox="0 0 20 21"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="shrink-0 scale-90"
+                            >
+                                <g clipPath="url(#clip0_pro_icon)">
+                                    <mask
+                                        id="mask0_pro_icon"
+                                        style={{ maskType: "luminance" }}
+                                        maskUnits="userSpaceOnUse"
+                                        x={0} y={0} width={20} height={21}
+                                    >
+                                        <path d="M20 0H0V21H20V0Z" fill="white" />
+                                        <path
+                                            d="M10 7.56011V1.64993C10 0.777385 8.84367 0.483345 8.43308 1.25149L3.34149 10.7766C2.92607 11.6142 3.53062 12.5999 4.45965 12.6001H10V7.56011Z"
+                                            fill="black"
+                                        />
+                                    </mask>
+                                    <g mask="url(#mask0_pro_icon)">
+                                        <path
+                                            d="M10 12.6V19.3502C10 20.2228 11.1563 20.5168 11.5669 19.7487L16.6585 10.2236C17.0739 9.38595 16.4694 8.40021 15.5403 8.40004H10V5.04004C7.91667 7.14004 6.56123 8.93503 6.25 12.6H10Z"
+                                            fill="url(#paint0_linear_pro_icon)"
+                                        />
+                                    </g>
+                                    <mask
+                                        id="mask1_pro_icon"
+                                        style={{ maskType: "luminance" }}
+                                        maskUnits="userSpaceOnUse"
+                                        x={3} y={0} width={7} height={13}
+                                    >
+                                        <path
+                                            d="M10 7.56011V1.64993C10 0.777385 8.84367 0.483345 8.43308 1.25149L3.34149 10.7766C2.92607 11.6142 3.53062 12.5999 4.45965 12.6001H10V7.56011Z"
+                                            fill="white"
+                                        />
+                                    </mask>
+                                    <g mask="url(#mask1_pro_icon)">
+                                        <g filter="url(#filter0_f_pro_icon)">
+                                            <path
+                                                d="M10 12.6V19.3502C10 20.2228 11.1563 20.5168 11.5669 19.7487L16.6585 10.2236C17.0739 9.38595 16.4694 8.40021 15.5403 8.40004H10V5.04004C7.91667 7.14004 6.56123 8.93503 6.25 12.6H10Z"
+                                                fill="url(#paint1_linear_pro_icon)"
+                                            />
+                                        </g>
+                                    </g>
+                                    <path
+                                        d="M10 7.56011V1.64993C10 0.777385 8.84367 0.483345 8.43308 1.25149L3.34149 10.7766C2.92607 11.6142 3.53062 12.5999 4.45965 12.6001H10V7.56011Z"
+                                        fill="url(#paint2_linear_pro_icon)"
+                                    />
+                                    <path
+                                        d="M8.43342 1.25055C8.84425 0.483413 9.99959 0.777297 10 1.64923V10.0796H9.375V1.64923C9.37492 1.57895 9.35392 1.54013 9.3335 1.51552C9.309 1.48612 9.26934 1.45892 9.21792 1.44579C9.16642 1.43272 9.11825 1.43734 9.08284 1.45153C9.05325 1.46344 9.01675 1.488 8.98359 1.54997L4.42302 10.0796H3.71338L8.43342 1.25055Z"
+                                        fill="url(#paint3_linear_pro_icon)"
+                                    />
+                                </g>
+                                <defs>
+                                    <filter
+                                        id="filter0_f_pro_icon"
+                                        x={2.25} y={1.04004} width={18.542} height={23.1516}
+                                        filterUnits="userSpaceOnUse"
+                                        colorInterpolationFilters="sRGB"
+                                    >
+                                        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                        <feGaussianBlur stdDeviation={2} result="effect1_foregroundBlur_pro_icon" />
+                                    </filter>
+                                    <linearGradient
+                                        id="paint0_linear_pro_icon"
+                                        x1={11.5208} y1={5.04004} x2={11.5208} y2={22.68}
+                                        gradientUnits="userSpaceOnUse"
+                                    >
+                                        <stop stopColor="#575757" />
+                                        <stop offset={1} stopColor="#151515" />
+                                    </linearGradient>
+                                    <linearGradient
+                                        id="paint1_linear_pro_icon"
+                                        x1={11.5208} y1={5.04004} x2={11.5208} y2={22.68}
+                                        gradientUnits="userSpaceOnUse"
+                                    >
+                                        <stop stopColor="#575757" />
+                                        <stop offset={1} stopColor="#151515" />
+                                    </linearGradient>
+                                    <linearGradient
+                                        id="paint2_linear_pro_icon"
+                                        x1={6.60417} y1={-1.67989} x2={6.60417} y2={12.6001}
+                                        gradientUnits="userSpaceOnUse"
+                                    >
+                                        <stop stopColor="#6AFF34" stopOpacity={0.6} />
+                                        <stop offset={1} stopColor="#91FF0A" stopOpacity={0.6} />
+                                    </linearGradient>
+                                    <linearGradient
+                                        id="paint3_linear_pro_icon"
+                                        x1={6.85667} y1={0.808807} x2={6.85667} y2={9.23989}
+                                        gradientUnits="userSpaceOnUse"
+                                    >
+                                        <stop stopColor="white" />
+                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                    </linearGradient>
+                                    <clipPath id="clip0_pro_icon">
+                                        <rect width={20} height={21} fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span className="text-[12px] font-bold text-black dark:text-white">Pro</span>
+                        </div>
+
+                        {/* Token count */}
+                        <span className="text-[13px] font-medium text-[#371CFF] dark:text-[#8A7BFF]">12514 tokens left</span>
+                    </div>
+
+                    <div className="mb-8">
+                        <h2 className="text-[18px] font-semibold leading-tight tracking-tight text-[#18181B] dark:text-[#00FFA1]">
+                            Structured Content Generator
+                        </h2>
+                        <p className="mt-1.5 text-[14px] leading-relaxed text-[#71717A] dark:text-zinc-400">
+                            Generate specific types of content with clear objectives and structured inputs
+                        </p>
+                    </div>
+
+                    {/* Prompt Textarea Section */}
+                    <div className="mb-8 overflow-hidden rounded-[24px] border border-[#D3D3D7] bg-[#F3F3F4] p-[4px] dark:bg-zinc-900/50 dark:border-zinc-800">
+                        {/* Top white container */}
+                        <div className="flex flex-col rounded-[16px] border border-[#E3E3E6] bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.08)] dark:bg-[#0A0A0A] dark:border-zinc-800">
+                            <div className="p-4">
+                                <textarea
+                                    placeholder="Describe the content you want to generate..."
+                                    className="min-h-[80px] w-full resize-none bg-transparent p-0 text-[14px] text-zinc-900 outline-none placeholder:text-zinc-400 dark:text-zinc-100 placeholder:dark:text-zinc-600"
+                                />
+                            </div>
+
+                            {/* Inner Actions Bar */}
+                            <div className="flex items-center justify-between px-4 pb-4">
+                                <div className="flex items-center gap-3">
+                                    {/* Action Icons */}
+                                    <div className="flex items-center gap-3">
+                                        {/* Styled Plus Icon */}
+                                        <button className="relative h-4 w-4 transition-transform active:scale-95">
+                                            <div className="absolute left-0 top-0 h-[11px] w-[11px] rounded-[3px] bg-[#313136] shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+                                            <div className="absolute right-0 bottom-0 flex h-[11px] w-[11px] items-center justify-center rounded-[3px] border border-white/50 bg-[#E8E8E8]/80 shadow-[0_1px_3px_rgba(0,0,0,0.2)] backdrop-blur-[3px] dark:bg-white/20">
+                                                <Plus size={8} strokeWidth={4} className="text-[#18181B] dark:text-white" />
+                                            </div>
+                                        </button>
+
+                                        {/* Custom Styled Settings Icon */}
+                                        <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95">
+                                            <svg
+                                                width={16}
+                                                height={16}
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <g clipPath="url(#clip0_settings_glass)">
+                                                    <mask
+                                                        id="mask0_settings_glass"
+                                                        style={{ maskType: "luminance" }}
+                                                        maskUnits="userSpaceOnUse"
+                                                        x={0} y={0} width={24} height={24}
+                                                    >
+                                                        <path d="M24 0H0V24H24V0Z" fill="white" />
+                                                        <path
+                                                            d="M6.5 12.5C8.98528 12.5 11 14.5147 11 17C11 19.4853 8.98528 21.5 6.5 21.5C4.01472 21.5 2 19.4853 2 17C2 14.5147 4.01472 12.5 6.5 12.5ZM17.5 2.5C19.9853 2.5 22 4.51472 22 7C22 9.48528 19.9853 11.5 17.5 11.5C15.0147 11.5 13 9.48528 13 7C13 4.51472 15.0147 2.5 17.5 2.5Z"
+                                                            fill="black"
+                                                        />
+                                                    </mask>
+                                                    <g mask="url(#mask0_settings_glass)">
+                                                        <path
+                                                            d="M21 16C21.5523 16 22 16.4477 22 17C22 17.5523 21.5523 18 21 18H6C5.44772 18 5 17.5523 5 17C5 16.4477 5.44772 16 6 16H21ZM18 6C18.5523 6 19 6.44772 19 7C19 7.55228 18.5523 8 18 8H3C2.44772 8 2 7.55228 2 7C2 6.44772 2.44772 6 3 6H18Z"
+                                                            fill="url(#paint0_settings_glass)"
+                                                        />
+                                                    </g>
+                                                    <mask
+                                                        id="mask1_settings_glass"
+                                                        style={{ maskType: "luminance" }}
+                                                        maskUnits="userSpaceOnUse"
+                                                        x={2} y={2} width={20} height={20}
+                                                    >
+                                                        <path
+                                                            d="M6.5 12.5C8.98528 12.5 11 14.5147 11 17C11 19.4853 8.98528 21.5 6.5 21.5C4.01472 21.5 2 19.4853 2 17C2 14.5147 4.01472 12.5 6.5 12.5ZM17.5 2.5C19.9853 2.5 22 4.51472 22 7C22 9.48528 19.9853 11.5 17.5 11.5C15.0147 11.5 13 9.48528 13 7C13 4.51472 15.0147 2.5 17.5 2.5Z"
+                                                            fill="white"
+                                                        />
+                                                    </mask>
+                                                    <g mask="url(#mask1_settings_glass)">
+                                                        <g filter="url(#filter0_settings_glass)">
+                                                            <path
+                                                                d="M21 16C21.5523 16 22 16.4477 22 17C22 17.5523 21.5523 18 21 18H6C5.44772 18 5 17.5523 5 17C5 16.4477 5.44772 16 6 16H21ZM18 6C18.5523 6 19 6.44772 19 7C19 7.55228 18.5523 8 18 8H3C2.44772 8 2 7.55228 2 7C2 6.44772 2.44772 6 3 6H18Z"
+                                                                fill="url(#paint1_settings_glass)"
+                                                            />
+                                                        </g>
+                                                    </g>
+                                                    <path
+                                                        d="M6.5 12.5C8.98528 12.5 11 14.5147 11 17C11 19.4853 8.98528 21.5 6.5 21.5C4.01472 21.5 2 19.4853 2 17C2 14.5147 4.01472 12.5 6.5 12.5ZM17.5 2.5C19.9853 2.5 22 4.51472 22 7C22 9.48528 19.9853 11.5 17.5 11.5C15.0147 11.5 13 9.48528 13 7C13 4.51472 15.0147 2.5 17.5 2.5Z"
+                                                        fill="url(#paint2_settings_glass)"
+                                                    />
+                                                    <path
+                                                        d="M21.25 7C21.25 4.92893 19.5711 3.25 17.5 3.25C15.4289 3.25 13.75 4.92893 13.75 7C13.75 9.07107 15.4289 10.75 17.5 10.75V11.5C15.0147 11.5 13 9.48528 13 7C13 4.51472 15.0147 2.5 17.5 2.5C19.9853 2.5 22 4.51472 22 7C22 9.48528 19.9853 11.5 17.5 11.5V10.75C19.5711 10.75 21.25 9.07107 21.25 7Z"
+                                                        fill="url(#paint3_settings_glass)"
+                                                    />
+                                                    <path
+                                                        d="M10.25 17C10.25 14.9289 8.57107 13.25 6.5 13.25C4.42893 13.25 2.75 14.9289 2.75 17C2.75 19.0711 4.42893 20.75 6.5 20.75V21.5C4.01472 21.5 2 19.4853 2 17C2 14.5147 4.01472 12.5 6.5 12.5C8.98528 12.5 11 14.5147 11 17C11 19.4853 8.98528 21.5 6.5 21.5V20.75C8.57107 20.75 10.25 19.0711 10.25 17Z"
+                                                        fill="url(#paint4_settings_glass)"
+                                                    />
+                                                </g>
+                                                <defs>
+                                                    <filter
+                                                        id="filter0_settings_glass"
+                                                        x={-2} y={2} width={28} height={20}
+                                                        filterUnits="userSpaceOnUse"
+                                                        colorInterpolationFilters="sRGB"
+                                                    >
+                                                        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                                                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                                        <feGaussianBlur stdDeviation={2} result="effect1_foregroundBlur_settings" />
+                                                    </filter>
+                                                    <linearGradient id="paint0_settings_glass" x1={12} y1={-0.5} x2={12} y2={18} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#575757" />
+                                                        <stop offset={1} stopColor="#151515" />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint1_settings_glass" x1={12} y1={-0.5} x2={12} y2={18} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#575757" />
+                                                        <stop offset={1} stopColor="#151515" />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint2_settings_glass" x1={12} y1={2.5} x2={12} y2={21.5} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#E3E3E5" stopOpacity={0.6} />
+                                                        <stop offset={1} stopColor="#BBBBC0" stopOpacity={0.6} />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint3_settings_glass" x1={17.5} y1={2.5} x2={17.5} y2={7.712} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="white" />
+                                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint4_settings_glass" x1={6.5} y1={12.5} x2={6.5} y2={17.712} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="white" />
+                                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                    </linearGradient>
+                                                    <clipPath id="clip0_settings_glass">
+                                                        <rect width={24} height={24} fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </button>
+
+                                        {/* Custom Styled Flash Icon (Sparkle/Star Glass) */}
+                                        <button className="flex h-4 w-4 items-center justify-center transition-transform active:scale-95">
+                                            <svg
+                                                width={16}
+                                                height={16}
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <g clipPath="url(#clip0_flash_glass_v2)">
+                                                    <mask
+                                                        id="mask0_flash_glass_v2"
+                                                        style={{ maskType: "luminance" }}
+                                                        maskUnits="userSpaceOnUse"
+                                                        x={0} y={0} width={16} height={16}
+                                                    >
+                                                        <path d="M16 0H0V16H16V0Z" fill="white" />
+                                                        <path
+                                                            d="M10.6667 5.33329L9.08417 1.39815C8.69457 0.416528 7.30524 0.416406 6.91544 1.39797L5.37373 5.28056C5.35679 5.32311 5.32317 5.35672 5.28063 5.37366L1.39736 6.91567C0.415888 7.3054 0.415887 8.69453 1.39735 9.08427L5.33337 10.6667C8.27891 10.6667 10.6667 8.2788 10.6667 5.33329Z"
+                                                            fill="black"
+                                                        />
+                                                    </mask>
+                                                    <g mask="url(#mask0_flash_glass_v2)">
+                                                        <path
+                                                            d="M5.33329 10.6666L6.91583 14.6017C7.30543 15.5834 8.69476 15.5835 9.08449 14.6019L10.6262 10.7193C10.6432 10.6768 10.6768 10.6432 10.7194 10.6263L14.6026 9.08428C15.5841 8.69455 15.5841 7.30542 14.6026 6.91568L10.6666 5.33328C7.70536 5.31107 5.31038 7.70535 5.33329 10.6666Z"
+                                                            fill="url(#paint0_flash_glass_v2)"
+                                                        />
+                                                    </g>
+                                                    <mask
+                                                        id="mask1_flash_glass_v2"
+                                                        style={{ maskType: "luminance" }}
+                                                        maskUnits="userSpaceOnUse"
+                                                        x={0} y={0} width={11} height={11}
+                                                    >
+                                                        <path
+                                                            d="M10.6667 5.33329L9.08417 1.39815C8.69457 0.416528 7.30524 0.416406 6.91544 1.39797L5.37373 5.28056C5.35679 5.32311 5.32317 5.35672 5.28063 5.37366L1.39736 6.91567C0.415888 7.3054 0.415887 8.69453 1.39735 9.08427L5.33337 10.6667C8.27891 10.6667 10.6667 8.2788 10.6667 5.33329Z"
+                                                            fill="white"
+                                                        />
+                                                    </mask>
+                                                    <g mask="url(#mask1_flash_glass_v2)">
+                                                        <g filter="url(#filter0_flash_glass_v2)">
+                                                            <path
+                                                                d="M5.33342 10.6666L6.91595 14.6017C7.30555 15.5834 8.69488 15.5835 9.08461 14.6019L10.6263 10.7193C10.6433 10.6768 10.6769 10.6432 10.7195 10.6263L14.6027 9.08428C15.5842 8.69455 15.5842 7.30542 14.6027 6.91568L10.6667 5.33328C7.70548 5.31107 5.3105 7.70535 5.33342 10.6666Z"
+                                                                fill="url(#paint1_flash_glass_v2)"
+                                                            />
+                                                        </g>
+                                                    </g>
+                                                    <path
+                                                        d="M10.6667 5.33329L9.08417 1.39815C8.69457 0.416528 7.30524 0.416406 6.91544 1.39797L5.37373 5.28056C5.35679 5.32311 5.32317 5.35672 5.28063 5.37366L1.39736 6.91567C0.415888 7.3054 0.415887 8.69453 1.39735 9.08427L5.33337 10.6667C8.27891 10.6667 10.6667 8.2788 10.6667 5.33329Z"
+                                                        fill="url(#paint2_flash_glass_v2)"
+                                                    />
+                                                    <path
+                                                        d="M6.91511 1.39818C7.30484 0.416624 8.69477 0.416555 9.08437 1.39818L10.2334 4.2556C10.5196 4.96728 10.707 5.73697 10.542 6.48607L10.4964 6.67424C9.99651 8.60464 8.44264 10.111 6.48539 10.542L6.34477 10.5688C5.73461 10.6678 5.11444 10.5447 4.52576 10.3357L4.25623 10.2334L1.39751 9.08437C0.446625 8.70677 0.416707 7.39091 1.30831 6.95484L1.39751 6.91577L5.28031 5.37344C5.32286 5.3565 5.35647 5.32289 5.37341 5.28034L6.91511 1.39818ZM8.61951 1.58243C8.39684 1.02158 7.60264 1.02157 7.37991 1.58243L5.83826 5.46524C5.77898 5.61413 5.66839 5.73613 5.52771 5.80964L5.46521 5.83829L1.58175 7.38057C1.02107 7.60337 1.02101 8.39684 1.58175 8.61951L1.5837 8.62017L4.44243 9.76991C5.11982 10.0422 5.77522 10.1865 6.37797 10.0538C8.20817 9.65071 9.65057 8.20818 10.0538 6.378C10.1864 5.77516 10.0417 5.11991 9.76924 4.44245L8.62017 1.58438L8.61951 1.58243Z"
+                                                        fill="url(#paint3_flash_glass_v2)"
+                                                    />
+                                                </g>
+                                                <defs>
+                                                    <filter
+                                                        id="filter0_flash_glass_v2"
+                                                        x={1.33325} y={1.33313} width={18.0056} height={18.005}
+                                                        filterUnits="userSpaceOnUse"
+                                                        colorInterpolationFilters="sRGB"
+                                                    >
+                                                        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                                                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                                        <feGaussianBlur stdDeviation={2} result="effect1_foregroundBlur_flash_v2" />
+                                                    </filter>
+                                                    <linearGradient id="paint0_flash_glass_v2" x1={10.336} y1={5.33328} x2={10.336} y2={15.338} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#575757" />
+                                                        <stop offset={1} stopColor="#151515" />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint1_flash_glass_v2" x1={10.3361} y1={5.33328} x2={10.3361} y2={15.338} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#575757" />
+                                                        <stop offset={1} stopColor="#151515" />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint2_flash_glass_v2" x1={5.66404} y1={0.662} x2={5.66404} y2={10.6667} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#E3E3E5" stopOpacity={0.6} />
+                                                        <stop offset={1} stopColor="#BBBBC0" stopOpacity={0.6} />
+                                                    </linearGradient>
+                                                    <linearGradient id="paint3_flash_glass_v2" x1={5.63271} y1={0.662041} x2={5.63271} y2={6.41937} gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="white" />
+                                                        <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                    </linearGradient>
+                                                    <clipPath id="clip0_flash_glass_v2">
+                                                        <rect width={16} height={16} fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Custom Arrow Button */}
+                                <button className="transition-transform active:scale-95">
+                                    <svg
+                                        width={34}
+                                        height={34}
+                                        viewBox="0 0 34 34"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g filter="url(#filter0_di_arrow_btn)">
+                                            <rect x={2} width={30} height={30} rx={8} fill="#F1881F" />
+                                            <rect
+                                                x={3}
+                                                y={1}
+                                                width={28}
+                                                height={28}
+                                                rx={7}
+                                                stroke="#FFDAC4"
+                                                strokeWidth={2}
+                                            />
+                                            <path
+                                                d="M10 15L17 8M17 8L24 15M17 8V22"
+                                                stroke="#F9F9F9"
+                                                strokeWidth={2}
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </g>
+                                        <defs>
+                                            <filter
+                                                id="filter0_di_arrow_btn"
+                                                x={0}
+                                                y={-2}
+                                                width={34}
+                                                height={36}
+                                                filterUnits="userSpaceOnUse"
+                                                colorInterpolationFilters="sRGB"
+                                            >
+                                                <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                                                <feColorMatrix
+                                                    in="SourceAlpha"
+                                                    type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                    result="hardAlpha"
+                                                />
+                                                <feOffset dy={2} />
+                                                <feGaussianBlur stdDeviation={1} />
+                                                <feComposite in2="hardAlpha" operator="out" />
+                                                <feColorMatrix
+                                                    type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"
+                                                />
+                                                <feBlend
+                                                    mode="normal"
+                                                    in2="BackgroundImageFix"
+                                                    result="effect1_dropShadow_arrow_btn"
+                                                />
+                                                <feBlend
+                                                    mode="normal"
+                                                    in="SourceGraphic"
+                                                    in2="effect1_dropShadow_arrow_btn"
+                                                    result="shape"
+                                                />
+                                                <feColorMatrix
+                                                    in="SourceAlpha"
+                                                    type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                    result="hardAlpha"
+                                                />
+                                                <feOffset dy={-4} />
+                                                <feGaussianBlur stdDeviation={1} /> {/* Blur 2 / 2 = 1 */}
+                                                <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+                                                <feColorMatrix
+                                                    type="matrix"
+                                                    values="0 0 0 0 1 0 0 0 0 0.741176 0 0 0 0 0.545098 0 0 0 1 0" // #FFBD8B
+                                                />
+                                                <feBlend
+                                                    mode="normal"
+                                                    in2="shape"
+                                                    result="effect2_innerShadow_arrow_btn"
+                                                />
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Bottom Upgrade Bar */}
+                        <div className="flex items-center justify-center gap-4 py-2 text-[13px]">
+                            <span
+                                className="bg-clip-text text-transparent animate-light-rays"
+                                style={{
+                                    backgroundImage: 'linear-gradient(90deg, #404046 0%, #CFCFE0 50%, #404046 100%)',
+                                    backgroundSize: '200% auto',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                }}
+                            >
+                                Upgrade to Team to unlock
+                            </span>
+                            <style dangerouslySetInnerHTML={{
+                                __html: `
+                                @keyframes light-rays {
+                                    from { background-position: 200% center; }
+                                    to { background-position: -200% center; }
+                                }
+                                .animate-light-rays {
+                                    animation: light-rays 3s linear infinite;
+                                }
+                            `}} />
+                            <button className="font-medium text-[#0EC235] hover:underline dark:text-[#10D6E4]">Upgrade Plan</button>
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="mb-10 flex items-center gap-4">
+                        <div className="h-px flex-1 bg-[#E3E3E6] dark:bg-zinc-800" />
+                        <span className="text-[10px] font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                            Or use structured inputs
+                        </span>
+                        <div className="h-px flex-1 bg-[#E3E3E6] dark:bg-zinc-800" />
+                    </div>
+
+                    {/* Form */}
+                    <div className="space-y-5">
+                        <div className="space-y-2">
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Content Type</Label>
+                            <Select defaultValue="social-media">
+                                <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-sm focus:ring-1 focus:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200">
+                                    <SelectValue placeholder="Select content type" />
+                                </SelectTrigger>
+                                <SelectContent side="bottom" align="start" className="rounded-lg dark:bg-zinc-900 dark:border-zinc-800">
+                                    <SelectItem value="social-media">Social Media Post</SelectItem>
+                                    <SelectItem value="blog-post">Blog Post</SelectItem>
+                                    <SelectItem value="article">Article</SelectItem>
+                                    <SelectItem value="email">Email Campaign</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Topic / Product</Label>
+                            <Input
+                                defaultValue="Benefits of Remote Jobs"
+                                className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Key Points (oner per line)</Label>
+                            <Textarea
+                                defaultValue={`Increased flexibility and work-life balance\nAccess to a global talent pool for companies\nReduced commuting time and costs`}
+                                className="min-h-[120px] resize-none rounded-lg border-[#E3E3E6] py-3 text-[14px] leading-relaxed shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Target Audience</Label>
+                            <Input
+                                defaultValue="Benefits of Remote Jobs"
+                                className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
+                            />
+                        </div>
+
+                        <div className="flex gap-4">
+                            <div className="flex-1 space-y-2">
+                                <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Tone</Label>
+                                <Select defaultValue="informative">
+                                    <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-sm focus:ring-1 focus:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200">
+                                        <SelectValue placeholder="Select tone" />
+                                    </SelectTrigger>
+                                    <SelectContent side="bottom" align="start" className="rounded-lg dark:bg-zinc-900 dark:border-zinc-800">
+                                        <SelectItem value="informative">Informative</SelectItem>
+                                        <SelectItem value="professional">Professional</SelectItem>
+                                        <SelectItem value="casual">Casual</SelectItem>
+                                        <SelectItem value="humorous">Humorous</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="flex-1 space-y-2">
+                                <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Length</Label>
+                                <Input
+                                    defaultValue="500 words"
+                                    className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">Keywords (Optional)</Label>
+                            <Input
+                                defaultValue="remote work, productivity"
+                                className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mt-10 space-y-4">
+                        {/* Light Mode Button */}
+                        <button className="relative flex h-[56px] w-full transform items-center justify-center gap-3 rounded-[16px] border border-[#18181B] bg-[#18181B] text-white transition-all hover:opacity-95 active:scale-[0.98] shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.1)] dark:hidden">
+                            <IconSparkle className="size-4 text-white" />
+                            <span className="select-none text-[15px] font-semibold">Generate Content</span>
+                        </button>
+
+                        {/* Dark Mode Button */}
+                        <button className="relative hidden h-[52px] w-full transform items-center justify-center gap-3 rounded-[16px] border-2 border-[#9761F6] bg-gradient-to-b from-[#CDC2FF] to-[#100618] text-[#FFEBFE] transition-all hover:opacity-90 active:scale-[0.98] shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] dark:flex">
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="shrink-0"
+                            >
+                                <g clipPath="url(#sparkle_clip)">
+                                    <mask id="sparkle_mask" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                        <path d="M24 0H0V24H24V0Z" fill="white" />
+                                        <path d="M16.6562 9.21227L14.3939 3.51197C13.893 2.24988 12.1067 2.24972 11.6056 3.51173L9.34196 9.21227C9.31836 9.27154 9.27155 9.31835 9.21228 9.34195L3.51087 11.6059C2.24898 12.107 2.24898 13.893 3.51087 14.3941L9.21228 16.6581C9.27155 16.6817 9.31836 16.7285 9.34196 16.7877L11.6055 22.4883C12.1067 23.7503 13.8929 23.7501 14.3939 22.488L16.6562 16.7877C16.6799 16.7283 16.7273 16.6816 16.7868 16.6581L22.4888 14.3941C23.7507 13.8931 23.7507 12.1069 22.4888 11.6059L16.7868 9.34195C16.7273 9.31841 16.6799 9.27174 16.6562 9.21227Z" fill="black" />
+                                    </mask>
+                                    <g mask="url(#sparkle_mask)">
+                                        <path d="M13.0001 9.00529C13.5523 9.00529 14 9.45306 14.0001 10.0053V12.0053H16.0001C16.5523 12.0053 17 12.4531 17.0001 13.0053C16.9999 13.5574 16.5522 14.0053 16.0001 14.0053H14.0001V16.0053C13.9999 16.5574 13.5522 17.0053 13.0001 17.0053C12.448 17.0053 12.0003 16.5574 12.0001 16.0053V14.0053H10.0001C9.448 14.0053 9.00034 13.5574 9.00009 13.0053C9.00016 12.4531 9.44789 12.0054 10.0001 12.0053H12.0001V10.0053C12.0002 9.45309 12.4479 9.00534 13.0001 9.00529ZM6.0704 1.34123C6.40449 0.499893 7.59584 0.499834 7.92978 1.34123L9.25009 4.66935C9.26462 4.70569 9.29382 4.73394 9.33017 4.74845L12.6593 6.07072C13.5006 6.40475 13.5006 7.59507 12.6593 7.92912L9.33017 9.25138C9.29383 9.26588 9.26463 9.29417 9.25009 9.33049L7.92978 12.6586C7.59584 13.5 6.40449 13.5 6.0704 12.6586L4.74911 9.33049C4.73455 9.29416 4.7054 9.26586 4.66904 9.25138L1.34091 7.92912C0.499646 7.59507 0.499646 6.40477 1.34091 6.07072L4.66904 4.74845C4.70542 4.73397 4.73456 4.7057 4.74911 4.66935L6.0704 1.34123Z" fill="url(#paint0_sparkle)" />
+                                    </g>
+                                    <path d="M16.6562 9.21227L14.3939 3.51197C13.893 2.24988 12.1067 2.24972 11.6056 3.51173L9.34196 9.21227C9.31836 9.27154 9.27155 9.31835 9.21228 9.34195L3.51087 11.6059C2.24898 12.107 2.24898 13.893 3.51087 14.3941L9.21228 16.6581C9.27155 16.6817 9.31836 16.7285 9.34196 16.7877L11.6055 22.4883C12.1067 23.7503 13.8929 23.7501 14.3939 22.488L16.6562 16.7877C16.6799 16.7283 16.7273 16.6816 16.7868 16.6581L22.4888 14.3941C23.7507 13.8931 23.7507 12.1069 22.4888 11.6059L16.7868 9.34195C16.7273 9.31841 16.6799 9.27174 16.6562 9.21227Z" fill="url(#paint1_sparkle)" />
+                                    <path d="M11.6054 3.51174C12.1064 2.24985 13.8924 2.24997 14.3934 3.51174L16.6561 9.21194C16.6798 9.27141 16.7275 9.31828 16.787 9.34182L22.4882 11.6055C23.7501 12.1065 23.7501 13.8935 22.4882 14.3946L16.787 16.6582L16.745 16.6797C16.7052 16.7056 16.6739 16.7433 16.6561 16.7881L14.3934 22.4883L14.3427 22.6026C13.8 23.7118 12.1987 23.712 11.6561 22.6026L11.6054 22.4883L9.34168 16.7881C9.31809 16.7288 9.27106 16.6818 9.2118 16.6582L3.51063 14.3946C2.24874 13.8935 2.24874 12.1066 3.51063 11.6055L9.2118 9.34182C9.27106 9.31822 9.31809 9.2712 9.34168 9.21194L11.6054 3.51174ZM13.6972 3.78909C13.4468 3.15817 12.5534 3.15751 12.3026 3.78811L10.0389 9.48928C9.95156 9.70875 9.78837 9.88881 9.58094 9.99709L9.48914 10.0391L3.78797 12.3028C3.15702 12.5533 3.15703 13.4467 3.78797 13.6973L9.48914 15.961C9.70861 16.0483 9.88867 16.2115 9.99695 16.419L10.0389 16.5108L12.3026 22.2119C12.5534 22.8425 13.4458 22.8419 13.6962 22.211L15.9589 16.5108L16.0018 16.418C16.1117 16.2083 16.293 16.047 16.5097 15.961L22.2118 13.6973C22.8428 13.4468 22.8428 12.5533 22.2118 12.3028L16.5097 10.0391C16.2931 9.95306 16.1116 9.79167 16.0018 9.58205L15.9589 9.48928L13.6972 3.78909Z" fill="url(#paint2_sparkle)" />
+                                </g>
+                                <defs>
+                                    <linearGradient id="paint0_sparkle" x1="8.85509" y1="0.709981" x2="8.85509" y2="13.5" gradientUnits="userSpaceOnUse">
+                                        <stop stopColor="#575757" />
+                                        <stop offset="1" stopColor="#151515" />
+                                    </linearGradient>
+                                    <linearGradient id="paint1_sparkle" x1="13" y1="0.00000500753" x2="13" y2="26" gradientUnits="userSpaceOnUse">
+                                        <stop stopColor="#E3E3E5" stopOpacity={0.6} />
+                                        <stop offset="1" stopColor="#BBBBC0" stopOpacity={0.6} />
+                                    </linearGradient>
+                                    <linearGradient id="paint2_sparkle" x1="12.999" y1="2.565" x2="12.999" y2="13.5" gradientUnits="userSpaceOnUse">
+                                        <stop stopColor="white" />
+                                        <stop offset="1" stopColor="white" stopOpacity={0} />
+                                    </linearGradient>
+                                    <clipPath id="sparkle_clip">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span className="text-[14px] font-medium">Generate Content</span>
+                        </button>
+                        <Button
+                            variant="ghost"
+                            className="h-auto w-full text-[14px] font-medium text-[#18181B] hover:bg-transparent hover:text-[#18181B]/70 dark:text-zinc-500 dark:hover:text-zinc-400"
+                        >
+                            Reset
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}

@@ -14,8 +14,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
-import HeroSection2 from "./components/hero-section";
 import { Navigation } from "@/components/navigation";
+import HeroSection2 from "@/components/hero-section";
 
 const structuredData = {
   "@context": "https://schema.org",

@@ -51,7 +51,7 @@ export async function buildRegistryAction(block: {
         };
 
         // Check if item already exists
-        const existingItemIndex = registry.items.findIndex((item: any) => item.name === block.name);
+        const existingItemIndex = registry.items.findIndex((item: { name: string }) => item.name === block.name);
 
         if (existingItemIndex > -1) {
             // Update existing item
@@ -81,11 +81,12 @@ export async function buildRegistryAction(block: {
             output: stdout,
             error: stderr,
         };
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const err = error as { stdout?: string; stderr?: string; message?: string };
         return {
             success: false,
-            output: error.stdout || "",
-            error: error.stderr || error.message || "An unknown error occurred during build",
+            output: err.stdout || "",
+            error: err.stderr || err.message || "An unknown error occurred during build",
         };
     }
 }

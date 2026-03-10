@@ -27,7 +27,7 @@ export function PathInstructionCard({ slug, type }: PathInstructionCardProps) {
             setCopied(true);
             toast.success("Command copied to clipboard");
             setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
+        } catch {
             toast.error("Failed to copy command");
         }
     };

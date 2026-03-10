@@ -4,7 +4,6 @@ import * as React from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { PreviewWrapper } from "@/components/preview/preview-wrapper";

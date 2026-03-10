@@ -7,7 +7,17 @@ import { Play, Loader2, AlertCircle, CheckCircle2, Terminal } from "lucide-react
 import { buildRegistryAction } from "../actions";
 import { toast } from "sonner";
 
-export function BuildControlCard({ block }: { block: any }) {
+export function BuildControlCard({ block }: {
+    block: {
+        name: string;
+        type: "ui" | "component";
+        title: string;
+        description: string;
+        author: string;
+        categories: string[];
+        registryDependencies?: string[];
+    }
+}) {
     const [isLoading, setIsLoading] = useState(false);
     const [result, setResult] = useState<{ success: boolean; output?: string; error?: string } | null>(null);
 

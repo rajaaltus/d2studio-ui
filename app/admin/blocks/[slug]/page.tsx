@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, Package, Component, User, Hash, Info } from "lucide-react";
@@ -37,7 +37,7 @@ export default function BlockDetailPage() {
                 </div>
                 <div>
                     <h1 className="text-xl font-bold">Block Not Found</h1>
-                    <p className="text-muted-foreground">The block with slug "{slug}" does not exist.</p>
+                    <p className="text-muted-foreground">The block with slug &quot;{slug}&quot; does not exist.</p>
                 </div>
                 <Button asChild variant="outline">
                     <Link href="/admin/blocks">

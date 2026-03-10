@@ -47,7 +47,7 @@ export function PreviewSection({ slug, type }: PreviewSectionProps) {
                     <ToggleGroup
                         type="single"
                         value={viewport}
-                        onValueChange={(value) => value && setViewport(value as any)}
+                        onValueChange={(value) => value && setViewport(value as "mobile" | "tablet" | "desktop" | "full")}
                         className="bg-background border rounded-md p-0.5"
                     >
                         <ToggleGroupItem value="mobile" className="h-8 w-8 p-0" title="Mobile (375px)">

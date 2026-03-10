@@ -20,7 +20,6 @@ const VIEWPORT_WIDTHS = {
 
 export function PreviewIframe({ slug, type, theme = "light", width }: PreviewIframeProps) {
     const [isLoading, setIsLoading] = useState(true);
-    const [key, setKey] = useState(0);
 
     const baseUrl = `/preview/${slug}`;
     const queryParams = new URLSearchParams({

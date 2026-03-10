@@ -28,7 +28,7 @@ export function DistributionCard({ slug }: DistributionCardProps) {
             setCopied(true);
             toast.success("Installation command copied");
             setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
+        } catch {
             toast.error("Failed to copy command");
         }
     };

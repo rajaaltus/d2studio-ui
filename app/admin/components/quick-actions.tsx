@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart3, Blocks, Download, Eye } from "lucide-react";
+import { BarChart3, Download, Eye } from "lucide-react";
 import Link from "next/link";
 import { CreateBlockDialog } from "./create-block-dialog";
 
