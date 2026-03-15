@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface PreviewIframeProps {
     slug: string;
@@ -20,7 +20,9 @@ const VIEWPORT_WIDTHS = {
 
 export function PreviewIframe({ slug, type, theme = "light", width }: PreviewIframeProps) {
     const [isLoading, setIsLoading] = useState(true);
+    const iframeRef = useRef<HTMLIFrameElement>(null);
 
+    // Use current theme in the URL for reliability
     const baseUrl = `/preview/${slug}`;
     const queryParams = new URLSearchParams({
         theme,
@@ -28,9 +30,11 @@ export function PreviewIframe({ slug, type, theme = "light", width }: PreviewIfr
     });
     const iframeSrc = `${baseUrl}?${queryParams.toString()}`;
 
+    // Only show loading spinner when slug or type changes (full reload)
+    // For theme changes, we let the iframe navigate naturally
     useEffect(() => {
         setIsLoading(true);
-    }, [iframeSrc]);
+    }, [slug, type]);
 
     return (
         <div className="flex flex-col items-center w-full min-h-[500px] bg-muted/30 rounded-xl border border-border/50 overflow-hidden">
@@ -44,6 +48,7 @@ export function PreviewIframe({ slug, type, theme = "light", width }: PreviewIfr
                     </div>
                 )}
                 <iframe
+                    ref={iframeRef}
                     src={iframeSrc}
                     className="w-full h-full border-none"
                     onLoad={() => setIsLoading(false)}

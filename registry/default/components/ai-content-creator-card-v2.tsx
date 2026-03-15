@@ -654,27 +654,9 @@ export default function AIContentCreatorCard() {
 
                         {/* Bottom Upgrade Bar */}
                         <div className="flex items-center justify-center gap-4 py-2 text-[13px]">
-                            <span
-                                className="bg-clip-text text-transparent animate-light-rays"
-                                style={{
-                                    backgroundImage: 'linear-gradient(90deg, #404046 0%, #CFCFE0 50%, #404046 100%)',
-                                    backgroundSize: '200% auto',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                }}
-                            >
+                            <span className="font-medium text-zinc-500 dark:text-zinc-400">
                                 Upgrade to Team to unlock
                             </span>
-                            <style dangerouslySetInnerHTML={{
-                                __html: `
-                                @keyframes light-rays {
-                                    from { background-position: 200% center; }
-                                    to { background-position: -200% center; }
-                                }
-                                .animate-light-rays {
-                                    animation: light-rays 3s linear infinite;
-                                }
-                            `}} />
                             <button className="font-medium text-[#0EC235] hover:underline dark:text-[#10D6E4]">Upgrade Plan</button>
                         </div>
                     </div>

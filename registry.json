@@ -439,20 +439,20 @@
       ]
     },
     {
-      "name": "travel-hero-gloss",
-      "type": "registry:ui",
-      "title": "Travel Hero Gloss",
-      "description": "Hero section with current trend esthetics\n3d images included\nStylish Dev friendly button\nFollow me on X for updated",
-      "author": "uxgodwin",
+      "name": "ai-content-creator-card-v2",
+      "type": "registry:component",
+      "title": "AI content creator card v.2",
+      "description": "AI content creator card v.2 Glass ",
+      "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/ui/travel-hero-gloss.tsx",
-          "type": "registry:ui"
+          "path": "registry/default/components/ai-content-creator-card-v2.tsx",
+          "type": "registry:component"
         }
       ],
       "categories": [
-        "Hero"
+        "ai-components"
       ]
     }
   ]

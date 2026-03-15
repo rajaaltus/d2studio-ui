@@ -125,12 +125,14 @@
 
 @utility screen-line-after {
   @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:z-10 after:h-px after:w-[200vw];
+
   &::after {
     background-color: var(--edge);
   }
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -144,7 +146,7 @@
   html {
     @apply motion-safe:scroll-smooth;
   }
-  
+
 
   body {
     @apply bg-background text-foreground font-mono overscroll-y-none antialiased;
@@ -158,19 +160,23 @@
   ::-webkit-scrollbar {
     width: 5px;
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
+
   ::-webkit-scrollbar-thumb {
     background: var(--border);
     border-radius: 5px;
   }
+
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
 
-  code, pre {
+  code,
+  pre {
     @apply font-mono;
     font-variant-ligatures: none;
   }
@@ -194,6 +200,7 @@
     0% {
       transform: translateX(0);
     }
+
     100% {
       transform: translateX(-50%);
     }
@@ -212,6 +219,7 @@
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(calc(-100% - var(--gap)));
     }
@@ -221,6 +229,7 @@
     from {
       transform: translateY(0);
     }
+
     to {
       transform: translateY(calc(-100% - var(--gap)));
     }
@@ -232,5 +241,19 @@
 
   .animate-marquee-vertical {
     animation: marquee-vertical var(--duration) linear infinite;
+  }
+
+  @keyframes light-rays {
+    from {
+      background-position: 200% center;
+    }
+
+    to {
+      background-position: -200% center;
+    }
+  }
+
+  .animate-light-rays {
+    animation: light-rays 3s linear infinite;
   }
 }
