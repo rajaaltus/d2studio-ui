@@ -7,7 +7,7 @@ function D2Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "bg-sidebar text-card-foreground border shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.3)] flex flex-col  rounded-2xl  py-1 ",
+        "bg-sidebar p-0 text-card-foreground border shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.3)] flex flex-col  rounded-2xl  py-1 ",
         className,
       )}
       {...props}

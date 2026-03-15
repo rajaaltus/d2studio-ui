@@ -4,7 +4,6 @@ import * as React from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { PreviewWrapper } from "@/components/preview/preview-wrapper";
@@ -95,16 +94,13 @@ export default function BlockPage() {
           codeStatus={block.codeStatus}
           minHeight="500px"
         >
-          <div className="origin-center w-full flex items-center justify-center flex-1 h-full font-sans p-8">
-            <div className="relative w-full max-w-4xl aspect-video">
-              <Image
-                src={block.previewImage || "/placeholder.svg"}
-                alt={block.title}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              />
-            </div>
+          <div className="w-full h-full min-h-[600px] bg-background">
+            <iframe
+              src={`/preview/${block.name}?type=${block.type}`}
+              className="w-full h-full min-h-[600px] border-none"
+              title={`Preview for ${block.name}`}
+              sandbox="allow-scripts allow-same-origin"
+            />
           </div>
         </PreviewWrapper>
       </section>

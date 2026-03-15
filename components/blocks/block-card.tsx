@@ -15,7 +15,7 @@ interface BlockCardProps {
 export function BlockCard({ block }: BlockCardProps) {
   return (
     <Link href={`/blocks/${block.name}`}>
-      <Card className="group relative overflow-hidden rounded-lg border bg-card hover:shadow-lg transition-all hover:border-foreground/20 h-full flex flex-col">
+      <Card className="group relative overflow-hidden rounded-lg border bg-card hover:shadow-lg transition-all hover:border-foreground/20 h-full flex flex-col p-0">
         <div className="relative aspect-video w-full overflow-hidden bg-muted">
           <Image
             src={block.previewImage || "/placeholder.svg"}

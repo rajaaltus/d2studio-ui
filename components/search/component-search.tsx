@@ -11,18 +11,8 @@ import Link from "next/link";
 import { categories } from "@/config/components";
 
 // Component imports for search results
-import Comp001 from "@/registry/default/components/comp-001";
-import Comp002 from "@/registry/default/components/comp-002";
-import Comp003 from "@/registry/default/components/comp-003";
 import Comp010 from "@/registry/default/components/hero-01";
-import Comp011 from "@/registry/default/components/comp-011";
 import Comp012 from "@/registry/default/components/pricing-01";
-import Comp013 from "@/registry/default/components/comp-013";
-import Comp020 from "@/registry/default/components/comp-020";
-import Comp021 from "@/registry/default/components/comp-021";
-import Comp030 from "@/registry/default/components/comp-030";
-import Comp040 from "@/registry/default/components/comp-040";
-import Comp050 from "@/registry/default/components/comp-050";
 
 const componentRegistry: Record<
   string,
@@ -34,29 +24,7 @@ const componentRegistry: Record<
     title: string;
   }
 > = {
-  "comp-001": {
-    component: Comp001,
-    title: "Newsletter Form",
-    description:
-      "Simple newsletter subscription form with email input and submit button",
-    tags: ["form", "newsletter", "email", "input", "subscription"],
-    category: "forms",
-  },
-  "comp-002": {
-    component: Comp002,
-    title: "Feature Card",
-    description:
-      "Feature showcase card with checklist and call-to-action button",
-    tags: ["card", "marketing", "features", "cta", "checklist"],
-    category: "forms",
-  },
-  "comp-003": {
-    component: Comp003,
-    title: "Login Form",
-    description: "Complete login form with email and password fields",
-    tags: ["form", "auth", "login", "authentication", "signin"],
-    category: "forms",
-  },
+
   "comp-010": {
     component: Comp010,
     title: "Hero Section",
@@ -65,13 +33,7 @@ const componentRegistry: Record<
     tags: ["hero", "marketing", "landing", "cta", "gradient"],
     category: "layouts",
   },
-  "comp-011": {
-    component: Comp011,
-    title: "Features Section",
-    description: "Two-column features section with icons and descriptions",
-    tags: ["features", "marketing", "landing", "icons", "grid"],
-    category: "layouts",
-  },
+
   "comp-012": {
     component: Comp012,
     title: "Pricing Table",
@@ -80,50 +42,7 @@ const componentRegistry: Record<
     tags: ["pricing", "marketing", "saas", "plans", "comparison"],
     category: "layouts",
   },
-  "comp-013": {
-    component: Comp013,
-    title: "Feature Section",
-    description:
-      "Modern feature section with stats, call-to-action buttons, and feature cards",
-    tags: ["features", "section", "stats", "cta", "cards", "modern"],
-    category: "layouts",
-  },
-  "comp-020": {
-    component: Comp020,
-    title: "Contact Form",
-    description:
-      "Comprehensive contact form with validation and contact information",
-    tags: ["form", "contact", "validation", "support", "inquiry"],
-    category: "marketing",
-  },
-  "comp-021": {
-    component: Comp021,
-    title: "Search Filter",
-    description: "Advanced search with tag-based filtering and suggestions",
-    tags: ["search", "filter", "tags", "autocomplete", "suggestions"],
-    category: "marketing",
-  },
-  "comp-030": {
-    component: Comp030,
-    title: "Product Card",
-    description: "E-commerce product card with wishlist and quick actions",
-    tags: ["product", "ecommerce", "card", "wishlist", "shop"],
-    category: "ecommerce",
-  },
-  "comp-040": {
-    component: Comp040,
-    title: "Navigation Header",
-    description: "Responsive navigation with mobile menu and search",
-    tags: ["nav", "header", "navigation", "mobile", "responsive"],
-    category: "navigation",
-  },
-  "comp-050": {
-    component: Comp050,
-    title: "Article Card",
-    description: "Blog article cards with author info and reading time",
-    tags: ["article", "blog", "card", "author", "content"],
-    category: "display",
-  },
+
 };
 
 interface ComponentSearchProps {
