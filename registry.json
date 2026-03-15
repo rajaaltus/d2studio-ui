@@ -437,6 +437,23 @@
       "categories": [
         "card"
       ]
+    },
+    {
+      "name": "travel-hero-gloss",
+      "type": "registry:ui",
+      "title": "Travel Hero Gloss",
+      "description": "Hero section with current trend esthetics\n3d images included\nStylish Dev friendly button\nFollow me on X for updated",
+      "author": "uxgodwin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/travel-hero-gloss.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "Hero"
+      ]
     }
   ]
 }
