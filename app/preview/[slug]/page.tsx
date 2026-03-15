@@ -15,6 +15,7 @@ function PreviewContent() {
     const type = searchParams.get("type") || "component";
 
     useEffect(() => {
+        // Handle theme from URL
         if (theme === "dark" || theme === "light") {
             setTheme(theme);
         }

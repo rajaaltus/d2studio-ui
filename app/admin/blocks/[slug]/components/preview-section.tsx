@@ -10,7 +10,8 @@ import {
     Moon,
     Sun,
     RefreshCw,
-    Maximize2
+    Maximize2,
+    ExternalLink
 } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -61,6 +62,10 @@ export function PreviewSection({ slug, type }: PreviewSectionProps) {
                         <ToggleGroupItem value="desktop" className="h-8 w-8 p-0" title="Desktop (1280px)">
                             <Monitor className="h-4 w-4" />
                         </ToggleGroupItem>
+
+                        <ToggleGroupItem value="full" className="h-8 w-8 p-0" title="Full Width">
+                            <Maximize2 className="h-4 w-4" />
+                        </ToggleGroupItem>
                     </ToggleGroup>
                 </div>
 
@@ -72,7 +77,7 @@ export function PreviewSection({ slug, type }: PreviewSectionProps) {
                         className="h-9 w-9"
                         title="Open Full Preview"
                     >
-                        <Maximize2 className="h-4 w-4" />
+                        <ExternalLink className="h-4 w-4" />
                     </Button>
                     <Button
                         variant="outline"
