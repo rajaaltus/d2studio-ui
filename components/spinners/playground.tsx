@@ -9,10 +9,12 @@ import {
   Download,
   FileCode2,
   Palette,
+  RotateCcw,
   Shuffle,
 } from "lucide-react";
 import {
   PixelSpinner,
+  type SpinnerAnimation,
   type SpinnerColor,
   type SpinnerGradient,
   type SpinnerPattern,
@@ -125,7 +127,7 @@ const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
   triangle: { clipPath: "polygon(50% 0, 100% 100%, 0 100%)" },
   hexagon: {
     clipPath:
-      "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)",
+      "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)",
   },
 };
 
@@ -200,9 +202,9 @@ export function SpinnerPlayground() {
   const [gridRows, setGridRows] = React.useState(0);
   const [gridCols, setGridCols] = React.useState(0);
   const [shape, setShape] = React.useState<SpinnerShape>("square");
+  const [animation, setAnimation] = React.useState<SpinnerAnimation>("pixels");
   const [pickerOpen, setPickerOpen] = React.useState(false);
   const [gradientPickerOpen, setGradientPickerOpen] = React.useState(false);
-  const [shapePickerOpen, setShapePickerOpen] = React.useState(false);
   const [gridPickerOpen, setGridPickerOpen] = React.useState(false);
   const [exporting, setExporting] = React.useState(false);
 
@@ -246,6 +248,25 @@ export function SpinnerPlayground() {
   const handleRandom = () => {
     const p = SPINNER_LIBRARY[Math.floor(Math.random() * SPINNER_LIBRARY.length)];
     setPatternName(p.name);
+  };
+
+  const handleReset = () => {
+    setPatternName(SPINNER_LIBRARY[0].name);
+    setColorMode("gradient");
+    setColor("blue");
+    setPresetId("blue");
+    setCustomColor("#7ab7ff");
+    setGradientId(GRADIENTS[0].id);
+    setGradientFrom(GRADIENTS[0].from);
+    setGradientTo(GRADIENTS[0].to);
+    setGradientGlow(GRADIENTS[0].glow);
+    setCellSize(24);
+    setGap(3);
+    setSpeed(200);
+    setGlow(1);
+    setGridRows(0);
+    setGridCols(0);
+    setShape("square");
   };
 
   const colorLine =
@@ -314,6 +335,7 @@ export function SpinnerPlayground() {
             intervalOverride={speed}
             glow={springGlow}
             shape={shape}
+            animation={animation}
           />
         </div>
 
@@ -340,6 +362,19 @@ export function SpinnerPlayground() {
 
       {/* Controls */}
       <aside className="space-y-5 rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm">
+        <div className="flex items-center justify-between">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
+            Controls
+          </p>
+          <button
+            onClick={handleReset}
+            className="inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
+          >
+            <RotateCcw size={11} />
+            Reset
+          </button>
+        </div>
+
         <ControlGroup label="Pattern">
           <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
             <PopoverTrigger asChild>
@@ -567,55 +602,58 @@ export function SpinnerPlayground() {
           )}
         </ControlGroup>
 
+        <ControlGroup label="Animation Style">
+          <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
+            {(["pixels", "wavy"] as const).map((a) => {
+              const active = animation === a;
+              return (
+                <button
+                  key={a}
+                  onClick={() => setAnimation(a)}
+                  className={
+                    "flex-1 rounded px-2 py-1 text-[11px] font-medium capitalize transition-colors " +
+                    (active
+                      ? "bg-white/10 text-[var(--ls-foreground)]"
+                      : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
+                  }
+                >
+                  {a}
+                </button>
+              );
+            })}
+          </div>
+        </ControlGroup>
+
         <ControlGroup label="Shape">
-          <Popover open={shapePickerOpen} onOpenChange={setShapePickerOpen}>
-            <PopoverTrigger asChild>
-              <button className="flex h-9 w-full items-center justify-between rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-3 text-xs text-[var(--ls-foreground)] outline-none transition-colors hover:bg-[var(--ls-border)]/50 focus-visible:border-white/40">
-                <span className="flex items-center gap-2">
+          <div className="grid grid-cols-6 gap-1 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-1">
+            {SHAPES.map((s) => {
+              const active = shape === s.id;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setShape(s.id)}
+                  title={s.label}
+                  aria-label={s.label}
+                  className={
+                    "flex aspect-square items-center justify-center rounded transition-colors " +
+                    (active
+                      ? "bg-white/10"
+                      : "hover:bg-[var(--ls-border)]/40")
+                  }
+                >
                   <span
-                    className="h-4 w-4 bg-[var(--ls-foreground)]"
-                    style={SHAPE_PREVIEW[shape]}
+                    className={
+                      "h-4 w-4 " +
+                      (active
+                        ? "bg-[var(--ls-foreground)]"
+                        : "bg-[var(--ls-muted-foreground)]")
+                    }
+                    style={SHAPE_PREVIEW[s.id]}
                   />
-                  <span className="font-mono capitalize">{shape}</span>
-                </span>
-                <ChevronDown size={14} className="opacity-60" />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent
-              align="start"
-              sideOffset={8}
-              className="luminous-spinners w-[min(280px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)]"
-            >
-              <div className="grid grid-cols-3 gap-1.5">
-                {SHAPES.map((s) => {
-                  const active = shape === s.id;
-                  return (
-                    <button
-                      key={s.id}
-                      onClick={() => {
-                        setShape(s.id);
-                        setShapePickerOpen(false);
-                      }}
-                      className={
-                        "flex flex-col items-center gap-1.5 rounded-lg border p-2 transition-colors " +
-                        (active
-                          ? "border-white/40 bg-[var(--ls-border)]/40"
-                          : "border-[var(--ls-border)] hover:border-white/20")
-                      }
-                    >
-                      <span
-                        className="h-6 w-6 bg-[var(--ls-foreground)]"
-                        style={SHAPE_PREVIEW[s.id]}
-                      />
-                      <span className="text-[10px] text-[var(--ls-muted-foreground)]">
-                        {s.label}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </PopoverContent>
-          </Popover>
+                </button>
+              );
+            })}
+          </div>
         </ControlGroup>
 
         <ControlGroup label="Grid">
@@ -631,7 +669,7 @@ export function SpinnerPlayground() {
             <PopoverContent
               align="start"
               sideOffset={8}
-              className="luminous-spinners w-[min(300px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)]"
+              className="luminous-spinners w-[min(300px,calc(100vw-2rem))] space-y-3 border-[var(--ls-border)] bg-[var(--ls-card)] p-3 text-[var(--ls-foreground)]"
             >
               <div className="grid grid-cols-4 gap-1.5">
                 {GRID_OPTIONS.map((g) => {
@@ -656,6 +694,31 @@ export function SpinnerPlayground() {
                     </button>
                   );
                 })}
+              </div>
+
+              <div className="space-y-1.5 border-t border-[var(--ls-border)] pt-3">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
+                  Custom
+                </p>
+                <div className="flex items-center gap-2">
+                  <GridNumberInput
+                    label="Rows"
+                    value={effectiveRows}
+                    onChange={(v) => setGridRows(v)}
+                  />
+                  <span className="text-[var(--ls-muted-foreground)]">×</span>
+                  <GridNumberInput
+                    label="Cols"
+                    value={effectiveCols}
+                    onChange={(v) => setGridCols(v)}
+                  />
+                  <button
+                    onClick={() => setGridPickerOpen(false)}
+                    className="ml-auto rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 py-1 text-[11px] font-medium text-[var(--ls-foreground)] hover:bg-[var(--ls-border)]/40"
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
             </PopoverContent>
           </Popover>
@@ -683,6 +746,7 @@ export function SpinnerPlayground() {
           value={speed}
           min={30}
           max={2000}
+          sliderMax={250}
           step={10}
           unit="ms"
           onChange={setSpeed}
@@ -694,7 +758,7 @@ export function SpinnerPlayground() {
           value={glow}
           min={0}
           max={5}
-          step={1}
+          step={0.25}
           unit="x"
           onChange={setGlow}
         />
@@ -776,6 +840,53 @@ function CodePanel({
   );
 }
 
+function GridNumberInput({
+  label,
+  value,
+  onChange,
+  min = 1,
+  max = 24,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  min?: number;
+  max?: number;
+}) {
+  const [draft, setDraft] = React.useState(String(value));
+  React.useEffect(() => setDraft(String(value)), [value]);
+  const commit = () => {
+    const n = Number(draft);
+    if (Number.isFinite(n)) {
+      const clamped = Math.min(max, Math.max(min, Math.round(n)));
+      onChange(clamped);
+      setDraft(String(clamped));
+    } else {
+      setDraft(String(value));
+    }
+  };
+  return (
+    <label className="flex items-center gap-1.5">
+      <span className="text-[10px] uppercase tracking-wider text-[var(--ls-muted-foreground)]">
+        {label}
+      </span>
+      <input
+        type="number"
+        min={min}
+        max={max}
+        step={1}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+        }}
+        className="w-12 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-1.5 py-1 text-center font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-white/40 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      />
+    </label>
+  );
+}
+
 function GradientStop({
   label,
   value,
@@ -840,6 +951,7 @@ function SliderControl({
   onChange,
   endLabels,
   editable,
+  sliderMax,
 }: {
   label: string;
   value: number;
@@ -850,6 +962,7 @@ function SliderControl({
   onChange: (v: number) => void;
   endLabels?: [string, string];
   editable?: boolean;
+  sliderMax?: number;
 }) {
   const [draft, setDraft] = React.useState(String(value));
   React.useEffect(() => {
@@ -900,9 +1013,9 @@ function SliderControl({
       <input
         type="range"
         min={min}
-        max={max}
+        max={sliderMax ?? max}
         step={step}
-        value={value}
+        value={Math.min(sliderMax ?? max, value)}
         onChange={(e) => onChange(Number(e.target.value))}
         className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-[var(--ls-border)] accent-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-md"
       />
@@ -1092,8 +1205,19 @@ async function exportGif(opts: {
   gap: number;
   speed: number;
   filename: string;
+  transparentBg?: boolean;
 }) {
-  const { pattern, color, customColor, gradient, cellSize, gap, speed, filename } = opts;
+  const {
+    pattern,
+    color,
+    customColor,
+    gradient,
+    cellSize,
+    gap,
+    speed,
+    filename,
+    transparentBg,
+  } = opts;
   const { GIFEncoder, quantize, applyPalette } = await import("gifenc");
 
   const cols = pattern.cols ?? pattern.size ?? 3;
@@ -1135,9 +1259,12 @@ async function exportGif(opts: {
   const encoder = GIFEncoder();
 
   for (let f = 0; f < F; f++) {
-    // background
-    ctx.fillStyle = "#141824";
-    ctx.fillRect(0, 0, W, H);
+    if (transparentBg) {
+      ctx.clearRect(0, 0, W, H);
+    } else {
+      ctx.fillStyle = "#141824";
+      ctx.fillRect(0, 0, W, H);
+    }
 
     for (let cy = 0; cy < rows; cy++) {
       for (let cx = 0; cx < cols; cx++) {
@@ -1187,7 +1314,7 @@ async function exportGif(opts: {
           );
           ctx.fillStyle = lg;
           ctx.fillRect(x, y, cellSize, cellSize);
-        } else {
+        } else if (!transparentBg) {
           ctx.fillStyle = "rgba(255,255,255,0.03)";
           ctx.fillRect(x, y, cellSize, cellSize);
         }
@@ -1195,9 +1322,22 @@ async function exportGif(opts: {
     }
 
     const imageData = ctx.getImageData(0, 0, W, H);
-    const palette = quantize(imageData.data, 256);
-    const index = applyPalette(imageData.data, palette);
-    encoder.writeFrame(index, W, H, { palette, delay: speed });
+    if (transparentBg) {
+      const palette = quantize(imageData.data, 256, {
+        format: "rgba4444",
+      });
+      const index = applyPalette(imageData.data, palette, "rgba4444");
+      encoder.writeFrame(index, W, H, {
+        palette,
+        delay: speed,
+        transparent: true,
+        transparentIndex: 0,
+      });
+    } else {
+      const palette = quantize(imageData.data, 256);
+      const index = applyPalette(imageData.data, palette);
+      encoder.writeFrame(index, W, H, { palette, delay: speed });
+    }
   }
 
   encoder.finish();

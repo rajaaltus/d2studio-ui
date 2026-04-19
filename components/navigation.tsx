@@ -3,7 +3,7 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/registry/default/ui/button";
 import { Card } from "@/registry/default/ui/card";
-import { Code2, Github, Menu, X } from "lucide-react";
+import { Code2, Coffee, Github, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Logo from "./logo";
@@ -54,6 +54,16 @@ export function Navigation() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+            <a
+              href="https://buymeacoffee.com/godwindev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-md bg-[#ffdd00] px-2.5 py-1.5 text-xs font-semibold text-black transition-transform hover:-translate-y-0.5"
+            >
+              <Coffee size={14} />
+              Buy me a coffee
+            </a>
+
             <ThemeToggle />
 
             <Button

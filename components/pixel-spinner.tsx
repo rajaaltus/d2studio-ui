@@ -23,6 +23,10 @@ export type SpinnerShape =
   | "triangle"
   | "hexagon";
 
+export type SpinnerEffect = "none" | "light" | "wave";
+
+export type SpinnerAnimation = "pixels" | "wavy";
+
 const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
   square: {},
   rounded: { borderRadius: "22%" },
@@ -31,7 +35,7 @@ const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
   triangle: { clipPath: "polygon(50% 0, 100% 100%, 0 100%)" },
   hexagon: {
     clipPath:
-      "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)",
+      "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)",
   },
 };
 
@@ -49,6 +53,8 @@ interface PixelSpinnerProps {
   easeIn?: number;
   easeOut?: number;
   shape?: SpinnerShape;
+  effect?: SpinnerEffect;
+  animation?: SpinnerAnimation;
 }
 
 export function PixelSpinner({
@@ -65,6 +71,8 @@ export function PixelSpinner({
   easeIn,
   easeOut,
   shape = "square",
+  effect = "light",
+  animation = "pixels",
 }: PixelSpinnerProps) {
   const shapeStyle = SHAPE_STYLE[shape];
   const cols = pattern.cols ?? pattern.size ?? 3;
@@ -94,7 +102,13 @@ export function PixelSpinner({
 
   return (
     <div
-      className={cn("spinner-grid grid", className)}
+      className={cn(
+        "spinner-grid grid",
+        effect === "light" && "effect-light",
+        effect === "wave" && "effect-wave",
+        animation === "wavy" ? "anim-wavy" : "anim-pixels",
+        className
+      )}
       style={
         {
           gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`,

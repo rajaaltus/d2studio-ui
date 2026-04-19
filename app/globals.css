@@ -266,6 +266,23 @@
       transform: translateX(200%);
     }
   }
+
+  @keyframes title-gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-title-gradient {
+    background-size: 200% 100%;
+    animation: title-gradient 6s ease-in-out infinite;
+  }
 }
 
 /* ===========================
@@ -327,6 +344,22 @@
     transform var(--ease-in, 300ms) ease-in,
     box-shadow var(--ease-in, 300ms) ease-in,
     opacity var(--ease-in, 300ms) ease-in;
+}
+
+.luminous-spinners .anim-wavy .cell {
+  transition:
+    background 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.luminous-spinners .anim-wavy .cell.on {
+  transform: scale(1.35);
+  transition:
+    background 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .luminous-spinners .cell.on.c-crimson {
@@ -397,7 +430,7 @@
       );
 }
 
-.luminous-spinners .cell.on::after {
+.luminous-spinners .effect-light .cell.on::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -425,4 +458,34 @@
 
 .luminous-spinners .spinner-grid {
   position: relative;
+}
+
+.luminous-spinners .spinner-grid.effect-wave {
+  overflow: hidden;
+}
+
+.luminous-spinners .spinner-grid.effect-wave::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    oklch(1 0 0 / 0.35) 50%,
+    transparent 65%
+  );
+  background-size: 260% 260%;
+  animation: ls-wave 2.8s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes ls-wave {
+  0% {
+    background-position: 140% 140%;
+  }
+  100% {
+    background-position: -140% -140%;
+  }
 }
