@@ -28,7 +28,7 @@ export default function SpinnersPage() {
             </p>
           </header>
 
-          <div className="pb-16">
+          <div className="pb-10">
             <SpinnerPlayground />
           </div>
         </section>

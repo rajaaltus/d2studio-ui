@@ -233,9 +233,9 @@ export function SpinnerPlayground() {
   );
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[1fr_360px]">
+    <section className="grid gap-2.5 rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:grid-cols-[1fr_360px] lg:p-2.5">
       {/* Preview */}
-      <div className="relative flex min-h-[420px] flex-col overflow-hidden rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 backdrop-blur-sm">
+      <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 backdrop-blur-sm">
         <div className="flex items-center justify-between border-b border-[var(--ls-border)] px-5 py-3">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-[oklch(0.72_0.24_5)]" />
@@ -254,7 +254,7 @@ export function SpinnerPlayground() {
           </button>
         </div>
 
-        <div className="flex flex-1 items-center justify-center p-10">
+        <div className="flex min-h-[260px] flex-1 items-center justify-center p-8">
           <PixelSpinner
             key={`${pattern.name}-${speed}-${effectiveSize}`}
             pattern={scaledPattern}
@@ -290,7 +290,7 @@ export function SpinnerPlayground() {
       </div>
 
       {/* Controls */}
-      <aside className="space-y-5 rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm">
+      <aside className="space-y-5 rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm">
         <ControlGroup label="Pattern">
           <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
             <PopoverTrigger asChild>
@@ -316,7 +316,7 @@ export function SpinnerPlayground() {
               sideOffset={8}
               className="luminous-spinners w-[min(560px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-0 text-[var(--ls-foreground)]"
             >
-              <div className="max-h-[420px] overflow-y-auto p-3">
+              <div className="max-h-[min(60vh,380px)] overflow-y-auto p-3">
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
                   {SPINNER_LIBRARY.map((s) => {
                     const active = s.name === pattern.name;
@@ -389,7 +389,7 @@ export function SpinnerPlayground() {
                     aria-label={p.label}
                     title={p.label}
                     className={
-                      "h-8 w-8 rounded-full transition-transform " +
+                      "h-8 w-8 rounded-md transition-transform " +
                       (active
                         ? "scale-110 ring-2 ring-white ring-offset-2 ring-offset-[var(--ls-card)]"
                         : "opacity-80 hover:opacity-100")
