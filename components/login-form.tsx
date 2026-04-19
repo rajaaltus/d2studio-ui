@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useConvexAuth } from "convex/react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -65,8 +65,13 @@ export function LoginForm({
     },
   });
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/");
+    }
+  }, [isAuthenticated, router]);
+
   if (isAuthenticated) {
-    router.push("/");
     return null;
   }
 
@@ -86,7 +91,7 @@ export function LoginForm({
     setIsLoading(true);
 
     try {
-      void signIn("password", {
+      await signIn("password", {
         email: data.email,
         password: data.password,
         flow: isSignUp ? "signUp" : "signIn",
@@ -94,8 +99,15 @@ export function LoginForm({
       router.push("/");
     } catch (err) {
       console.error("Auth error:", err);
-      const errorMessage = err instanceof Error ? err.message : `Failed to ${isSignUp ? "sign up" : "sign in"}. Please try again.`;
-      setError(errorMessage);
+      const raw = err instanceof Error ? err.message : "";
+      const isInvalidAccount = raw.includes("InvalidAccountId");
+      setError(
+        isInvalidAccount
+          ? isSignUp
+            ? "Could not create account. The email may already be registered."
+            : "Invalid email or password."
+          : raw || `Failed to ${isSignUp ? "sign up" : "sign in"}. Please try again.`,
+      );
     } finally {
       setIsLoading(false);
     }

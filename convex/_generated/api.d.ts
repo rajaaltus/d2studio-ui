@@ -19,6 +19,7 @@ import type * as categories from "../categories.js";
 import type * as http from "../http.js";
 import type * as initializeBlocks from "../initializeBlocks.js";
 import type * as myFunctions from "../myFunctions.js";
+import type * as users from "../users.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   initializeBlocks: typeof initializeBlocks;
   myFunctions: typeof myFunctions;
+  users: typeof users;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
