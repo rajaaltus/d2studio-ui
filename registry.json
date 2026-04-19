@@ -264,163 +264,20 @@
       ]
     },
     {
-      "name": "comp-001",
-      "type": "registry:component",
-      "title": "Newsletter Form",
-      "description": "Simple newsletter subscription form with email input and submit button",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "input",
-        "label",
-        "button"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/comp-001.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "categories": [
-        "forms"
-      ]
-    },
-    {
-      "name": "comp-002",
-      "type": "registry:component",
-      "title": "Feature Card",
-      "description": "Feature showcase card with checklist and call-to-action button",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "button"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/comp-002.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "categories": [
-        "marketing"
-      ]
-    },
-    {
-      "name": "comp-003",
-      "type": "registry:component",
-      "title": "Login Form",
-      "description": "Complete login form with email, password, and forgot password link",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "input",
-        "label",
-        "button"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/comp-003.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "categories": [
-        "authentication"
-      ]
-    },
-    {
       "name": "hero-01",
       "type": "registry:component",
-      "title": "Hero Section",
-      "description": "Modern hero section with badge, heading, call-to-action buttons, and infinite slider",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "button",
-        "badge",
-        "avatar"
-      ],
+      "title": "Hero 01",
+      "description": "Hero section 01",
+      "author": "Admin",
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/default/components/hero-01.tsx",
           "type": "registry:component"
-        },
-        {
-          "path": "public/registry/assets/company.png",
-          "type": "registry:file",
-          "target": "public/registry/assets/company.png"
-        },
-        {
-          "path": "public/registry/assets/trophy.png",
-          "type": "registry:file",
-          "target": "public/registry/assets/trophy.png"
-        },
-        {
-          "path": "public/registry/assets/certificate.png",
-          "type": "registry:file",
-          "target": "public/registry/assets/certificate.png"
-        },
-        {
-          "path": "public/registry/assets/desktop.png",
-          "type": "registry:file",
-          "target": "public/registry/assets/desktop.png"
-        },
-        {
-          "path": "public/registry/assets/bag.png",
-          "type": "registry:file",
-          "target": "public/registry/assets/bag.png"
-        },
-        {
-          "path": "public/registry/assets/consulting.png",
-          "type": "registry:file",
-          "target": "public/registry/assets/consulting.png"
-        }
-      ],
-      "css": {
-        "@keyframes marquee": {
-          "from": {
-            "transform": "translateX(0)"
-          },
-          "to": {
-            "transform": "translateX(calc(-100% - var(--gap)))"
-          }
-        },
-        "@keyframes marquee-vertical": {
-          "from": {
-            "transform": "translateY(0)"
-          },
-          "to": {
-            "transform": "translateY(calc(-100% - var(--gap)))"
-          }
-        },
-        ".animate-marquee": {
-          "animation": "marquee var(--duration) linear infinite"
-        },
-        ".animate-marquee-vertical": {
-          "animation": "marquee-vertical var(--duration) linear infinite"
-        }
-      },
-      "categories": [
-        "marketing",
-        "landing-page"
-      ]
-    },
-    {
-      "name": "comp-011",
-      "type": "registry:component",
-      "title": "Features Section",
-      "description": "Two-column features section with icons, benefits list, and feature cards",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "badge",
-        "button"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/comp-011.tsx",
-          "type": "registry:component"
         }
       ],
       "categories": [
-        "marketing"
+        "hero"
       ]
     },
     {
@@ -446,112 +303,174 @@
       ]
     },
     {
-      "name": "comp-020",
+      "name": "hero-section-01",
       "type": "registry:component",
-      "title": "Contact Form",
-      "description": "Comprehensive contact form with validation and contact information",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "input",
-        "label",
-        "textarea",
-        "button",
-        "select"
-      ],
+      "title": "Hero-01",
+      "description": "A premium landing page",
+      "author": "Admin",
+      "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/comp-020.tsx",
+          "path": "registry/default/components/hero-section-01.tsx",
           "type": "registry:component"
         }
       ],
       "categories": [
-        "forms"
+        "landing"
       ]
     },
     {
-      "name": "comp-021",
+      "name": "hero-section-02",
       "type": "registry:component",
-      "title": "Search & Filter",
-      "description": "Advanced search bar with tag-based filtering and active filter management",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "input",
-        "button",
-        "badge"
-      ],
+      "title": "hero-section-02",
+      "description": "3D modern hero section",
+      "author": "Admin",
+      "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/comp-021.tsx",
+          "path": "registry/default/components/hero-section-02.tsx",
           "type": "registry:component"
         }
       ],
       "categories": [
-        "forms"
+        "landing"
       ]
     },
     {
-      "name": "comp-030",
+      "name": "bento-01",
       "type": "registry:component",
-      "title": "Product Card",
-      "description": "E-commerce product card with wishlist, quick actions, and color options",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "button",
-        "badge"
-      ],
+      "title": "Bento-01",
+      "description": "Professional growth bento",
+      "author": "Admin",
+      "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/comp-030.tsx",
+          "path": "registry/default/components/bento-01.tsx",
           "type": "registry:component"
         }
       ],
       "categories": [
-        "ecommerce"
+        "bento"
       ]
     },
     {
-      "name": "comp-040",
+      "name": "dashboard-01",
       "type": "registry:component",
-      "title": "Navigation Header",
-      "description": "Responsive navigation header with mobile menu and user actions",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "button",
-        "badge"
-      ],
+      "title": "Dashboard-01",
+      "description": "Hotel management dashboard",
+      "author": "Admin",
+      "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/comp-040.tsx",
+          "path": "registry/default/components/dashboard-01.tsx",
           "type": "registry:component"
         }
       ],
       "categories": [
-        "navigation"
+        "dashboard"
       ]
     },
     {
-      "name": "comp-050",
+      "name": "ai-writing-assistance",
       "type": "registry:component",
-      "title": "Article Cards",
-      "description": "Blog article cards with author info, tags, and social actions",
-      "author": "D2 Studio",
-      "registryDependencies": [
-        "card",
-        "badge",
-        "button",
-        "avatar"
-      ],
+      "title": "Ai writing assistant",
+      "description": "field assistance",
+      "author": "Admin",
+      "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/comp-050.tsx",
+          "path": "registry/default/components/ai-writing-assistance.tsx",
           "type": "registry:component"
         }
       ],
       "categories": [
-        "display"
+        "ai-tab"
+      ]
+    },
+    {
+      "name": "ai-v2",
+      "type": "registry:component",
+      "title": "AI tab",
+      "description": "Select field",
+      "author": "Admin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/ai-v2.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "ai-components"
+      ]
+    },
+    {
+      "name": "block-01",
+      "type": "registry:component",
+      "title": "Block 01",
+      "description": "Blocks for free",
+      "author": "Admin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/block-01.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "blocks"
+      ]
+    },
+    {
+      "name": "ai-content-creator-card",
+      "type": "registry:component",
+      "title": "AI Content Creator Card",
+      "description": "Pro version content creation card",
+      "author": "Admin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/ai-content-creator-card.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "card"
+      ]
+    },
+    {
+      "name": "ai-content-creator-card-v2",
+      "type": "registry:component",
+      "title": "AI content creator card v.2",
+      "description": "AI content creator card v.2 Glass ",
+      "author": "Admin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/ai-content-creator-card-v2.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "ai-components"
+      ]
+    },
+    {
+      "name": "ai-input-form",
+      "type": "registry:ui",
+      "title": "AI Writing Assistance Form",
+      "description": "Visual Design: Built using the popular Glass Icons from the Nucleoapp Collection",
+      "author": "@uxgodwin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/ai-input-form.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "form",
+        "ui"
       ]
     }
   ]

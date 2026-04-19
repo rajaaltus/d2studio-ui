@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useForm } from "react-hook-form";
@@ -38,13 +38,7 @@ interface BlockFormData {
   tags?: string;
 }
 
-const BLOCK_TYPES = [
-  { value: "headers", label: "Headers" },
-  { value: "hero-sections", label: "Hero Sections" },
-  { value: "bento", label: "Bento" },
-  { value: "cta", label: "CTA" },
-  { value: "footer", label: "Footer" },
-];
+
 
 export default function CreateBlockPage() {
   const router = useRouter();
@@ -53,6 +47,7 @@ export default function CreateBlockPage() {
   const getFileUrlFromStorageId = useMutation(
     api.blocks.getFileUrlFromStorageId,
   );
+  const categoriesList = useQuery(api.categories.get);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isUploading, setIsUploading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -139,9 +134,9 @@ export default function CreateBlockPage() {
         .filter((c) => c.length > 0);
       const tags = data.tags
         ? data.tags
-            .split(",")
-            .map((t) => t.trim())
-            .filter((t) => t.length > 0)
+          .split(",")
+          .map((t) => t.trim())
+          .filter((t) => t.length > 0)
         : undefined;
 
       // Use uploaded image URL or placeholder as fallback
@@ -171,6 +166,19 @@ export default function CreateBlockPage() {
       setIsSubmitting(false);
     }
   };
+
+  if (!categoriesList) {
+    return (
+      <div className="container mx-auto py-8 max-w-4xl">
+        <div className="flex min-h-[400px] items-center justify-center">
+          <div className="flex items-center space-x-2">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span>Loading categories...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto py-8 max-w-4xl">
@@ -314,9 +322,9 @@ export default function CreateBlockPage() {
                   <SelectValue placeholder="Select block type" />
                 </SelectTrigger>
                 <SelectContent>
-                  {BLOCK_TYPES.map((type) => (
-                    <SelectItem key={type.value} value={type.value}>
-                      {type.label}
+                  {categoriesList.map((category) => (
+                    <SelectItem key={category.slug} value={category.slug}>
+                      {category.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
