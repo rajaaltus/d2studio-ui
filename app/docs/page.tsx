@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
+import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: "Docs",
@@ -200,6 +201,8 @@ export default function Home() {
           </article>
         </div>
       </section>
+
+      <SiteFooter />
     </div>
   );
 }

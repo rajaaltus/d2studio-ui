@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { SpinnerPlayground } from "@/components/spinners/playground";
+import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: "Pixel Glow Spinners",
@@ -33,6 +34,8 @@ export default function SpinnersPage() {
           </div>
         </section>
       </div>
+
+      <SiteFooter />
     </div>
   );
 }

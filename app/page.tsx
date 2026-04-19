@@ -16,6 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
+import { SiteFooter } from "@/components/site-footer";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -206,90 +207,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-muted-foreground inline-flex items-center gap-1">
-              © 2026{" "}
-              <a
-                href="https://www.d2studio.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground hover:underline"
-              >
-                D2 Studio
-              </a>
-              . Built with <HeartBeat /> for the community.
-            </div>
-            <div className="flex items-center gap-6 text-sm">
-              <Link
-                href="/docs"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Docs
-              </Link>
-              <Link
-                href="/blocks"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Components
-              </Link>
-              <a
-                href="https://x.com/uxgodwin"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (formerly Twitter)"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <XIcon className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 1227"
-      fill="currentColor"
-      aria-hidden="true"
-      className={className}
-    >
-      <path d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z" />
-    </svg>
-  );
-}
-
-function HeartBeat() {
-  return (
-    <span className="relative inline-block align-middle" aria-hidden="true">
-      <span className="text-red-500 inline-block animate-heartbeat">❤</span>
-      <style jsx>{`
-        @keyframes heartbeat {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          25% {
-            transform: scale(1.25);
-          }
-          50% {
-            transform: scale(0.95);
-          }
-          75% {
-            transform: scale(1.15);
-          }
-        }
-        :global(.animate-heartbeat) {
-          animation: heartbeat 1.2s ease-in-out infinite;
-        }
-      `}</style>
-    </span>
   );
 }
