@@ -144,7 +144,7 @@ const GRADIENTS: GradientDef[] = [
   { id: "electric", label: "Electric", from: "#4facfe", to: "#00f2fe", glow: "#00f2fe" },
   { id: "dawn", label: "Dawn", from: "#fbc2eb", to: "#a6c1ee", glow: "#a6c1ee" },
   { id: "forest", label: "Forest", from: "#134e5e", to: "#71b280", glow: "#71b280" },
-  { id: "royal", label: "Royal", from: "#141e30", to: "#f7971e", glow: "#f7971e" },
+  { id: "royal", label: "Royal", from: "#fc466b", to: "#3f5efb", glow: "#8b5cf6" },
   { id: "bubblegum", label: "Bubblegum", from: "#ff9a9e", to: "#fad0c4", glow: "#ff9a9e" },
   { id: "cosmos", label: "Cosmos", from: "#8e2de2", to: "#4a00e0", glow: "#8e2de2" },
 ];
