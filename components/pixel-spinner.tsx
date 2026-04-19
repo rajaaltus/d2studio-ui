@@ -21,7 +21,7 @@ export type SpinnerShape =
   | "circle"
   | "diamond"
   | "triangle"
-  | "hexagon";
+  | "lines";
 
 export type SpinnerEffect = "none" | "light" | "wave";
 
@@ -33,9 +33,8 @@ const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
   circle: { borderRadius: "50%" },
   diamond: { clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" },
   triangle: { clipPath: "polygon(50% 0, 100% 100%, 0 100%)" },
-  hexagon: {
-    clipPath:
-      "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)",
+  lines: {
+    clipPath: "inset(calc(100% - 0.2px) 0 0 0)",
   },
 };
 
