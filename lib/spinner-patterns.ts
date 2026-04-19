@@ -68,7 +68,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     pattern: { size: 3, interval: 260, frames: f([0, 2, 6, 8], [1, 3, 5, 7], [4]) },
   },
   {
-    name: "cross",
+    name: "cross-w",
     color: c(),
     pattern: { size: 3, interval: 360, frames: f([0, 2, 6, 8], []) },
   },
@@ -78,12 +78,12 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     pattern: { size: 3, interval: 360, frames: f([1, 3, 4, 5, 7], []) },
   },
   {
-    name: "corners",
+    name: "corners-y",
     color: c(),
     pattern: { size: 3, interval: 320, frames: f([0, 2, 4, 6, 8], [4]) },
   },
   {
-    name: "diamond",
+    name: "diamond-h",
     color: c(),
     pattern: {
       size: 3,
@@ -130,7 +130,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "snake",
+    name: "snake-v",
     color: c(),
     pattern: {
       size: 3,
@@ -148,22 +148,22 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "rain",
+    name: "rain-3",
     color: c(),
     pattern: { size: 3, interval: 180, frames: f([0, 5], [3, 8], [6, 2], [0, 5]) },
   },
   {
-    name: "rain-rev",
+    name: "rain-2",
     color: c(),
     pattern: { size: 3, interval: 180, frames: f([2, 3], [5, 6], [8, 0], [2, 3]) },
   },
   {
-    name: "waterfall",
+    name: "waterfall-en",
     color: c(),
     pattern: { size: 3, interval: 160, frames: f([0, 1, 2], [3, 4, 5], [6, 7, 8], []) },
   },
   {
-    name: "breathing",
+    name: "breathing-gj",
     color: c(),
     pattern: {
       size: 3,
@@ -172,7 +172,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "heartbeat",
+    name: "heart-bt",
     color: c(),
     pattern: {
       size: 3,
@@ -181,7 +181,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "twinkle",
+    name: "twinkle-fr",
     color: c(),
     pattern: {
       size: 3,
@@ -190,7 +190,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "sparkle",
+    name: "sparkle-gt",
     color: c(),
     pattern: {
       size: 3,
@@ -199,7 +199,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "chaos",
+    name: "chaos-rn",
     color: c(),
     pattern: {
       size: 3,
@@ -217,7 +217,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "border",
+    name: "border-cn",
     color: c(),
     pattern: {
       size: 3,
@@ -287,15 +287,6 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
       size: 3,
       interval: 220,
       frames: f([0], [2], [8], [6]),
-    },
-  },
-  {
-    name: "corners-sync",
-    color: c(),
-    pattern: {
-      size: 3,
-      interval: 380,
-      frames: f([0, 2, 6, 8], []),
     },
   },
   {
@@ -458,7 +449,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     pattern: { size: 3, interval: 220, frames: f([1, 3, 5], [4, 6, 8]) },
   },
   {
-    name: "hourglass",
+    name: "hourglass-g",
     color: c(),
     pattern: {
       size: 3,
@@ -467,7 +458,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "zigzag",
+    name: "zigzag-zl",
     color: c(),
     pattern: {
       size: 3,
@@ -476,7 +467,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "clock",
+    name: "clock-rg",
     color: c(),
     pattern: {
       size: 3,
@@ -494,7 +485,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "bounce",
+    name: "bounce-bt",
     color: c(),
     pattern: { size: 3, interval: 180, frames: f([1], [4], [7], [4]) },
   },
@@ -508,7 +499,7 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
     },
   },
   {
-    name: "wink",
+    name: "wink-k",
     color: c(),
     pattern: { size: 3, interval: 220, frames: f([3], [4], [5], []) },
   },
@@ -568,4 +559,428 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
       ),
     },
   },
+
+  // ── Elements & billboards ─────────────────────────
+  {
+    name: "fire-rise",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 140,
+      frames: f(
+        [12, 13, 14, 15],
+        [8, 9, 10, 11, 13, 14],
+        [4, 5, 6, 7, 9, 10],
+        [0, 1, 2, 3, 5, 6],
+        [0, 1, 2, 3],
+        []
+      ),
+    },
+  },
+  {
+    name: "storm-zap",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 120,
+      frames: f(
+        [1, 6, 11],
+        [],
+        [3, 4, 9, 14],
+        [],
+        [0, 5, 10, 15],
+        [],
+        [2, 7, 8, 13]
+      ),
+    },
+  },
+  {
+    name: "wind-flow",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 160,
+      frames: f(
+        [0, 1, 4, 5],
+        [1, 2, 5, 6],
+        [2, 3, 6, 7],
+        [8, 9, 12, 13],
+        [9, 10, 13, 14],
+        [10, 11, 14, 15]
+      ),
+    },
+  },
+  {
+    name: "thunder-hit",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 140,
+      frames: f(
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [],
+        [4],
+        [],
+        [],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [],
+        []
+      ),
+    },
+  },
+  {
+    name: "ember-glow",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 300,
+      frames: f(
+        [4],
+        [4],
+        [1, 3, 4, 5, 7],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [1, 3, 4, 5, 7],
+        [4]
+      ),
+    },
+  },
+  {
+    name: "vortex-in",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 90,
+      frames: f(
+        [0],
+        [1],
+        [2],
+        [3],
+        [7],
+        [11],
+        [15],
+        [14],
+        [13],
+        [12],
+        [8],
+        [4],
+        [5],
+        [6],
+        [10],
+        [9]
+      ),
+    },
+  },
+  {
+    name: "geyser-up",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 180,
+      frames: f([7], [4, 7], [1, 4, 7], [0, 1, 2, 4, 7], [0, 2], []),
+    },
+  },
+  {
+    name: "billboard-tiles",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 180,
+      frames: f(
+        [0, 5, 10, 15],
+        [1, 4, 11, 14],
+        [2, 7, 8, 13],
+        [3, 6, 9, 12],
+        [5, 6, 9, 10]
+      ),
+    },
+  },
+  {
+    name: "ticker-lr",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 120,
+      frames: f(
+        [4],
+        [4, 5],
+        [4, 5, 6],
+        [4, 5, 6, 7],
+        [5, 6, 7],
+        [6, 7],
+        [7],
+        []
+      ),
+    },
+  },
+  {
+    name: "alert-blink",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 130,
+      frames: f(
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [],
+        [4],
+        []
+      ),
+    },
+  },
+  {
+    name: "transmit-pulse",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 180,
+      frames: f(
+        [5, 6, 9, 10],
+        [0, 1, 2, 3, 4, 7, 8, 11, 12, 13, 14, 15],
+        [],
+        [5, 6, 9, 10]
+      ),
+    },
+  },
+  {
+    name: "neon-ring",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 130,
+      frames: f(
+        [0, 1, 2],
+        [2, 3, 7],
+        [7, 11, 15],
+        [15, 14, 13],
+        [13, 12, 8],
+        [8, 4, 0]
+      ),
+    },
+  },
+  {
+    name: "circuit-path",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 160,
+      frames: f(
+        [0],
+        [0, 3],
+        [0, 3, 4],
+        [0, 3, 4, 5],
+        [0, 3, 4, 5, 2],
+        [0, 3, 4, 5, 2],
+        [],
+        []
+      ),
+    },
+  },
+  {
+    name: "blizzard-snow",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 110,
+      frames: f(
+        [0, 5, 11, 14],
+        [1, 4, 10, 15],
+        [2, 7, 8, 13],
+        [3, 6, 9, 12],
+        [0, 6, 9, 15],
+        [2, 5, 10, 13]
+      ),
+    },
+  },
+  {
+    name: "tide-roll",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 180,
+      frames: f(
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15],
+        [8, 9, 10, 11],
+        [4, 5, 6, 7]
+      ),
+    },
+  },
+  {
+    name: "glitch-flip",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 100,
+      frames: f(
+        [0, 4, 8],
+        [1, 3, 5, 7],
+        [2, 4, 6],
+        [0, 5, 7],
+        [1, 3, 8],
+        [4]
+      ),
+    },
+  },
+
+  // ── Sea & ocean ───────────────────────────────────
+  {
+    name: "swell-roll",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 160,
+      frames: f(
+        [2, 5, 6, 7, 8, 9, 12],
+        [3, 4, 6, 7, 9, 10, 13],
+        [0, 4, 5, 7, 10, 11, 14],
+        [1, 4, 5, 6, 8, 11, 15]
+      ),
+    },
+  },
+  {
+    name: "tsunami-wall",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 150,
+      frames: f(
+        [0, 1, 4, 5, 8, 9, 12, 13],
+        [1, 2, 5, 6, 9, 10, 13, 14],
+        [2, 3, 6, 7, 10, 11, 14, 15]
+      ),
+    },
+  },
+  {
+    name: "bubbles-up",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 180,
+      frames: f(
+        [12, 14],
+        [8, 10, 13, 15],
+        [4, 6, 9, 11],
+        [0, 2, 5, 7],
+        [1, 3],
+        []
+      ),
+    },
+  },
+  {
+    name: "jellyfish-bn",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 240,
+      frames: f(
+        [1, 2, 4, 7, 8, 11, 13, 14],
+        [5, 6, 9, 10],
+        [1, 2, 4, 7, 8, 11, 13, 14],
+        []
+      ),
+    },
+  },
+  {
+    name: "coral-wv",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 220,
+      frames: f(
+        [6, 3, 0],
+        [7, 4, 1],
+        [8, 5, 2],
+        [7, 4, 1]
+      ),
+    },
+  },
+  {
+    name: "anchor-ar",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 220,
+      frames: f(
+        [4],
+        [1, 4, 7],
+        [1, 3, 4, 5, 7],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      ),
+    },
+  },
+  {
+    name: "stars-fall",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 160,
+      frames: f(
+        [1],
+        [5, 3],
+        [9, 7, 0],
+        [13, 11, 4, 2],
+        [15, 8, 6],
+        [12, 10],
+        [14],
+        []
+      ),
+    },
+  },
+  {
+    name: "pier-gt",
+    color: c(),
+    pattern: {
+      size: 4,
+      interval: 160,
+      frames: f(
+        [0, 4, 8, 12],
+        [2, 6, 10, 14],
+        [1, 5, 9, 13],
+        [3, 7, 11, 15]
+      ),
+    },
+  },
+  {
+    name: "foghorn-bl",
+    color: c(),
+    pattern: {
+      size: 3,
+      interval: 260,
+      frames: f(
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [],
+        [],
+        [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        [],
+        []
+      ),
+    },
+  },
 ];
+
+function complexity(def: SpinnerDef): number {
+  const cols = def.pattern.cols ?? def.pattern.size ?? 3;
+  const rows = def.pattern.rows ?? def.pattern.size ?? 3;
+  const cellArea = cols * rows;
+  const frameCount = def.pattern.frames.length;
+  const totalLit = def.pattern.frames.reduce((s, fr) => s + fr.length, 0);
+  return frameCount * cellArea + totalLit * 2;
+}
+
+function hashName(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+SPINNER_LIBRARY.sort((a, b) => {
+  const diff = complexity(b) - complexity(a);
+  if (diff !== 0) return diff;
+  return hashName(a.name) - hashName(b.name);
+});

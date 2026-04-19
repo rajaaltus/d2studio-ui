@@ -47,7 +47,7 @@ export function Navigation() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Buy me a coffee"
-              className="inline-flex items-center gap-1.5 rounded-md bg-[#ffdd00] px-2.5 py-1.5 text-xs font-semibold text-black transition-transform hover:-translate-y-0.5"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-md bg-[#ffdd00] px-2.5 py-1.5 text-xs font-semibold text-black transition-transform hover:-translate-y-0.5"
             >
               <Coffee size={14} />
               <span>Buy me a coffee</span>

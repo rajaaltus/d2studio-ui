@@ -11,6 +11,7 @@ import {
   Palette,
   RotateCcw,
   Shuffle,
+  X,
 } from "lucide-react";
 import {
   PixelSpinner,
@@ -143,7 +144,7 @@ const GRADIENTS: GradientDef[] = [
   { id: "candy", label: "Candy", from: "#ff6a88", to: "#ff99ac", glow: "#ff6a88" },
   { id: "electric", label: "Electric", from: "#4facfe", to: "#00f2fe", glow: "#00f2fe" },
   { id: "dawn", label: "Dawn", from: "#fbc2eb", to: "#a6c1ee", glow: "#a6c1ee" },
-  { id: "forest", label: "Forest", from: "#134e5e", to: "#71b280", glow: "#71b280" },
+  { id: "forest", label: "Forest", from: "#134e5e", to: "#33ff5c", glow: "#33ff5c" },
   { id: "royal", label: "Royal", from: "#fc466b", to: "#3f5efb", glow: "#8b5cf6" },
   { id: "bubblegum", label: "Bubblegum", from: "#ff9a9e", to: "#fad0c4", glow: "#ff9a9e" },
   { id: "cosmos", label: "Cosmos", from: "#8e2de2", to: "#4a00e0", glow: "#8e2de2" },
@@ -184,7 +185,7 @@ function useSpring(target: number, stiffness = 170, damping = 22) {
 }
 
 export function SpinnerPlayground() {
-  const [patternName, setPatternName] = React.useState(SPINNER_LIBRARY[0].name);
+  const [patternName, setPatternName] = React.useState("rain-4");
   const [colorMode, setColorMode] = React.useState<
     "preset" | "custom" | "gradient"
   >("gradient");
@@ -195,15 +196,16 @@ export function SpinnerPlayground() {
   const [gradientFrom, setGradientFrom] = React.useState(GRADIENTS[0].from);
   const [gradientTo, setGradientTo] = React.useState(GRADIENTS[0].to);
   const [gradientGlow, setGradientGlow] = React.useState(GRADIENTS[0].glow);
-  const [cellSize, setCellSize] = React.useState(24);
+  const [cellSize, setCellSize] = React.useState(6);
   const [gap, setGap] = React.useState(3);
   const [speed, setSpeed] = React.useState(200);
   const [glow, setGlow] = React.useState(1);
   const [gridRows, setGridRows] = React.useState(0);
   const [gridCols, setGridCols] = React.useState(0);
   const [shape, setShape] = React.useState<SpinnerShape>("square");
-  const [animation, setAnimation] = React.useState<SpinnerAnimation>("pixels");
+  const [animation, setAnimation] = React.useState<SpinnerAnimation>("wavy");
   const [pickerOpen, setPickerOpen] = React.useState(false);
+  const [patternQuery, setPatternQuery] = React.useState("");
   const [gradientPickerOpen, setGradientPickerOpen] = React.useState(false);
   const [gridPickerOpen, setGridPickerOpen] = React.useState(false);
   const [exporting, setExporting] = React.useState(false);
@@ -251,7 +253,7 @@ export function SpinnerPlayground() {
   };
 
   const handleReset = () => {
-    setPatternName(SPINNER_LIBRARY[0].name);
+    setPatternName("rain-4");
     setColorMode("gradient");
     setColor("blue");
     setPresetId("blue");
@@ -260,13 +262,14 @@ export function SpinnerPlayground() {
     setGradientFrom(GRADIENTS[0].from);
     setGradientTo(GRADIENTS[0].to);
     setGradientGlow(GRADIENTS[0].glow);
-    setCellSize(24);
+    setCellSize(6);
     setGap(3);
     setSpeed(200);
     setGlow(1);
     setGridRows(0);
     setGridCols(0);
     setShape("square");
+    setAnimation("wavy");
   };
 
   const colorLine =
@@ -400,9 +403,32 @@ export function SpinnerPlayground() {
               sideOffset={8}
               className="luminous-spinners w-[min(560px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-0 text-[var(--ls-foreground)]"
             >
+              <div className="border-b border-[var(--ls-border)] p-2">
+                <div className="relative">
+                  <input
+                    value={patternQuery}
+                    onChange={(e) => setPatternQuery(e.target.value)}
+                    placeholder="Search patterns…"
+                    autoFocus
+                    className="h-8 w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 pr-8 font-mono text-xs text-[var(--ls-foreground)] placeholder:text-[var(--ls-muted-foreground)] outline-none focus:border-white/40"
+                  />
+                  {patternQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setPatternQuery("")}
+                      aria-label="Clear search"
+                      className="absolute right-1.5 top-1/2 inline-flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded text-[var(--ls-muted-foreground)] hover:bg-[var(--ls-border)]/40 hover:text-[var(--ls-foreground)]"
+                    >
+                      <X size={12} />
+                    </button>
+                  )}
+                </div>
+              </div>
               <div className="max-h-[min(60vh,380px)] overflow-y-auto p-3">
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
-                  {SPINNER_LIBRARY.map((s) => {
+                  {SPINNER_LIBRARY.filter((s) =>
+                    s.name.toLowerCase().includes(patternQuery.toLowerCase())
+                  ).map((s) => {
                     const active = s.name === pattern.name;
                     return (
                       <button
