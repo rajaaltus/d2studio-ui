@@ -257,3 +257,164 @@
     animation: light-rays 3s linear infinite;
   }
 }
+
+/* ===========================
+   Luminous Spinners (scoped)
+   =========================== */
+
+.luminous-spinners {
+  /* Light theme defaults */
+  --ls-foreground: var(--foreground);
+  --ls-muted-foreground: var(--muted-foreground);
+  --ls-card: var(--card);
+  --ls-border: var(--border);
+  --ls-code-bg: var(--muted);
+  --ls-cell-off: radial-gradient(
+    circle at 35% 30%,
+    oklch(0 0 0 / 0.08),
+    oklch(0 0 0 / 0.02) 60%,
+    transparent 100%
+  );
+  --ls-cell-stroke: oklch(0 0 0 / 0.08);
+
+  --ls-crimson: oklch(0.75 0.22 145);
+  --ls-hotpink: oklch(0.72 0.24 5);
+  --ls-violet: oklch(0.7 0.22 305);
+  --ls-blue: oklch(0.7 0.2 255);
+
+  --ls-gradient-crimson: linear-gradient(135deg, oklch(0.85 0.18 145), oklch(0.65 0.24 140));
+  --ls-gradient-hotpink: linear-gradient(135deg, oklch(0.85 0.2 350), oklch(0.65 0.25 10));
+  --ls-gradient-violet: linear-gradient(135deg, oklch(0.85 0.18 320), oklch(0.6 0.25 285));
+  --ls-gradient-blue: linear-gradient(135deg, oklch(0.85 0.16 240), oklch(0.55 0.24 265));
+
+  min-height: calc(100vh - 4rem);
+}
+
+.dark .luminous-spinners {
+  --ls-cell-off: radial-gradient(
+    circle at 35% 30%,
+    oklch(1 0 0 / 0.06),
+    oklch(1 0 0 / 0.02) 60%,
+    transparent 100%
+  );
+  --ls-cell-stroke: oklch(1 0 0 / 0.05);
+}
+
+.luminous-spinners .cell {
+  position: relative;
+  border-radius: 0;
+  background: var(--ls-cell-off);
+  box-shadow: inset 0 0 0 1px var(--ls-cell-stroke);
+  transition:
+    background var(--ease-out, 600ms) ease-out,
+    transform var(--ease-out, 600ms) ease-out,
+    box-shadow var(--ease-out, 600ms) ease-out,
+    opacity var(--ease-out, 600ms) ease-out;
+}
+
+.luminous-spinners .cell.on {
+  transform: scale(1.08);
+  transition:
+    background var(--ease-in, 300ms) ease-in,
+    transform var(--ease-in, 300ms) ease-in,
+    box-shadow var(--ease-in, 300ms) ease-in,
+    opacity var(--ease-in, 300ms) ease-in;
+}
+
+.luminous-spinners .cell.on.c-crimson {
+  background: var(--ls-gradient-crimson);
+  box-shadow:
+    0 0 calc(8px * var(--glow, 1)) var(--glow-spread, 0px) oklch(0.75 0.22 145 / 0.95),
+    0 0 calc(22px * var(--glow, 1)) oklch(0.7 0.24 140 / 0.75),
+    0 0 calc(44px * var(--glow, 1)) oklch(0.65 0.26 135 / 0.55),
+    0 0 calc(72px * var(--glow, 1)) oklch(0.65 0.26 135 / 0.35);
+}
+.luminous-spinners .cell.on.c-hotpink {
+  background: var(--ls-gradient-hotpink);
+  box-shadow:
+    0 0 calc(8px * var(--glow, 1)) var(--glow-spread, 0px) oklch(0.72 0.24 5 / 0.95),
+    0 0 calc(22px * var(--glow, 1)) oklch(0.7 0.25 10 / 0.75),
+    0 0 calc(44px * var(--glow, 1)) oklch(0.65 0.25 15 / 0.55),
+    0 0 calc(72px * var(--glow, 1)) oklch(0.65 0.25 15 / 0.35);
+}
+.luminous-spinners .cell.on.c-violet {
+  background: var(--ls-gradient-violet);
+  box-shadow:
+    0 0 calc(8px * var(--glow, 1)) var(--glow-spread, 0px) oklch(0.7 0.22 305 / 0.95),
+    0 0 calc(22px * var(--glow, 1)) oklch(0.65 0.24 300 / 0.75),
+    0 0 calc(44px * var(--glow, 1)) oklch(0.6 0.25 295 / 0.55),
+    0 0 calc(72px * var(--glow, 1)) oklch(0.6 0.25 295 / 0.35);
+}
+.luminous-spinners .cell.on.c-blue {
+  background: var(--ls-gradient-blue);
+  box-shadow:
+    0 0 calc(8px * var(--glow, 1)) var(--glow-spread, 0px) oklch(0.7 0.2 255 / 0.95),
+    0 0 calc(22px * var(--glow, 1)) oklch(0.6 0.22 260 / 0.75),
+    0 0 calc(44px * var(--glow, 1)) oklch(0.55 0.24 265 / 0.55),
+    0 0 calc(72px * var(--glow, 1)) oklch(0.55 0.24 265 / 0.35);
+}
+.luminous-spinners .cell.on.c-custom {
+  background: var(
+    --cell-gradient,
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--cell-color, #7ab7ff) 80%, white),
+      color-mix(in oklab, var(--cell-color, #7ab7ff) 85%, black)
+    )
+  );
+  box-shadow:
+    0 0 calc(8px * var(--glow, 1)) var(--glow-spread, 0px)
+      color-mix(
+        in oklab,
+        var(--cell-glow, var(--cell-color, #7ab7ff)) 95%,
+        transparent
+      ),
+    0 0 calc(22px * var(--glow, 1))
+      color-mix(
+        in oklab,
+        var(--cell-glow, var(--cell-color, #7ab7ff)) 75%,
+        transparent
+      ),
+    0 0 calc(44px * var(--glow, 1))
+      color-mix(
+        in oklab,
+        var(--cell-glow, var(--cell-color, #7ab7ff)) 55%,
+        transparent
+      ),
+    0 0 calc(72px * var(--glow, 1))
+      color-mix(
+        in oklab,
+        var(--cell-glow, var(--cell-color, #7ab7ff)) 35%,
+        transparent
+      );
+}
+
+.luminous-spinners .cell.on::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    oklch(1 0 0 / 0.45) 50%,
+    transparent 70%
+  );
+  background-size: 250% 100%;
+  animation: ls-shimmer 1.8s linear infinite;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+@keyframes ls-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.luminous-spinners .spinner-grid {
+  position: relative;
+}

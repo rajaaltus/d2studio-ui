@@ -81,7 +81,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
-      {/* Structured Data */}
+      Structured Data
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

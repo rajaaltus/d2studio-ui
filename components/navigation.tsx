@@ -13,6 +13,7 @@ export function Navigation() {
 
   const navigation = [
     { name: "Blocks", href: "/blocks" },
+    { name: "Spinners", href: "/spinners" },
     { name: "Docs", href: "/docs" },
     { name: "Blog", href: "/blog" },
   ];
