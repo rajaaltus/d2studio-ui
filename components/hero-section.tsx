@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { brandData } from "./brand-data";
 import GoldenRatioSpiral from "./golden-ratio-spiral";
@@ -19,11 +20,11 @@ const HeroSection2 = () => {
         /> */}
         <div className="grid grid-cols-[1fr_auto_1fr] w-full h-full grid-rows-[auto_auto_auto]">
           <div className="col-start-1 row-start-1 row-span-3 border-r"></div>
-          <div className="z-10 col-start-2 row-start-1 min-w-3xl  flex flex-col items-center justify-center gap-2 p-8 lg:p-14 bg-accent/50 h-full relative">
+          <div className="z-10 col-start-2 row-start-1 md:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-accent/50 h-full relative">
             <div className="rounded-full inline-flex justify-center  gap-2 items-center border py-1 px-4 shadow-sm">
               <Sparkles size={16} />
               <span className="text-sm font-medium text-muted-foreground">
-                New Blocks every week
+                New Blocks & Tools Every Weekend
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl tracking-tighter font-sans lg:text-5xl py-2 font-semibold text-center">
@@ -42,20 +43,28 @@ const HeroSection2 = () => {
           </div>
           <div className="col-start-2 row-start-2 min-h-[5rem]  p-px h-full screen-line-before screen-line-after relative z-0">
             <div className="flex  h-full gap-4 w-full items-center  p-4 md:p-0 justify-center flex-col sm:flex-row">
-              <Button className="h-12 w-full sm:w-auto">
-                Explore Blocks
-                <ArrowUpRight size={16} />
+              <Button className="h-12 w-full sm:w-auto" asChild>
+                <Link href="/blocks">
+                  Explore Blocks
+                  <ArrowUpRight size={16} />
+                </Link>
               </Button>
-              <Button variant="outline" className="h-12 w-full sm:w-auto">
-                Documentation
-                <ArrowUpRight size={16} />
+              <Button
+                variant="outline"
+                className="h-12 w-full sm:w-auto"
+                asChild
+              >
+                <Link href="/docs">
+                  Documentation
+                  <ArrowUpRight size={16} />
+                </Link>
               </Button>
             </div>
             <GridPlus position="bottom-left" />
             <GridPlus position="bottom-right" />
           </div>
 
-          <div className="col-start-2 row-start-3 min-h-[8rem] min-w-3xl w-full h-full screen-line-before flex flex-col items-center justify-center">
+          <div className="col-start-2 row-start-3 min-h-[8rem] md:min-w-3xl w-full h-full screen-line-before flex flex-col items-center justify-center">
             <div className="max-w-sm flex -space-x-3">
               {[1, 2, 3, 4, 5].map((num, index) => (
                 <div
@@ -87,7 +96,7 @@ const HeroSection2 = () => {
             return (
               <div
                 key={index}
-                className="relative group w-full duration-200 hover:bg-accent dark:hover:bg-background bg-white dark:bg-black h-full min-h-[7.5rem]  flex items-center justify-center"
+                className="relative group w-full duration-200 hover:bg-accent bg-background h-full min-h-[7.5rem] flex items-center justify-center"
               >
                 {/* <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)]  duration-200 rounded-full bg-border top-2 left-2 group-hover:translate-1" />
                 <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border top-2 right-2 group-hover:-translate-x-1 group-hover:translate-y-1" />

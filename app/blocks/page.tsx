@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Navigation } from "@/components/navigation";
 import { CategoryFilter } from "@/components/blocks/category-filter";
 import { BlocksList } from "@/components/blocks/blocks-list";
+import { SiteFooter } from "@/components/site-footer";
 
 function BlocksContent() {
   const searchParams = useSearchParams();
@@ -35,6 +36,8 @@ function BlocksContent() {
       <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-0 py-8">
         <BlocksList blockType={blockType} />
       </section>
+
+      <SiteFooter />
     </div>
   );
 }

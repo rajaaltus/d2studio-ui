@@ -3,6 +3,7 @@ import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
+import { BuyMeCoffeeFab } from "@/components/buy-me-coffee-fab";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -113,6 +114,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ConvexClientProvider>{children}</ConvexClientProvider>
+          <BuyMeCoffeeFab />
         </ThemeProvider>
       </body>
     </html>

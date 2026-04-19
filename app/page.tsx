@@ -16,6 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
+import { SiteFooter } from "@/components/site-footer";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -197,69 +198,16 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-base px-8" asChild>
-              <Link href="/components">
+              <Link href="/blocks">
                 View All Components
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-base px-8"
-              asChild
-            >
-              <a
-                href="https://github.com/d2studio"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Star on GitHub
-              </a>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-muted-foreground">
-              © 2025 D2 Studio. Built with ❤️ for the community.
-            </div>
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/docs"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Docs
-              </Link>
-              <Link
-                href="/components"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Components
-              </Link>
-              <a
-                href="https://github.com/d2studio"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://twitter.com/d2studio"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Twitter
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
