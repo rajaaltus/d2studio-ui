@@ -454,6 +454,24 @@
       "categories": [
         "ai-components"
       ]
+    },
+    {
+      "name": "ai-input-form",
+      "type": "registry:ui",
+      "title": "AI Writing Assistance Form",
+      "description": "Visual Design: Built using the popular Glass Icons from the Nucleoapp Collection",
+      "author": "@uxgodwin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/ai-input-form.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "form",
+        "ui"
+      ]
     }
   ]
 }
