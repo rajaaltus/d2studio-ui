@@ -16,6 +16,7 @@ import {
   type SpinnerColor,
   type SpinnerGradient,
   type SpinnerPattern,
+  type SpinnerShape,
 } from "@/components/pixel-spinner";
 import { SPINNER_LIBRARY } from "@/lib/spinner-patterns";
 import {
@@ -91,6 +92,43 @@ type GradientDef = {
   glow: string;
 };
 
+const GRID_OPTIONS: { rows: number; cols: number }[] = [
+  { rows: 3, cols: 3 },
+  { rows: 4, cols: 4 },
+  { rows: 5, cols: 5 },
+  { rows: 6, cols: 6 },
+  { rows: 7, cols: 7 },
+  { rows: 8, cols: 8 },
+  { rows: 2, cols: 3 },
+  { rows: 2, cols: 4 },
+  { rows: 2, cols: 5 },
+  { rows: 2, cols: 6 },
+  { rows: 3, cols: 4 },
+  { rows: 3, cols: 5 },
+  { rows: 3, cols: 6 },
+];
+
+const SHAPES: { id: SpinnerShape; label: string }[] = [
+  { id: "square", label: "Square" },
+  { id: "rounded", label: "Rounded" },
+  { id: "circle", label: "Circle" },
+  { id: "diamond", label: "Diamond" },
+  { id: "triangle", label: "Triangle" },
+  { id: "hexagon", label: "Hexagon" },
+];
+
+const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
+  square: {},
+  rounded: { borderRadius: "22%" },
+  circle: { borderRadius: "50%" },
+  diamond: { clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" },
+  triangle: { clipPath: "polygon(50% 0, 100% 100%, 0 100%)" },
+  hexagon: {
+    clipPath:
+      "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)",
+  },
+};
+
 const GRADIENTS: GradientDef[] = [
   { id: "sunset", label: "Sunset", from: "#ff9966", to: "#ff5e62", glow: "#ff5e62" },
   { id: "aurora", label: "Aurora", from: "#00f5a0", to: "#00d9f5", glow: "#00d9f5" },
@@ -159,9 +197,13 @@ export function SpinnerPlayground() {
   const [gap, setGap] = React.useState(3);
   const [speed, setSpeed] = React.useState(200);
   const [glow, setGlow] = React.useState(1);
-  const [gridSize, setGridSize] = React.useState(0);
+  const [gridRows, setGridRows] = React.useState(0);
+  const [gridCols, setGridCols] = React.useState(0);
+  const [shape, setShape] = React.useState<SpinnerShape>("square");
   const [pickerOpen, setPickerOpen] = React.useState(false);
   const [gradientPickerOpen, setGradientPickerOpen] = React.useState(false);
+  const [shapePickerOpen, setShapePickerOpen] = React.useState(false);
+  const [gridPickerOpen, setGridPickerOpen] = React.useState(false);
   const [exporting, setExporting] = React.useState(false);
 
   const pattern = React.useMemo(
@@ -174,10 +216,15 @@ export function SpinnerPlayground() {
   const springGap = useSpring(gap);
   const springGlow = useSpring(glow);
 
-  const effectiveSize = gridSize || pattern.pattern.size || 3;
+  const patternRows =
+    pattern.pattern.rows ?? pattern.pattern.size ?? 3;
+  const patternCols =
+    pattern.pattern.cols ?? pattern.pattern.size ?? 3;
+  const effectiveRows = gridRows || patternRows;
+  const effectiveCols = gridCols || patternCols;
   const scaledPattern = React.useMemo(
-    () => scalePattern(pattern.pattern, effectiveSize),
-    [pattern, effectiveSize]
+    () => scalePattern(pattern.pattern, effectiveRows, effectiveCols),
+    [pattern, effectiveRows, effectiveCols]
   );
 
   const activePreset = PRESETS.find((p) => p.id === presetId);
@@ -215,6 +262,7 @@ export function SpinnerPlayground() {
   gap={${gap}}
   intervalOverride={${speed}}
   glow={${glow}}
+  shape="${shape}"
 />`;
 
   const { htmlSnippet, cssSnippet } = React.useMemo(
@@ -256,7 +304,7 @@ export function SpinnerPlayground() {
 
         <div className="flex min-h-[260px] flex-1 items-center justify-center p-8">
           <PixelSpinner
-            key={`${pattern.name}-${speed}-${effectiveSize}`}
+            key={`${pattern.name}-${speed}-${effectiveRows}x${effectiveCols}`}
             pattern={scaledPattern}
             color={activeColor}
             customColor={activeCustom}
@@ -265,6 +313,7 @@ export function SpinnerPlayground() {
             gap={springGap}
             intervalOverride={speed}
             glow={springGlow}
+            shape={shape}
           />
         </div>
 
@@ -518,15 +567,99 @@ export function SpinnerPlayground() {
           )}
         </ControlGroup>
 
-        <SliderControl
-          label="Grid"
-          value={effectiveSize}
-          min={3}
-          max={8}
-          step={1}
-          unit={`×${effectiveSize}`}
-          onChange={setGridSize}
-        />
+        <ControlGroup label="Shape">
+          <Popover open={shapePickerOpen} onOpenChange={setShapePickerOpen}>
+            <PopoverTrigger asChild>
+              <button className="flex h-9 w-full items-center justify-between rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-3 text-xs text-[var(--ls-foreground)] outline-none transition-colors hover:bg-[var(--ls-border)]/50 focus-visible:border-white/40">
+                <span className="flex items-center gap-2">
+                  <span
+                    className="h-4 w-4 bg-[var(--ls-foreground)]"
+                    style={SHAPE_PREVIEW[shape]}
+                  />
+                  <span className="font-mono capitalize">{shape}</span>
+                </span>
+                <ChevronDown size={14} className="opacity-60" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              align="start"
+              sideOffset={8}
+              className="luminous-spinners w-[min(280px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)]"
+            >
+              <div className="grid grid-cols-3 gap-1.5">
+                {SHAPES.map((s) => {
+                  const active = shape === s.id;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => {
+                        setShape(s.id);
+                        setShapePickerOpen(false);
+                      }}
+                      className={
+                        "flex flex-col items-center gap-1.5 rounded-lg border p-2 transition-colors " +
+                        (active
+                          ? "border-white/40 bg-[var(--ls-border)]/40"
+                          : "border-[var(--ls-border)] hover:border-white/20")
+                      }
+                    >
+                      <span
+                        className="h-6 w-6 bg-[var(--ls-foreground)]"
+                        style={SHAPE_PREVIEW[s.id]}
+                      />
+                      <span className="text-[10px] text-[var(--ls-muted-foreground)]">
+                        {s.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </PopoverContent>
+          </Popover>
+        </ControlGroup>
+
+        <ControlGroup label="Grid">
+          <Popover open={gridPickerOpen} onOpenChange={setGridPickerOpen}>
+            <PopoverTrigger asChild>
+              <button className="flex h-9 w-full items-center justify-between rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-3 font-mono text-xs text-[var(--ls-foreground)] outline-none transition-colors hover:bg-[var(--ls-border)]/50 focus-visible:border-white/40">
+                <span>
+                  {effectiveRows}×{effectiveCols}
+                </span>
+                <ChevronDown size={14} className="opacity-60" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              align="start"
+              sideOffset={8}
+              className="luminous-spinners w-[min(300px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)]"
+            >
+              <div className="grid grid-cols-4 gap-1.5">
+                {GRID_OPTIONS.map((g) => {
+                  const active =
+                    effectiveRows === g.rows && effectiveCols === g.cols;
+                  return (
+                    <button
+                      key={`${g.rows}-${g.cols}`}
+                      onClick={() => {
+                        setGridRows(g.rows);
+                        setGridCols(g.cols);
+                        setGridPickerOpen(false);
+                      }}
+                      className={
+                        "rounded-md border px-2 py-1.5 font-mono text-[11px] transition-colors " +
+                        (active
+                          ? "border-white/40 bg-[var(--ls-border)]/40 text-[var(--ls-foreground)]"
+                          : "border-[var(--ls-border)] text-[var(--ls-muted-foreground)] hover:border-white/20 hover:text-[var(--ls-foreground)]")
+                      }
+                    >
+                      {g.rows}×{g.cols}
+                    </button>
+                  );
+                })}
+              </div>
+            </PopoverContent>
+          </Popover>
+        </ControlGroup>
         <SliderControl
           label="Cell size"
           value={cellSize}
@@ -787,33 +920,36 @@ function SliderControl({
 
 function scalePattern(
   p: SpinnerPattern,
-  targetSize: number
+  targetRows: number,
+  targetCols: number
 ): SpinnerPattern {
-  const src = p.size ?? 3;
-  if (targetSize === src) return p;
+  const srcRows = p.rows ?? p.size ?? 3;
+  const srcCols = p.cols ?? p.size ?? 3;
+  if (targetRows === srcRows && targetCols === srcCols) return p;
   const newFrames = p.frames.map((frame) => {
     const srcSet = new Set(frame);
     const cells: number[] = [];
-    for (let r = 0; r < targetSize; r++) {
-      for (let c = 0; c < targetSize; c++) {
-        const sr = Math.floor((r * src) / targetSize);
-        const sc = Math.floor((c * src) / targetSize);
-        if (srcSet.has(sr * src + sc)) {
-          cells.push(r * targetSize + c);
+    for (let r = 0; r < targetRows; r++) {
+      for (let c = 0; c < targetCols; c++) {
+        const sr = Math.floor((r * srcRows) / targetRows);
+        const sc = Math.floor((c * srcCols) / targetCols);
+        if (srcSet.has(sr * srcCols + sc)) {
+          cells.push(r * targetCols + c);
         }
       }
     }
     return cells;
   });
-  return { ...p, size: targetSize, frames: newFrames };
+  return { ...p, rows: targetRows, cols: targetCols, size: undefined, frames: newFrames };
 }
 
 /* ============ Standalone HTML + CSS snippet ============ */
 
 function buildCellOpacityGrid(pattern: SpinnerPattern) {
-  const size = pattern.size ?? 3;
+  const cols = pattern.cols ?? pattern.size ?? 3;
+  const rows = pattern.rows ?? pattern.size ?? 3;
   const F = pattern.frames.length;
-  const total = size * size;
+  const total = rows * cols;
   const trail = [1, 0.5, 0.25, 0.15];
   const grid: number[][] = Array.from({ length: total }, () =>
     new Array(F).fill(0)
@@ -827,7 +963,7 @@ function buildCellOpacityGrid(pattern: SpinnerPattern) {
       }
     }
   }
-  return { grid, size, F, total };
+  return { grid, rows, cols, F, total };
 }
 
 function buildStandaloneSnippet(opts: {
@@ -850,7 +986,7 @@ function buildStandaloneSnippet(opts: {
     speed,
     glow = 1,
   } = opts;
-  const { grid, size, F, total } = buildCellOpacityGrid(pattern);
+  const { grid, cols, F, total } = buildCellOpacityGrid(pattern);
   const duration = F * speed;
 
   let gradientCss: string;
@@ -896,7 +1032,7 @@ function buildStandaloneSnippet(opts: {
 
   const css = `.pixel-spinner {
   display: inline-grid;
-  grid-template-columns: repeat(${size}, ${cellSize}px);
+  grid-template-columns: repeat(${cols}, ${cellSize}px);
   gap: ${gap}px;
 }
 .pixel-spinner .cell {
@@ -960,14 +1096,16 @@ async function exportGif(opts: {
   const { pattern, color, customColor, gradient, cellSize, gap, speed, filename } = opts;
   const { GIFEncoder, quantize, applyPalette } = await import("gifenc");
 
-  const size = pattern.size ?? 3;
+  const cols = pattern.cols ?? pattern.size ?? 3;
+  const rows = pattern.rows ?? pattern.size ?? 3;
   const F = pattern.frames.length;
   const { grid } = buildCellOpacityGrid(pattern);
 
   const padding = Math.max(16, Math.round(cellSize * 2));
-  const inner = size * cellSize + (size - 1) * gap;
-  const W = inner + padding * 2;
-  const H = inner + padding * 2;
+  const innerW = cols * cellSize + (cols - 1) * gap;
+  const innerH = rows * cellSize + (rows - 1) * gap;
+  const W = innerW + padding * 2;
+  const H = innerH + padding * 2;
 
   let fromRgb: [number, number, number];
   let toRgb: [number, number, number];
@@ -1001,9 +1139,9 @@ async function exportGif(opts: {
     ctx.fillStyle = "#141824";
     ctx.fillRect(0, 0, W, H);
 
-    for (let cy = 0; cy < size; cy++) {
-      for (let cx = 0; cx < size; cx++) {
-        const idx = cy * size + cx;
+    for (let cy = 0; cy < rows; cy++) {
+      for (let cx = 0; cx < cols; cx++) {
+        const idx = cy * cols + cx;
         const op = grid[idx][f];
         const x = padding + cx * (cellSize + gap);
         const y = padding + cy * (cellSize + gap);

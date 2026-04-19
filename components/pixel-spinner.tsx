@@ -7,11 +7,33 @@ export type SpinnerColor = "crimson" | "hotpink" | "violet" | "blue";
 
 export type SpinnerPattern = {
   size?: number;
+  rows?: number;
+  cols?: number;
   frames: number[][];
   interval?: number;
 };
 
 export type SpinnerGradient = { from: string; to: string; glow: string };
+
+export type SpinnerShape =
+  | "square"
+  | "rounded"
+  | "circle"
+  | "diamond"
+  | "triangle"
+  | "hexagon";
+
+const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
+  square: {},
+  rounded: { borderRadius: "22%" },
+  circle: { borderRadius: "50%" },
+  diamond: { clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" },
+  triangle: { clipPath: "polygon(50% 0, 100% 100%, 0 100%)" },
+  hexagon: {
+    clipPath:
+      "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)",
+  },
+};
 
 interface PixelSpinnerProps {
   pattern: SpinnerPattern;
@@ -26,6 +48,7 @@ interface PixelSpinnerProps {
   glowSpread?: number;
   easeIn?: number;
   easeOut?: number;
+  shape?: SpinnerShape;
 }
 
 export function PixelSpinner({
@@ -41,8 +64,11 @@ export function PixelSpinner({
   glowSpread,
   easeIn,
   easeOut,
+  shape = "square",
 }: PixelSpinnerProps) {
-  const size = pattern.size ?? 3;
+  const shapeStyle = SHAPE_STYLE[shape];
+  const cols = pattern.cols ?? pattern.size ?? 3;
+  const rows = pattern.rows ?? pattern.size ?? 3;
   const interval = intervalOverride ?? pattern.interval ?? 220;
   const [frame, setFrame] = useState(0);
 
@@ -64,14 +90,14 @@ export function PixelSpinner({
       }
     }
   }
-  const total = size * size;
+  const total = rows * cols;
 
   return (
     <div
       className={cn("spinner-grid grid", className)}
       style={
         {
-          gridTemplateColumns: `repeat(${size}, ${cellSize}px)`,
+          gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`,
           gap: `${gap}px`,
           ...(glow !== undefined ? { ["--glow"]: String(glow) } : {}),
           ...(glowSpread !== undefined
@@ -106,6 +132,7 @@ export function PixelSpinner({
               {
                 width: cellSize,
                 height: cellSize,
+                ...shapeStyle,
                 ...customVars,
                 ...(op !== undefined ? { opacity: op } : {}),
               } as React.CSSProperties

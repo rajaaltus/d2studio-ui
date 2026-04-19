@@ -81,7 +81,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
-      Structured Data
+      {/* Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -197,24 +197,10 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-base px-8" asChild>
-              <Link href="/components">
+              <Link href="/blocks">
                 View All Components
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-base px-8"
-              asChild
-            >
-              <a
-                href="https://github.com/d2studio"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Star on GitHub
-              </a>
             </Button>
           </div>
         </div>
@@ -224,10 +210,19 @@ export default function HomePage() {
       <footer className="border-t">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-muted-foreground">
-              © 2025 D2 Studio. Built with ❤️ for the community.
+            <div className="text-sm text-muted-foreground inline-flex items-center gap-1">
+              © 2026{" "}
+              <a
+                href="https://www.d2studio.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground hover:underline"
+              >
+                D2 Studio
+              </a>
+              . Built with <HeartBeat /> for the community.
             </div>
-            <div className="flex gap-6 text-sm">
+            <div className="flex items-center gap-6 text-sm">
               <Link
                 href="/docs"
                 className="text-muted-foreground hover:text-foreground transition-colors"
@@ -235,31 +230,66 @@ export default function HomePage() {
                 Docs
               </Link>
               <Link
-                href="/components"
+                href="/blocks"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Components
               </Link>
               <a
-                href="https://github.com/d2studio"
+                href="https://x.com/uxgodwin"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="X (formerly Twitter)"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                GitHub
-              </a>
-              <a
-                href="https://twitter.com/d2studio"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Twitter
+                <XIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 1227"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z" />
+    </svg>
+  );
+}
+
+function HeartBeat() {
+  return (
+    <span className="relative inline-block align-middle" aria-hidden="true">
+      <span className="text-red-500 inline-block animate-heartbeat">❤</span>
+      <style jsx>{`
+        @keyframes heartbeat {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          25% {
+            transform: scale(1.25);
+          }
+          50% {
+            transform: scale(0.95);
+          }
+          75% {
+            transform: scale(1.15);
+          }
+        }
+        :global(.animate-heartbeat) {
+          animation: heartbeat 1.2s ease-in-out infinite;
+        }
+      `}</style>
+    </span>
   );
 }

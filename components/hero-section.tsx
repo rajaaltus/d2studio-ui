@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { brandData } from "./brand-data";
 import GoldenRatioSpiral from "./golden-ratio-spiral";
@@ -42,13 +43,21 @@ const HeroSection2 = () => {
           </div>
           <div className="col-start-2 row-start-2 min-h-[5rem]  p-px h-full screen-line-before screen-line-after relative z-0">
             <div className="flex  h-full gap-4 w-full items-center  p-4 md:p-0 justify-center flex-col sm:flex-row">
-              <Button className="h-12 w-full sm:w-auto">
-                Explore Blocks
-                <ArrowUpRight size={16} />
+              <Button className="h-12 w-full sm:w-auto" asChild>
+                <Link href="/blocks">
+                  Explore Blocks
+                  <ArrowUpRight size={16} />
+                </Link>
               </Button>
-              <Button variant="outline" className="h-12 w-full sm:w-auto">
-                Documentation
-                <ArrowUpRight size={16} />
+              <Button
+                variant="outline"
+                className="h-12 w-full sm:w-auto"
+                asChild
+              >
+                <Link href="/docs">
+                  Documentation
+                  <ArrowUpRight size={16} />
+                </Link>
               </Button>
             </div>
             <GridPlus position="bottom-left" />

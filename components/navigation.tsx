@@ -13,14 +13,13 @@ export function Navigation() {
 
   const navigation = [
     { name: "Blocks", href: "/blocks" },
-    { name: "Spinners", href: "/spinners" },
+    { name: "Spinners", href: "/spinners", badge: "New" },
     { name: "Docs", href: "/docs" },
-    { name: "Blog", href: "/blog" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
-      <nav className="max-w-6xl border-x mx-auto px-4 w-full">
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <nav className="w-full max-w-6xl border-x mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           {/* <Link href="/" className="flex items-center gap-2 font-bold text-lg">
@@ -37,9 +36,18 @@ export function Navigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.name}
+                {item.badge && (
+                  <span className="relative inline-flex items-center overflow-hidden rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-[0_0_12px_oklch(0.7_0.2_255/0.5)]">
+                    <span className="relative z-10">{item.badge}</span>
+                    <span
+                      className="pointer-events-none absolute inset-0 -translate-x-full animate-[badge-shimmer_2.2s_linear_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                      aria-hidden="true"
+                    />
+                  </span>
+                )}
               </Link>
             ))}
           </div>
@@ -77,10 +85,15 @@ export function Navigation() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
+                    {item.badge && (
+                      <span className="inline-flex items-center rounded-full bg-blue-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
+                        {item.badge}
+                      </span>
+                    )}
                   </Link>
                 ))}
                 <div className="border-t border-border pt-4 flex gap-2">
