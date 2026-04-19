@@ -13,6 +13,8 @@
 ./cursor
 ./playwright-mcp
 ./trae
+/convex-backup
+/prod-backup
 
 
 # testing
