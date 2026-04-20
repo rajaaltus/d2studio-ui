@@ -72,13 +72,20 @@ function HeartBeat() {
       <style jsx>{`
         .heart-wrap {
           position: relative;
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           vertical-align: middle;
           width: 1em;
           height: 1em;
+          line-height: 1;
         }
         .heart-main {
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+          transform-origin: center;
           animation: heartbeat 1.2s ease-in-out infinite;
         }
         .heart-mini {

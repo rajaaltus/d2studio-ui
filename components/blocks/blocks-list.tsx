@@ -19,7 +19,7 @@ export function BlocksList({ blockType }: BlocksListProps) {
 
   if (blocks === undefined) {
     return (
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 px-4 md:grid-cols-2 md:px-6 lg:px-8">
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
@@ -44,7 +44,7 @@ export function BlocksList({ blockType }: BlocksListProps) {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 px-4 md:grid-cols-2 md:px-6 lg:px-8">
       {blocks.map((block) => (
         <BlockCard key={block._id} block={block} />
       ))}

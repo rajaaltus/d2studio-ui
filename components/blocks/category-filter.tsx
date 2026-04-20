@@ -56,7 +56,8 @@ export function CategoryFilter() {
                 key={type.slug}
                 value={type.slug}
                 className={cn(
-                  "h-9 px-4 text-sm rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm",
+                  "h-9 px-4 text-sm rounded-md border border-transparent",
+                  "data-[state=active]:bg-muted data-[state=active]:border-border data-[state=active]:shadow-sm",
                   "data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground",
                   "hover:text-foreground transition-colors whitespace-nowrap",
                 )}

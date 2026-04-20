@@ -53,6 +53,7 @@ export default function BlocksPage() {
               <p>Loading...</p>
             </div>
           </div>
+          <SiteFooter />
         </div>
       }
     >
