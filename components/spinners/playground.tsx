@@ -117,7 +117,7 @@ const SHAPES: { id: SpinnerShape; label: string }[] = [
   { id: "circle", label: "Circle" },
   { id: "diamond", label: "Diamond" },
   { id: "triangle", label: "Triangle" },
-  { id: "hexagon", label: "Hexagon" },
+  { id: "lines", label: "Lines" },
 ];
 
 const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
@@ -126,9 +126,10 @@ const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
   circle: { borderRadius: "50%" },
   diamond: { clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" },
   triangle: { clipPath: "polygon(50% 0, 100% 100%, 0 100%)" },
-  hexagon: {
-    clipPath:
-      "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)",
+  lines: {
+    backgroundColor: "transparent",
+    backgroundImage:
+      "repeating-linear-gradient(to bottom, var(--ls-foreground) 0 1px, transparent 1px 3px)",
   },
 };
 
@@ -425,7 +426,7 @@ export function SpinnerPlayground() {
                 </div>
               </div>
               <div className="max-h-[min(60vh,380px)] overflow-y-auto p-3">
-                <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5">
                   {SPINNER_LIBRARY.filter((s) =>
                     s.name.toLowerCase().includes(patternQuery.toLowerCase())
                   ).map((s) => {
@@ -438,21 +439,21 @@ export function SpinnerPlayground() {
                           setPickerOpen(false);
                         }}
                         className={
-                          "group flex flex-col items-center justify-center rounded-xl border p-3 transition-colors " +
+                          "group flex flex-col items-center justify-center rounded-lg border p-2 transition-colors " +
                           (active
                             ? "border-white/40 bg-[var(--ls-border)]/40"
                             : "border-[var(--ls-border)] bg-[var(--ls-card)]/60 hover:bg-[var(--ls-border)]/30")
                         }
                       >
-                        <div className="flex h-16 items-center justify-center">
+                        <div className="flex h-10 items-center justify-center">
                           <PixelSpinner
                             pattern={s.pattern}
                             color={s.color}
-                            cellSize={s.pattern.size === 4 ? 8 : 10}
-                            gap={2}
+                            cellSize={s.pattern.size === 4 ? 5 : 6}
+                            gap={1}
                           />
                         </div>
-                        <p className="mt-2 truncate font-mono text-[10px] text-[var(--ls-muted-foreground)]">
+                        <p className="mt-1.5 truncate font-mono text-[9px] text-[var(--ls-muted-foreground)]">
                           {s.name}
                         </p>
                       </button>
@@ -632,15 +633,22 @@ export function SpinnerPlayground() {
           <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
             {(["pixels", "wavy"] as const).map((a) => {
               const active = animation === a;
+              const disabled = a === "pixels" && shape === "lines";
               return (
                 <button
                   key={a}
-                  onClick={() => setAnimation(a)}
+                  onClick={() => {
+                    if (disabled) return;
+                    setAnimation(a);
+                  }}
+                  disabled={disabled}
                   className={
                     "flex-1 rounded px-2 py-1 text-[11px] font-medium capitalize transition-colors " +
-                    (active
-                      ? "bg-white/10 text-[var(--ls-foreground)]"
-                      : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
+                    (disabled
+                      ? "cursor-not-allowed text-[var(--ls-muted-foreground)]/40"
+                      : active
+                        ? "bg-white/10 text-[var(--ls-foreground)]"
+                        : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
                   }
                 >
                   {a}
@@ -657,7 +665,10 @@ export function SpinnerPlayground() {
               return (
                 <button
                   key={s.id}
-                  onClick={() => setShape(s.id)}
+                  onClick={() => {
+                    setShape(s.id);
+                    if (s.id === "lines") setAnimation("wavy");
+                  }}
                   title={s.label}
                   aria-label={s.label}
                   className={
@@ -752,7 +763,7 @@ export function SpinnerPlayground() {
         <SliderControl
           label="Cell size"
           value={cellSize}
-          min={3}
+          min={1}
           max={48}
           step={1}
           unit="px"

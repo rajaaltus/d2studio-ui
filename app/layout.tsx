@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/convex.svg",
-    shortcut: "/convex.svg",
-    apple: "/convex.svg",
+    icon: "/fav1.png",
+    shortcut: "/fav1.png",
+    apple: "/fav1.png",
   },
   manifest: "/site.webmanifest",
   openGraph: {
