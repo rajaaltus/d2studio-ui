@@ -144,7 +144,7 @@
 
 
   html {
-    @apply motion-safe:scroll-smooth;
+    @apply motion-safe:scroll-smooth bg-background overscroll-y-none;
   }
 
 
