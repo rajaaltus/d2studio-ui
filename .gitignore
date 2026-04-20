@@ -15,6 +15,7 @@
 ./trae
 /convex-backup
 /prod-backup
+/.convex-migration
 
 
 # testing

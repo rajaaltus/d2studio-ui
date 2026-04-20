@@ -265,15 +265,15 @@
     },
     {
       "name": "hero-01",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Hero 01",
       "description": "Hero section 01",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/hero-01.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/hero-01.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -338,15 +338,15 @@
     },
     {
       "name": "bento-01",
-      "type": "registry:component",
-      "title": "Bento-01",
-      "description": "Professional growth bento",
+      "type": "registry:ui",
+      "title": "Bento 01",
+      "description": "Bento gradsfbasd",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/bento-01.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/bento-01.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -355,15 +355,15 @@
     },
     {
       "name": "dashboard-01",
-      "type": "registry:component",
-      "title": "Dashboard-01",
-      "description": "Hotel management dashboard",
+      "type": "registry:ui",
+      "title": "Dashboard 01",
+      "description": "Dashboard ",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/dashboard-01.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/dashboard-01.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -389,15 +389,15 @@
     },
     {
       "name": "ai-v2",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI tab",
       "description": "Select field",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/ai-v2.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/ai-v2.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -423,15 +423,15 @@
     },
     {
       "name": "ai-content-creator-card",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Content Creator Card",
       "description": "Pro version content creation card",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/ai-content-creator-card.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/ai-content-creator-card.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -440,19 +440,36 @@
     },
     {
       "name": "ai-content-creator-card-v2",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI content creator card v.2",
       "description": "AI content creator card v.2 Glass ",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/ai-content-creator-card-v2.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/ai-content-creator-card-v2.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
         "ai-components"
+      ]
+    },
+    {
+      "name": "ai-block",
+      "type": "registry:ui",
+      "title": "AI Block",
+      "description": "Advanced AI usage",
+      "author": "@uxgodwin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/ai-block.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "blocks"
       ]
     }
   ]
