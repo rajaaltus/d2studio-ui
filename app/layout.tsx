@@ -6,6 +6,7 @@ import { ThemeFlashScript } from "@/components/theme-flash-script";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { BuyMeCoffeeFab } from "@/components/buy-me-coffee-fab";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -109,6 +110,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head>
           <ThemeFlashScript defaultTheme="dark" />
+          <GoogleAnalytics />
         </head>
         <body
           className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased font-sans`}
