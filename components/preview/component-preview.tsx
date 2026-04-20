@@ -273,7 +273,7 @@ export function ComponentPreview({
             <span>
               Install:{" "}
               <code className="px-1 py-0.5 bg-muted rounded">
-                npx shadcn@latest add https://d2studio.dev/r/
+                npx shadcn@latest add https://ui.d2studio.dev/r/
                 {componentName.toLowerCase()}.json
               </code>
             </span>
