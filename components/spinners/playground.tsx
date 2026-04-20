@@ -633,15 +633,22 @@ export function SpinnerPlayground() {
           <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
             {(["pixels", "wavy"] as const).map((a) => {
               const active = animation === a;
+              const disabled = a === "pixels" && shape === "lines";
               return (
                 <button
                   key={a}
-                  onClick={() => setAnimation(a)}
+                  onClick={() => {
+                    if (disabled) return;
+                    setAnimation(a);
+                  }}
+                  disabled={disabled}
                   className={
                     "flex-1 rounded px-2 py-1 text-[11px] font-medium capitalize transition-colors " +
-                    (active
-                      ? "bg-white/10 text-[var(--ls-foreground)]"
-                      : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
+                    (disabled
+                      ? "cursor-not-allowed text-[var(--ls-muted-foreground)]/40"
+                      : active
+                        ? "bg-white/10 text-[var(--ls-foreground)]"
+                        : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
                   }
                 >
                   {a}
@@ -658,7 +665,10 @@ export function SpinnerPlayground() {
               return (
                 <button
                   key={s.id}
-                  onClick={() => setShape(s.id)}
+                  onClick={() => {
+                    setShape(s.id);
+                    if (s.id === "lines") setAnimation("wavy");
+                  }}
                   title={s.label}
                   aria-label={s.label}
                   className={
@@ -753,7 +763,7 @@ export function SpinnerPlayground() {
         <SliderControl
           label="Cell size"
           value={cellSize}
-          min={3}
+          min={1}
           max={48}
           step={1}
           unit="px"
