@@ -8,12 +8,32 @@ import { api } from "../convex/_generated/api.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
+const envLocal = path.join(ROOT, ".env.local");
+if (fs.existsSync(envLocal)) {
+  for (const line of fs.readFileSync(envLocal, "utf8").split("\n")) {
+    const m = line.match(/^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*?)\s*(?:#.*)?$/i);
+    if (m && !process.env[m[1]]) {
+      process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+    }
+  }
+}
+
 const PROD_URL =
   process.env.CONVEX_PROD_URL || "https://perceptive-starling-525.convex.cloud";
 
 const args = new Set(process.argv.slice(2));
 const DRY_RUN = args.has("--dry-run");
 const SKIP_SEED = args.has("--no-seed");
+const FROM_LOCAL = args.has("--local");
+
+const LOCAL_URL = process.env.NEXT_PUBLIC_CONVEX_URL;
+if (FROM_LOCAL && !LOCAL_URL) {
+  console.error(
+    "--local requires NEXT_PUBLIC_CONVEX_URL in env (check .env.local).",
+  );
+  process.exit(1);
+}
+const SOURCE_URL = FROM_LOCAL ? LOCAL_URL : PROD_URL;
 
 const stripBlock = (b) => ({
   name: b.name,
@@ -41,9 +61,9 @@ const stripCategory = (c) => ({
   sortOrder: c.sortOrder,
 });
 
-const client = new ConvexHttpClient(PROD_URL);
+const client = new ConvexHttpClient(SOURCE_URL);
 
-console.log(`pulling from ${PROD_URL}`);
+console.log(`pulling from ${FROM_LOCAL ? "local dev" : "prod"} (${SOURCE_URL})`);
 
 const [blocksRaw, categoriesRaw] = await Promise.all([
   client.query(api.blocks.listBlocks, { limit: 1000 }),

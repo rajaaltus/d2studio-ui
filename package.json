@@ -20,6 +20,8 @@
     "seed:prod": "node scripts/seed-content.mjs --prod",
     "content:pull": "node scripts/pull-from-prod.mjs",
     "content:pull:check": "node scripts/pull-from-prod.mjs --dry-run",
+    "content:pull:local": "node scripts/pull-from-prod.mjs --local --no-seed",
+    "content:pull:local:check": "node scripts/pull-from-prod.mjs --local --dry-run",
     "start": "next start",
     "lint": "eslint ."
   },
