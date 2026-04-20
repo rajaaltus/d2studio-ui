@@ -1,7 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const useIsoLayoutEffect =
@@ -14,13 +14,11 @@ function readInitialIsDark(): boolean | null {
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [isDark, setIsDark] = useState<boolean | null>(() =>
-    readInitialIsDark()
-  );
+  const [isDark, setIsDark] = useState<boolean | null>(null);
   const [transitionReady, setTransitionReady] = useState(false);
   const firstPaintRef = useRef(true);
 
-  useIsoLayoutEffect(() => {
+  useEffect(() => {
     if (resolvedTheme) setIsDark(resolvedTheme === "dark");
     else setIsDark(readInitialIsDark() ?? false);
   }, [resolvedTheme]);

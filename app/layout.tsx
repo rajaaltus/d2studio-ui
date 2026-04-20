@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeFlashScript } from "@/components/theme-flash-script";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { BuyMeCoffeeFab } from "@/components/buy-me-coffee-fab";
@@ -106,11 +107,13 @@ export default function RootLayout({
   return (
     <ConvexAuthNextjsServerProvider>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <ThemeFlashScript defaultTheme="dark" />
+        </head>
         <body
           className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased font-sans`}
         >
           <ThemeProvider
-            attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
