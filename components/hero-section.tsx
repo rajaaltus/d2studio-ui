@@ -102,7 +102,7 @@ const HeroSection2 = () => {
                 <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border top-2 right-2 group-hover:-translate-x-1 group-hover:translate-y-1" />
                 <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 right-2 group-hover:-translate-x-1 group-hover:-translate-y-1" />
                 <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 left-2 group-hover:translate-x-1 group-hover:-translate-y-1" /> */}
-                <IconComponent className="h-6 p-1 w-auto mx-auto mt-4 group-hover:scale-95 duration-200 dark:brightness-200" />
+                <IconComponent className="h-5 w-auto max-w-[7rem] mx-auto group-hover:scale-95 duration-200 dark:brightness-200" />
               </div>
             );
           })}

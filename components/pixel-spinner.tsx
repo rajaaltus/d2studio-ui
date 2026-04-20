@@ -21,7 +21,9 @@ export type SpinnerShape =
   | "circle"
   | "diamond"
   | "triangle"
-  | "lines";
+  | "lines"
+  | "line-2"
+  | "line-3";
 
 export type SpinnerEffect = "none" | "light" | "wave";
 
@@ -36,6 +38,13 @@ const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
   lines: {
     clipPath: "inset(calc(100% - 0.2px) 0 0 0)",
   },
+  "line-2": {
+    maskImage:
+      "repeating-linear-gradient(to bottom, black 0 1px, transparent 1px 3px)",
+    WebkitMaskImage:
+      "repeating-linear-gradient(to bottom, black 0 1px, transparent 1px 3px)",
+  },
+  "line-3": {},
 };
 
 interface PixelSpinnerProps {
@@ -140,7 +149,11 @@ export function PixelSpinner({
         return (
           <div
             key={i}
-            className={cn("cell", op !== undefined && `on ${variant}`)}
+            className={cn(
+              "cell",
+              `shape-${shape}`,
+              op !== undefined && `on ${variant}`
+            )}
             style={
               {
                 width: cellSize,

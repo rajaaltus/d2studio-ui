@@ -430,6 +430,20 @@
       );
 }
 
+.luminous-spinners .cell.shape-line-3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(69, 69, 69, 0.75) 0 11%,
+    transparent 11% 22%
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+}
+
 .luminous-spinners .effect-light .cell.on::after {
   content: "";
   position: absolute;
@@ -453,6 +467,25 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(200%);
   }
 }
 

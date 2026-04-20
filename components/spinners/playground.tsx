@@ -8,11 +8,14 @@ import {
   Copy,
   Download,
   FileCode2,
+  Moon,
   Palette,
   RotateCcw,
   Shuffle,
+  Sun,
   X,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import {
   PixelSpinner,
   type SpinnerAnimation,
@@ -106,9 +109,8 @@ const GRID_OPTIONS: { rows: number; cols: number }[] = [
   { rows: 2, cols: 4 },
   { rows: 2, cols: 5 },
   { rows: 2, cols: 6 },
-  { rows: 3, cols: 4 },
-  { rows: 3, cols: 5 },
-  { rows: 3, cols: 6 },
+  { rows: 3, cols: 2 },
+  { rows: 4, cols: 2 },
 ];
 
 const SHAPES: { id: SpinnerShape; label: string }[] = [
@@ -118,6 +120,8 @@ const SHAPES: { id: SpinnerShape; label: string }[] = [
   { id: "diamond", label: "Diamond" },
   { id: "triangle", label: "Triangle" },
   { id: "lines", label: "Lines" },
+  { id: "line-2", label: "Line 2" },
+  { id: "line-3", label: "Line 3" },
 ];
 
 const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
@@ -130,6 +134,16 @@ const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
     backgroundColor: "transparent",
     backgroundImage:
       "repeating-linear-gradient(to bottom, var(--ls-foreground) 0 1px, transparent 1px 3px)",
+  },
+  "line-2": {
+    backgroundColor: "transparent",
+    backgroundImage:
+      "repeating-linear-gradient(to bottom, var(--ls-foreground) 0 1px, transparent 1px 2px)",
+  },
+  "line-3": {
+    backgroundColor: "transparent",
+    backgroundImage:
+      "repeating-linear-gradient(to bottom, var(--ls-foreground) 0 20%, transparent 20% 25%)",
   },
 };
 
@@ -210,6 +224,10 @@ export function SpinnerPlayground() {
   const [gradientPickerOpen, setGradientPickerOpen] = React.useState(false);
   const [gridPickerOpen, setGridPickerOpen] = React.useState(false);
   const [exporting, setExporting] = React.useState(false);
+  const { theme, setTheme } = useTheme();
+  const [themeMounted, setThemeMounted] = React.useState(false);
+  React.useEffect(() => setThemeMounted(true), []);
+  const isDark = themeMounted && theme === "dark";
 
   const pattern = React.useMemo(
     () =>
@@ -343,7 +361,7 @@ export function SpinnerPlayground() {
           />
         </div>
 
-        <div className="grid grid-cols-1 border-t border-[var(--ls-border)] md:grid-cols-3">
+        <div className="grid grid-cols-1 border-t border-[var(--ls-border)] md:grid-cols-2">
           <CodePanel
             label="HTML"
             icon={<FileCode2 size={14} className="text-[#e34c26]" />}
@@ -355,13 +373,16 @@ export function SpinnerPlayground() {
             code={cssSnippet}
             className="border-t border-[var(--ls-border)] md:border-l md:border-t-0"
           />
+          {/* React panel temporarily hidden — re-enable when React snippet is ready.
           <CodePanel
             label="React"
             icon={<Atom size={14} className="text-[#61dafb]" />}
             code={reactSnippet}
             className="border-t border-[var(--ls-border)] md:border-l md:border-t-0"
           />
+          */}
         </div>
+
       </div>
 
       {/* Controls */}
@@ -370,13 +391,22 @@ export function SpinnerPlayground() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
             Controls
           </p>
-          <button
-            onClick={handleReset}
-            className="inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
-          >
-            <RotateCcw size={11} />
-            Reset
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              aria-label="Toggle theme"
+              className="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
+            >
+              {isDark ? <Sun size={11} /> : <Moon size={11} />}
+            </button>
+            <button
+              onClick={handleReset}
+              className="inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
+            >
+              <RotateCcw size={11} />
+              Reset
+            </button>
+          </div>
         </div>
 
         <ControlGroup label="Pattern">
@@ -476,7 +506,7 @@ export function SpinnerPlayground() {
                   className={
                     "flex-1 rounded px-2 py-1 text-[11px] font-medium capitalize transition-colors " +
                     (active
-                      ? "bg-white/10 text-[var(--ls-foreground)]"
+                      ? "bg-black/10 text-[var(--ls-foreground)] dark:bg-white/10"
                       : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
                   }
                 >
@@ -502,7 +532,7 @@ export function SpinnerPlayground() {
                     className={
                       "h-8 w-8 rounded-md transition-transform " +
                       (active
-                        ? "scale-110 ring-2 ring-white ring-offset-2 ring-offset-[var(--ls-card)]"
+                        ? "scale-110 ring-2 ring-[var(--ls-foreground)] ring-offset-2 ring-offset-[var(--ls-card)]"
                         : "opacity-80 hover:opacity-100")
                     }
                     style={{ background: p.swatch }}
@@ -647,7 +677,7 @@ export function SpinnerPlayground() {
                     (disabled
                       ? "cursor-not-allowed text-[var(--ls-muted-foreground)]/40"
                       : active
-                        ? "bg-white/10 text-[var(--ls-foreground)]"
+                        ? "bg-black/10 text-[var(--ls-foreground)] dark:bg-white/10"
                         : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
                   }
                 >
@@ -659,7 +689,7 @@ export function SpinnerPlayground() {
         </ControlGroup>
 
         <ControlGroup label="Shape">
-          <div className="grid grid-cols-6 gap-1 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-1">
+          <div className="grid grid-cols-8 gap-1 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-1">
             {SHAPES.map((s) => {
               const active = shape === s.id;
               return (
@@ -674,7 +704,7 @@ export function SpinnerPlayground() {
                   className={
                     "flex aspect-square items-center justify-center rounded transition-colors " +
                     (active
-                      ? "bg-white/10"
+                      ? "bg-black/10 dark:bg-white/10"
                       : "hover:bg-[var(--ls-border)]/40")
                   }
                 >
@@ -814,7 +844,9 @@ export function SpinnerPlayground() {
                   cellSize,
                   gap,
                   speed,
+                  glow,
                   filename: pattern.name,
+                  theme: isDark ? "dark" : "light",
                 });
               } catch (e) {
                 console.error(e);
@@ -823,7 +855,7 @@ export function SpinnerPlayground() {
               }
             }}
             disabled={exporting}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/20 bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--ls-foreground)] transition-colors hover:bg-white/10 disabled:opacity-60"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[var(--ls-foreground)]/20 bg-[var(--ls-foreground)]/5 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-foreground)]/10 disabled:opacity-60"
           >
             <Download size={13} />
             {exporting ? "Encoding…" : "Export GIF"}
@@ -1241,8 +1273,10 @@ async function exportGif(opts: {
   cellSize: number;
   gap: number;
   speed: number;
+  glow?: number;
   filename: string;
   transparentBg?: boolean;
+  theme?: "light" | "dark";
 }) {
   const {
     pattern,
@@ -1252,9 +1286,14 @@ async function exportGif(opts: {
     cellSize,
     gap,
     speed,
+    glow = 1,
     filename,
     transparentBg,
+    theme = "dark",
   } = opts;
+  const isLight = theme === "light";
+  const bgColor = isLight ? "#ffffff" : "#141824";
+  const emptyCellFill = isLight ? "rgba(0,0,0,0.04)" : "rgba(255,255,255,0.03)";
   const { GIFEncoder, quantize, applyPalette } = await import("gifenc");
 
   const cols = pattern.cols ?? pattern.size ?? 3;
@@ -1299,7 +1338,7 @@ async function exportGif(opts: {
     if (transparentBg) {
       ctx.clearRect(0, 0, W, H);
     } else {
-      ctx.fillStyle = "#141824";
+      ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, W, H);
     }
 
@@ -1311,32 +1350,37 @@ async function exportGif(opts: {
         const y = padding + cy * (cellSize + gap);
 
         if (op > 0) {
-          // Glow layers
-          for (const [radius, alpha] of [
-            [cellSize * 0.8, 0.6],
-            [cellSize * 1.8, 0.35],
-            [cellSize * 3.2, 0.18],
-          ] as const) {
-            const g = ctx.createRadialGradient(
-              x + cellSize / 2,
-              y + cellSize / 2,
-              0,
-              x + cellSize / 2,
-              y + cellSize / 2,
-              radius
-            );
-            g.addColorStop(
-              0,
-              `rgba(${glowRgb[0]}, ${glowRgb[1]}, ${glowRgb[2]}, ${alpha * op})`
-            );
-            g.addColorStop(1, `rgba(${glowRgb[0]}, ${glowRgb[1]}, ${glowRgb[2]}, 0)`);
-            ctx.fillStyle = g;
-            ctx.fillRect(
-              x - radius,
-              y - radius,
-              cellSize + radius * 2,
-              cellSize + radius * 2
-            );
+          // Glow layers — scale radius and alpha by the glow slider so
+          // exports respect the user's chosen glow intensity (0 = none).
+          if (glow > 0) {
+            for (const [baseRadius, baseAlpha] of [
+              [cellSize * 0.8, 0.6],
+              [cellSize * 1.8, 0.35],
+              [cellSize * 3.2, 0.18],
+            ] as const) {
+              const radius = baseRadius * glow;
+              const alpha = Math.min(1, baseAlpha * glow);
+              const g = ctx.createRadialGradient(
+                x + cellSize / 2,
+                y + cellSize / 2,
+                0,
+                x + cellSize / 2,
+                y + cellSize / 2,
+                radius
+              );
+              g.addColorStop(
+                0,
+                `rgba(${glowRgb[0]}, ${glowRgb[1]}, ${glowRgb[2]}, ${alpha * op})`
+              );
+              g.addColorStop(1, `rgba(${glowRgb[0]}, ${glowRgb[1]}, ${glowRgb[2]}, 0)`);
+              ctx.fillStyle = g;
+              ctx.fillRect(
+                x - radius,
+                y - radius,
+                cellSize + radius * 2,
+                cellSize + radius * 2
+              );
+            }
           }
 
           // Cell fill (linear gradient)
@@ -1352,7 +1396,7 @@ async function exportGif(opts: {
           ctx.fillStyle = lg;
           ctx.fillRect(x, y, cellSize, cellSize);
         } else if (!transparentBg) {
-          ctx.fillStyle = "rgba(255,255,255,0.03)";
+          ctx.fillStyle = emptyCellFill;
           ctx.fillRect(x, y, cellSize, cellSize);
         }
       }

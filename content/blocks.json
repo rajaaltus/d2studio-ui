@@ -1,83 +1,14 @@
 [
   {
-    "name": "hero-01",
-    "type": "ui",
-    "title": "Hero 01",
-    "description": "Hero section 01",
-    "author": "Admin",
-    "version": "1.0.0",
-    "categories": ["hero"],
-    "blockType": "hero",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
-    "isActive": true
-  },
-  {
-    "name": "ai-v2",
-    "type": "ui",
-    "title": "AI tab",
-    "description": "Select field",
-    "author": "Admin",
-    "version": "1.0.0",
-    "categories": ["ai-components"],
-    "blockType": "ai-components",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
-    "isActive": true
-  },
-  {
     "name": "ai-block",
     "type": "ui",
     "title": "AI Block",
     "description": "Advanced AI usage",
     "author": "@uxgodwin",
     "version": "1.0.0",
-    "categories": ["blocks"],
-    "blockType": "ai-components",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
-    "isActive": true
-  },
-  {
-    "name": "bento-01",
-    "type": "ui",
-    "title": "Bento 01",
-    "description": "Bento gradsfbasd",
-    "author": "Admin",
-    "version": "1.0.0",
-    "categories": ["bento"],
-    "blockType": "bento",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
-    "isActive": true
-  },
-  {
-    "name": "dashboard-01",
-    "type": "ui",
-    "title": "Dashboard 01",
-    "description": "Dashboard ",
-    "author": "Admin",
-    "version": "1.0.0",
-    "categories": ["dashboard"],
-    "blockType": "",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "available",
-    "codeUrl": "https://ui.d2studio.dev/r/dashboard-01.json",
-    "isActive": true
-  },
-  {
-    "name": "ai-content-creator-card",
-    "type": "ui",
-    "title": "AI Content Creator Card",
-    "description": "Pro version content creation card",
-    "author": "Admin",
-    "version": "1.0.0",
-    "categories": ["card"],
+    "categories": [
+      "blocks"
+    ],
     "blockType": "ai-components",
     "previewImage": "/placeholder.svg",
     "figmaUrl": "https://www.figma.com",
@@ -91,8 +22,91 @@
     "description": "AI content creator card v.2 Glass ",
     "author": "Admin",
     "version": "1.0.0",
-    "categories": ["ai-components"],
+    "categories": [
+      "ai-components"
+    ],
     "blockType": "",
+    "previewImage": "/placeholder.svg",
+    "figmaUrl": "https://www.figma.com",
+    "codeStatus": "coming_soon",
+    "isActive": true
+  },
+  {
+    "name": "ai-content-creator-card",
+    "type": "ui",
+    "title": "AI Content Creator Card",
+    "description": "Pro version content creation card",
+    "author": "Admin",
+    "version": "1.0.0",
+    "categories": [
+      "card"
+    ],
+    "blockType": "ai-components",
+    "previewImage": "/placeholder.svg",
+    "figmaUrl": "https://www.figma.com",
+    "codeStatus": "coming_soon",
+    "isActive": true
+  },
+  {
+    "name": "dashboard-01",
+    "type": "ui",
+    "title": "Dashboard 01",
+    "description": "Dashboard ",
+    "author": "Admin",
+    "version": "1.0.0",
+    "categories": [
+      "dashboard"
+    ],
+    "blockType": "",
+    "previewImage": "/placeholder.svg",
+    "figmaUrl": "https://www.figma.com",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/dashboard-01.json",
+    "isActive": true
+  },
+  {
+    "name": "bento-01",
+    "type": "ui",
+    "title": "Bento 01",
+    "description": "Bento gradsfbasd",
+    "author": "Admin",
+    "version": "1.0.0",
+    "categories": [
+      "bento"
+    ],
+    "blockType": "bento",
+    "previewImage": "/placeholder.svg",
+    "figmaUrl": "https://www.figma.com",
+    "codeStatus": "coming_soon",
+    "isActive": true
+  },
+  {
+    "name": "ai-v2",
+    "type": "ui",
+    "title": "AI tab",
+    "description": "Select field",
+    "author": "Admin",
+    "version": "1.0.0",
+    "categories": [
+      "ai-components"
+    ],
+    "blockType": "ai-components",
+    "previewImage": "/placeholder.svg",
+    "figmaUrl": "https://www.figma.com",
+    "codeStatus": "coming_soon",
+    "isActive": true
+  },
+  {
+    "name": "hero-01",
+    "type": "ui",
+    "title": "Hero 01",
+    "description": "Hero section 01",
+    "author": "Admin",
+    "version": "1.0.0",
+    "categories": [
+      "hero"
+    ],
+    "blockType": "hero",
     "previewImage": "/placeholder.svg",
     "figmaUrl": "https://www.figma.com",
     "codeStatus": "coming_soon",
