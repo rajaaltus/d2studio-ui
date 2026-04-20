@@ -10,9 +10,10 @@
       "blocks"
     ],
     "blockType": "ai-components",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
+    "previewImage": "https://clever-tortoise-435.eu-west-1.convex.cloud/api/storage/54db98ff-c0a7-4307-9ca4-90dfda9cd87e",
+    "figmaUrl": "https://www.figma.com/community/file/1627946224401020643",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/ai-block.json",
     "isActive": true
   },
   {
@@ -26,8 +27,8 @@
       "ai-components"
     ],
     "blockType": "ai-components",
-    "previewImage": "https://colorful-chickadee-572.convex.cloud/api/storage/6f780bb8-44f6-4b83-b3df-ad81d994676a",
-    "figmaUrl": "https://www.figma.com",
+    "previewImage": "https://clever-tortoise-435.eu-west-1.convex.cloud/api/storage/83deb179-49cc-4a65-ab9f-4fed559612e6",
+    "figmaUrl": "https://www.figma.com/community/file/1627944451860203213",
     "codeStatus": "available",
     "codeUrl": "https://ui.d2studio.dev/r/ai-content-creator-card-v2.json",
     "isActive": true
@@ -59,8 +60,8 @@
       "dashboard"
     ],
     "blockType": "",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
+    "previewImage": "https://clever-tortoise-435.eu-west-1.convex.cloud/api/storage/12847a2a-46e1-4906-99c5-d1eb12241212",
+    "figmaUrl": "https://www.figma.com/community/file/1627953016371684135",
     "codeStatus": "available",
     "codeUrl": "https://ui.d2studio.dev/r/dashboard-01.json",
     "isActive": true
@@ -76,9 +77,10 @@
       "bento"
     ],
     "blockType": "bento",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
+    "previewImage": "https://clever-tortoise-435.eu-west-1.convex.cloud/api/storage/5e180ec2-af3c-4b36-b16d-8fe5abda667b",
+    "figmaUrl": "https://www.figma.com/@godwinjanarthan",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/bento-01.json",
     "isActive": true
   },
   {
@@ -92,9 +94,10 @@
       "ai-components"
     ],
     "blockType": "ai-components",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
+    "previewImage": "https://clever-tortoise-435.eu-west-1.convex.cloud/api/storage/93805f1d-6953-44b0-b830-672df49fb26a",
+    "figmaUrl": "https://www.figma.com/@godwinjanarthan",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/ai-v2.json",
     "isActive": true
   },
   {
@@ -105,12 +108,13 @@
     "author": "Admin",
     "version": "1.0.0",
     "categories": [
-      "hero"
+      "Hero"
     ],
     "blockType": "hero",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
+    "previewImage": "https://clever-tortoise-435.eu-west-1.convex.cloud/api/storage/812c7457-ef41-4079-87fe-aa65a73c1c56",
+    "figmaUrl": "https://www.figma.com/community/file/1627939451768480419",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/hero-01.json",
     "isActive": true
   }
 ]
