@@ -9,10 +9,11 @@
     "categories": [
       "ai-components"
     ],
-    "blockType": "",
-    "previewImage": "/placeholder.svg",
+    "blockType": "ai-components",
+    "previewImage": "https://colorful-chickadee-572.convex.cloud/api/storage/6f780bb8-44f6-4b83-b3df-ad81d994676a",
     "figmaUrl": "https://www.figma.com",
-    "codeStatus": "coming_soon",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/ai-content-creator-card-v2.json",
     "isActive": true
   },
   {
@@ -23,9 +24,9 @@
     "author": "Admin",
     "version": "1.0.0",
     "categories": [
-      "card"
+      "bento"
     ],
-    "blockType": "ai-components",
+    "blockType": "bento",
     "previewImage": "/placeholder.svg",
     "figmaUrl": "https://www.figma.com",
     "codeStatus": "coming_soon",
