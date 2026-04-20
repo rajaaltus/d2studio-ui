@@ -5,7 +5,6 @@
   "title": "Input",
   "author": "D2 Studio",
   "description": "Displays a form input field or a component that looks like an input field.",
-  "dependencies": [],
   "files": [
     {
       "path": "registry/default/ui/input.tsx",

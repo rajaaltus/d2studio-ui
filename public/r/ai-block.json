@@ -5,9 +5,6 @@
   "title": "AI Block",
   "author": "@uxgodwin",
   "description": "Advanced AI usage",
-  "dependencies": [
-    "nucleo-glass"
-  ],
   "registryDependencies": [],
   "files": [
     {
