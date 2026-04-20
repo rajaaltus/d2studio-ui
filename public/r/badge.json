@@ -5,9 +5,6 @@
   "title": "Badge",
   "author": "D2 Studio",
   "description": "Displays a badge or a component that looks like a badge.",
-  "dependencies": [
-    "class-variance-authority"
-  ],
   "files": [
     {
       "path": "registry/default/ui/badge.tsx",
