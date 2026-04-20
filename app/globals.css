@@ -144,7 +144,7 @@
 
 
   html {
-    @apply motion-safe:scroll-smooth;
+    @apply motion-safe:scroll-smooth bg-background overscroll-y-none;
   }
 
 
@@ -282,6 +282,35 @@
   .animate-title-gradient {
     background-size: 200% 100%;
     animation: title-gradient 6s ease-in-out infinite;
+  }
+
+  @keyframes bmc-message-in {
+    0% {
+      opacity: 0;
+      transform: translateY(4px) scale(0.97);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-bmc-message {
+    animation: bmc-message-in 600ms ease-out 400ms both;
+    transform-origin: right center;
+  }
+
+  @keyframes bmc-shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    60%, 100% {
+      transform: translateX(200%);
+    }
+  }
+
+  .animate-bmc-shimmer {
+    animation: bmc-shimmer 3.2s ease-in-out 1.2s infinite;
   }
 }
 
@@ -477,6 +506,35 @@
   100% {
     background-position: -200% 0;
   }
+}
+
+@keyframes brand-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes brand-item {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-brand-fade-in {
+  animation: brand-fade-in 420ms ease-out both;
+}
+
+.animate-brand-item {
+  opacity: 0;
+  animation: brand-item 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes shimmer-sweep {

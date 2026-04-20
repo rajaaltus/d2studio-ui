@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, Suspense } from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { Loader2 } from "lucide-react";
 
 function PreviewContent() {

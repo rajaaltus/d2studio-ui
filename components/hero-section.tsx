@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Sparkles } from "lucide-react";
@@ -89,25 +91,70 @@ const HeroSection2 = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-6xl border-x min-h-[15rem] h-full screen-line-after mx-auto">
-        <div className="w-full h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 bg-border gap-px">
-          {brandData.map((brand, index) => {
-            const IconComponent = brand.icon;
-            return (
-              <div
-                key={index}
-                className="relative group w-full duration-200 hover:bg-accent bg-background h-full min-h-[7.5rem] flex items-center justify-center"
-              >
-                {/* <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)]  duration-200 rounded-full bg-border top-2 left-2 group-hover:translate-1" />
-                <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border top-2 right-2 group-hover:-translate-x-1 group-hover:translate-y-1" />
-                <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 right-2 group-hover:-translate-x-1 group-hover:-translate-y-1" />
-                <div className="hidden group-hover:block absolute w-1.5 h-1.5 shadow-[inset_1px_1px_1px_rgba(0,0,0,0.5)] duration-200 rounded-full bg-border bottom-2 left-2 group-hover:translate-x-1 group-hover:-translate-y-1" /> */}
-                <IconComponent className="h-5 w-auto max-w-[7rem] mx-auto group-hover:scale-95 duration-200 dark:brightness-200" />
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <BrandShowcase />
+    </div>
+  );
+};
+
+function BrandShowcase() {
+  const SET_SIZE = 6;
+  const sets = React.useMemo(() => {
+    const chunks: (typeof brandData)[] = [];
+    for (let i = 0; i < brandData.length; i += SET_SIZE) {
+      chunks.push(brandData.slice(i, i + SET_SIZE));
+    }
+    return chunks.filter((chunk) => chunk.length > 0);
+  }, []);
+
+  const [activeSet, setActiveSet] = React.useState(0);
+
+  React.useEffect(() => {
+    if (sets.length <= 1) return;
+    const id = setInterval(() => {
+      setActiveSet((s) => (s + 1) % sets.length);
+    }, 3200);
+    return () => clearInterval(id);
+  }, [sets.length]);
+
+  const currentSet = sets[activeSet] ?? [];
+
+  return (
+    <div className="relative w-full max-w-6xl border-x min-h-[7.5rem] h-full screen-line-after mx-auto overflow-hidden">
+      {sets.map((set, setIndex) => {
+        const isActive = setIndex === activeSet;
+        return (
+          <div
+            key={setIndex}
+            aria-hidden={!isActive}
+            className={cn(
+              "absolute inset-0 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 bg-border gap-px transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              isActive
+                ? "opacity-100 scale-100 blur-0"
+                : "opacity-0 scale-[0.985] blur-[2px] pointer-events-none"
+            )}
+          >
+            {set.map((brand, index) => {
+              const IconComponent = brand.icon;
+              return (
+                <div
+                  key={index}
+                  className="relative group w-full duration-200 hover:bg-accent bg-background h-full min-h-[7.5rem] flex items-center justify-center"
+                >
+                  <IconComponent
+                    className={`w-auto max-w-[7rem] mx-auto group-hover:scale-95 duration-200 dark:brightness-200 ${
+                      brand.name === "Vercel"
+                        ? "h-3.5"
+                        : brand.name === "Next.js"
+                          ? "h-6"
+                          : "h-5"
+                    }`}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 };

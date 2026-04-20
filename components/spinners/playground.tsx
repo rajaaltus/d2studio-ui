@@ -15,7 +15,7 @@ import {
   Sun,
   X,
 } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import {
   PixelSpinner,
   type SpinnerAnimation,
@@ -715,7 +715,7 @@ export function SpinnerPlayground() {
                         ? "bg-[var(--ls-foreground)]"
                         : "bg-[var(--ls-muted-foreground)]")
                     }
-                    style={SHAPE_PREVIEW[s.id]}
+                    style={SHAPE_PREVIEW[s.id] as any} 
                   />
                 </button>
               );

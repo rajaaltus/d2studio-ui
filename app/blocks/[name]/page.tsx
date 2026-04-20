@@ -6,6 +6,7 @@ import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
+import { SiteFooter } from "@/components/site-footer";
 import { PreviewWrapper } from "@/components/preview/preview-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,7 @@ export default function BlockPage() {
             <p>Loading block...</p>
           </div>
         </div>
+        <SiteFooter />
       </div>
     );
   }
@@ -43,6 +45,7 @@ export default function BlockPage() {
             </Link>
           </Button>
         </div>
+        <SiteFooter />
       </div>
     );
   }
@@ -52,9 +55,9 @@ export default function BlockPage() {
       <Navigation />
 
       {/* Header Section */}
-      <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-0">
+      <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-8">
         <div className="py-8">
-          <Button asChild variant="ghost" className="mb-6">
+          <Button asChild variant="ghost" size="sm" className="mb-6 -ml-3">
             <Link href="/blocks">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Blocks
@@ -106,7 +109,7 @@ export default function BlockPage() {
       </section>
 
       {/* Metadata Section */}
-      <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-0 py-8">
+      <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-8 py-8">
         <div className="rounded-lg border bg-muted/50 p-6">
           <h2 className="text-lg font-semibold mb-4">Block Details</h2>
           <div className="grid gap-4 md:grid-cols-2">
@@ -145,6 +148,8 @@ export default function BlockPage() {
           )}
         </div>
       </section>
+
+      <SiteFooter />
     </div>
   );
 }
