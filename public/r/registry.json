@@ -85,22 +85,6 @@
       ]
     },
     {
-      "name": "textarea",
-      "type": "registry:ui",
-      "title": "Textarea",
-      "description": "Displays a form textarea or a component that looks like a textarea.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/textarea.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
@@ -136,38 +120,6 @@
       ]
     },
     {
-      "name": "switch",
-      "type": "registry:ui",
-      "title": "Switch",
-      "description": "A control that allows the user to toggle between checked and not checked.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/switch.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
-      "name": "separator",
-      "type": "registry:ui",
-      "title": "Separator",
-      "description": "Visually or semantically separates content.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/separator.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -184,22 +136,6 @@
       ]
     },
     {
-      "name": "skeleton",
-      "type": "registry:ui",
-      "title": "Skeleton",
-      "description": "Use to show a placeholder while content is loading.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/skeleton.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
@@ -208,22 +144,6 @@
       "files": [
         {
           "path": "registry/default/ui/progress.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
-      "name": "tooltip",
-      "type": "registry:ui",
-      "title": "Tooltip",
-      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/tooltip.tsx",
           "type": "registry:ui"
         }
       ],
@@ -265,15 +185,15 @@
     },
     {
       "name": "hero-01",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Hero 01",
       "description": "Hero section 01",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/hero-01.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/hero-01.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -338,15 +258,15 @@
     },
     {
       "name": "bento-01",
-      "type": "registry:component",
-      "title": "Bento-01",
-      "description": "Professional growth bento",
+      "type": "registry:ui",
+      "title": "Bento 01",
+      "description": "Bento gradsfbasd",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/bento-01.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/bento-01.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -355,15 +275,15 @@
     },
     {
       "name": "dashboard-01",
-      "type": "registry:component",
-      "title": "Dashboard-01",
-      "description": "Hotel management dashboard",
+      "type": "registry:ui",
+      "title": "Dashboard 01",
+      "description": "Dashboard ",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/dashboard-01.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/dashboard-01.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -389,15 +309,15 @@
     },
     {
       "name": "ai-v2",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI tab",
       "description": "Select field",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/ai-v2.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/ai-v2.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -423,15 +343,15 @@
     },
     {
       "name": "ai-content-creator-card",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Content Creator Card",
       "description": "Pro version content creation card",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/ai-content-creator-card.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/ai-content-creator-card.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
@@ -440,19 +360,36 @@
     },
     {
       "name": "ai-content-creator-card-v2",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI content creator card v.2",
       "description": "AI content creator card v.2 Glass ",
       "author": "Admin",
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/default/components/ai-content-creator-card-v2.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/ai-content-creator-card-v2.tsx",
+          "type": "registry:ui"
         }
       ],
       "categories": [
         "ai-components"
+      ]
+    },
+    {
+      "name": "ai-block",
+      "type": "registry:ui",
+      "title": "AI Block",
+      "description": "Advanced AI usage",
+      "author": "@uxgodwin",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/ai-block.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "blocks"
       ]
     }
   ]

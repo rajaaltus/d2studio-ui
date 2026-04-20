@@ -5,7 +5,6 @@
   "title": "Card",
   "author": "D2 Studio",
   "description": "Displays a card with header, content, and footer.",
-  "dependencies": [],
   "files": [
     {
       "path": "registry/default/ui/card.tsx",

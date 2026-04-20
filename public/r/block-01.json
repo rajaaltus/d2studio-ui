@@ -5,9 +5,6 @@
   "title": "Block 01",
   "author": "Admin",
   "description": "Blocks for free",
-  "dependencies": [
-    "nucleo-glass"
-  ],
   "registryDependencies": [],
   "files": [
     {
