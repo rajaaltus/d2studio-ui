@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx convex deploy --cmd 'pnpm build && pnpm registry:build'",
+  "buildCommand": "npx convex deploy --cmd 'pnpm build && pnpm registry:build && pnpm seed:prod'",
   "outputDirectory": ".next",
   "installCommand": "pnpm install",
   "framework": "nextjs",
@@ -39,7 +39,11 @@
         },
         {
           "key": "X-Frame-Options",
-          "value": "DENY"
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self'"
         },
         {
           "key": "X-XSS-Protection",
