@@ -16,6 +16,8 @@
     "registry:watch": "shadcn build --watch",
     "registry:validate": "shadcn validate",
     "registry:clean": "rm -rf public/r/*.json",
+    "seed": "node scripts/seed-content.mjs",
+    "seed:prod": "node scripts/seed-content.mjs --prod",
     "start": "next start",
     "lint": "eslint ."
   },

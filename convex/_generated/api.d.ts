@@ -14,6 +14,7 @@ import type * as categories from "../categories.js";
 import type * as http from "../http.js";
 import type * as initializeBlocks from "../initializeBlocks.js";
 import type * as myFunctions from "../myFunctions.js";
+import type * as seed from "../seed.js";
 import type * as users from "../users.js";
 
 import type {
@@ -29,6 +30,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   initializeBlocks: typeof initializeBlocks;
   myFunctions: typeof myFunctions;
+  seed: typeof seed;
   users: typeof users;
 }>;
 
