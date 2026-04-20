@@ -18,6 +18,8 @@
     "registry:clean": "rm -rf public/r/*.json",
     "seed": "node scripts/seed-content.mjs",
     "seed:prod": "node scripts/seed-content.mjs --prod",
+    "content:pull": "node scripts/pull-from-prod.mjs",
+    "content:pull:check": "node scripts/pull-from-prod.mjs --dry-run",
     "start": "next start",
     "lint": "eslint ."
   },
