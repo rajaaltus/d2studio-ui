@@ -71,11 +71,5 @@
       "destination": "https://twitter.com/d2studio",
       "permanent": false
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/r/:path*",
-      "destination": "/public/r/:path*"
-    }
   ]
 }
