@@ -1,0 +1,165 @@
+.pixelSpinner {
+  display: inline-grid;
+  grid-template-columns: repeat(4, 2px);
+  gap: 1px;
+}
+
+.cell {
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  box-shadow:
+    0 0 0px #ff5e62,
+    0 0 0px #ff5e6280,
+    0 0 0px #ff5e6255;
+  opacity: 0;
+  animation-duration: 720ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+.cell0 { animation-name: ps0; }
+.cell1 { animation-name: ps1; }
+.cell2 { animation-name: ps2; }
+.cell3 { animation-name: ps3; }
+.cell4 { animation-name: ps4; }
+.cell5 { animation-name: ps5; }
+.cell6 { animation-name: ps6; }
+.cell7 { animation-name: ps7; }
+.cell8 { animation-name: ps8; }
+.cell9 { animation-name: ps9; }
+.cell10 { animation-name: ps10; }
+.cell11 { animation-name: ps11; }
+.cell12 { animation-name: ps12; }
+.cell13 { animation-name: ps13; }
+.cell14 { animation-name: ps14; }
+.cell15 { animation-name: ps15; }
+
+@keyframes ps0 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 0.5; }
+  33.33%, 49.99% { opacity: 0.25; }
+  50.00%, 66.66% { opacity: 0.15; }
+  66.67%, 83.32% { opacity: 0; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps1 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 0.5; }
+  50.00%, 66.66% { opacity: 0.25; }
+  66.67%, 83.32% { opacity: 0.15; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps2 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 0.5; }
+  66.67%, 83.32% { opacity: 0.25; }
+  83.33%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps3 {
+  0.00%, 16.66% { opacity: 0.25; }
+  16.67%, 33.32% { opacity: 0.15; }
+  33.33%, 49.99% { opacity: 0; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}
+@keyframes ps4 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 0.5; }
+  50.00%, 66.66% { opacity: 0.25; }
+  66.67%, 83.32% { opacity: 0.15; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps5 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 0.5; }
+  66.67%, 83.32% { opacity: 0.25; }
+  83.33%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps6 {
+  0.00%, 16.66% { opacity: 0.15; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 0.5; }
+  83.33%, 99.99% { opacity: 0.25; }
+}
+@keyframes ps7 {
+  0.00%, 16.66% { opacity: 0.25; }
+  16.67%, 33.32% { opacity: 0.15; }
+  33.33%, 49.99% { opacity: 0; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}
+@keyframes ps8 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 0.5; }
+  50.00%, 66.66% { opacity: 0.25; }
+  66.67%, 83.32% { opacity: 0.15; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps9 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 0.5; }
+  66.67%, 83.32% { opacity: 0.25; }
+  83.33%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps10 {
+  0.00%, 16.66% { opacity: 0.15; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 0.5; }
+  83.33%, 99.99% { opacity: 0.25; }
+}
+@keyframes ps11 {
+  0.00%, 16.66% { opacity: 0.25; }
+  16.67%, 33.32% { opacity: 0.15; }
+  33.33%, 49.99% { opacity: 0; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}
+@keyframes ps12 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 0.5; }
+  33.33%, 49.99% { opacity: 0.25; }
+  50.00%, 66.66% { opacity: 0.15; }
+  66.67%, 83.32% { opacity: 0; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps13 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 0.5; }
+  50.00%, 66.66% { opacity: 0.25; }
+  66.67%, 83.32% { opacity: 0.15; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps14 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 0.5; }
+  66.67%, 83.32% { opacity: 0.25; }
+  83.33%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps15 {
+  0.00%, 16.66% { opacity: 0.25; }
+  16.67%, 33.32% { opacity: 0.15; }
+  33.33%, 49.99% { opacity: 0; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}

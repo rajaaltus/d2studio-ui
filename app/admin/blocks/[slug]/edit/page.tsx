@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Loader2, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,6 +37,8 @@ interface BlockFormData {
   codeUrl?: string;
   categories: string;
   tags?: string;
+  isFeatured: boolean;
+  featuredOrder?: number;
 }
 
 
@@ -82,6 +85,8 @@ export default function EditBlockPage() {
         codeUrl: block.codeUrl,
         categories: block.categories.join(", "),
         tags: block.tags?.join(", ") || "",
+        isFeatured: block.isFeatured ?? false,
+        featuredOrder: block.featuredOrder,
       }
       : undefined,
   });
@@ -103,6 +108,8 @@ export default function EditBlockPage() {
       setValue("codeUrl", block.codeUrl);
       setValue("categories", block.categories.join(", "));
       setValue("tags", block.tags?.join(", ") || "");
+      setValue("isFeatured", block.isFeatured ?? false);
+      setValue("featuredOrder", block.featuredOrder);
       setPreviewImageUrl(block.previewImage || null);
     }
   }, [block, setValue]);
@@ -211,6 +218,11 @@ export default function EditBlockPage() {
         codeUrl: data.codeStatus === "available" ? data.codeUrl : undefined,
         categories,
         tags,
+        isFeatured: data.isFeatured,
+        featuredOrder:
+          data.isFeatured && data.featuredOrder !== undefined && !Number.isNaN(Number(data.featuredOrder))
+            ? Number(data.featuredOrder)
+            : undefined,
       });
 
       router.push("/admin/blocks");
@@ -302,6 +314,42 @@ export default function EditBlockPage() {
                         {errors.codeUrl.message}
                       </p>
                     )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="rounded-lg border bg-muted/50 p-4">
+              <h3 className="mb-4 font-semibold">Landing Page Feature</h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <Label htmlFor="isFeatured">Feature on landing page</Label>
+                    <p className="text-xs text-muted-foreground">
+                      When enabled, this block renders in the Featured Components
+                      section on the home page.
+                    </p>
+                  </div>
+                  <Switch
+                    id="isFeatured"
+                    checked={watch("isFeatured") ?? false}
+                    onCheckedChange={(value) => setValue("isFeatured", value)}
+                  />
+                </div>
+
+                {watch("isFeatured") && (
+                  <div className="space-y-2">
+                    <Label htmlFor="featuredOrder">Display order (optional)</Label>
+                    <Input
+                      id="featuredOrder"
+                      type="number"
+                      min={0}
+                      {...register("featuredOrder", { valueAsNumber: true })}
+                      placeholder="Lower numbers appear first"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Leave blank to fall back to most recently created.
+                    </p>
                   </div>
                 )}
               </div>

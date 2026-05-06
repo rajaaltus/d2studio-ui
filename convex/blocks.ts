@@ -48,6 +48,8 @@ export const createBlock = mutation({
     ),
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
+    isFeatured: v.optional(v.boolean()),
+    featuredOrder: v.optional(v.number()),
   },
   returns: v.id("blocks"),
   handler: async (ctx, args) => {
@@ -66,6 +68,7 @@ export const createBlock = mutation({
       previewImage: args.previewImage || "/placeholder.svg",
       figmaUrl: args.figmaUrl || "https://www.figma.com",
       codeStatus: args.codeStatus ?? "coming_soon",
+      isFeatured: args.isFeatured ?? false,
       isActive: true,
       createdAt: now,
       updatedAt: now,
@@ -119,6 +122,8 @@ export const getBlock = query({
       ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -160,6 +165,8 @@ export const listBlocks = query({
       ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -213,6 +220,8 @@ export const getBlocksByType = query({
       ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -225,6 +234,56 @@ export const getBlocksByType = query({
       .filter((q) => q.eq(q.field("isActive"), true))
       .order("desc")
       .take(limit);
+  },
+});
+
+export const listFeaturedBlocks = query({
+  args: {
+    limit: v.optional(v.number()),
+  },
+  returns: v.array(
+    v.object({
+      _id: v.id("blocks"),
+      _creationTime: v.number(),
+      name: v.string(),
+      type: v.union(v.literal("ui"), v.literal("component")),
+      title: v.string(),
+      description: v.string(),
+      author: v.string(),
+      version: v.string(),
+      categories: v.array(v.string()),
+      registryDependencies: v.optional(v.array(v.string())),
+      tags: v.optional(v.array(v.string())),
+      isActive: v.boolean(),
+      previewImage: v.optional(v.string()),
+      figmaUrl: v.optional(v.string()),
+      codeStatus: v.optional(
+        v.union(v.literal("coming_soon"), v.literal("available")),
+      ),
+      codeUrl: v.optional(v.string()),
+      blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
+      createdAt: v.number(),
+      updatedAt: v.number(),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 20;
+    const featured = await ctx.db
+      .query("blocks")
+      .withIndex("by_featured", (q) => q.eq("isFeatured", true))
+      .collect();
+
+    return featured
+      .filter((b) => b.isActive)
+      .sort((a, b) => {
+        const ao = a.featuredOrder ?? Number.MAX_SAFE_INTEGER;
+        const bo = b.featuredOrder ?? Number.MAX_SAFE_INTEGER;
+        if (ao !== bo) return ao - bo;
+        return b.createdAt - a.createdAt;
+      })
+      .slice(0, limit);
   },
 });
 
@@ -250,6 +309,8 @@ export const updateBlock = mutation({
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
     isActive: v.optional(v.boolean()),
+    isFeatured: v.optional(v.boolean()),
+    featuredOrder: v.optional(v.number()),
   },
   returns: v.null(),
   handler: async (ctx, args) => {

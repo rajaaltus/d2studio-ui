@@ -36,6 +36,8 @@ export default defineSchema({
     codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))), // Temporarily optional for migration
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
+    isFeatured: v.optional(v.boolean()),
+    featuredOrder: v.optional(v.number()),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -45,7 +47,8 @@ export default defineSchema({
     .index("by_active", ["isActive"])
     .index("by_created", ["createdAt"])
     .index("by_blockType", ["blockType"])
-    .index("by_codeStatus", ["codeStatus"]),
+    .index("by_codeStatus", ["codeStatus"])
+    .index("by_featured", ["isFeatured", "featuredOrder"]),
 
   // Download tracking events
   blockDownloads: defineTable({
