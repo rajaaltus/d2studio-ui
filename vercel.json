@@ -1,6 +1,5 @@
 {
   "buildCommand": "npx convex deploy --cmd 'pnpm build && pnpm registry:build' && pnpm seed:prod",
-  "outputDirectory": ".next",
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "functions": {
@@ -70,12 +69,6 @@
       "source": "/twitter",
       "destination": "https://twitter.com/d2studio",
       "permanent": false
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/r/:path*",
-      "destination": "/public/r/:path*"
     }
   ]
 }

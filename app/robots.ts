@@ -11,6 +11,9 @@ export default function robots(): MetadataRoute.Robots {
           '/admin/',
           '/private/',
           '/.well-known/',
+          '/login',
+          '/preview/',
+          '/test',
         ],
       },
       {

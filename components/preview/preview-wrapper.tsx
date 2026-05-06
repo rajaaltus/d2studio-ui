@@ -51,7 +51,7 @@ export function PreviewWrapper({
   const [currentSize, setCurrentSize] = React.useState(100);
   const [key, setKey] = React.useState(0);
 
-  const installCommand = `npx shadcn@latest add https://d2studio.dev/r/${componentName.toLowerCase()}.json`;
+  const installCommand = `npx shadcn@latest add https://ui.d2studio.dev/r/${componentName.toLowerCase()}.json`;
 
   const handleCopyInstall = React.useCallback(async () => {
     await navigator.clipboard.writeText(installCommand);
