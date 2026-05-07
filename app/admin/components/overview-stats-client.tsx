@@ -8,6 +8,18 @@ interface OverviewStatsClientProps {
   dashboardStats: Preloaded<typeof api.blocks.getDashboardStats>;
 }
 
+function formatPct(pct: number): string {
+  const rounded = Math.round(pct * 10) / 10;
+  const sign = rounded > 0 ? "+" : "";
+  return `${sign}${rounded}%`;
+}
+
+function pctTrend(pct: number): "up" | "down" | "stable" {
+  if (pct > 0) return "up";
+  if (pct < 0) return "down";
+  return "stable";
+}
+
 export function OverviewStatsClient({
   dashboardStats,
 }: OverviewStatsClientProps) {
@@ -24,23 +36,22 @@ export function OverviewStatsClient({
         title="Total Downloads"
         value={stats.totalDownloads.toLocaleString()}
         icon={Download}
-        trend="up"
-        trendValue="+12.5%"
         href="/admin/downloads"
       />
       <StatCard
         title="Downloads Today"
         value={stats.downloadsToday}
         icon={BarChart3}
-        trend="up"
-        trendValue="+2.1%"
+        trend={pctTrend(stats.downloadsTodayChangePct)}
+        trendValue={formatPct(stats.downloadsTodayChangePct)}
+        trendLabel="from yesterday"
       />
       <StatCard
         title="Downloads This Week"
         value={stats.downloadsThisWeek}
         icon={Eye}
-        trend="stable"
-        trendValue="0%"
+        trend={pctTrend(stats.downloadsThisWeekChangePct)}
+        trendValue={formatPct(stats.downloadsThisWeekChangePct)}
       />
     </div>
   );

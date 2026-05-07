@@ -1,20 +1,38 @@
+"use client";
+
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { RefreshCw } from "lucide-react";
 
-interface DownloadSource {
-  source: string;
-  downloads: number;
-  percentage: number;
-}
+const SOURCE_LABELS: Record<string, string> = {
+  cli: "CLI",
+  website: "Website",
+  api: "API",
+  direct: "Direct",
+};
 
 export function DownloadSourcesCard() {
-  // This would ideally come from a query that aggregates downloads by source
-  const downloadSources: DownloadSource[] = [
-    { source: "CLI", downloads: 1250, percentage: 45 },
-    { source: "Website", downloads: 890, percentage: 32 },
-    { source: "API", downloads: 540, percentage: 19 },
-    { source: "Direct", downloads: 110, percentage: 4 },
-  ];
+  const sources = useQuery(api.blocks.getDownloadSourceBreakdown, {});
+
+  if (!sources) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Download Sources</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-center py-8">
+            <RefreshCw className="h-4 w-4 animate-spin mr-2" />
+            <span>Loading...</span>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const totalDownloads = sources.reduce((sum, s) => sum + s.downloads, 0);
 
   return (
     <Card>
@@ -22,22 +40,33 @@ export function DownloadSourcesCard() {
         <CardTitle className="text-base">Download Sources</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          {downloadSources.map((item) => (
-            <div key={item.source} className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium">
-                  {item.source.charAt(0)}
+        {totalDownloads === 0 ? (
+          <p className="text-sm text-muted-foreground py-6 text-center">
+            No downloads tracked yet.
+          </p>
+        ) : (
+          <div className="space-y-4">
+            {sources.map((item) => {
+              const label = SOURCE_LABELS[item.source] ?? item.source;
+              return (
+                <div key={item.source} className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium">
+                      {label.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">{label}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {item.downloads.toLocaleString()} downloads
+                      </p>
+                    </div>
+                  </div>
+                  <Badge variant="outline">{Math.round(item.percentage)}%</Badge>
                 </div>
-                <div>
-                  <p className="text-sm font-medium">{item.source}</p>
-                  <p className="text-xs text-muted-foreground">{item.downloads} downloads</p>
-                </div>
-              </div>
-              <Badge variant="outline">{item.percentage}%</Badge>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </CardContent>
     </Card>
   );

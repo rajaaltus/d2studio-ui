@@ -8,7 +8,8 @@ import Logo from "./logo";
 export function Navigation() {
   const navigation = [
     { name: "Blocks", href: "/blocks" },
-    { name: "Spinners", href: "/spinners", badge: "New" },
+    { name: "Spinners", href: "/spinners" },
+    { name: "Pixel Animation", href: "/pixel-animation", badge: "New" },
     { name: "Docs", href: "/docs" },
   ];
 

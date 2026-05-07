@@ -580,3 +580,119 @@
     background-position: -140% -140%;
   }
 }
+
+/* ============================================================
+ * Pixel Animation (icon mode) — extends the spinner cell styles
+ * so a base mask of cells stays visible at low opacity while the
+ * animated wavefront pulses to peak brightness.
+ * ============================================================ */
+
+.luminous-spinners .pixel-icon-grid {
+  position: relative;
+  isolation: isolate;
+}
+
+.luminous-spinners .pixel-icon-empty {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: inherit;
+  /* Keep the slot blank but reserve grid space. */
+  opacity: 0;
+}
+
+.luminous-spinners .pixel-icon-cell {
+  position: relative;
+  /* Transitions smooth the inline scale and opacity changes the runtime
+   * applies per cell. No always-on ambient animation — that costs one
+   * compositor animation per cell and tanks performance on large grids. */
+  transition:
+    background var(--icon-ease, 360ms) cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform var(--icon-ease, 360ms) cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow var(--icon-ease, 360ms) cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity var(--icon-ease, 360ms) cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter var(--icon-ease, 360ms) cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Smooth-mode cells: the renderer skips the JS trail and only sets the
+ * current frame's cells to peak. The fade you see is purely the CSS
+ * transition unwinding (dot-motion-builder approach).
+ * - Fixed 140ms transition on body + opacity for buttery smoothness.
+ * - Glow is fully disabled here — smooth mode is meant to look like a
+ *   flat dot-matrix LED, not a luminous gem. `box-shadow: none` on the
+ *   base .cell.on rule beats `.cell.on.c-*` color presets (0,3,0) and
+ *   the `.anim-wavy .cell.on` transition rule (0,4,0). The peak rule
+ *   inherits this — no separate glow override needed.
+ * - Shimmer ::after sweep is suppressed so peak cells fade cleanly. */
+.luminous-spinners .pixel-icon-smooth .pixel-icon-cell.cell.on {
+  transition:
+    background 140ms ease,
+    opacity 140ms ease,
+    filter 140ms ease;
+  box-shadow: none;
+}
+.luminous-spinners .pixel-icon-smooth .pixel-icon-cell.cell.on.pixel-icon-peak::after {
+  display: none;
+}
+.luminous-spinners .pixel-icon-smooth .pixel-icon-cell.cell.on.pixel-icon-peak {
+  filter: none;
+  box-shadow: none;
+}
+
+/* Elastic-pop modifier — each cell entering the peak set runs a brief
+ * scale + brightness bounce. Inspired by the GSAP `stagger.from(...)` +
+ * `elastic.out` pattern: cells punch downward, then overshoot, then settle.
+ * The CSS animation overrides the renderer's inline transform during its
+ * 480ms playback, then the cell hands transform back to the inline trail
+ * scale (or 1 in smooth mode). High specificity (.cell.on…) so the rule
+ * beats `.anim-wavy .cell.on` (0,4,0). */
+@keyframes pixel-icon-pop {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) saturate(1);
+  }
+  22% {
+    transform: scale(0.7);
+    filter: brightness(1.35) saturate(1.25);
+  }
+  48% {
+    transform: scale(1.08);
+    filter: brightness(1.2) saturate(1.15);
+  }
+  72% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1) saturate(1);
+  }
+}
+.luminous-spinners .pixel-icon-pop .pixel-icon-cell.cell.on.pixel-icon-peak {
+  animation: pixel-icon-pop 480ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Cells at peak brightness pick up extra inner light. Scale is set inline
+ * per-cell so it decays smoothly through the trail; here we just boost the
+ * filter so peaks read as luminous, not just larger. */
+.luminous-spinners .pixel-icon-cell.pixel-icon-peak {
+  filter: brightness(1.3) saturate(1.2);
+  z-index: 1;
+}
+
+/* A faint shimmer sweep on top of peak cells — same idea as effect-light
+ * on spinners but only over the active cell so the icon shape stays clean. */
+.luminous-spinners .pixel-icon-cell.pixel-icon-peak::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    oklch(1 0 0 / 0.55) 50%,
+    transparent 70%
+  );
+  background-size: 250% 100%;
+  animation: ls-shimmer 1.4s linear infinite;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}

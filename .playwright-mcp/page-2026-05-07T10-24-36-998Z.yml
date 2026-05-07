@@ -1,0 +1,152 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic:
+      - button "+ 新建" [ref=e4] [cursor=pointer]
+      - generic [ref=e5]:
+        - button "全部预览" [ref=e6] [cursor=pointer]
+        - button "导出" [ref=e7] [cursor=pointer]
+    - generic: 85%
+    - generic "Language switch" [ref=e8]:
+      - button "CN" [ref=e9] [cursor=pointer]
+      - button "EN" [ref=e10] [cursor=pointer]
+    - generic [ref=e11]:
+      - button "Artboard actions Toggle cell 1 Toggle cell 2 Toggle cell 3 Toggle cell 4 Toggle cell 5 Toggle cell 6 Toggle cell 7 Toggle cell 8 Toggle cell 9 Toggle cell 10 Toggle cell 11 Toggle cell 12 Toggle cell 13 Toggle cell 14 Toggle cell 15 Toggle cell 16 Toggle cell 17 Toggle cell 18 Toggle cell 19 Toggle cell 20 Toggle cell 21 Toggle cell 22 Toggle cell 23 Toggle cell 24 Toggle cell 25 Toggle cell 26 Toggle cell 27 Toggle cell 28 Toggle cell 29 Toggle cell 30 Toggle cell 31 Toggle cell 32 Toggle cell 33 Toggle cell 34 Toggle cell 35 Toggle cell 36 Loader 1" [ref=e15] [cursor=pointer]:
+        - generic "Artboard actions" [ref=e16]:
+          - button "Duplicate artboard" [ref=e17]:
+            - img [ref=e18]
+          - button "Delete artboard" [disabled] [ref=e21]:
+            - img [ref=e22]
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - button "Toggle cell 1" [ref=e28]
+            - button "Toggle cell 2" [ref=e29]
+            - button "Toggle cell 3" [ref=e30]
+            - button "Toggle cell 4" [ref=e31]
+            - button "Toggle cell 5" [ref=e32]
+            - button "Toggle cell 6" [ref=e33]
+            - button "Toggle cell 7" [ref=e34]
+            - button "Toggle cell 8" [ref=e35]
+            - button "Toggle cell 9" [ref=e36]
+            - button "Toggle cell 10" [ref=e37]
+            - button "Toggle cell 11" [ref=e38]
+            - button "Toggle cell 12" [ref=e39]
+            - button "Toggle cell 13" [ref=e40]
+            - button "Toggle cell 14" [ref=e41]
+            - button "Toggle cell 15" [ref=e42]
+            - button "Toggle cell 16" [ref=e43]
+            - button "Toggle cell 17" [ref=e44]
+            - button "Toggle cell 18" [ref=e45]
+            - button "Toggle cell 19" [ref=e46]
+            - button "Toggle cell 20" [ref=e47]
+            - button "Toggle cell 21" [ref=e48]
+            - button "Toggle cell 22" [ref=e49]
+            - button "Toggle cell 23" [ref=e50]
+            - button "Toggle cell 24" [ref=e51]
+            - button "Toggle cell 25" [ref=e52]
+            - button "Toggle cell 26" [ref=e53]
+            - button "Toggle cell 27" [ref=e54]
+            - button "Toggle cell 28" [ref=e55]
+            - button "Toggle cell 29" [ref=e56]
+            - button "Toggle cell 30" [ref=e57]
+            - button "Toggle cell 31" [ref=e58]
+            - button "Toggle cell 32" [ref=e59]
+            - button "Toggle cell 33" [ref=e60]
+            - button "Toggle cell 34" [ref=e61]
+            - button "Toggle cell 35" [ref=e62]
+            - button "Toggle cell 36" [ref=e63]
+          - generic [ref=e64]: Loader 1
+      - complementary [ref=e65]:
+        - heading "设置" [level=2] [ref=e68]
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - generic [ref=e71]: 外观
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - generic [ref=e74]: 画板名称
+                - textbox "画板名称" [ref=e75]: Loader 1
+              - generic [ref=e76]:
+                - generic [ref=e77]: 形状
+                - combobox "形状" [ref=e78]:
+                  - option "矩形" [selected]
+                  - option "三角形"
+                  - option "星型"
+                  - option "菱形"
+                  - option "爱心"
+              - generic [ref=e79]:
+                - button "主色" [ref=e81] [cursor=pointer]:
+                  - generic [ref=e82]: 主色
+                - generic [ref=e84]:
+                  - generic [ref=e85]:
+                    - generic [ref=e86]: 发光
+                    - button "Turn glow off" [pressed] [ref=e87] [cursor=pointer]
+                  - button "发光颜色" [ref=e90] [cursor=pointer]:
+                    - generic [ref=e91]: 发光颜色
+                  - generic [ref=e93]:
+                    - generic [ref=e94]:
+                      - generic [ref=e95]: 范围
+                      - strong [ref=e96]: 16 px
+                    - slider "范围 16 px" [ref=e97] [cursor=pointer]: "16"
+                - button "背景点阵颜色" [ref=e99] [cursor=pointer]:
+                  - generic [ref=e100]: 背景点阵颜色
+                - generic [ref=e102]:
+                  - generic [ref=e103]:
+                    - generic [ref=e104]: 圆角
+                    - strong [ref=e105]: 8 px
+                  - slider "圆角 8 px 直角 圆润" [ref=e106] [cursor=pointer]: "8"
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: 直角
+                    - generic [ref=e109]: 圆润
+                - generic [ref=e110]:
+                  - generic [ref=e111]:
+                    - generic [ref=e112]: 点阵数量
+                    - strong [ref=e113]: 6x6
+                  - slider "点阵数量 6x6 2x2 8x8" [ref=e114] [cursor=pointer]: "6"
+                  - generic [ref=e115]:
+                    - generic [ref=e116]: 2x2
+                    - generic [ref=e117]: 8x8
+                - generic [ref=e118]:
+                  - generic [ref=e119]:
+                    - generic [ref=e120]: 间距
+                    - strong [ref=e121]: 6 px
+                  - slider "间距 6 px 0 20" [ref=e122] [cursor=pointer]: "6"
+                  - generic [ref=e123]:
+                    - generic [ref=e124]: "0"
+                    - generic [ref=e125]: "20"
+          - generic [ref=e126]:
+            - generic [ref=e127]: 动效
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - generic [ref=e130]: 动效预设
+                - combobox "动效预设" [ref=e131]:
+                  - option "闪烁"
+                  - option "波浪"
+                  - option "扫描"
+                  - option "扩散"
+                  - option "鱼眼波纹"
+                  - option "涟漪"
+                  - option "脉冲"
+                  - option "螺旋"
+                  - option "四角优先"
+                  - option "蛇形"
+                  - option "棋盘"
+                  - option "雨滴"
+                  - option "风车" [selected]
+              - paragraph [ref=e132]: 按角度象限围绕中心旋转推进。
+              - generic [ref=e133]:
+                - generic [ref=e134]: 背景点阵
+                - combobox "背景点阵" [ref=e135]:
+                  - option "无（静态）"
+                  - option "静态暗点"
+                  - option "呼吸" [selected]
+                  - option "幽灵网格"
+              - paragraph [ref=e136]: 只影响未亮起的背景点阵，不覆盖已选点阵动效。
+              - generic [ref=e137]:
+                - generic [ref=e138]:
+                  - generic [ref=e139]: 速度 (FPS)
+                  - strong [ref=e140]: "18"
+                - slider "速度 (FPS) 18 更慢 更快" [ref=e141] [cursor=pointer]: "18"
+                - generic [ref=e142]:
+                  - generic [ref=e143]: 更慢
+                  - generic [ref=e144]: 更快
+        - button "预览动画" [ref=e145] [cursor=pointer]
+  - alert [ref=e146]
