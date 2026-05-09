@@ -22,7 +22,7 @@ const HeroSection2 = () => {
         /> */}
         <div className="grid grid-cols-[1fr_auto_1fr] w-full h-full grid-rows-[auto_auto_auto]">
           <div className="col-start-1 row-start-1 row-span-3 border-r"></div>
-          <div className="z-10 col-start-2 row-start-1 md:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-accent/50 h-full relative">
+          <div className="z-10 col-start-2 row-start-1 md:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-[#020202] h-full relative">
             <div className="rounded-full inline-flex justify-center  gap-2 items-center border py-1 px-4 shadow-sm">
               <Sparkles size={16} />
               <span className="text-sm font-medium text-muted-foreground">

@@ -1,22 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowRight,
-  Code2,
-  Sparkles,
-  Package,
-  Zap,
-  Shield,
-  GitBranch,
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
 import { SiteFooter } from "@/components/site-footer";
+import { PixelIconCmd } from "@/components/pixel-icon-cmd";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -42,40 +33,24 @@ const structuredData = {
 export default function HomePage() {
   const features = [
     {
-      icon: <Code2 className="h-5 w-5" />,
       title: "Copy & Paste",
       description:
         "No packages to install. Just copy and paste components into your project.",
     },
     {
-      icon: <Sparkles className="h-5 w-5" />,
-      title: "Beautifully Designed",
+      title: "Regular Updates",
       description:
-        "Modern, minimal components designed with attention to detail and usability.",
+        "New components added weekly. Stay up to date with the latest UI trends.",
     },
     {
-      icon: <Package className="h-5 w-5" />,
-      title: "shadcn Compatible",
-      description:
-        "Built on shadcn/ui conventions. Works seamlessly with your existing setup.",
-    },
-    {
-      icon: <Zap className="h-5 w-5" />,
       title: "Production Ready",
       description:
         "Fully typed, accessible, and optimized for performance out of the box.",
     },
     {
-      icon: <Shield className="h-5 w-5" />,
-      title: "Open Source",
+      title: "shadcn Compatible",
       description:
-        "MIT licensed. Use it in personal and commercial projects without restrictions.",
-    },
-    {
-      icon: <GitBranch className="h-5 w-5" />,
-      title: "Regular Updates",
-      description:
-        "New components added weekly. Stay up to date with the latest UI trends.",
+        "Built on shadcn/ui conventions. Works seamlessly with your existing setup.",
     },
   ];
 
@@ -95,41 +70,43 @@ export default function HomePage() {
       <HeroSection2 />
 
       {/* Features Section */}
-      <section className="max-w-6xl w-full border-x   mx-auto px-4 lg:px-0 ">
-        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6">
-          <h2 className="text-3xl md:text-4xl font-semibold  font-sans">
-            Why Choose D2 Studio Components?
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built by developers, for developers. Every component is crafted with
-            care and optimized for real-world use.
+      <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
+        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 rounded-2xl border m-.5 bg-background">
+          <h3 className="text-xl md:text-2xl font-medium font-sans">
+            Copy. Paste. Ship.
+          </h3>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+            Production-ready components built on shadcn/ui. No package install,
+            no abstraction — just code you own.
           </p>
-          <Button className="h-12" asChild>
+          <Button className="h-11" asChild>
             <Link href="/blocks">
-              Explore blocks <ArrowUpRight />
+              Browse components <ArrowUpRight />
             </Link>
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 bg-border screen-line-before screen-line-after py-px gap-px max-w-6xl  mx-auto">
-          {features.map((feature, index) => (
-            <Card
-              key={index}
-              className="relative rounded-none border-0 shadow-none overflow-hidden hover:scale-99 group hover:rounded-lg transition-all"
-            >
-              <CardContent className="p-6">
-                <div className="rounded-lg bg-primary/10 w-12 h-12 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  {feature.icon}
-                </div>
-                <h3 className="font-semibold text-lg mb-2 font-sans">
+        <div className="screen-line-before screen-line-after flex flex-col gap-px bg-border py-px">
+          <div className="relative flex items-center justify-center bg-[#000000] min-h-[280px] lg:min-h-[420px] overflow-hidden rounded-2xl border m-.5">
+            <PixelIconCmd />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl border m-.5 overflow-hidden">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-background p-5 lg:p-6 flex flex-col gap-2"
+              >
+                <div className="size-5 rounded-sm bg-foreground/10" />
+                <h3 className="font-semibold text-sm font-sans">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   {feature.description}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
