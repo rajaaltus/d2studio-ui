@@ -57,7 +57,7 @@ function FeaturedBlockItem({ block }: { block: FeaturedBlock }) {
 
   return (
     <div className="space-y-8 screen-line-after">
-      <div className="w-full rounded-2xl border m-.5 bg-background overflow-hidden">
+      <div className="w-full rounded-xl border m-0 bg-background overflow-hidden">
         <ComponentWithCode
           componentName={block.name}
           component={state.Component}

@@ -1,0 +1,100 @@
+.pixel-spinner {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 3px);
+  gap: 3px;
+}
+.pixel-spinner .cell {
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  box-shadow:
+    0 0 1px #ff5e62,
+    0 0 2px #ff5e6280,
+    0 0 5px #ff5e6255;
+  opacity: 0;
+  animation-duration: 1080ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+.pixel-spinner .cell-0 { animation-name: ps-0; }
+.pixel-spinner .cell-1 { animation-name: ps-1; }
+.pixel-spinner .cell-2 { animation-name: ps-2; }
+.pixel-spinner .cell-3 { animation-name: ps-3; }
+.pixel-spinner .cell-4 { animation-name: ps-4; }
+.pixel-spinner .cell-5 { animation-name: ps-5; }
+.pixel-spinner .cell-6 { animation-name: ps-6; }
+.pixel-spinner .cell-7 { animation-name: ps-7; }
+.pixel-spinner .cell-8 { animation-name: ps-8; }
+
+@keyframes ps-0 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 0.5; }
+  33.33%, 49.99% { opacity: 0.25; }
+  50.00%, 66.66% { opacity: 0.15; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}
+@keyframes ps-1 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 0.5; }
+  66.67%, 83.32% { opacity: 0.25; }
+  83.33%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps-2 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 0.5; }
+  50.00%, 66.66% { opacity: 0.25; }
+  66.67%, 83.32% { opacity: 0.15; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps-3 {
+  0.00%, 16.66% { opacity: 0.15; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 0; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 0.5; }
+  83.33%, 99.99% { opacity: 0.25; }
+}
+@keyframes ps-4 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 0.5; }
+  33.33%, 49.99% { opacity: 0.25; }
+  50.00%, 66.66% { opacity: 0.15; }
+  66.67%, 83.32% { opacity: 0; }
+  83.33%, 99.99% { opacity: 1; }
+}
+@keyframes ps-5 {
+  0.00%, 16.66% { opacity: 0.25; }
+  16.67%, 33.32% { opacity: 0.15; }
+  33.33%, 49.99% { opacity: 0; }
+  50.00%, 66.66% { opacity: 0; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}
+@keyframes ps-6 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 0; }
+  33.33%, 49.99% { opacity: 1; }
+  50.00%, 66.66% { opacity: 0.5; }
+  66.67%, 83.32% { opacity: 0.25; }
+  83.33%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps-7 {
+  0.00%, 16.66% { opacity: 0; }
+  16.67%, 33.32% { opacity: 1; }
+  33.33%, 49.99% { opacity: 0.5; }
+  50.00%, 66.66% { opacity: 0.25; }
+  66.67%, 83.32% { opacity: 0.15; }
+  83.33%, 99.99% { opacity: 0; }
+}
+@keyframes ps-8 {
+  0.00%, 16.66% { opacity: 0.5; }
+  16.67%, 33.32% { opacity: 0.25; }
+  33.33%, 49.99% { opacity: 0.15; }
+  50.00%, 66.66% { opacity: 1; }
+  66.67%, 83.32% { opacity: 0.5; }
+  83.33%, 99.99% { opacity: 1; }
+}

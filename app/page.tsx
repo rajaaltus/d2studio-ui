@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,7 @@ import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
 import { SiteFooter } from "@/components/site-footer";
 import { PixelIconCmd } from "@/components/pixel-icon-cmd";
+import { PixelIconChevron } from "@/components/pixel-icon-chevron";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -31,31 +33,39 @@ const structuredData = {
 };
 
 export default function HomePage() {
-  const features = [
+  const features: {
+    title: string;
+    description: string;
+    icon?: React.ReactNode;
+  }[] = [
     {
       title: "Copy & Paste",
       description:
         "No packages to install. Just copy and paste components into your project.",
+      icon: <PixelIconChevron />,
     },
     {
       title: "Regular Updates",
       description:
         "New components added weekly. Stay up to date with the latest UI trends.",
+      icon: <PixelIconChevron />,
     },
     {
       title: "Production Ready",
       description:
         "Fully typed, accessible, and optimized for performance out of the box.",
+      icon: <PixelIconChevron />,
     },
     {
       title: "shadcn Compatible",
       description:
         "Built on shadcn/ui conventions. Works seamlessly with your existing setup.",
+      icon: <PixelIconChevron />,
     },
   ];
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden bg-black">
       <Navigation />
       {/* Structured Data */}
       <script
@@ -71,7 +81,7 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
-        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 rounded-2xl border m-.5 bg-background">
+        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 rounded-xl border m-0 bg-background">
           <h3 className="text-xl md:text-2xl font-medium font-sans">
             Copy. Paste. Ship.
           </h3>
@@ -86,18 +96,26 @@ export default function HomePage() {
           </Button>
         </div>
 
-        <div className="screen-line-before screen-line-after flex flex-col gap-px bg-border py-px">
-          <div className="relative flex items-center justify-center bg-[#000000] min-h-[280px] lg:min-h-[420px] overflow-hidden rounded-2xl border m-.5">
-            <PixelIconCmd />
+        <div className="flex flex-col gap-px bg-border rounded-xl border overflow-hidden m-0">
+          <div className="flex items-center justify-center bg-[#000000] min-h-[160px] sm:min-h-[224px] lg:min-h-[294px] overflow-hidden px-3 sm:px-6 gap-2 sm:gap-10 md:gap-16 lg:gap-24 md:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.5),black_10%,black_90%,rgba(0,0,0,0.5))]">
+            <IsoIcon src="/Cozy Icon 6.svg" label="Cozy Icon 6" />
+            <IsoIcon src="/Heart Icon 2.svg" label="Heart Icon 2" mobileSide="left" />
+            <CenterPixelIcon />
+            <IsoIcon src="/Isocons Rocket 2.svg" label="Isocons Rocket 2" mobileSide="right" />
+            <IsoIcon src="/Close Fullscreen Icon 4.svg" label="Close Fullscreen ..." />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl border m-.5 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {features.map((feature, index) => (
               <div
                 key={index}
                 className="bg-background p-5 lg:p-6 flex flex-col gap-2"
               >
-                <div className="size-5 rounded-sm bg-foreground/10" />
+                <div className="size-5 flex items-center justify-center">
+                  {feature.icon ?? (
+                    <div className="size-5 rounded-sm bg-foreground/10" />
+                  )}
+                </div>
                 <h3 className="font-semibold text-sm font-sans">
                   {feature.title}
                 </h3>
@@ -185,6 +203,46 @@ export default function HomePage() {
       </section>
 
       <SiteFooter />
+    </div>
+  );
+}
+
+function IsoIcon({
+  src,
+  label,
+  mobileSide,
+}: {
+  src: string;
+  label: string;
+  mobileSide?: "left" | "right";
+}) {
+  const visibility = mobileSide ? "" : "hidden sm:block";
+  const mask =
+    mobileSide === "left"
+      ? "[mask-image:linear-gradient(to_right,transparent,black_70%)] sm:[mask-image:none]"
+      : mobileSide === "right"
+        ? "[mask-image:linear-gradient(to_left,transparent,black_70%)] sm:[mask-image:none]"
+        : "";
+
+  return (
+    <div className={`shrink-0 opacity-80 ${visibility} ${mask}`.trim()}>
+      <Image
+        src={src}
+        alt={label}
+        width={125}
+        height={125}
+        className="w-[72px] h-[72px] md:w-[96px] md:h-[96px] lg:w-[125px] lg:h-[125px]"
+      />
+    </div>
+  );
+}
+
+function CenterPixelIcon() {
+  return (
+    <div className="shrink-0 w-[96px] h-[96px] sm:w-[72px] sm:h-[72px] md:w-[96px] md:h-[96px] lg:w-[125px] lg:h-[125px] flex items-center justify-center">
+      <div className="origin-center scale-[0.768] sm:scale-[0.576] md:scale-[0.768] lg:scale-100">
+        <PixelIconCmd />
+      </div>
     </div>
   );
 }
