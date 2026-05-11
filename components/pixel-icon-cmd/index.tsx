@@ -289,10 +289,10 @@ const FRAMES = 38;
 const TOTAL = 1024;
 
 function buildKeyframes(): string {
-  const decay = [1, 0.7, 0.45];
+  const decay = [1, 0.7, 0.45, 0.25];
   const rules: string[] = [];
   for (const [idxStr, pulses] of Object.entries(PULSES)) {
-    const timeline = new Array(FRAMES).fill(0.4);
+    const timeline = new Array(FRAMES).fill(0.24);
     for (const p of pulses) {
       for (let i = 0; i < decay.length; i++) {
         timeline[(p + i) % FRAMES] = decay[i];

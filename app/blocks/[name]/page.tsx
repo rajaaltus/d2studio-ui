@@ -95,6 +95,7 @@ export default function BlockPage() {
           code={undefined}
           figmaUrl={block.figmaUrl}
           codeStatus={block.codeStatus}
+          isNew={block.isNew}
           minHeight="500px"
         >
           <div className="w-full h-full min-h-[600px] bg-background">

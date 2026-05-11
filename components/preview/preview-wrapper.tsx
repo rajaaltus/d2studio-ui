@@ -33,6 +33,7 @@ interface PreviewWrapperProps {
   iframeHeight?: number;
   figmaUrl?: string;
   codeStatus?: "coming_soon" | "available";
+  isNew?: boolean;
 }
 
 export function PreviewWrapper({
@@ -44,6 +45,7 @@ export function PreviewWrapper({
   iframeHeight = 930,
   figmaUrl,
   codeStatus = "available",
+  isNew = false,
 }: PreviewWrapperProps) {
   const [view, setView] = React.useState<"preview" | "code" | "figma">("preview");
   const [copiedInstall, setCopiedInstall] = React.useState(false);
@@ -83,8 +85,17 @@ export function PreviewWrapper({
       <div className="flex items-center justify-between gap-2 p-1 screen-line-after screen-line-before">
         <div className="flex items-center justify-start gap-4 ">
           {/* Component Name Badge */}
-          <div className="hidden h-auto rounded-sm font-sans  px-2 capitalize sm:inline-flex">
-            {componentName}
+          <div className="hidden h-auto items-center gap-2 rounded-sm font-sans px-2 capitalize sm:inline-flex">
+            <span>{componentName}</span>
+            {isNew && (
+              <span className="relative inline-flex items-center overflow-hidden rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-[0_0_12px_oklch(0.7_0.2_50/0.5)]">
+                <span className="relative z-10">New</span>
+                <span
+                  className="pointer-events-none absolute inset-0 -translate-x-full animate-[badge-shimmer_2.2s_linear_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                  aria-hidden="true"
+                />
+              </span>
+            )}
           </div>
           <div className="hidden h-4 w-px bg-border sm:block" />
           {/* Preview/Code/Figma Toggle */}

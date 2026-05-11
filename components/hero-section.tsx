@@ -52,7 +52,7 @@ const HeroSection2 = () => {
               </MetalButtonSlide>
               <Button
                 variant="outline"
-                className="h-11 w-full sm:w-auto px-5 border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white dark:border-white/15 dark:bg-transparent dark:hover:bg-white/5"
+                className="h-11 w-full sm:w-auto px-5"
                 asChild
               >
                 <Link ref={docsRef} href="/docs">

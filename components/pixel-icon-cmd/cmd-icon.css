@@ -1,25 +1,44 @@
 /* Pixel-animated icon — drop-in HTML + CSS, no JavaScript. */
+/* Light mode — 2px gray cells, soft halo. */
 .pixel-icon--cmd {
   display: inline-grid;
-  grid-template-columns: repeat(32, 1px);
-  grid-template-rows: repeat(32, 1px);
-  gap: 3px;
+  grid-template-columns: repeat(32, 2px);
+  grid-template-rows: repeat(32, 2px);
+  gap: 2px;
 }
 .pixel-icon--cmd .px {
-  width: 1px;
-  height: 1px;
+  width: 2px;
+  height: 2px;
   border-radius: 0;
   opacity: 0;
 }
 .pixel-icon--cmd .px.on {
+  background: linear-gradient(135deg, color-mix(in oklab, #b5b5b5 80%, white), color-mix(in oklab, #b5b5b5 85%, black));
+  box-shadow:
+    0 0 1px #b5b5b5,
+    0 0 3px #b5b5b580,
+    0 0 6px #b5b5b555;
+  animation-duration: 4560ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+/* Dark mode — original 1px white cells, 3px gap, no glow. */
+.dark .pixel-icon--cmd {
+  grid-template-columns: repeat(32, 1px);
+  grid-template-rows: repeat(32, 1px);
+  gap: 3px;
+}
+.dark .pixel-icon--cmd .px {
+  width: 1px;
+  height: 1px;
+}
+.dark .pixel-icon--cmd .px.on {
   background: linear-gradient(135deg, color-mix(in oklab, #f8fafc 80%, white), color-mix(in oklab, #f8fafc 85%, black));
   box-shadow:
     0 0 0px #f8fafc,
     0 0 0px #f8fafc80,
     0 0 0px #f8fafc55;
-  animation-duration: 4560ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps(1, end);
 }
 .pixel-icon--cmd .px-10 { animation-name: pi-cmd-10; }
 .pixel-icon--cmd .px-11 { animation-name: pi-cmd-11; }

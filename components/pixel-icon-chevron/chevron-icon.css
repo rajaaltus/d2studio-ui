@@ -1,29 +1,42 @@
 /* Pixel-animated icon — drop-in HTML + CSS, no JavaScript. */
 .pixel-icon--chevron-right-outline-18 {
   display: inline-grid;
-  grid-template-columns: repeat(8, 1px);
-  grid-template-rows: repeat(8, 1px);
+  grid-template-columns: repeat(8, 2px);
+  grid-template-rows: repeat(8, 2px);
   gap: 2px;
 }
 .pixel-icon--chevron-right-outline-18 .px {
-  width: 1px;
-  height: 1px;
+  width: 2px;
+  height: 2px;
   border-radius: 22%;
   opacity: 0;
 }
 .pixel-icon--chevron-right-outline-18 .px.on {
   background: linear-gradient(
     135deg,
+    color-mix(in oklab, #8a8a8a 80%, white),
+    color-mix(in oklab, #8a8a8a 85%, black)
+  );
+  box-shadow:
+    0 0 1px #8a8a8a,
+    0 0 3px #8a8a8a80,
+    0 0 6px #8a8a8a55;
+  animation-duration: 1920ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+/* Dark mode — near-white cells with subtle halo. */
+.dark .pixel-icon--chevron-right-outline-18 .px.on {
+  background: linear-gradient(
+    135deg,
     color-mix(in oklab, #f8fafc 80%, white),
     color-mix(in oklab, #f8fafc 85%, black)
   );
   box-shadow:
-    0 0 0px #f8fafc,
-    0 0 0px #f8fafc80,
-    0 0 0px #f8fafc55;
-  animation-duration: 1920ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps(1, end);
+    0 0 1px #f8fafc,
+    0 0 3px #f8fafc80,
+    0 0 6px #f8fafc55;
 }
 .pixel-icon--chevron-right-outline-18 .px-10 { animation-name: pi-chevron-right-outline-18-10; }
 .pixel-icon--chevron-right-outline-18 .px-11 { animation-name: pi-chevron-right-outline-18-11; }

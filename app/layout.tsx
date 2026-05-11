@@ -6,6 +6,7 @@ import { ThemeFlashScript } from "@/components/theme-flash-script";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { BuyMeCoffeeFab } from "@/components/buy-me-coffee-fab";
+import { FloatingDock } from "@/components/floating-dock";
 import { GoogleAnalytics } from "@/components/google-analytics";
 
 const inter = Inter({
@@ -121,6 +122,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <ConvexClientProvider>{children}</ConvexClientProvider>
+            <FloatingDock />
             <BuyMeCoffeeFab />
           </ThemeProvider>
         </body>

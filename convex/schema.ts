@@ -38,6 +38,7 @@ export default defineSchema({
     blockType: v.optional(v.string()),
     isFeatured: v.optional(v.boolean()),
     featuredOrder: v.optional(v.number()),
+    isNew: v.optional(v.boolean()),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
