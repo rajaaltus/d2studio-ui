@@ -3,12 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import { MetalFx } from "metal-fx";
 import Link from "next/link";
 import React from "react";
 import { brandData } from "./brand-data";
 import GoldenRatioSpiral from "./golden-ratio-spiral";
 
 const HeroSection2 = () => {
+  const docsRef = React.useRef<HTMLAnchorElement>(null);
   return (
     <div className="w-full mx-auto h-full [--pattern-fg:var(--color-black)]/10 dark:bg-background dark:[--pattern-fg:var(--color-white)]/10 overflow-x-hidden">
       {/* 8x7 Grid Container with max-w-6xl */}
@@ -45,18 +47,29 @@ const HeroSection2 = () => {
           </div>
           <div className="col-start-2 row-start-2 min-h-[5rem]  h-full relative z-0 bg-background rounded-xl">
             <div className="flex  h-full gap-4 w-full items-center  p-4 md:p-0 justify-center flex-col sm:flex-row">
-              <Button className="h-12 w-full sm:w-auto" asChild>
-                <Link href="/blocks">
-                  Explore Blocks
-                  <ArrowUpRight size={16} />
-                </Link>
-              </Button>
+              <MetalFx
+                variant="button"
+                preset="chromatic"
+                theme="dark"
+                style={{ background: "#000" }}
+                reflectionTargets={[docsRef]}
+              >
+                <Button
+                  className="h-11 w-full sm:w-auto px-5 text-white"
+                  asChild
+                >
+                  <Link href="/blocks">
+                    Explore Blocks
+                    <ArrowUpRight size={16} />
+                  </Link>
+                </Button>
+              </MetalFx>
               <Button
                 variant="outline"
-                className="h-12 w-full sm:w-auto"
+                className="h-11 w-full sm:w-auto px-5 border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white dark:border-white/15 dark:bg-transparent dark:hover:bg-white/5"
                 asChild
               >
-                <Link href="/docs">
+                <Link ref={docsRef} href="/docs">
                   Documentation
                   <ArrowUpRight size={16} />
                 </Link>
