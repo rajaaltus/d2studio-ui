@@ -15,7 +15,8 @@ function BlocksContent() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
-      
+      <div id="main-content" tabIndex={-1} className="outline-none" />
+
       {/* Header Section */}
       <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-0">
         <div className="py-12 lg:py-16 text-center">

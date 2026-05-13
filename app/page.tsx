@@ -70,6 +70,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background">
       <Navigation />
+      <div id="main-content" tabIndex={-1} className="outline-none" />
       {/* Structured Data */}
       <script
         type="application/ld+json"
