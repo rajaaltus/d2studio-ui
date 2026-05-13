@@ -39,6 +39,7 @@ export default defineSchema({
     isFeatured: v.optional(v.boolean()),
     featuredOrder: v.optional(v.number()),
     isNew: v.optional(v.boolean()),
+    accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -49,6 +50,7 @@ export default defineSchema({
     .index("by_created", ["createdAt"])
     .index("by_blockType", ["blockType"])
     .index("by_codeStatus", ["codeStatus"])
+    .index("by_accessTier", ["accessTier"])
     .index("by_featured", ["isFeatured", "featuredOrder"]),
 
   // Download tracking events

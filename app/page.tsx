@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MetalButtonSlide } from "@/components/metal-button-slide";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
@@ -208,12 +209,9 @@ export default function HomePage() {
               amazing products faster.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
-              <Button className="h-11" asChild>
-                <Link href="/blocks">
-                  View All Components
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <MetalButtonSlide href="/blocks">
+                View All Components
+              </MetalButtonSlide>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/logo";
+import { FooterIllustrationCard } from "@/components/footer-illustration-card";
 
 export function SiteFooter() {
   const sections: {
@@ -125,6 +126,8 @@ export function SiteFooter() {
           </div>
         </div>
       </section>
+
+      <FooterIllustrationCard />
     </footer>
   );
 }

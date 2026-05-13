@@ -547,6 +547,29 @@
   }
 }
 
+@keyframes d2-flash {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.55;
+  }
+  55% {
+    background-position: 100% 50%;
+    opacity: 0.5;
+  }
+  100% {
+    background-position: 220% 50%;
+    opacity: 0;
+  }
+}
+
+.animate-d2-flash {
+  animation: d2-flash 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
+}
+
+
 .luminous-spinners .spinner-grid {
   position: relative;
 }

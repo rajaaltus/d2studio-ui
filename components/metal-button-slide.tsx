@@ -22,6 +22,32 @@ export function MetalButtonSlide({
   className,
 }: MetalButtonSlideProps) {
   const [isHovered, setIsHovered] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="inline-flex w-full sm:w-auto">
+        <Button
+          className={cn(
+            "h-11 w-full sm:w-auto px-5 text-white bg-black",
+            className
+          )}
+          asChild
+        >
+          <Link href={href}>
+            {children}
+            <span className="relative inline-flex size-4 overflow-hidden">
+              <ArrowUpRight size={16} />
+            </span>
+          </Link>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -40,7 +66,7 @@ export function MetalButtonSlide({
         variant="button"
         preset="chromatic"
         theme="dark"
-        strength={isHovered ? 1 : 0.65}
+        strength={isHovered ? 1 : 0.70}
         style={{ background: "#000" }}
         reflectionTargets={reflectionTargets}
       >
