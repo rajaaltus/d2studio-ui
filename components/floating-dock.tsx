@@ -23,6 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useTheme } from "@/components/theme-provider";
+import { NavIcons } from "@/components/ui/nav-icons";
 
 type IconComponent = React.ComponentType<{ className?: string }>;
 
@@ -197,7 +198,7 @@ function DockInner() {
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-40 flex justify-center px-4">
       <nav
         aria-label="Quick navigation"
-        className="pointer-events-auto flex h-12 items-center gap-1 rounded-full border border-border/60 bg-background/70 px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-background/60 dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]"
+        className="pointer-events-auto flex h-12 items-center gap-1 rounded-full border border-border/60 bg-background px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]"
       >
         {/* Blocks dropdown */}
         <Popover>
@@ -206,9 +207,10 @@ function DockInner() {
               type="button"
               className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
             >
-              <span
+              <NavIcons.blockicon
                 aria-hidden
-                className="inline-flex h-1.5 w-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_currentColor]"
+                active={pathname.startsWith("/blocks")}
+                className="h-6 w-6"
               />
               Blocks
               <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />

@@ -573,6 +573,13 @@
   animation: d2-flash 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
 }
 
+.d2-nav-blend {
+  mix-blend-mode: normal;
+}
+.dark .d2-nav-blend {
+  mix-blend-mode: plus-lighter;
+}
+
 @keyframes d2-stripes-move {
   0% {
     background-position: 0% 50%;
