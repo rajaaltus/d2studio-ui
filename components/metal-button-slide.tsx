@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import { MetalFx } from "metal-fx";
 import { motion } from "motion/react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import React from "react";
 
@@ -23,17 +24,20 @@ export function MetalButtonSlide({
 }: MetalButtonSlideProps) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
+  const { resolvedTheme } = useTheme();
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  const isLight = resolvedTheme === "light";
 
   if (!mounted) {
     return (
       <div className="inline-flex w-full sm:w-auto">
         <Button
           className={cn(
-            "h-11 w-full sm:w-auto px-5 text-white bg-black",
+            "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-black dark:text-white",
             className
           )}
           asChild
@@ -65,13 +69,17 @@ export function MetalButtonSlide({
       <MetalFx
         variant="button"
         preset="chromatic"
-        theme="dark"
+        theme={isLight ? "light" : "dark"}
         strength={isHovered ? 1 : 0.70}
-        style={{ background: "#000" }}
+        style={{ background: isLight ? "#fff" : "#000" }}
         reflectionTargets={reflectionTargets}
       >
         <Button
-          className={cn("h-11 w-full sm:w-auto px-5 text-white", className)}
+          className={cn(
+            "h-11 w-full sm:w-auto px-5",
+            isLight ? "text-black" : "text-white",
+            className
+          )}
           asChild
         >
           <Link href={href}>
