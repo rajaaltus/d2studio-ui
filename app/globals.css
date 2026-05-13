@@ -77,7 +77,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --edge: var(--border)
+  --edge: var(--border);
+  --d2-flash-gradient: radial-gradient(circle at center, #12D132 0%, #785CFF 27%, #FF683A 57%, #DC28AF 75%, #15588B 100%);
+  --d2-blue-gradient: linear-gradient(135deg, #785CFF 0%, #DC28AF 50%, #FF683A 100%);
 }
 
 .dark {
@@ -112,7 +114,9 @@
   --sidebar-accent-foreground: oklch(0.995 0 0);
   --sidebar-border: oklch(0.18 0 0);
   --sidebar-ring: oklch(0.65 0 0);
-  --edge: var(--border)
+  --edge: var(--border);
+  --d2-flash-gradient: linear-gradient(270deg, #56DAFF 0%, #A8FF80 18%, #FFF4A3 35%, #FF9CC8 55%, #C28AFF 75%, #56DAFF 100%);
+  --d2-blue-gradient: linear-gradient(135deg, #7DCFFF 0%, #56DAFF 50%, #B8E5FF 100%);
 }
 
 @utility bg-edge {
@@ -567,6 +571,32 @@
 
 .animate-d2-flash {
   animation: d2-flash 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
+}
+
+@keyframes d2-stripes-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-d2-stripes-move {
+  animation: d2-stripes-move 4s linear infinite;
+}
+
+@keyframes d2-holo-shine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+.animate-d2-holo-shine {
+  animation: d2-holo-shine 3.5s linear infinite;
 }
 
 

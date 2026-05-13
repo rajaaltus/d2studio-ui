@@ -61,6 +61,11 @@ export function FooterIllustrationCard() {
   const handleMouseLeave = () => {
     setHovering(false);
     setFlashKey(Date.now());
+    const el = wrapRef.current;
+    if (el) {
+      el.style.setProperty("--reveal-x", "-9999px");
+      el.style.setProperty("--reveal-y", "-9999px");
+    }
   };
 
   return (
@@ -76,8 +81,8 @@ export function FooterIllustrationCard() {
         className="relative w-full flex items-end justify-center px-4 pt-8"
         style={
           {
-            "--reveal-x": "50%",
-            "--reveal-y": "50%",
+            "--reveal-x": "-9999px",
+            "--reveal-y": "-9999px",
           } as React.CSSProperties
         }
       >
@@ -88,18 +93,37 @@ export function FooterIllustrationCard() {
           D2 STUDIO
         </span>
 
+        {/* Light theme: brand gradient reveals following the cursor (default state is gray) */}
+        <span
+          className="pointer-events-none absolute inset-0 dark:hidden flex items-end justify-center px-4 pt-8 mix-blend-plus-lighter"
+          style={{
+            opacity: 0.85,
+            WebkitMaskImage:
+              "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%)",
+            maskImage:
+              "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%)",
+          }}
+        >
+          <span
+            className={WORDMARK_CLASSES}
+            style={{ backgroundImage: "var(--d2-flash-gradient)" }}
+          >
+            D2 STUDIO
+          </span>
+        </span>
+
         {!isCoarse && (
           <>
             {/* Flash: brand gradient sweep triggered on mouse-leave, plays once then returns to gray */}
             {flashKey !== null && (
               <span
                 key={flashKey}
-                className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-color-dodge"
+                className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-normal dark:mix-blend-color-dodge"
               >
                 <span
                   className={`${WORDMARK_CLASSES} animate-d2-flash`}
                   style={{
-                    backgroundImage: COLOR_GRADIENT,
+                    backgroundImage: "var(--d2-flash-gradient)",
                     backgroundSize: "300% 100%",
                   }}
                 >
@@ -110,7 +134,7 @@ export function FooterIllustrationCard() {
 
             {/* Hover overlay: solid blue fill revealed by spotlight */}
             <span
-              className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-screen transition-opacity duration-300"
+              className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-300"
               style={{
                 opacity: hovering ? 0.35 : 0,
                 willChange: hovering ? "opacity, mask-image" : "auto",
@@ -123,8 +147,58 @@ export function FooterIllustrationCard() {
               <span
                 className={WORDMARK_CLASSES}
                 style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, #7DCFFF 0%, #56DAFF 50%, #B8E5FF 100%)",
+                  backgroundImage: "var(--d2-blue-gradient)",
+                }}
+              >
+                D2 STUDIO
+              </span>
+            </span>
+
+            {/* Light theme: gray stripes shimmer with color-dodge on hover */}
+            <span
+              className="pointer-events-none absolute inset-0 dark:hidden flex items-end justify-center px-4 pt-8 mix-blend-screen transition-opacity duration-300"
+              style={{
+                opacity: hovering ? 0.6 : 0,
+                willChange: hovering ? "opacity, mask-image" : "auto",
+                WebkitMaskImage:
+                  "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%)",
+                maskImage:
+                  "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%)",
+                WebkitMaskComposite: "source-in",
+                maskComposite: "intersect",
+              }}
+            >
+              <span
+                className={WORDMARK_CLASSES}
+                style={{
+                  backgroundImage: "radial-gradient(#B5B9FF,rgb(0, 255, 200))",
+                }}
+              >
+                D2 STUDIO
+              </span>
+            </span>
+
+            {/* Light theme: moving particle stripes following cursor spotlight, concentrated at bottom */}
+            <span
+              className="pointer-events-none absolute inset-0 dark:hidden flex items-end justify-center px-4 pt-8 mix-blend-lighten transition-opacity duration-300"
+              style={{
+                opacity: hovering ? 0.9 : 0,
+                willChange: hovering ? "opacity, mask-image" : "auto",
+                WebkitMaskImage:
+                  "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), linear-gradient(to bottom, transparent 30%, black 60%, black 100%), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%)",
+                maskImage:
+                  "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), linear-gradient(to bottom, transparent 30%, black 60%, black 100%), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%)",
+                WebkitMaskComposite: "source-in",
+                maskComposite: "intersect",
+              }}
+            >
+              <span
+                className={`${WORDMARK_CLASSES} animate-d2-stripes-move`}
+                style={{
+                  backgroundImage: "var(--d2-flash-gradient)",
+                  backgroundSize: "300% 100%",
+                  WebkitMaskImage: "none",
+                  maskImage: "none",
                 }}
               >
                 D2 STUDIO
@@ -133,7 +207,7 @@ export function FooterIllustrationCard() {
 
             {/* Hover overlay: colorful wordmark with stripe mask, revealed by cursor spotlight */}
             <span
-              className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-hard-light transition-opacity duration-300"
+              className="pointer-events-none absolute inset-0 hidden dark:flex items-end justify-center px-4 pt-8 mix-blend-hard-light transition-opacity duration-300"
               style={{
                 opacity: hovering ? 0.9 : 0,
                 willChange: hovering ? "opacity, mask-image" : "auto",
@@ -148,7 +222,7 @@ export function FooterIllustrationCard() {
               <span
                 className={WORDMARK_CLASSES}
                 style={{
-                  backgroundImage: COLOR_GRADIENT,
+                  backgroundImage: "var(--d2-flash-gradient)",
                   WebkitMaskImage: "none",
                   maskImage: "none",
                 }}
