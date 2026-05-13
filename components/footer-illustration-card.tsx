@@ -24,15 +24,38 @@ const CHROMATIC_OUTLINE = [
 
 export function FooterIllustrationCard() {
   const wrapRef = React.useRef<HTMLDivElement>(null);
+  const rafIdRef = React.useRef<number | null>(null);
+  const pendingCoordsRef = React.useRef<{ x: number; y: number } | null>(null);
   const [hovering, setHovering] = React.useState(false);
   const [flashKey, setFlashKey] = React.useState<number | null>(null);
+  const [isCoarse, setIsCoarse] = React.useState(false);
+
+  React.useEffect(() => {
+    const mql = window.matchMedia("(pointer: coarse)");
+    setIsCoarse(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsCoarse(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  React.useEffect(() => {
+    return () => {
+      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty("--reveal-x", `${e.clientX - rect.left}px`);
-    el.style.setProperty("--reveal-y", `${e.clientY - rect.top}px`);
+    pendingCoordsRef.current = { x: e.clientX, y: e.clientY };
+    if (rafIdRef.current !== null) return;
+    rafIdRef.current = requestAnimationFrame(() => {
+      rafIdRef.current = null;
+      const el = wrapRef.current;
+      const coords = pendingCoordsRef.current;
+      if (!el || !coords) return;
+      const rect = el.getBoundingClientRect();
+      el.style.setProperty("--reveal-x", `${coords.x - rect.left}px`);
+      el.style.setProperty("--reveal-y", `${coords.y - rect.top}px`);
+    });
   };
 
   const handleMouseLeave = () => {
@@ -47,9 +70,9 @@ export function FooterIllustrationCard() {
     >
       <div
         ref={wrapRef}
-        onMouseMove={handleMove}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={handleMouseLeave}
+        onMouseMove={isCoarse ? undefined : handleMove}
+        onMouseEnter={isCoarse ? undefined : () => setHovering(true)}
+        onMouseLeave={isCoarse ? undefined : handleMouseLeave}
         className="relative w-full flex items-end justify-center px-4 pt-8"
         style={
           {
@@ -65,70 +88,76 @@ export function FooterIllustrationCard() {
           D2 STUDIO
         </span>
 
-        {/* Flash: brand gradient sweep triggered on mouse-leave, plays once then returns to gray */}
-        {flashKey !== null && (
-          <span
-            key={flashKey}
-            className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-color-dodge"
-          >
+        {!isCoarse && (
+          <>
+            {/* Flash: brand gradient sweep triggered on mouse-leave, plays once then returns to gray */}
+            {flashKey !== null && (
+              <span
+                key={flashKey}
+                className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-color-dodge"
+              >
+                <span
+                  className={`${WORDMARK_CLASSES} animate-d2-flash`}
+                  style={{
+                    backgroundImage: COLOR_GRADIENT,
+                    backgroundSize: "300% 100%",
+                  }}
+                >
+                  D2 STUDIO
+                </span>
+              </span>
+            )}
+
+            {/* Hover overlay: solid blue fill revealed by spotlight */}
             <span
-              className={`${WORDMARK_CLASSES} animate-d2-flash`}
+              className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-screen transition-opacity duration-300"
               style={{
-                backgroundImage: COLOR_GRADIENT,
-                backgroundSize: "300% 100%",
+                opacity: hovering ? 0.35 : 0,
+                willChange: hovering ? "opacity, mask-image" : "auto",
+                WebkitMaskImage:
+                  "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
+                maskImage:
+                  "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
               }}
             >
-              D2 STUDIO
+              <span
+                className={WORDMARK_CLASSES}
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg, #7DCFFF 0%, #56DAFF 50%, #B8E5FF 100%)",
+                }}
+              >
+                D2 STUDIO
+              </span>
             </span>
-          </span>
+
+            {/* Hover overlay: colorful wordmark with stripe mask, revealed by cursor spotlight */}
+            <span
+              className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-hard-light transition-opacity duration-300"
+              style={{
+                opacity: hovering ? 0.9 : 0,
+                willChange: hovering ? "opacity, mask-image" : "auto",
+                WebkitMaskImage:
+                  "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%), radial-gradient(ellipse 75% 90% at center, black 35%, transparent 100%)",
+                maskImage:
+                  "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%), radial-gradient(ellipse 75% 90% at center, black 35%, transparent 100%)",
+                WebkitMaskComposite: "source-in",
+                maskComposite: "intersect",
+              }}
+            >
+              <span
+                className={WORDMARK_CLASSES}
+                style={{
+                  backgroundImage: COLOR_GRADIENT,
+                  WebkitMaskImage: "none",
+                  maskImage: "none",
+                }}
+              >
+                D2 STUDIO
+              </span>
+            </span>
+          </>
         )}
-
-        {/* Hover overlay: solid blue fill revealed by spotlight */}
-        <span
-          className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-screen transition-opacity duration-300"
-          style={{
-            opacity: hovering ? 0.35 : 0,
-            WebkitMaskImage:
-              "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
-            maskImage:
-              "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.5) 60%, transparent 100%)",
-          }}
-        >
-          <span
-            className={WORDMARK_CLASSES}
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, #7DCFFF 0%, #56DAFF 50%, #B8E5FF 100%)",
-            }}
-          >
-            D2 STUDIO
-          </span>
-        </span>
-
-        {/* Hover overlay: colorful wordmark with stripe mask, revealed by cursor spotlight */}
-        <span
-          className="pointer-events-none absolute inset-0 flex items-end justify-center px-4 pt-8 mix-blend-hard-light transition-opacity duration-300"
-          style={{
-            opacity: hovering ? 0.9 : 0,
-            WebkitMaskImage:
-              "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%), radial-gradient(ellipse 75% 90% at center, black 35%, transparent 100%)",
-            maskImage:
-              "repeating-linear-gradient(0deg, transparent 0, black 0.21px, black 1.46px, transparent 1.67px, transparent 6.683px), radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 45%, rgba(0,0,0,0.6) 70%, transparent 100%), radial-gradient(ellipse 75% 90% at center, black 35%, transparent 100%)",
-            WebkitMaskComposite: "source-in",
-            maskComposite: "intersect",
-          }}
-        >
-          <span
-            className={WORDMARK_CLASSES}
-            style={{
-              backgroundImage: COLOR_GRADIENT,
-              WebkitMaskImage: "none",
-              maskImage: "none",
-            }}
-          >
-            D2 STUDIO
-          </span>
-        </span>
       </div>
     </section>
   );
