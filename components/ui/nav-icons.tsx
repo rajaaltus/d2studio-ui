@@ -4,6 +4,7 @@ import { LucideProps } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PixelIconSpinner } from "@/components/pixel-icon-spinner";
 import { PixelIconSpinnerHero } from "@/components/pixel-icon-spinner/hero";
+import { PixelIconSpinnerAi } from "@/components/pixel-icon-spinner/ai";
 
 type NavIconProps = LucideProps & { active?: boolean };
 
@@ -150,6 +151,16 @@ export const NavIcons = {
     illuicon: ({ active: _active = false, ...props }: NavIconProps) => (
         // paste svg here; split structural elements out, gate bloom/shimmer on `active`
         <>  </>
-    )
+    ),
+    aiicon: ({ active: _active = false, className }: NavIconProps) => {
+      return (
+        <span
+          aria-hidden
+          className={cn("inline-flex items-center justify-center", className)}
+        >
+          <PixelIconSpinnerAi />
+        </span>
+      );
+    },
 
 }

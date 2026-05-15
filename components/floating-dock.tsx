@@ -12,7 +12,6 @@ import {
   LayoutGrid,
   Moon,
   Palette,
-  Sparkles,
   Sun,
   Tag,
 } from "lucide-react";
@@ -50,7 +49,7 @@ const blockCategories: BlockCategory[] = [
     name: "AI components",
     slug: "ai-components",
     description: "AI-driven UI patterns",
-    icon: Sparkles,
+    icon: NavIcons.aiicon,
   },
   {
     name: "Blocks",
@@ -111,6 +110,7 @@ function Divider() {
 function PricingDropdown() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [open, setOpen] = React.useState(false);
   const raw = searchParams.get("tier");
   const current: TierOption["value"] =
     raw === "free" || raw === "pro" ? raw : "all";
@@ -123,10 +123,11 @@ function PricingDropdown() {
     else params.set("tier", next);
     const query = params.toString();
     router.push(query ? `/blocks?${query}` : "/blocks");
+    setOpen(false);
   };
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <button
           type="button"
@@ -140,7 +141,14 @@ function PricingDropdown() {
               className={`inline-flex h-1.5 w-1.5 rounded-full ${currentOption.dot} shadow-[0_0_8px_currentColor]`}
             />
           </span>
-          {currentOption.label === "All" ? "Pricing" : currentOption.label}
+          <span className="grid">
+            <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
+              Pricing
+            </span>
+            <span className="col-start-1 row-start-1 whitespace-nowrap">
+              {currentOption.label === "All" ? "Pricing" : currentOption.label}
+            </span>
+          </span>
           <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
         </button>
       </PopoverTrigger>
@@ -209,6 +217,15 @@ function DockInner() {
     : undefined;
   const BlocksTriggerIcon = activeCategory?.icon ?? NavIcons.blockicon;
   const blocksTriggerLabel = activeCategory?.name ?? "Blocks";
+  const longestBlocksLabel = React.useMemo(
+    () =>
+      blockCategories.reduce(
+        (longest, c) => (c.name.length > longest.length ? c.name : longest),
+        "Blocks",
+      ),
+    [],
+  );
+  const [blocksOpen, setBlocksOpen] = React.useState(false);
 
   if (
     pathname.startsWith("/preview") ||
@@ -225,7 +242,7 @@ function DockInner() {
         className="pointer-events-auto flex h-12 items-center gap-1 rounded-full border border-border/60 bg-background px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]"
       >
         {/* Blocks dropdown */}
-        <Popover>
+        <Popover open={blocksOpen} onOpenChange={setBlocksOpen}>
           <PopoverTrigger asChild>
             <button
               type="button"
@@ -237,7 +254,14 @@ function DockInner() {
               >
                 <BlocksTriggerIcon className="h-4 w-4" />
               </span>
-              {blocksTriggerLabel}
+              <span className="grid">
+                <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
+                  {longestBlocksLabel}
+                </span>
+                <span className="col-start-1 row-start-1 whitespace-nowrap">
+                  {blocksTriggerLabel}
+                </span>
+              </span>
               <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
             </button>
           </PopoverTrigger>
@@ -257,6 +281,7 @@ function DockInner() {
                   <Link
                     key={c.slug}
                     href={c.slug === "all" ? "/blocks" : `/blocks?type=${c.slug}`}
+                    onClick={() => setBlocksOpen(false)}
                     className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
                   >
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground/80 transition-colors group-hover:text-foreground">
