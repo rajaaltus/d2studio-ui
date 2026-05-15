@@ -10,7 +10,6 @@ import {
   Gem,
   LayoutDashboard,
   LayoutGrid,
-  LayoutTemplate,
   Moon,
   Palette,
   Sparkles,
@@ -36,28 +35,34 @@ type BlockCategory = {
 
 const blockCategories: BlockCategory[] = [
   {
+    name: "All",
+    slug: "all",
+    description: "Browse every block",
+    icon: NavIcons.blockicon,
+  },
+  {
     name: "Hero",
     slug: "hero",
     description: "Landing-page hero sections",
-    icon: LayoutTemplate,
+    icon: NavIcons.heroicon,
+  },
+  {
+    name: "AI components",
+    slug: "ai-components",
+    description: "AI-driven UI patterns",
+    icon: Sparkles,
+  },
+  {
+    name: "Blocks",
+    slug: "blocks",
+    description: "General-purpose UI blocks",
+    icon: Boxes,
   },
   {
     name: "Bento",
     slug: "bento",
     description: "Bento-style grid layouts",
     icon: LayoutGrid,
-  },
-  {
-    name: "AI",
-    slug: "ai",
-    description: "AI-driven UI patterns",
-    icon: Sparkles,
-  },
-  {
-    name: "Mini Components",
-    slug: "mini",
-    description: "Small reusable pieces",
-    icon: Boxes,
   },
   {
     name: "Dashboard",
@@ -129,8 +134,12 @@ function PricingDropdown() {
         >
           <span
             aria-hidden
-            className={`inline-flex h-1.5 w-1.5 rounded-full ${currentOption.dot} shadow-[0_0_8px_currentColor]`}
-          />
+            className="inline-flex h-5 w-5 items-center justify-center rounded-[4px] border border-border/60"
+          >
+            <span
+              className={`inline-flex h-1.5 w-1.5 rounded-full ${currentOption.dot} shadow-[0_0_8px_currentColor]`}
+            />
+          </span>
           {currentOption.label === "All" ? "Pricing" : currentOption.label}
           <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
         </button>
@@ -185,12 +194,27 @@ function PricingDropdown() {
 
 function DockInner() {
   const pathname = usePathname() ?? "";
+  const searchParams = useSearchParams();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
   const isDark = mounted ? resolvedTheme === "dark" : false;
 
-  if (pathname.startsWith("/preview") || pathname.startsWith("/admin")) {
+  const isOnBlocksPage = pathname.startsWith("/blocks");
+  const activeCategorySlug = isOnBlocksPage
+    ? (searchParams.get("type") ?? "all")
+    : null;
+  const activeCategory = activeCategorySlug
+    ? blockCategories.find((c) => c.slug === activeCategorySlug)
+    : undefined;
+  const BlocksTriggerIcon = activeCategory?.icon ?? NavIcons.blockicon;
+  const blocksTriggerLabel = activeCategory?.name ?? "Blocks";
+
+  if (
+    pathname.startsWith("/preview") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/login")
+  ) {
     return null;
   }
 
@@ -207,12 +231,13 @@ function DockInner() {
               type="button"
               className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
             >
-              <NavIcons.blockicon
+              <span
                 aria-hidden
-                active={pathname.startsWith("/blocks")}
-                className="h-6 w-6"
-              />
-              Blocks
+                className="inline-flex h-5 w-5 items-center justify-center"
+              >
+                <BlocksTriggerIcon className="h-4 w-4" />
+              </span>
+              {blocksTriggerLabel}
               <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
             </button>
           </PopoverTrigger>
@@ -231,7 +256,7 @@ function DockInner() {
                 return (
                   <Link
                     key={c.slug}
-                    href={`/blocks?category=${c.slug}`}
+                    href={c.slug === "all" ? "/blocks" : `/blocks?type=${c.slug}`}
                     className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
                   >
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground/80 transition-colors group-hover:text-foreground">
@@ -263,7 +288,12 @@ function DockInner() {
           href="/illustrations"
           className="inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
         >
-          <Palette className="h-4 w-4 opacity-70" />
+          <span
+            aria-hidden
+            className="inline-flex h-5 w-5 items-center justify-center rounded-[4px] border border-border/60"
+          >
+            <Palette className="h-3 w-3 opacity-70" />
+          </span>
           Illustrations
         </Link>
 
