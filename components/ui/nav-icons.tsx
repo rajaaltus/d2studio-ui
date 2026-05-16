@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { PixelIconSpinner } from "@/components/pixel-icon-spinner";
 import { PixelIconSpinnerHero } from "@/components/pixel-icon-spinner/hero";
 import { PixelIconSpinnerAi } from "@/components/pixel-icon-spinner/ai";
+import { PixelIconSpinnerBento } from "@/components/pixel-icon-spinner/bento";
 
 type NavIconProps = LucideProps & { active?: boolean };
 
@@ -159,6 +160,16 @@ export const NavIcons = {
           className={cn("inline-flex items-center justify-center", className)}
         >
           <PixelIconSpinnerAi />
+        </span>
+      );
+    },
+    bentoicon: ({ active: _active = false, className }: NavIconProps) => {
+      return (
+        <span
+          aria-hidden
+          className={cn("inline-flex items-center justify-center", className)}
+        >
+          <PixelIconSpinnerBento />
         </span>
       );
     },

@@ -9,7 +9,6 @@ import {
   ChevronUp,
   Gem,
   LayoutDashboard,
-  LayoutGrid,
   Moon,
   Palette,
   Sun,
@@ -61,7 +60,7 @@ const blockCategories: BlockCategory[] = [
     name: "Bento",
     slug: "bento",
     description: "Bento-style grid layouts",
-    icon: LayoutGrid,
+    icon: NavIcons.bentoicon,
   },
   {
     name: "Dashboard",
