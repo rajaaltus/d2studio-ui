@@ -6,6 +6,9 @@ import { PixelIconSpinner } from "@/components/pixel-icon-spinner";
 import { PixelIconSpinnerHero } from "@/components/pixel-icon-spinner/hero";
 import { PixelIconSpinnerAi } from "@/components/pixel-icon-spinner/ai";
 import { PixelIconSpinnerBento } from "@/components/pixel-icon-spinner/bento";
+import { PixelIconSpinnerBlocks } from "@/components/pixel-icon-spinner/blocks";
+import { PixelIconSpinnerDashboard } from "@/components/pixel-icon-spinner/dashboard";
+import { PixelIconSpinnerPricing } from "@/components/pixel-icon-spinner/pricing";
 
 type NavIconProps = LucideProps & { active?: boolean };
 
@@ -145,10 +148,16 @@ export const NavIcons = {
         </span>
       );
     },
-    pricingicon: ({ active: _active = false, ...props }: NavIconProps) => (
-        // paste svg here; split structural elements out, gate bloom/shimmer on `active`
-        <>  </>
-    ),
+    pricingicon: ({ active: _active = false, className }: NavIconProps) => {
+      return (
+        <span
+          aria-hidden
+          className={cn("inline-flex items-center justify-center", className)}
+        >
+          <PixelIconSpinnerPricing />
+        </span>
+      );
+    },
     illuicon: ({ active: _active = false, ...props }: NavIconProps) => (
         // paste svg here; split structural elements out, gate bloom/shimmer on `active`
         <>  </>
@@ -170,6 +179,26 @@ export const NavIcons = {
           className={cn("inline-flex items-center justify-center", className)}
         >
           <PixelIconSpinnerBento />
+        </span>
+      );
+    },
+    blocksicon: ({ active: _active = false, className }: NavIconProps) => {
+      return (
+        <span
+          aria-hidden
+          className={cn("inline-flex items-center justify-center", className)}
+        >
+          <PixelIconSpinnerBlocks />
+        </span>
+      );
+    },
+    dashboardicon: ({ active: _active = false, className }: NavIconProps) => {
+      return (
+        <span
+          aria-hidden
+          className={cn("inline-flex items-center justify-center", className)}
+        >
+          <PixelIconSpinnerDashboard />
         </span>
       );
     },

@@ -4,11 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
-  Boxes,
   Check,
   ChevronUp,
   Gem,
-  LayoutDashboard,
   Moon,
   Palette,
   Sun,
@@ -21,6 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { useTheme } from "@/components/theme-provider";
 import { NavIcons } from "@/components/ui/nav-icons";
+import { PixelIconSpinnerPricing } from "@/components/pixel-icon-spinner/pricing";
 
 type IconComponent = React.ComponentType<{ className?: string }>;
 
@@ -54,7 +53,7 @@ const blockCategories: BlockCategory[] = [
     name: "Blocks",
     slug: "blocks",
     description: "General-purpose UI blocks",
-    icon: Boxes,
+    icon: NavIcons.blocksicon,
   },
   {
     name: "Bento",
@@ -66,12 +65,14 @@ const blockCategories: BlockCategory[] = [
     name: "Dashboard",
     slug: "dashboard",
     description: "Admin & analytics layouts",
-    icon: LayoutDashboard,
+    icon: NavIcons.dashboardicon,
   },
 ];
 
+type TierValue = "free" | "pro";
+
 type TierOption = {
-  value: "all" | "free" | "pro";
+  value: TierValue;
   label: string;
   description: string;
   icon: IconComponent;
@@ -79,13 +80,6 @@ type TierOption = {
 };
 
 const tierOptions: TierOption[] = [
-  {
-    value: "all",
-    label: "All",
-    description: "Show every block",
-    icon: Tag,
-    dot: "bg-muted-foreground",
-  },
   {
     value: "free",
     label: "Free",
@@ -111,17 +105,14 @@ function PricingDropdown() {
   const searchParams = useSearchParams();
   const [open, setOpen] = React.useState(false);
   const raw = searchParams.get("tier");
-  const current: TierOption["value"] =
-    raw === "free" || raw === "pro" ? raw : "all";
+  const current: TierValue = raw === "pro" ? "pro" : "free";
   const currentOption =
     tierOptions.find((t) => t.value === current) ?? tierOptions[0];
 
-  const setTier = (next: TierOption["value"]) => {
+  const setTier = (next: TierValue) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (next === "all") params.delete("tier");
-    else params.set("tier", next);
-    const query = params.toString();
-    router.push(query ? `/blocks?${query}` : "/blocks");
+    params.set("tier", next);
+    router.push(`/blocks?${params.toString()}`);
     setOpen(false);
   };
 
@@ -134,18 +125,22 @@ function PricingDropdown() {
         >
           <span
             aria-hidden
-            className="inline-flex h-5 w-5 items-center justify-center rounded-[4px] border border-border/60"
+            className="inline-flex h-5 w-5 items-center justify-center"
           >
-            <span
-              className={`inline-flex h-1.5 w-1.5 rounded-full ${currentOption.dot} shadow-[0_0_8px_currentColor]`}
-            />
+            {current === "free" ? (
+              <PixelIconSpinnerPricing />
+            ) : (
+              <span
+                className={`inline-flex h-1.5 w-1.5 rounded-full shadow-[0_0_8px_currentColor] ${currentOption.dot}`}
+              />
+            )}
           </span>
           <span className="grid">
             <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
               Pricing
             </span>
             <span className="col-start-1 row-start-1 whitespace-nowrap">
-              {currentOption.label === "All" ? "Pricing" : currentOption.label}
+              {currentOption.label}
             </span>
           </span>
           <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
@@ -174,7 +169,11 @@ function PricingDropdown() {
                 }`}
               >
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground/80">
-                  <Icon className="h-4 w-4" />
+                  {t.value === "free" ? (
+                    <PixelIconSpinnerPricing />
+                  ) : (
+                    <Icon className="h-4 w-4" />
+                  )}
                 </span>
                 <span className="flex flex-1 flex-col">
                   <span className="text-sm font-medium leading-tight text-foreground">

@@ -1,0 +1,33 @@
+/* Usage: <div class="pixel-spinner-pricing"><div class="cell cell-N"></div> × 9 cells, N=0..8</div> */
+.pixel-spinner-pricing {
+  --cell: 5px;
+  --gap: 1px;
+  --duration: 1140ms;
+  --color: #45ff38;
+  display: inline-grid;
+  grid-template-columns: repeat(3, var(--cell));
+  gap: var(--gap);
+}
+.pixel-spinner-pricing .cell {
+  width: var(--cell);
+  height: var(--cell);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--color) 80%, white), color-mix(in oklab, var(--color) 85%, black));
+  box-shadow:
+    0 0 0px var(--color),
+    0 0 0px color-mix(in oklab, var(--color) 50%, transparent),
+    0 0 0px color-mix(in oklab, var(--color) 33%, transparent);
+  opacity: 0;
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+.pixel-spinner-pricing .cell-4 { animation-name: prs-4; }
+
+@keyframes prs-4 {
+  0.00%, 16.66% { opacity: 1; }
+  16.67%, 33.32% { opacity: 0.5; }
+  33.33%, 49.99% { opacity: 0.25; }
+  50.00%, 66.66% { opacity: 0.15; }
+  66.67%, 83.32% { opacity: 1; }
+  83.33%, 99.99% { opacity: 0.5; }
+}
