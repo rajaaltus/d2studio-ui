@@ -55,3 +55,20 @@
 [   91787ms] [LOG] [Fast Refresh] done in 218ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
 [  135918ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
 [  135969ms] [LOG] [Fast Refresh] done in 163ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  254441ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  272138ms] [LOG] [Fast Refresh] done in 17434ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  272344ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  307716ms] [LOG] [Fast Refresh] done in 34835ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  328153ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  329240ms] [LOG] [Fast Refresh] done in 1221ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332086ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332086ms] [LOG] [Fast Refresh] done in 102ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332678ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332734ms] [LOG] [Fast Refresh] done in 160ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  333371ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  334096ms] [LOG] [Fast Refresh] done in 849ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  335412ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  335587ms] [LOG] [HMR] connected @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  337366ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  338277ms] [LOG] [Fast Refresh] done in 1012ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  339092ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://192.168.0.2:4200/_next/static/chunks/node_modules__pnpm_07m-5fl._.js:1513
