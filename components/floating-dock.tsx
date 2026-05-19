@@ -7,13 +7,13 @@ import {
   Check,
   ChevronUp,
   Gem,
-  Loader2,
   MoonStar,
-  Sparkles,
   Sun,
   Tag,
-  Wrench,
 } from "lucide-react";
+import { PixelIconSpinnerPattern1 } from "@/components/pixel-icon-spinner/pattern-1";
+import { PixelIconSpinnerStarsFall } from "@/components/pixel-icon-spinner/stars-fall";
+import { PixelIconSpinnerTools } from "@/components/pixel-icon-spinner/tools";
 import {
   Popover,
   PopoverContent,
@@ -46,14 +46,14 @@ const toolItems: ToolItem[] = [
     name: "Spinners",
     href: "/spinners",
     description: "Pixel glow loaders",
-    icon: Loader2,
+    icon: PixelIconSpinnerPattern1,
     tag: { label: "Updated", tone: "updated" },
   },
   {
     name: "Cosma",
     href: "/cosma",
     description: "Cosma",
-    icon: Sparkles,
+    icon: PixelIconSpinnerStarsFall,
     tag: { label: "New", tone: "new" },
   },
 ];
@@ -260,7 +260,7 @@ function DockInner() {
   const [toolsOpen, setToolsOpen] = React.useState(false);
 
   const activeTool = toolItems.find((t) => pathname.startsWith(t.href));
-  const ToolsTriggerIcon = activeTool?.icon ?? Wrench;
+  const ToolsTriggerIcon = activeTool?.icon ?? PixelIconSpinnerTools;
   const toolsTriggerLabel = activeTool?.name ?? "Tools";
   const longestToolsLabel = React.useMemo(
     () =>
@@ -357,9 +357,9 @@ function DockInner() {
             >
               <span
                 aria-hidden
-                className="hidden h-5 w-5 items-center justify-center rounded-[4px] border border-border/60 md:inline-flex"
+                className="hidden h-5 w-5 items-center justify-center md:inline-flex"
               >
-                <ToolsTriggerIcon className="h-3 w-3 opacity-70" />
+                <ToolsTriggerIcon className="h-4 w-4" />
               </span>
               <span className="grid">
                 <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">

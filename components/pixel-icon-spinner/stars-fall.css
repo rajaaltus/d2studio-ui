@@ -1,0 +1,288 @@
+/* Stars-fall pixel spinner: 4x4 solid purple stars falling straight down, 8 frames at 190ms (1520ms loop). */
+.pixel-spinner-stars-fall {
+  display: inline-grid;
+  grid-template-columns: repeat(4, 3px);
+  gap: 1px;
+}
+.pixel-spinner-stars-fall .cell {
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(135deg, color-mix(in oklab, #c37aff 85%, white), color-mix(in oklab, #c37aff 85%, black));
+  opacity: 0;
+  animation-duration: 1520ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+.pixel-spinner-stars-fall .cell-1  { animation-name: psf-1,  psf-1-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-2  { animation-name: psf-2,  psf-2-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-3  { animation-name: psf-3,  psf-3-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-4  { animation-name: psf-4,  psf-4-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-5  { animation-name: psf-5,  psf-5-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-6  { animation-name: psf-6,  psf-6-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-7  { animation-name: psf-7,  psf-7-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-8  { animation-name: psf-8,  psf-8-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-9  { animation-name: psf-9,  psf-9-pop;  animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-10 { animation-name: psf-10, psf-10-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-11 { animation-name: psf-11, psf-11-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-12 { animation-name: psf-12, psf-12-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-13 { animation-name: psf-13, psf-13-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-14 { animation-name: psf-14, psf-14-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-stars-fall .cell-15 { animation-name: psf-15, psf-15-pop; animation-timing-function: steps(1, end), linear; }
+
+@keyframes psf-1 {
+  0.00%, 12.49%  { opacity: 1; }
+  12.50%, 24.99% { opacity: 0.5; }
+  25.00%, 37.49% { opacity: 0.25; }
+  37.50%, 49.99% { opacity: 0.15; }
+  50.00%, 99.99% { opacity: 0; }
+}
+@keyframes psf-1-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  2.75%  { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  6.00%  { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  9.00%  { transform: scale(0.952); }
+  12.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-3 {
+  0.00%, 12.49%  { opacity: 0; }
+  12.50%, 24.99% { opacity: 1; }
+  25.00%, 37.49% { opacity: 0.5; }
+  37.50%, 49.99% { opacity: 0.25; }
+  50.00%, 62.49% { opacity: 0.15; }
+  62.50%, 99.99% { opacity: 0; }
+}
+@keyframes psf-3-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  12.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  15.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  18.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  21.50% { transform: scale(0.952); }
+  25.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-5 {
+  0.00%, 12.49%  { opacity: 0; }
+  12.50%, 24.99% { opacity: 1; }
+  25.00%, 37.49% { opacity: 0.5; }
+  37.50%, 49.99% { opacity: 0.25; }
+  50.00%, 62.49% { opacity: 0.15; }
+  62.50%, 99.99% { opacity: 0; }
+}
+@keyframes psf-5-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  12.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  15.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  18.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  21.50% { transform: scale(0.952); }
+  25.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-7 {
+  0.00%, 24.99%  { opacity: 0; }
+  25.00%, 37.49% { opacity: 1; }
+  37.50%, 49.99% { opacity: 0.5; }
+  50.00%, 62.49% { opacity: 0.25; }
+  62.50%, 74.99% { opacity: 0.15; }
+  75.00%, 99.99% { opacity: 0; }
+}
+@keyframes psf-7-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  25.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  27.75% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  31.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  34.00% { transform: scale(0.952); }
+  37.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-9 {
+  0.00%, 24.99%  { opacity: 0; }
+  25.00%, 37.49% { opacity: 1; }
+  37.50%, 49.99% { opacity: 0.5; }
+  50.00%, 62.49% { opacity: 0.25; }
+  62.50%, 74.99% { opacity: 0.15; }
+  75.00%, 99.99% { opacity: 0; }
+}
+@keyframes psf-9-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  25.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  27.75% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  31.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  34.00% { transform: scale(0.952); }
+  37.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-2 {
+  0.00%, 37.49%  { opacity: 0; }
+  37.50%, 49.99% { opacity: 1; }
+  50.00%, 62.49% { opacity: 0.5; }
+  62.50%, 74.99% { opacity: 0.25; }
+  75.00%, 87.49% { opacity: 0.15; }
+  87.50%, 99.99% { opacity: 0; }
+}
+@keyframes psf-2-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  37.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  40.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  43.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  46.50% { transform: scale(0.952); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-4 {
+  0.00%, 37.49%  { opacity: 0; }
+  37.50%, 49.99% { opacity: 1; }
+  50.00%, 62.49% { opacity: 0.5; }
+  62.50%, 74.99% { opacity: 0.25; }
+  75.00%, 87.49% { opacity: 0.15; }
+  87.50%, 99.99% { opacity: 0; }
+}
+@keyframes psf-4-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  37.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  40.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  43.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  46.50% { transform: scale(0.952); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-11 {
+  0.00%, 37.49%  { opacity: 0; }
+  37.50%, 49.99% { opacity: 1; }
+  50.00%, 62.49% { opacity: 0.5; }
+  62.50%, 74.99% { opacity: 0.25; }
+  75.00%, 87.49% { opacity: 0.15; }
+  87.50%, 99.99% { opacity: 0; }
+}
+@keyframes psf-11-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  37.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  40.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  43.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  46.50% { transform: scale(0.952); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-13 {
+  0.00%, 37.49%  { opacity: 0; }
+  37.50%, 49.99% { opacity: 1; }
+  50.00%, 62.49% { opacity: 0.5; }
+  62.50%, 74.99% { opacity: 0.25; }
+  75.00%, 87.49% { opacity: 0.15; }
+  87.50%, 99.99% { opacity: 0; }
+}
+@keyframes psf-13-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  37.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  40.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  43.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  46.50% { transform: scale(0.952); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-6 {
+  0.00%, 49.99%  { opacity: 0; }
+  50.00%, 62.49% { opacity: 1; }
+  62.50%, 74.99% { opacity: 0.5; }
+  75.00%, 87.49% { opacity: 0.25; }
+  87.50%, 99.99% { opacity: 0.15; }
+}
+@keyframes psf-6-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  52.75% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  56.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  59.00% { transform: scale(0.952); }
+  62.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-8 {
+  0.00%, 49.99%  { opacity: 0; }
+  50.00%, 62.49% { opacity: 1; }
+  62.50%, 74.99% { opacity: 0.5; }
+  75.00%, 87.49% { opacity: 0.25; }
+  87.50%, 99.99% { opacity: 0.15; }
+}
+@keyframes psf-8-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  52.75% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  56.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  59.00% { transform: scale(0.952); }
+  62.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-15 {
+  0.00%, 49.99%  { opacity: 0; }
+  50.00%, 62.49% { opacity: 1; }
+  62.50%, 74.99% { opacity: 0.5; }
+  75.00%, 87.49% { opacity: 0.25; }
+  87.50%, 99.99% { opacity: 0.15; }
+}
+@keyframes psf-15-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  52.75% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  56.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  59.00% { transform: scale(0.952); }
+  62.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-10 {
+  0.00%, 62.49%  { opacity: 0; }
+  62.50%, 74.99% { opacity: 1; }
+  75.00%, 87.49% { opacity: 0.5; }
+  87.50%, 99.99% { opacity: 0.25; }
+}
+@keyframes psf-10-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  62.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  65.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  68.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  71.50% { transform: scale(0.952); }
+  75.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-12 {
+  0.00%, 62.49%  { opacity: 0; }
+  62.50%, 74.99% { opacity: 1; }
+  75.00%, 87.49% { opacity: 0.5; }
+  87.50%, 99.99% { opacity: 0.25; }
+}
+@keyframes psf-12-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  62.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  65.25% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  68.50% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  71.50% { transform: scale(0.952); }
+  75.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes psf-14 {
+  0.00%, 74.99%  { opacity: 0; }
+  75.00%, 87.49% { opacity: 1; }
+  87.50%, 99.99% { opacity: 0.5; }
+}
+@keyframes psf-14-pop {
+  0.00%  { transform: scale(1); filter: brightness(1) saturate(1); }
+  75.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  77.75% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  81.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  84.00% { transform: scale(0.952); }
+  87.50% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}

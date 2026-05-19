@@ -72,3 +72,11 @@
 [  337366ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
 [  338277ms] [LOG] [Fast Refresh] done in 1012ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
 [  339092ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://192.168.0.2:4200/_next/static/chunks/node_modules__pnpm_07m-5fl._.js:1513
+[ 1021849ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1022518ms] [LOG] [Fast Refresh] done in 799ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1185986ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1187280ms] [LOG] [Fast Refresh] done in 1231ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1939506ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1939506ms] [LOG] [Fast Refresh] done in 147ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1962501ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1962708ms] [LOG] [Fast Refresh] done in 377ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

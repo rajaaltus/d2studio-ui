@@ -372,6 +372,15 @@ export const SPINNER_LIBRARY: SpinnerDef[] = [
       ),
     },
   },
+  {
+    name: "pattern-1",
+    color: "blue",
+    pattern: {
+      size: 3,
+      interval: 190,
+      frames: f([4], [2], [1], [0], [3], [6], [7], [8], [5], [4], [], []),
+    },
+  },
 ];
 
 function complexity(def: SpinnerDef): number {
