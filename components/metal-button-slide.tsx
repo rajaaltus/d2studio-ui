@@ -16,6 +16,51 @@ type MetalButtonSlideProps = {
   className?: string;
 };
 
+type PlainButtonProps = {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+};
+
+function PlainButton({ href, children, className }: PlainButtonProps) {
+  return (
+    <div className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto">
+      <Button
+        className={cn(
+          "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-black dark:text-white",
+          className
+        )}
+        asChild
+      >
+        <Link href={href}>
+          {children}
+          <span className="relative inline-flex size-4 overflow-hidden">
+            <ArrowUpRight size={16} />
+          </span>
+        </Link>
+      </Button>
+    </div>
+  );
+}
+
+class MetalFxBoundary extends React.Component<
+  { fallback: React.ReactNode; children: React.ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: unknown) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[MetalFx] disabled after runtime error:", error);
+    }
+  }
+  render() {
+    return this.state.hasError ? this.props.fallback : this.props.children;
+  }
+}
+
 export function MetalButtonSlide({
   href,
   children,
@@ -31,29 +76,18 @@ export function MetalButtonSlide({
   }, []);
 
   const isLight = resolvedTheme === "light";
+  const fallback = (
+    <PlainButton href={href} className={className}>
+      {children}
+    </PlainButton>
+  );
 
   if (!mounted) {
-    return (
-      <div className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto">
-        <Button
-          className={cn(
-            "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-black dark:text-white",
-            className
-          )}
-          asChild
-        >
-          <Link href={href}>
-            {children}
-            <span className="relative inline-flex size-4 overflow-hidden">
-              <ArrowUpRight size={16} />
-            </span>
-          </Link>
-        </Button>
-      </div>
-    );
+    return fallback;
   }
 
   return (
+    <MetalFxBoundary fallback={fallback}>
     <motion.div
       className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto"
       onHoverStart={() => setIsHovered(true)}
@@ -131,5 +165,6 @@ export function MetalButtonSlide({
         </Button>
       </MetalFx>
     </motion.div>
+    </MetalFxBoundary>
   );
 }

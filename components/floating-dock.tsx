@@ -12,7 +12,6 @@ import {
   Sparkles,
   Sun,
   Tag,
-  Wrench,
 } from "lucide-react";
 import {
   Popover,
@@ -246,7 +245,6 @@ function DockInner() {
   const activeCategory = activeCategorySlug
     ? blockCategories.find((c) => c.slug === activeCategorySlug)
     : undefined;
-  const BlocksTriggerIcon = activeCategory?.icon ?? NavIcons.blockicon;
   const blocksTriggerLabel = activeCategory?.name ?? "Blocks";
   const longestBlocksLabel = React.useMemo(
     () =>
@@ -260,7 +258,6 @@ function DockInner() {
   const [toolsOpen, setToolsOpen] = React.useState(false);
 
   const activeTool = toolItems.find((t) => pathname.startsWith(t.href));
-  const ToolsTriggerIcon = activeTool?.icon ?? Wrench;
   const toolsTriggerLabel = activeTool?.name ?? "Tools";
   const longestToolsLabel = React.useMemo(
     () =>
@@ -292,12 +289,6 @@ function DockInner() {
               type="button"
               className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
             >
-              <span
-                aria-hidden
-                className="inline-flex h-5 w-5 items-center justify-center"
-              >
-                <BlocksTriggerIcon className="h-4 w-4" />
-              </span>
               <span className="grid">
                 <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
                   {longestBlocksLabel}
@@ -355,12 +346,6 @@ function DockInner() {
               type="button"
               className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
             >
-              <span
-                aria-hidden
-                className="inline-flex h-5 w-5 items-center justify-center rounded-[4px] border border-border/60"
-              >
-                <ToolsTriggerIcon className="h-3 w-3 opacity-70" />
-              </span>
               <span className="grid">
                 <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
                   {longestToolsLabel}
@@ -376,10 +361,6 @@ function DockInner() {
                 )}
               >
                 <span className="relative z-10">New</span>
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 -translate-x-full animate-[badge-shimmer_2.2s_linear_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent"
-                />
               </span>
               <ChevronUp className="inline-block h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
             </button>

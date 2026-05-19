@@ -22,11 +22,11 @@ const HeroSection2 = () => {
           opacity={0.2}
           className="w-auto h-full text-blue-500 absolute left-1/2 -translate-x-1/2 -rotate-90"
         /> */}
-        <div className="grid grid-cols-[1fr_auto_1fr] w-full h-full grid-rows-[auto_auto_auto] gap-px bg-border rounded-xl border overflow-hidden m-0">
+        <div className="grid grid-cols-[1fr_auto_1fr] w-full h-full grid-rows-[auto_auto_auto] gap-px bg-border lg:rounded-xl border overflow-hidden m-0">
           <div className="col-start-1 row-start-1 bg-background rounded-r-xl"></div>
           <div className="col-start-1 row-start-2 bg-background rounded-r-xl"></div>
           <div className="col-start-1 row-start-3 bg-background rounded-r-xl"></div>
-          <div className="z-10 col-start-2 row-start-1 lg:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-background h-full relative rounded-xl">
+          <div className="z-10 col-start-2 row-start-1 lg:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-background h-full relative lg:rounded-xl">
             <div className="rounded-full inline-flex justify-center  gap-2 items-center border py-1 px-4 shadow-sm">
               <Sparkles size={16} />
               <span className="text-sm font-medium text-muted-foreground">
@@ -45,7 +45,7 @@ const HeroSection2 = () => {
               for production.
             </p>
           </div>
-          <div className="col-start-2 row-start-2 min-h-[5rem]  h-full relative z-0 bg-background rounded-xl">
+          <div className="col-start-2 row-start-2 min-h-[5rem]  h-full relative z-0 bg-background lg:rounded-xl">
             <div className="flex h-full gap-4 w-1/2 sm:w-full max-w-xs sm:max-w-none items-stretch mx-auto p-4 md:p-0 justify-center flex-col sm:flex-row sm:items-center">
               <MetalButtonSlide href="/blocks" reflectionTargets={[docsRef]}>
                 Explore Blocks
@@ -62,8 +62,8 @@ const HeroSection2 = () => {
             </div>
           </div>
 
-          <div className="col-start-2 row-start-3 min-h-[8rem] lg:min-w-3xl w-full h-full flex flex-col items-center justify-center bg-background rounded-xl">
-            <div className="max-w-sm flex -space-x-3">
+          <div className="col-start-2 row-start-3 min-h-[8rem] lg:min-w-3xl w-full h-full flex flex-col items-center justify-center bg-background lg:rounded-xl">
+            <div className="max-w-sm flex -space-x-3 ">
               {[1, 2, 3, 4, 5].map((num, index) => (
                 <div
                   className="w-12 h-12 rounded-full hover:-translate-y-1 duration-200 border bg-background flex items-center justify-center text-sm font-medium text-muted-foreground/50"
@@ -115,7 +115,7 @@ function BrandShowcase() {
   const currentSet = sets[activeSet] ?? [];
 
   return (
-    <div className="relative w-full max-w-6xl border-x min-h-[7.5rem] h-full mx-auto bg-border">
+    <div className="relative w-full max-w-6xl  border-x min-h-[7.5rem] h-full mx-auto bg-border">
       {sets.map((set, setIndex) => {
         const isActive = setIndex === activeSet;
         return (
@@ -123,7 +123,7 @@ function BrandShowcase() {
             key={setIndex}
             aria-hidden={!isActive}
             className={cn(
-              "absolute inset-0 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 bg-border gap-px transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] rounded-xl border m-0 overflow-hidden",
+              "absolute inset-0 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 bg-border gap-px transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] lg:rounded-xl border m-0 overflow-hidden",
               isActive
                 ? "opacity-100 scale-100 blur-0"
                 : "opacity-0 scale-[0.985] blur-[2px] pointer-events-none"

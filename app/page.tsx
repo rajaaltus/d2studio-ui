@@ -84,8 +84,8 @@ export default function HomePage() {
       <HeroSection2 />
 
       {/* Features Section */}
-      <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
-        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 rounded-xl border m-0 bg-background">
+      <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
+        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 lg:rounded-xl border m-0 bg-background">
           <h3 className="text-xl md:text-2xl font-medium font-sans">
             Copy. Paste. Ship.
           </h3>
@@ -100,7 +100,7 @@ export default function HomePage() {
           </Button>
         </div>
 
-        <div className="flex flex-col gap-px bg-border rounded-xl border overflow-hidden m-0">
+        <div className="flex flex-col gap-px bg-border lg:rounded-xl border overflow-hidden m-0">
           <div className="flex items-center justify-center bg-[#ffffff] dark:bg-[#000000] min-h-[160px] sm:min-h-[224px] lg:min-h-[294px] overflow-hidden px-3 sm:px-6 gap-2 sm:gap-10 md:gap-16 lg:gap-24 md:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.6),black_10%,black_90%,rgba(0,0,0,0.6))] md:dark:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.3),black_10%,black_90%,rgba(0,0,0,0.3))]">
             <IsoCodeIcon />
             <IsoIcon src="/Heart Icon 2.svg" label="Heart Icon 2" mobileSide="left" />
@@ -186,8 +186,8 @@ export default function HomePage() {
       </section> */}
 
       {/* CTA Section */}
-      <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
-        <div className="rounded-xl border m-0 bg-background py-16 lg:py-20 grid grid-cols-1 md:grid-cols-2 items-center">
+      <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
+        <div className="lg:rounded-xl border m-0 bg-background py-16 lg:py-20 grid grid-cols-1 md:grid-cols-2 items-center">
           <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-12 py-6 md:py-0 md:pr-10 lg:pr-16 md:border-r md:border-dashed md:border-border">
             <IsoIcon
               src="/Heart Icon 2.svg"

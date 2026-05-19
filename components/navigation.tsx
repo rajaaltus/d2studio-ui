@@ -25,6 +25,7 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { name: "Blocks", href: "/blocks" },
   { name: "Spinners", href: "/spinners" },
+  { name: "Cosma", href: "/cosma", badge: "New" },
   { name: "Docs", href: "/docs" },
 ];
 
@@ -32,10 +33,6 @@ function Badge({ label }: { label: string }) {
   return (
     <span className="relative inline-flex items-center overflow-hidden rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-[0_0_12px_oklch(0.7_0.2_255/0.5)]">
       <span className="relative z-10">{label}</span>
-      <span
-        className="pointer-events-none absolute inset-0 -translate-x-full animate-[badge-shimmer_2.2s_linear_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent"
-        aria-hidden="true"
-      />
     </span>
   );
 }
