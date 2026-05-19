@@ -34,7 +34,7 @@ export function MetalButtonSlide({
 
   if (!mounted) {
     return (
-      <div className="inline-flex w-full sm:w-auto">
+      <div className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto">
         <Button
           className={cn(
             "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-black dark:text-white",
@@ -55,7 +55,7 @@ export function MetalButtonSlide({
 
   return (
     <motion.div
-      className="inline-flex w-full sm:w-auto"
+      className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       animate={isHovered ? "hover" : "rest"}

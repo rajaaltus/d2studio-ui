@@ -51,7 +51,7 @@ export function SiteFooter() {
 
       {/* Main grid */}
       <section className="max-w-6xl w-full border-x mx-auto bg-border">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border rounded-xl border overflow-hidden m-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border border overflow-hidden m-0 lg:rounded-xl">
           {/* Brand block – spans 2 cols on large */}
           <div className="bg-background p-6 lg:p-8 sm:col-span-2 flex flex-col gap-4">
             <Logo />

@@ -12,7 +12,6 @@ import {
   Loader2,
   Monitor,
   Moon,
-  Palette,
   ScrollText,
   Sparkles,
   Sun,
@@ -74,10 +73,10 @@ const PAGES: PageEntry[] = [
     description: "Documentation",
   },
   {
-    label: "Illustrations",
-    href: "/illustrations",
-    icon: Palette,
-    description: "Illustration library",
+    label: "Cosma",
+    href: "/cosma",
+    icon: Sparkles,
+    description: "Cosma",
   },
 ];
 

@@ -106,8 +106,8 @@ export function Navigation() {
                 </button>
               </DrawerTrigger>
               <DrawerContent className="md:hidden">
-                <DrawerHeader className="flex items-center justify-between">
-                  <div>
+                <DrawerHeader className="flex flex-row items-center justify-between text-left">
+                  <div className="flex flex-col gap-0.5">
                     <DrawerTitle>Menu</DrawerTitle>
                     <DrawerDescription className="text-xs">
                       Browse D2 Studio

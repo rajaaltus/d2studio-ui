@@ -14,8 +14,8 @@ const HeroSection2 = () => {
   return (
     <div className="w-full mx-auto h-full [--pattern-fg:var(--color-black)]/10 dark:bg-background dark:[--pattern-fg:var(--color-white)]/10 overflow-x-hidden">
       {/* 8x7 Grid Container with max-w-6xl */}
-      <div className=" w-full border-x min-h-[2.5rem] h-full  screen-line-after  mx-auto border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
-        <div className="w-full h-[2.5rem] max-w-6xl b border-x mx-auto"></div>
+      <div className="w-full border-x min-h-[2.5rem] h-full screen-line-after mx-auto">
+        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto"></div>
       </div>
       <div className="max-w-6xl  border-x min-h-[20rem] h-full screen-line-after mx-auto relative bg-border">
         {/* <GoldenRatioSpiral
@@ -26,7 +26,7 @@ const HeroSection2 = () => {
           <div className="col-start-1 row-start-1 bg-background rounded-r-xl"></div>
           <div className="col-start-1 row-start-2 bg-background rounded-r-xl"></div>
           <div className="col-start-1 row-start-3 bg-background rounded-r-xl"></div>
-          <div className="z-10 col-start-2 row-start-1 md:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-background h-full relative rounded-xl">
+          <div className="z-10 col-start-2 row-start-1 lg:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-background h-full relative rounded-xl">
             <div className="rounded-full inline-flex justify-center  gap-2 items-center border py-1 px-4 shadow-sm">
               <Sparkles size={16} />
               <span className="text-sm font-medium text-muted-foreground">
@@ -46,7 +46,7 @@ const HeroSection2 = () => {
             </p>
           </div>
           <div className="col-start-2 row-start-2 min-h-[5rem]  h-full relative z-0 bg-background rounded-xl">
-            <div className="flex  h-full gap-4 w-full items-center  p-4 md:p-0 justify-center flex-col sm:flex-row">
+            <div className="flex h-full gap-4 w-1/2 sm:w-full max-w-xs sm:max-w-none items-stretch mx-auto p-4 md:p-0 justify-center flex-col sm:flex-row sm:items-center">
               <MetalButtonSlide href="/blocks" reflectionTargets={[docsRef]}>
                 Explore Blocks
               </MetalButtonSlide>
@@ -62,7 +62,7 @@ const HeroSection2 = () => {
             </div>
           </div>
 
-          <div className="col-start-2 row-start-3 min-h-[8rem] md:min-w-3xl w-full h-full flex flex-col items-center justify-center bg-background rounded-xl">
+          <div className="col-start-2 row-start-3 min-h-[8rem] lg:min-w-3xl w-full h-full flex flex-col items-center justify-center bg-background rounded-xl">
             <div className="max-w-sm flex -space-x-3">
               {[1, 2, 3, 4, 5].map((num, index) => (
                 <div
@@ -81,11 +81,9 @@ const HeroSection2 = () => {
         </div>
       </div>
 
-      <div className="w-full border-x min-h-[2.5rem]  screen-line-after  mx-auto border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
-        <div className="w-full h-[2.5rem] max-w-6xl  border-x mx-auto">
-          <div className="w-full max-w-[384px] translate-x-[19px] border-x -skew-x-45  mx-auto h-[2.5rem] bg-background flex items-center justify-center">
-            <h2 className="skew-x-45 text-sm">Greatly inspired from</h2>
-          </div>
+      <div className="w-full border-x min-h-[2.5rem] screen-line-after mx-auto">
+        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto flex items-center justify-center">
+          <h2 className="text-sm">Greatly inspired from</h2>
         </div>
       </div>
 

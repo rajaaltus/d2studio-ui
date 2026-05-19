@@ -7,10 +7,12 @@ import {
   Check,
   ChevronUp,
   Gem,
-  Moon,
-  Palette,
+  Loader2,
+  MoonStar,
+  Sparkles,
   Sun,
   Tag,
+  Wrench,
 } from "lucide-react";
 import {
   Popover,
@@ -18,6 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useTheme } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 import { NavIcons } from "@/components/ui/nav-icons";
 import { PixelIconSpinnerPricing } from "@/components/pixel-icon-spinner/pricing";
 
@@ -28,6 +31,36 @@ type BlockCategory = {
   slug: string;
   description: string;
   icon: IconComponent;
+};
+
+type ToolItem = {
+  name: string;
+  href: string;
+  description: string;
+  icon: IconComponent;
+  tag?: { label: string; tone: "new" | "updated" };
+};
+
+const toolItems: ToolItem[] = [
+  {
+    name: "Spinners",
+    href: "/spinners",
+    description: "Pixel glow loaders",
+    icon: Loader2,
+    tag: { label: "Updated", tone: "updated" },
+  },
+  {
+    name: "Cosma",
+    href: "/cosma",
+    description: "Cosma",
+    icon: Sparkles,
+    tag: { label: "New", tone: "new" },
+  },
+];
+
+const tagToneClasses: Record<"new" | "updated", string> = {
+  new: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+  updated: "border-sky-500/30 bg-sky-500/10 text-sky-600 dark:text-sky-400",
 };
 
 const blockCategories: BlockCategory[] = [
@@ -143,14 +176,14 @@ function PricingDropdown() {
               {currentOption.label}
             </span>
           </span>
-          <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
+          <ChevronUp className="inline-block h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
         </button>
       </PopoverTrigger>
       <PopoverContent
         side="top"
         align="center"
         sideOffset={12}
-        className="w-60 rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
+        className="w-[min(15rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
       >
         <div className="px-2 pb-1.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
           Pricing
@@ -224,6 +257,19 @@ function DockInner() {
     [],
   );
   const [blocksOpen, setBlocksOpen] = React.useState(false);
+  const [toolsOpen, setToolsOpen] = React.useState(false);
+
+  const activeTool = toolItems.find((t) => pathname.startsWith(t.href));
+  const ToolsTriggerIcon = activeTool?.icon ?? Wrench;
+  const toolsTriggerLabel = activeTool?.name ?? "Tools";
+  const longestToolsLabel = React.useMemo(
+    () =>
+      toolItems.reduce(
+        (longest, t) => (t.name.length > longest.length ? t.name : longest),
+        "Tools",
+      ),
+    [],
+  );
 
   if (
     pathname.startsWith("/preview") ||
@@ -260,14 +306,14 @@ function DockInner() {
                   {blocksTriggerLabel}
                 </span>
               </span>
-              <ChevronUp className="h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
+              <ChevronUp className="inline-block h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
             </button>
           </PopoverTrigger>
           <PopoverContent
             side="top"
             align="start"
             sideOffset={12}
-            className="w-72 rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
+            className="w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
           >
             <div className="px-2 pb-1.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               Categories
@@ -302,23 +348,88 @@ function DockInner() {
 
         <Divider />
 
-        <PricingDropdown />
-
-        <Divider />
-
-        {/* Illustrations */}
-        <Link
-          href="/illustrations"
-          className="inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
-        >
-          <span
-            aria-hidden
-            className="inline-flex h-5 w-5 items-center justify-center rounded-[4px] border border-border/60"
+        {/* Tools dropdown */}
+        <Popover open={toolsOpen} onOpenChange={setToolsOpen}>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
+            >
+              <span
+                aria-hidden
+                className="inline-flex h-5 w-5 items-center justify-center rounded-[4px] border border-border/60"
+              >
+                <ToolsTriggerIcon className="h-3 w-3 opacity-70" />
+              </span>
+              <span className="grid">
+                <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
+                  {longestToolsLabel}
+                </span>
+                <span className="col-start-1 row-start-1 whitespace-nowrap">
+                  {toolsTriggerLabel}
+                </span>
+              </span>
+              <span
+                className={cn(
+                  "relative inline-flex h-[18px] items-center overflow-hidden rounded-full border px-1.5 text-[9px] font-semibold uppercase tracking-wider",
+                  tagToneClasses.new,
+                )}
+              >
+                <span className="relative z-10">New</span>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -translate-x-full animate-[badge-shimmer_2.2s_linear_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                />
+              </span>
+              <ChevronUp className="inline-block h-3.5 w-3.5 opacity-60 transition-transform group-data-[state=open]:rotate-180" />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent
+            side="top"
+            align="end"
+            sideOffset={12}
+            className="w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
           >
-            <Palette className="h-3 w-3 opacity-70" />
-          </span>
-          Illustrations
-        </Link>
+            <div className="px-2 pb-1.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Tools
+            </div>
+            <div className="grid gap-0.5">
+              {toolItems.map((t) => {
+                const Icon = t.icon;
+                return (
+                  <Link
+                    key={t.href}
+                    href={t.href}
+                    onClick={() => setToolsOpen(false)}
+                    className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
+                  >
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground/80 transition-colors group-hover:text-foreground">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="flex flex-col">
+                      <span className="text-sm font-medium leading-tight text-foreground">
+                        {t.name}
+                      </span>
+                      <span className="text-xs leading-tight text-muted-foreground">
+                        {t.description}
+                      </span>
+                    </span>
+                    {t.tag && (
+                      <span
+                        className={cn(
+                          "ml-auto inline-flex h-[18px] items-center rounded-full border px-1.5 text-[9px] font-semibold uppercase tracking-wider",
+                          tagToneClasses[t.tag.tone],
+                        )}
+                      >
+                        {t.tag.label}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </PopoverContent>
+        </Popover>
 
         <Divider />
 
@@ -331,24 +442,11 @@ function DockInner() {
           className="relative inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
         >
           {mounted ? (
-            <>
-              <Sun
-                suppressHydrationWarning
-                className={`h-4 w-4 transition-all duration-300 ${
-                  isDark
-                    ? "scale-0 -rotate-90 opacity-0"
-                    : "scale-100 rotate-0 opacity-100"
-                }`}
-              />
-              <Moon
-                suppressHydrationWarning
-                className={`absolute h-4 w-4 transition-all duration-300 ${
-                  isDark
-                    ? "scale-100 rotate-0 opacity-100"
-                    : "scale-0 rotate-90 opacity-0"
-                }`}
-              />
-            </>
+            isDark ? (
+              <MoonStar className="h-4 w-4" />
+            ) : (
+              <Sun className="h-4 w-4" />
+            )
           ) : null}
         </button>
       </nav>
