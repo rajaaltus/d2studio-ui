@@ -553,6 +553,70 @@
   }
 }
 
+.testimonial-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--d2-flash-gradient);
+  opacity: 0;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(0, 0, 0, 0.6) 48%,
+    rgba(0, 0, 0, 0.9) 50%,
+    rgba(0, 0, 0, 0.6) 52%,
+    transparent 62%
+  );
+  mask-image: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(0, 0, 0, 0.6) 48%,
+    rgba(0, 0, 0, 0.9) 50%,
+    rgba(0, 0, 0, 0.6) 52%,
+    transparent 62%
+  );
+  -webkit-mask-size: 260% 100%;
+  mask-size: 260% 100%;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  will-change: mask-position, opacity;
+}
+
+@media (hover: hover) {
+  .testimonial-shimmer:hover::before {
+    animation: testimonial-shimmer-hover 1.6s cubic-bezier(0.33, 0, 0.2, 1) 1;
+  }
+}
+
+@keyframes testimonial-shimmer-hover {
+  0% {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.32;
+  }
+  70% {
+    opacity: 0.32;
+  }
+  100% {
+    -webkit-mask-position: -100% 0;
+    mask-position: -100% 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-shimmer::before {
+    animation: none;
+  }
+}
+
 @keyframes d2-flash {
   0% {
     background-position: 0% 50%;

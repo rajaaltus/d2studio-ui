@@ -641,7 +641,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       rel="noopener noreferrer"
       aria-label={`${platformLabel} — ${name}`}
       style={tintStyle}
-      className={`bg-background p-6 flex flex-col gap-4 group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset ${
+      className={`testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset ${
         avgRgb
           ? "hover:bg-[var(--card-tint)]"
           : "hover:bg-foreground/[0.02]"
