@@ -1,15 +1,29 @@
-/* Tools pixel spinner: 3x3 magenta wink-k pattern, 9 frames at 190ms (1710ms loop). */
+/* Tools pixel spinner: 3x3 "add" pattern, 9 frames at 190ms (1710ms loop). */
 .pixel-spinner-tools {
+  --cell: 4px;
+  --gap: 3px;
+  --color: #eb00ac;
+  --duration: 1710ms;
+  --glow: 0;
+
   display: inline-grid;
-  grid-template-columns: repeat(3, 4px);
-  gap: 3px;
+  grid-template-columns: repeat(3, var(--cell));
+  gap: var(--gap);
 }
 .pixel-spinner-tools .cell {
-  width: 4px;
-  height: 4px;
-  background: linear-gradient(135deg, color-mix(in oklab, #b011d0 80%, white), color-mix(in oklab, #b011d0 85%, black));
+  width: var(--cell);
+  height: var(--cell);
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--color) 80%, white),
+    color-mix(in oklab, var(--color) 85%, black)
+  );
+  box-shadow:
+    0 0 calc(2px * var(--glow)) 0 var(--color),
+    0 0 calc(6px * var(--glow)) 0 color-mix(in oklab, var(--color) 50%, transparent),
+    0 0 calc(12px * var(--glow)) 0 color-mix(in oklab, var(--color) 33%, transparent);
   opacity: 0;
-  animation-duration: 1710ms;
+  animation-duration: var(--duration);
   animation-iteration-count: infinite;
   animation-timing-function: steps(1, end);
 }
@@ -23,7 +37,7 @@
   0.00%, 11.10%  { opacity: 0; }
   11.11%, 22.21% { opacity: 0; }
   22.22%, 33.32% { opacity: 0; }
-  33.33%, 44.43% { opacity: 0; }
+  33.33%, 44.43% { opacity: 1; }
   44.44%, 55.54% { opacity: 1; }
   55.55%, 66.65% { opacity: 1; }
   66.66%, 77.76% { opacity: 0.5; }
@@ -67,7 +81,7 @@
   0.00%, 11.10%  { opacity: 0; }
   11.11%, 22.21% { opacity: 0; }
   22.22%, 33.32% { opacity: 0; }
-  33.33%, 44.43% { opacity: 0; }
+  33.33%, 44.43% { opacity: 1; }
   44.44%, 55.54% { opacity: 1; }
   55.55%, 66.65% { opacity: 1; }
   66.66%, 77.76% { opacity: 0.5; }

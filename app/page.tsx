@@ -9,6 +9,7 @@ import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
 import { SiteFooter } from "@/components/site-footer";
+import { CommunitySection } from "@/components/community-section";
 import { PixelIconCmd } from "@/components/pixel-icon-cmd";
 import { PixelIconChevron } from "@/components/pixel-icon-chevron";
 import { PixelIconRocket } from "@/components/pixel-icon-rocket";
@@ -184,6 +185,9 @@ export default function HomePage() {
           ))}
         </div>
       </section> */}
+
+      {/* Community Section */}
+      <CommunitySection />
 
       {/* CTA Section */}
       <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">

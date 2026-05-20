@@ -5,10 +5,23 @@ import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/logo";
 import { FooterIllustrationCard } from "@/components/footer-illustration-card";
 
+type PreviewProfile = {
+  name: string;
+  handle: string;
+  avatar: string;
+};
+
+type FooterLinkItem = {
+  label: string;
+  href: string;
+  external?: boolean;
+  preview?: PreviewProfile;
+};
+
 export function SiteFooter() {
   const sections: {
     title: string;
-    links: { label: string; href: string; external?: boolean }[];
+    links: FooterLinkItem[];
   }[] = [
     {
       title: "Library",
@@ -31,10 +44,38 @@ export function SiteFooter() {
     {
       title: "Connect",
       links: [
-        { label: "X / Twitter", href: "https://x.com/uxgodwin", external: true },
-        { label: "GitHub", href: "https://github.com/rajaaltus", external: true },
+        {
+          label: "X / @uxgodwin",
+          href: "https://x.com/uxgodwin",
+          external: true,
+          preview: {
+            name: "Godwin",
+            handle: "@uxgodwin",
+            avatar: "/uxgodwin.jpg",
+          },
+        },
+        {
+          label: "X / @rajaaltus",
+          href: "https://x.com/rajaaltus",
+          external: true,
+          preview: {
+            name: "Raja Altus",
+            handle: "@rajaaltus",
+            avatar: "/rajaaltus.jpg",
+          },
+        },
+        {
+          label: "Threads",
+          href: "https://www.threads.com/@godwin.d2",
+          external: true,
+          preview: {
+            name: "Godwin",
+            handle: "@godwin.d2",
+            avatar: "/godwin-d2.jpg",
+          },
+        },
+        { label: "GitHub", href: "https://github.com/godwin159", external: true },
         { label: "Buy me a coffee", href: "https://buymeacoffee.com/godwindev", external: true },
-        { label: "rajaaltus@gmail.com", href: "mailto:rajaaltus@gmail.com", external: true },
       ],
     },
   ];
@@ -112,16 +153,16 @@ export function SiteFooter() {
               <XIcon className="h-3.5 w-3.5" />
             </SocialIconLink>
             <SocialIconLink
-              href="https://github.com/rajaaltus"
+              href="https://www.threads.com/@godwin.d2"
+              label="Threads"
+            >
+              <ThreadsIcon className="h-4 w-4" />
+            </SocialIconLink>
+            <SocialIconLink
+              href="https://github.com/godwin159"
               label="GitHub"
             >
               <GitHubIcon className="h-4 w-4" />
-            </SocialIconLink>
-            <SocialIconLink
-              href="mailto:rajaaltus@gmail.com"
-              label="Email"
-            >
-              <MailIcon className="h-4 w-4" />
             </SocialIconLink>
           </div>
         </div>
@@ -136,11 +177,8 @@ function FooterLink({
   label,
   href,
   external,
-}: {
-  label: string;
-  href: string;
-  external?: boolean;
-}) {
+  preview,
+}: FooterLinkItem) {
   const className =
     "group inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors";
 
@@ -153,23 +191,40 @@ function FooterLink({
     </>
   );
 
-  if (external) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={className}
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return (
+  const linkEl = external ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {content}
+    </a>
+  ) : (
     <Link href={href} className={className}>
       {content}
     </Link>
+  );
+
+  if (!preview) {
+    return linkEl;
+  }
+
+  return (
+    <span className="relative inline-flex group/preview">
+      {linkEl}
+      <span
+        role="tooltip"
+        aria-label={preview.name}
+        className="pointer-events-none absolute left-0 bottom-full mb-2 z-20 rounded-full border border-border bg-popover p-1 shadow-lg opacity-0 -translate-y-1 transition-all duration-150 group-hover/preview:opacity-100 group-hover/preview:translate-y-0 group-focus-within/preview:opacity-100 group-focus-within/preview:translate-y-0"
+      >
+        <img
+          src={preview.avatar}
+          alt={preview.name}
+          className="size-10 rounded-full object-cover"
+        />
+      </span>
+    </span>
   );
 }
 
@@ -227,21 +282,16 @@ function GitHubIcon({ className }: { className?: string }) {
   );
 }
 
-function MailIcon({ className }: { className?: string }) {
+function ThreadsIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      viewBox="0 0 192 192"
+      fill="currentColor"
       aria-hidden="true"
       className={className}
     >
-      <rect width="20" height="16" x="2" y="4" rx="2" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      <path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.052 14.474 2.45 18.503 7.13 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.898-25.948 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 9.607 125.202.195 97.07 0h-.113C68.882.194 47.292 9.642 32.788 28.08 19.882 44.485 13.224 67.315 13.001 95.932L13 96l.001.068c.223 28.617 6.881 51.447 19.787 67.853C47.292 182.358 68.882 191.806 96.957 192h.113c24.96-.173 42.554-6.708 57.048-21.19 18.96-18.944 18.39-42.692 12.142-57.27-4.484-10.45-13.033-18.94-24.723-24.553Zm-43.045 36.5c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.114 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.764-1.978 24.702-13.58 28.713-23.802 29.275Z" />
     </svg>
   );
 }
