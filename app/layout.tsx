@@ -64,9 +64,20 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/fav1.png",
-    shortcut: "/fav1.png",
-    apple: "/fav1.png",
+    icon: [
+      {
+        url: "/icon-dark.png",
+        media: "(prefers-color-scheme: dark)",
+        type: "image/png",
+      },
+      {
+        url: "/icon-light.png",
+        media: "(prefers-color-scheme: light)",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/icon-light.png",
+    apple: "/icon-light.png",
   },
   manifest: "/site.webmanifest",
   openGraph: {
@@ -79,7 +90,7 @@ export const metadata: Metadata = {
       "Premium collection of 50+ copy-and-paste React components built with shadcn/ui, Tailwind CSS, and TypeScript. Beautiful, accessible, and production-ready.",
     images: [
       {
-        url: "https://d2studio.dev/og-image.jpg",
+        url: "https://d2studio.dev/og-ui.png",
         width: 1200,
         height: 630,
         alt: "D2 Studio - Modern Component Library",
@@ -93,7 +104,7 @@ export const metadata: Metadata = {
       "Premium collection of 50+ copy-and-paste React components built with shadcn/ui, Tailwind CSS, and TypeScript.",
     site: "@d2studio",
     creator: "@d2studio",
-    images: ["https://d2studio.dev/og-image.jpg"],
+    images: ["https://d2studio.dev/og-ui.png"],
   },
   verification: {
     google: "google-verification-code",

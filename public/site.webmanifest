@@ -9,24 +9,18 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/convex.svg",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/convex.svg",
+      "src": "/icon-light.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "categories": ["developer", "utilities", "productivity"],
   "screenshots": [
     {
-      "src": "/og-image.jpg",
+      "src": "/og-ui.png",
       "sizes": "1200x630",
-      "type": "image/jpeg",
+      "type": "image/png",
       "form_factor": "wide"
     }
   ]
