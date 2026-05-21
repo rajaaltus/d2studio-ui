@@ -1,0 +1,90 @@
+/* Tools pixel spinner: 3x3 "add" pattern, 9 frames at 190ms (1710ms loop). */
+.pixel-spinner-tools {
+  --cell: 4px;
+  --gap: 3px;
+  --color: #eb00ac;
+  --duration: 1710ms;
+  --glow: 0;
+
+  display: inline-grid;
+  grid-template-columns: repeat(3, var(--cell));
+  gap: var(--gap);
+}
+.pixel-spinner-tools .cell {
+  width: var(--cell);
+  height: var(--cell);
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--color) 80%, white),
+    color-mix(in oklab, var(--color) 85%, black)
+  );
+  box-shadow:
+    0 0 calc(2px * var(--glow)) 0 var(--color),
+    0 0 calc(6px * var(--glow)) 0 color-mix(in oklab, var(--color) 50%, transparent),
+    0 0 calc(12px * var(--glow)) 0 color-mix(in oklab, var(--color) 33%, transparent);
+  opacity: 0;
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+.pixel-spinner-tools .cell-1 { animation-name: pstools-1; }
+.pixel-spinner-tools .cell-3 { animation-name: pstools-3; }
+.pixel-spinner-tools .cell-4 { animation-name: pstools-4; }
+.pixel-spinner-tools .cell-5 { animation-name: pstools-5; }
+.pixel-spinner-tools .cell-7 { animation-name: pstools-7; }
+
+@keyframes pstools-1 {
+  0.00%, 11.10%  { opacity: 0; }
+  11.11%, 22.21% { opacity: 0; }
+  22.22%, 33.32% { opacity: 0; }
+  33.33%, 44.43% { opacity: 1; }
+  44.44%, 55.54% { opacity: 1; }
+  55.55%, 66.65% { opacity: 1; }
+  66.66%, 77.76% { opacity: 0.5; }
+  77.77%, 88.87% { opacity: 0.25; }
+  88.88%, 99.99% { opacity: 1; }
+}
+@keyframes pstools-3 {
+  0.00%, 11.10%  { opacity: 0; }
+  11.11%, 22.21% { opacity: 1; }
+  22.22%, 33.32% { opacity: 0.5; }
+  33.33%, 44.43% { opacity: 0.25; }
+  44.44%, 55.54% { opacity: 0.15; }
+  55.55%, 66.65% { opacity: 0; }
+  66.66%, 77.76% { opacity: 0; }
+  77.77%, 88.87% { opacity: 0; }
+  88.88%, 99.99% { opacity: 1; }
+}
+@keyframes pstools-4 {
+  0.00%, 11.10%  { opacity: 1; }
+  11.11%, 22.21% { opacity: 0.5; }
+  22.22%, 33.32% { opacity: 1; }
+  33.33%, 44.43% { opacity: 0.5; }
+  44.44%, 55.54% { opacity: 0.25; }
+  55.55%, 66.65% { opacity: 0.15; }
+  66.66%, 77.76% { opacity: 0; }
+  77.77%, 88.87% { opacity: 0; }
+  88.88%, 99.99% { opacity: 0; }
+}
+@keyframes pstools-5 {
+  0.00%, 11.10%  { opacity: 0; }
+  11.11%, 22.21% { opacity: 0; }
+  22.22%, 33.32% { opacity: 0; }
+  33.33%, 44.43% { opacity: 1; }
+  44.44%, 55.54% { opacity: 1; }
+  55.55%, 66.65% { opacity: 1; }
+  66.66%, 77.76% { opacity: 0.5; }
+  77.77%, 88.87% { opacity: 1; }
+  88.88%, 99.99% { opacity: 1; }
+}
+@keyframes pstools-7 {
+  0.00%, 11.10%  { opacity: 0; }
+  11.11%, 22.21% { opacity: 0; }
+  22.22%, 33.32% { opacity: 0; }
+  33.33%, 44.43% { opacity: 1; }
+  44.44%, 55.54% { opacity: 1; }
+  55.55%, 66.65% { opacity: 1; }
+  66.66%, 77.76% { opacity: 0.5; }
+  77.77%, 88.87% { opacity: 0.25; }
+  88.88%, 99.99% { opacity: 1; }
+}

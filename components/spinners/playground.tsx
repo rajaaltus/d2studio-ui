@@ -2,6 +2,14 @@
 
 import * as React from "react";
 import {
+  ArrowDown,
+  ArrowDownLeft,
+  ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowUpLeft,
+  ArrowUpRight,
   Atom,
   Check,
   ChevronDown,
@@ -15,6 +23,7 @@ import {
   Sun,
   X,
 } from "lucide-react";
+import { PixelFireSpinner } from "@/components/icons/pixel-fire-spinner";
 import { useTheme } from "@/components/theme-provider";
 import {
   PixelSpinner,
@@ -124,6 +133,115 @@ const SHAPES: { id: SpinnerShape; label: string }[] = [
   { id: "line-3", label: "Line 3" },
 ];
 
+type Direction = "n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw";
+
+const ALL_DIRECTIONS: Direction[] = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
+const CARDINALS: Direction[] = ["n", "e", "s", "w"];
+
+// Patterns where rotation/flip produces no visible change (radial / 4-fold
+// symmetric / inherently rotational) — direction picker is hidden.
+const NON_DIRECTIONAL_PATTERNS = new Set<string>([
+  "ripple-out",
+  "ripple-in",
+  "corners-y",
+  "corners-only",
+  "checkerboard",
+  "plus-hollow",
+  "frame-sync",
+  "billboard-tiles",
+  "neon-ring",
+  "wink-k",
+  "spiral-ccw",
+  "ring-4-cw",
+  "vortex-in",
+  "clock-rg",
+  "transmit-pulse",
+  "zigzag-zl",
+]);
+
+// Patterns where the diagonal directions also produce a meaningful result.
+// Default for directional patterns is cardinals only (N/S/E/W).
+const DIAGONAL_FRIENDLY_PATTERNS = new Set<string>([
+  "sparse-3",
+]);
+
+// Per-pattern direction overrides (takes precedence over the categories above).
+const CUSTOM_DIRECTIONS: Record<string, Direction[]> = {
+  "tide-roll": ["n", "e"],
+  "line-v-mid": ["n", "e"],
+  "sparse-3": ["ne", "se", "sw", "nw"],
+};
+
+// The direction each pattern is authored to display in. The picker highlights
+// this by default and rotation is computed relative to it (so selecting the
+// natural direction = no transform).
+const NATURAL_DIRECTION: Record<string, Direction> = {
+  "fire-rise": "n",
+  "bubbles-up": "n",
+  "rain-4": "s",
+  "stars-fall": "s",
+  "rows-alt": "s",
+  "sparse-3": "se",
+  "tide-roll": "e",
+  "line-v-mid": "n",
+};
+
+const CARDINAL_ANGLE: Record<Direction, number | undefined> = {
+  e: 0,
+  s: 90,
+  w: 180,
+  n: 270,
+  ne: undefined,
+  se: undefined,
+  sw: undefined,
+  nw: undefined,
+};
+
+// Map (natural, selected) → the direction we pass to rotatePattern, where
+// rotatePattern treats "e" as identity. For cardinal pairs we subtract angles;
+// for diagonal pairs we treat "natural diagonal" as identity ("e") and map
+// the other 3 diagonals to flips/180°.
+function effectiveRotation(natural: Direction, selected: Direction): Direction {
+  if (natural === selected) return "e";
+  const naturalAngle = CARDINAL_ANGLE[natural];
+  const selectedAngle = CARDINAL_ANGLE[selected];
+  if (naturalAngle !== undefined && selectedAngle !== undefined) {
+    const delta = (selectedAngle - naturalAngle + 360) % 360;
+    if (delta === 0) return "e";
+    if (delta === 90) return "s";
+    if (delta === 180) return "w";
+    return "n";
+  }
+  // Diagonal cases: pretend natural diagonal is "se" (transpose-like) so the
+  // existing diagonal flips approximate sensible mirror operations.
+  const diagonalDelta: Record<string, Direction> = {
+    "ne→se": "nw",
+    "ne→sw": "w",
+    "ne→nw": "se",
+    "se→ne": "nw",
+    "se→sw": "se",
+    "se→nw": "w",
+    "sw→ne": "w",
+    "sw→se": "se",
+    "sw→nw": "nw",
+    "nw→ne": "se",
+    "nw→se": "w",
+    "nw→sw": "nw",
+  };
+  return diagonalDelta[`${natural}→${selected}`] ?? selected;
+}
+
+function getNaturalDirection(name: string): Direction {
+  return NATURAL_DIRECTION[name] ?? "e";
+}
+
+function getSupportedDirections(name: string): Direction[] {
+  if (CUSTOM_DIRECTIONS[name]) return CUSTOM_DIRECTIONS[name];
+  if (NON_DIRECTIONAL_PATTERNS.has(name)) return [];
+  if (DIAGONAL_FRIENDLY_PATTERNS.has(name)) return ALL_DIRECTIONS;
+  return CARDINALS;
+}
+
 const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
   square: {},
   rounded: { borderRadius: "22%" },
@@ -219,6 +337,7 @@ export function SpinnerPlayground() {
   const [gridCols, setGridCols] = React.useState(0);
   const [shape, setShape] = React.useState<SpinnerShape>("square");
   const [animation, setAnimation] = React.useState<SpinnerAnimation>("wavy");
+  const [direction, setDirection] = React.useState<Direction>("e");
   const [pickerOpen, setPickerOpen] = React.useState(false);
   const [patternQuery, setPatternQuery] = React.useState("");
   const [gradientPickerOpen, setGradientPickerOpen] = React.useState(false);
@@ -239,15 +358,56 @@ export function SpinnerPlayground() {
   const springGap = useSpring(gap);
   const springGlow = useSpring(glow);
 
+  const supportedDirections = React.useMemo(
+    () => getSupportedDirections(pattern.name),
+    [pattern.name]
+  );
+  const naturalDirection = React.useMemo(
+    () => getNaturalDirection(pattern.name),
+    [pattern.name]
+  );
+
+  const prevPatternName = React.useRef(pattern.name);
+  React.useEffect(() => {
+    const patternChanged = prevPatternName.current !== pattern.name;
+    prevPatternName.current = pattern.name;
+    if (supportedDirections.length === 0) {
+      if (direction !== "e") setDirection("e");
+      return;
+    }
+    if (patternChanged) {
+      const target = supportedDirections.includes(naturalDirection)
+        ? naturalDirection
+        : supportedDirections[0];
+      if (direction !== target) setDirection(target);
+      return;
+    }
+    if (!supportedDirections.includes(direction)) {
+      setDirection(
+        supportedDirections.includes(naturalDirection)
+          ? naturalDirection
+          : supportedDirections[0]
+      );
+    }
+  }, [supportedDirections, naturalDirection, direction, pattern.name]);
+
+  const rotatedPatternData = React.useMemo(
+    () =>
+      rotatePattern(
+        pattern.pattern,
+        effectiveRotation(naturalDirection, direction)
+      ),
+    [pattern, naturalDirection, direction]
+  );
   const patternRows =
-    pattern.pattern.rows ?? pattern.pattern.size ?? 3;
+    rotatedPatternData.rows ?? rotatedPatternData.size ?? 3;
   const patternCols =
-    pattern.pattern.cols ?? pattern.pattern.size ?? 3;
+    rotatedPatternData.cols ?? rotatedPatternData.size ?? 3;
   const effectiveRows = gridRows || patternRows;
   const effectiveCols = gridCols || patternCols;
   const scaledPattern = React.useMemo(
-    () => scalePattern(pattern.pattern, effectiveRows, effectiveCols),
-    [pattern, effectiveRows, effectiveCols]
+    () => scalePattern(rotatedPatternData, effectiveRows, effectiveCols),
+    [rotatedPatternData, effectiveRows, effectiveCols]
   );
 
   const activePreset = PRESETS.find((p) => p.id === presetId);
@@ -289,6 +449,7 @@ export function SpinnerPlayground() {
     setGridCols(0);
     setShape("square");
     setAnimation("wavy");
+    setDirection("e");
   };
 
   const colorLine =
@@ -323,10 +484,40 @@ export function SpinnerPlayground() {
     [scaledPattern, activeColor, activeCustom, activeGradient, cellSize, gap, speed, glow]
   );
 
+  const promptSnippet = React.useMemo(
+    () =>
+      buildAiPrompt({
+        patternName: pattern.name,
+        pattern: scaledPattern,
+        color: activeColor,
+        customColor: activeCustom,
+        gradient: activeGradient,
+        cellSize,
+        gap,
+        speed,
+        glow,
+        shape,
+        animation,
+      }),
+    [
+      pattern.name,
+      scaledPattern,
+      activeColor,
+      activeCustom,
+      activeGradient,
+      cellSize,
+      gap,
+      speed,
+      glow,
+      shape,
+      animation,
+    ]
+  );
+
   return (
     <section className="grid gap-2.5 rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:grid-cols-[1fr_360px] lg:p-2.5">
       {/* Preview */}
-      <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 backdrop-blur-sm">
+      <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 backdrop-blur-sm lg:self-start">
         <div className="flex items-center justify-between border-b border-[var(--ls-border)] px-5 py-3">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-[oklch(0.72_0.24_5)]" />
@@ -345,9 +536,9 @@ export function SpinnerPlayground() {
           </button>
         </div>
 
-        <div className="flex min-h-[260px] flex-1 items-center justify-center p-8">
+        <div className="flex min-h-[180px] items-center justify-center p-6">
           <PixelSpinner
-            key={`${pattern.name}-${speed}-${effectiveRows}x${effectiveCols}`}
+            key={`${pattern.name}-${direction}-${speed}-${effectiveRows}x${effectiveCols}`}
             pattern={scaledPattern}
             color={activeColor}
             customColor={activeCustom}
@@ -361,18 +552,34 @@ export function SpinnerPlayground() {
           />
         </div>
 
-        <div className="grid grid-cols-1 border-t border-[var(--ls-border)] md:grid-cols-2">
+        <div className="border-t border-[var(--ls-border)]">
           <CodePanel
-            label="HTML"
-            icon={<FileCode2 size={14} className="text-[#e34c26]" />}
-            code={htmlSnippet}
+            label="AI Prompt"
+            icon={<PixelFireSpinner />}
+            code={promptSnippet}
+            copyLabel="Copy Prompt"
+            description="Paste into ChatGPT, Claude, or any AI to recreate this spinner."
+            hidePreview
           />
-          <CodePanel
-            label="CSS"
-            icon={<Palette size={14} className="text-[#BF83FB]" />}
-            code={cssSnippet}
-            className="border-t border-[var(--ls-border)] md:border-l md:border-t-0"
-          />
+          <div className="grid grid-cols-1 border-t border-[var(--ls-border)] md:grid-cols-2">
+            <CodePanel
+              label="HTML"
+              icon={<FileCode2 size={14} className="text-[#e34c26]" />}
+              code={htmlSnippet}
+              copyLabel="Copy HTML"
+              description="Drop the markup straight into any page."
+              hidePreview
+            />
+            <CodePanel
+              label="CSS"
+              icon={<Palette size={14} className="text-[#BF83FB]" />}
+              code={cssSnippet}
+              copyLabel="Copy CSS"
+              description="Pair with the HTML to render the spinner."
+              hidePreview
+              className="border-t border-[var(--ls-border)] md:border-l md:border-t-0"
+            />
+          </div>
           {/* React panel temporarily hidden — re-enable when React snippet is ready.
           <CodePanel
             label="React"
@@ -688,6 +895,17 @@ export function SpinnerPlayground() {
           </div>
         </ControlGroup>
 
+        {supportedDirections.length > 0 && (
+          <ControlGroup label="Direction">
+            <DirectionPad
+              value={direction}
+              supported={supportedDirections}
+              onChange={setDirection}
+            />
+          </ControlGroup>
+        )}
+
+
         <ControlGroup label="Shape">
           <div className="grid grid-cols-8 gap-1 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-1">
             {SHAPES.map((s) => {
@@ -871,11 +1089,21 @@ function CodePanel({
   code,
   className,
   icon,
+  trailingIcon,
+  copyLabel,
+  description,
+  wrap,
+  hidePreview,
 }: {
   label: string;
   code: string;
   className?: string;
   icon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
+  copyLabel?: string;
+  description?: string;
+  wrap?: boolean;
+  hidePreview?: boolean;
 }) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = async () => {
@@ -889,22 +1117,37 @@ function CodePanel({
         "flex min-w-0 flex-col bg-[var(--ls-code-bg)]/60 p-4 " + (className ?? "")
       }
     >
-      <div className="mb-3 flex items-center justify-between gap-3">
-        <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-[var(--ls-foreground)]">
-          {icon}
-          {label}
-        </span>
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-[var(--ls-foreground)]">
+            {icon}
+            {label}
+            {trailingIcon}
+          </span>
+          {description && (
+            <p className="mt-1 text-[11px] text-[var(--ls-muted-foreground)]">
+              {description}
+            </p>
+          )}
+        </div>
         <button
           onClick={handleCopy}
           className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 py-1.5 text-xs font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]"
         >
           {copied ? <Check size={12} /> : <Copy size={12} />}
-          {copied ? "Copied" : "Copy"}
+          {copied ? "Copied" : copyLabel ?? "Copy"}
         </button>
       </div>
-      <pre className="max-h-64 overflow-auto font-mono text-[11px] leading-relaxed text-[var(--ls-muted-foreground)]">
-        {code}
-      </pre>
+      {!hidePreview && (
+        <pre
+          className={
+            "max-h-64 overflow-auto font-mono text-[11px] leading-relaxed text-[var(--ls-muted-foreground)] " +
+            (wrap ? "whitespace-pre-wrap break-words" : "")
+          }
+        >
+          {code}
+        </pre>
+      )}
     </div>
   );
 }
@@ -989,6 +1232,54 @@ function GradientStop({
           className="w-full rounded border border-[var(--ls-border)] bg-[var(--ls-card)] px-1.5 py-1 font-mono text-[10px] text-[var(--ls-foreground)] outline-none focus:border-white/40"
         />
       </div>
+    </div>
+  );
+}
+
+function DirectionPad({
+  value,
+  supported,
+  onChange,
+}: {
+  value: Direction;
+  supported: Direction[];
+  onChange: (d: Direction) => void;
+}) {
+  const cells: { id: Direction; icon: React.ReactNode; label: string }[] = [
+    { id: "n", icon: <ArrowUp size={14} />, label: "Up" },
+    { id: "ne", icon: <ArrowUpRight size={14} />, label: "Up-right" },
+    { id: "e", icon: <ArrowRight size={14} />, label: "Right" },
+    { id: "se", icon: <ArrowDownRight size={14} />, label: "Down-right" },
+    { id: "s", icon: <ArrowDown size={14} />, label: "Down" },
+    { id: "sw", icon: <ArrowDownLeft size={14} />, label: "Down-left" },
+    { id: "w", icon: <ArrowLeft size={14} />, label: "Left" },
+    { id: "nw", icon: <ArrowUpLeft size={14} />, label: "Up-left" },
+  ];
+  const supportedSet = new Set(supported);
+  return (
+    <div className="flex flex-wrap gap-1">
+      {cells
+        .filter((c) => supportedSet.has(c.id))
+        .map((c) => {
+          const active = value === c.id;
+          return (
+            <button
+              key={c.id}
+              type="button"
+              onClick={() => onChange(c.id)}
+              aria-label={c.label}
+              title={c.label}
+              className={
+                "flex h-7 w-7 items-center justify-center rounded-md border transition-colors " +
+                (active
+                  ? "border-white/40 bg-[var(--ls-border)]/50 text-[var(--ls-foreground)]"
+                  : "border-[var(--ls-border)] bg-[var(--ls-card)]/60 text-[var(--ls-muted-foreground)] hover:border-white/20 hover:text-[var(--ls-foreground)]")
+              }
+            >
+              {c.icon}
+            </button>
+          );
+        })}
     </div>
   );
 }
@@ -1099,6 +1390,63 @@ function SliderControl({
 }
 
 /* ============ Pattern scaling ============ */
+
+function rotatePattern(p: SpinnerPattern, direction: Direction): SpinnerPattern {
+  if (direction === "e") return p;
+  const rows = p.rows ?? p.size ?? 3;
+  const cols = p.cols ?? p.size ?? 3;
+  let newRows = rows;
+  let newCols = cols;
+  let mapIdx: (r: number, c: number) => number;
+  switch (direction) {
+    case "s":
+      // 90° CW
+      newRows = cols;
+      newCols = rows;
+      mapIdx = (r, c) => c * newCols + (rows - 1 - r);
+      break;
+    case "w":
+      // 180°
+      mapIdx = (r, c) => (rows - 1 - r) * cols + (cols - 1 - c);
+      break;
+    case "n":
+      // 90° CCW
+      newRows = cols;
+      newCols = rows;
+      mapIdx = (r, c) => (cols - 1 - c) * newCols + r;
+      break;
+    case "ne":
+      // horizontal flip (mirror across vertical axis)
+      mapIdx = (r, c) => r * cols + (cols - 1 - c);
+      break;
+    case "nw":
+      // vertical flip (mirror across horizontal axis)
+      mapIdx = (r, c) => (rows - 1 - r) * cols + c;
+      break;
+    case "se":
+      // transpose (flip across main diagonal)
+      newRows = cols;
+      newCols = rows;
+      mapIdx = (r, c) => c * newCols + r;
+      break;
+    case "sw":
+      // anti-transpose (flip across anti-diagonal)
+      newRows = cols;
+      newCols = rows;
+      mapIdx = (r, c) => (cols - 1 - c) * newCols + (rows - 1 - r);
+      break;
+    default:
+      return p;
+  }
+  const newFrames = p.frames.map((frame) =>
+    frame.map((idx) => {
+      const r = Math.floor(idx / cols);
+      const c = idx % cols;
+      return mapIdx(r, c);
+    })
+  );
+  return { ...p, rows: newRows, cols: newCols, size: undefined, frames: newFrames };
+}
 
 function scalePattern(
   p: SpinnerPattern,
@@ -1235,6 +1583,141 @@ ${cellNameRules.join("\n")}
 ${keyframes}`;
 
   return { htmlSnippet: html, cssSnippet: css };
+}
+
+/* ============ AI prompt builder ============ */
+
+function describeShape(shape: SpinnerShape): string {
+  switch (shape) {
+    case "square":
+      return "sharp square";
+    case "rounded":
+      return "rounded square (border-radius ~22%)";
+    case "circle":
+      return "circle (border-radius 50%)";
+    case "diamond":
+      return "diamond (clip-path rotated square)";
+    case "triangle":
+      return "triangle (clip-path triangle)";
+    case "lines":
+      return "thin horizontal scan-lines";
+    case "line-2":
+      return "tight horizontal line pattern";
+    case "line-3":
+      return "wide horizontal line pattern";
+    default:
+      return shape;
+  }
+}
+
+function describeColor(opts: {
+  color: SpinnerColor;
+  customColor?: string;
+  gradient?: SpinnerGradient;
+}): { line: string; glowColor: string } {
+  if (opts.gradient) {
+    return {
+      line: `Diagonal linear gradient (135deg) from ${opts.gradient.from} to ${opts.gradient.to}`,
+      glowColor: opts.gradient.glow,
+    };
+  }
+  if (opts.customColor) {
+    return {
+      line: `Solid ${opts.customColor} (with a subtle 135deg gradient: lightened → darkened tint)`,
+      glowColor: opts.customColor,
+    };
+  }
+  const presetMap: Record<SpinnerColor, { from: string; to: string; glow: string }> = {
+    crimson: { from: "soft green", to: "deep green", glow: "green" },
+    hotpink: { from: "soft pink", to: "deep red", glow: "hot pink" },
+    violet: { from: "soft violet", to: "deep purple", glow: "violet" },
+    blue: { from: "soft blue", to: "deep blue", glow: "blue" },
+  };
+  const p = presetMap[opts.color];
+  return {
+    line: `Diagonal linear gradient (135deg) from ${p.from} to ${p.to}`,
+    glowColor: p.glow,
+  };
+}
+
+function buildAiPrompt(opts: {
+  patternName: string;
+  pattern: SpinnerPattern;
+  color: SpinnerColor;
+  customColor?: string;
+  gradient?: SpinnerGradient;
+  cellSize: number;
+  gap: number;
+  speed: number;
+  glow: number;
+  shape: SpinnerShape;
+  animation: SpinnerAnimation;
+}): string {
+  const {
+    patternName,
+    pattern,
+    color,
+    customColor,
+    gradient,
+    cellSize,
+    gap,
+    speed,
+    glow,
+    shape,
+    animation,
+  } = opts;
+
+  const rows = pattern.rows ?? pattern.size ?? 3;
+  const cols = pattern.cols ?? pattern.size ?? 3;
+  const F = pattern.frames.length;
+  const total = rows * cols;
+  const duration = F * speed;
+  const { line: colorLine, glowColor } = describeColor({ color, customColor, gradient });
+  const frameLines = pattern.frames
+    .map((f, i) => `  Frame ${i}: [${f.join(", ")}]`)
+    .join("\n");
+
+  return `I want a CSS-only loading spinner. Please generate clean, drop-in HTML and CSS for the following design:
+
+PATTERN
+- Name: "${patternName}"
+- Grid: ${rows} rows × ${cols} columns (${total} cells, indexed 0–${total - 1} in row-major order, left-to-right, top-to-bottom)
+- Total animation frames: ${F}
+- Frame duration: ${speed}ms (full loop ${duration}ms)
+- Animation style: ${animation === "wavy" ? "wavy / smooth easing between frames" : "discrete pixel stepping"}
+
+CELLS
+- Cell shape: ${describeShape(shape)}
+- Cell size: ${cellSize}px × ${cellSize}px
+- Gap between cells: ${gap}px
+- Color: ${colorLine}
+- Glow: multi-layer box-shadow halo at ${glow}× intensity, color ${glowColor}
+  • Inner: ~${Math.round(cellSize * 0.6 * glow)}px radius (full alpha)
+  • Mid:   ~${Math.round(cellSize * 1.6 * glow)}px radius (~50% alpha)
+  • Outer: ~${Math.round(cellSize * 3.2 * glow)}px radius (~33% alpha)
+
+MOTION TRAIL
+Each cell, when activated on a frame, fades out over the next 3 frames so there is a 4-step opacity trail:
+  step 0 (active): 1.0
+  step 1: 0.5
+  step 2: 0.25
+  step 3: 0.15
+
+FRAME DATA (cell indices that activate at the start of each frame)
+${frameLines}
+
+REQUIREMENTS
+- Pure HTML + CSS only (no JavaScript, no images, no SVG)
+- Use display: inline-grid with grid-template-columns: repeat(${cols}, ${cellSize}px)
+- Each lit cell gets its own @keyframes rule
+- Use animation-timing-function: steps(1, end) so opacity changes are crisp at frame boundaries
+- Use linear-gradient(135deg, ...) for the cell fill
+- Stack three box-shadow layers for the glow halo
+- Loop infinitely (animation-iteration-count: infinite)
+- Expose cell size, gap, color, and speed as CSS custom properties (e.g., --cell, --gap, --duration) so it's easy to customize
+
+OUTPUT
+Return one self-contained HTML snippet and one CSS block that I can paste directly into a project. Add a one-line usage comment at the top of the CSS.`;
 }
 
 /* ============ GIF export ============ */

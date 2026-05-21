@@ -1,0 +1,40 @@
+[    1356ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1456ms] [LOG] [HMR] connected @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1635ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    3080ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/api/component-code/dashboard-01:0
+[    3670ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4000/api/component-code/dashboard-01:0
+[    5873ms] [LOG] [Fast Refresh] done in 4385ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    6247ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    6253ms] [LOG] [Fast Refresh] done in 107ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   10717ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   10836ms] [LOG] [Fast Refresh] done in 220ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   13010ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   13032ms] [LOG] [Fast Refresh] done in 123ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   13556ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   13558ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  362309ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  362315ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  362880ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  362892ms] [LOG] [Fast Refresh] done in 113ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1578164ms] [LOG] WebSocket closed with code 1006 @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1578170ms] [LOG] Attempting reconnect in 1213ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1578180ms] [ERROR] WebSocket is already in CLOSING or CLOSED state. @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2790
+[ 1579205ms] [LOG] [HMR] connected @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1580183ms] [LOG] WebSocket reconnected at t=1580.1s after disconnect due to closed with code 1006 @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2754588ms] [LOG] Attempting reconnect in 91ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2755357ms] [LOG] WebSocket reconnected at t=1744.2s after disconnect due to InactiveServer @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3795103ms] [LOG] WebSocket closed with code 1006 @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3795107ms] [LOG] Attempting reconnect in 1142ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3797273ms] [LOG] WebSocket reconnected at t=2676.7s after disconnect due to closed with code 1006 @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4288968ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4289804ms] [LOG] [Fast Refresh] done in 764ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4324257ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4325959ms] [LOG] [Fast Refresh] done in 1754ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4336111ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4337745ms] [LOG] [Fast Refresh] done in 1686ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4340549ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4340720ms] [LOG] [Fast Refresh] done in 272ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4342401ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4342479ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4353284ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4354052ms] [LOG] [Fast Refresh] done in 826ms @ http://localhost:4000/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

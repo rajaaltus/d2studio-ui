@@ -1,0 +1,33 @@
+/* Pixel-animated rocket icon — drop-in HTML + CSS, no JavaScript. */
+.pixel-icon--rocket-fill-24 {
+  display: inline-grid;
+  grid-template-columns: repeat(32, 1px);
+  grid-template-rows: repeat(32, 1px);
+  gap: 3px;
+}
+.pixel-icon--rocket-fill-24 .px {
+  width: 1px;
+  height: 1px;
+  border-radius: 22%;
+  opacity: 0;
+}
+.pixel-icon--rocket-fill-24 .px.on {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, #ff7e5f 80%, white),
+    color-mix(in oklab, #ff7e5f 85%, black)
+  );
+  box-shadow:
+    0 0 0px #ff7e5f,
+    0 0 0px #ff7e5f80,
+    0 0 0px #ff7e5f55;
+  animation: pi-rocket-pulse 1200ms steps(1, end) infinite;
+}
+
+@keyframes pi-rocket-pulse {
+  0%, 9.99% { opacity: 1; }
+  10%, 19.99% { opacity: 0.7; }
+  20%, 29.99% { opacity: 1; }
+  30%, 39.99% { opacity: 0.7; }
+  40%, 100% { opacity: 0.5; }
+}

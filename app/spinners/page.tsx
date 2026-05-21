@@ -13,6 +13,7 @@ export default function SpinnersPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
+      <div id="main-content" tabIndex={-1} className="outline-none" />
 
       <div className="luminous-spinners bg-background">
         <section className="w-full max-w-6xl border-x border-[var(--ls-border)] mx-auto px-4 lg:px-8">

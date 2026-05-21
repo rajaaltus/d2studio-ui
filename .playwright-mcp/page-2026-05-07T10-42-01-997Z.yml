@@ -1,0 +1,242 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e4]:
+        - generic [ref=e5]:
+          - link "Studio" [ref=e6] [cursor=pointer]:
+            - /url: /
+            - img [ref=e7]
+            - paragraph [ref=e14]: Studio
+          - generic [ref=e15]:
+            - link "Blocks" [ref=e16] [cursor=pointer]:
+              - /url: /blocks
+            - link "Spinners" [ref=e17] [cursor=pointer]:
+              - /url: /spinners
+            - link "Pixel Animation New" [ref=e18] [cursor=pointer]:
+              - /url: /pixel-animation
+              - text: Pixel Animation
+              - generic [ref=e20]: New
+            - link "Docs" [ref=e21] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=e22]:
+            - link "Buy me a coffee" [ref=e23] [cursor=pointer]:
+              - /url: https://buymeacoffee.com/godwindev
+              - img [ref=e24]
+              - generic [ref=e26]: Buy me a coffee
+            - switch "Toggle theme" [ref=e27]
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Icon Studio
+        - heading "Pixel Animation" [level=1] [ref=e33]
+        - paragraph [ref=e34]: Drop in any SVG and we turn it into a glowing, animated pixel-grid icon. Pick a color, an animation, and copy the HTML, CSS, or AI prompt.
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e43]: Heart
+            - generic [ref=e44]:
+              - button "Record" [ref=e45]:
+                - img [ref=e46]
+                - text: Record
+              - button "Random" [ref=e49]:
+                - img [ref=e50]
+                - text: Random
+          - generic [ref=e57]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - generic [ref=e61]: AI Prompt
+                - paragraph [ref=e79]: Paste into ChatGPT, Claude, or any AI to recreate this animated icon.
+              - button "Copy Prompt" [ref=e80]:
+                - img [ref=e81]
+                - text: Copy Prompt
+            - generic [ref=e84]:
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - generic [ref=e88]:
+                    - img [ref=e89]
+                    - text: HTML
+                  - paragraph [ref=e94]: Drop the markup straight into any page.
+                - button "Copy HTML" [ref=e95]:
+                  - img [ref=e96]
+                  - text: Copy HTML
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - generic [ref=e102]:
+                    - img [ref=e103]
+                    - text: CSS
+                  - paragraph [ref=e109]: Pair with the HTML to render the icon.
+                - button "Copy CSS" [ref=e110]:
+                  - img [ref=e111]
+                  - text: Copy CSS
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - generic [ref=e117]:
+                  - img [ref=e118]
+                  - text: JavaScript
+                - paragraph [ref=e121]: Self-contained createPixelIcon(container) — drives the animation via Web Animations API. Returns a destroy() handle.
+              - button "Copy JS" [ref=e122]:
+                - img [ref=e123]
+                - text: Copy JS
+        - complementary [ref=e126]:
+          - generic [ref=e127]:
+            - paragraph [ref=e128]: Controls
+            - generic [ref=e129]:
+              - button "Toggle theme" [ref=e130]:
+                - img [ref=e131]
+              - button "Copy share link" [ref=e133]:
+                - img [ref=e134]
+                - text: Share
+              - button "Reset" [ref=e140]:
+                - img [ref=e141]
+                - text: Reset
+          - generic [ref=e144]:
+            - paragraph [ref=e145]: SVG Source
+            - generic [ref=e146]:
+              - button "Upload SVG" [ref=e147]:
+                - img [ref=e148]
+                - text: Upload SVG
+              - button "Library" [ref=e151]:
+                - img [ref=e152]
+                - text: Library
+            - paragraph [ref=e156]: Drag & drop an SVG, or pick from 3,700+ Lucide icons.
+          - generic [ref=e157]:
+            - paragraph [ref=e158]: Animation
+            - button "Scan ↓" [ref=e159]:
+              - generic [ref=e160]: Scan ↓
+              - img [ref=e161]
+          - generic [ref=e163]:
+            - paragraph [ref=e164]: Color
+            - generic [ref=e165]:
+              - button "gradient" [ref=e166]
+              - button "preset" [ref=e167]
+              - button "custom" [ref=e168]
+            - generic [ref=e169]:
+              - button "Sunset" [ref=e170]:
+                - generic [ref=e173]: Sunset
+                - img [ref=e174]
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - paragraph [ref=e178]: From
+                  - generic [ref=e179]:
+                    - textbox [ref=e181] [cursor=pointer]: "#ff9966"
+                    - textbox [ref=e182]: "#ff9966"
+                - generic [ref=e183]:
+                  - paragraph [ref=e184]: To
+                  - generic [ref=e185]:
+                    - textbox [ref=e187] [cursor=pointer]: "#ff5e62"
+                    - textbox [ref=e188]: "#ff5e62"
+                - generic [ref=e189]:
+                  - paragraph [ref=e190]: Glow
+                  - generic [ref=e191]:
+                    - textbox [ref=e193] [cursor=pointer]: "#ff5e62"
+                    - textbox [ref=e194]: "#ff5e62"
+          - generic [ref=e195]:
+            - paragraph [ref=e196]: Easing
+            - generic [ref=e197]:
+              - button "pixels" [ref=e198]
+              - button "wavy" [ref=e199]
+          - generic [ref=e200]:
+            - paragraph [ref=e201]: Cell Shape
+            - generic [ref=e202]:
+              - button "Square" [ref=e203]
+              - button "Rounded" [ref=e205]
+              - button "Circle" [ref=e207]
+              - button "Diamond" [ref=e209]
+              - button "Triangle" [ref=e211]
+              - button "Lines" [ref=e213]
+              - button "Line 2" [ref=e215]
+              - button "Line 3" [ref=e217]
+          - generic [ref=e219]:
+            - paragraph [ref=e220]: Resolution
+            - generic [ref=e221]:
+              - button "16×16" [ref=e222]
+              - button "24×24" [ref=e223]
+              - button "32×32" [ref=e224]
+              - button "48×48" [ref=e225]
+              - button "64×64" [ref=e226]
+              - button "96×96" [ref=e227]
+              - button "128×128" [ref=e228]
+              - button "192×192" [ref=e229]
+              - button "256×256" [ref=e230]
+            - paragraph [ref=e231]: Currently rendering 318px (20×20 cells × 14px + 2px gap)
+        - complementary [ref=e232]:
+          - generic [ref=e233]:
+            - paragraph [ref=e234]: Mood
+            - generic [ref=e235]:
+              - button "Aurora" [ref=e236]:
+                - generic [ref=e238]: Aurora
+              - button "Cyberpunk" [ref=e239]:
+                - generic [ref=e241]: Cyberpunk
+              - button "Holographic" [ref=e242]:
+                - generic [ref=e244]: Holographic
+              - button "Lava Forge" [ref=e245]:
+                - generic [ref=e247]: Lava Forge
+              - button "Retro Arcade" [ref=e248]:
+                - generic [ref=e250]: Retro Arcade
+              - button "Mono Mist" [ref=e251]:
+                - generic [ref=e253]: Mono Mist
+          - generic [ref=e254]:
+            - generic [ref=e255]:
+              - paragraph [ref=e256]: Cell size
+              - generic [ref=e257]: 14px
+            - slider [ref=e258] [cursor=pointer]: "14"
+          - generic [ref=e259]:
+            - generic [ref=e260]:
+              - paragraph [ref=e261]: Gap
+              - generic [ref=e262]: 2px
+            - slider [ref=e263] [cursor=pointer]: "2"
+          - generic [ref=e264]:
+            - generic [ref=e265]:
+              - paragraph [ref=e266]: Animation Speed
+              - generic [ref=e267]:
+                - spinbutton [ref=e268]: "140"
+                - generic [ref=e269]: ms
+            - slider [ref=e270] [cursor=pointer]: "140"
+            - generic [ref=e271]:
+              - generic [ref=e272]: Fast
+              - generic [ref=e273]: Slow
+          - generic [ref=e274]:
+            - generic [ref=e275]:
+              - paragraph [ref=e276]: Glow
+              - generic [ref=e277]: 1x
+            - slider [ref=e278] [cursor=pointer]: "1"
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - paragraph [ref=e281]: Base Opacity
+              - generic [ref=e282]: "0.32"
+            - slider [ref=e283] [cursor=pointer]: "0.32"
+            - generic [ref=e284]:
+              - generic [ref=e285]: Hidden
+              - generic [ref=e286]: Solid
+          - generic [ref=e287]:
+            - generic [ref=e288]:
+              - paragraph [ref=e289]: Threshold
+              - generic [ref=e290]: "96"
+            - slider [ref=e291] [cursor=pointer]: "96"
+            - generic [ref=e292]:
+              - generic [ref=e293]: Detail
+              - generic [ref=e294]: Bold
+    - contentinfo [ref=e295]:
+      - generic [ref=e297]:
+        - generic [ref=e298]:
+          - text: © 2026
+          - link "D2 Studio" [ref=e299] [cursor=pointer]:
+            - /url: https://www.d2studio.dev/
+          - text: . Built with
+          - generic [ref=e300]: ❤❤❤❤
+          - text: for the community.
+        - generic [ref=e301]:
+          - link "Docs" [ref=e302] [cursor=pointer]:
+            - /url: /docs
+          - link "Components" [ref=e303] [cursor=pointer]:
+            - /url: /blocks
+          - link "X (formerly Twitter)" [ref=e304] [cursor=pointer]:
+            - /url: https://x.com/uxgodwin
+            - img [ref=e305]
+  - link "Buy me a coffee" [ref=e307] [cursor=pointer]:
+    - /url: https://buymeacoffee.com/godwindev
+    - generic:
+      - generic: Buy me a coffee!
+      - generic: Your support truly makes a difference.
+    - img [ref=e309]
+  - button "Open Next.js Dev Tools" [ref=e315] [cursor=pointer]:
+    - img [ref=e316]

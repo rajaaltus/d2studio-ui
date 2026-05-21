@@ -53,6 +53,7 @@ export default function BlockPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
+      <div id="main-content" tabIndex={-1} className="outline-none" />
 
       {/* Header Section */}
       <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-8">
@@ -95,6 +96,8 @@ export default function BlockPage() {
           code={undefined}
           figmaUrl={block.figmaUrl}
           codeStatus={block.codeStatus}
+          isNew={block.isNew}
+          accessTier={block.accessTier ?? "free"}
           minHeight="500px"
         >
           <div className="w-full h-full min-h-[600px] bg-background">

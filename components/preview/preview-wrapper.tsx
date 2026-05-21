@@ -20,9 +20,14 @@ import {
   RefreshCw,
   Eye,
   Code,
+  ChevronDown,
+  Copy,
+  Lock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SyntaxHighlighter } from "@/components/ui/syntax-highlighter";
+
+type AccessTier = "free" | "pro";
 
 interface PreviewWrapperProps {
   children: React.ReactNode;
@@ -33,6 +38,8 @@ interface PreviewWrapperProps {
   iframeHeight?: number;
   figmaUrl?: string;
   codeStatus?: "coming_soon" | "available";
+  isNew?: boolean;
+  accessTier?: AccessTier;
 }
 
 export function PreviewWrapper({
@@ -44,6 +51,8 @@ export function PreviewWrapper({
   iframeHeight = 930,
   figmaUrl,
   codeStatus = "available",
+  isNew = false,
+  accessTier = "free",
 }: PreviewWrapperProps) {
   const [view, setView] = React.useState<"preview" | "code" | "figma">("preview");
   const [copiedInstall, setCopiedInstall] = React.useState(false);
@@ -83,8 +92,18 @@ export function PreviewWrapper({
       <div className="flex items-center justify-between gap-2 p-1 screen-line-after screen-line-before">
         <div className="flex items-center justify-start gap-4 ">
           {/* Component Name Badge */}
-          <div className="hidden h-auto rounded-sm font-sans  px-2 capitalize sm:inline-flex">
-            {componentName}
+          <div className="hidden h-auto items-center gap-2 rounded-sm font-sans px-2 capitalize sm:inline-flex">
+            <span>{componentName}</span>
+            <AccessTierTag tier={accessTier} />
+            {isNew && (
+              <span className="relative inline-flex items-center overflow-hidden rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-[0_0_12px_oklch(0.7_0.2_50/0.5)]">
+                <span className="relative z-10">New</span>
+                <span
+                  className="pointer-events-none absolute inset-0 -translate-x-full animate-[badge-shimmer_2.2s_linear_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                  aria-hidden="true"
+                />
+              </span>
+            )}
           </div>
           <div className="hidden h-4 w-px bg-border sm:block" />
           {/* Preview/Code/Figma Toggle */}
@@ -295,7 +314,7 @@ export function PreviewWrapper({
         ) : view === "figma" ? (
           <div className="relative min-h-[400px] w-full">
             {figmaUrl ? (
-              <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border bg-background">
+              <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border bg-muted">
                 <div className="mb-4 text-center space-y-2">
                   <p className="text-sm font-medium">Figma File</p>
                   <p className="text-xs text-muted-foreground">
@@ -342,24 +361,22 @@ export function PreviewWrapper({
                 </Button>
               </div>
             ) : (
-              <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-zinc-950 text-sm text-muted-foreground dark:bg-zinc-900">
-                <div className="text-center space-y-2">
-                  <p>No Figma file available</p>
-                </div>
-              </div>
+              <DummyCodePreview
+                componentName={componentName}
+                accessTier={accessTier}
+                overlayLabel="No Figma file available"
+              />
             )}
           </div>
         ) : (
           <div className="relative">
             {codeStatus === "coming_soon" ? (
-              <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-zinc-950 text-sm text-muted-foreground dark:bg-zinc-900">
-                <div className="text-center space-y-2">
-                  <p className="text-base font-medium">Coming Soon</p>
-                  <p className="text-xs opacity-60">
-                    Code for this block will be available soon
-                  </p>
-                </div>
-              </div>
+              <DummyCodePreview
+                componentName={componentName}
+                accessTier={accessTier}
+                overlayLabel="Coming Soon"
+                overlayHint="Code for this block will be available soon"
+              />
             ) : code ? (
               <SyntaxHighlighter
                 code={code}
@@ -368,18 +385,208 @@ export function PreviewWrapper({
                 withMeta={true}
               />
             ) : (
-              <div className="flex min-h-[400px] items-center justify-center rounded-xl border bg-zinc-950 text-sm text-muted-foreground dark:bg-zinc-900">
-                <div className="text-center space-y-2">
-                  <p>Loading code...</p>
-                  <p className="text-xs opacity-60">
-                    Fetching component source
-                  </p>
-                </div>
-              </div>
+              <DummyCodePreview
+                componentName={componentName}
+                accessTier={accessTier}
+              />
             )}
           </div>
         )}
       </div>
     </div>
   );
+}
+
+interface DummyCodePreviewProps {
+  componentName: string;
+  overlayLabel?: string;
+  overlayHint?: string;
+  accessTier?: AccessTier;
+}
+
+function DummyCodePreview({
+  componentName,
+  overlayLabel,
+  overlayHint,
+  accessTier = "free",
+}: DummyCodePreviewProps) {
+  const isLocked = accessTier === "pro";
+  const [expanded, setExpanded] = React.useState(false);
+  const filename = `${componentName.toLowerCase()}.tsx`;
+  const dummyCode = `import * as React from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+
+export default function ${toPascalCase(componentName)}() {
+  return (
+    <div className="flex flex-col gap-6 p-6">
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
+          <p className="text-sm text-muted-foreground">
+            Welcome back, here is what is happening today.
+          </p>
+        </div>
+        <Button>Create new</Button>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <Card>
+          <CardHeader className="flex items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <Badge variant="secondary">+12.5%</Badge>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-semibold">$45,231.89</div>
+            <p className="text-xs text-muted-foreground">vs last month</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
+            <Badge variant="secondary">+180.1%</Badge>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-semibold">+2,350</div>
+            <p className="text-xs text-muted-foreground">vs last month</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+            <Badge variant="secondary">+19%</Badge>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-semibold">+12,234</div>
+            <p className="text-xs text-muted-foreground">vs last month</p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}`;
+
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = React.useCallback(async () => {
+    await navigator.clipboard.writeText(dummyCode);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }, [dummyCode]);
+
+  return (
+    <div className="group relative overflow-hidden rounded-xl border bg-muted">
+      {/* File header */}
+      <div className="flex h-10 items-center gap-2 border-b border-border/60 px-4">
+        <div className="flex gap-1">
+          <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
+        </div>
+        <span className="ml-1 text-xs font-medium text-muted-foreground">
+          {filename}
+        </span>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleCopy}
+          disabled={isLocked}
+          aria-label={
+            isLocked ? "Pro content – upgrade to copy" : copied ? "Copied" : "Copy code"
+          }
+          className="ml-auto h-7 gap-1.5 rounded-md px-2 text-xs text-muted-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-100"
+        >
+          {isLocked ? (
+            <Lock className="h-3.5 w-3.5" />
+          ) : copied ? (
+            <Check className="h-3.5 w-3.5 text-emerald-500" />
+          ) : (
+            <Copy className="h-3.5 w-3.5" />
+          )}
+          {isLocked ? "Copy" : copied ? "Copied" : "Copy"}
+        </Button>
+      </div>
+
+      {/* Dummy code */}
+      <div className="relative">
+        <div
+          className={cn(
+            "relative overflow-hidden font-mono text-[12px] leading-relaxed text-muted-foreground/70",
+            expanded ? "max-h-none pb-14" : "max-h-[360px]"
+          )}
+        >
+          <pre className="select-none whitespace-pre px-4 py-4">{dummyCode}</pre>
+
+          {/* Bottom fade mask only when collapsed */}
+          {!expanded && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-muted via-muted/85 to-transparent" />
+          )}
+        </div>
+
+        {/* Overlay label (coming-soon / no-figma) or morph button */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-4 z-10 flex justify-center">
+          {overlayLabel ? (
+            !expanded && (
+              <div className="pointer-events-auto text-center">
+                <p className="text-sm font-medium text-foreground">
+                  {overlayLabel}
+                </p>
+                {overlayHint && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {overlayHint}
+                  </p>
+                )}
+              </div>
+            )
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setExpanded((v) => !v)}
+              disabled={isLocked}
+              aria-label={
+                isLocked ? "Pro content – upgrade to expand" : undefined
+              }
+              className="pointer-events-auto h-8 gap-1.5 rounded-md bg-background px-3 text-xs shadow-sm disabled:cursor-not-allowed disabled:opacity-100"
+            >
+              {expanded ? "Less" : "Expand"}
+              {isLocked ? (
+                <Lock className="h-3.5 w-3.5" />
+              ) : (
+                <ChevronDown
+                  className={cn("h-3.5 w-3.5", expanded && "rotate-180")}
+                />
+              )}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AccessTierTag({ tier }: { tier: AccessTier }) {
+  const isPro = tier === "pro";
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
+        isPro
+          ? "bg-amber-500/15 text-amber-600 ring-1 ring-inset ring-amber-500/30 dark:text-amber-400"
+          : "bg-emerald-500/15 text-emerald-600 ring-1 ring-inset ring-emerald-500/30 dark:text-emerald-400"
+      )}
+    >
+      {isPro ? "Pro" : "Free"}
+    </span>
+  );
+}
+
+function toPascalCase(value: string) {
+  return value
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
 }

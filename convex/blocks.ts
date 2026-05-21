@@ -48,6 +48,10 @@ export const createBlock = mutation({
     ),
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
+    isFeatured: v.optional(v.boolean()),
+    featuredOrder: v.optional(v.number()),
+    isNew: v.optional(v.boolean()),
+    accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
   },
   returns: v.id("blocks"),
   handler: async (ctx, args) => {
@@ -66,6 +70,7 @@ export const createBlock = mutation({
       previewImage: args.previewImage || "/placeholder.svg",
       figmaUrl: args.figmaUrl || "https://www.figma.com",
       codeStatus: args.codeStatus ?? "coming_soon",
+      isFeatured: args.isFeatured ?? false,
       isActive: true,
       createdAt: now,
       updatedAt: now,
@@ -119,6 +124,10 @@ export const getBlock = query({
       ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
+      isNew: v.optional(v.boolean()),
+      accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -160,6 +169,10 @@ export const listBlocks = query({
       ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
+      isNew: v.optional(v.boolean()),
+      accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -213,6 +226,10 @@ export const getBlocksByType = query({
       ),
       codeUrl: v.optional(v.string()),
       blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
+      isNew: v.optional(v.boolean()),
+      accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
       createdAt: v.number(),
       updatedAt: v.number(),
     }),
@@ -225,6 +242,58 @@ export const getBlocksByType = query({
       .filter((q) => q.eq(q.field("isActive"), true))
       .order("desc")
       .take(limit);
+  },
+});
+
+export const listFeaturedBlocks = query({
+  args: {
+    limit: v.optional(v.number()),
+  },
+  returns: v.array(
+    v.object({
+      _id: v.id("blocks"),
+      _creationTime: v.number(),
+      name: v.string(),
+      type: v.union(v.literal("ui"), v.literal("component")),
+      title: v.string(),
+      description: v.string(),
+      author: v.string(),
+      version: v.string(),
+      categories: v.array(v.string()),
+      registryDependencies: v.optional(v.array(v.string())),
+      tags: v.optional(v.array(v.string())),
+      isActive: v.boolean(),
+      previewImage: v.optional(v.string()),
+      figmaUrl: v.optional(v.string()),
+      codeStatus: v.optional(
+        v.union(v.literal("coming_soon"), v.literal("available")),
+      ),
+      codeUrl: v.optional(v.string()),
+      blockType: v.optional(v.string()),
+      isFeatured: v.optional(v.boolean()),
+      featuredOrder: v.optional(v.number()),
+      isNew: v.optional(v.boolean()),
+      accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
+      createdAt: v.number(),
+      updatedAt: v.number(),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 20;
+    const featured = await ctx.db
+      .query("blocks")
+      .withIndex("by_featured", (q) => q.eq("isFeatured", true))
+      .collect();
+
+    return featured
+      .filter((b) => b.isActive)
+      .sort((a, b) => {
+        const ao = a.featuredOrder ?? Number.MAX_SAFE_INTEGER;
+        const bo = b.featuredOrder ?? Number.MAX_SAFE_INTEGER;
+        if (ao !== bo) return ao - bo;
+        return b.createdAt - a.createdAt;
+      })
+      .slice(0, limit);
   },
 });
 
@@ -250,6 +319,9 @@ export const updateBlock = mutation({
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),
     isActive: v.optional(v.boolean()),
+    isFeatured: v.optional(v.boolean()),
+    featuredOrder: v.optional(v.number()),
+    accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
   },
   returns: v.null(),
   handler: async (ctx, args) => {
@@ -662,7 +734,11 @@ export const getDashboardStats = query({
     totalBlocks: v.number(),
     totalDownloads: v.number(),
     downloadsToday: v.number(),
+    downloadsYesterday: v.number(),
     downloadsThisWeek: v.number(),
+    downloadsLastWeek: v.number(),
+    downloadsTodayChangePct: v.number(),
+    downloadsThisWeekChangePct: v.number(),
     topBlocks: v.array(
       v.object({
         name: v.string(),
@@ -679,8 +755,12 @@ export const getDashboardStats = query({
   }),
   handler: async (ctx) => {
     const now = Date.now();
-    const oneDayAgo = now - 24 * 60 * 60 * 1000;
-    const oneWeekAgo = now - 7 * 24 * 60 * 60 * 1000;
+    const oneDay = 24 * 60 * 60 * 1000;
+    const oneWeek = 7 * oneDay;
+    const oneDayAgo = now - oneDay;
+    const twoDaysAgo = now - 2 * oneDay;
+    const oneWeekAgo = now - oneWeek;
+    const twoWeeksAgo = now - 2 * oneWeek;
 
     // Get total blocks count
     const totalBlocks = await ctx.db
@@ -693,15 +773,35 @@ export const getDashboardStats = query({
     const allDownloads = await ctx.db.query("blockDownloads").collect();
     const totalDownloads = allDownloads.length;
 
-    // Get today's downloads
+    // Get today's downloads (last 24h) and yesterday's (24-48h ago)
     const downloadsToday = allDownloads.filter(
       (d) => d.timestamp >= oneDayAgo,
     ).length;
+    const downloadsYesterday = allDownloads.filter(
+      (d) => d.timestamp >= twoDaysAgo && d.timestamp < oneDayAgo,
+    ).length;
 
-    // Get this week's downloads
+    // Get this week's downloads (last 7d) and last week's (7-14d ago)
     const downloadsThisWeek = allDownloads.filter(
       (d) => d.timestamp >= oneWeekAgo,
     ).length;
+    const downloadsLastWeek = allDownloads.filter(
+      (d) => d.timestamp >= twoWeeksAgo && d.timestamp < oneWeekAgo,
+    ).length;
+
+    const pctChange = (current: number, previous: number) => {
+      if (previous === 0) return current === 0 ? 0 : 100;
+      return ((current - previous) / previous) * 100;
+    };
+
+    const downloadsTodayChangePct = pctChange(
+      downloadsToday,
+      downloadsYesterday,
+    );
+    const downloadsThisWeekChangePct = pctChange(
+      downloadsThisWeek,
+      downloadsLastWeek,
+    );
 
     // Get top blocks
     const analytics = await ctx.db
@@ -732,9 +832,180 @@ export const getDashboardStats = query({
       totalBlocks,
       totalDownloads,
       downloadsToday,
+      downloadsYesterday,
       downloadsThisWeek,
+      downloadsLastWeek,
+      downloadsTodayChangePct,
+      downloadsThisWeekChangePct,
       topBlocks,
       topCategories,
     };
+  },
+});
+
+// Aggregated interaction stats across all blocks
+export const getInteractionStats = query({
+  args: {},
+  returns: v.object({
+    totalViews: v.number(),
+    totalCopies: v.number(),
+    totalInstalls: v.number(),
+    totalPreviews: v.number(),
+    avgEngagementRate: v.number(),
+    copyToViewRatio: v.number(),
+    installToViewRatio: v.number(),
+  }),
+  handler: async (ctx) => {
+    const stats = await ctx.db.query("blockStats").collect();
+
+    let totalViews = 0;
+    let totalCopies = 0;
+    let totalInstalls = 0;
+    let totalPreviews = 0;
+
+    for (const s of stats) {
+      totalViews += s.viewCount;
+      totalCopies += s.copyCount;
+      totalInstalls += s.installCommandCopies;
+      totalPreviews += s.previewInteractions;
+    }
+
+    const safeRatio = (numerator: number, denominator: number) =>
+      denominator === 0 ? 0 : (numerator / denominator) * 100;
+
+    const copyToViewRatio = safeRatio(totalCopies, totalViews);
+    const installToViewRatio = safeRatio(totalInstalls, totalViews);
+    const avgEngagementRate = safeRatio(
+      totalCopies + totalInstalls + totalPreviews,
+      totalViews,
+    );
+
+    return {
+      totalViews,
+      totalCopies,
+      totalInstalls,
+      totalPreviews,
+      avgEngagementRate,
+      copyToViewRatio,
+      installToViewRatio,
+    };
+  },
+});
+
+// Per-block interaction list joining blocks with their blockStats
+export const getBlockInteractionsList = query({
+  args: { limit: v.optional(v.number()) },
+  returns: v.array(
+    v.object({
+      blockName: v.string(),
+      blockType: v.union(v.literal("ui"), v.literal("component")),
+      views: v.number(),
+      copies: v.number(),
+      installs: v.number(),
+      previews: v.number(),
+      lastInteraction: v.optional(v.number()),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 10;
+    const blocks = await ctx.db
+      .query("blocks")
+      .withIndex("by_active", (q) => q.eq("isActive", true))
+      .order("desc")
+      .take(limit);
+
+    const results = await Promise.all(
+      blocks.map(async (block) => {
+        const stats = await ctx.db
+          .query("blockStats")
+          .withIndex("by_block", (q) => q.eq("blockName", block.name))
+          .unique();
+
+        return {
+          blockName: block.name,
+          blockType: block.type,
+          views: stats?.viewCount ?? 0,
+          copies: stats?.copyCount ?? 0,
+          installs: stats?.installCommandCopies ?? 0,
+          previews: stats?.previewInteractions ?? 0,
+          lastInteraction: stats?.lastViewedAt ?? stats?.updatedAt,
+        };
+      }),
+    );
+
+    return results;
+  },
+});
+
+// Aggregated download breakdown by source
+export const getDownloadSourceBreakdown = query({
+  args: {},
+  returns: v.array(
+    v.object({
+      source: v.string(),
+      downloads: v.number(),
+      percentage: v.number(),
+    }),
+  ),
+  handler: async (ctx) => {
+    const allDownloads = await ctx.db.query("blockDownloads").collect();
+    const total = allDownloads.length;
+
+    const counts = new Map<string, number>();
+    for (const source of ["cli", "website", "api", "direct"]) {
+      counts.set(source, 0);
+    }
+    for (const d of allDownloads) {
+      counts.set(d.downloadSource, (counts.get(d.downloadSource) ?? 0) + 1);
+    }
+
+    return Array.from(counts.entries())
+      .map(([source, downloads]) => ({
+        source,
+        downloads,
+        percentage: total === 0 ? 0 : (downloads / total) * 100,
+      }))
+      .sort((a, b) => b.downloads - a.downloads);
+  },
+});
+
+// Recent download events for the downloads page
+export const getRecentDownloads = query({
+  args: { limit: v.optional(v.number()) },
+  returns: v.array(
+    v.object({
+      _id: v.id("blockDownloads"),
+      blockName: v.string(),
+      blockType: v.union(v.literal("ui"), v.literal("component")),
+      category: v.string(),
+      downloadSource: v.union(
+        v.literal("cli"),
+        v.literal("api"),
+        v.literal("website"),
+        v.literal("direct"),
+      ),
+      userAgent: v.optional(v.string()),
+      ipAddressHash: v.optional(v.string()),
+      timestamp: v.number(),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 20;
+    const recent = await ctx.db
+      .query("blockDownloads")
+      .withIndex("by_timestamp")
+      .order("desc")
+      .take(limit);
+
+    return recent.map((d) => ({
+      _id: d._id,
+      blockName: d.blockName,
+      blockType: d.blockType,
+      category: d.category,
+      downloadSource: d.downloadSource,
+      userAgent: d.userAgent,
+      ipAddressHash: d.ipAddressHash,
+      timestamp: d.timestamp,
+    }));
   },
 });

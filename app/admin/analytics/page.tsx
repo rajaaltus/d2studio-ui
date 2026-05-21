@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "convex/react";
+import { useAction, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 import {
   PageHeader,
   LoadingState,
@@ -17,16 +18,29 @@ export const dynamic = "force-dynamic";
 
 export default function AnalyticsPage() {
   const [timeframe, setTimeframe] = useState<TimeFrame>("total");
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const dashboardStats = useQuery(api.blocks.getDashboardStats, {});
+  const updatePopularityRanks = useAction(
+    api.initializeBlocks.updatePopularityRanks,
+  );
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      const result = await updatePopularityRanks({});
+      toast.success(result.message);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      toast.error(`Refresh failed: ${message}`);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
   if (!dashboardStats) {
     return <LoadingState />;
   }
-
-  const handleRefresh = () => {
-    // TODO
-  };
 
   return (
     <div className="space-y-6">
@@ -34,6 +48,7 @@ export default function AnalyticsPage() {
         timeframe={timeframe}
         onTimeframeChange={setTimeframe}
         onRefresh={handleRefresh}
+        isRefreshing={isRefreshing}
       />
 
       <KeyMetrics dashboardStats={dashboardStats} />

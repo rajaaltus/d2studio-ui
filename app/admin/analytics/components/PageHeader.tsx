@@ -15,9 +15,15 @@ interface PageHeaderProps {
   timeframe: TimeFrame;
   onTimeframeChange: (value: TimeFrame) => void;
   onRefresh: () => void;
+  isRefreshing?: boolean;
 }
 
-export function PageHeader({ timeframe, onTimeframeChange, onRefresh }: PageHeaderProps) {
+export function PageHeader({
+  timeframe,
+  onTimeframeChange,
+  onRefresh,
+  isRefreshing = false,
+}: PageHeaderProps) {
   return (
     <div className="flex items-center justify-between">
       <div>
@@ -42,9 +48,16 @@ export function PageHeader({ timeframe, onTimeframeChange, onRefresh }: PageHead
             <SelectItem value="total">All Time</SelectItem>
           </SelectContent>
         </Select>
-        <Button onClick={onRefresh} variant="outline" size="sm">
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
+        <Button
+          onClick={onRefresh}
+          variant="outline"
+          size="sm"
+          disabled={isRefreshing}
+        >
+          <RefreshCw
+            className={`h-4 w-4 mr-2 ${isRefreshing ? "animate-spin" : ""}`}
+          />
+          {isRefreshing ? "Refreshing..." : "Refresh"}
         </Button>
       </div>
     </div>

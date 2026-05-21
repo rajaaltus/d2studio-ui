@@ -43,10 +43,11 @@ export default function DocsPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
+      <div id="main-content" tabIndex={-1} className="outline-none" />
 
       <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-0">
-        <div className="grid gap-8 py-10 lg:grid-cols-[220px_1fr] lg:gap-10 lg:py-14 lg:px-8">
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+        <div className="grid gap-8 py-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10 lg:py-14 lg:px-8">
+          <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
             <nav className="space-y-6 text-sm">
               {NAV.map((group) => (
                 <div key={group.title}>
@@ -70,7 +71,7 @@ export default function DocsPage() {
             </nav>
           </aside>
 
-          <article className="max-w-none space-y-14">
+          <article className="min-w-0 max-w-none space-y-14">
             <section id="introduction" className="scroll-mt-24">
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Documentation

@@ -6,7 +6,12 @@ import { ThemeFlashScript } from "@/components/theme-flash-script";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { BuyMeCoffeeFab } from "@/components/buy-me-coffee-fab";
+import { FloatingDock } from "@/components/floating-dock";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { Toaster } from "@/components/ui/sonner";
+import { SkipToContent } from "@/components/skip-to-content";
+import { RouteProgress } from "@/components/route-progress";
+import { CommandPalette } from "@/components/command-palette";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -120,8 +125,13 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <SkipToContent />
+            <RouteProgress />
             <ConvexClientProvider>{children}</ConvexClientProvider>
+            <CommandPalette />
+            <FloatingDock />
             <BuyMeCoffeeFab />
+            <Toaster richColors closeButton />
           </ThemeProvider>
         </body>
       </html>

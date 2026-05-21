@@ -8,6 +8,7 @@ interface StatCardProps {
   icon: LucideIcon;
   trend?: "up" | "down" | "stable";
   trendValue?: string;
+  trendLabel?: string;
   href?: string;
 }
 
@@ -17,6 +18,7 @@ export function StatCard({
   icon: Icon,
   trend,
   trendValue,
+  trendLabel = "from last week",
   href,
 }: StatCardProps) {
   const getTrendIcon = () => {
@@ -55,7 +57,7 @@ export function StatCard({
               <div className="flex items-center space-x-1 text-xs text-muted-foreground">
                 {getTrendIcon()}
                 <span className={getTrendColor()}>{trendValue}</span>
-                <span>from last week</span>
+                <span>{trendLabel}</span>
               </div>
             )}
           </CardContent>
@@ -76,7 +78,7 @@ export function StatCard({
           <div className="flex items-center space-x-1 text-xs text-muted-foreground">
             {getTrendIcon()}
             <span className={getTrendColor()}>{trendValue}</span>
-            <span>from last week</span>
+            <span>{trendLabel}</span>
           </div>
         )}
       </CardContent>

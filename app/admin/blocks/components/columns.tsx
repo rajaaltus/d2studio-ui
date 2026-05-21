@@ -22,6 +22,7 @@ import {
   Package,
   Component,
   ArrowUpDown,
+  Star,
 } from "lucide-react";
 
 const formatDate = (timestamp: number) => {
@@ -190,6 +191,26 @@ export const columns: ColumnDef<Doc<"blocks">>[] = [
     ),
     filterFn: (row, id, value: boolean[]) => {
       return value.includes(row.getValue(id));
+    },
+  },
+  {
+    accessorKey: "isFeatured",
+    header: "Featured",
+    cell: ({ row }) => {
+      const isFeatured = row.original.isFeatured;
+      const order = row.original.featuredOrder;
+      if (!isFeatured) {
+        return <span className="text-xs text-muted-foreground">—</span>;
+      }
+      return (
+        <Badge variant="default" className="gap-1">
+          <Star className="h-3 w-3" />
+          {order !== undefined ? `#${order}` : "Yes"}
+        </Badge>
+      );
+    },
+    filterFn: (row, id, value: boolean[]) => {
+      return value.includes(!!row.original.isFeatured);
     },
   },
   {

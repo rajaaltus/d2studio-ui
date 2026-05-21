@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { AdminNavigation } from "@/components/admin/admin-navigation";
 import { AdminBreadcrumb } from "@/components/admin/admin-breadcrumb";
 import { AdminGuard } from "@/components/admin/admin-guard";
+import { Toaster } from "@/components/ui/sonner";
 export const dynamic = "force-dynamic";
 
 
@@ -32,6 +33,7 @@ export default function AdminLayout({
             {children}
           </main>
         </div>
+        <Toaster />
       </div>
     </AdminGuard>
   );

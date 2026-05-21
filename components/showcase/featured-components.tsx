@@ -1,84 +1,84 @@
 "use client";
 
+import * as React from "react";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { ComponentWithCode } from "@/components/showcase/component-with-code";
-import dynamic from "next/dynamic";
-import registryData from "@/registry.json";
+import type { Doc } from "@/convex/_generated/dataModel";
 
-interface RegistryItem {
-  name: string;
-  type: string;
-  title?: string;
-  description?: string;
-  categories?: string[];
-}
+type FeaturedBlock = Doc<"blocks">;
 
-interface FeaturedComponent {
-  name: string;
-  title: string;
-  description: string;
-  categories: string[];
-}
+type LoadState =
+  | { status: "loading" }
+  | { status: "ready"; Component: React.ComponentType }
+  | { status: "missing" };
 
-// Get featured components from registry (marketing and pricing categories)
-const getFeaturedComponents = (): FeaturedComponent[] => {
-  return (registryData.items as RegistryItem[])
-    .filter(
-      (item) =>
-        item.type === "registry:component" &&
-        (item.categories?.includes("marketing") ||
-          item.categories?.includes("pricing")),
-    )
-    .map((item) => ({
-      name: item.name,
-      title: item.title || item.name,
-      description: item.description || "",
-      categories: item.categories || [],
-    }));
-};
+const componentCache = new Map<string, LoadState>();
 
-const featuredComponents = getFeaturedComponents();
+function FeaturedBlockItem({ block }: { block: FeaturedBlock }) {
+  const cached = componentCache.get(block.name);
+  const [state, setState] = React.useState<LoadState>(
+    cached ?? { status: "loading" },
+  );
 
-// Dynamic imports for components
-const componentMap = featuredComponents.reduce(
-  (acc, item) => {
-    acc[item.name] = dynamic(
-      () => import(`@/registry/default/components/${item.name}`),
-      {
-        loading: () => (
-          <div className="flex items-center justify-center min-h-[500px]">
-            <div className="text-sm text-muted-foreground">Loading...</div>
-          </div>
-        ),
-        ssr: true,
-      },
+  React.useEffect(() => {
+    if (cached && cached.status !== "loading") return;
+
+    let cancelled = false;
+    import(`@/registry/default/components/${block.name}`)
+      .then((mod) => {
+        const Component = mod?.default as React.ComponentType | undefined;
+        const next: LoadState = Component
+          ? { status: "ready", Component }
+          : { status: "missing" };
+        componentCache.set(block.name, next);
+        if (!cancelled) setState(next);
+      })
+      .catch(() => {
+        const next: LoadState = { status: "missing" };
+        componentCache.set(block.name, next);
+        if (!cancelled) setState(next);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [block.name, cached]);
+
+  if (state.status === "missing") return null;
+
+  if (state.status === "loading") {
+    return (
+      <div className="screen-line-after flex min-h-[500px] items-center justify-center">
+        <div className="text-sm text-muted-foreground">Loading...</div>
+      </div>
     );
-    return acc;
-  },
-  {} as Record<string, React.ComponentType>,
-);
+  }
+
+  return (
+    <div className="space-y-8 screen-line-after">
+      <div className="w-full rounded-xl border m-0 bg-background overflow-hidden">
+        <ComponentWithCode
+          componentName={block.name}
+          component={state.Component}
+        />
+      </div>
+    </div>
+  );
+}
 
 export function FeaturedComponents() {
+  const blocks = useQuery(api.blocks.listFeaturedBlocks, {});
+
+  if (blocks === undefined || blocks.length === 0) return null;
+
   return (
     <section className="w-full">
       <div className="border-x mx-auto">
         <div className="space-y-16 mx-auto">
-          {featuredComponents.map((item) => {
-            const Component = componentMap[item.name];
-
-            if (!Component) return null;
-
-            return (
-              <div key={item.name} className="space-y-8 screen-line-after">
-                {/* Component Preview with Code */}
-                <div className="w-full ">
-                  <ComponentWithCode
-                    componentName={item.name}
-                    component={Component}
-                  />
-                </div>
-              </div>
-            );
-          })}
+          {blocks.map((block) => (
+            <FeaturedBlockItem key={block._id} block={block} />
+          ))}
         </div>
       </div>
     </section>

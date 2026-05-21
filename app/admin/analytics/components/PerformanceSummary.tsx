@@ -3,8 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 interface DashboardStats {
   totalBlocks: number;
   totalDownloads: number;
-  downloadsToday: number;
-  downloadsThisWeek: number;
   topBlocks: Array<{
     name: string;
     downloads: number;

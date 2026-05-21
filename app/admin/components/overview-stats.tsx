@@ -8,9 +8,23 @@ interface OverviewStatsProps {
     totalDownloads: number;
     downloadsToday: number;
     downloadsThisWeek: number;
+    downloadsTodayChangePct: number;
+    downloadsThisWeekChangePct: number;
     topBlocks: Array<{ name: string; downloads: number; trend: string }>;
     topCategories: Array<{ category: string; downloads: number }>;
   };
+}
+
+function formatPct(pct: number): string {
+  const rounded = Math.round(pct * 10) / 10;
+  const sign = rounded > 0 ? "+" : "";
+  return `${sign}${rounded}%`;
+}
+
+function pctTrend(pct: number): "up" | "down" | "stable" {
+  if (pct > 0) return "up";
+  if (pct < 0) return "down";
+  return "stable";
 }
 
 export function OverviewStats({ dashboardStats }: OverviewStatsProps) {
@@ -27,23 +41,22 @@ export function OverviewStats({ dashboardStats }: OverviewStatsProps) {
         title="Total Downloads"
         value={statsData.totalDownloads.toLocaleString()}
         icon={Download}
-        trend="up"
-        trendValue="+12.5%"
         href="/admin/downloads"
       />
       <StatCard
         title="Downloads Today"
         value={statsData.downloadsToday}
         icon={BarChart3}
-        trend="up"
-        trendValue="+2.1%"
+        trend={pctTrend(statsData.downloadsTodayChangePct)}
+        trendValue={formatPct(statsData.downloadsTodayChangePct)}
+        trendLabel="from yesterday"
       />
       <StatCard
         title="Downloads This Week"
         value={statsData.downloadsThisWeek}
         icon={Eye}
-        trend="stable"
-        trendValue="0%"
+        trend={pctTrend(statsData.downloadsThisWeekChangePct)}
+        trendValue={formatPct(statsData.downloadsThisWeekChangePct)}
       />
     </div>
   );

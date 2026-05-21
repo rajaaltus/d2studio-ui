@@ -1,22 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Code2,
-  Sparkles,
-  Package,
-  Zap,
-  Shield,
-  GitBranch,
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { MetalButtonSlide } from "@/components/metal-button-slide";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
 import { SiteFooter } from "@/components/site-footer";
+import { CommunitySection } from "@/components/community-section";
+import { PixelIconCmd } from "@/components/pixel-icon-cmd";
+import { PixelIconChevron } from "@/components/pixel-icon-chevron";
+import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+import CodeIcon from "@/components/icons/code-icon";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -40,48 +37,41 @@ const structuredData = {
 };
 
 export default function HomePage() {
-  const features = [
+  const features: {
+    title: string;
+    description: string;
+    icon?: React.ReactNode;
+  }[] = [
     {
-      icon: <Code2 className="h-5 w-5" />,
       title: "Copy & Paste",
       description:
         "No packages to install. Just copy and paste components into your project.",
+      icon: <PixelIconChevron />,
     },
     {
-      icon: <Sparkles className="h-5 w-5" />,
-      title: "Beautifully Designed",
-      description:
-        "Modern, minimal components designed with attention to detail and usability.",
-    },
-    {
-      icon: <Package className="h-5 w-5" />,
-      title: "shadcn Compatible",
-      description:
-        "Built on shadcn/ui conventions. Works seamlessly with your existing setup.",
-    },
-    {
-      icon: <Zap className="h-5 w-5" />,
-      title: "Production Ready",
-      description:
-        "Fully typed, accessible, and optimized for performance out of the box.",
-    },
-    {
-      icon: <Shield className="h-5 w-5" />,
-      title: "Open Source",
-      description:
-        "MIT licensed. Use it in personal and commercial projects without restrictions.",
-    },
-    {
-      icon: <GitBranch className="h-5 w-5" />,
       title: "Regular Updates",
       description:
         "New components added weekly. Stay up to date with the latest UI trends.",
+      icon: <PixelIconChevron />,
+    },
+    {
+      title: "Production Ready",
+      description:
+        "Fully typed, accessible, and optimized for performance out of the box.",
+      icon: <PixelIconChevron />,
+    },
+    {
+      title: "shadcn Compatible",
+      description:
+        "Built on shadcn/ui conventions. Works seamlessly with your existing setup.",
+      icon: <PixelIconChevron />,
     },
   ];
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
       <Navigation />
+      <div id="main-content" tabIndex={-1} className="outline-none" />
       {/* Structured Data */}
       <script
         type="application/ld+json"
@@ -95,41 +85,51 @@ export default function HomePage() {
       <HeroSection2 />
 
       {/* Features Section */}
-      <section className="max-w-6xl w-full border-x   mx-auto px-4 lg:px-0 ">
-        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6">
-          <h2 className="text-3xl md:text-4xl font-semibold  font-sans">
-            Why Choose D2 Studio Components?
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built by developers, for developers. Every component is crafted with
-            care and optimized for real-world use.
+      <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
+        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 lg:rounded-xl border m-0 bg-background">
+          <h3 className="text-xl md:text-2xl font-medium font-sans">
+            Copy. Paste. Ship.
+          </h3>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+            Production-ready components built on shadcn/ui. No package install,
+            no abstraction — just code you own.
           </p>
-          <Button className="h-12" asChild>
+          <Button className="h-11" asChild>
             <Link href="/blocks">
-              Explore blocks <ArrowUpRight />
+              Browse components <ArrowUpRight />
             </Link>
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 bg-border screen-line-before screen-line-after py-px gap-px max-w-6xl  mx-auto">
-          {features.map((feature, index) => (
-            <Card
-              key={index}
-              className="relative rounded-none border-0 shadow-none overflow-hidden hover:scale-99 group hover:rounded-lg transition-all"
-            >
-              <CardContent className="p-6">
-                <div className="rounded-lg bg-primary/10 w-12 h-12 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  {feature.icon}
+        <div className="flex flex-col gap-px bg-border lg:rounded-xl border overflow-hidden m-0">
+          <div className="flex items-center justify-center bg-[#ffffff] dark:bg-[#000000] min-h-[160px] sm:min-h-[224px] lg:min-h-[294px] overflow-hidden px-3 sm:px-6 gap-2 sm:gap-10 md:gap-16 lg:gap-24 md:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.6),black_10%,black_90%,rgba(0,0,0,0.6))] md:dark:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.3),black_10%,black_90%,rgba(0,0,0,0.3))]">
+            <IsoCodeIcon />
+            <IsoIcon src="/Heart Icon 2.svg" label="Heart Icon 2" mobileSide="left" />
+            <CenterPixelIcon />
+            <IsoIcon src="/Isocons Rocket 2.svg" label="Isocons Rocket 2" mobileSide="right" />
+            <IsoIcon src="/Close Fullscreen Icon 4.svg" label="Close Fullscreen ..." />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-background p-5 lg:p-6 flex flex-col gap-2"
+              >
+                <div className="size-8 flex items-center justify-center">
+                  {feature.icon ?? (
+                    <div className="size-5 rounded-sm bg-foreground/10" />
+                  )}
                 </div>
-                <h3 className="font-semibold text-lg mb-2 font-sans">
+                <h3 className="font-semibold text-sm font-sans">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   {feature.description}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -186,28 +186,87 @@ export default function HomePage() {
         </div>
       </section> */}
 
+      {/* Community Section */}
+      <CommunitySection />
+
       {/* CTA Section */}
-      <section className="w-full max-w-6xl border-x mx-auto px-4 py-20">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start Building Today
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Join thousands of developers using D2 Studio components to build
-            amazing products faster.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-base px-8" asChild>
-              <Link href="/blocks">
+      <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
+        <div className="lg:rounded-xl border m-0 bg-background py-16 lg:py-20 grid grid-cols-1 md:grid-cols-2 items-center">
+          <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-12 py-6 md:py-0 md:pr-10 lg:pr-16 md:border-r md:border-dashed md:border-border">
+            <IsoIcon
+              src="/Heart Icon 2.svg"
+              label="Heart Icon 2"
+              mobileSide="left"
+            />
+            <PixelIconRocket />
+            <IsoIcon
+              src="/Close Fullscreen Icon 4.svg"
+              label="Close Fullscreen Icon 4"
+              mobileSide="right"
+            />
+          </div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left px-6 md:pl-16 lg:pl-20 md:pr-6 gap-3 max-w-xl">
+            <h2 className="text-xl md:text-2xl font-medium">
+              Start Building Today
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Join thousands of developers using D2 Studio components to build
+              amazing products faster.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-2">
+              <MetalButtonSlide href="/blocks">
                 View All Components
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+              </MetalButtonSlide>
+            </div>
           </div>
         </div>
       </section>
 
       <SiteFooter />
+    </div>
+  );
+}
+
+function IsoIcon({
+  src,
+  label,
+  mobileSide,
+}: {
+  src: string;
+  label: string;
+  mobileSide?: "left" | "right";
+}) {
+  const visibility = mobileSide ? "" : "hidden sm:block";
+
+  return (
+    <div
+      className={`shrink-0 opacity-80 brightness-150 dark:brightness-80 ${visibility}`.trim()}
+    >
+      <Image
+        src={src}
+        alt={label}
+        width={125}
+        height={125}
+        className="w-[72px] h-[72px] md:w-[96px] md:h-[96px] lg:w-[125px] lg:h-[125px]"
+      />
+    </div>
+  );
+}
+
+function IsoCodeIcon() {
+  return (
+    <div className="shrink-0 hidden sm:block text-[#71717a] opacity-80 brightness-150 dark:brightness-100">
+      <CodeIcon className="w-[72px] h-[72px] md:w-[96px] md:h-[96px] lg:w-[125px] lg:h-[125px]" />
+    </div>
+  );
+}
+
+function CenterPixelIcon() {
+  return (
+    <div className="group shrink-0 w-[96px] h-[96px] sm:w-[72px] sm:h-[72px] md:w-[96px] md:h-[96px] lg:w-[125px] lg:h-[125px] flex items-center justify-center">
+      <div className="origin-center scale-[0.768] sm:scale-[0.576] md:scale-[0.768] lg:scale-100 brightness-110 dark:brightness-100">
+        <PixelIconCmd />
+      </div>
     </div>
   );
 }

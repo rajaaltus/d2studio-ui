@@ -1,0 +1,228 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "D2 Studio" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e8]
+          - generic [ref=e9]:
+            - link "Blocks" [ref=e10] [cursor=pointer]:
+              - /url: /blocks
+            - link "Spinners" [ref=e11] [cursor=pointer]:
+              - /url: /spinners
+            - link "Docs" [ref=e12] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=e13]:
+            - link "Buy me a coffee" [ref=e14] [cursor=pointer]:
+              - /url: https://buymeacoffee.com/godwindev
+              - img [ref=e15]
+              - generic [ref=e17]: Buy me a coffee
+            - switch "Toggle theme" [ref=e18]
+    - generic [ref=e20]:
+      - generic [ref=e24]:
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - img [ref=e30]
+            - generic [ref=e33]: New Blocks & Tools Every Weekend
+          - heading "Modern Components For" [level=1] [ref=e34]
+          - heading "Designers & Developers" [level=2] [ref=e35]
+          - paragraph [ref=e36]: A premium Collection of copy and paste components built with React, TailWind CSS, & Shadcn/UI. Beautiful, accessible, and ready for production.
+        - generic [ref=e38]:
+          - link "Explore Blocks" [ref=e40] [cursor=pointer]:
+            - /url: /blocks
+            - text: Explore Blocks
+            - generic [ref=e41]:
+              - img
+          - link "Documentation" [ref=e42] [cursor=pointer]:
+            - /url: /docs
+        - generic [ref=e44]:
+          - generic [ref=e46]: A
+          - generic [ref=e48]: D
+          - generic [ref=e50]: R
+          - generic [ref=e52]: G
+          - generic [ref=e54]: 99+
+      - heading "Greatly inspired from" [level=2] [ref=e61]
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - img [ref=e65]
+          - img [ref=e70]
+          - img [ref=e76]
+          - img [ref=e79]
+          - img [ref=e84]
+          - img [ref=e91]
+        - generic:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - heading "Copy. Paste. Ship." [level=3] [ref=e99]
+        - paragraph [ref=e100]: Production-ready components built on shadcn/ui. No package install, no abstraction — just code you own.
+        - link "Browse components" [ref=e101] [cursor=pointer]:
+          - /url: /blocks
+          - text: Browse components
+          - img
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - img [ref=e105]
+          - img "Heart Icon 2" [ref=e113]
+          - img "Isocons Rocket 2" [ref=e1142]
+          - img "Close Fullscreen ..." [ref=e1144]
+        - generic [ref=e1145]:
+          - generic [ref=e1146]:
+            - heading "Copy & Paste" [level=3] [ref=e1213]
+            - paragraph [ref=e1214]: No packages to install. Just copy and paste components into your project.
+          - generic [ref=e1215]:
+            - heading "Regular Updates" [level=3] [ref=e1282]
+            - paragraph [ref=e1283]: New components added weekly. Stay up to date with the latest UI trends.
+          - generic [ref=e1284]:
+            - heading "Production Ready" [level=3] [ref=e1351]
+            - paragraph [ref=e1352]: Fully typed, accessible, and optimized for performance out of the box.
+          - generic [ref=e1353]:
+            - heading "shadcn Compatible" [level=3] [ref=e1420]
+            - paragraph [ref=e1421]: Built on shadcn/ui conventions. Works seamlessly with your existing setup.
+    - generic [ref=e1430]:
+      - generic [ref=e1431]:
+        - img "Heart Icon 2" [ref=e1433]
+        - img "Close Fullscreen Icon 4" [ref=e2460]
+      - generic [ref=e2461]:
+        - heading "Start Building Today" [level=2] [ref=e2462]
+        - paragraph [ref=e2463]: Join thousands of developers using D2 Studio components to build amazing products faster.
+        - link "View All Components" [ref=e2466] [cursor=pointer]:
+          - /url: /blocks
+          - text: View All Components
+          - generic [ref=e2467]:
+            - img
+    - contentinfo [ref=e2468]:
+      - generic [ref=e2473]:
+        - generic [ref=e2474]:
+          - link "D2 Studio" [ref=e2475] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e2476]
+          - paragraph [ref=e2477]: A premium collection of copy & paste components built with React, Tailwind CSS and shadcn/ui. Beautiful, accessible, and ready for production.
+          - generic [ref=e2478]: New blocks shipping every weekend
+        - generic [ref=e2480]:
+          - heading "Library" [level=3] [ref=e2481]
+          - list [ref=e2482]:
+            - listitem [ref=e2483]:
+              - link "Blocks" [ref=e2484] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e2485]: Blocks
+            - listitem [ref=e2486]:
+              - link "Spinners" [ref=e2487] [cursor=pointer]:
+                - /url: /spinners
+                - generic [ref=e2488]: Spinners
+            - listitem [ref=e2489]:
+              - link "Components" [ref=e2490] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e2491]: Components
+            - listitem [ref=e2492]:
+              - link "Docs" [ref=e2493] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e2494]: Docs
+        - generic [ref=e2495]:
+          - heading "Resources" [level=3] [ref=e2496]
+          - list [ref=e2497]:
+            - listitem [ref=e2498]:
+              - link "Getting started" [ref=e2499] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e2500]: Getting started
+            - listitem [ref=e2501]:
+              - link "Changelog" [ref=e2502] [cursor=pointer]:
+                - /url: /docs#changelog
+                - generic [ref=e2503]: Changelog
+            - listitem [ref=e2504]:
+              - link "shadcn/ui" [ref=e2505] [cursor=pointer]:
+                - /url: https://ui.shadcn.com
+                - generic [ref=e2506]: shadcn/ui
+                - img [ref=e2507]
+            - listitem [ref=e2510]:
+              - link "Tailwind CSS" [ref=e2511] [cursor=pointer]:
+                - /url: https://tailwindcss.com
+                - generic [ref=e2512]: Tailwind CSS
+                - img [ref=e2513]
+        - generic [ref=e2516]:
+          - heading "Connect" [level=3] [ref=e2517]
+          - list [ref=e2518]:
+            - listitem [ref=e2519]:
+              - link "X / Twitter" [ref=e2520] [cursor=pointer]:
+                - /url: https://x.com/uxgodwin
+                - generic [ref=e2521]: X / Twitter
+                - img [ref=e2522]
+            - listitem [ref=e2525]:
+              - link "GitHub" [ref=e2526] [cursor=pointer]:
+                - /url: https://github.com/rajaaltus
+                - generic [ref=e2527]: GitHub
+                - img [ref=e2528]
+            - listitem [ref=e2531]:
+              - link "Buy me a coffee" [ref=e2532] [cursor=pointer]:
+                - /url: https://buymeacoffee.com/godwindev
+                - generic [ref=e2533]: Buy me a coffee
+                - img [ref=e2534]
+            - listitem [ref=e2537]:
+              - link "rajaaltus@gmail.com" [ref=e2538] [cursor=pointer]:
+                - /url: mailto:rajaaltus@gmail.com
+                - generic [ref=e2539]: rajaaltus@gmail.com
+                - img [ref=e2540]
+      - generic [ref=e2544]:
+        - generic [ref=e2545]:
+          - text: © 2026
+          - link "D2 Studio" [ref=e2546] [cursor=pointer]:
+            - /url: https://www.d2studio.dev/
+          - generic [ref=e2547]: ·
+          - text: Built with
+          - generic [ref=e2548]: ❤❤❤❤
+          - text: for the community.
+        - generic [ref=e2549]:
+          - link "X (formerly Twitter)" [ref=e2550] [cursor=pointer]:
+            - /url: https://x.com/uxgodwin
+            - img [ref=e2551]
+          - link "GitHub" [ref=e2553] [cursor=pointer]:
+            - /url: https://github.com/rajaaltus
+            - img [ref=e2554]
+          - link "Email" [ref=e2556] [cursor=pointer]:
+            - /url: mailto:rajaaltus@gmail.com
+            - img [ref=e2557]
+      - generic [ref=e2561]:
+        - generic [ref=e2562]: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+  - generic [ref=e2563]:
+    - heading "Command palette" [level=2] [ref=e2564]
+    - paragraph [ref=e2565]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e2566]:
+    - button "Blocks" [ref=e2567]:
+      - generic [ref=e2581]: Blocks
+      - img [ref=e2582]
+    - button "Free" [ref=e2586]:
+      - generic [ref=e2599]: Free
+      - img [ref=e2600]
+    - button "Tools New" [ref=e2603]:
+      - img [ref=e2605]
+      - generic [ref=e2608]: Tools
+      - generic [ref=e2610]: New
+      - img [ref=e2611]
+    - button "Toggle theme" [ref=e2614]
+  - link "Buy me a coffee" [ref=e2615] [cursor=pointer]:
+    - /url: https://buymeacoffee.com/godwindev
+    - generic:
+      - generic: Buy me a coffee!
+      - generic: Your support truly makes a difference.
+    - img [ref=e2617]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e2623] [cursor=pointer]:
+    - img [ref=e2624]

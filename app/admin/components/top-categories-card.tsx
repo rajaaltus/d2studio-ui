@@ -4,11 +4,6 @@ import { Badge } from "@/components/ui/badge";
 
 interface TopCategoriesCardProps {
   dashboardStats: {
-    totalBlocks: number;
-    totalDownloads: number;
-    downloadsToday: number;
-    downloadsThisWeek: number;
-    topBlocks: Array<{ name: string; downloads: number; trend: string }>;
     topCategories: Array<{ category: string; downloads: number }>;
   };
 }
@@ -21,6 +16,11 @@ export function TopCategoriesCard({ dashboardStats }: TopCategoriesCardProps) {
         <CardTitle className="text-base">Top Categories</CardTitle>
       </CardHeader>
       <CardContent>
+        {categories.length === 0 ? (
+          <p className="text-sm text-muted-foreground py-6 text-center">
+            No download activity yet.
+          </p>
+        ) : (
         <div className="space-y-3">
           {categories.map((category, index) => (
             <div
@@ -44,6 +44,7 @@ export function TopCategoriesCard({ dashboardStats }: TopCategoriesCardProps) {
             </div>
           ))}
         </div>
+        )}
       </CardContent>
     </Card>
   );

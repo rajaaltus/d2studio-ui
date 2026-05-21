@@ -3,9 +3,10 @@ import { RefreshCw } from "lucide-react";
 
 interface PageHeaderProps {
   onRefresh: () => void;
+  isRefreshing?: boolean;
 }
 
-export function PageHeader({ onRefresh }: PageHeaderProps) {
+export function PageHeader({ onRefresh, isRefreshing = false }: PageHeaderProps) {
   return (
     <div className="flex items-center justify-between">
       <div>
@@ -15,9 +16,16 @@ export function PageHeader({ onRefresh }: PageHeaderProps) {
         </p>
       </div>
       <div className="flex items-center space-x-2">
-        <Button onClick={onRefresh} variant="outline" size="sm">
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
+        <Button
+          onClick={onRefresh}
+          variant="outline"
+          size="sm"
+          disabled={isRefreshing}
+        >
+          <RefreshCw
+            className={`h-4 w-4 mr-2 ${isRefreshing ? "animate-spin" : ""}`}
+          />
+          {isRefreshing ? "Refreshing..." : "Refresh"}
         </Button>
       </div>
     </div>

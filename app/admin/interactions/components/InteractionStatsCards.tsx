@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 
 export function InteractionStatsCards() {
-  const blocks = useQuery(api.blocks.listBlocks, {});
+  const stats = useQuery(api.blocks.getInteractionStats, {});
 
-  if (!blocks) {
+  if (!stats) {
     return (
       <div className="grid gap-4 md:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
@@ -28,12 +28,6 @@ export function InteractionStatsCards() {
     );
   }
 
-  // For demo purposes, we'll calculate some mock stats
-  const totalViews = 12500;
-  const totalCopies = 3200;
-  const totalInstalls = 2100;
-  const totalPreviews = 8900;
-
   return (
     <div className="grid gap-4 md:grid-cols-4">
       <Card>
@@ -42,7 +36,7 @@ export function InteractionStatsCards() {
           <Eye className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalViews.toLocaleString()}</div>
+          <div className="text-2xl font-bold">{stats.totalViews.toLocaleString()}</div>
           <p className="text-xs text-muted-foreground">Across all blocks</p>
         </CardContent>
       </Card>
@@ -53,7 +47,7 @@ export function InteractionStatsCards() {
           <Copy className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalCopies.toLocaleString()}</div>
+          <div className="text-2xl font-bold">{stats.totalCopies.toLocaleString()}</div>
           <p className="text-xs text-muted-foreground">Code snippets copied</p>
         </CardContent>
       </Card>
@@ -64,7 +58,7 @@ export function InteractionStatsCards() {
           <Download className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalInstalls.toLocaleString()}</div>
+          <div className="text-2xl font-bold">{stats.totalInstalls.toLocaleString()}</div>
           <p className="text-xs text-muted-foreground">Install commands copied</p>
         </CardContent>
       </Card>
@@ -75,7 +69,7 @@ export function InteractionStatsCards() {
           <Play className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalPreviews.toLocaleString()}</div>
+          <div className="text-2xl font-bold">{stats.totalPreviews.toLocaleString()}</div>
           <p className="text-xs text-muted-foreground">Component previews</p>
         </CardContent>
       </Card>

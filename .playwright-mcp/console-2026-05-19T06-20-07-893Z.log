@@ -1,0 +1,82 @@
+[     934ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1053ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[    2065ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[    3070ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[    4076ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[    5083ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[    6091ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   11106ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   16132ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   21158ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   26228ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   31294ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   36494ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   41757ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=-jTiSl8gU2hfklagim-QK' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   42233ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   42930ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   45816ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   48180ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   50222ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   53723ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   57084ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error during WebSocket handshake: net::ERR_INVALID_HTTP_RESPONSE @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   64484ms] [LOG] [HMR] connected @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   64978ms] Error: Internal Next.js error: Router action dispatched before initialization.
+    at dispatchAppRouterAction (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:916:37)
+    at http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:11800:61
+    at startTransition (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:1279:31)
+    at Object.hmrRefresh (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:11799:40)
+    at http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13967:64
+    at startTransition (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:1279:31)
+    at processMessage (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13966:44)
+    at WebSocket.handleMessage (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13335:52)
+[   64995ms] Error: Internal Next.js error: Router action dispatched before initialization.
+    at dispatchAppRouterAction (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:916:37)
+    at http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:11800:61
+    at startTransition (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:1279:31)
+    at Object.hmrRefresh (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:11799:40)
+    at http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13967:64
+    at startTransition (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:1279:31)
+    at processMessage (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13966:44)
+    at WebSocket.handleMessage (http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13335:52)
+[   78296ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   79361ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   80506ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   81694ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   82882ms] [ERROR] WebSocket connection to 'ws://192.168.0.2:4200/_next/webpack-hmr?id=sjS6vrgQuno2UQxkEmAzj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   88527ms] [LOG] [HMR] connected @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   89596ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   89733ms] [LOG] [HMR] connected @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   90345ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://192.168.0.2:4200/_next/static/chunks/node_modules__pnpm_07m-5fl._.js:1513
+[   90397ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   90559ms] [LOG] [Fast Refresh] done in 277ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   91490ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   91515ms] [LOG] [Fast Refresh] done in 131ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   91694ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   91787ms] [LOG] [Fast Refresh] done in 218ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  135918ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  135969ms] [LOG] [Fast Refresh] done in 163ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  254441ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  272138ms] [LOG] [Fast Refresh] done in 17434ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  272344ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  307716ms] [LOG] [Fast Refresh] done in 34835ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  328153ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  329240ms] [LOG] [Fast Refresh] done in 1221ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332086ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332086ms] [LOG] [Fast Refresh] done in 102ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332678ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  332734ms] [LOG] [Fast Refresh] done in 160ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  333371ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  334096ms] [LOG] [Fast Refresh] done in 849ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  335412ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  335587ms] [LOG] [HMR] connected @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  337366ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  338277ms] [LOG] [Fast Refresh] done in 1012ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  339092ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://192.168.0.2:4200/_next/static/chunks/node_modules__pnpm_07m-5fl._.js:1513
+[ 1021849ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1022518ms] [LOG] [Fast Refresh] done in 799ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1185986ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1187280ms] [LOG] [Fast Refresh] done in 1231ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1939506ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1939506ms] [LOG] [Fast Refresh] done in 147ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1962501ms] [LOG] [Fast Refresh] rebuilding @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1962708ms] [LOG] [Fast Refresh] done in 377ms @ http://192.168.0.2:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

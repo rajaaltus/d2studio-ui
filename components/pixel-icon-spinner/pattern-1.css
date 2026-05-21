@@ -1,0 +1,244 @@
+/* Pattern-1 pixel spinner: 3x3 solid blue counterclockwise spiral, 12 frames at 190ms (2280ms loop). */
+.pixel-spinner-pattern-1 {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 5px);
+  gap: 1px;
+}
+.pixel-spinner-pattern-1 .cell {
+  width: 5px;
+  height: 5px;
+  background: linear-gradient(135deg, color-mix(in oklab, #1f80ff 85%, white), color-mix(in oklab, #1f80ff 85%, black));
+  opacity: 0;
+  animation-duration: 2280ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+.pixel-spinner-pattern-1 .cell-0 { animation-name: ps1-0, ps1-0-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-1 { animation-name: ps1-1, ps1-1-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-2 { animation-name: ps1-2, ps1-2-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-3 { animation-name: ps1-3, ps1-3-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-4 { animation-name: ps1-4, ps1-4-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-5 { animation-name: ps1-5, ps1-5-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-6 { animation-name: ps1-6, ps1-6-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-7 { animation-name: ps1-7, ps1-7-pop; animation-timing-function: steps(1, end), linear; }
+.pixel-spinner-pattern-1 .cell-8 { animation-name: ps1-8, ps1-8-pop; animation-timing-function: steps(1, end), linear; }
+
+@keyframes ps1-0 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 0; }
+  25.00%, 33.32% { opacity: 1; }
+  33.33%, 41.66% { opacity: 0.5; }
+  41.67%, 49.99% { opacity: 0.25; }
+  50.00%, 58.32% { opacity: 0.15; }
+  58.33%, 66.66% { opacity: 0; }
+  66.67%, 74.99% { opacity: 0; }
+  75.00%, 83.32% { opacity: 0; }
+  83.33%, 91.66% { opacity: 0; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-0-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  25.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  26.83% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  29.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  31.00% { transform: scale(0.952); }
+  33.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-1 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 1; }
+  25.00%, 33.32% { opacity: 0.5; }
+  33.33%, 41.66% { opacity: 0.25; }
+  41.67%, 49.99% { opacity: 0.15; }
+  50.00%, 58.32% { opacity: 0; }
+  58.33%, 66.66% { opacity: 0; }
+  66.67%, 74.99% { opacity: 0; }
+  75.00%, 83.32% { opacity: 0; }
+  83.33%, 91.66% { opacity: 0; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-1-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  16.67% { transform: scale(1); filter: brightness(1) saturate(1); }
+  18.50% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  20.67% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  22.67% { transform: scale(0.952); }
+  25.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-2 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 1; }
+  16.67%, 24.99% { opacity: 0.5; }
+  25.00%, 33.32% { opacity: 0.25; }
+  33.33%, 41.66% { opacity: 0.15; }
+  41.67%, 49.99% { opacity: 0; }
+  50.00%, 58.32% { opacity: 0; }
+  58.33%, 66.66% { opacity: 0; }
+  66.67%, 74.99% { opacity: 0; }
+  75.00%, 83.32% { opacity: 0; }
+  83.33%, 91.66% { opacity: 0; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-2-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  8.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  10.17% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  12.33% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  14.33% { transform: scale(0.952); }
+  16.67% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-3 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 0; }
+  25.00%, 33.32% { opacity: 0; }
+  33.33%, 41.66% { opacity: 1; }
+  41.67%, 49.99% { opacity: 0.5; }
+  50.00%, 58.32% { opacity: 0.25; }
+  58.33%, 66.66% { opacity: 0.15; }
+  66.67%, 74.99% { opacity: 0; }
+  75.00%, 83.32% { opacity: 0; }
+  83.33%, 91.66% { opacity: 0; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-3-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  33.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  35.17% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  37.33% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  39.33% { transform: scale(0.952); }
+  41.67% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-4 {
+  0.00%, 8.32% { opacity: 1; }
+  8.33%, 16.66% { opacity: 0.5; }
+  16.67%, 24.99% { opacity: 0.25; }
+  25.00%, 33.32% { opacity: 0.15; }
+  33.33%, 41.66% { opacity: 0; }
+  41.67%, 49.99% { opacity: 0; }
+  50.00%, 58.32% { opacity: 0; }
+  58.33%, 66.66% { opacity: 0; }
+  66.67%, 74.99% { opacity: 0; }
+  75.00%, 83.32% { opacity: 1; }
+  83.33%, 91.66% { opacity: 0.5; }
+  91.67%, 99.99% { opacity: 0.25; }
+}
+@keyframes ps1-4-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  1.83% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  4.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  6.00% { transform: scale(0.952); }
+  8.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  75.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  76.83% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  79.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  81.00% { transform: scale(0.952); }
+  83.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-5 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 0; }
+  25.00%, 33.32% { opacity: 0; }
+  33.33%, 41.66% { opacity: 0; }
+  41.67%, 49.99% { opacity: 0; }
+  50.00%, 58.32% { opacity: 0; }
+  58.33%, 66.66% { opacity: 0; }
+  66.67%, 74.99% { opacity: 1; }
+  75.00%, 83.32% { opacity: 0.5; }
+  83.33%, 91.66% { opacity: 0.25; }
+  91.67%, 99.99% { opacity: 0.15; }
+}
+@keyframes ps1-5-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  66.67% { transform: scale(1); filter: brightness(1) saturate(1); }
+  68.50% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  70.67% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  72.67% { transform: scale(0.952); }
+  75.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-6 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 0; }
+  25.00%, 33.32% { opacity: 0; }
+  33.33%, 41.66% { opacity: 0; }
+  41.67%, 49.99% { opacity: 1; }
+  50.00%, 58.32% { opacity: 0.5; }
+  58.33%, 66.66% { opacity: 0.25; }
+  66.67%, 74.99% { opacity: 0.15; }
+  75.00%, 83.32% { opacity: 0; }
+  83.33%, 91.66% { opacity: 0; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-6-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  41.67% { transform: scale(1); filter: brightness(1) saturate(1); }
+  43.50% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  45.67% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  47.67% { transform: scale(0.952); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-7 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 0; }
+  25.00%, 33.32% { opacity: 0; }
+  33.33%, 41.66% { opacity: 0; }
+  41.67%, 49.99% { opacity: 0; }
+  50.00%, 58.32% { opacity: 1; }
+  58.33%, 66.66% { opacity: 0.5; }
+  66.67%, 74.99% { opacity: 0.25; }
+  75.00%, 83.32% { opacity: 0.15; }
+  83.33%, 91.66% { opacity: 0; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-7-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  50.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  51.83% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  54.00% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  56.00% { transform: scale(0.952); }
+  58.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}
+
+@keyframes ps1-8 {
+  0.00%, 8.32% { opacity: 0; }
+  8.33%, 16.66% { opacity: 0; }
+  16.67%, 24.99% { opacity: 0; }
+  25.00%, 33.32% { opacity: 0; }
+  33.33%, 41.66% { opacity: 0; }
+  41.67%, 49.99% { opacity: 0; }
+  50.00%, 58.32% { opacity: 0; }
+  58.33%, 66.66% { opacity: 1; }
+  66.67%, 74.99% { opacity: 0.5; }
+  75.00%, 83.32% { opacity: 0.25; }
+  83.33%, 91.66% { opacity: 0.15; }
+  91.67%, 99.99% { opacity: 0; }
+}
+@keyframes ps1-8-pop {
+  0.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+  58.33% { transform: scale(1); filter: brightness(1) saturate(1); }
+  60.17% { transform: scale(0.640); filter: brightness(1.420) saturate(1.300); }
+  62.33% { transform: scale(1.216); filter: brightness(1.240) saturate(1.180); }
+  64.33% { transform: scale(0.952); }
+  66.67% { transform: scale(1); filter: brightness(1) saturate(1); }
+  100.00% { transform: scale(1); filter: brightness(1) saturate(1); }
+}

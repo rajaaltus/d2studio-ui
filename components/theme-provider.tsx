@@ -88,9 +88,23 @@ export function ThemeProvider({
   const resolvedTheme: Resolved =
     theme === "system" ? (enableSystem ? systemTheme : "light") : theme;
 
-  React.useEffect(() => {
+  const useIsoLayoutEffect =
+    typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
+  useIsoLayoutEffect(() => {
     applyTheme(resolvedTheme, disableTransitionOnChange);
   }, [resolvedTheme, disableTransitionOnChange]);
+
+  useIsoLayoutEffect(() => {
+    const root = document.documentElement;
+    const hasDark = root.classList.contains("dark");
+    const shouldBeDark = resolvedTheme === "dark";
+    if (hasDark !== shouldBeDark) {
+      if (shouldBeDark) root.classList.add("dark");
+      else root.classList.remove("dark");
+      root.style.colorScheme = resolvedTheme;
+    }
+  });
 
   React.useEffect(() => {
     const onStorage = (e: StorageEvent) => {

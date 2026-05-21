@@ -5,17 +5,27 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 interface TopBlocksCardProps {
   dashboardStats: {
-    totalBlocks: number;
-    totalDownloads: number;
-    downloadsToday: number;
-    downloadsThisWeek: number;
     topBlocks: Array<{ name: string; downloads: number; trend: string }>;
-    topCategories: Array<{ category: string; downloads: number }>;
   };
 }
 
 export function TopBlocksCard({ dashboardStats }: TopBlocksCardProps) {
   const blocks = dashboardStats.topBlocks;
+
+  if (blocks.length === 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Top Performing Blocks</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground py-6 text-center">
+            No download activity yet.
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
   const getTrendBadge = (trend: string) => {
     const variant =
       trend === "up"

@@ -19,6 +19,7 @@ const blockInput = v.object({
   ),
   codeUrl: v.optional(v.string()),
   blockType: v.optional(v.string()),
+  accessTier: v.optional(v.union(v.literal("free"), v.literal("pro"))),
 });
 
 const categoryInput = v.object({

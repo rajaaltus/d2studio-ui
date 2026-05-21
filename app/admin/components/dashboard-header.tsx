@@ -1,13 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, RefreshCw } from "lucide-react";
 import Link from "next/link";
 
 interface DashboardHeaderProps {
   onSeedData: () => void;
+  isSeeding?: boolean;
 }
 
-export function DashboardHeader({ onSeedData }: DashboardHeaderProps) {
+export function DashboardHeader({ onSeedData, isSeeding = false }: DashboardHeaderProps) {
   return (
     <div className="flex items-center justify-between">
       <div>
@@ -17,9 +18,18 @@ export function DashboardHeader({ onSeedData }: DashboardHeaderProps) {
         </p>
       </div>
       <div className="flex items-center space-x-2">
-        <Button onClick={onSeedData} variant="outline" size="sm">
-          <Plus className="h-4 w-4 mr-2" />
-          Seed Data
+        <Button
+          onClick={onSeedData}
+          variant="outline"
+          size="sm"
+          disabled={isSeeding}
+        >
+          {isSeeding ? (
+            <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+          ) : (
+            <Plus className="h-4 w-4 mr-2" />
+          )}
+          {isSeeding ? "Seeding..." : "Seed Data"}
         </Button>
         <Button asChild>
           <Link href="/admin/blocks/create">
