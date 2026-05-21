@@ -21,7 +21,7 @@ export default function SpinnersPage() {
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-[var(--ls-muted-foreground)]">
               Loading Library
             </p>
-            <h1 className="animate-title-gradient bg-gradient-to-r from-[oklch(0.55_0.25_260)] via-[oklch(0.55_0.28_320)] to-[oklch(0.62_0.22_40)] bg-clip-text text-4xl font-semibold tracking-tight text-transparent sm:text-5xl dark:from-[oklch(0.78_0.22_260)] dark:via-[oklch(0.72_0.25_320)] dark:to-[oklch(0.82_0.2_45)]">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               Pixel Glow Spinners
             </h1>
             <p className="mt-4 max-w-xl text-sm text-[var(--ls-muted-foreground)] sm:text-base">
