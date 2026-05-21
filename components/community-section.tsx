@@ -4,62 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { CommunityRain, type RainPerson } from "@/components/community-rain";
 
-function useAverageColor(src?: string) {
-  const [rgb, setRgb] = React.useState<string | null>(null);
-  React.useEffect(() => {
-    if (!src) return;
-    let cancelled = false;
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      if (cancelled) return;
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-      const size = 24;
-      canvas.width = size;
-      canvas.height = size;
-      ctx.drawImage(img, 0, 0, size, size);
-      try {
-        const { data } = ctx.getImageData(0, 0, size, size);
-        let r = 0;
-        let g = 0;
-        let b = 0;
-        let count = 0;
-        for (let i = 0; i < data.length; i += 4) {
-          const a = data[i + 3];
-          if (a < 128) continue;
-          const cr = data[i];
-          const cg = data[i + 1];
-          const cb = data[i + 2];
-          const max = Math.max(cr, cg, cb);
-          const min = Math.min(cr, cg, cb);
-          if (max - min < 20 && max > 220) continue;
-          if (max < 25) continue;
-          r += cr;
-          g += cg;
-          b += cb;
-          count++;
-        }
-        if (count > 0) {
-          setRgb(
-            `${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(
-              b / count,
-            )}`,
-          );
-        }
-      } catch {
-        // ignore CORS-tainted canvas
-      }
-    };
-    img.src = src;
-    return () => {
-      cancelled = true;
-    };
-  }, [src]);
-  return rgb;
-}
-
 type Platform = "x" | "threads";
 
 type Testimonial = {
@@ -629,10 +573,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     testimonial;
   const PlatformIcon = platform === "x" ? XIcon : ThreadsIcon;
   const platformLabel = platform === "x" ? "View on X" : "View on Threads";
-  const avgRgb = useAverageColor(avatarSrc);
-  const tintStyle = avgRgb
-    ? ({ "--card-tint": `rgba(${avgRgb}, 0.12)` } as React.CSSProperties)
-    : undefined;
 
   return (
     <Link
@@ -640,12 +580,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${platformLabel} — ${name}`}
-      style={tintStyle}
-      className={`testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset ${
-        avgRgb
-          ? "hover:bg-[var(--card-tint)]"
-          : "hover:bg-foreground/[0.02]"
-      }`}
+      className="testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors hover:bg-foreground/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
     >
       <header className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">

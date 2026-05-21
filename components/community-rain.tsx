@@ -210,14 +210,20 @@ function HeartPill({
         left: `${heart.x}%`,
         transformOrigin: "50% 0%",
       }}
-      initial={{ x: "-50%", y: 0, opacity: 0, scale: 0.85 }}
+      initial={{ x: "-50%", y: 0, opacity: 0, scale: 0.85, filter: "blur(8px)" }}
       animate={{
         x: "-50%",
         y: -travel,
         opacity: [0, 1, 1, 0],
         scale: [0.85, 1, 1, 0.2],
+        filter: ["blur(8px)", "blur(0px)", "blur(0px)", "blur(6px)"],
       }}
-      exit={{ opacity: 0, scale: 0.2, transition: { duration: 0.2 } }}
+      exit={{
+        opacity: 0,
+        scale: 0.2,
+        filter: "blur(8px)",
+        transition: { duration: 0.2 },
+      }}
       transition={{
         y: { duration: heart.duration, ease: "linear" },
         opacity: {
@@ -229,6 +235,11 @@ function HeartPill({
           duration: heart.duration,
           times: [0, 0.12, 0.68, 1],
           ease: [0.4, 0, 0.6, 1],
+        },
+        filter: {
+          duration: heart.duration,
+          times: [0, 0.12, 0.68, 1],
+          ease: "easeOut",
         },
       }}
     >
