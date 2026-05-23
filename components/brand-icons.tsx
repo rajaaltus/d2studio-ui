@@ -486,14 +486,14 @@ export const BrandIcons = {
     </svg>
   ),
   // Dark logo on transparent — flip to white in dark mode.
-  // Taller (h-7) so the wordmark matches the icon-less logos despite its
-  // full-height square mark.
+  // h-7 picks up the visual size of the other wordmarks (source PNG has
+  // padding around the mark, so the default h-5 reads too small).
   aceternity: logoIcon(
     "/Accernity%20Logo.png",
     "Aceternity UI",
     987,
     318,
-    "h-7 dark:invert"
+    "h-9 dark:invert"
   ),
   // Dark wordmark on transparent — flip to white in dark mode.
   codepen: logoIcon("/CodePen%20Logo.png", "CodePen", 721, 137, "dark:invert"),
@@ -504,9 +504,9 @@ export const BrandIcons = {
     "Three.js",
     687,
     360,
-    // Near-square artwork (1.9:1) — needs extra height to read at a similar
-    // footprint to the wide wordmark logos.
-    "h-11 invert dark:invert-0"
+    // Source PNG carries empty padding around the triangle + wordmark, so
+    // it under-reads at a wordmark-friendly height. h-14 compensates.
+    "h-14 invert dark:invert-0"
   ),
   // Near-black logo on transparent — flip to white in dark mode.
   reactBits: logoIcon(
