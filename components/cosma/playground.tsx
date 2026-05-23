@@ -71,9 +71,17 @@ import {
   Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useVelocity,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
 import { useTheme } from "@/components/theme-provider";
 import { ConfirmSheet } from "@/components/ui/confirm-sheet";
 import { ColorPickerPopover } from "@/components/ui/color-picker-popover";
@@ -281,6 +289,8 @@ const DEFAULT_SETTINGS: Settings = {
   gradientAngle: 135,
   gradientMidStops: [],
 };
+
+const MAX_GRADIENT_MID_STOPS = 2;
 
 function getGradientStops(s: Settings): string[] {
   const mids = Array.isArray(s.gradientMidStops) ? s.gradientMidStops : [];
@@ -799,13 +809,19 @@ export function CosmaPlayground() {
   const onFileSelected = async (file: File | null, kind: "svg" | "image") => {
     if (!file) return;
     const dataUrl = await fileToDataUrl(file);
-    setSettings((s) => ({
-      ...s,
-      source: kind,
-      sourceDataUrl: dataUrl,
-      sourceLabel: file.name,
-      useImageColors: kind === "image" ? true : s.useImageColors,
-    }));
+    setSettings((s) => {
+      const useImageColors = kind === "image" ? true : s.useImageColors;
+      return {
+        ...s,
+        source: kind,
+        sourceDataUrl: dataUrl,
+        sourceLabel: file.name,
+        useImageColors,
+        // Original image colors override the gradient — leave that tool.
+        colorMode:
+          useImageColors && s.colorMode === "gradient" ? "preset" : s.colorMode,
+      };
+    });
   };
 
   const aiPromptSnippet = React.useMemo(() => buildAiPrompt(settings), [settings]);
@@ -839,15 +855,20 @@ export function CosmaPlayground() {
     );
   }, [customGradients, settings.gradientFrom, settings.gradientTo]);
 
+  // When an image is uploaded with "Original colors" on, the image's own
+  // pixel colors override any color mode, so the Gradient tool is disabled.
+  const imageColorsActive =
+    settings.source === "image" && !!settings.sourceDataUrl && settings.useImageColors;
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--ls-card)]/60 px-3 py-2 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden">
+      <div className="flex items-center gap-2 rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 px-3 py-2 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden">
         <Monitor size={13} className="shrink-0 text-[var(--ls-foreground)]" />
         <span>For the best experience, open this on a desktop — some controls are hidden on mobile.</span>
       </div>
-      <section className="rounded-3xl border border-[var(--border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
+      <section className="rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
         <div
-          className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--border)] backdrop-blur-sm"
+          className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] backdrop-blur-sm"
           style={{ backgroundColor: resolvedCanvasBg }}
         >
           <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
@@ -855,13 +876,13 @@ export function CosmaPlayground() {
               type="button"
               onClick={copyAiPrompt}
               title="Copy the AI prompt that recreates this effect"
-              className="group inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-2 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/50"
+              className="group inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/50"
             >
               <PixelFireSpinner />
               <span className="font-semibold uppercase tracking-[0.15em]">AI Prompt</span>
               <span
                 className={
-                  "ml-1 inline-flex items-center gap-1 border-l border-[var(--border)] pl-1.5 text-[10px] transition-colors " +
+                  "ml-1 inline-flex items-center gap-1 border-l border-[var(--ls-border)] pl-1.5 text-[10px] transition-colors " +
                   (promptCopied
                     ? "text-[var(--ls-foreground)]"
                     : "text-[var(--ls-foreground)] group-hover:text-orange-500 dark:group-hover:text-orange-400")
@@ -890,10 +911,10 @@ export function CosmaPlayground() {
         </section>
       )}
 
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm lg:p-6">
+      <section className="rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm lg:p-6">
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-md border border-[var(--border)] bg-[var(--ls-foreground)]/[0.06]">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-foreground)]/[0.06]">
               <Cog size={16} className="text-[var(--ls-muted-foreground)]" />
             </span>
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
@@ -903,7 +924,7 @@ export function CosmaPlayground() {
           <div className="flex items-center gap-1.5">
             <div className="hidden sm:contents">
             {sampling && (
-              <span className="rounded-md border border-[var(--border)] bg-[var(--ls-card)]/90 px-2 py-0.5 text-[10px] font-medium text-[var(--ls-muted-foreground)]">
+              <span className="rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)]/90 px-2 py-0.5 text-[10px] font-medium text-[var(--ls-muted-foreground)]">
                 Sampling…
               </span>
             )}
@@ -912,7 +933,7 @@ export function CosmaPlayground() {
               onClick={() => setPlaying((v) => !v)}
               aria-label={playing ? "Pause" : "Play"}
               title={playing ? "Pause" : "Play"}
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40"
+              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
             >
               {playing ? <Pause size={13} /> : <Play size={13} />}
             </button>
@@ -922,7 +943,7 @@ export function CosmaPlayground() {
               disabled={!canUndo}
               aria-label="Undo"
               title="Undo"
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
+              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
             >
               <Undo2 size={13} />
             </button>
@@ -932,7 +953,7 @@ export function CosmaPlayground() {
               disabled={!canRedo}
               aria-label="Redo"
               title="Redo"
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
+              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
             >
               <Redo2 size={13} />
             </button>
@@ -944,7 +965,7 @@ export function CosmaPlayground() {
                 setSettings((s) => ({ ...s, canvasBg: null }));
               }}
               aria-label="Toggle theme"
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40"
+              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
             >
               {isDark ? <Sun size={13} /> : <Moon size={13} />}
             </button>
@@ -954,7 +975,7 @@ export function CosmaPlayground() {
               onClick={() => setResetConfirmOpen(true)}
               aria-label="Reset"
               title="Reset to defaults"
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40"
+              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
             >
               <RotateCcw size={13} />
             </button>
@@ -962,13 +983,13 @@ export function CosmaPlayground() {
               <PopoverTrigger asChild>
                 <button
                   type="button"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
                   title="Load a saved preset"
                 >
                   <Bookmark size={11} />
                   Presets
                   {savedPresets.length > 0 && (
-                    <span className="rounded-sm bg-[var(--border)]/60 px-1 text-[9px] tabular-nums text-[var(--ls-muted-foreground)]">
+                    <span className="rounded-sm bg-[var(--ls-border)]/60 px-1 text-[9px] tabular-nums text-[var(--ls-muted-foreground)]">
                       {savedPresets.length}
                     </span>
                   )}
@@ -977,7 +998,7 @@ export function CosmaPlayground() {
               <PopoverContent
                 align="end"
                 sideOffset={8}
-                className="luminous-spinners w-[280px] border-[var(--border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)] shadow-xl"
+                className="luminous-spinners w-[280px] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)] shadow-xl"
               >
                 <p className="mb-2 px-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
                   Saved presets
@@ -993,7 +1014,7 @@ export function CosmaPlayground() {
                     {savedPresets.map((p) => (
                       <div
                         key={p.id}
-                        className="group flex items-center gap-1 rounded-md hover:bg-[var(--border)]/30"
+                        className="group flex items-center gap-1 rounded-md hover:bg-[var(--ls-border)]/30"
                       >
                         <button
                           type="button"
@@ -1045,7 +1066,7 @@ export function CosmaPlayground() {
               <PopoverContent
                 align="end"
                 sideOffset={8}
-                className="luminous-spinners w-[280px] border-[var(--border)] bg-[var(--ls-card)] p-3 text-[var(--ls-foreground)] shadow-xl"
+                className="luminous-spinners w-[280px] border-[var(--ls-border)] bg-[var(--ls-card)] p-3 text-[var(--ls-foreground)] shadow-xl"
               >
                 <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
                   Save current as preset
@@ -1065,7 +1086,7 @@ export function CosmaPlayground() {
                   autoFocus
                   spellCheck={false}
                   placeholder="Preset name"
-                  className="h-8 w-full rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-2.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-emerald-400/60"
+                  className="h-8 w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-emerald-400/60"
                 />
                 {saveDialogError && (
                   <p className="mt-1.5 text-[10px] text-rose-400">
@@ -1076,7 +1097,7 @@ export function CosmaPlayground() {
                   <button
                     type="button"
                     onClick={() => setSaveDialogOpen(false)}
-                    className="rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-2.5 py-1 text-[11px] font-medium text-[var(--ls-foreground)] hover:bg-[var(--border)]/40"
+                    className="rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 py-1 text-[11px] font-medium text-[var(--ls-foreground)] hover:bg-[var(--ls-border)]/40"
                   >
                     Cancel
                   </button>
@@ -1103,7 +1124,7 @@ export function CosmaPlayground() {
             subtitle="Pick a preset, a custom hex, or a gradient."
           />
           <div className="space-y-3">
-            <div className="inline-flex w-full rounded-md border border-[var(--border)] bg-[var(--ls-card)] p-0.5">
+            <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
               <SegmentTab
                 active={settings.colorMode === "preset"}
                 onClick={() => setSettings((s) => ({ ...s, colorMode: "preset" }))}
@@ -1118,6 +1139,12 @@ export function CosmaPlayground() {
                 active={settings.colorMode === "gradient"}
                 onClick={() => setSettings((s) => ({ ...s, colorMode: "gradient" }))}
                 label="Gradient"
+                disabled={imageColorsActive}
+                title={
+                  imageColorsActive
+                    ? "Disabled — the image's original colors are in use"
+                    : undefined
+                }
               />
             </div>
 
@@ -1182,7 +1209,7 @@ export function CosmaPlayground() {
                         : "Save current Fill as a custom color"
                     }
                     aria-label="Add custom color"
-                    className="flex h-[44px] w-full items-center justify-center gap-1.5 rounded-md border border-dashed border-[var(--border)] bg-[var(--ls-card)]/40 text-[11px] font-medium text-[var(--ls-muted-foreground)] transition-colors hover:border-white/40 hover:bg-[var(--border)]/30 hover:text-[var(--ls-foreground)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]/40"
+                    className="flex h-[44px] w-full items-center justify-center gap-1.5 rounded-md border border-dashed border-[var(--ls-border)] bg-[var(--ls-card)]/40 text-[11px] font-medium text-[var(--ls-muted-foreground)] transition-colors hover:border-white/40 hover:bg-[var(--ls-border)]/30 hover:text-[var(--ls-foreground)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]/40"
                   >
                     <Plus size={13} />
                     Add color
@@ -1201,7 +1228,7 @@ export function CosmaPlayground() {
                     <PopoverTrigger asChild>
                       <button
                         type="button"
-                        className="flex flex-1 items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--ls-card)] p-1.5 text-left transition-colors hover:bg-[var(--border)]/40"
+                        className="flex flex-1 items-center gap-2 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 text-left transition-colors hover:bg-[var(--ls-border)]/40"
                         title="Pick a gradient preset"
                       >
                         <span
@@ -1222,7 +1249,7 @@ export function CosmaPlayground() {
                     <PopoverContent
                       align="start"
                       sideOffset={6}
-                      className="luminous-spinners w-[280px] border-[var(--border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)] shadow-xl"
+                      className="luminous-spinners w-[280px] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)] shadow-xl"
                     >
                       <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
                         Gradient presets
@@ -1301,7 +1328,7 @@ export function CosmaPlayground() {
                                     }}
                                     aria-label={`Delete ${g.label}`}
                                     title="Delete"
-                                    className="absolute -right-1 -top-1 inline-flex h-4 w-4 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] opacity-0 transition-opacity hover:bg-rose-500/20 hover:text-rose-300 group-hover:opacity-100"
+                                    className="absolute -right-1 -top-1 inline-flex h-4 w-4 items-center justify-center rounded-full border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] opacity-0 transition-opacity hover:bg-rose-500/20 hover:text-rose-300 group-hover:opacity-100"
                                   >
                                     <X size={8} />
                                   </button>
@@ -1320,26 +1347,24 @@ export function CosmaPlayground() {
                             ? "This gradient is already saved"
                             : "Save current From / To as a custom gradient"
                         }
-                        className="mt-2.5 flex h-8 w-full items-center justify-center gap-1.5 rounded-md border border-dashed border-[var(--border)] bg-[var(--ls-card)] text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
+                        className="mt-2.5 flex h-8 w-full items-center justify-center gap-1.5 rounded-md border border-dashed border-[var(--ls-border)] bg-[var(--ls-card)] text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
                       >
                         <Plus size={12} />
                         Save current as custom
                       </button>
                     </PopoverContent>
                   </Popover>
-                  <AngleField
-                    value={settings.gradientAngle}
-                    onChange={(v) => setSettings((s) => ({ ...s, gradientAngle: v }))}
-                  />
+                  <div className="flex items-center gap-1.5">
+                    <AngleDial
+                      value={settings.gradientAngle}
+                      onChange={(v) => setSettings((s) => ({ ...s, gradientAngle: v }))}
+                    />
+                    <span className="min-w-[2.5rem] text-right font-mono text-[11px] tabular-nums text-[var(--ls-muted-foreground)]">
+                      {settings.gradientAngle}°
+                    </span>
+                  </div>
                 </div>
-                <div
-                  className="grid gap-1.5"
-                  style={{
-                    gridTemplateColumns: `repeat(${
-                      2 + settings.gradientMidStops.length
-                    }, minmax(0, 1fr))`,
-                  }}
-                >
+                <div className="grid grid-cols-4 gap-1.5">
                   {(() => {
                     const stops = getGradientStops(settings);
                     const handleSwap = (a: number, b: number) => {
@@ -1365,32 +1390,68 @@ export function CosmaPlayground() {
                         onDropStop={(target) => handleSwap(0, target)}
                       />
                     );
-                    settings.gradientMidStops.forEach((value, idx) => {
+                    for (let idx = 0; idx < MAX_GRADIENT_MID_STOPS; idx++) {
+                      const value = settings.gradientMidStops[idx];
                       const stopIndex = idx + 1;
-                      cards.push(
-                        <SwatchRow
-                          key={`mid-${idx}`}
-                          label="—"
-                          value={value}
-                          onChange={(v) =>
-                            setSettings((s) => {
-                              const next = [...s.gradientMidStops];
-                              next[idx] = v;
-                              return { ...s, gradientMidStops: next };
-                            })
-                          }
-                          onRemove={() =>
-                            setSettings((s) => ({
-                              ...s,
-                              gradientMidStops: s.gradientMidStops.filter((_, i) => i !== idx),
-                            }))
-                          }
-                          dragIndex={stopIndex}
-                          onDragStartStop={() => {}}
-                          onDropStop={(target) => handleSwap(stopIndex, target)}
-                        />
-                      );
-                    });
+                      if (value !== undefined) {
+                        cards.push(
+                          <SwatchRow
+                            key={`mid-${idx}`}
+                            label="—"
+                            value={value}
+                            onChange={(v) =>
+                              setSettings((s) => {
+                                const next = [...s.gradientMidStops];
+                                next[idx] = v;
+                                return { ...s, gradientMidStops: next };
+                              })
+                            }
+                            onRemove={() =>
+                              setSettings((s) => ({
+                                ...s,
+                                gradientMidStops: s.gradientMidStops.filter((_, i) => i !== idx),
+                              }))
+                            }
+                            dragIndex={stopIndex}
+                            onDragStartStop={() => {}}
+                            onDropStop={(target) => handleSwap(stopIndex, target)}
+                          />
+                        );
+                      } else {
+                        const nextStopExists = settings.gradientMidStops[idx - 1] !== undefined;
+                        const enabled = idx === 0 || nextStopExists;
+                        cards.push(
+                          <button
+                            key={`mid-${idx}`}
+                            type="button"
+                            disabled={!enabled}
+                            onClick={() => {
+                              const mid = blendHex(
+                                settings.gradientFrom,
+                                settings.gradientTo,
+                                0.5
+                              );
+                              setSettings((s) => ({
+                                ...s,
+                                gradientMidStops: [...s.gradientMidStops, mid].slice(
+                                  0,
+                                  MAX_GRADIENT_MID_STOPS
+                                ),
+                              }));
+                            }}
+                            title={
+                              enabled
+                                ? "Add an intermediate gradient stop"
+                                : "Add the previous stop first"
+                            }
+                            aria-label="Add gradient stop"
+                            className="flex h-full min-h-[44px] w-full items-center justify-center rounded-md border border-dashed border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] transition-colors hover:border-white/40 hover:bg-[var(--ls-border)]/30 hover:text-[var(--ls-foreground)] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[var(--ls-card)]"
+                          >
+                            <Plus size={14} />
+                          </button>
+                        );
+                      }
+                    }
                     const toIndex = stops.length - 1;
                     cards.push(
                       <SwatchRow
@@ -1427,14 +1488,14 @@ export function CosmaPlayground() {
               onClick={() => setSettings((s) => ({ ...s, canvasBg: null }))}
               disabled={settings.canvasBg === null}
               title="Follow theme"
-              className="h-9 rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-2.5 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
+              className="h-9 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
             >
               Auto
             </button>
           </div>
 
           <SectionHeading title="Particles" subtitle="Density and motion." />
-          <SliderControl
+          <TickSlider
             label="Particles"
             value={settings.count}
             min={200}
@@ -1443,7 +1504,7 @@ export function CosmaPlayground() {
             editable
             onChange={(v) => setSettings((s) => ({ ...s, count: v }))}
           />
-          <SliderControl
+          <TickSlider
             label="Size"
             value={settings.size}
             min={0.5}
@@ -1452,7 +1513,7 @@ export function CosmaPlayground() {
             unit="px"
             onChange={(v) => setSettings((s) => ({ ...s, size: v }))}
           />
-          <SliderControl
+          <TickSlider
             label="Speed"
             value={settings.speed}
             min={0.2}
@@ -1460,7 +1521,7 @@ export function CosmaPlayground() {
             step={0.05}
             onChange={(v) => setSettings((s) => ({ ...s, speed: v }))}
           />
-          <SliderControl
+          <TickSlider
             label="Drift"
             value={settings.drift}
             min={0}
@@ -1476,7 +1537,7 @@ export function CosmaPlayground() {
           <div className="space-y-4">
           <div className="space-y-4">
           <SectionHeading title="Source" subtitle="Particles form the shape you pick." />
-          <div className="inline-flex w-full rounded-md border border-[var(--border)] bg-[var(--ls-card)] p-0.5">
+          <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
             <SourceTab
               active={settings.source === "shape"}
               onClick={() => onSourceTypeChange("shape")}
@@ -1528,7 +1589,7 @@ export function CosmaPlayground() {
                   }))
                 }
                 placeholder="Type something…"
-                className="h-9 w-full rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-2.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-white/40"
+                className="h-9 w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-white/40"
               />
               <div className="grid grid-cols-5 gap-1">
                 {TEXT_FONTS.map((f) => {
@@ -1543,8 +1604,8 @@ export function CosmaPlayground() {
                       className={
                         "h-9 rounded-md border text-[11px] transition-colors " +
                         (active
-                          ? "border-white/50 bg-[var(--border)]/60 text-[var(--ls-foreground)]"
-                          : "border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--border)]/40 hover:text-[var(--ls-foreground)]")
+                          ? "border-white/50 bg-[var(--ls-border)]/60 text-[var(--ls-foreground)]"
+                          : "border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--ls-border)]/40 hover:text-[var(--ls-foreground)]")
                       }
                       style={{ fontFamily: f.family, fontWeight: f.weight }}
                     >
@@ -1607,7 +1668,7 @@ export function CosmaPlayground() {
               <div
                 aria-disabled={!settings.sourceDataUrl}
                 className={
-                  "flex items-start justify-between gap-3 rounded-md border border-[var(--border)] bg-[var(--ls-card)]/50 p-3 transition-opacity " +
+                  "flex items-start justify-between gap-3 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-3 transition-opacity " +
                   (settings.sourceDataUrl ? "" : "pointer-events-none opacity-40 select-none")
                 }
               >
@@ -1621,7 +1682,15 @@ export function CosmaPlayground() {
                 </div>
                 <Switch
                   checked={settings.useImageColors}
-                  onChange={(v) => setSettings((s) => ({ ...s, useImageColors: v }))}
+                  onChange={(v) =>
+                    setSettings((s) => ({
+                      ...s,
+                      useImageColors: v,
+                      // Turning Original on overrides the gradient — leave that tool.
+                      colorMode:
+                        v && s.colorMode === "gradient" ? "preset" : s.colorMode,
+                    }))
+                  }
                   label="Use original image colors"
                 />
               </div>
@@ -1633,7 +1702,7 @@ export function CosmaPlayground() {
           <SectionHeading title="Mouse" subtitle="Hover the canvas to interact." />
 
           <div className="space-y-2">
-            <div className="inline-flex w-full rounded-md border border-[var(--border)] bg-[var(--ls-card)] p-0.5">
+            <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
               <SegmentTab
                 active={settings.mouseMode === "repel"}
                 onClick={() => setSettings((s) => ({ ...s, mouseMode: "repel" }))}
@@ -1659,7 +1728,7 @@ export function CosmaPlayground() {
             </p>
           </div>
 
-          <SliderControl
+          <TickSlider
             label="Radius"
             value={settings.mouseRadius}
             min={0}
@@ -1668,7 +1737,7 @@ export function CosmaPlayground() {
             unit="px"
             onChange={(v) => setSettings((s) => ({ ...s, mouseRadius: v }))}
           />
-          <SliderControl
+          <TickSlider
             label="Force"
             value={settings.mouseForce}
             min={0}
@@ -1689,7 +1758,7 @@ export function CosmaPlayground() {
               on={settings.glow}
               onToggle={(v) => setSettings((s) => ({ ...s, glow: v }))}
               slider={
-                <SliderControl
+                <TickSlider
                   label="Strength"
                   value={settings.glowStrength}
                   min={0.1}
@@ -1705,7 +1774,7 @@ export function CosmaPlayground() {
               on={settings.twinkle}
               onToggle={(v) => setSettings((s) => ({ ...s, twinkle: v }))}
               slider={
-                <SliderControl
+                <TickSlider
                   label="Speed"
                   value={settings.twinkleSpeed}
                   min={0.2}
@@ -1721,7 +1790,7 @@ export function CosmaPlayground() {
               on={settings.hueCycle}
               onToggle={(v) => setSettings((s) => ({ ...s, hueCycle: v }))}
               slider={
-                <SliderControl
+                <TickSlider
                   label="Speed"
                   value={settings.hueSpeed}
                   min={0.02}
@@ -1737,7 +1806,7 @@ export function CosmaPlayground() {
               on={settings.trails}
               onToggle={(v) => setSettings((s) => ({ ...s, trails: v }))}
               slider={
-                <SliderControl
+                <TickSlider
                   label="Fade"
                   value={settings.trailFade}
                   min={0.03}
@@ -1753,7 +1822,7 @@ export function CosmaPlayground() {
               on={settings.constellation}
               onToggle={(v) => setSettings((s) => ({ ...s, constellation: v }))}
               slider={
-                <SliderControl
+                <TickSlider
                   label="Distance"
                   value={settings.constellationDist}
                   min={20}
@@ -2148,53 +2217,124 @@ function SectionHeading({ title, subtitle }: { title: string; subtitle?: string 
   );
 }
 
-function AngleField({
+function AngleDial({
   value,
   onChange,
+  size = 32,
 }: {
   value: number;
   onChange: (v: number) => void;
+  size?: number;
 }) {
-  const [draft, setDraft] = React.useState(String(value));
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const [dragging, setDragging] = React.useState(false);
 
-  React.useEffect(() => {
-    setDraft(String(value));
-  }, [value]);
+  const setFromEvent = React.useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      let angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
+      if (angle < 0) angle += 360;
+      if (e.shiftKey) angle = Math.round(angle / 15) * 15;
+      else angle = Math.round(angle);
+      onChange(angle % 360);
+    },
+    [onChange]
+  );
 
-  const commit = () => {
-    const n = Number(draft);
-    if (Number.isFinite(n) && draft.trim() !== "") {
-      const next = ((Math.round(n) % 360) + 360) % 360;
-      onChange(next);
-      setDraft(String(next));
-    } else {
-      setDraft(String(value));
-    }
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setDragging(true);
+    setFromEvent(e);
   };
 
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.buttons === 0) return;
+    setFromEvent(e);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    setDragging(false);
+  };
+
+  const rad = (value * Math.PI) / 180;
+  const tipX = Math.sin(rad);
+  const tipY = -Math.cos(rad);
+
   return (
-    <div className="relative w-20">
-      <Input
-        type="number"
-        inputMode="numeric"
-        min={0}
-        max={359}
-        value={draft}
-        onChange={(e) => setDraft(e.target.value)}
-        onBlur={commit}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") (e.target as HTMLInputElement).blur();
-          else if (e.key === "Escape") {
-            setDraft(String(value));
-            (e.target as HTMLInputElement).blur();
-          }
-        }}
-        aria-label="Gradient angle"
-        className="h-8 pr-6 font-mono text-xs tabular-nums [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-      />
-      <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-xs text-[var(--ls-muted-foreground)]">
-        °
-      </span>
+    <div
+      ref={ref}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      role="slider"
+      aria-label="Gradient angle"
+      aria-valuemin={0}
+      aria-valuemax={359}
+      aria-valuenow={value}
+      title={`Gradient angle: ${value}° (drag, Shift = snap 15°)`}
+      className="relative shrink-0 cursor-grab touch-none rounded-full border border-[var(--ls-border)] bg-[var(--ls-card)] transition-colors hover:bg-[var(--ls-border)]/40 active:cursor-grabbing"
+      style={{ width: size, height: size }}
+    >
+      {dragging && (
+        <div
+          className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-1.5 py-0.5 font-mono text-[10px] font-medium text-[var(--ls-foreground)] shadow-lg"
+          style={{ bottom: `calc(100% + 6px)` }}
+        >
+          {value}°
+        </div>
+      )}
+      <svg
+        viewBox="-1 -1 2 2"
+        className="absolute inset-0 h-full w-full text-[var(--ls-foreground)]"
+      >
+        <defs>
+          <radialGradient id="angle-tip" cx="35%" cy="28%" r="70%">
+            <stop offset="0%" stopColor="#fda4af" />
+            <stop offset="45%" stopColor="#f43f5e" />
+            <stop offset="100%" stopColor="#881337" />
+          </radialGradient>
+          <radialGradient id="angle-tip-spec" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </radialGradient>
+        </defs>
+        <circle cx="0" cy="0" r="0.92" fill="none" stroke="currentColor" strokeOpacity="0.15" strokeWidth="0.06" />
+        <line
+          x1="0"
+          y1="0"
+          x2={tipX * 0.8}
+          y2={tipY * 0.8}
+          stroke="currentColor"
+          strokeWidth="0.18"
+          strokeLinecap="round"
+        />
+        <circle
+          cx={tipX * 0.8}
+          cy={tipY * 0.8}
+          r="0.2"
+          fill="rgba(0,0,0,0.45)"
+          transform={`translate(${tipX * 0.02} ${tipY * 0.02 + 0.04})`}
+        />
+        <circle cx={tipX * 0.8} cy={tipY * 0.8} r="0.19" fill="url(#angle-tip)" stroke="#881337" strokeWidth="0.02" />
+        <ellipse
+          cx={tipX * 0.8 - 0.06}
+          cy={tipY * 0.8 - 0.07}
+          rx="0.09"
+          ry="0.06"
+          fill="url(#angle-tip-spec)"
+        />
+        <circle cx="0" cy="0" r="0.1" fill="currentColor" fillOpacity="0.4" />
+      </svg>
     </div>
   );
 }
@@ -2219,7 +2359,7 @@ function Switch({
         "relative h-5 w-9 shrink-0 rounded-full border transition-colors " +
         (checked
           ? "border-transparent bg-[var(--ls-foreground)]"
-          : "border-[var(--border)] bg-[var(--ls-card)]")
+          : "border-[var(--ls-border)] bg-[var(--ls-card)]")
       }
     >
       <span
@@ -2252,8 +2392,8 @@ function EffectCard({
       className={
         "rounded-md border p-3 transition-colors " +
         (on
-          ? "border-[var(--border)] bg-[var(--ls-card)]/80"
-          : "border-[var(--border)]/60 bg-[var(--ls-card)]/30")
+          ? "border-[var(--ls-border)] bg-[var(--ls-card)]/80"
+          : "border-[var(--ls-border)]/60 bg-[var(--ls-card)]/30")
       }
     >
       <div className="flex items-start justify-between gap-3">
@@ -2304,20 +2444,28 @@ function SegmentTab({
   active,
   onClick,
   label,
+  disabled = false,
+  title,
 }: {
   active: boolean;
   onClick: () => void;
   label: string;
+  disabled?: boolean;
+  title?: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
+      title={title}
       className={
         "flex-1 rounded-[5px] py-1.5 text-[11px] font-medium transition-colors " +
-        (active
-          ? "bg-[var(--ls-foreground)] text-[var(--ls-card)]"
-          : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
+        (disabled
+          ? "cursor-not-allowed text-[var(--ls-muted-foreground)]/40"
+          : active
+            ? "bg-[var(--ls-foreground)] text-[var(--ls-card)]"
+            : "text-[var(--ls-muted-foreground)] hover:text-[var(--ls-foreground)]")
       }
     >
       {label}
@@ -2413,7 +2561,7 @@ function SwatchRow({
             aria-label={`${label} color`}
             title={draggable ? "Drag to swap with another stop" : undefined}
             className={
-              "flex w-full items-center gap-2.5 rounded-md border border-[var(--border)] bg-[var(--ls-card)] p-2 text-left transition-colors hover:bg-[var(--border)]/40 " +
+              "flex w-full items-center gap-2.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-left transition-colors hover:bg-[var(--ls-border)]/40 " +
               (draggable ? "cursor-grab active:cursor-grabbing" : "")
             }
           >
@@ -2441,13 +2589,21 @@ function SwatchRow({
           }}
           aria-label={`Remove ${label}`}
           title="Remove stop"
-          className="absolute -right-1 -top-1 inline-flex h-4 w-4 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] opacity-0 transition-opacity hover:bg-rose-500/20 hover:text-rose-300 group-hover:opacity-100"
+          className="absolute -right-1 -top-1 inline-flex h-4 w-4 items-center justify-center rounded-full border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] opacity-0 transition-opacity hover:bg-rose-500/20 hover:text-rose-300 group-hover:opacity-100"
         >
           <X size={8} />
         </button>
       )}
     </div>
   );
+}
+
+function blendHex(a: string, b: string, t: number): string {
+  const ra = hexToRgb(a);
+  const rb = hexToRgb(b);
+  const mix = (x: number, y: number) => Math.round(x + (y - x) * t);
+  const toHex = (n: number) => n.toString(16).padStart(2, "0");
+  return `#${toHex(mix(ra.r, rb.r))}${toHex(mix(ra.g, rb.g))}${toHex(mix(ra.b, rb.b))}`;
 }
 
 const SIZE_PRESETS: { label: string; value: number }[] = [
@@ -2479,8 +2635,8 @@ function SizeControl({
               className={
                 "h-7 rounded-md border text-[10px] font-semibold uppercase tracking-wider transition-colors " +
                 (active
-                  ? "border-white/40 bg-[var(--border)]/60 text-[var(--ls-foreground)]"
-                  : "border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--border)]/40 hover:text-[var(--ls-foreground)]")
+                  ? "border-white/40 bg-[var(--ls-border)]/60 text-[var(--ls-foreground)]"
+                  : "border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--ls-border)]/40 hover:text-[var(--ls-foreground)]")
               }
             >
               {p.label}
@@ -2488,7 +2644,7 @@ function SizeControl({
           );
         })}
       </div>
-      <SliderControl
+      <DialSlider
         label={label}
         value={value}
         min={0.2}
@@ -2537,8 +2693,8 @@ function ShapePicker({
               className={
                 "flex h-12 items-center justify-center rounded-md border transition-colors " +
                 (active
-                  ? "border-white/40 bg-[var(--border)]/60 text-[var(--ls-foreground)]"
-                  : "border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--border)]/40 hover:text-[var(--ls-foreground)]")
+                  ? "border-white/40 bg-[var(--ls-border)]/60 text-[var(--ls-foreground)]"
+                  : "border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--ls-border)]/40 hover:text-[var(--ls-foreground)]")
               }
               aria-label={label}
               title={label}
@@ -2554,8 +2710,8 @@ function ShapePicker({
               className={
                 "flex h-12 items-center justify-center gap-1 rounded-md border transition-colors " +
                 (!isFavorite
-                  ? "border-white/40 bg-[var(--border)]/60 text-[var(--ls-foreground)]"
-                  : "border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--border)]/40 hover:text-[var(--ls-foreground)]")
+                  ? "border-white/40 bg-[var(--ls-border)]/60 text-[var(--ls-foreground)]"
+                  : "border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--ls-border)]/40 hover:text-[var(--ls-foreground)]")
               }
               aria-label="Browse icons"
               title="Browse icons"
@@ -2570,7 +2726,7 @@ function ShapePicker({
           <PopoverContent
             align="end"
             sideOffset={6}
-            className="luminous-spinners w-[min(360px,calc(100vw-2rem))] border-[var(--border)] bg-[var(--ls-card)] p-3"
+            className="luminous-spinners w-[min(360px,calc(100vw-2rem))] border-[var(--ls-border)] bg-[var(--ls-card)] p-3"
           >
             <div className="relative mb-2">
               <Search className="pointer-events-none absolute left-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--ls-muted-foreground)]" />
@@ -2579,7 +2735,7 @@ function ShapePicker({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search icons…"
-                className="h-8 w-full rounded-md border border-[var(--border)] bg-[var(--ls-card)] pl-7 pr-2 text-xs text-[var(--ls-foreground)] outline-none placeholder:text-[var(--ls-muted-foreground)] focus:border-white/40"
+                className="h-8 w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] pl-7 pr-2 text-xs text-[var(--ls-foreground)] outline-none placeholder:text-[var(--ls-muted-foreground)] focus:border-white/40"
                 autoFocus
               />
             </div>
@@ -2598,8 +2754,8 @@ function ShapePicker({
                     className={
                       "flex h-10 items-center justify-center rounded-md border transition-colors " +
                       (active
-                        ? "border-white/50 bg-[var(--border)]/60 text-[var(--ls-foreground)]"
-                        : "border-[var(--border)]/60 bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--border)]/40 hover:text-[var(--ls-foreground)]")
+                        ? "border-white/50 bg-[var(--ls-border)]/60 text-[var(--ls-foreground)]"
+                        : "border-[var(--ls-border)]/60 bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:bg-[var(--ls-border)]/40 hover:text-[var(--ls-foreground)]")
                     }
                     aria-label={label}
                     title={label}
@@ -2660,7 +2816,7 @@ function FilePicker({
       ? "border-emerald-400/60 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
       : dragState === "invalid"
         ? "border-rose-400/60 bg-rose-500/10 text-rose-700 dark:text-rose-300"
-        : "border-[var(--border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] hover:border-white/40 hover:bg-[var(--border)]/40";
+        : "border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] hover:border-white/40 hover:bg-[var(--ls-border)]/40";
 
   const displayLabel =
     dragState === "valid"
@@ -2754,7 +2910,7 @@ function fileMatchesAcceptType(item: DataTransferItem, accept: string): boolean 
   });
 }
 
-function SliderControl({
+function TickSlider({
   label,
   value,
   min,
@@ -2763,6 +2919,7 @@ function SliderControl({
   unit,
   onChange,
   editable,
+  warnAbove,
 }: {
   label: string;
   value: number;
@@ -2774,6 +2931,194 @@ function SliderControl({
   editable?: boolean;
   warnAbove?: number;
 }) {
+  const isWarn = warnAbove !== undefined && value > warnAbove;
+  const pct = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+  const decimals = step >= 1 ? 0 : step.toString().split(".")[1]?.length ?? 1;
+  const display = value.toFixed(decimals);
+  const tickCount = 36;
+
+  const [editing, setEditing] = React.useState(false);
+  const [draft, setDraft] = React.useState(display);
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
+
+  React.useEffect(() => {
+    if (!editing) setDraft(display);
+  }, [display, editing]);
+
+  const commit = () => {
+    const n = Number(draft);
+    if (Number.isFinite(n)) {
+      const clamped = Math.min(max, Math.max(min, n));
+      onChange(clamped);
+      setDraft(clamped.toFixed(decimals));
+    } else {
+      setDraft(display);
+    }
+    setEditing(false);
+  };
+
+  const pctMV = useMotionValue(pct);
+  React.useEffect(() => {
+    pctMV.set(pct);
+  }, [pct, pctMV]);
+
+  const rawVelocity = useVelocity(pctMV);
+  const smoothVelocity = useSpring(rawVelocity, {
+    stiffness: 300,
+    damping: 18,
+    mass: 0.4,
+  });
+
+  const indicatorScaleY = useTransform(smoothVelocity, (v) =>
+    1 + Math.min(Math.abs(v) / 260, 1) * 0.9
+  );
+
+  return (
+    <div className="group flex items-center gap-3 rounded-full border border-[var(--ls-border)] bg-[var(--ls-card)] px-3.5 py-2 shadow-[0_1px_2px_-1px_rgba(0,0,0,0.18),0_2px_6px_-3px_rgba(0,0,0,0.18)] transition-shadow hover:shadow-[0_2px_4px_-2px_rgba(0,0,0,0.22),0_4px_10px_-4px_rgba(0,0,0,0.22)]">
+      <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--ls-muted-foreground)]">
+        {label}
+      </span>
+      <div className="relative flex-1 h-5">
+        <div className="pointer-events-none absolute inset-x-0 top-1/2 flex h-3 -translate-y-1/2 items-stretch justify-between">
+          {Array.from({ length: tickCount }).map((_, i) => (
+            <Tick
+              key={i}
+              index={i}
+              tickCount={tickCount}
+              pctMV={pctMV}
+              velocity={smoothVelocity}
+            />
+          ))}
+        </div>
+        <motion.div
+          className="pointer-events-none absolute top-1/2 h-4 w-[2px] -translate-x-1/2 -translate-y-1/2 rounded-[1px] transition-[background-color,box-shadow] duration-200"
+          style={{
+            left: `${pct}%`,
+            scale: indicatorScaleY,
+            transformOrigin: "50% 50%",
+            backgroundColor: isWarn ? "oklch(0.78 0.19 60)" : "oklch(0.72 0.24 5)",
+            boxShadow: isWarn
+              ? "0 0 4px oklch(0.78 0.19 60 / 0.9), 0 0 10px oklch(0.78 0.19 60 / 0.55)"
+              : "0 0 4px oklch(0.72 0.24 5 / 0.9), 0 0 10px oklch(0.72 0.24 5 / 0.55)",
+          }}
+        />
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(e) => onChange(Number(e.target.value))}
+          className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0"
+          aria-label={label}
+        />
+      </div>
+      {editable ? (
+        editing ? (
+          <div className="flex shrink-0 items-center gap-0.5 rounded border border-white/30 bg-[var(--ls-card)] px-1.5 py-0.5 font-mono text-xs text-[var(--ls-foreground)]">
+            <input
+              ref={inputRef}
+              type="number"
+              min={min}
+              max={max}
+              step={step}
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              onBlur={commit}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+                else if (e.key === "Escape") {
+                  setDraft(display);
+                  setEditing(false);
+                }
+              }}
+              autoFocus
+              className="w-14 bg-transparent text-right tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            />
+            {unit && <span className="text-[var(--ls-muted-foreground)]">{unit}</span>}
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              setDraft(display);
+              setEditing(true);
+              requestAnimationFrame(() => inputRef.current?.focus());
+            }}
+            className="shrink-0 cursor-text font-mono text-xs tabular-nums text-[var(--ls-foreground)] hover:underline decoration-dotted underline-offset-2"
+            title="Click to edit"
+          >
+            {display}
+            {unit ? <span className="ml-0.5 text-[var(--ls-muted-foreground)]">{unit}</span> : null}
+          </button>
+        )
+      ) : (
+        <span className="shrink-0 font-mono text-xs tabular-nums text-[var(--ls-foreground)]">
+          {display}
+          {unit ? <span className="ml-0.5 text-[var(--ls-muted-foreground)]">{unit}</span> : null}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function Tick({
+  index,
+  tickCount,
+  pctMV,
+  velocity,
+}: {
+  index: number;
+  tickCount: number;
+  pctMV: MotionValue<number>;
+  velocity: MotionValue<number>;
+}) {
+  const tickPct = (index / (tickCount - 1)) * 100;
+
+  const scaleY = useTransform<number, number>(
+    [pctMV, velocity] as unknown as MotionValue<number>[],
+    (latest) => {
+      const [p, v] = latest as unknown as [number, number];
+      const dist = Math.abs(tickPct - p);
+      const intensity = Math.min(Math.abs(v) / 260, 1);
+      const sigma = 8 + intensity * 22;
+      const envelope = Math.exp(-(dist * dist) / (2 * sigma * sigma));
+      return 1 + envelope * intensity * 2.4;
+    }
+  );
+
+  const opacity = useTransform(pctMV, (p) => (tickPct <= p ? 0.7 : 0.15));
+
+  return (
+    <motion.span
+      className="w-px origin-center bg-[var(--ls-foreground)]"
+      style={{ scaleY, opacity }}
+    />
+  );
+}
+
+function DialSlider({
+  label,
+  value,
+  min,
+  max,
+  step,
+  unit,
+  onChange,
+  editable,
+  warnAbove,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  unit?: string;
+  onChange: (v: number) => void;
+  editable?: boolean;
+  warnAbove?: number;
+}) {
+  const isWarn = warnAbove !== undefined && value > warnAbove;
   const decimals = step >= 1 ? 0 : step.toString().split(".")[1]?.length ?? 1;
   const display = value.toFixed(decimals);
 
@@ -2797,20 +3142,162 @@ function SliderControl({
     setEditing(false);
   };
 
+  const tickSpacing = 5;
+  const numSteps = Math.max(1, Math.round((max - min) / step));
+  const stripWidth = numSteps * tickSpacing;
+
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const [viewportWidth, setViewportWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    setViewportWidth(el.clientWidth);
+    const ro = new ResizeObserver((entries) => {
+      setViewportWidth(entries[0].contentRect.width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const valueToX = React.useCallback(
+    (v: number) => viewportWidth / 2 - ((v - min) / step) * tickSpacing,
+    [viewportWidth, min, step]
+  );
+  const xToValue = React.useCallback(
+    (px: number) => min + ((viewportWidth / 2 - px) / tickSpacing) * step,
+    [viewportWidth, min, step]
+  );
+
+  const x = useMotionValue(0);
+  const draggingRef = React.useRef(false);
+  const syncingRef = React.useRef(false);
+  const lastSentRef = React.useRef(value);
+
+  React.useEffect(() => {
+    if (draggingRef.current) return;
+    if (viewportWidth === 0) return;
+    const target = valueToX(value);
+    if (Math.abs(x.get() - target) < 0.5) {
+      x.set(target);
+      lastSentRef.current = value;
+      return;
+    }
+    syncingRef.current = true;
+    const controls = animate(x, target, {
+      type: "spring",
+      stiffness: 320,
+      damping: 32,
+      mass: 0.5,
+    });
+    controls.then(() => {
+      syncingRef.current = false;
+      lastSentRef.current = value;
+    });
+    return () => {
+      controls.stop();
+      syncingRef.current = false;
+    };
+  }, [value, viewportWidth, valueToX, x]);
+
+  useMotionValueEvent(x, "change", (latest) => {
+    if (syncingRef.current) return;
+    const v = xToValue(latest);
+    const snapped = Math.round((v - min) / step) * step + min;
+    const clamped = Math.min(max, Math.max(min, snapped));
+    const rounded = Number(clamped.toFixed(decimals));
+    if (Math.abs(rounded - lastSentRef.current) >= step / 2) {
+      lastSentRef.current = rounded;
+      onChange(rounded);
+    }
+  });
+
+  const rawVelocity = useVelocity(x);
+  const smoothVelocity = useSpring(rawVelocity, {
+    stiffness: 300,
+    damping: 18,
+    mass: 0.4,
+  });
+  const indicatorScaleY = useTransform(smoothVelocity, (v) =>
+    1 + Math.min(Math.abs(v) / 1400, 1) * 0.9
+  );
+
+  const ready = viewportWidth > 0;
+  const leftConstraint = viewportWidth / 2 - stripWidth;
+  const rightConstraint = viewportWidth / 2;
+
   return (
-    <div className="group flex items-center gap-3 rounded-md border border-[var(--border)] bg-[var(--ls-card)] px-3.5 py-2 shadow-[0_1px_2px_-1px_rgba(0,0,0,0.18),0_2px_6px_-3px_rgba(0,0,0,0.18)] transition-shadow hover:shadow-[0_2px_4px_-2px_rgba(0,0,0,0.22),0_4px_10px_-4px_rgba(0,0,0,0.22)]">
+    <div className="group flex items-center gap-3 rounded-full border border-[var(--ls-border)] bg-[var(--ls-card)] px-3.5 py-2 shadow-[0_1px_2px_-1px_rgba(0,0,0,0.18),0_2px_6px_-3px_rgba(0,0,0,0.18)] transition-shadow hover:shadow-[0_2px_4px_-2px_rgba(0,0,0,0.22),0_4px_10px_-4px_rgba(0,0,0,0.22)]">
       <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--ls-muted-foreground)]">
         {label}
       </span>
-      <Slider
-        value={[value]}
-        min={min}
-        max={max}
-        step={step}
-        onValueChange={(vals) => onChange(vals[0])}
+      <div
+        ref={containerRef}
+        className="relative flex-1 h-5 cursor-grab overflow-hidden touch-none select-none active:cursor-grabbing"
+        role="slider"
         aria-label={label}
-        className="flex-1"
-      />
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuenow={value}
+      >
+        {ready && (
+          <motion.div
+            className="absolute top-1/2 -translate-y-1/2 h-3"
+            style={{ x, width: stripWidth, left: 0 }}
+            drag="x"
+            dragConstraints={{ left: leftConstraint, right: rightConstraint }}
+            dragElastic={0.06}
+            dragMomentum
+            dragTransition={{
+              power: 0.22,
+              timeConstant: 260,
+              modifyTarget: (target) => {
+                const v = xToValue(target);
+                const snapped = Math.round((v - min) / step) * step + min;
+                const clamped = Math.min(max, Math.max(min, snapped));
+                return valueToX(clamped);
+              },
+            }}
+            onDragStart={() => {
+              draggingRef.current = true;
+            }}
+            onDragEnd={() => {
+              draggingRef.current = false;
+            }}
+          >
+            {Array.from({ length: numSteps + 1 }).map((_, i) => {
+              const isMajor = i % 10 === 0;
+              return (
+                <span
+                  key={i}
+                  className={
+                    "absolute top-1/2 w-px -translate-x-1/2 -translate-y-1/2 " +
+                    (isMajor
+                      ? "h-3 bg-[var(--ls-foreground)]/55"
+                      : "h-1.5 bg-[var(--ls-foreground)]/22")
+                  }
+                  style={{ left: i * tickSpacing }}
+                />
+              );
+            })}
+          </motion.div>
+        )}
+
+        <motion.div
+          className="pointer-events-none absolute top-1/2 left-1/2 h-4 w-[2px] -translate-x-1/2 -translate-y-1/2 rounded-[1px] transition-[background-color,box-shadow] duration-200"
+          style={{
+            scale: indicatorScaleY,
+            transformOrigin: "50% 50%",
+            backgroundColor: isWarn ? "oklch(0.78 0.19 60)" : "oklch(0.72 0.24 5)",
+            boxShadow: isWarn
+              ? "0 0 4px oklch(0.78 0.19 60 / 0.9), 0 0 10px oklch(0.78 0.19 60 / 0.55)"
+              : "0 0 4px oklch(0.72 0.24 5 / 0.9), 0 0 10px oklch(0.72 0.24 5 / 0.55)",
+          }}
+        />
+
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-5 bg-gradient-to-r from-[var(--ls-card)] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-5 bg-gradient-to-l from-[var(--ls-card)] to-transparent" />
+      </div>
       {editable ? (
         editing ? (
           <div className="flex shrink-0 items-center gap-0.5 rounded border border-white/30 bg-[var(--ls-card)] px-1.5 py-0.5 font-mono text-xs text-[var(--ls-foreground)]">
@@ -2922,7 +3409,7 @@ function CodePanel({
           type="button"
           onClick={handleCopy}
           className={
-            "shrink-0 inline-flex items-center gap-1 rounded-md border border-[var(--border)] bg-[var(--ls-card)] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--border)] " +
+            "shrink-0 inline-flex items-center gap-1 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)] " +
             (compact ? "px-2 py-1 text-[10px]" : "px-2.5 py-1.5 text-xs")
           }
         >

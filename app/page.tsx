@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { MetalButtonSlide } from "@/components/metal-button-slide";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
@@ -14,6 +12,8 @@ import { PixelIconCmd } from "@/components/pixel-icon-cmd";
 import { PixelIconChevron } from "@/components/pixel-icon-chevron";
 import { PixelIconRocket } from "@/components/pixel-icon-rocket";
 import CodeIcon from "@/components/icons/code-icon";
+import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+import { SpinnerMorph } from "@/components/spinners/spinner-morph";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -86,20 +86,7 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
-        <div className="text-center py-16 lg:py-24 flex flex-col items-center justify-center gap-6 lg:rounded-xl border m-0 bg-background">
-          <h3 className="text-xl md:text-2xl font-medium font-sans">
-            Copy. Paste. Ship.
-          </h3>
-          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-            Production-ready components built on shadcn/ui. No package install,
-            no abstraction — just code you own.
-          </p>
-          <Button className="h-11" asChild>
-            <Link href="/blocks">
-              Browse components <ArrowUpRight />
-            </Link>
-          </Button>
-        </div>
+        <CosmoMorph />
 
         <div className="flex flex-col gap-px bg-border lg:rounded-xl border overflow-hidden m-0">
           <div className="flex items-center justify-center bg-[#ffffff] dark:bg-[#000000] min-h-[160px] sm:min-h-[224px] lg:min-h-[294px] overflow-hidden px-3 sm:px-6 gap-2 sm:gap-10 md:gap-16 lg:gap-24 md:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.6),black_10%,black_90%,rgba(0,0,0,0.6))] md:dark:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.3),black_10%,black_90%,rgba(0,0,0,0.3))]">
@@ -131,6 +118,11 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Pixel Spinner Section */}
+      <section className="max-w-6xl w-full border-x mx-auto lg:px-0 bg-border">
+        <SpinnerMorph />
       </section>
 
       {/* Separator Section */}

@@ -16,23 +16,40 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
+type BadgeTone = "orange" | "green" | "blue";
+
 type NavItem = {
   name: string;
   href: string;
   badge?: string;
+  badgeTone?: BadgeTone;
 };
 
 const NAV_ITEMS: NavItem[] = [
   { name: "Blocks", href: "/blocks" },
-  { name: "Spinners", href: "/spinners" },
-  { name: "Cosma", href: "/cosma", badge: "New" },
+  { name: "Spinners", href: "/spinners", badge: "Updated", badgeTone: "green" },
+  { name: "Cosmo", href: "/cosma", badge: "New", badgeTone: "blue" },
   { name: "Docs", href: "/docs" },
 ];
 
-function Badge({ label }: { label: string }) {
+const BADGE_TONES: Record<BadgeTone, string> = {
+  orange:
+    "bg-orange-500 text-white shadow-[0_0_12px_oklch(0.7_0.2_255/0.5)]",
+  green:
+    "border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+  blue: "border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400",
+};
+
+function Badge({ label, tone = "orange" }: { label: string; tone?: BadgeTone }) {
   return (
-    <span className="relative inline-flex items-center overflow-hidden rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-[0_0_12px_oklch(0.7_0.2_255/0.5)]">
+    <span
+      className={`relative inline-flex items-center overflow-hidden rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${BADGE_TONES[tone]}`}
+    >
       <span className="relative z-10">{label}</span>
+      <span
+        aria-hidden
+        className="animate-badge-shimmer pointer-events-none absolute inset-y-0 -inset-x-2 bg-gradient-to-r from-transparent via-white/45 to-transparent"
+      />
     </span>
   );
 }
@@ -70,7 +87,9 @@ export function Navigation() {
                   }`}
                 >
                   {item.name}
-                  {item.badge && <Badge label={item.badge} />}
+                  {item.badge && (
+                    <Badge label={item.badge} tone={item.badgeTone} />
+                  )}
                 </Link>
               );
             })}
@@ -139,7 +158,9 @@ export function Navigation() {
                       >
                         <span className="inline-flex items-center gap-2">
                           {item.name}
-                          {item.badge && <Badge label={item.badge} />}
+                          {item.badge && (
+                            <Badge label={item.badge} tone={item.badgeTone} />
+                          )}
                         </span>
                         {active && (
                           <span

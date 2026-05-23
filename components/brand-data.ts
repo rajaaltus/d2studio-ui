@@ -49,4 +49,28 @@ export const brandData = [
         name: "Origin UI",
         icon: BrandIcons.origin,
     },
+    {
+        name: "Aceternity",
+        icon: BrandIcons.aceternity,
+    },
+    {
+        name: "CodePen",
+        icon: BrandIcons.codepen,
+    },
+    {
+        name: "Three.js",
+        icon: BrandIcons.threejs,
+    },
+    {
+        name: "React Bits",
+        icon: BrandIcons.reactBits,
+    },
+    {
+        name: "Motion",
+        icon: BrandIcons.motion,
+    },
+    {
+        name: "Convex",
+        icon: BrandIcons.convex,
+    },
 ];

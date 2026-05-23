@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["192.168.0.2", "*.local"],
+  allowedDevOrigins: ["192.168.0.2", "*.local", "192.168.0.14"],
   env: {
     CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
   },
