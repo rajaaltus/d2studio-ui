@@ -1,0 +1,353 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "D2 Studio" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e8]
+          - generic [ref=e9]:
+            - link "Blocks" [ref=e10] [cursor=pointer]:
+              - /url: /blocks
+            - link "Spinners Updated" [ref=e11] [cursor=pointer]:
+              - /url: /spinners
+              - text: Spinners
+              - generic [ref=e13]: Updated
+            - link "Cosmo New" [ref=e14] [cursor=pointer]:
+              - /url: /cosma
+              - text: Cosmo
+              - generic [ref=e16]: New
+            - link "Docs" [ref=e17] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=e18]:
+            - link "Buy me a coffee" [ref=e19] [cursor=pointer]:
+              - /url: https://buymeacoffee.com/godwindev
+              - img [ref=e20]
+              - generic [ref=e22]: Buy me a coffee
+            - switch "Toggle theme" [ref=e23]
+    - generic [ref=e26]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: Motion Library
+          - heading "Cosmo Playground" [level=1] [ref=e31]
+          - paragraph [ref=e32]: Tune count, size, and speed. Live preview on the canvas.
+        - link "Open GitHub repository" [ref=e33] [cursor=pointer]:
+          - /url: https://github.com/godwin159
+          - img [ref=e34]
+      - generic [ref=e52]:
+        - button "AI Prompt Copy" [ref=e56]:
+          - generic [ref=e74]: AI Prompt
+          - generic [ref=e75]:
+            - img [ref=e76]
+            - text: Copy
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - img [ref=e84]
+              - paragraph [ref=e95]: Controls
+            - generic [ref=e96]:
+              - generic [ref=e97]:
+                - button "Pause" [ref=e98]:
+                  - img [ref=e99]
+                - button "Undo" [disabled] [ref=e102]:
+                  - img [ref=e103]
+                - button "Redo" [disabled] [ref=e106]:
+                  - img [ref=e107]
+              - button "Toggle theme" [ref=e110]:
+                - img [ref=e111]
+              - generic [ref=e113]:
+                - button "Reset" [ref=e114]:
+                  - img [ref=e115]
+                - button "Presets" [ref=e118]:
+                  - img [ref=e119]
+                  - text: Presets
+                - button "Save" [ref=e121]:
+                  - img [ref=e122]
+                  - text: Save
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - heading "Color" [level=2] [ref=e130]
+                  - paragraph [ref=e131]: Pick a preset, a custom hex, or a gradient.
+                - generic [ref=e132]:
+                  - generic [ref=e133]:
+                    - button "Preset" [ref=e134]
+                    - button "Custom" [ref=e135]
+                    - button "Gradient" [ref=e136]
+                  - generic [ref=e138]:
+                    - generic [ref=e139]:
+                      - button "Aurora" [ref=e140]:
+                        - generic [ref=e142]: Aurora
+                        - img [ref=e143]
+                      - generic [ref=e145]:
+                        - slider "Gradient angle" [ref=e146]:
+                          - img [ref=e147]
+                        - generic [ref=e154]: 135°
+                    - generic [ref=e155]:
+                      - button "From color" [ref=e157]:
+                        - generic [ref=e158]:
+                          - generic [ref=e159]: From
+                          - generic [ref=e160]: "#00f5a0"
+                      - button "Add gradient stop" [ref=e161]:
+                        - img [ref=e162]
+                      - button "Add gradient stop" [disabled] [ref=e163]:
+                        - img [ref=e164]
+                      - button "To color" [ref=e166]:
+                        - generic [ref=e167]:
+                          - generic [ref=e168]: To
+                          - generic [ref=e169]: "#00d9f5"
+              - generic [ref=e170]:
+                - generic [ref=e171]:
+                  - heading "Canvas" [level=2] [ref=e172]
+                  - paragraph [ref=e173]: Background color behind the particles.
+                - generic [ref=e174]:
+                  - button "Background color" [ref=e177]:
+                    - generic [ref=e178]:
+                      - generic [ref=e179]: Background
+                      - generic [ref=e180]: "#fcfcfc"
+                  - button "Auto" [disabled] [ref=e181]
+                - generic [ref=e182]:
+                  - heading "Particles" [level=2] [ref=e183]
+                  - paragraph [ref=e184]: Density and motion.
+                - generic [ref=e185]:
+                  - generic [ref=e186]: Particles
+                  - slider "Particles" [ref=e188] [cursor=pointer]: "4000"
+                  - button "4000" [ref=e189]
+                - generic [ref=e190]:
+                  - generic [ref=e191]: Size
+                  - slider "Size" [ref=e193] [cursor=pointer]: "0.8"
+                  - generic [ref=e194]: 0.8px
+                - generic [ref=e195]:
+                  - generic [ref=e196]: Speed
+                  - slider "Speed" [ref=e198] [cursor=pointer]: "0.75"
+                  - generic [ref=e199]: "0.75"
+                - generic [ref=e200]:
+                  - generic [ref=e201]: Drift
+                  - slider "Drift" [ref=e203] [cursor=pointer]: "0.2"
+                  - generic [ref=e204]: "0.20"
+            - generic [ref=e205]:
+              - generic [ref=e206]:
+                - generic [ref=e207]:
+                  - heading "Source" [level=2] [ref=e208]
+                  - paragraph [ref=e209]: Particles form the shape you pick.
+                - generic [ref=e210]:
+                  - button "Shape" [ref=e211]:
+                    - img [ref=e212]
+                    - generic [ref=e216]: Shape
+                  - button "Text" [ref=e217]:
+                    - img [ref=e218]
+                    - generic [ref=e220]: Text
+                  - button "SVG" [ref=e221]:
+                    - img [ref=e222]
+                    - generic [ref=e225]: SVG
+                  - button "Image" [ref=e226]:
+                    - img [ref=e227]
+                    - generic [ref=e231]: Image
+                - generic [ref=e232]:
+                  - generic [ref=e233]:
+                    - button "Star" [ref=e234]:
+                      - img [ref=e235]
+                    - button "Sparkles" [ref=e237]:
+                      - img [ref=e238]
+                    - button "Zap" [ref=e241]:
+                      - img [ref=e242]
+                    - button "Flame" [ref=e244]:
+                      - img [ref=e245]
+                    - button "Browse icons" [ref=e247]:
+                      - img [ref=e248]
+                  - generic [ref=e250]:
+                    - generic [ref=e251]:
+                      - button "S" [ref=e252]
+                      - button "M" [ref=e253]
+                      - button "L" [ref=e254]
+                      - button "XL" [ref=e255]
+                    - generic [ref=e256]:
+                      - generic [ref=e257]: Icon size
+                      - slider "Icon size" [ref=e258]
+                      - button "0.70" [ref=e259]
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - heading "Mouse" [level=2] [ref=e262]
+                  - paragraph [ref=e263]: Hover the canvas to interact.
+                - generic [ref=e264]:
+                  - generic [ref=e265]:
+                    - button "Repel" [ref=e266]
+                    - button "Attract" [ref=e267]
+                    - button "Circle" [ref=e268]
+                  - paragraph [ref=e269]: Push particles away from the cursor.
+                - generic [ref=e270]:
+                  - generic [ref=e271]: Radius
+                  - slider "Radius" [ref=e273] [cursor=pointer]: "63"
+                  - generic [ref=e274]: 63px
+                - generic [ref=e275]:
+                  - generic [ref=e276]: Force
+                  - slider "Force" [ref=e278] [cursor=pointer]: "30"
+                  - generic [ref=e279]: "30"
+            - generic [ref=e280]:
+              - generic [ref=e281]:
+                - heading "Effects" [level=2] [ref=e282]
+                - paragraph [ref=e283]: Layer extras on top of the base render.
+              - generic [ref=e285]:
+                - generic [ref=e286]:
+                  - paragraph [ref=e287]: Glow
+                  - paragraph [ref=e288]: Soft additive halo around each particle.
+                - switch "Glow" [ref=e289]
+              - generic [ref=e292]:
+                - generic [ref=e293]:
+                  - paragraph [ref=e294]: Twinkle
+                  - paragraph [ref=e295]: Per-particle alpha pulsing — like glitter.
+                - switch "Twinkle" [ref=e296]
+              - generic [ref=e299]:
+                - generic [ref=e300]:
+                  - paragraph [ref=e301]: Hue cycle
+                  - paragraph [ref=e302]: Slowly rotates the color through the spectrum.
+                - switch "Hue cycle" [ref=e303]
+              - generic [ref=e306]:
+                - generic [ref=e307]:
+                  - paragraph [ref=e308]: Trails
+                  - paragraph [ref=e309]: Particles leave fading streaks as they move.
+                - switch "Trails" [ref=e310]
+              - generic [ref=e313]:
+                - generic [ref=e314]:
+                  - paragraph [ref=e315]: Constellation
+                  - paragraph [ref=e316]: Connect nearby particles with lines.
+                - switch "Constellation" [ref=e317]
+              - generic [ref=e320]:
+                - generic [ref=e321]:
+                  - paragraph [ref=e322]: Velocity boost
+                  - paragraph [ref=e323]: Fast particles render brighter, settled ones dim.
+                - switch "Velocity boost" [ref=e324]
+    - contentinfo [ref=e326]:
+      - generic [ref=e331]:
+        - generic [ref=e332]:
+          - link "D2 Studio" [ref=e333] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e334]
+          - paragraph [ref=e335]: A premium collection of copy & paste components built with React, Tailwind CSS and shadcn/ui. Beautiful, accessible, and ready for production.
+          - generic [ref=e336]: New blocks shipping every weekend
+        - generic [ref=e338]:
+          - heading "Library" [level=3] [ref=e339]
+          - list [ref=e340]:
+            - listitem [ref=e341]:
+              - link "Blocks" [ref=e342] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e343]: Blocks
+            - listitem [ref=e344]:
+              - link "Spinners" [ref=e345] [cursor=pointer]:
+                - /url: /spinners
+                - generic [ref=e346]: Spinners
+            - listitem [ref=e347]:
+              - link "Components" [ref=e348] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e349]: Components
+            - listitem [ref=e350]:
+              - link "Docs" [ref=e351] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e352]: Docs
+        - generic [ref=e353]:
+          - heading "Resources" [level=3] [ref=e354]
+          - list [ref=e355]:
+            - listitem [ref=e356]:
+              - link "Getting started" [ref=e357] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e358]: Getting started
+            - listitem [ref=e359]:
+              - link "Changelog" [ref=e360] [cursor=pointer]:
+                - /url: /docs#changelog
+                - generic [ref=e361]: Changelog
+            - listitem [ref=e362]:
+              - link "shadcn/ui" [ref=e363] [cursor=pointer]:
+                - /url: https://ui.shadcn.com
+                - generic [ref=e364]: shadcn/ui
+                - img [ref=e365]
+            - listitem [ref=e368]:
+              - link "Tailwind CSS" [ref=e369] [cursor=pointer]:
+                - /url: https://tailwindcss.com
+                - generic [ref=e370]: Tailwind CSS
+                - img [ref=e371]
+        - generic [ref=e374]:
+          - heading "Connect" [level=3] [ref=e375]
+          - list [ref=e376]:
+            - listitem [ref=e377]:
+              - generic [ref=e378]:
+                - link "X / @uxgodwin" [ref=e379] [cursor=pointer]:
+                  - /url: https://x.com/uxgodwin
+                  - generic [ref=e380]: X / @uxgodwin
+                  - img [ref=e381]
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=e384]:
+              - generic [ref=e385]:
+                - link "X / @rajaaltus" [ref=e386] [cursor=pointer]:
+                  - /url: https://x.com/rajaaltus
+                  - generic [ref=e387]: X / @rajaaltus
+                  - img [ref=e388]
+                - tooltip "Raja Altus":
+                  - img "Raja Altus"
+            - listitem [ref=e391]:
+              - generic [ref=e392]:
+                - link "Threads" [ref=e393] [cursor=pointer]:
+                  - /url: https://www.threads.com/@godwin.d2
+                  - generic [ref=e394]: Threads
+                  - img [ref=e395]
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=e398]:
+              - link "GitHub" [ref=e399] [cursor=pointer]:
+                - /url: https://github.com/godwin159
+                - generic [ref=e400]: GitHub
+                - img [ref=e401]
+            - listitem [ref=e404]:
+              - link "Buy me a coffee" [ref=e405] [cursor=pointer]:
+                - /url: https://buymeacoffee.com/godwindev
+                - generic [ref=e406]: Buy me a coffee
+                - img [ref=e407]
+      - generic [ref=e411]:
+        - generic [ref=e412]:
+          - text: © 2026
+          - link "D2 Studio" [ref=e413] [cursor=pointer]:
+            - /url: https://www.d2studio.dev/
+          - generic [ref=e414]: ·
+          - text: Built with
+          - generic [ref=e415]: ❤❤❤❤
+          - text: for the community.
+        - generic [ref=e416]:
+          - link "X (formerly Twitter)" [ref=e417] [cursor=pointer]:
+            - /url: https://x.com/uxgodwin
+            - img [ref=e418]
+          - link "Threads" [ref=e420] [cursor=pointer]:
+            - /url: https://www.threads.com/@godwin.d2
+            - img [ref=e421]
+          - link "GitHub" [ref=e423] [cursor=pointer]:
+            - /url: https://github.com/godwin159
+            - img [ref=e424]
+      - generic [ref=e427]:
+        - generic [ref=e428]: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+  - generic [ref=e429]:
+    - heading "Command palette" [level=2] [ref=e430]
+    - paragraph [ref=e431]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e432]:
+    - button "Blocks" [ref=e433]:
+      - generic [ref=e447]: Blocks
+      - img [ref=e448]
+    - button "Cosma New" [ref=e451]:
+      - generic [ref=e471]: Cosma
+      - generic [ref=e473]: New
+      - img [ref=e474]
+    - button "Toggle theme" [ref=e477]
+  - link "Buy me a coffee" [ref=e478] [cursor=pointer]:
+    - /url: https://buymeacoffee.com/godwindev
+    - generic:
+      - generic: Buy me a coffee!
+      - generic: Your support truly makes a difference.
+    - img [ref=e480]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e486] [cursor=pointer]:
+    - img [ref=e487]
