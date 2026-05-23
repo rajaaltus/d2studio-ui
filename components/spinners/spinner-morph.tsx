@@ -187,11 +187,11 @@ export function SpinnerMorph() {
   return (
     <div className="luminous-spinners overflow-hidden bg-background lg:rounded-xl border m-0">
       {/* ── CTA ── Headline + subtitle + primary action stand on their own. */}
-      <div className="flex flex-col items-center gap-5 px-6 py-16 text-center lg:py-20">
-        <h3 className="font-sans text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl">
+      <div className="flex flex-col items-center gap-4 px-6 py-10 text-center lg:py-12">
+        <h3 className="font-sans text-lg font-semibold tracking-tight md:text-xl lg:text-2xl">
           Loaders worth the wait.
         </h3>
-        <p className="mx-auto max-w-xl text-sm text-muted-foreground md:text-base">
+        <p className="mx-auto max-w-xl text-sm text-muted-foreground">
           Pixel-grid spinners with glow, gradients and shimmer. Tune them live,
           then copy the snippet — no package install.
         </p>

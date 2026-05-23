@@ -334,15 +334,15 @@ export function CosmoMorph() {
     <div className="luminous-spinners overflow-hidden bg-background lg:rounded-xl border m-0">
       {/* ── CTA ── Headline + subtitle + primary action stand on their own,
           so nothing competes with the page's top focal point. */}
-      <div className="flex flex-col items-center gap-5 px-6 py-16 text-center lg:py-20">
-        <h3 className="font-sans text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl">
+      <div className="flex flex-col items-center gap-4 px-6 py-10 text-center lg:py-12">
+        <h3 className="font-sans text-lg font-semibold tracking-tight md:text-xl lg:text-2xl">
           Copy. Paste. Ship.
         </h3>
-        <p className="mx-auto max-w-xl text-sm text-muted-foreground md:text-base">
+        <p className="mx-auto max-w-xl text-sm text-muted-foreground">
           Production-ready components built on shadcn/ui. No package install,
           no abstraction — just code you own.
         </p>
-        <Button className="mt-1 h-11" asChild>
+        <Button className="mt-1 h-10" asChild>
           <Link href="/blocks">
             Browse components <ArrowUpRight />
           </Link>
