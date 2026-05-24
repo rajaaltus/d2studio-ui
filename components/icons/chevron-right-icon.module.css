@@ -1,0 +1,66 @@
+.icon {
+  --cell: 1px;
+  --gap: 1px;
+  --color: #f59e0b;
+  --peak: 1;
+  --base: 0.4;
+  --duration: 840ms;
+
+  display: inline-grid;
+  grid-template-columns: repeat(12, var(--cell));
+  grid-template-rows: repeat(12, var(--cell));
+  gap: var(--gap);
+}
+
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 0;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color) 92%, white),
+    color-mix(in srgb, var(--color) 82%, black)
+  );
+  box-shadow:
+    0 0 1px var(--color),
+    0 0 2px color-mix(in srgb, var(--color) 50%, transparent),
+    0 0 3px color-mix(in srgb, var(--color) 33%, transparent);
+  opacity: var(--base);
+}
+
+.peak0 { animation: cri-corner-0 var(--duration) steps(1, end) infinite; }
+.peak1 { animation: cri-corner-1 var(--duration) steps(1, end) infinite; }
+.peak2 { animation: cri-corner-2 var(--duration) steps(1, end) infinite; }
+.peak3 { animation: cri-corner-3 var(--duration) steps(1, end) infinite; }
+
+@keyframes cri-corner-0 {
+  0%  { opacity: var(--peak); }
+  25% { opacity: 0.7; }
+  50% { opacity: 0.45; }
+  75% { opacity: var(--base); }
+}
+@keyframes cri-corner-1 {
+  0%  { opacity: var(--base); }
+  25% { opacity: var(--peak); }
+  50% { opacity: 0.7; }
+  75% { opacity: 0.45; }
+}
+@keyframes cri-corner-2 {
+  0%  { opacity: 0.45; }
+  25% { opacity: var(--base); }
+  50% { opacity: var(--peak); }
+  75% { opacity: 0.7; }
+}
+@keyframes cri-corner-3 {
+  0%  { opacity: 0.7; }
+  25% { opacity: 0.45; }
+  50% { opacity: var(--base); }
+  75% { opacity: var(--peak); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+    opacity: var(--base);
+  }
+}

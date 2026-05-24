@@ -1,0 +1,51 @@
+/* Usage: <div class="spinner"><div class="cell cell0"></div>...8 more cells...</div> */
+
+.spinner {
+  --cell: 4px;
+  --gap: 2px;
+  --duration: 400ms;
+  --glow: 0.25;
+  --color-from: #ff9966;
+  --color-to: #ff5e62;
+  --static-color: currentColor;
+  --static-opacity: 0.3;
+
+  display: inline-grid;
+  grid-template-columns: repeat(3, var(--cell));
+  gap: var(--gap);
+  line-height: 0;
+}
+
+/* Static placeholder cells — visible in grayscale (inherits currentColor). */
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  background: var(--static-color);
+  opacity: var(--static-opacity);
+}
+
+/* Animated cell — overrides bg with the orange/red gradient, adds glow,
+   and drives opacity via the stl0 keyframes. */
+.cell0 {
+  background: linear-gradient(135deg, var(--color-from), var(--color-to));
+  box-shadow:
+    0 0 calc(2px * var(--glow)) rgba(255, 94, 98, 0.95),
+    0 0 calc(5.5px * var(--glow)) rgba(255, 94, 98, 0.75),
+    0 0 calc(11px * var(--glow)) rgba(255, 94, 98, 0.55),
+    0 0 calc(18px * var(--glow)) rgba(255, 94, 98, 0.35);
+  opacity: 0;
+  animation: stl0 var(--duration) steps(1, end) infinite;
+}
+
+/* solo-tl: only cell 0 activates on frame 0 → peaks 1.0, trail step 1 = 0.5 */
+@keyframes stl0 {
+  0%, 49.99% { opacity: 1; }
+  50%, 100% { opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell0 {
+    animation: none;
+    opacity: 1;
+  }
+}

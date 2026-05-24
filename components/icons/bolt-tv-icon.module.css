@@ -1,0 +1,35 @@
+.shimmerText {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.shimmerText::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    100deg,
+    transparent 40%,
+    rgba(245, 158, 11, 0.6) 50%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: pi-shimmer-text 1320ms linear infinite;
+}
+
+@keyframes pi-shimmer-text {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmerText::after {
+    animation: none;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,35 @@
+[     622ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     657ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     852ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    2154ms] [LOG] [Fast Refresh] done in 1408ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   23761ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   24080ms] [LOG] [Fast Refresh] done in 421ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   24934ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   25091ms] [LOG] [Fast Refresh] done in 258ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   50447ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   52231ms] [LOG] [Fast Refresh] done in 1925ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  131599ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  132394ms] [LOG] [Fast Refresh] done in 849ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  220758ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  221981ms] [LOG] [Fast Refresh] done in 1128ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  222221ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  222299ms] [LOG] [Fast Refresh] done in 183ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  457013ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  457054ms] [LOG] [Fast Refresh] done in 143ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  457184ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  457206ms] [LOG] [Fast Refresh] done in 124ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  467446ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  467464ms] [LOG] [Fast Refresh] done in 120ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  488297ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  489298ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  490302ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  491303ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  492305ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  497309ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  502320ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  507337ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  512375ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  517443ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  522602ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  527720ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=u0RgYPYL9r8-py5AWEbaO' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  527832ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/icon-light.png:0

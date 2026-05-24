@@ -1,0 +1,531 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "D2 Studio" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e8]
+          - generic [ref=e9]:
+            - link "Blocks" [ref=e10] [cursor=pointer]:
+              - /url: /blocks
+            - link "Spinners Updated" [ref=e11] [cursor=pointer]:
+              - /url: /spinners
+              - text: Spinners
+              - generic [ref=e13]: Updated
+            - link "Cosmo New" [ref=e14] [cursor=pointer]:
+              - /url: /cosmo
+              - text: Cosmo
+              - generic [ref=e16]: New
+            - link "Docs" [ref=e17] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=e18]:
+            - link "Buy me a coffee" [ref=e19] [cursor=pointer]:
+              - /url: https://buymeacoffee.com/godwindev
+              - img [ref=e20]
+              - generic [ref=e22]: Buy me a coffee
+            - switch "Toggle theme" [ref=e23]
+    - generic [ref=e25]:
+      - generic [ref=e29]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - img "New blocks" [ref=e35]
+            - generic [ref=e37]: New Blocks & Tools Every Weekend
+          - heading "Modern Components For" [level=1] [ref=e38]
+          - heading "Designers & Developers" [level=2] [ref=e39]
+          - paragraph [ref=e40]: A premium Collection of copy and paste components built with React, TailWind CSS, & Shadcn/UI. Beautiful, accessible, and ready for production.
+        - generic [ref=e42]:
+          - link "Explore Blocks" [ref=e44] [cursor=pointer]:
+            - /url: /blocks
+            - text: Explore Blocks
+            - generic [ref=e45]:
+              - img
+          - link "Documentation" [ref=e46] [cursor=pointer]:
+            - /url: /docs
+        - generic [ref=e48]:
+          - generic [ref=e50]: A
+          - generic [ref=e52]: D
+          - generic [ref=e54]: R
+          - generic [ref=e56]: G
+          - generic [ref=e58]: 99+
+      - heading "Greatly inspired from" [level=2] [ref=e64]
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - img [ref=e68]
+          - img [ref=e73]
+          - img [ref=e79]:
+            - generic [ref=e80]: uiverse
+          - img [ref=e82]
+          - img [ref=e87]
+          - img [ref=e91]
+        - generic:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+        - generic:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - heading "Copy. Paste. Ship." [level=3] [ref=e100]
+          - paragraph [ref=e101]: Production-ready components built on shadcn/ui. No package install, no abstraction — just code you own.
+          - link "Browse components" [ref=e102] [cursor=pointer]:
+            - /url: /blocks
+            - text: Browse components
+            - img
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - img "Try the effect" [ref=e109]
+              - paragraph [ref=e122]: Try the effect
+            - button "Reset controls" [ref=e123]:
+              - img [ref=e124]
+          - generic [ref=e127]:
+            - generic [ref=e128]:
+              - generic [ref=e129]: Image size
+              - slider "Image size" [ref=e130]
+              - button "0.40" [ref=e131]
+            - generic [ref=e132]:
+              - generic [ref=e133]: Radius
+              - slider "Radius" [ref=e135] [cursor=pointer]: "51"
+              - generic [ref=e136]: 51px
+            - generic [ref=e137]:
+              - generic [ref=e138]: Force
+              - slider "Force" [ref=e140] [cursor=pointer]: "7"
+              - generic [ref=e141]: "7"
+        - generic [ref=e145]:
+          - generic [ref=e146]: Wanna get?
+          - link "Try yours" [ref=e147] [cursor=pointer]:
+            - /url: /cosmo
+            - text: Try yours
+            - img [ref=e148]
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - img [ref=e154]
+          - img "Heart Icon 2" [ref=e162]
+          - img "Isocons Rocket 2" [ref=e1191]
+          - img "Close Fullscreen ..." [ref=e1193]
+        - generic [ref=e1194]:
+          - generic [ref=e1195]:
+            - heading "Copy & Paste" [level=3] [ref=e1262]
+            - paragraph [ref=e1263]: No packages to install. Just copy and paste components into your project.
+          - generic [ref=e1264]:
+            - heading "Regular Updates" [level=3] [ref=e1331]
+            - paragraph [ref=e1332]: New components added weekly. Stay up to date with the latest UI trends.
+          - generic [ref=e1333]:
+            - heading "Production Ready" [level=3] [ref=e1400]
+            - paragraph [ref=e1401]: Fully typed, accessible, and optimized for performance out of the box.
+          - generic [ref=e1402]:
+            - heading "shadcn Compatible" [level=3] [ref=e1469]
+            - paragraph [ref=e1470]: Built on shadcn/ui conventions. Works seamlessly with your existing setup.
+    - generic [ref=e1472]:
+      - generic [ref=e1473]:
+        - heading "Loaders worth the wait." [level=3] [ref=e1474]
+        - paragraph [ref=e1475]: Pixel-grid spinners with glow, gradients and shimmer. Tune them live, then copy the snippet — no package install.
+      - generic [ref=e1476]:
+        - generic [ref=e1478]:
+          - generic [ref=e1479]:
+            - generic [ref=e1480]:
+              - img "Try the spinner" [ref=e1482]
+              - paragraph [ref=e1495]: Try the spinner
+            - button "Reset controls" [ref=e1496]:
+              - img [ref=e1497]
+          - generic [ref=e1500]:
+            - generic [ref=e1501]:
+              - generic [ref=e1502]: Cell size
+              - slider "Cell size" [ref=e1504] [cursor=pointer]: "21"
+              - button "21px" [ref=e1505]
+            - generic [ref=e1506]:
+              - generic [ref=e1507]: Gap
+              - slider "Gap" [ref=e1509] [cursor=pointer]: "8"
+              - generic [ref=e1510]: 8px
+            - generic [ref=e1511]:
+              - generic [ref=e1512]: Speed
+              - slider "Speed" [ref=e1514] [cursor=pointer]: "13"
+              - generic [ref=e1515]: "13"
+        - generic [ref=e1516]:
+          - img
+          - status "Loading" [ref=e1521]
+      - generic [ref=e1532]:
+        - generic [ref=e1533]: Wanna get it free?
+        - link "Try yours" [ref=e1534] [cursor=pointer]:
+          - /url: /spinners
+          - text: Try yours
+          - img [ref=e1535]
+    - generic [ref=e1546]:
+      - generic [ref=e1547]:
+        - heading "What Community Say" [level=2] [ref=e1548]
+        - paragraph [ref=e1549]: Real reactions from builders shipping with D2 Studio on X and Threads.
+      - generic [ref=e1550]:
+        - link "View on X — Navadeep Goleti" [ref=e1551] [cursor=pointer]:
+          - /url: https://x.com/navadeepgoleti/status/2046184149304983840?s=20
+          - generic [ref=e1552]:
+            - generic [ref=e1553]:
+              - img "Navadeep Goleti" [ref=e1554]
+              - generic [ref=e1555]:
+                - generic [ref=e1556]:
+                  - generic [ref=e1557]: Navadeep Goleti
+                  - img "Verified account" [ref=e1558]
+                - generic [ref=e1560]: "@navadeepgoleti"
+            - img [ref=e1562]
+          - paragraph [ref=e1564]: “This is gold 🔥 Building something in this space too. Follow along if you're interested 🚀”
+        - link "View on X — Bartosz Wilczynski" [ref=e1565] [cursor=pointer]:
+          - /url: https://x.com/wilczyn/status/2046274724704002425?s=20
+          - generic [ref=e1566]:
+            - generic [ref=e1567]:
+              - img "Bartosz Wilczynski" [ref=e1568]
+              - generic [ref=e1569]:
+                - generic [ref=e1570]:
+                  - generic [ref=e1571]: Bartosz Wilczynski
+                  - img "Verified account" [ref=e1572]
+                - generic [ref=e1574]: "@wilczyn"
+            - img [ref=e1576]
+          - paragraph [ref=e1578]: “a good spinner is the one you don't notice. good job!”
+        - link "View on X — Daniel Rachlin" [ref=e1579] [cursor=pointer]:
+          - /url: https://x.com/danielrachlin/status/2046253181978480728?s=20
+          - generic [ref=e1580]:
+            - generic [ref=e1581]:
+              - img "Daniel Rachlin" [ref=e1582]
+              - generic [ref=e1583]:
+                - generic [ref=e1584]:
+                  - generic [ref=e1585]: Daniel Rachlin
+                  - img "Verified account" [ref=e1586]
+                - generic [ref=e1588]: "@danielrachlin"
+            - img [ref=e1590]
+          - paragraph [ref=e1592]: “Nice. Always appreciate good open-source tools, especially for UX like this.”
+        - link "View on X — The Founder" [ref=e1593] [cursor=pointer]:
+          - /url: https://x.com/GTqhqh48540/status/2056787031314022804?s=20
+          - generic [ref=e1594]:
+            - generic [ref=e1595]:
+              - img "The Founder" [ref=e1596]
+              - generic [ref=e1597]:
+                - generic [ref=e1598]:
+                  - generic [ref=e1599]: The Founder
+                  - img "Verified account" [ref=e1600]
+                - generic [ref=e1602]: "@GTqhqh48540"
+            - img [ref=e1604]
+          - paragraph [ref=e1606]: “Loving this product so much 😻😆”
+        - link "View on X — Zayden ✧ SaaS Expert" [ref=e1607] [cursor=pointer]:
+          - /url: https://x.com/RakibullHassa13/status/2055997378944270774?s=20
+          - generic [ref=e1608]:
+            - generic [ref=e1609]:
+              - img "Zayden ✧ SaaS Expert" [ref=e1610]
+              - generic [ref=e1611]:
+                - generic [ref=e1612]:
+                  - generic [ref=e1613]: Zayden ✧ SaaS Expert
+                  - img "Verified account" [ref=e1614]
+                - generic [ref=e1616]: "@RakibullHassa13"
+            - img [ref=e1618]
+          - paragraph [ref=e1620]: “Really? so this is great product”
+        - link "View on X — Hady." [ref=e1621] [cursor=pointer]:
+          - /url: https://x.com/saddhaddy/status/2045696419810471986?s=20
+          - generic [ref=e1622]:
+            - generic [ref=e1623]:
+              - img "Hady." [ref=e1624]
+              - generic [ref=e1625]:
+                - generic [ref=e1626]:
+                  - generic [ref=e1627]: Hady.
+                  - img "Verified account" [ref=e1628]
+                - generic [ref=e1630]: "@saddhaddy"
+            - img [ref=e1632]
+          - paragraph [ref=e1634]: “Are you going to share it? Amazing work!”
+        - link "View on X — Sammii" [ref=e1635] [cursor=pointer]:
+          - /url: https://x.com/sammiihk/status/2045805634495357387?s=20
+          - generic [ref=e1636]:
+            - generic [ref=e1637]:
+              - img "Sammii" [ref=e1638]
+              - generic [ref=e1639]:
+                - generic [ref=e1640]:
+                  - generic [ref=e1641]: Sammii
+                  - img "Verified account" [ref=e1642]
+                - generic [ref=e1644]: "@sammiihk"
+            - img [ref=e1646]
+          - paragraph [ref=e1648]: “Pixel-based spinners are a fun constraint, and the code-based angle makes it even better because people can actually remix them. Curious if you're turning the set into a tiny component library or keeping it as standalone patterns.”
+        - link "View on X — The Founder" [ref=e1649] [cursor=pointer]:
+          - /url: https://x.com/GTqhqh48540/status/2056363260287598765?s=20
+          - generic [ref=e1650]:
+            - generic [ref=e1651]:
+              - img "The Founder" [ref=e1652]
+              - generic [ref=e1653]:
+                - generic [ref=e1654]:
+                  - generic [ref=e1655]: The Founder
+                  - img "Verified account" [ref=e1656]
+                - generic [ref=e1658]: "@GTqhqh48540"
+            - img [ref=e1660]
+          - paragraph [ref=e1662]: “Well Sir. Thanks To you, My app Will feel More Premium and Clean with those Animations 😍❤️. Our UI community Is Great Because of People like You 😻👀.”
+        - link "View on X — MAK" [ref=e1663] [cursor=pointer]:
+          - /url: https://x.com/Mak_Studioo/status/2039191058131878169?s=20
+          - generic [ref=e1664]:
+            - generic [ref=e1665]:
+              - img "MAK" [ref=e1666]
+              - generic [ref=e1667]:
+                - generic [ref=e1668]:
+                  - generic [ref=e1669]: MAK
+                  - img "Verified account" [ref=e1670]
+                - generic [ref=e1672]: "@Mak_Studioo"
+            - img [ref=e1674]
+          - paragraph [ref=e1676]: “nostalgia as a UX anchor is so effective — users already trust the reference. bringing it into a modern system through Figma and code is exactly how you bridge that gap without slowing down.”
+        - link "View on X — Block By Block Solutions" [ref=e1677] [cursor=pointer]:
+          - /url: https://x.com/BlockByBlockHQ/status/2056052992483459217?s=20
+          - generic [ref=e1678]:
+            - generic [ref=e1679]:
+              - img "Block By Block Solutions" [ref=e1680]
+              - generic [ref=e1681]:
+                - generic [ref=e1682]:
+                  - generic [ref=e1683]: Block By Block Solutions
+                  - img "Verified account" [ref=e1684]
+                - generic [ref=e1686]: "@BlockByBlockHQ"
+            - img [ref=e1688]
+          - paragraph [ref=e1690]: “The particle effect looks pretty clean, curious to see more useful cases”
+        - link "View on X — Daniel Dawson" [ref=e1691] [cursor=pointer]:
+          - /url: https://x.com/dpdawson/status/1937561058077491246?s=20
+          - generic [ref=e1692]:
+            - generic [ref=e1693]:
+              - img "Daniel Dawson" [ref=e1694]
+              - generic [ref=e1695]:
+                - generic [ref=e1696]:
+                  - generic [ref=e1697]: Daniel Dawson
+                  - img "Verified account" [ref=e1698]
+                - generic [ref=e1700]: "@dpdawson"
+            - img [ref=e1702]
+          - paragraph [ref=e1704]: “Not a dark theme fan, but those are pretty cool”
+        - link "View on X — The Founder" [ref=e1705] [cursor=pointer]:
+          - /url: https://x.com/GTqhqh48540/status/2056783301449515201?s=20
+          - generic [ref=e1706]:
+            - generic [ref=e1707]:
+              - img "The Founder" [ref=e1708]
+              - generic [ref=e1709]:
+                - generic [ref=e1710]:
+                  - generic [ref=e1711]: The Founder
+                  - img "Verified account" [ref=e1712]
+                - generic [ref=e1714]: "@GTqhqh48540"
+            - img [ref=e1716]
+          - paragraph [ref=e1718]: “Nudgel Getting Exited for this 😆😻”
+        - link "View on X — Aamir Saifi" [ref=e1719] [cursor=pointer]:
+          - /url: https://x.com/AamirUX/status/1937982345618813062?s=20
+          - generic [ref=e1720]:
+            - generic [ref=e1721]:
+              - img "Aamir Saifi" [ref=e1722]
+              - generic [ref=e1723]:
+                - generic [ref=e1724]:
+                  - generic [ref=e1725]: Aamir Saifi
+                  - img "Verified account" [ref=e1726]
+                - generic [ref=e1728]: "@AamirUX"
+            - img [ref=e1730]
+          - paragraph [ref=e1732]: “Cool gradients”
+        - link "View on Threads — dormamu1997" [ref=e1733] [cursor=pointer]:
+          - /url: https://www.threads.com/@dormamu1997/post/DYd_mEQCJnM
+          - generic [ref=e1734]:
+            - generic [ref=e1735]:
+              - img "dormamu1997" [ref=e1736]
+              - generic [ref=e1737]:
+                - generic [ref=e1739]: dormamu1997
+                - generic [ref=e1740]: "@dormamu1997"
+            - img [ref=e1742]
+          - paragraph [ref=e1744]: “Wow this is soo cool!”
+        - link "View on X — The Founder" [ref=e1745] [cursor=pointer]:
+          - /url: https://x.com/GTqhqh48540/status/2056358790061236351?s=20
+          - generic [ref=e1746]:
+            - generic [ref=e1747]:
+              - img "The Founder" [ref=e1748]
+              - generic [ref=e1749]:
+                - generic [ref=e1750]:
+                  - generic [ref=e1751]: The Founder
+                  - img "Verified account" [ref=e1752]
+                - generic [ref=e1754]: "@GTqhqh48540"
+            - img [ref=e1756]
+          - paragraph [ref=e1758]: “For The Animations of the App, I will use the D2 Studio spinner Animations, Thanks To @uxgodwin, Love These Spinner Animations So....”
+        - link "View on X — Collective" [ref=e1759] [cursor=pointer]:
+          - /url: https://x.com/GoCollectives/status/1937095579567263909?s=20
+          - generic [ref=e1760]:
+            - generic [ref=e1761]:
+              - img "Collective" [ref=e1762]
+              - generic [ref=e1763]:
+                - generic [ref=e1765]: Collective
+                - generic [ref=e1766]: "@GoCollectives"
+            - img [ref=e1768]
+          - paragraph [ref=e1770]: “amazing man”
+        - link "View on X — Zayden ✧ SaaS Expert" [ref=e1771] [cursor=pointer]:
+          - /url: https://x.com/RakibullHassa13/status/2056024878776832108?s=20
+          - generic [ref=e1772]:
+            - generic [ref=e1773]:
+              - img "Zayden ✧ SaaS Expert" [ref=e1774]
+              - generic [ref=e1775]:
+                - generic [ref=e1776]:
+                  - generic [ref=e1777]: Zayden ✧ SaaS Expert
+                  - img "Verified account" [ref=e1778]
+                - generic [ref=e1780]: "@RakibullHassa13"
+            - img [ref=e1782]
+          - paragraph [ref=e1784]: “So i will wait for your link. Excited”
+        - link "View on X — TheWilliamFox" [ref=e1785] [cursor=pointer]:
+          - /url: https://x.com/TheWilliamBui/status/2045438451936628934?s=20
+          - generic [ref=e1786]:
+            - generic [ref=e1787]:
+              - img "TheWilliamFox" [ref=e1788]
+              - generic [ref=e1789]:
+                - generic [ref=e1791]: TheWilliamFox
+                - generic [ref=e1792]: "@TheWilliamBui"
+            - img [ref=e1794]
+          - paragraph [ref=e1796]: “Incredible craft,...”
+    - generic [ref=e1798]:
+      - generic [ref=e1799]:
+        - img "Heart Icon 2" [ref=e1801]
+        - img "Close Fullscreen Icon 4" [ref=e2828]
+      - generic [ref=e2829]:
+        - heading "Start Building Today" [level=2] [ref=e2830]
+        - paragraph [ref=e2831]: Join thousands of developers using D2 Studio components to build amazing products faster.
+        - link "View All Components" [ref=e2834] [cursor=pointer]:
+          - /url: /blocks
+          - text: View All Components
+          - generic [ref=e2835]:
+            - img
+    - contentinfo [ref=e2836]:
+      - generic [ref=e2841]:
+        - generic [ref=e2842]:
+          - link "D2 Studio" [ref=e2843] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e2844]
+          - paragraph [ref=e2845]: A premium collection of copy & paste components built with React, Tailwind CSS and shadcn/ui. Beautiful, accessible, and ready for production.
+          - generic [ref=e2846]: New blocks shipping every weekend
+        - generic [ref=e2848]:
+          - heading "Library" [level=3] [ref=e2849]
+          - list [ref=e2850]:
+            - listitem [ref=e2851]:
+              - link "Blocks" [ref=e2852] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e2853]: Blocks
+            - listitem [ref=e2854]:
+              - link "Spinners" [ref=e2855] [cursor=pointer]:
+                - /url: /spinners
+                - generic [ref=e2856]: Spinners
+            - listitem [ref=e2857]:
+              - link "Cosmo" [ref=e2858] [cursor=pointer]:
+                - /url: /cosmo
+                - generic [ref=e2859]: Cosmo
+            - listitem [ref=e2860]:
+              - link "Components" [ref=e2861] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e2862]: Components
+            - listitem [ref=e2863]:
+              - link "Docs" [ref=e2864] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e2865]: Docs
+        - generic [ref=e2866]:
+          - heading "Resources" [level=3] [ref=e2867]
+          - list [ref=e2868]:
+            - listitem [ref=e2869]:
+              - link "Getting started" [ref=e2870] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e2871]: Getting started
+            - listitem [ref=e2872]:
+              - link "Changelog" [ref=e2873] [cursor=pointer]:
+                - /url: /docs#changelog
+                - generic [ref=e2874]: Changelog
+            - listitem [ref=e2875]:
+              - link "shadcn/ui" [ref=e2876] [cursor=pointer]:
+                - /url: https://ui.shadcn.com
+                - generic [ref=e2877]: shadcn/ui
+                - img [ref=e2878]
+            - listitem [ref=e2881]:
+              - link "Tailwind CSS" [ref=e2882] [cursor=pointer]:
+                - /url: https://tailwindcss.com
+                - generic [ref=e2883]: Tailwind CSS
+                - img [ref=e2884]
+        - generic [ref=e2887]:
+          - heading "Connect" [level=3] [ref=e2888]
+          - list [ref=e2889]:
+            - listitem [ref=e2890]:
+              - generic [ref=e2891]:
+                - link "X / @uxgodwin" [ref=e2892] [cursor=pointer]:
+                  - /url: https://x.com/uxgodwin
+                  - generic [ref=e2893]: X / @uxgodwin
+                  - img [ref=e2894]
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=e2897]:
+              - generic [ref=e2898]:
+                - link "X / @rajaaltus" [ref=e2899] [cursor=pointer]:
+                  - /url: https://x.com/rajaaltus
+                  - generic [ref=e2900]: X / @rajaaltus
+                  - img [ref=e2901]
+                - tooltip "Raja Altus":
+                  - img "Raja Altus"
+            - listitem [ref=e2904]:
+              - generic [ref=e2905]:
+                - link "Threads" [ref=e2906] [cursor=pointer]:
+                  - /url: https://www.threads.com/@godwin.d2
+                  - generic [ref=e2907]: Threads
+                  - img [ref=e2908]
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=e2911]:
+              - link "GitHub" [ref=e2912] [cursor=pointer]:
+                - /url: https://github.com/godwin159
+                - generic [ref=e2913]: GitHub
+                - img [ref=e2914]
+            - listitem [ref=e2917]:
+              - link "Buy me a coffee" [ref=e2918] [cursor=pointer]:
+                - /url: https://buymeacoffee.com/godwindev
+                - generic [ref=e2919]: Buy me a coffee
+                - img [ref=e2920]
+      - generic [ref=e2924]:
+        - generic [ref=e2925]:
+          - text: © 2026
+          - link "D2 Studio" [ref=e2926] [cursor=pointer]:
+            - /url: https://www.d2studio.dev/
+          - generic [ref=e2927]: ·
+          - text: Built with
+          - text: for the community.
+        - generic [ref=e2932]:
+          - link "X (formerly Twitter)" [ref=e2933] [cursor=pointer]:
+            - /url: https://x.com/uxgodwin
+            - img [ref=e2934]
+          - link "Threads" [ref=e2936] [cursor=pointer]:
+            - /url: https://www.threads.com/@godwin.d2
+            - img [ref=e2937]
+          - link "GitHub" [ref=e2939] [cursor=pointer]:
+            - /url: https://github.com/godwin159
+            - img [ref=e2940]
+      - generic [ref=e2943]:
+        - generic [ref=e2944]: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+  - generic [ref=e2945]:
+    - heading "Command palette" [level=2] [ref=e2946]
+    - paragraph [ref=e2947]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e2948]:
+    - button "Blocks" [ref=e2949]:
+      - generic [ref=e2963]: Blocks
+      - img [ref=e2964]
+    - button "Tools New" [ref=e2967]:
+      - generic [ref=e2980]: Tools
+      - generic [ref=e2982]: New
+      - img [ref=e2983]
+    - button "Toggle theme" [ref=e2986]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e2992] [cursor=pointer]:
+    - img [ref=e2993]

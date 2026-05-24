@@ -1,0 +1,147 @@
+.icon {
+  --cell: 2px;
+  --gap: 1px;
+  --duration: 2040ms;
+  --peak: 1;
+  --base: 0.6;
+  --color-from: #43e97b;
+  --color-to: #38f9d7;
+
+  display: inline-grid;
+  grid-template-columns: repeat(16, var(--cell));
+  grid-template-rows: repeat(16, var(--cell));
+  gap: var(--gap);
+  line-height: 0;
+}
+
+.empty {
+  width: var(--cell);
+  height: var(--cell);
+}
+
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 22%;
+  background: linear-gradient(135deg, var(--color-from), var(--color-to));
+  opacity: var(--base);
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+.ptA { animation-name: ptA; }
+.ptB { animation-name: ptB; }
+.ptC { animation-name: ptC; }
+.ptD { animation-name: ptD; }
+.ptE { animation-name: ptE; }
+.ptF { animation-name: ptF; }
+.ptG { animation-name: ptG; }
+.ptH { animation-name: ptH; }
+.ptI { animation-name: ptI; }
+.ptJ { animation-name: ptJ; }
+.ptK { animation-name: ptK; }
+.ptL { animation-name: ptL; }
+
+/* 12 frames, frame boundaries at multiples of 8.333%.
+   Trail floors at --base since .45 and below ≤ 0.60. */
+
+/* peaks F0, F11 */
+@keyframes ptA {
+  0%, 8.32% { opacity: var(--peak); }
+  8.33%, 16.65% { opacity: 0.7; }
+  16.66%, 91.65% { opacity: var(--base); }
+  91.66%, 100% { opacity: var(--peak); }
+}
+
+/* peaks F0, F1 */
+@keyframes ptB {
+  0%, 16.65% { opacity: var(--peak); }
+  16.66%, 24.99% { opacity: 0.7; }
+  25%, 100% { opacity: var(--base); }
+}
+
+/* peaks F1, F2 */
+@keyframes ptC {
+  0%, 8.32% { opacity: var(--base); }
+  8.33%, 24.99% { opacity: var(--peak); }
+  25%, 33.32% { opacity: 0.7; }
+  33.33%, 100% { opacity: var(--base); }
+}
+
+/* peaks F2, F3 */
+@keyframes ptD {
+  0%, 16.65% { opacity: var(--base); }
+  16.66%, 33.32% { opacity: var(--peak); }
+  33.33%, 41.65% { opacity: 0.7; }
+  41.66%, 100% { opacity: var(--base); }
+}
+
+/* peaks F3, F4 */
+@keyframes ptE {
+  0%, 24.99% { opacity: var(--base); }
+  25%, 41.65% { opacity: var(--peak); }
+  41.66%, 49.99% { opacity: 0.7; }
+  50%, 100% { opacity: var(--base); }
+}
+
+/* peaks F4, F5 */
+@keyframes ptF {
+  0%, 33.32% { opacity: var(--base); }
+  33.33%, 49.99% { opacity: var(--peak); }
+  50%, 58.32% { opacity: 0.7; }
+  58.33%, 100% { opacity: var(--base); }
+}
+
+/* peaks F5, F6 */
+@keyframes ptG {
+  0%, 41.65% { opacity: var(--base); }
+  41.66%, 58.32% { opacity: var(--peak); }
+  58.33%, 66.65% { opacity: 0.7; }
+  66.66%, 100% { opacity: var(--base); }
+}
+
+/* peaks F6, F7 */
+@keyframes ptH {
+  0%, 49.99% { opacity: var(--base); }
+  50%, 66.65% { opacity: var(--peak); }
+  66.66%, 74.99% { opacity: 0.7; }
+  75%, 100% { opacity: var(--base); }
+}
+
+/* peaks F7, F8 */
+@keyframes ptI {
+  0%, 58.32% { opacity: var(--base); }
+  58.33%, 74.99% { opacity: var(--peak); }
+  75%, 83.32% { opacity: 0.7; }
+  83.33%, 100% { opacity: var(--base); }
+}
+
+/* peaks F8, F9 */
+@keyframes ptJ {
+  0%, 66.65% { opacity: var(--base); }
+  66.66%, 83.32% { opacity: var(--peak); }
+  83.33%, 91.65% { opacity: 0.7; }
+  91.66%, 100% { opacity: var(--base); }
+}
+
+/* peaks F9, F10 */
+@keyframes ptK {
+  0%, 74.99% { opacity: var(--base); }
+  75%, 91.65% { opacity: var(--peak); }
+  91.66%, 100% { opacity: 0.7; }
+}
+
+/* peaks F10, F11 */
+@keyframes ptL {
+  0%, 8.32% { opacity: 0.7; }
+  8.33%, 83.32% { opacity: var(--base); }
+  83.33%, 100% { opacity: var(--peak); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+    opacity: var(--base);
+  }
+}

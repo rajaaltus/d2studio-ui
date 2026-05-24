@@ -1,0 +1,3141 @@
+[     531ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     562ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     701ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1311ms] [LOG] [Fast Refresh] done in 734ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   45223ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   45514ms] [LOG] [Fast Refresh] done in 346ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   59609ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   60006ms] [LOG] [Fast Refresh] done in 336ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   67017ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   67277ms] [LOG] [Fast Refresh] done in 276ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   71636ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   71882ms] [LOG] [Fast Refresh] done in 278ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   77494ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   77711ms] [LOG] [Fast Refresh] done in 282ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  108348ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  109731ms] [ERROR] ./components/cosma/playground.tsx:1201:15
+Expected '</', got 'jsx text'
+  1199 |             </div>
+  1200 |           </div>
+> 1201 |         </div>
+       |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 1202 |
+       | ^
+> 1203 |         <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 xl:grid-cols-3 xl:items-start">
+       | ^^^^^^^^
+  1204 |           {/* Column 1: Color + Particles */}
+  1205 |           <div className="space-y-4">
+  1206 |           <div className="space-y-4">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/cosma/playground.tsx
+    ./app/cosma/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  109896ms] [ERROR] ./components/cosma/playground.tsx:1201:15
+Expected '</', got 'jsx text'
+  1199 |             </div>
+  1200 |           </div>
+> 1201 |         </div>
+       |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 1202 |
+       | ^
+> 1203 |         <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 xl:grid-cols-3 xl:items-start">
+       | ^^^^^^^^
+  1204 |           {/* Column 1: Color + Particles */}
+  1205 |           <div className="space-y-4">
+  1206 |           <div className="space-y-4">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/cosma/playground.tsx
+    ./app/cosma/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  109964ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  121850ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  122129ms] [ERROR] ./components/cosma/playground.tsx:1199:15
+Expected '</', got 'jsx text'
+  1197 |             </div>
+  1198 |           </div>
+> 1199 |         </div>
+       |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 1200 |
+       | ^
+> 1201 |         <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 xl:grid-cols-3 xl:items-start">
+       | ^^^^^^^^
+  1202 |           {/* Column 1: Color + Particles */}
+  1203 |           <div className="space-y-4">
+  1204 |           <div className="space-y-4">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/cosma/playground.tsx
+    ./app/cosma/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  129343ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  130039ms] [LOG] [Fast Refresh] done in 659ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  130181ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  130556ms] [LOG] [Fast Refresh] done in 477ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  136358ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  136860ms] [LOG] [Fast Refresh] done in 532ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  152716ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  153506ms] [LOG] [Fast Refresh] done in 873ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  163211ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  163814ms] [ERROR] ./components/spinners/playground.tsx:1814:13
+Expected '</', got 'jsx text'
+  1812 |           </div>
+  1813 |         </div>
+> 1814 |       </div>
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 1815 |
+       | ^
+> 1816 |       <div className="gap-x-6 columns-1 sm:columns-2 lg:columns-3 xl:columns-4 [&>*]:mb-5 [&>*]:break-inside-avoid">
+       | ^^^^^^
+  1817 |         <ControlGroup label="Pattern">
+  1818 |           <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
+  1819 |             <PopoverTrigger asChild>
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/spinners/playground.tsx
+    ./app/spinners/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  174943ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  175255ms] [ERROR] ./components/spinners/playground.tsx:1812:13
+Expected '</', got 'jsx text'
+  1810 |           </div>
+  1811 |         </div>
+> 1812 |       </div>
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 1813 |
+       | ^
+> 1814 |       <div className="gap-x-6 columns-1 sm:columns-2 lg:columns-3 xl:columns-4 [&>*]:mb-5 [&>*]:break-inside-avoid">
+       | ^^^^^^
+  1815 |         <ControlGroup label="Pattern">
+  1816 |           <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
+  1817 |             <PopoverTrigger asChild>
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/spinners/playground.tsx
+    ./app/spinners/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  199248ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  200037ms] [LOG] [Fast Refresh] done in 891ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  209450ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  210083ms] [LOG] [Fast Refresh] done in 712ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  210184ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  213544ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4200/cosma?_rsc=j2pwp:0
+[  217982ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  217983ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  218493ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  218493ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  218594ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  218675ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  218675ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  218780ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  219017ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  219017ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  219061ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/cosma?_rsc=j2pwp:0
+[  219132ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  219132ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  219138ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  219153ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/cosma:0
+[  219498ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[  219537ms] Error: ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/page.tsx:15:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1686:30)
+[  219535ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  219537ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  219537ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  219548ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4200/favicon.ico:0
+[  219574ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  219574ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  219639ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  228425ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  228598ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  228598ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235166ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  235343ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235343ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235490ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/cosma:0
+[  235536ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[  235547ms] Error: ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/page.tsx:15:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1686:30)
+[  235565ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  235586ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235586ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235640ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235640ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  235675ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  237775ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  237928ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  237928ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  244075ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  244360ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  244360ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  261241ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  261883ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  261883ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  261975ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  261975ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  261975ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262059ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262059ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262059ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262077ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  262389ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  262455ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262455ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262455ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262508ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262508ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262508ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262562ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262562ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262562ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262627ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262627ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262627ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262676ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262676ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262676ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262718ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262718ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262718ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262760ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262760ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262760ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262807ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262807ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262807ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262854ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262854ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262854ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262899ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262900ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262900ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262947ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262947ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262947ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262992ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262992ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  262992ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263035ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263035ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263035ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263086ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263086ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263086ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263126ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263126ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263126ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263170ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263170ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263170ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263214ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263214ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263214ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263257ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263257ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263257ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263299ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263299ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263300ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263352ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263352ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263352ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263398ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263398ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263398ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263442ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263442ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263442ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263488ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263488ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263488ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263536ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263536ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263537ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263586ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263586ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263586ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263629ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263629ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263629ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263674ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263674ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263674ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263717ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263717ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263717ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263762ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263762ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263762ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263810ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263810ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263810ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263853ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263853ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263853ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263903ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/cosma:0
+[  263952ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[  263961ms] Error: ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/page.tsx:15:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1745:26)
+[  263961ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  263962ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263962ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263962ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263996ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263996ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  263996ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  264064ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  266435ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266435ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266435ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266536ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  266644ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266644ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266644ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  307819ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  307998ms] [ERROR] ./app/page.tsx:15:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  13 | import { PixelIconRocket } from "@/components/pixel-icon-rocket";
+  14 | import CodeIcon from "@/components/icons/code-icon";
+> 15 | import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  16 | import { SpinnerMorph } from "@/components/spinners/spinner-morph";
+  17 |
+  18 | const structuredData = {
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  307998ms] [ERROR] ./components/spinners/spinner-morph.tsx:16:1
+Module not found: Can't resolve '@/components/cosma/cosmo-morph'
+  14 | import { ScrollTrigger } from "gsap/ScrollTrigger";
+  15 | import { useGSAP } from "@gsap/react";
+> 16 | import { TickSlider } from "@/components/cosma/cosmo-morph";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  17 | import {
+  18 |   PixelSpinner,
+  19 |   type SpinnerAnimation,
+
+Import map: aliased to relative './components/cosma/cosmo-morph' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./components/spinners/spinner-morph.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/spinners/spinner-morph.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  307999ms] [ERROR] ./app/cosma/page.tsx:3:1
+Module not found: Can't resolve '@/components/cosma/playground'
+  1 | import type { Metadata } from "next";
+  2 | import { Navigation } from "@/components/navigation";
+> 3 | import { CosmaPlayground } from "@/components/cosma/playground";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { SiteFooter } from "@/components/site-footer";
+  5 | import { CoffeeSupportCard } from "@/components/coffee-support-card";
+  6 |
+
+Import map: aliased to relative './components/cosma/playground' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945

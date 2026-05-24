@@ -63,6 +63,14 @@ interface PixelSpinnerProps {
   shape?: SpinnerShape;
   effect?: SpinnerEffect;
   animation?: SpinnerAnimation;
+  /** When true, every cell entering the peak set runs an elastic
+   * scale + brightness bounce via a CSS keyframe. */
+  pop?: boolean;
+  /** Intensity multiplier for the pop bounce (0 = no movement, 1 = default,
+   * up to ~2 for an exaggerated punch). */
+  popStrength?: number;
+  /** Duration of one pop cycle in ms. */
+  popDuration?: number;
 }
 
 export function PixelSpinner({
@@ -81,6 +89,9 @@ export function PixelSpinner({
   shape = "square",
   effect = "light",
   animation = "pixels",
+  pop = false,
+  popStrength = 1,
+  popDuration = 480,
 }: PixelSpinnerProps) {
   const shapeStyle = SHAPE_STYLE[shape];
   const cols = pattern.cols ?? pattern.size ?? 3;
@@ -115,6 +126,7 @@ export function PixelSpinner({
         effect === "light" && "effect-light",
         effect === "wave" && "effect-wave",
         animation === "wavy" ? "anim-wavy" : "anim-pixels",
+        pop && "pop-on-peak",
         className
       )}
       style={
@@ -128,6 +140,12 @@ export function PixelSpinner({
           ...(easeIn !== undefined ? { ["--ease-in"]: `${easeIn}ms` } : {}),
           ...(easeOut !== undefined
             ? { ["--ease-out"]: `${easeOut}ms` }
+            : {}),
+          ...(pop
+            ? {
+                ["--ls-pop-strength"]: String(popStrength),
+                ["--ls-pop-duration"]: `${popDuration}ms`,
+              }
             : {}),
         } as React.CSSProperties
       }
@@ -152,7 +170,8 @@ export function PixelSpinner({
             className={cn(
               "cell",
               `shape-${shape}`,
-              op !== undefined && `on ${variant}`
+              op !== undefined && `on ${variant}`,
+              op === 1 && "peak"
             )}
             style={
               {

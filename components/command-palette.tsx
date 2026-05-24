@@ -73,10 +73,10 @@ const PAGES: PageEntry[] = [
     description: "Documentation",
   },
   {
-    label: "Cosma",
-    href: "/cosma",
+    label: "Cosmo",
+    href: "/cosmo",
     icon: Sparkles,
-    description: "Cosma",
+    description: "Cosmo",
   },
 ];
 

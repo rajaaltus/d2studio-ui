@@ -1,0 +1,232 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e11]: coffee
+        - button "Random" [ref=e12]:
+          - img [ref=e13]
+          - text: Random
+      - img "Pixel icon" [ref=e20]
+      - generic [ref=e277]:
+        - generic [ref=e279]:
+          - generic [ref=e280]:
+            - generic [ref=e281]: AI Prompt
+            - paragraph [ref=e299]: Paste into ChatGPT, Claude, or any AI to recreate this animated icon.
+          - button "Copy Prompt" [ref=e300]:
+            - img [ref=e301]
+            - text: Copy Prompt
+        - generic [ref=e304]:
+          - generic [ref=e306]:
+            - generic [ref=e307]:
+              - generic [ref=e308]:
+                - img [ref=e309]
+                - text: HTML
+              - paragraph [ref=e314]: Drop the markup straight into any page.
+            - button "Copy HTML" [ref=e315]:
+              - img [ref=e316]
+              - text: Copy HTML
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]:
+                - img [ref=e323]
+                - text: CSS
+              - paragraph [ref=e329]: Pair with the HTML to render the icon.
+            - button "Copy CSS" [ref=e330]:
+              - img [ref=e331]
+              - text: Copy CSS
+        - generic [ref=e335]:
+          - generic [ref=e336]:
+            - generic [ref=e337]:
+              - img [ref=e338]
+              - text: JavaScript
+            - paragraph [ref=e341]: Self-contained createPixelIcon(container) — drives the animation via Web Animations API. Returns a destroy() handle.
+          - button "Copy JS" [ref=e342]:
+            - img [ref=e343]
+            - text: Copy JS
+    - complementary [ref=e346]:
+      - generic [ref=e347]:
+        - paragraph [ref=e348]: Controls
+        - generic [ref=e349]:
+          - button "Toggle theme" [ref=e350]:
+            - img [ref=e351]
+          - button "Undo" [disabled] [ref=e357]:
+            - img [ref=e358]
+          - button "Redo" [disabled] [ref=e361]:
+            - img [ref=e362]
+          - button "Copy share link" [ref=e365]:
+            - img [ref=e366]
+            - text: Share
+          - button "Save preset" [ref=e372]:
+            - img [ref=e373]
+            - text: Save
+          - button "Reset" [ref=e375]:
+            - img [ref=e376]
+            - text: Reset
+      - generic [ref=e379]:
+        - paragraph [ref=e380]: SVG Source
+        - generic [ref=e381]:
+          - button "Upload SVG" [ref=e382]:
+            - img [ref=e383]
+            - text: Upload SVG
+          - button "Library" [ref=e386]:
+            - img [ref=e387]
+            - text: Library
+        - paragraph [ref=e391]: Drag & drop an SVG, or pick from 3,700+ Lucide icons.
+      - generic [ref=e392]:
+        - paragraph [ref=e393]: Animation
+        - button "Music Rhythm" [ref=e394]:
+          - generic [ref=e395]: Music Rhythm
+          - img [ref=e396]
+      - generic [ref=e398]:
+        - paragraph [ref=e399]: Color
+        - generic [ref=e400]:
+          - button "gradient" [ref=e401]
+          - button "preset" [ref=e402]
+          - button "custom" [ref=e403]
+        - generic [ref=e404]:
+          - button "Green" [ref=e405]
+          - button "Hot Pink" [ref=e406]
+          - button "Violet" [ref=e407]
+          - button "Blue" [ref=e408]
+          - button "Cyan" [ref=e409]
+          - button "Amber" [ref=e410]
+          - button "Lime" [ref=e411]
+          - button "Rose" [ref=e412]
+          - button "Indigo" [ref=e413]
+          - button "Teal" [ref=e414]
+          - button "Yellow" [ref=e415]
+          - button "Pearl" [ref=e416]
+          - button "Emerald" [ref=e417]
+          - button "Fuchsia" [ref=e418]
+          - button "Sky" [ref=e419]
+          - button "Orange" [ref=e420]
+          - button "Red" [ref=e421]
+          - button "Slate" [ref=e422]
+          - button "Coral" [ref=e423]
+          - button "Mint" [ref=e424]
+          - button "Plum" [ref=e425]
+          - button "Gold" [ref=e426]
+          - button "Magenta" [ref=e427]
+          - button "Navy" [ref=e428]
+      - generic [ref=e429]:
+        - paragraph [ref=e430]: Easing
+        - generic [ref=e431]:
+          - button "pixels" [ref=e432]
+          - button "wavy" [ref=e433]
+      - generic [ref=e434]:
+        - paragraph [ref=e435]: Cell Shape
+        - generic [ref=e436]:
+          - button "Square" [ref=e437]
+          - button "Rounded" [ref=e439]
+          - button "Circle" [ref=e441]
+          - button "Diamond" [ref=e443]
+          - button "Triangle" [ref=e445]
+          - button "Lines" [ref=e447]
+          - button "Line 2" [ref=e449]
+          - button "Line 3" [ref=e451]
+      - generic [ref=e453]:
+        - paragraph [ref=e454]: Resolution
+        - generic [ref=e455]:
+          - button "16×16" [ref=e456]
+          - button "24×24" [ref=e457]
+          - button "32×32" [ref=e458]
+          - button "48×48" [ref=e459]
+          - button "64×64" [ref=e460]
+          - button "96×96" [ref=e461]
+          - button "128×128" [ref=e462]
+          - button "192×192" [ref=e463]
+          - button "256×256" [ref=e464]
+        - generic [ref=e465]:
+          - generic [ref=e466]:
+            - generic [ref=e467]: Custom
+            - spinbutton "Custom canvas pixel size" [ref=e468]: "31"
+            - generic [ref=e469]: px
+          - generic [ref=e470]:
+            - generic [ref=e471]: Cells
+            - spinbutton "Custom grid cells per side" [ref=e472]: "16"
+        - paragraph [ref=e473]: Currently rendering 31px (16×16 cells × 1px + 1px gap)
+    - complementary [ref=e474]:
+      - generic [ref=e475]:
+        - paragraph [ref=e476]: Mood
+        - generic [ref=e477]:
+          - button "Aurora" [ref=e478]:
+            - generic [ref=e480]: Aurora
+          - button "Cyberpunk" [ref=e481]:
+            - generic [ref=e483]: Cyberpunk
+          - button "Holographic" [ref=e484]:
+            - generic [ref=e486]: Holographic
+          - button "Lava Forge" [ref=e487]:
+            - generic [ref=e489]: Lava Forge
+          - button "Retro Arcade" [ref=e490]:
+            - generic [ref=e492]: Retro Arcade
+          - button "Mono Mist" [ref=e493]:
+            - generic [ref=e495]: Mono Mist
+      - generic [ref=e497]:
+        - generic [ref=e498]: Cell size
+        - slider "Cell size" [ref=e510] [cursor=pointer]: "2"
+        - generic [ref=e511]: 1px
+      - generic [ref=e513]:
+        - generic [ref=e514]: Gap
+        - slider "Gap" [ref=e526] [cursor=pointer]: "1"
+        - generic [ref=e527]: 1px
+      - generic [ref=e528]:
+        - generic [ref=e529]:
+          - generic [ref=e530]: Animation Speed
+          - slider "Animation Speed" [ref=e542] [cursor=pointer]: "80"
+          - generic [ref=e543]:
+            - spinbutton [ref=e544]: "80"
+            - generic [ref=e545]: ms
+        - generic [ref=e546]:
+          - generic [ref=e547]: Fast
+          - generic [ref=e548]: Slow
+      - generic [ref=e550]:
+        - generic [ref=e551]: Glow
+        - slider "Glow" [ref=e563] [cursor=pointer]: "0"
+        - generic [ref=e564]: 0x
+      - generic [ref=e565]:
+        - generic [ref=e566]:
+          - paragraph [ref=e567]: Bounce on peak
+          - paragraph [ref=e568]: Elastic punch when each cell lights up.
+        - generic [ref=e569]:
+          - generic [ref=e570]: "Off"
+          - switch "Toggle elastic pop on peak cells" [ref=e571]
+      - generic [ref=e572]:
+        - generic [ref=e573]:
+          - generic [ref=e574]:
+            - paragraph [ref=e575]: Icon outline
+            - paragraph [ref=e576]: Draw a continuous stroke around the silhouette.
+          - switch "Toggle icon silhouette outline" [ref=e577]
+        - generic "Enable Icon outline to adjust stroke width.":
+          - generic:
+            - generic: Stroke width
+            - generic:
+              - slider "Stroke width" [disabled]: "1"
+            - generic: 1px
+        - generic "Enable Icon outline to pick a color.":
+          - generic:
+            - textbox "Icon outline stroke color" [disabled]: "#ffffff"
+          - textbox [disabled]: "#ffffff"
+      - generic [ref=e578]:
+        - generic [ref=e579]:
+          - generic [ref=e580]: Base Opacity
+          - slider "Base Opacity" [ref=e592] [cursor=pointer]: "0.58"
+          - generic [ref=e593]: "0.58"
+        - generic [ref=e594]:
+          - generic [ref=e595]: Hidden
+          - generic [ref=e596]: Solid
+      - generic [ref=e597]:
+        - generic [ref=e598]:
+          - generic [ref=e599]: Threshold
+          - slider "Threshold" [ref=e611] [cursor=pointer]: "96"
+          - generic [ref=e612]: "96"
+        - generic [ref=e613]:
+          - generic [ref=e614]: Detail
+          - generic [ref=e615]: Bold
+  - button "Open Next.js Dev Tools" [ref=e621] [cursor=pointer]:
+    - generic [ref=e624]:
+      - text: Compiling
+      - generic [ref=e625]:
+        - generic [ref=e626]: .
+        - generic [ref=e627]: .
+        - generic [ref=e628]: .
+  - alert [ref=e629]

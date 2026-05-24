@@ -1,0 +1,48 @@
+.icon {
+  --cell: 1px;
+  --gap: 1px;
+  --color: #6366f1;
+  --peak: 1;
+  --base: 0.56;
+  --duration: 2200ms;
+
+  display: inline-grid;
+  grid-template-columns: repeat(8, var(--cell));
+  grid-template-rows: repeat(8, var(--cell));
+  gap: var(--gap);
+  transform: rotate(180deg);
+  transform-origin: center;
+}
+
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 22%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color) 92%, white),
+    color-mix(in srgb, var(--color) 82%, black)
+  );
+  box-shadow:
+    0 0 0 var(--color),
+    0 0 0 color-mix(in srgb, var(--color) 50%, transparent),
+    0 0 0 color-mix(in srgb, var(--color) 33%, transparent);
+  opacity: var(--base);
+  animation: arrow-up-line-blink var(--duration) steps(1, end) infinite;
+}
+
+@keyframes arrow-up-line-blink {
+  0%   { opacity: var(--peak); }
+  10%  { opacity: 0.7; }
+  20%  { opacity: var(--peak); }
+  30%  { opacity: 0.7; }
+  40%  { opacity: var(--base); }
+  100% { opacity: var(--base); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+    opacity: var(--base);
+  }
+}
