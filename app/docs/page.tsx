@@ -33,6 +33,7 @@ const NAV: NavGroup[] = [
     title: "Resources",
     items: [
       { id: "spinners", label: "Spinners" },
+      { id: "cosma", label: "Cosma" },
       { id: "registry", label: "Registry" },
       { id: "support", label: "Support" },
     ],
@@ -88,7 +89,7 @@ export default function DocsPage() {
             </section>
 
             <section id="installation" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Installation
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
@@ -101,7 +102,7 @@ export default function DocsPage() {
             </section>
 
             <section id="quick-start" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Quick Start
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
@@ -118,7 +119,7 @@ export default function Home() {
             </section>
 
             <section id="components" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Components
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground">
@@ -129,7 +130,7 @@ export default function Home() {
             </section>
 
             <section id="blocks" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Blocks
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
@@ -143,7 +144,7 @@ export default function Home() {
             </section>
 
             <section id="theming" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Theming
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground">
@@ -164,12 +165,13 @@ export default function Home() {
             </section>
 
             <section id="spinners" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Spinners
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                The Pixel Glow Spinners tool lets you tune color, size, spacing,
-                speed, and glow — then copy the HTML, CSS, or React snippet.
+                Pixel-grid spinners with glow, gradients, and shimmer. Tune
+                color, size, spacing, and speed live, then copy the HTML, CSS,
+                or React snippet — no package install.
               </p>
               <Link
                 href="/spinners"
@@ -179,8 +181,25 @@ export default function Home() {
               </Link>
             </section>
 
+            <section id="cosma" className="scroll-mt-24">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
+                Cosma
+              </h2>
+              <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                Cosma is an interactive particle motion playground. Pick a
+                source, tune count, size, and speed, and watch the cosmos form
+                live on the canvas.
+              </p>
+              <Link
+                href="/cosma"
+                className="inline-flex items-center gap-2 rounded-md border bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90"
+              >
+                Open Cosma →
+              </Link>
+            </section>
+
             <section id="registry" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Registry
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground">
@@ -191,7 +210,7 @@ export default function Home() {
             </section>
 
             <section id="support" className="scroll-mt-24">
-              <h2 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-3 text-2xl font-medium tracking-tight">
                 Support
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground">
