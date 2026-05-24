@@ -28,7 +28,7 @@ export function BmcTvButton({
       rel="noopener noreferrer"
       aria-label={label}
       className={
-        "group relative inline-flex select-none items-center justify-center rounded-[12px] transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
+        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
         (className ? ` ${className}` : "")
       }
     >

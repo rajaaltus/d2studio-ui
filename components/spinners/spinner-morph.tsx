@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowUpRight, Loader2, RotateCcw } from "lucide-react";
+import { ArrowUpRight, RotateCcw } from "lucide-react";
+import { ChevronRightIcon } from "@/components/icons/chevron-right-icon";
 import {
   AnimatePresence,
   motion,
@@ -205,7 +206,7 @@ export function SpinnerMorph() {
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-foreground)]/[0.06]">
-                  <Loader2 size={13} className="text-[var(--ls-muted-foreground)]" />
+                  <ChevronRightIcon aria-label="Try the spinner" />
                 </span>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
                   Try the spinner

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { SpinnerPlayground } from "@/components/spinners/playground";
 import { SiteFooter } from "@/components/site-footer";
+import { CoffeeSupportCard } from "@/components/coffee-support-card";
 
 export const metadata: Metadata = {
   title: "Pixel Glow Spinners",
@@ -34,6 +35,12 @@ export default function SpinnersPage() {
             <SpinnerPlayground />
           </div>
         </section>
+
+        <CoffeeSupportCard
+          pitch="Enjoying the Pixel Glow Spinners? Encourage us with a coffee — your support helps us build more experiments like this."
+          quote="No one has ever become poor by giving."
+          author="Anne Frank"
+        />
       </div>
 
       <SiteFooter />

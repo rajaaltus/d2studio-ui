@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeFlashScript } from "@/components/theme-flash-script";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
-import { BuyMeCoffeeFab } from "@/components/buy-me-coffee-fab";
 import { FloatingDock } from "@/components/floating-dock";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { Toaster } from "@/components/ui/sonner";
@@ -141,7 +140,6 @@ export default function RootLayout({
             <ConvexClientProvider>{children}</ConvexClientProvider>
             <CommandPalette />
             <FloatingDock />
-            <BuyMeCoffeeFab />
             <Toaster richColors closeButton />
           </ThemeProvider>
         </body>

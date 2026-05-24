@@ -1,0 +1,74 @@
+.spinner {
+  --cell: 1px;
+  --gap: 1px;
+  --color: #84cc16;
+  --duration: 900ms;
+  display: inline-grid;
+  grid-template-columns: repeat(16, var(--cell));
+  grid-template-rows: repeat(16, var(--cell));
+  gap: var(--gap);
+}
+
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 0;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color) 78%, white),
+    color-mix(in srgb, var(--color) 78%, black)
+  );
+  box-shadow:
+    0 0 0 var(--color),
+    0 0 0 color-mix(in srgb, var(--color) 50%, transparent),
+    0 0 0 color-mix(in srgb, var(--color) 33%, transparent);
+  opacity: 0.5;
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+.peak0 { animation-name: as-c0; }
+.peak1 { animation-name: as-c1; }
+.peak2 { animation-name: as-c2; }
+.peak3 { animation-name: as-c3; }
+.peak4 { animation-name: as-c4; }
+
+@keyframes as-c0 {
+  0%, 19.99% { opacity: 1; }
+  20%, 39.99% { opacity: 0.7; }
+  40%, 100% { opacity: 0.5; }
+}
+
+@keyframes as-c1 {
+  0%, 19.99% { opacity: 0.5; }
+  20%, 39.99% { opacity: 1; }
+  40%, 59.99% { opacity: 0.7; }
+  60%, 100% { opacity: 0.5; }
+}
+
+@keyframes as-c2 {
+  0%, 39.99% { opacity: 0.5; }
+  40%, 59.99% { opacity: 1; }
+  60%, 79.99% { opacity: 0.7; }
+  80%, 100% { opacity: 0.5; }
+}
+
+@keyframes as-c3 {
+  0%, 59.99% { opacity: 0.5; }
+  60%, 79.99% { opacity: 1; }
+  80%, 100% { opacity: 0.7; }
+}
+
+@keyframes as-c4 {
+  0%, 19.99% { opacity: 0.7; }
+  20%, 79.99% { opacity: 0.5; }
+  80%, 100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+    opacity: 0.5;
+  }
+}

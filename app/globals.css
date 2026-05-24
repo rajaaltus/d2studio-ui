@@ -2515,12 +2515,15 @@
   height: 18px;
 }
 
-/* GitHub TV button — animated pixel icon */
+/* GitHub TV button — animated pixel icon (smooth ripple, 4 frames) */
 .gh-pixel-grid {
   --cell: 1px;
   --gap: 2px;
-  --duration: 400ms;
-  --pixel-color: #f8fafc;
+  --duration: 760ms;
+  --pixel-fill: linear-gradient(#ffffff, #ffffff);
+  --pixel-glow: 194, 138, 255;
+  --pixel-glow-alpha: 0;
+  --pixel-base-opacity: 0.5;
   display: inline-grid;
   grid-template-columns: repeat(16, var(--cell));
   grid-auto-rows: var(--cell);
@@ -2533,33 +2536,81 @@
 }
 
 .gh-pixel-grid > .gh-pixel-cell {
-  border-radius: 0.25px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--pixel-color) 90%, white),
-    color-mix(in srgb, var(--pixel-color) 90%, black)
-  );
+  border-radius: 0;
+  background-image: var(--pixel-fill);
+  background-size:
+    calc(16 * var(--cell) + 15 * var(--gap))
+    calc(16 * var(--cell) + 15 * var(--gap));
+  background-position:
+    calc(var(--col) * (var(--cell) + var(--gap)) * -1)
+    calc(var(--row) * (var(--cell) + var(--gap)) * -1);
   box-shadow:
-    0 0 0 0 rgba(248, 250, 252, 0.25),
-    0 0 1px 0 rgba(248, 250, 252, 0.125),
-    0 0 2px 0 rgba(248, 250, 252, 0.083);
-  opacity: 0.36;
-  animation: gh-pixel-blink var(--duration) steps(1, end) infinite;
+    0 0 1px 0 rgba(var(--pixel-glow), calc(0.95 * var(--pixel-glow-alpha))),
+    0 0 2px 0 rgba(var(--pixel-glow), calc(0.55 * var(--pixel-glow-alpha))),
+    0 0 4px 0 rgba(var(--pixel-glow), calc(0.33 * var(--pixel-glow-alpha)));
+  opacity: var(--pixel-base-opacity);
+  animation-duration: var(--duration);
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: infinite;
   animation-play-state: paused;
+  transition: box-shadow 220ms ease;
+}
+
+.gh-pixel-grid > .gh-pixel-cell--f0 { animation-name: gh-pixel-ripple-f0; }
+.gh-pixel-grid > .gh-pixel-cell--f1 { animation-name: gh-pixel-ripple-f1; }
+.gh-pixel-grid > .gh-pixel-cell--f2 { animation-name: gh-pixel-ripple-f2; }
+.gh-pixel-grid > .gh-pixel-cell--f3 { animation-name: gh-pixel-ripple-f3; }
+
+.group:hover .gh-pixel-grid {
+  --pixel-fill: linear-gradient(
+    135deg,
+    #56daff 0%,
+    #a8ff80 22%,
+    #fff4a3 42%,
+    #ff9cc8 62%,
+    #c28aff 82%,
+    #56daff 100%
+  );
+  --pixel-glow-alpha: 1;
 }
 
 .group:hover .gh-pixel-grid > .gh-pixel-cell {
   animation-play-state: running;
 }
 
-@keyframes gh-pixel-blink {
-  0% { opacity: 1; }
-  10% { opacity: 0.7; }
-  20% { opacity: 1; }
-  30% { opacity: 0.7; }
-  40% { opacity: 0.45; }
-  50%,
-  100% { opacity: 0.36; }
+@keyframes gh-pixel-ripple-f0 {
+  0%   { opacity: 1; }
+  25%  { opacity: 0.7; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+@keyframes gh-pixel-ripple-f1 {
+  0%   { opacity: 0.5; }
+  25%  { opacity: 1; }
+  50%  { opacity: 0.7; }
+  75%  { opacity: 0.5; }
+  100% { opacity: 0.5; }
+}
+@keyframes gh-pixel-ripple-f2 {
+  0%   { opacity: 0.5; }
+  25%  { opacity: 0.5; }
+  50%  { opacity: 1; }
+  75%  { opacity: 0.7; }
+  100% { opacity: 0.5; }
+}
+@keyframes gh-pixel-ripple-f3 {
+  0%   { opacity: 0.7; }
+  25%  { opacity: 0.5; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .gh-pixel-grid > .gh-pixel-cell {
+    animation-play-state: paused;
+  }
 }
 
 

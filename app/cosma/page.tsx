@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { CosmaPlayground } from "@/components/cosma/playground";
 import { SiteFooter } from "@/components/site-footer";
-import { GithubTvButton } from "@/components/icons/github-tv-button";
-import { BmcTvButton } from "@/components/icons/bmc-tv-button";
+import { CoffeeSupportCard } from "@/components/coffee-support-card";
 
 export const metadata: Metadata = {
   title: "Cosmo Playground — Interactive particle motion playground",
@@ -36,38 +35,12 @@ export default function CosmaPage() {
           </div>
         </section>
 
-        <section className="w-full max-w-6xl border-x border-t mx-auto">
-          <div className="grid grid-cols-1 divide-y sm:grid-cols-5 sm:divide-x sm:divide-y-0">
-            <div className="flex items-center justify-center px-4 py-10 sm:col-span-3 lg:px-8">
-              <div className="max-w-md text-center">
-                <p className="text-sm text-muted-foreground">
-                  Enjoying the Cosmo Playground? Encourage us with a coffee — your
-                  support helps us build more experiments like this.
-                  <span className="block mt-1 text-foreground/80">
-                    Your support truly makes a difference.
-                  </span>
-                </p>
-                <blockquote className="mt-5 border-t border-border/40 pt-4 text-xs italic text-muted-foreground/80">
-                  &ldquo;Wherever there is a human being, there is an opportunity
-                  for kindness.&rdquo;
-                  <footer className="mt-2 not-italic text-[10px] uppercase tracking-[0.25em] text-muted-foreground/60">
-                    — Seneca
-                  </footer>
-                </blockquote>
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-3 px-8 py-10">
-              <GithubTvButton href="https://github.com/godwin159" />
-              <span className="text-xs text-muted-foreground">Github</span>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-3 px-8 py-10">
-              <BmcTvButton href="https://buymeacoffee.com/godwindev" />
-              <span className="text-xs text-muted-foreground">
-                buy me a coffee
-              </span>
-            </div>
-          </div>
-        </section>
+        <CoffeeSupportCard
+          pitch="Enjoying the Cosmo Playground? Encourage us with a coffee — your support helps us build more experiments like this."
+          quote="Wherever there is a human being, there is an opportunity for kindness."
+          author="Seneca"
+          githubHref="https://github.com/godwin159"
+        />
       </div>
 
       <SiteFooter />

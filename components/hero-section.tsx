@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { brandData } from "./brand-data";
 import GoldenRatioSpiral from "./golden-ratio-spiral";
-import { Rain3Spinner } from "./icons/rain-3-spinner";
+import { BoltTvIcon } from "./icons/bolt-tv-icon";
 import { MetalButtonSlide } from "./metal-button-slide";
 
 const HeroSection2 = () => {
@@ -27,8 +27,8 @@ const HeroSection2 = () => {
           <div className="col-start-1 row-start-2 bg-background rounded-r-xl"></div>
           <div className="col-start-1 row-start-3 bg-background rounded-r-xl"></div>
           <div className="z-10 col-start-2 row-start-1 lg:min-w-3xl  flex flex-col items-center justify-center gap-2 px-4 py-10 sm:p-8 lg:p-14 bg-background h-full relative lg:rounded-xl">
-            <div className="rounded-full inline-flex justify-center  gap-2 items-center border py-1 px-4 shadow-sm">
-              <Rain3Spinner aria-label="New blocks loading" />
+            <div className="rounded-full inline-flex justify-center gap-2 items-center border py-1 px-4 shadow-sm">
+              <BoltTvIcon aria-label="New blocks" />
               <span className="text-sm font-medium text-muted-foreground">
                 New Blocks & Tools Every Weekend
               </span>

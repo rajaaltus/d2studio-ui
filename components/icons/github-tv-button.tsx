@@ -9,13 +9,44 @@ type GithubTvButtonProps = {
 };
 
 const MASK_CELLS = new Set<number>([
-  21, 22, 23, 24, 25, 26, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 50, 51, 52,
-  53, 54, 55, 56, 57, 58, 59, 60, 61, 66, 67, 70, 71, 72, 73, 76, 77, 81, 82,
-  83, 92, 93, 94, 97, 98, 99, 108, 109, 110, 113, 114, 115, 124, 125, 126, 129,
-  130, 131, 140, 141, 142, 145, 146, 147, 156, 157, 158, 161, 162, 163, 164,
-  171, 172, 173, 174, 178, 179, 180, 181, 182, 185, 186, 187, 188, 189, 194,
-  195, 202, 203, 204, 205, 211, 212, 213, 218, 219, 220, 229, 234,
+  22, 23, 24, 25, 36, 37, 38, 39, 40, 41, 42, 43, 51, 52, 53, 54, 55, 56, 57,
+  58, 59, 60, 66, 67, 76, 77, 82, 83, 92, 93, 97, 98, 99, 108, 109, 110, 113,
+  114, 125, 126, 129, 130, 141, 142, 145, 146, 147, 156, 157, 158, 162, 163,
+  164, 171, 172, 173, 178, 180, 181, 186, 187, 188, 189, 195, 202, 203, 204,
+  212, 213, 218, 219,
 ]);
+
+const PEAK_FRAME_BY_CELL: Record<number, 0 | 1 | 2 | 3> = (() => {
+  const map: Record<number, 0 | 1 | 2 | 3> = {};
+  const groups: ReadonlyArray<readonly [0 | 1 | 2 | 3, readonly number[]]> = [
+    [0, [164, 171, 181, 186]],
+    [
+      1,
+      [
+        53, 54, 55, 56, 57, 58, 83, 92, 99, 108, 147, 156, 163, 172, 180, 187,
+        202,
+      ],
+    ],
+    [
+      2,
+      [
+        37, 38, 39, 40, 41, 42, 51, 52, 59, 60, 67, 76, 82, 93, 98, 109, 114,
+        125, 130, 141, 146, 157, 162, 173, 188, 195, 203, 204, 213, 218,
+      ],
+    ],
+    [
+      3,
+      [
+        22, 23, 24, 25, 36, 43, 66, 77, 97, 110, 113, 126, 129, 142, 145, 158,
+        178, 189, 212, 219,
+      ],
+    ],
+  ];
+  for (const [frame, cells] of groups) {
+    for (const cell of cells) map[cell] = frame;
+  }
+  return map;
+})();
 
 export function GithubTvButton({
   href = "https://github.com/godwin159",
@@ -29,7 +60,7 @@ export function GithubTvButton({
       rel="noopener noreferrer"
       aria-label={label}
       className={
-        "group relative inline-flex select-none items-center justify-center rounded-[12px] transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
+        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
         (className ? ` ${className}` : "")
       }
     >
@@ -137,12 +168,24 @@ export function GithubTvButton({
         className="pointer-events-none absolute inset-0 grid place-items-center"
       >
         <span className="gh-pixel-grid">
-          {Array.from({ length: 256 }, (_, i) => (
-            <span
-              key={i}
-              className={MASK_CELLS.has(i) ? "gh-pixel-cell" : ""}
-            />
-          ))}
+          {Array.from({ length: 256 }, (_, i) => {
+            if (!MASK_CELLS.has(i)) return <span key={i} />;
+            const col = i % 16;
+            const row = Math.floor(i / 16);
+            const frame = PEAK_FRAME_BY_CELL[i];
+            return (
+              <span
+                key={i}
+                className={`gh-pixel-cell gh-pixel-cell--f${frame}`}
+                style={
+                  {
+                    "--col": col,
+                    "--row": row,
+                  } as React.CSSProperties
+                }
+              />
+            );
+          })}
         </span>
       </span>
     </a>

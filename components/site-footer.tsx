@@ -28,6 +28,7 @@ export function SiteFooter() {
       links: [
         { label: "Blocks", href: "/blocks" },
         { label: "Spinners", href: "/spinners" },
+        { label: "Cosmo", href: "/cosma" },
         { label: "Components", href: "/blocks" },
         { label: "Docs", href: "/docs" },
       ],
