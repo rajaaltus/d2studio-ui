@@ -553,7 +553,7 @@ export function CommunitySection() {
             What Community Say
           </h2>
           <p className="text-sm text-muted-foreground max-w-xl">
-            Real reactions from builders shipping with D2 Studio on X and
+            Real reactions from creators on X and
             Threads.
           </p>
         </div>

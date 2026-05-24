@@ -12,9 +12,9 @@ import { MetalButtonSlide } from "./metal-button-slide";
 const HeroSection2 = () => {
   const docsRef = React.useRef<HTMLAnchorElement>(null);
   return (
-    <div className="w-full mx-auto h-full [--pattern-fg:var(--color-black)]/10 dark:bg-background dark:[--pattern-fg:var(--color-white)]/10 overflow-x-hidden">
+    <div className="w-full mx-auto h-full [--pattern-fg:var(--color-black)]/10 dark:bg-background dark:[--pattern-fg:var(--color-white)]/10  overflow-x-hidden">
       {/* 8x7 Grid Container with max-w-6xl */}
-      <div className="w-full border-x min-h-[2.5rem] h-full screen-line-after mx-auto">
+      <div className="w-full border-x min-h-[2.5rem] h-full screen-line-after mx-auto bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
         <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto"></div>
       </div>
       <div className="max-w-6xl  border-x min-h-[20rem] h-full screen-line-after mx-auto relative bg-border">
@@ -81,9 +81,9 @@ const HeroSection2 = () => {
         </div>
       </div>
 
-      <div className="w-full border-x min-h-[2.5rem] screen-line-after mx-auto">
-        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto flex items-center justify-center">
-          <h2 className="text-sm">Greatly inspired from</h2>
+      <div className="w-full border-x min-h-[2.5rem] screen-line-after mx-auto bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
+        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto flex items-center justify-center ">
+          <h2 className="text-sm px-4 bg-background h-full flex items-center justify-center">Greatly inspired from</h2>
         </div>
       </div>
 
