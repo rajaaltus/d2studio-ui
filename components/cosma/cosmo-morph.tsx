@@ -336,7 +336,7 @@ export function CosmoMorph() {
       {/* ── CTA ── Headline + subtitle + primary action stand on their own,
           so nothing competes with the page's top focal point. */}
       <div className="flex flex-col items-center gap-4 px-6 py-10 text-center lg:py-12">
-        <h3 className="font-sans text-lg font-semibold tracking-tight md:text-xl lg:text-2xl">
+        <h3 className="font-sans text-lg font-medium tracking-tight md:text-xl lg:text-2xl">
           Copy. Paste. Ship.
         </h3>
         <p className="mx-auto max-w-xl text-sm text-muted-foreground">

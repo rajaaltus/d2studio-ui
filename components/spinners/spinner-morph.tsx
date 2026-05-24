@@ -189,7 +189,7 @@ export function SpinnerMorph() {
     <div className="luminous-spinners overflow-hidden bg-background lg:rounded-xl border m-0">
       {/* ── CTA ── Headline + subtitle + primary action stand on their own. */}
       <div className="flex flex-col items-center gap-4 px-6 py-10 text-center lg:py-12">
-        <h3 className="font-sans text-lg font-semibold tracking-tight md:text-xl lg:text-2xl">
+        <h3 className="font-sans text-lg font-medium tracking-tight md:text-xl lg:text-2xl">
           Loaders worth the wait.
         </h3>
         <p className="mx-auto max-w-xl text-sm text-muted-foreground">

@@ -297,51 +297,65 @@ function ThreadsIcon({ className }: { className?: string }) {
   );
 }
 
+function HeartIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 21s-7.2-4.35-9.6-9.06C.84 8.7 2.46 4.8 6 4.05c2.18-.46 4.36.56 6 2.4 1.64-1.84 3.82-2.86 6-2.4 3.54.75 5.16 4.65 3.6 7.89C19.2 16.65 12 21 12 21Z" />
+    </svg>
+  );
+}
+
 function HeartBeat() {
   return (
     <span className="heart-wrap" aria-hidden="true">
-      <span className="text-red-500 heart-main">❤</span>
-      <span className="heart-mini heart-mini-1">❤</span>
-      <span className="heart-mini heart-mini-2">❤</span>
-      <span className="heart-mini heart-mini-3">❤</span>
+      <HeartIcon className="heart-main text-red-500" />
+      <HeartIcon className="heart-mini heart-mini-1" />
+      <HeartIcon className="heart-mini heart-mini-2" />
+      <HeartIcon className="heart-mini heart-mini-3" />
       <style jsx>{`
         .heart-wrap {
           position: relative;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          vertical-align: middle;
-          width: 1em;
-          height: 1em;
+          vertical-align: -0.15em;
+          width: 1.25em;
+          height: 1.25em;
           line-height: 1;
         }
-        .heart-main {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          line-height: 1;
+        :global(.heart-main) {
+          width: 100%;
+          height: 100%;
           transform-origin: center;
           animation: heartbeat 1.2s ease-in-out infinite;
+          filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.35));
         }
-        .heart-mini {
+        :global(.heart-mini) {
           position: absolute;
           left: 50%;
           bottom: 40%;
+          width: 0.6em;
+          height: 0.6em;
           color: rgb(239 68 68);
-          font-size: 0.5em;
           opacity: 0;
           pointer-events: none;
           animation: heart-float 2.4s ease-out infinite;
         }
-        .heart-mini-1 {
+        :global(.heart-mini-1) {
           animation-delay: 0s;
           --dx: -10px;
         }
-        .heart-mini-2 {
+        :global(.heart-mini-2) {
           animation-delay: 0.8s;
           --dx: 8px;
         }
-        .heart-mini-3 {
+        :global(.heart-mini-3) {
           animation-delay: 1.6s;
           --dx: -2px;
         }

@@ -27,8 +27,8 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { name: "Blocks", href: "/blocks" },
-  { name: "Spinners", href: "/spinners", badge: "Updated", badgeTone: "green" },
-  { name: "Cosmo", href: "/cosma", badge: "New", badgeTone: "blue" },
+  { name: "Spinners", href: "/spinners", badge: "Updated", badgeTone: "blue" },
+  { name: "Cosmo", href: "/cosma", badge: "New", badgeTone: "green" },
   { name: "Docs", href: "/docs" },
 ];
 

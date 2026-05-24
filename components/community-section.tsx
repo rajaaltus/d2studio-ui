@@ -549,7 +549,7 @@ export function CommunitySection() {
           className="pointer-events-none absolute inset-x-0 top-0 h-[64px] lg:h-[96px] overflow-hidden z-10"
         />
         <div className="relative text-center mb-10 lg:mb-14 flex flex-col items-center gap-3 z-20">
-          <h2 className="text-xl md:text-2xl font-medium font-sans">
+          <h2 className="font-sans text-lg font-medium tracking-tight md:text-xl lg:text-2xl">
             What Community Say
           </h2>
           <p className="text-sm text-muted-foreground max-w-xl">

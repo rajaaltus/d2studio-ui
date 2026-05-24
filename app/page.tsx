@@ -198,7 +198,7 @@ export default function HomePage() {
             />
           </div>
           <div className="flex flex-col items-center md:items-start text-center md:text-left px-6 md:pl-16 lg:pl-20 md:pr-6 gap-3 max-w-xl">
-            <h2 className="text-xl md:text-2xl font-medium">
+            <h2 className="font-sans text-lg font-medium tracking-tight md:text-xl lg:text-2xl">
               Start Building Today
             </h2>
             <p className="text-sm text-muted-foreground">
