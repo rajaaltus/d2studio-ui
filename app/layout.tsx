@@ -82,14 +82,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://d2studio.dev",
+    url: "https://ui.d2studio.dev",
     siteName: "D2 Studio",
     title: "D2 Studio | Modern Component Library",
     description:
       "Premium collection of 50+ copy-and-paste React components built with shadcn/ui, Tailwind CSS, and TypeScript. Beautiful, accessible, and production-ready.",
     images: [
       {
-        url: "https://d2studio.dev/og-ui.png",
+        url: "https://ui.d2studio.dev/og-ui.png",
         width: 1200,
         height: 630,
         alt: "D2 Studio - Modern Component Library",
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
       "Premium collection of 50+ copy-and-paste React components built with shadcn/ui, Tailwind CSS, and TypeScript.",
     site: "@d2studio",
     creator: "@d2studio",
-    images: ["https://d2studio.dev/og-ui.png"],
+    images: ["https://ui.d2studio.dev/og-ui.png"],
   },
   verification: {
     google: "google-verification-code",
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
     yahoo: "yahoo-verification-code",
   },
   alternates: {
-    canonical: "https://d2studio.dev",
+    canonical: "https://ui.d2studio.dev",
   },
 };
 
