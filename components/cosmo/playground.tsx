@@ -347,7 +347,7 @@ type ImageBuffer = {
   h: number;
 };
 
-export function CosmaPlayground() {
+export function CosmoPlayground() {
   const [settings, setSettings] = React.useState<Settings>(DEFAULT_SETTINGS);
   const [playing, setPlaying] = React.useState(true);
   const [sampling, setSampling] = React.useState(false);
@@ -467,7 +467,33 @@ export function CosmaPlayground() {
     const onLeave = () => {
       mouseRef.current.active = false;
     };
+    const onDown = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current.x = e.clientX - rect.left;
+      mouseRef.current.y = e.clientY - rect.top;
+      mouseRef.current.active = true;
+      if (e.pointerType === "touch") {
+        try {
+          canvas.setPointerCapture(e.pointerId);
+        } catch {
+          // ignore — setPointerCapture is best-effort on some mobile browsers
+        }
+        e.preventDefault();
+      }
+    };
+    const onUp = (e: PointerEvent) => {
+      if (e.pointerType === "touch") {
+        mouseRef.current.active = false;
+        try {
+          canvas.releasePointerCapture(e.pointerId);
+        } catch {
+          // ignore
+        }
+      }
+    };
+    canvas.addEventListener("pointerdown", onDown);
     canvas.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerup", onUp);
     canvas.addEventListener("pointerleave", onLeave);
     canvas.addEventListener("pointercancel", onLeave);
 
@@ -570,7 +596,9 @@ export function CosmaPlayground() {
     return () => {
       cancelAnimationFrame(frameId);
       ro.disconnect();
+      canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
+      canvas.removeEventListener("pointerup", onUp);
       canvas.removeEventListener("pointerleave", onLeave);
       canvas.removeEventListener("pointercancel", onLeave);
     };
@@ -862,10 +890,54 @@ export function CosmaPlayground() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 px-3 py-2 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden">
-        <Monitor size={13} className="shrink-0 text-[var(--ls-foreground)]" />
-        <span>For the best experience, open this on a desktop — some controls are hidden on mobile.</span>
-      </div>
+      <details className="group rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2">
+          <Monitor size={13} className="shrink-0 text-[var(--ls-foreground)]" />
+          <span className="flex-1 leading-snug">
+            For the best experience, open this on a desktop — some controls are hidden on mobile.
+          </span>
+          <ChevronDown
+            size={13}
+            className="shrink-0 text-[var(--ls-muted-foreground)] transition-transform duration-200 group-open:rotate-180"
+          />
+        </summary>
+        <div className="space-y-3 border-t border-[var(--ls-border)] px-3 pb-3 pt-3">
+          <div>
+            <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
+              Playback &amp; history
+            </p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2">
+                <Play size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Play / Pause</span> — stop and resume the simulation</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Undo2 size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Undo / Redo</span> — step through control changes</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
+              Pattern actions
+            </p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2">
+                <RotateCcw size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Reset</span> — restore every control to its default</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Bookmark size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Presets</span> — load a saved look</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Save size={11} className="mt-[3px] shrink-0 text-emerald-500 dark:text-emerald-400" />
+                <span><span className="text-[var(--ls-foreground)]">Save</span> — keep the current settings as a preset</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </details>
       <section className="rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
         <div
           className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] backdrop-blur-sm"
@@ -899,7 +971,7 @@ export function CosmaPlayground() {
           </div>
           <canvas
             ref={canvasRef}
-            className="h-[420px] w-full lg:h-[560px]"
+            className="h-[420px] w-full [touch-action:none] lg:h-[560px] lg:[touch-action:auto]"
             style={{ display: "block" }}
           />
         </div>

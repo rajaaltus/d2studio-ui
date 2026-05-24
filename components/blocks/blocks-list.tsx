@@ -4,6 +4,7 @@ import * as React from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { BlockCard } from "./block-card";
+import { MoreSoonCard } from "./more-soon-card";
 
 interface BlocksListProps {
   blockType?: string;
@@ -48,6 +49,7 @@ export function BlocksList({ blockType }: BlocksListProps) {
       {blocks.map((block) => (
         <BlockCard key={block._id} block={block} />
       ))}
+      <MoreSoonCard />
     </div>
   );
 }

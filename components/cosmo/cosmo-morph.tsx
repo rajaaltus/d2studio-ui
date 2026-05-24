@@ -195,7 +195,33 @@ function CosmoCanvas({ imageScale, mouseMode, mouseRadius, mouseForce }: CanvasC
     const onLeave = () => {
       mouseRef.current.active = false;
     };
+    const onDown = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current.x = e.clientX - rect.left;
+      mouseRef.current.y = e.clientY - rect.top;
+      mouseRef.current.active = true;
+      if (e.pointerType === "touch") {
+        try {
+          canvas.setPointerCapture(e.pointerId);
+        } catch {
+          // ignore
+        }
+        e.preventDefault();
+      }
+    };
+    const onUp = (e: PointerEvent) => {
+      if (e.pointerType === "touch") {
+        mouseRef.current.active = false;
+        try {
+          canvas.releasePointerCapture(e.pointerId);
+        } catch {
+          // ignore
+        }
+      }
+    };
+    canvas.addEventListener("pointerdown", onDown);
     canvas.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerup", onUp);
     canvas.addEventListener("pointerleave", onLeave);
     canvas.addEventListener("pointercancel", onLeave);
 
@@ -308,13 +334,20 @@ function CosmoCanvas({ imageScale, mouseMode, mouseRadius, mouseForce }: CanvasC
       cancelAnimationFrame(raf);
       ro.disconnect();
       img.onload = null;
+      canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
+      canvas.removeEventListener("pointerup", onUp);
       canvas.removeEventListener("pointerleave", onLeave);
       canvas.removeEventListener("pointercancel", onLeave);
     };
   }, [sample]);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 block h-full w-full [touch-action:none] lg:[touch-action:auto]"
+    />
+  );
 }
 
 /* ── Hero + controls ─────────────────────────────────────────────────── */
@@ -483,7 +516,7 @@ function TryYoursLink() {
       </AnimatePresence>
       <span>Wanna get?</span>
       <Link
-        href="/cosma"
+        href="/cosmo"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className="inline-flex items-center gap-1 underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--ls-foreground)]"

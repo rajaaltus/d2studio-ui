@@ -33,7 +33,7 @@ const NAV: NavGroup[] = [
     title: "Resources",
     items: [
       { id: "spinners", label: "Spinners" },
-      { id: "cosma", label: "Cosma" },
+      { id: "cosmo", label: "Cosmo" },
       { id: "registry", label: "Registry" },
       { id: "support", label: "Support" },
     ],
@@ -181,20 +181,20 @@ export default function Home() {
               </Link>
             </section>
 
-            <section id="cosma" className="scroll-mt-24">
+            <section id="cosmo" className="scroll-mt-24">
               <h2 className="mb-3 text-2xl font-medium tracking-tight">
-                Cosma
+                Cosmo
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                Cosma is an interactive particle motion playground. Pick a
+                Cosmo is an interactive particle motion playground. Pick a
                 source, tune count, size, and speed, and watch the cosmos form
                 live on the canvas.
               </p>
               <Link
-                href="/cosma"
+                href="/cosmo"
                 className="inline-flex items-center gap-2 rounded-md border bg-foreground px-3 py-1.5 text-sm font-medium text-background hover:bg-foreground/90"
               >
-                Open Cosma →
+                Open Cosmo →
               </Link>
             </section>
 

@@ -28,7 +28,7 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { name: "Blocks", href: "/blocks" },
   { name: "Spinners", href: "/spinners", badge: "Updated", badgeTone: "blue" },
-  { name: "Cosmo", href: "/cosma", badge: "New", badgeTone: "green" },
+  { name: "Cosmo", href: "/cosmo", badge: "New", badgeTone: "green" },
   { name: "Docs", href: "/docs" },
 ];
 
@@ -63,7 +63,7 @@ export function Navigation() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
+    <header className="border-b border-border bg-background">
       <nav className="w-full max-w-6xl border-x mx-auto px-4">
         <div className="flex h-16 items-center justify-between gap-3">
           <Logo />

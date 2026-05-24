@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
-import { CosmaPlayground } from "@/components/cosma/playground";
+import { CosmoPlayground } from "@/components/cosmo/playground";
 import { SiteFooter } from "@/components/site-footer";
 import { CoffeeSupportCard } from "@/components/coffee-support-card";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Particle-based shape playground. Pick a source, tune count, size, and speed, and watch the live cosmos form on the canvas.",
 };
 
-export default function CosmaPage() {
+export default function CosmoPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navigation />
@@ -31,12 +31,12 @@ export default function CosmaPage() {
           </header>
 
           <div className="pb-10">
-            <CosmaPlayground />
+            <CosmoPlayground />
           </div>
         </section>
 
         <CoffeeSupportCard
-          pitch="Enjoying the Cosmo Playground? Encourage us with a coffee — your support helps us build more experiments like this."
+          pitch="Enjoying the Cosmo Playground? Encourage us with a coffee, your support helps us build more experiments like this."
           quote="Wherever there is a human being, there is an opportunity for kindness."
           author="Seneca"
           githubHref="https://github.com/godwin159"

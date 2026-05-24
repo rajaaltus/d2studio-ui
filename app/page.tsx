@@ -12,7 +12,7 @@ import { PixelIconCmd } from "@/components/pixel-icon-cmd";
 import { PixelIconChevron } from "@/components/pixel-icon-chevron";
 import { PixelIconRocket } from "@/components/pixel-icon-rocket";
 import CodeIcon from "@/components/icons/code-icon";
-import { CosmoMorph } from "@/components/cosma/cosmo-morph";
+import { CosmoMorph } from "@/components/cosmo/cosmo-morph";
 import { SpinnerMorph } from "@/components/spinners/spinner-morph";
 
 const structuredData = {

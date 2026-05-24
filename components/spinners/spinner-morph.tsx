@@ -13,7 +13,7 @@ import {
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { TickSlider } from "@/components/cosma/cosmo-morph";
+import { TickSlider } from "@/components/cosmo/cosmo-morph";
 import {
   PixelSpinner,
   type SpinnerAnimation,

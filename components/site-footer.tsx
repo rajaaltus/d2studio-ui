@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/logo";
 import { FooterIllustrationCard } from "@/components/footer-illustration-card";
+import { PixelSoloTlSpinner } from "@/components/icons/pixel-solo-tl-spinner";
 
 type PreviewProfile = {
   name: string;
@@ -28,7 +29,7 @@ export function SiteFooter() {
       links: [
         { label: "Blocks", href: "/blocks" },
         { label: "Spinners", href: "/spinners" },
-        { label: "Cosmo", href: "/cosma" },
+        { label: "Cosmo", href: "/cosmo" },
         { label: "Components", href: "/blocks" },
         { label: "Docs", href: "/docs" },
       ],
@@ -103,7 +104,14 @@ export function SiteFooter() {
               ready for production.
             </p>
             <div className="mt-auto inline-flex items-center gap-2 text-xs text-muted-foreground font-mono">
-              <span className="inline-block size-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_oklch(0.7_0.2_150/0.8)]" />
+              <PixelSoloTlSpinner
+                style={
+                  {
+                    "--cell": "3px",
+                    "--gap": "1px",
+                  } as React.CSSProperties
+                }
+              />
               New blocks shipping every weekend
             </div>
           </div>

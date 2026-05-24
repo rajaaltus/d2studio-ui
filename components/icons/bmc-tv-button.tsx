@@ -28,7 +28,7 @@ export function BmcTvButton({
       rel="noopener noreferrer"
       aria-label={label}
       className={
-        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
+        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-200 dark:bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
         (className ? ` ${className}` : "")
       }
     >
@@ -135,7 +135,7 @@ export function BmcTvButton({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 grid place-items-center"
       >
-        <span className="relative block h-[47px] w-[47px] scale-[0.8]">
+        <span className="relative block h-[47px] w-[47px] scale-[0.8] translate-x-px">
           <div className="pixel-icon pixel-icon--coffee absolute inset-0">
             {Array.from({ length: 256 }, (_, i) => (
               <div

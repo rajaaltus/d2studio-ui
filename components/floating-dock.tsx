@@ -50,9 +50,9 @@ const toolItems: ToolItem[] = [
     tag: { label: "Updated", tone: "updated" },
   },
   {
-    name: "Cosma",
-    href: "/cosma",
-    description: "Cosma",
+    name: "Cosmo",
+    href: "/cosmo",
+    description: "Cosmo",
     icon: PixelIconSpinnerStarsFall,
     tag: { label: "New", tone: "new" },
   },

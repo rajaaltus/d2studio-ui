@@ -60,7 +60,7 @@ export function GithubTvButton({
       rel="noopener noreferrer"
       aria-label={label}
       className={
-        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
+        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-200 dark:bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
         (className ? ` ${className}` : "")
       }
     >
@@ -167,7 +167,7 @@ export function GithubTvButton({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 grid place-items-center"
       >
-        <span className="gh-pixel-grid">
+        <span className="gh-pixel-grid translate-x-px">
           {Array.from({ length: 256 }, (_, i) => {
             if (!MASK_CELLS.has(i)) return <span key={i} />;
             const col = i % 16;
