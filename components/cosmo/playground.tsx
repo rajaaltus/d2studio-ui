@@ -934,6 +934,29 @@ export function CosmoPlayground() {
                 <Save size={11} className="mt-[3px] shrink-0 text-emerald-500 dark:text-emerald-400" />
                 <span><span className="text-[var(--ls-foreground)]">Save</span> — keep the current settings as a preset</span>
               </li>
+              <li className="flex items-start gap-2">
+                <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">AI Prompt</span> — copy a ready-made prompt that recreates this look</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
+              Source &amp; color
+            </p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2">
+                <Upload size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Upload</span> — bring your own SVG or image as the particle source</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Custom color</span> — paint particles with any hex you pick</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
+                <span><span className="text-[var(--ls-foreground)]">Custom gradient</span> — fade between two colors and save your own From / To</span>
+              </li>
             </ul>
           </div>
         </div>
