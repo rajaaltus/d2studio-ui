@@ -359,11 +359,14 @@ export function CosmoMorph() {
   const [mouseRadius, setMouseRadius] = React.useState(DEFAULT_MOUSE_RADIUS);
   const [mouseForce, setMouseForce] = React.useState(DEFAULT_MOUSE_FORCE);
 
-  const resetControls = () => {
+  // Stable identity — the onboarding cursor takes this as a prop, and a
+  // fresh function each render would invalidate its effect dep and kill
+  // the demo mid-run.
+  const resetControls = React.useCallback(() => {
     setImageScale(DEFAULT_IMAGE_SCALE);
     setMouseRadius(DEFAULT_MOUSE_RADIUS);
     setMouseForce(DEFAULT_MOUSE_FORCE);
-  };
+  }, []);
 
   // Refs the onboarding cursor uses to compute target positions. Each slider
   // is wrapped in a div solely so the cursor can read its bounding rect.
@@ -496,6 +499,7 @@ export function CosmoMorph() {
         onImageScale={setImageScale}
         onMouseRadius={setMouseRadius}
         onMouseForce={setMouseForce}
+        onReset={resetControls}
       />
 
       {/* Footer — a quiet link out to the full Cosmo playground. */}

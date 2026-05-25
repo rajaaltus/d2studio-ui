@@ -21,6 +21,7 @@ import {
   type SpinnerPattern,
   type SpinnerShape,
 } from "@/components/pixel-spinner";
+import { SpinnerDemoCursor } from "@/components/spinners/spinner-demo-cursor";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -146,11 +147,27 @@ export function SpinnerMorph() {
   const [speed, setSpeed] = React.useState(DEFAULT_SPEED);
   const stageRef = React.useRef<HTMLDivElement>(null);
 
-  const resetControls = () => {
+  // Refs the onboarding cursor uses to compute target positions.
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+  const cellSliderRef = React.useRef<HTMLDivElement | null>(null);
+  const gapSliderRef = React.useRef<HTMLDivElement | null>(null);
+  const speedSliderRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Latest values snapshot — read once when the demo starts so the cursor's
+  // `animate()` calls know their `from` value without re-running on every tick.
+  const valuesRef = React.useRef({ cellSize, gap, speed });
+  React.useEffect(() => {
+    valuesRef.current = { cellSize, gap, speed };
+  }, [cellSize, gap, speed]);
+
+  // Stable identity — the onboarding cursor takes this as a prop, and a
+  // fresh function each render would invalidate its effect dep and kill
+  // the demo mid-run.
+  const resetControls = React.useCallback(() => {
     setCellSize(DEFAULT_CELL_SIZE);
     setGap(DEFAULT_GAP);
     setSpeed(DEFAULT_SPEED);
-  };
+  }, []);
 
   /* Parallax dot grid — scroll-linked translate on the dot-pattern layer,
    * giving the static chip a sense of depth as the page moves around it.
@@ -186,7 +203,10 @@ export function SpinnerMorph() {
   const centerSpinner = GALLERY_SPINNERS[2]; // ember-glow
 
   return (
-    <div className="luminous-spinners overflow-hidden bg-background lg:rounded-xl border m-0">
+    <div
+      ref={wrapperRef}
+      className="luminous-spinners relative overflow-hidden bg-background lg:rounded-xl border m-0"
+    >
       {/* ── CTA ── Headline + subtitle + primary action stand on their own. */}
       <div className="flex flex-col items-center gap-4 px-6 py-10 text-center lg:py-12">
         <h3 className="font-sans text-lg font-medium tracking-tight md:text-xl lg:text-2xl">
@@ -223,33 +243,39 @@ export function SpinnerMorph() {
               </button>
             </div>
             <div className="space-y-2.5">
-              <TickSlider
-                label="Cell size"
-                value={cellSize}
-                min={6}
-                max={32}
-                step={1}
-                unit="px"
-                editable
-                onChange={setCellSize}
-              />
-              <TickSlider
-                label="Gap"
-                value={gap}
-                min={0}
-                max={12}
-                step={1}
-                unit="px"
-                onChange={setGap}
-              />
-              <TickSlider
-                label="Speed"
-                value={speed}
-                min={1}
-                max={20}
-                step={1}
-                onChange={setSpeed}
-              />
+              <div ref={cellSliderRef}>
+                <TickSlider
+                  label="Cell size"
+                  value={cellSize}
+                  min={6}
+                  max={32}
+                  step={1}
+                  unit="px"
+                  editable
+                  onChange={setCellSize}
+                />
+              </div>
+              <div ref={gapSliderRef}>
+                <TickSlider
+                  label="Gap"
+                  value={gap}
+                  min={0}
+                  max={12}
+                  step={1}
+                  unit="px"
+                  onChange={setGap}
+                />
+              </div>
+              <div ref={speedSliderRef}>
+                <TickSlider
+                  label="Speed"
+                  value={speed}
+                  min={1}
+                  max={20}
+                  step={1}
+                  onChange={setSpeed}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -355,6 +381,18 @@ export function SpinnerMorph() {
           </div>
         </div>
       </div>
+
+      <SpinnerDemoCursor
+        wrapper={wrapperRef}
+        cellSlider={cellSliderRef}
+        gapSlider={gapSliderRef}
+        speedSlider={speedSliderRef}
+        current={valuesRef}
+        onCellSize={setCellSize}
+        onGap={setGap}
+        onSpeed={setSpeed}
+        onReset={resetControls}
+      />
 
       {/* Footer — a quiet link out to the full spinner playground. */}
       <div className="flex justify-center border-t border-[var(--ls-border)] px-6 py-5">

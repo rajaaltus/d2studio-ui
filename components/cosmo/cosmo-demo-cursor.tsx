@@ -35,14 +35,23 @@ type DemoCursorProps = Targets & {
   onImageScale: (v: number) => void;
   onMouseRadius: (v: number) => void;
   onMouseForce: (v: number) => void;
+  onReset: () => void;
 };
 
-const SESSION_KEY = "cosmo-demo-cursor-played-v6";
+const SESSION_KEY = "cosmo-demo-cursor-played-v11";
 
 type CursorMode = "arrow" | "grab";
 const TARGET_IMAGE = 0.45;
 const TARGET_RADIUS = 54;
 const TARGET_FORCE = 8;
+
+// Each slider's value range — used to map a value to a position along its
+// track so the cursor can ride the thumb during a drag.
+const RANGES = {
+  image: { min: 0.2, max: 1.5 },
+  radius: { min: 0, max: 240 },
+  force: { min: 0, max: 120 },
+} as const;
 
 export function DemoCursor({
   wrapper,
@@ -54,6 +63,7 @@ export function DemoCursor({
   onImageScale,
   onMouseRadius,
   onMouseForce,
+  onReset,
 }: DemoCursorProps) {
   const reduceMotion = useReducedMotion();
   const [visible, setVisible] = React.useState(false);
@@ -105,6 +115,60 @@ export function DemoCursor({
       };
     };
 
+    // Position the cursor where the slider's red indicator actually sits.
+    // DialSlider's indicator is fixed at the track center (the strip of ticks
+    // scrolls underneath), so the cursor locks to centre and "holds" the
+    // pointer in place. TickSlider's indicator slides to `pct%` of the track,
+    // so the cursor rides along with it.
+    const thumbPoint = (
+      slider: React.RefObject<HTMLDivElement | null>,
+      range: { min: number; max: number },
+      value: number,
+    ) => {
+      const wr = wrap.getBoundingClientRect();
+      const outer = slider.current;
+      if (!outer) return { x: wr.width / 2, y: wr.height / 2 };
+      const dialTrack = outer.querySelector<HTMLElement>('[role="slider"]');
+      const track =
+        dialTrack ??
+        outer.querySelector<HTMLElement>('input[type="range"]') ??
+        outer;
+      const r = track.getBoundingClientRect();
+      const t = dialTrack
+        ? 0.5
+        : Math.min(
+            1,
+            Math.max(0, (value - range.min) / (range.max - range.min)),
+          );
+      return {
+        x: r.left - wr.left + t * r.width,
+        y: r.top - wr.top + r.height / 2,
+      };
+    };
+
+    // Drive a slider from its current value to `target`, moving the cursor
+    // along the track in lock-step so it reads as a real drag.
+    const dragSlider = async (
+      slider: React.RefObject<HTMLDivElement | null>,
+      range: { min: number; max: number },
+      get: () => number,
+      set: (v: number) => void,
+      target: number,
+      duration: number,
+      decimals: number,
+    ) => {
+      await animate(get(), target, {
+        duration,
+        ease: "easeInOut",
+        onUpdate: (v) => {
+          set(decimals === 0 ? Math.round(v) : Number(v.toFixed(decimals)));
+          const pt = thumbPoint(slider, range, v);
+          x.set(pt.x);
+          y.set(pt.y);
+        },
+      }).finished;
+    };
+
     const run = async () => {
       if (cancelled || interactedEarly) return;
       try {
@@ -115,79 +179,123 @@ export function DemoCursor({
 
       const wr = wrap.getBoundingClientRect();
       const startX = wr.width + 140;
-      const img = center(imageSlider.current);
-      const rad = center(radiusSlider.current);
-      const force = center(forceSlider.current);
+      // Land on each slider at its current thumb position, not the center —
+      // so the grab starts where a real cursor would actually pick up.
+      const imgEntry = thumbPoint(
+        imageSlider,
+        RANGES.image,
+        current.current.imageScale,
+      );
+      const radEntry = thumbPoint(
+        radiusSlider,
+        RANGES.radius,
+        current.current.mouseRadius,
+      );
+      const forceEntry = thumbPoint(
+        forceSlider,
+        RANGES.force,
+        current.current.mouseForce,
+      );
       const canv = center(canvas.current);
 
       // Start off-screen right, blurred and invisible. The wrapper has
       // overflow-hidden, so positioning past its right edge is enough to
       // clip the cursor cleanly.
       x.set(startX);
-      y.set(img.y);
+      y.set(imgEntry.y);
       blur.set(28);
       opacity.set(0);
       setCursorMode("arrow");
       setVisible(true);
 
-      // 1) Enter — drift in toward the first control, blur clears.
+      // 1) Enter — drift in toward the image-size thumb, blur clears.
       await Promise.all([
         animate(opacity, 1, { duration: 0.45, ease: "easeOut" }).finished,
         animate(blur, 0, { duration: 0.55, ease: "easeOut" }).finished,
-        animate(x, img.x, { duration: 1.0, ease: [0.22, 1, 0.36, 1] }).finished,
-        animate(y, img.y, { duration: 1.0, ease: [0.22, 1, 0.36, 1] }).finished,
+        animate(x, imgEntry.x, {
+          duration: 1.0,
+          ease: [0.22, 1, 0.36, 1],
+        }).finished,
+        animate(y, imgEntry.y, {
+          duration: 1.0,
+          ease: [0.22, 1, 0.36, 1],
+        }).finished,
       ]);
       if (cancelled) return;
       await wait(160);
 
-      // 2) Adjust image size — morph to grab while gripping the slider.
+      // 2) Grab and drag image size — cursor rides the thumb across the track.
       setCursorMode("grab");
       await wait(130);
-      await animate(current.current.imageScale, TARGET_IMAGE, {
-        duration: 0.7,
-        ease: "easeInOut",
-        onUpdate: (v) => onImageScale(Number(v.toFixed(2))),
-      }).finished;
+      await dragSlider(
+        imageSlider,
+        RANGES.image,
+        () => current.current.imageScale,
+        onImageScale,
+        TARGET_IMAGE,
+        0.7,
+        2,
+      );
       if (cancelled) return;
       await wait(140);
 
-      // 3) Move to radius — release back to arrow while traveling.
+      // 3) Release and travel to the radius thumb.
       setCursorMode("arrow");
       await Promise.all([
-        animate(x, rad.x, { duration: 0.55, ease: [0.5, 0, 0.2, 1] }).finished,
-        animate(y, rad.y, { duration: 0.55, ease: [0.5, 0, 0.2, 1] }).finished,
+        animate(x, radEntry.x, {
+          duration: 0.55,
+          ease: [0.5, 0, 0.2, 1],
+        }).finished,
+        animate(y, radEntry.y, {
+          duration: 0.55,
+          ease: [0.5, 0, 0.2, 1],
+        }).finished,
       ]);
       if (cancelled) return;
       await wait(100);
 
-      // 4) Adjust radius.
+      // 4) Drag radius to target.
       setCursorMode("grab");
       await wait(130);
-      await animate(current.current.mouseRadius, TARGET_RADIUS, {
-        duration: 0.55,
-        ease: "easeInOut",
-        onUpdate: (v) => onMouseRadius(Math.round(v)),
-      }).finished;
+      await dragSlider(
+        radiusSlider,
+        RANGES.radius,
+        () => current.current.mouseRadius,
+        onMouseRadius,
+        TARGET_RADIUS,
+        0.55,
+        0,
+      );
       if (cancelled) return;
       await wait(140);
 
-      // 5) Move to force.
+      // 5) Travel to the force thumb.
       setCursorMode("arrow");
       await Promise.all([
-        animate(x, force.x, { duration: 0.5, ease: [0.5, 0, 0.2, 1] }).finished,
-        animate(y, force.y, { duration: 0.5, ease: [0.5, 0, 0.2, 1] }).finished,
+        animate(x, forceEntry.x, {
+          duration: 0.5,
+          ease: [0.5, 0, 0.2, 1],
+        }).finished,
+        animate(y, forceEntry.y, {
+          duration: 0.5,
+          ease: [0.5, 0, 0.2, 1],
+        }).finished,
       ]);
       if (cancelled) return;
       await wait(100);
 
-      // 6) Adjust force.
+      // 6) Drag force to target.
       setCursorMode("grab");
       await wait(130);
-      await animate(current.current.mouseForce, TARGET_FORCE, {
-        duration: 0.45,
-        ease: "easeInOut",
-        onUpdate: (v) => onMouseForce(Math.round(v)),
-      }).finished;
+      await dragSlider(
+        forceSlider,
+        RANGES.force,
+        () => current.current.mouseForce,
+        onMouseForce,
+        TARGET_FORCE,
+        0.45,
+        0,
+      );
       if (cancelled) return;
       await wait(180);
 
@@ -252,6 +360,12 @@ export function DemoCursor({
       ]);
       if (cancelled) return;
       setVisible(false);
+
+      // 10) Once the cursor is gone, snap the controls back to their
+      //     defaults — same effect as the user hitting the reset button.
+      await wait(180);
+      if (cancelled) return;
+      onReset();
     };
 
     // Trigger when ~70% of the section is on screen. On viewports too short
@@ -294,6 +408,7 @@ export function DemoCursor({
     onImageScale,
     onMouseForce,
     onMouseRadius,
+    onReset,
     opacity,
     radiusSlider,
     reduceMotion,
@@ -365,7 +480,9 @@ export function DemoCursor({
 
 /* ── Cursor mark pieces ──────────────────────────────────────────────── */
 
-function PillSvg() {
+export function PillSvg({
+  color = "#2B96D8",
+}: { color?: string } = {}) {
   // The "You" pill lives in its own SVG so the cursor head above can be
   // swapped/morphed without re-laying-out the label.
   return (
@@ -376,7 +493,7 @@ function PillSvg() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect x={10} y={23} width={78} height={41} rx={20.5} fill="#2B96D8" />
+      <rect x={10} y={23} width={78} height={41} rx={20.5} fill={color} />
       <circle
         cx={32.5}
         cy={43.5}
@@ -408,7 +525,10 @@ function PillSvg() {
   );
 }
 
-function ArrowHead() {
+export function ArrowHead({
+  color = "#0087FF",
+  colorDeep = "#4B5BE5",
+}: { color?: string; colorDeep?: string } = {}) {
   return (
     <svg
       width={20}
@@ -417,21 +537,17 @@ function ArrowHead() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M17.4 13.36 L8.6 13.52 L2.6 20 L2.6 0 Z"
-        fill="#0087FF"
-      />
-      <path
-        d="M17.4 13.36 L8.6 13.52 L2.6 0 Z"
-        fill="#4B5BE5"
-      />
+      <path d="M17.4 13.36 L8.6 13.52 L2.6 20 L2.6 0 Z" fill={color} />
+      <path d="M17.4 13.36 L8.6 13.52 L2.6 0 Z" fill={colorDeep} />
     </svg>
   );
 }
 
-function GrabHead() {
+export function GrabHead({
+  color = "#0087FF",
+}: { color?: string } = {}) {
   // Closed-fist "grabbing" pointer — Lucide's HandGrab knuckles + wrist,
-  // filled with the brand blue and outlined in white so it reads against
+  // filled with the brand accent and outlined in white so it reads against
   // both the dark canvas and the brighter slider rows. Sized so the
   // pinch point sits near (3, 2) — the cursor tip is already nudged by
   // translate(-2px, 0) at the wrapper, so the visual contact lands very
@@ -441,7 +557,7 @@ function GrabHead() {
       width={22}
       height={22}
       viewBox="0 0 24 24"
-      fill="#0087FF"
+      fill={color}
       stroke="#FFFFFF"
       strokeWidth={2}
       strokeLinecap="round"

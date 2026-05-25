@@ -93,7 +93,7 @@ export default function HomePage() {
             <IsoCodeIcon />
             <IsoIcon src="/Heart Icon 2.svg" label="Heart Icon 2" mobileSide="left" />
             <CenterPixelIcon />
-            <IsoIcon src="/Isocons Rocket 2.svg" label="Isocons Rocket 2" mobileSide="right" />
+            <IsoIcon src="/Isocons Rocket 2.svg" label="Isocons Rocket 2" mobileSide="right" visualScale={1.1} />
             <IsoIcon src="/Close Fullscreen Icon 4.svg" label="Close Fullscreen ..." />
           </div>
 
@@ -195,6 +195,7 @@ export default function HomePage() {
               src="/Close Fullscreen Icon 4.svg"
               label="Close Fullscreen Icon 4"
               mobileSide="right"
+              visualScale={1.1}
             />
           </div>
           <div className="flex flex-col items-center md:items-start text-center md:text-left px-6 md:pl-16 lg:pl-20 md:pr-6 gap-3 max-w-xl">
@@ -223,16 +224,20 @@ function IsoIcon({
   src,
   label,
   mobileSide,
+  visualScale = 1,
 }: {
   src: string;
   label: string;
   mobileSide?: "left" | "right";
+  // Compensate for SVGs whose drawn content fills its 80×80 viewBox less than
+  // its neighbors (e.g. the rocket is ~69% wide while the heart is ~84%).
+  visualScale?: number;
 }) {
   const visibility = mobileSide ? "" : "hidden sm:block";
 
   return (
     <div
-      className={`shrink-0 opacity-80 brightness-150 dark:brightness-80 ${visibility}`.trim()}
+      className={`shrink-0 opacity-80 brightness-150 dark:brightness-80 ${visibility} flex items-center justify-center overflow-visible`.trim()}
     >
       <Image
         src={src}
@@ -240,6 +245,7 @@ function IsoIcon({
         width={125}
         height={125}
         className="w-[72px] h-[72px] md:w-[96px] md:h-[96px] lg:w-[125px] lg:h-[125px]"
+        style={visualScale !== 1 ? { transform: `scale(${visualScale})`, transformOrigin: "center" } : undefined}
       />
     </div>
   );
