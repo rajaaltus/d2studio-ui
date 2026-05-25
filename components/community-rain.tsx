@@ -87,6 +87,10 @@ const DUMMY_PEOPLE: RainPerson[] = [
   { name: "Amira Hassan", platform: "x" },
   { name: "Leo Park", platform: "x" },
   { name: "ihirwart", platform: "x" },
+  { name: "navidalizadeh", platform: "x" },
+  { name: "kritikakodes", platform: "x" },
+  { name: "EscrowGate", platform: "x" },
+  { name: "uix_yana", platform: "x" },
 ];
 
 const HEART_COLOR: Record<RainPlatform, string> = {
@@ -103,6 +107,18 @@ interface CommunityRainProps {
   spawnIntervalMs?: number;
 }
 
+function shuffle<T>(arr: readonly T[], avoidFirst?: T): T[] {
+  const result = arr.slice();
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  if (avoidFirst && result.length > 1 && result[0] === avoidFirst) {
+    [result[0], result[1]] = [result[1], result[0]];
+  }
+  return result;
+}
+
 export function CommunityRain({
   people = DUMMY_PEOPLE,
   className,
@@ -112,7 +128,8 @@ export function CommunityRain({
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const counterRef = React.useRef(0);
-  const lastIndexRef = React.useRef(-1);
+  const queueRef = React.useRef<RainPerson[]>([]);
+  const lastPersonRef = React.useRef<RainPerson | undefined>(undefined);
 
   React.useEffect(() => {
     if (!containerRef.current) return;
@@ -127,13 +144,15 @@ export function CommunityRain({
   React.useEffect(() => {
     if (people.length === 0 || height === 0) return;
 
+    queueRef.current = shuffle(people);
+    lastPersonRef.current = undefined;
+
     const spawn = () => {
-      let idx = Math.floor(Math.random() * people.length);
-      if (idx === lastIndexRef.current && people.length > 1) {
-        idx = (idx + 1) % people.length;
+      if (queueRef.current.length === 0) {
+        queueRef.current = shuffle(people, lastPersonRef.current);
       }
-      lastIndexRef.current = idx;
-      const pick = people[idx];
+      const pick = queueRef.current.shift()!;
+      lastPersonRef.current = pick;
       const id = ++counterRef.current;
       setHearts((cur) => [
         ...cur,
