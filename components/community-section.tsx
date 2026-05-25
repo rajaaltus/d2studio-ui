@@ -456,6 +456,21 @@ const xEngagers: RainPerson[] = [
     platform: "x",
     avatarSrc: "https://unavatar.io/x/mriduljoshi_",
   },
+  {
+    name: "Girish",
+    platform: "x",
+    avatarSrc: "https://unavatar.io/x/GirishR88486448",
+  },
+  {
+    name: "DevTenta",
+    platform: "x",
+    avatarSrc: "https://unavatar.io/x/DevTenta",
+  },
+  {
+    name: "Batsou",
+    platform: "x",
+    avatarSrc: "https://unavatar.io/x/BatsouElef",
+  },
 ];
 
 const threadsEngagers: RainPerson[] = [
