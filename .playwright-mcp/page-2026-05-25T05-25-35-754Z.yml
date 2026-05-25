@@ -1,0 +1,168 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "D2 Studio" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e8]
+          - generic [ref=e9]:
+            - link "Blocks" [ref=e10] [cursor=pointer]:
+              - /url: /blocks
+            - link "Spinners Updated" [ref=e11] [cursor=pointer]:
+              - /url: /spinners
+              - text: Spinners
+              - generic [ref=e13]: Updated
+            - link "Cosmo New" [ref=e14] [cursor=pointer]:
+              - /url: /cosmo
+              - text: Cosmo
+              - generic [ref=e16]: New
+            - link "Docs" [ref=e17] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=e18]:
+            - link "Buy me a coffee" [ref=e19] [cursor=pointer]:
+              - /url: https://buymeacoffee.com/godwindev
+              - img [ref=e20]
+              - generic [ref=e22]: Buy me a coffee
+            - switch "Toggle theme" [checked] [ref=e23]:
+              - img [ref=e25]
+    - generic [ref=e28]:
+      - heading "Explore Blocks" [level=1] [ref=e29]
+      - paragraph [ref=e30]: Browse our collection of beautifully designed blocks. Each block includes a Figma file and code (when available).
+    - contentinfo [ref=e42]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - link "D2 Studio" [ref=e49] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=e50]
+          - paragraph [ref=e51]: A premium collection of copy & paste components built with React, Tailwind CSS and shadcn/ui. Beautiful, accessible, and ready for production.
+          - generic [ref=e52]: New blocks shipping every weekend
+        - generic [ref=e63]:
+          - heading "Library" [level=3] [ref=e64]
+          - list [ref=e65]:
+            - listitem [ref=e66]:
+              - link "Blocks" [ref=e67] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e68]: Blocks
+            - listitem [ref=e69]:
+              - link "Spinners" [ref=e70] [cursor=pointer]:
+                - /url: /spinners
+                - generic [ref=e71]: Spinners
+            - listitem [ref=e72]:
+              - link "Cosmo" [ref=e73] [cursor=pointer]:
+                - /url: /cosmo
+                - generic [ref=e74]: Cosmo
+            - listitem [ref=e75]:
+              - link "Components" [ref=e76] [cursor=pointer]:
+                - /url: /blocks
+                - generic [ref=e77]: Components
+            - listitem [ref=e78]:
+              - link "Docs" [ref=e79] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e80]: Docs
+        - generic [ref=e81]:
+          - heading "Resources" [level=3] [ref=e82]
+          - list [ref=e83]:
+            - listitem [ref=e84]:
+              - link "Getting started" [ref=e85] [cursor=pointer]:
+                - /url: /docs
+                - generic [ref=e86]: Getting started
+            - listitem [ref=e87]:
+              - link "Changelog" [ref=e88] [cursor=pointer]:
+                - /url: /docs#changelog
+                - generic [ref=e89]: Changelog
+            - listitem [ref=e90]:
+              - link "shadcn/ui" [ref=e91] [cursor=pointer]:
+                - /url: https://ui.shadcn.com
+                - generic [ref=e92]: shadcn/ui
+                - img [ref=e93]
+            - listitem [ref=e96]:
+              - link "Tailwind CSS" [ref=e97] [cursor=pointer]:
+                - /url: https://tailwindcss.com
+                - generic [ref=e98]: Tailwind CSS
+                - img [ref=e99]
+        - generic [ref=e102]:
+          - heading "Connect" [level=3] [ref=e103]
+          - list [ref=e104]:
+            - listitem [ref=e105]:
+              - generic [ref=e106]:
+                - link "X / @uxgodwin" [ref=e107] [cursor=pointer]:
+                  - /url: https://x.com/uxgodwin
+                  - generic [ref=e108]: X / @uxgodwin
+                  - img [ref=e109]
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=e112]:
+              - generic [ref=e113]:
+                - link "X / @rajaaltus" [ref=e114] [cursor=pointer]:
+                  - /url: https://x.com/rajaaltus
+                  - generic [ref=e115]: X / @rajaaltus
+                  - img [ref=e116]
+                - tooltip "Raja Altus":
+                  - img "Raja Altus"
+            - listitem [ref=e119]:
+              - generic [ref=e120]:
+                - link "Threads" [ref=e121] [cursor=pointer]:
+                  - /url: https://www.threads.com/@godwin.d2
+                  - generic [ref=e122]: Threads
+                  - img [ref=e123]
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=e126]:
+              - link "GitHub" [ref=e127] [cursor=pointer]:
+                - /url: https://github.com/godwin159
+                - generic [ref=e128]: GitHub
+                - img [ref=e129]
+            - listitem [ref=e132]:
+              - link "Buy me a coffee" [ref=e133] [cursor=pointer]:
+                - /url: https://buymeacoffee.com/godwindev
+                - generic [ref=e134]: Buy me a coffee
+                - img [ref=e135]
+      - generic [ref=e139]:
+        - generic [ref=e140]:
+          - text: © 2026
+          - link "D2 Studio" [ref=e141] [cursor=pointer]:
+            - /url: https://www.d2studio.dev/
+          - generic [ref=e142]: ·
+          - text: Built with
+          - generic [ref=e143]:
+            - img [ref=e144]
+            - img
+            - img
+            - img
+          - text: for the community.
+        - generic [ref=e146]:
+          - link "X (formerly Twitter)" [ref=e147] [cursor=pointer]:
+            - /url: https://x.com/uxgodwin
+            - img [ref=e148]
+          - link "Threads" [ref=e150] [cursor=pointer]:
+            - /url: https://www.threads.com/@godwin.d2
+            - img [ref=e151]
+          - link "GitHub" [ref=e153] [cursor=pointer]:
+            - /url: https://github.com/godwin159
+            - img [ref=e154]
+      - generic [ref=e157]:
+        - generic [ref=e158]: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+        - generic:
+          - generic: D2 STUDIO
+  - generic [ref=e159]:
+    - heading "Command palette" [level=2] [ref=e160]
+    - paragraph [ref=e161]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e162]:
+    - button "All" [ref=e163]:
+      - generic [ref=e177]: All
+      - img [ref=e178]
+    - button "Tools New" [ref=e181]:
+      - generic [ref=e194]: Tools
+      - generic [ref=e196]: New
+      - img [ref=e197]
+    - button "Switch to light mode" [ref=e200]:
+      - img [ref=e201]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e208] [cursor=pointer]:
+    - img [ref=e209]
+  - alert [ref=e212]

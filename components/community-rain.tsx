@@ -87,6 +87,9 @@ const DUMMY_PEOPLE: RainPerson[] = [
   { name: "Amira Hassan", platform: "x" },
   { name: "Leo Park", platform: "x" },
   { name: "ihirwart", platform: "x" },
+  { name: "navidalizadeh", platform: "x" },
+  { name: "kritikakodes", platform: "x" },
+  { name: "EscrowGate", platform: "x" },
 ];
 
 const HEART_COLOR: Record<RainPlatform, string> = {

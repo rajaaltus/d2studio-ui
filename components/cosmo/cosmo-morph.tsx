@@ -19,6 +19,7 @@ import {
   type TargetAndTransition,
 } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { DemoCursor } from "@/components/cosmo/cosmo-demo-cursor";
 
 /**
  * Particle-morph section for the homepage. The "Copy. Paste. Ship." CTA stands
@@ -364,8 +365,31 @@ export function CosmoMorph() {
     setMouseForce(DEFAULT_MOUSE_FORCE);
   };
 
+  // Refs the onboarding cursor uses to compute target positions. Each slider
+  // is wrapped in a div solely so the cursor can read its bounding rect.
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+  const imageSliderRef = React.useRef<HTMLDivElement | null>(null);
+  const radiusSliderRef = React.useRef<HTMLDivElement | null>(null);
+  const forceSliderRef = React.useRef<HTMLDivElement | null>(null);
+  const canvasContainerRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Latest values snapshot — read once when the demo starts so the cursor's
+  // `animate()` calls know their `from` value without re-running on every
+  // tick of state change.
+  const valuesRef = React.useRef({
+    imageScale,
+    mouseRadius,
+    mouseForce,
+  });
+  React.useEffect(() => {
+    valuesRef.current = { imageScale, mouseRadius, mouseForce };
+  }, [imageScale, mouseRadius, mouseForce]);
+
   return (
-    <div className="luminous-spinners overflow-hidden bg-background lg:rounded-xl border m-0">
+    <div
+      ref={wrapperRef}
+      className="luminous-spinners relative overflow-hidden bg-background lg:rounded-xl border m-0"
+    >
       {/* ── CTA ── Headline + subtitle + primary action stand on their own,
           so nothing competes with the page's top focal point. */}
       <div className="flex flex-col items-center gap-4 px-6 py-10 text-center lg:py-12">
@@ -409,33 +433,39 @@ export function CosmoMorph() {
               </button>
             </div>
             <div className="space-y-2.5">
-              <DialSlider
-                label="Image size"
-                value={imageScale}
-                min={0.2}
-                max={1.5}
-                step={0.01}
-                warnAbove={0.45}
-                editable
-                onChange={setImageScale}
-              />
-              <TickSlider
-                label="Radius"
-                value={mouseRadius}
-                min={0}
-                max={240}
-                step={1}
-                unit="px"
-                onChange={setMouseRadius}
-              />
-              <TickSlider
-                label="Force"
-                value={mouseForce}
-                min={0}
-                max={120}
-                step={1}
-                onChange={setMouseForce}
-              />
+              <div ref={imageSliderRef}>
+                <DialSlider
+                  label="Image size"
+                  value={imageScale}
+                  min={0.2}
+                  max={1.5}
+                  step={0.01}
+                  warnAbove={0.45}
+                  editable
+                  onChange={setImageScale}
+                />
+              </div>
+              <div ref={radiusSliderRef}>
+                <TickSlider
+                  label="Radius"
+                  value={mouseRadius}
+                  min={0}
+                  max={240}
+                  step={1}
+                  unit="px"
+                  onChange={setMouseRadius}
+                />
+              </div>
+              <div ref={forceSliderRef}>
+                <TickSlider
+                  label="Force"
+                  value={mouseForce}
+                  min={0}
+                  max={120}
+                  step={1}
+                  onChange={setMouseForce}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -443,7 +473,10 @@ export function CosmoMorph() {
         {/* Particle canvas — right. Dark mode uses the site background so the
             panel blends in; light mode keeps a fixed dark backdrop, since the
             particles use additive ("lighter") compositing and only read on dark. */}
-        <div className="relative order-1 min-h-[300px] bg-[#0c0c0c] dark:bg-background lg:order-2 lg:min-h-[440px]">
+        <div
+          ref={canvasContainerRef}
+          className="relative order-1 min-h-[300px] bg-[#0c0c0c] dark:bg-background lg:order-2 lg:min-h-[440px]"
+        >
           <CosmoCanvas
             imageScale={imageScale}
             mouseMode={mouseMode}
@@ -452,6 +485,18 @@ export function CosmoMorph() {
           />
         </div>
       </div>
+
+      <DemoCursor
+        wrapper={wrapperRef}
+        imageSlider={imageSliderRef}
+        radiusSlider={radiusSliderRef}
+        forceSlider={forceSliderRef}
+        canvas={canvasContainerRef}
+        current={valuesRef}
+        onImageScale={setImageScale}
+        onMouseRadius={setMouseRadius}
+        onMouseForce={setMouseForce}
+      />
 
       {/* Footer — a quiet link out to the full Cosmo playground. */}
       <div className="flex justify-center border-t border-[var(--ls-border)] px-6 py-5">

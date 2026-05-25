@@ -1,0 +1,101 @@
+/* Coming Soon pixel spinner — 3×3 circles, 4-frame, violet trail with full-strength pop. */
+
+.cs-spinner {
+  --cs-cell: 4px;
+  --cs-gap: 1px;
+  --cs-duration: 800ms;
+  --cs-glow: 0;
+  --cs-c-from: oklch(0.78 0.14 295);
+  --cs-c-to: oklch(0.45 0.22 295);
+  --cs-c-halo: 280 80% 60%;
+
+  display: inline-grid;
+  grid-template-columns: repeat(3, var(--cs-cell));
+  gap: var(--cs-gap);
+}
+
+.cs-spinner .cs-cell {
+  width: var(--cs-cell);
+  height: var(--cs-cell);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cs-c-from), var(--cs-c-to));
+  box-shadow:
+    0 0 calc(0px * var(--cs-glow)) hsla(var(--cs-c-halo) / 0.95),
+    0 0 calc(0px * var(--cs-glow)) hsla(var(--cs-c-halo) / 0.75),
+    0 0 calc(0px * var(--cs-glow)) hsla(var(--cs-c-halo) / 0.55),
+    0 0 calc(0px * var(--cs-glow)) hsla(var(--cs-c-halo) / 0.35);
+  opacity: 0;
+  transform: scale(1);
+  filter: brightness(1) saturate(1);
+  animation-iteration-count: infinite;
+  animation-duration: var(--cs-duration), var(--cs-duration);
+}
+
+/* Diagonal cells (0, 8): peak at frame 0 (0%) */
+.cs-spinner .cs-c0,
+.cs-spinner .cs-c8 {
+  animation-name: cs-trail, cs-pop;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-delay: 0ms, 0ms;
+}
+
+/* Center column (1, 7): peak at frame 1 (25%) */
+.cs-spinner .cs-c1,
+.cs-spinner .cs-c7 {
+  animation-name: cs-trail, cs-pop;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-delay: 200ms, 200ms;
+}
+
+/* Anti-diagonal (2, 6): peak at frame 2 (50%) */
+.cs-spinner .cs-c2,
+.cs-spinner .cs-c6 {
+  animation-name: cs-trail, cs-pop;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-delay: 400ms, 400ms;
+}
+
+/* Middle row (3, 5): peak at frame 3 (75%) */
+.cs-spinner .cs-c3,
+.cs-spinner .cs-c5 {
+  animation-name: cs-trail, cs-pop;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-delay: 600ms, 600ms;
+}
+
+/* Center cell (4): always on, pops with frame 0 */
+.cs-spinner .cs-c4 {
+  opacity: 1;
+  animation-name: cs-pop;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-duration: var(--cs-duration);
+  animation-delay: 0ms;
+}
+
+@keyframes cs-trail {
+  0%   { opacity: 1; }
+  25%  { opacity: 0.5; }
+  50%  { opacity: 0.25; }
+  75%  { opacity: 0.15; }
+  100% { opacity: 1; }
+}
+
+/* Pop curve: 480ms within the 800ms cycle (60% window). 1× strength deltas.
+   Pop stops at 0/22/48/72/100% of pop → 0/13.2/28.8/43.2/60% of cycle. */
+@keyframes cs-pop {
+  0%     { transform: scale(1);     filter: brightness(1)     saturate(1); }
+  13.2%  { transform: scale(0.700); filter: brightness(1.350) saturate(1.250); }
+  28.8%  { transform: scale(1.180); filter: brightness(1.200) saturate(1.150); }
+  43.2%  { transform: scale(0.960); filter: brightness(1.100) saturate(1.075); }
+  60%    { transform: scale(1);     filter: brightness(1)     saturate(1); }
+  100%   { transform: scale(1);     filter: brightness(1)     saturate(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-spinner .cs-cell {
+    animation: none;
+    opacity: 0.85;
+    transform: none;
+    filter: none;
+  }
+}
