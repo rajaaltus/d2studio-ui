@@ -15,6 +15,7 @@ type Testimonial = {
   avatarSrc?: string;
   verified?: boolean;
   quote: string;
+  fullWidth?: boolean;
 };
 
 const testimonials: Testimonial[] = [
@@ -202,6 +203,16 @@ const testimonials: Testimonial[] = [
     avatar: "TW",
     avatarSrc: "/thewilliamfox.jpg",
     quote: "Incredible craft,...",
+  },
+  {
+    name: "aimltutorviktoria",
+    handle: "@aimltutorviktoria",
+    platform: "threads",
+    href: "https://www.threads.com/@aimltutorviktoria/post/DYxxmJajUzr?xmt=AQG0RVS-F7RJNvWYYwe0FvRSUIoli7ztghRwbPJJAp4uGQ",
+    avatar: "AV",
+    avatarSrc: "/aimltutorviktoria.jpg",
+    quote: "Wow i love to drag theese, design is crazy",
+    fullWidth: true,
   },
 ];
 
@@ -539,6 +550,11 @@ const threadsEngagers: RainPerson[] = [
     platform: "threads",
     avatarSrc: "/mHazel .jpg",
   },
+  {
+    name: "aimltutorviktoria",
+    platform: "threads",
+    avatarSrc: "/aimltutorviktoria.jpg",
+  },
 ];
 
 const rainPeople: RainPerson[] = Array.from(
@@ -584,8 +600,17 @@ export function CommunitySection() {
 }
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
-  const { name, handle, platform, href, avatar, avatarSrc, verified, quote } =
-    testimonial;
+  const {
+    name,
+    handle,
+    platform,
+    href,
+    avatar,
+    avatarSrc,
+    verified,
+    quote,
+    fullWidth,
+  } = testimonial;
   const PlatformIcon = platform === "x" ? XIcon : ThreadsIcon;
   const platformLabel = platform === "x" ? "View on X" : "View on Threads";
 
@@ -595,9 +620,17 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${platformLabel} — ${name}`}
-      className="testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors hover:bg-foreground/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+      className={`testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors hover:bg-foreground/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset${
+        fullWidth
+          ? " md:col-span-2 lg:col-span-3 md:items-center md:text-center"
+          : ""
+      }`}
     >
-      <header className="flex items-center justify-between gap-3">
+      <header
+        className={`flex items-center gap-3 justify-between${
+          fullWidth ? " md:justify-center" : ""
+        }`}
+      >
         <div className="flex items-center gap-3 min-w-0">
           {avatarSrc ? (
             <img
@@ -635,7 +668,11 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           <PlatformIcon className="h-3.5 w-3.5" />
         </span>
       </header>
-      <p className="text-sm leading-relaxed text-foreground/80">
+      <p
+        className={`leading-relaxed text-foreground/80 ${
+          fullWidth ? "text-base md:text-lg max-w-2xl" : "text-sm"
+        }`}
+      >
         &ldquo;{quote}&rdquo;
       </p>
     </Link>

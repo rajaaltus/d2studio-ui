@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { motion } from "motion/react";
 import {
   Check,
   ChevronUp,
@@ -290,7 +291,7 @@ function DockInner() {
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
+              className="group inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
             >
               <span
                 aria-hidden
@@ -326,7 +327,7 @@ function DockInner() {
                     key={c.slug}
                     href={c.slug === "all" ? "/blocks" : `/blocks?type=${c.slug}`}
                     onClick={() => setBlocksOpen(false)}
-                    className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
+                    className="group flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
                   >
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground/80 transition-colors group-hover:text-foreground">
                       <Icon className="h-4 w-4" />
@@ -353,7 +354,7 @@ function DockInner() {
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="group inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
+              className="group inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground"
             >
               <span
                 aria-hidden
@@ -397,7 +398,7 @@ function DockInner() {
                     key={t.href}
                     href={t.href}
                     onClick={() => setToolsOpen(false)}
-                    className="group flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
+                    className="group flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted"
                   >
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground/80 transition-colors group-hover:text-foreground">
                       <Icon className="h-4 w-4" />
@@ -435,15 +436,44 @@ function DockInner() {
           onClick={() => setTheme(isDark ? "light" : "dark")}
           aria-label={mounted ? `Switch to ${isDark ? "light" : "dark"} mode` : "Toggle theme"}
           suppressHydrationWarning
-          className="relative inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+          className="relative inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
         >
-          {mounted ? (
-            isDark ? (
-              <MoonStar className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )
-          ) : null}
+          {mounted && (
+            <span className="relative inline-block h-4 w-4">
+              <motion.span
+                className="absolute inset-0 inline-flex items-center justify-center"
+                initial={false}
+                animate={{
+                  scale: isDark ? 1 : 0,
+                  rotate: isDark ? 0 : 360,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: isDark ? 0.2 : 0,
+                }}
+                style={{ willChange: "transform" }}
+              >
+                <MoonStar className="h-4 w-4" />
+              </motion.span>
+              <motion.span
+                className="absolute inset-0 inline-flex items-center justify-center"
+                initial={false}
+                animate={{
+                  scale: isDark ? 0 : 1,
+                  rotate: isDark ? 0 : 360,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: isDark ? 0 : 0.2,
+                }}
+                style={{ willChange: "transform" }}
+              >
+                <Sun className="h-4 w-4" />
+              </motion.span>
+            </span>
+          )}
         </button>
       </nav>
     </div>

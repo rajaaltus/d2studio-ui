@@ -64,18 +64,22 @@ export function ThemeProvider({
   defaultTheme = "system",
   enableSystem = true,
   disableTransitionOnChange = false,
+  initialTheme,
+  initialResolvedTheme,
 }: {
   children: React.ReactNode;
   defaultTheme?: Theme;
   enableSystem?: boolean;
   disableTransitionOnChange?: boolean;
   attribute?: string;
+  initialTheme?: Theme;
+  initialResolvedTheme?: Resolved;
 }) {
-  const [theme, setThemeState] = React.useState<Theme>(() =>
-    readStoredTheme(defaultTheme)
+  const [theme, setThemeState] = React.useState<Theme>(
+    () => initialTheme ?? readStoredTheme(defaultTheme)
   );
-  const [systemTheme, setSystemTheme] = React.useState<Resolved>(() =>
-    getSystemTheme()
+  const [systemTheme, setSystemTheme] = React.useState<Resolved>(
+    () => initialResolvedTheme ?? getSystemTheme()
   );
 
   React.useEffect(() => {
@@ -118,12 +122,24 @@ export function ThemeProvider({
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
-  const setTheme = React.useCallback((next: Theme) => {
-    setThemeState(next);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, next);
-    } catch {}
-  }, []);
+  const setTheme = React.useCallback(
+    (next: Theme) => {
+      setThemeState(next);
+      try {
+        window.localStorage.setItem(STORAGE_KEY, next);
+      } catch {}
+      try {
+        const resolved: Resolved =
+          next === "system"
+            ? enableSystem
+              ? getSystemTheme()
+              : "light"
+            : next;
+        document.cookie = `${STORAGE_KEY}=${resolved}; path=/; max-age=31536000; SameSite=Lax`;
+      } catch {}
+    },
+    [enableSystem]
+  );
 
   const value = React.useMemo<ThemeContextValue>(
     () => ({

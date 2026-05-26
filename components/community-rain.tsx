@@ -61,7 +61,7 @@ const DUMMY_PEOPLE: RainPerson[] = [
   { name: "justverybroken", platform: "threads" },
   { name: "Hồng Linh", platform: "threads" },
   { name: "anaqi", platform: "threads" },
-  { name: "Kirill", platform: "threads" },
+  { name: "Kirill Svystun", platform: "threads", avatarSrc: "/Kirill Svystun Threads Image.jpg" },
   { name: "Bismark Gyau", platform: "threads" },
   { name: "Baptiste Ducrocq", platform: "threads" },
   { name: "Nadim Massih", platform: "threads" },
@@ -70,6 +70,7 @@ const DUMMY_PEOPLE: RainPerson[] = [
   { name: "scars.in.heaven", platform: "threads" },
   { name: "Haoxi", platform: "threads" },
   { name: "Sohum M", platform: "threads" },
+  { name: "alfianhvfiz", platform: "threads", avatarSrc: "/alfianhvfiz.jpg" },
   // X engagers
   { name: "Alex Rivera", platform: "x" },
   { name: "Marcus Park", platform: "x" },
