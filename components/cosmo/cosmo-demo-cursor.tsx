@@ -496,11 +496,24 @@ function DemoCursorImpl({
 
 /* ── Cursor mark pieces ──────────────────────────────────────────────── */
 
+export type AvatarStop = { offset: string; color: string };
+
+const DEFAULT_AVATAR_STOPS: AvatarStop[] = [
+  { offset: "0%", color: "#FFD3B5" },
+  { offset: "55%", color: "#9B8CFF" },
+  { offset: "100%", color: "#3F2E7A" },
+];
+
 export function PillSvg({
   color = "#2B96D8",
-}: { color?: string } = {}) {
+  avatarStops = DEFAULT_AVATAR_STOPS,
+}: { color?: string; avatarStops?: AvatarStop[] } = {}) {
   // The "You" pill lives in its own SVG so the cursor head above can be
   // swapped/morphed without re-laying-out the label.
+  // `useId` keeps the avatar gradient unique per instance so two pills on
+  // the page (cosmo + spinner sections) don't share a single <defs> id.
+  const reactId = React.useId();
+  const gradientId = `demoCursorAvatar-${reactId.replace(/:/g, "")}`;
   return (
     <svg
       width={88}
@@ -514,7 +527,7 @@ export function PillSvg({
         cx={32.5}
         cy={43.5}
         r={13.25}
-        fill="url(#demoCursorAvatar)"
+        fill={`url(#${gradientId})`}
         stroke="white"
         strokeWidth={2.5}
       />
@@ -523,18 +536,22 @@ export function PillSvg({
         fill="white"
       />
       <defs>
-        {/* Soft brand-gradient avatar in place of a photo — keeps the visual
-            language without shipping a 30KB base64 portrait. */}
+        {/* Soft radial avatar — caller can override the stops to retune the
+            disc for the surrounding pill color. */}
         <radialGradient
-          id="demoCursorAvatar"
-          cx="0.35"
-          cy="0.3"
-          r="0.85"
+          id={gradientId}
+          cx="0.32"
+          cy="0.28"
+          r="0.95"
           gradientUnits="objectBoundingBox"
         >
-          <stop offset="0%" stopColor="#FFD3B5" />
-          <stop offset="55%" stopColor="#9B8CFF" />
-          <stop offset="100%" stopColor="#3F2E7A" />
+          {avatarStops.map((stop) => (
+            <stop
+              key={stop.offset}
+              offset={stop.offset}
+              stopColor={stop.color}
+            />
+          ))}
         </radialGradient>
       </defs>
     </svg>

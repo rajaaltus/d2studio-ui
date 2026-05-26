@@ -462,14 +462,14 @@ function TryYoursLink() {
           </motion.div>
         )}
       </AnimatePresence>
-      <span>Wanna get it free?</span>
+      <span>100% Free</span>
       <Link
         href="/spinners"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className="inline-flex items-center gap-1 underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--ls-foreground)]"
       >
-        Try yours
+        Get yours
         <ArrowUpRight size={12} />
       </Link>
     </div>
