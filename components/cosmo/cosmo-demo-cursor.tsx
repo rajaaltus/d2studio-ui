@@ -53,7 +53,23 @@ const RANGES = {
   force: { min: 0, max: 120 },
 } as const;
 
-export function DemoCursor({
+// Outer guard — keeps the heavy motion.div tree (useMotionValue, useTransform,
+// nested AnimatePresence) out of the React tree entirely on sub-lg viewports.
+// The intro is desktop-only, so mobile shouldn't pay for it at all.
+export function DemoCursor(props: DemoCursorProps) {
+  const [enabled, setEnabled] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setEnabled(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setEnabled(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  if (!enabled) return null;
+  return <DemoCursorImpl {...props} />;
+}
+
+function DemoCursorImpl({
   wrapper,
   imageSlider,
   radiusSlider,
