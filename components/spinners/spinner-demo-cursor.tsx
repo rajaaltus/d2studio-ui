@@ -56,6 +56,15 @@ const PILL_COLOR = "#E25822";
 const HEAD_COLOR = "#FF8A3D";
 const HEAD_DEEP = "#A8421A";
 
+// Avatar stops — cool neon disc against the warm pill so the "You" badge
+// reads as eye-catching rather than tonal mush. Cyan center → magenta mid
+// → deep indigo edge gives a complementary jolt opposite the ember orange.
+const AVATAR_STOPS = [
+  { offset: "0%", color: "#5EEAFF" },
+  { offset: "55%", color: "#FF49C2" },
+  { offset: "100%", color: "#1E0F4A" },
+];
+
 // Each slider's value range — used to map a value to a position along its
 // track so the cursor can ride the thumb instead of standing still.
 const RANGES = {
@@ -391,7 +400,7 @@ function SpinnerDemoCursorImpl({
       }}
     >
       <div className="relative" style={{ transform: "translate(-2px, 0)" }}>
-        <PillSvg color={PILL_COLOR} />
+        <PillSvg color={PILL_COLOR} avatarStops={AVATAR_STOPS} />
         <div
           className="absolute left-0 top-0"
           style={{ width: 22, height: 22 }}

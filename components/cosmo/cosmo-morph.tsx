@@ -563,14 +563,14 @@ function TryYoursLink() {
           </motion.div>
         )}
       </AnimatePresence>
-      <span>Wanna get?</span>
+      <span>Wanna build custom? </span>
       <Link
         href="/cosmo"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className="inline-flex items-center gap-1 underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--ls-foreground)]"
       >
-        Try yours
+        Get here
         <ArrowUpRight size={12} />
       </Link>
     </div>
