@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
+import { cookies } from "next/headers";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeFlashScript } from "@/components/theme-flash-script";
@@ -115,16 +116,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieTheme = cookieStore.get("theme")?.value;
+  const initialResolvedTheme: "light" | "dark" =
+    cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : "dark";
+
   return (
     <ConvexAuthNextjsServerProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html
+        lang="en"
+        className={initialResolvedTheme === "dark" ? "dark" : undefined}
+        style={{ colorScheme: initialResolvedTheme }}
+        suppressHydrationWarning
+      >
         <head>
-          <ThemeFlashScript defaultTheme="dark" />
+          <ThemeFlashScript />
           <GoogleAnalytics />
         </head>
         <body
@@ -134,6 +145,8 @@ export default function RootLayout({
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
+            initialTheme={initialResolvedTheme}
+            initialResolvedTheme={initialResolvedTheme}
           >
             <SkipToContent />
             <RouteProgress />

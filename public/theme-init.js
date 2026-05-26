@@ -1,4 +1,4 @@
-const themeInitScript = `(function () {
+(function () {
   try {
     var d = document.documentElement;
     var s = localStorage.getItem("theme") || "dark";
@@ -11,16 +11,5 @@ const themeInitScript = `(function () {
     if (r === "dark") d.classList.add("dark");
     else d.classList.remove("dark");
     d.style.colorScheme = r;
-    document.cookie =
-      "theme=" + r + "; path=/; max-age=31536000; SameSite=Lax";
   } catch (e) {}
-})();`;
-
-export function ThemeFlashScript() {
-  return (
-    <script
-      dangerouslySetInnerHTML={{ __html: themeInitScript }}
-      suppressHydrationWarning
-    />
-  );
-}
+})();

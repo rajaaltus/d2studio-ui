@@ -39,7 +39,7 @@ const HeroSection2 = () => {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold pb-4 text-center">
               Designers & Developers
             </h2>
-            <p className="max-w-lg text-center font-mono text-sm md:text-base px-4">
+            <p className="max-w-lg text-center text-sm md:text-base px-4">
               A premium Collection of copy and paste components built with
               React, TailWind CSS, & Shadcn/UI. Beautiful, accessible, and ready
               for production.
