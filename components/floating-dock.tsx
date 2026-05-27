@@ -240,6 +240,17 @@ function DockInner() {
   React.useEffect(() => setMounted(true), []);
   const isDark = mounted ? resolvedTheme === "dark" : false;
 
+  // Below the Tailwind `xl` breakpoint (1280px) we use a cheap opacity
+  // crossfade instead of the scale + 360° rotate icon swap.
+  const [lite, setLite] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1279px)");
+    const update = () => setLite(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const isOnBlocksPage = pathname.startsWith("/blocks");
   const activeCategorySlug = isOnBlocksPage
     ? (searchParams.get("type") ?? "all")
@@ -295,7 +306,7 @@ function DockInner() {
             >
               <span
                 aria-hidden
-                className="hidden h-5 w-5 items-center justify-center md:inline-flex"
+                className="hidden h-5 w-5 items-center justify-center sm:inline-flex"
               >
                 <BlocksTriggerIcon className="h-4 w-4" />
               </span>
@@ -358,7 +369,7 @@ function DockInner() {
             >
               <span
                 aria-hidden
-                className="hidden h-5 w-5 items-center justify-center md:inline-flex"
+                className="hidden h-5 w-5 items-center justify-center sm:inline-flex"
               >
                 <ToolsTriggerIcon className="h-4 w-4" />
               </span>
@@ -438,42 +449,50 @@ function DockInner() {
           suppressHydrationWarning
           className="relative inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
         >
-          {mounted && (
-            <span className="relative inline-block h-4 w-4">
-              <motion.span
-                className="absolute inset-0 inline-flex items-center justify-center"
-                initial={false}
-                animate={{
-                  scale: isDark ? 1 : 0,
-                  rotate: isDark ? 0 : 360,
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: isDark ? 0.2 : 0,
-                }}
-                style={{ willChange: "transform" }}
-              >
+          <span className="relative inline-flex h-4 w-4 items-center justify-center">
+            {lite ? (
+              isDark ? (
                 <MoonStar className="h-4 w-4" />
-              </motion.span>
-              <motion.span
-                className="absolute inset-0 inline-flex items-center justify-center"
-                initial={false}
-                animate={{
-                  scale: isDark ? 0 : 1,
-                  rotate: isDark ? 0 : 360,
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: isDark ? 0 : 0.2,
-                }}
-                style={{ willChange: "transform" }}
-              >
+              ) : (
                 <Sun className="h-4 w-4" />
-              </motion.span>
-            </span>
-          )}
+              )
+            ) : (
+              <>
+                <motion.span
+                  className="absolute inset-0 inline-flex items-center justify-center"
+                  initial={false}
+                  animate={{
+                    scale: isDark ? 1 : 0,
+                    rotate: isDark ? 0 : 360,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: isDark ? 0.2 : 0,
+                  }}
+                  style={{ willChange: "transform" }}
+                >
+                  <MoonStar className="h-4 w-4" />
+                </motion.span>
+                <motion.span
+                  className="absolute inset-0 inline-flex items-center justify-center"
+                  initial={false}
+                  animate={{
+                    scale: isDark ? 0 : 1,
+                    rotate: isDark ? 0 : 360,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: isDark ? 0 : 0.2,
+                  }}
+                  style={{ willChange: "transform" }}
+                >
+                  <Sun className="h-4 w-4" />
+                </motion.span>
+              </>
+            )}
+          </span>
         </button>
       </nav>
     </div>
