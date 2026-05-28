@@ -58,8 +58,10 @@ const AdminDashboard = () => {
       <DashboardHeader onSeedData={handleSeedData} isSeeding={isSeeding} />
       <OverviewStats dashboardStats={dashboardStats} />
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <TopBlocksCard dashboardStats={dashboardStats} />
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <TopBlocksCard dashboardStats={dashboardStats} />
+        </div>
         <TopCategoriesCard dashboardStats={dashboardStats} />
       </div>
 
