@@ -235,31 +235,37 @@ export default function EditBlockPage() {
 
   if (!block || !categoriesList) {
     return (
-      <div className="container mx-auto py-8 max-w-4xl">
-        <div className="flex min-h-[400px] items-center justify-center">
-          <div className="text-center space-y-2">
-            <Loader2 className="h-4 w-4 animate-spin mx-auto" stroke="currentColor" />
-            <p>Loading...</p>
-          </div>
+      <div className="flex min-h-[400px] items-center justify-center">
+        <div className="text-center space-y-2">
+          <Loader2 className="h-4 w-4 animate-spin mx-auto" stroke="currentColor" />
+          <p>Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-8 max-w-4xl">
-      <div className="mb-6">
-        <Button asChild variant="ghost">
-          <Link href="/admin/blocks">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Blocks
-          </Link>
-        </Button>
+    <div className="space-y-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <Button asChild variant="ghost" size="icon">
+            <Link href="/admin/blocks">
+              <ArrowLeft className="h-4 w-4" />
+              <span className="sr-only">Back to Blocks</span>
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Edit Block</h1>
+            <p className="text-sm text-muted-foreground">
+              {block.title}
+            </p>
+          </div>
+        </div>
       </div>
 
-      <Card>
+      <Card className="mx-auto w-full max-w-5xl">
         <CardHeader>
-          <CardTitle>Edit Block</CardTitle>
+          <CardTitle>Block Details</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

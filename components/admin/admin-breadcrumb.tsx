@@ -52,20 +52,25 @@ export function AdminBreadcrumb() {
     });
   });
 
-  if (breadcrumbItems.length === 1) {
-    return null; // Don't show breadcrumb on dashboard
-  }
+  const isDashboard = breadcrumbItems.length === 1;
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/admin" className="flex items-center">
+          {isDashboard ? (
+            <BreadcrumbPage className="flex items-center">
               <Home className="mr-1 h-3 w-3" />
               Dashboard
-            </Link>
-          </BreadcrumbLink>
+            </BreadcrumbPage>
+          ) : (
+            <BreadcrumbLink asChild>
+              <Link href="/admin" className="flex items-center">
+                <Home className="mr-1 h-3 w-3" />
+                Dashboard
+              </Link>
+            </BreadcrumbLink>
+          )}
         </BreadcrumbItem>
 
         {adminSegments.map((segment, index) => {

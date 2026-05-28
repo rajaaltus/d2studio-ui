@@ -1,10 +1,13 @@
 import { Metadata } from "next";
-import { AdminNavigation } from "@/components/admin/admin-navigation";
-import { AdminBreadcrumb } from "@/components/admin/admin-breadcrumb";
-import { AdminGuard } from "@/components/admin/admin-guard";
-import { Toaster } from "@/components/ui/sonner";
-export const dynamic = "force-dynamic";
+import { cookies } from "next/headers";
 
+import { AdminGuard } from "@/components/admin/admin-guard";
+import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { AdminTopbar } from "@/components/admin/admin-topbar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: {
@@ -15,26 +18,25 @@ export const metadata: Metadata = {
     "Manage blocks, analytics, and system configuration for D2 Studio",
 };
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const sidebarCookie = cookieStore.get("sidebar_state")?.value;
+  const defaultOpen = sidebarCookie ? sidebarCookie === "true" : true;
+
   return (
     <AdminGuard>
-      <div className="min-h-screen bg-background">
-        <AdminNavigation />
-        <div className="flex-1">
-          <div className="border-b bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/50">
-            <div className="container mx-auto px-4 py-3"></div>
-          </div>
-          <main className="max-w-6xl mx-auto px-4 py-6">
-            <AdminBreadcrumb />
-            {children}
-          </main>
-        </div>
+      <SidebarProvider defaultOpen={defaultOpen}>
+        <AdminSidebar />
+        <SidebarInset className="min-w-0">
+          <AdminTopbar />
+          <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+        </SidebarInset>
         <Toaster />
-      </div>
+      </SidebarProvider>
     </AdminGuard>
   );
 }

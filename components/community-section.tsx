@@ -20,6 +20,16 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
+    name: "aimltutorviktoria",
+    handle: "@aimltutorviktoria",
+    platform: "threads",
+    href: "https://www.threads.com/@aimltutorviktoria/post/DYxxmJajUzr?xmt=AQG0RVS-F7RJNvWYYwe0FvRSUIoli7ztghRwbPJJAp4uGQ",
+    avatar: "AV",
+    avatarSrc: "/aimltutorviktoria.jpg",
+    quote: "Wow i love to drag theese, design is crazy",
+    fullWidth: true,
+  },
+  {
     name: "Navadeep Goleti",
     handle: "@navadeepgoleti",
     platform: "x",
@@ -203,16 +213,6 @@ const testimonials: Testimonial[] = [
     avatar: "TW",
     avatarSrc: "/thewilliamfox.jpg",
     quote: "Incredible craft,...",
-  },
-  {
-    name: "aimltutorviktoria",
-    handle: "@aimltutorviktoria",
-    platform: "threads",
-    href: "https://www.threads.com/@aimltutorviktoria/post/DYxxmJajUzr?xmt=AQG0RVS-F7RJNvWYYwe0FvRSUIoli7ztghRwbPJJAp4uGQ",
-    avatar: "AV",
-    avatarSrc: "/aimltutorviktoria.jpg",
-    quote: "Wow i love to drag theese, design is crazy",
-    fullWidth: true,
   },
 ];
 

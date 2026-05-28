@@ -1,633 +1,428 @@
 "use client";
 
 import * as React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Clock,
-  Bed,
-  DollarSign,
-  User,
-  Star,
-  ChefHat,
-  Car,
-  CheckCircle,
-  Users,
-  Lock,
-  Settings,
-  ChevronDown,
-  Search,
-  Calendar,
-  MoreVertical,
-  TrendingUp,
-  TrendingDown,
-  Users2,
-  Menu,
-  X,
-} from "lucide-react";
+  IconSparkle,
+  IconAppStack,
+  IconFiles,
+  IconMagicWandSparkle,
+  IconChartBar,
+  IconUsers,
+} from "nucleo-glass";
 import { cn } from "@/lib/utils";
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
-
-interface Booking {
-  guestName: string;
-  bookingId: string;
-  guestCount: number;
-  roomNumber: string;
-  roomType: string;
-  checkIn: string;
-  checkOut: string;
-  payment: string;
-  status: "Confirmed" | "Checked - In" | "Cancelled";
-}
-
-// ─── Data ───────────────────────────────────────────────────────────────────────
-
-const bookings: Booking[] = [
+const navItems = [
   {
-    guestName: "Mr. John Smith",
-    bookingId: "#25145",
-    guestCount: 4,
-    roomNumber: "No.07",
-    roomType: "Suit Room",
-    checkIn: "Aug 20, 2025",
-    checkOut: "Aug 24, 2025",
-    payment: "1400.00",
-    status: "Confirmed",
+    id: "structured",
+    label: "Structured Content",
+    icon: IconAppStack,
+    active: true,
   },
-  {
-    guestName: "Ms. Nathan Zboncak",
-    bookingId: "#25146",
-    guestCount: 3,
-    roomNumber: "No.12",
-    roomType: "Deluxe Room",
-    checkIn: "Aug 21, 2025",
-    checkOut: "Aug 25, 2025",
-    payment: "345.00",
-    status: "Confirmed",
-  },
-  {
-    guestName: "Mr. Howard Goodwin",
-    bookingId: "#25147",
-    guestCount: 1,
-    roomNumber: "No.30",
-    roomType: "Premium Room",
-    checkIn: "Aug 22, 2025",
-    checkOut: "Aug 26, 2025",
-    payment: "173.00",
-    status: "Checked - In",
-  },
-  {
-    guestName: "Cornelius Davis Sr.",
-    bookingId: "#25148",
-    guestCount: 1,
-    roomNumber: "No.001",
-    roomType: "Villa VIP",
-    checkIn: "Aug 23, 2025",
-    checkOut: "Aug 27, 2025",
-    payment: "740.00",
-    status: "Confirmed",
-  },
-  {
-    guestName: "Mrs. Cecelia Oberbrunner",
-    bookingId: "#25149",
-    guestCount: 2,
-    roomNumber: "No.55",
-    roomType: "Economic",
-    checkIn: "Aug 24, 2025",
-    checkOut: "Aug 28, 2025",
-    payment: "85.00",
-    status: "Cancelled",
-  },
-  {
-    guestName: "Ms. Jodi Carter",
-    bookingId: "#25150",
-    guestCount: 2,
-    roomNumber: "No.24",
-    roomType: "Suit Room",
-    checkIn: "Aug 25, 2025",
-    checkOut: "Aug 29, 2025",
-    payment: "214.00",
-    status: "Checked - In",
-  },
+  { id: "summarizer", label: "Summarizer", icon: IconFiles },
+  { id: "prompts", label: "Creative Prompts", icon: IconMagicWandSparkle },
+  { id: "data", label: "Data Visualization", icon: IconChartBar },
+  { id: "engagement", label: "User Engagement Strategies", icon: IconUsers },
 ];
 
-// ─── Sub-components ─────────────────────────────────────────────────────────────
-
-function StatusBadge({ status }: { status: Booking["status"] }) {
-  const variants = {
-    Confirmed: "bg-[#E8F5E9] text-[#2E7D32] border-[#4CAF50]",
-    "Checked - In": "bg-[#F3E5F5] text-[#7B1FA2] border-[#9C27B0]",
-    Cancelled: "bg-[#FFEBEE] text-[#C62828] border-[#E53935]",
-  };
+export default function Block01() {
+  const [activeTab, setActiveTab] = React.useState("structured");
 
   return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-xs font-medium whitespace-nowrap",
-        variants[status],
-      )}
-    >
-      {status}
-    </span>
-  );
-}
-
-function NavItem({
-  icon: Icon,
-  label,
-  active = false,
-  onClick,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  active?: boolean;
-  onClick?: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={cn(
-        "relative flex w-full items-center gap-3 px-3 py-2 rounded-md cursor-pointer transition-colors text-left",
-        active
-          ? "bg-gray-50 text-gray-900"
-          : "text-gray-500 hover:bg-gray-50 hover:text-gray-700",
-      )}
-    >
-      {active && (
-        <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#FF6B47] rounded-r-md" />
-      )}
-      <Icon className="h-4 w-4 shrink-0" />
-      <span className="text-sm font-medium">{label}</span>
-    </button>
-  );
-}
-
-function MetricCard({
-  title,
-  value,
-  change,
-  trend,
-}: {
-  title: string;
-  value: string;
-  change: string;
-  trend: "up" | "down";
-}) {
-  return (
-    <Card className="bg-white border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)] rounded-xl">
-      <CardContent className="p-4 sm:p-5">
-        <div className="text-xs sm:text-sm text-gray-500 mb-1.5">{title}</div>
-        <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1.5">
-          {value}
-        </div>
-        <div
-          className={cn(
-            "flex items-center gap-1 text-xs sm:text-sm font-medium",
-            trend === "up" ? "text-[#2E7D32]" : "text-[#C62828]",
-          )}
-        >
-          {trend === "up" ? (
-            <TrendingUp className="h-3.5 w-3.5" />
-          ) : (
-            <TrendingDown className="h-3.5 w-3.5" />
-          )}
-          <span>{change}</span>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-// ─── Sidebar Nav Content ────────────────────────────────────────────────────────
-
-function SidebarContent({ onClose }: { onClose?: () => void }) {
-  return (
-    <>
-      {/* Logo and Branding */}
-      <div className="px-5 py-4 border-b border-gray-100">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-9 h-9 bg-[#4A4A4A] rounded flex items-center justify-center shrink-0">
-            <span className="text-white font-semibold text-xs">D2</span>
-          </div>
-          <span className="text-sm font-medium text-gray-700">
-            Studio Management
-          </span>
-        </div>
-        <Button
-          variant="outline"
-          className="w-full justify-between border-gray-200 rounded-md bg-white hover:bg-gray-50"
-        >
-          <span className="text-sm font-medium text-gray-700">D2 Studio</span>
-          <ChevronDown className="h-4 w-4 text-gray-500" />
-        </Button>
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 px-4 py-4 overflow-y-auto">
-        <div className="mb-5">
-          <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">
-            Hotel Management
-          </h3>
-          <div className="space-y-0.5">
-            <NavItem icon={Clock} label="Overview" onClick={onClose} />
-            <NavItem icon={Bed} label="Rooms" onClick={onClose} />
-            <NavItem icon={DollarSign} label="Expenditures" onClick={onClose} />
-          </div>
-        </div>
-
-        <div className="mb-5">
-          <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">
-            Guest Booking
-          </h3>
-          <div className="space-y-0.5">
-            <NavItem
-              icon={User}
-              label="Guest Booking"
-              active
-              onClick={onClose}
-            />
-            <NavItem icon={Star} label="Special Request" onClick={onClose} />
-            <NavItem icon={ChefHat} label="Food Orders" onClick={onClose} />
-            <NavItem icon={Car} label="Transport Booking" onClick={onClose} />
-            <NavItem
-              icon={CheckCircle}
-              label="Do not Disturb"
-              onClick={onClose}
-            />
-          </div>
-        </div>
-
-        <div>
-          <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">
-            Control Panel
-          </h3>
-          <div className="space-y-0.5">
-            <NavItem icon={Users} label="User Accounts" onClick={onClose} />
-            <NavItem
-              icon={Lock}
-              label="System and Security"
-              onClick={onClose}
-            />
-            <NavItem icon={Settings} label="Roles" onClick={onClose} />
-            <NavItem icon={Settings} label="Settings" onClick={onClose} />
-          </div>
-        </div>
-      </nav>
-    </>
-  );
-}
-
-// ─── Mobile Card Row ────────────────────────────────────────────────────────────
-
-function BookingCard({ booking }: { booking: Booking }) {
-  return (
-    <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <div className="font-medium text-gray-900 text-sm">
-            {booking.guestName}
-          </div>
-          <div className="text-xs text-gray-400 mt-0.5">
-            ID: {booking.bookingId}
-          </div>
-        </div>
+    <section className="w-full min-h-screen bg-white dark:bg-[#000000] py-16 px-4 md:px-6 flex flex-col items-center gap-8 font-sans transition-colors duration-500 overflow-x-hidden">
+      {/* Header section */}
+      <div className="flex flex-col items-center text-center gap-3 group cursor-default max-w-[700px]">
         <div className="flex items-center gap-2">
-          <StatusBadge status={booking.status} />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-7 w-7 text-gray-400"
-              >
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-40">
-              <DropdownMenuItem className="text-gray-700">
-                View Details
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-gray-700">
-                Edit Booking
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-red-600">
-                Cancel Booking
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <IconSparkle className="size-[28px] sm:size-[32px] text-zinc-900 dark:text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-12" />
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#E3E3E3] dark:to-[#A3A3A3] transition-all duration-300 leading-tight">
+            AI writing Assistant
+          </h1>
         </div>
+        <p className="text-zinc-500 dark:text-[#848484] text-base sm:text-lg font-normal transition-colors duration-300">
+          Transform your ideas into polished content with AI-powered writing
+          tools.
+        </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-        <div>
-          <span className="text-gray-400">Room</span>
-          <div className="font-medium text-gray-800">
-            {booking.roomNumber} · {booking.roomType}
-          </div>
-        </div>
-        <div>
-          <span className="text-gray-400">Guests</span>
-          <div className="font-medium text-gray-800 flex items-center gap-1">
-            <Users2 className="h-3.5 w-3.5 text-gray-400" />
-            {booking.guestCount}
-          </div>
-        </div>
-        <div>
-          <span className="text-gray-400">Check-in</span>
-          <div className="font-medium text-gray-800">{booking.checkIn}</div>
-        </div>
-        <div>
-          <span className="text-gray-400">Check-out</span>
-          <div className="font-medium text-gray-800">{booking.checkOut}</div>
-        </div>
-        <div className="col-span-2">
-          <span className="text-gray-400">Payment</span>
-          <div className="font-semibold text-gray-900">${booking.payment}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Main Default Export ────────────────────────────────────────────────────────
-
-export default function Dashboard01() {
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
-
-  return (
-    <div className="flex min-h-screen bg-[#F5F5F5] font-sans">
-      {/* ── Desktop Sidebar (lg+) ─────────────────────────── */}
-      <aside className="hidden lg:flex w-60 xl:w-64 bg-white shadow-[2px_0_4px_rgba(0,0,0,0.04)] flex-col shrink-0">
-        <SidebarContent />
-      </aside>
-
-      {/* ── Mobile Drawer Overlay ─────────────────────────── */}
-      {sidebarOpen && (
+      {/* Navigation Bar (Glass effect) */}
+      <div className="w-full max-w-[900px] overflow-x-auto no-scrollbar pb-2 flex justify-start lg:justify-center">
         <div
-          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+          className="h-[44px] bg-[#F9F9F9] dark:bg-[#111111] rounded-xl border border-[#D3D3D7] dark:border-[#2A2A2E] p-1 flex items-center gap-1 transition-all duration-300 flex-nowrap shadow-sm"
+          style={{
+            boxShadow: "inset 0 1px 1px rgba(0, 0, 0, 0.05)",
+          }}
+        >
+          {navItems.map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={cn(
+                  "h-[34px] px-3.5 flex items-center gap-2 rounded-lg text-[13px] font-medium transition-all duration-300 whitespace-nowrap outline-none",
+                  isActive
+                    ? "bg-white dark:bg-[#202020] text-zinc-900 dark:text-white border border-[#D3D3D7] dark:border-[#38383C] animate-giggle"
+                    : "text-[#18181B]/50 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white",
+                )}
+                style={
+                  isActive
+                    ? {
+                        filter: "drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1))",
+                        boxShadow: "inset 0 -1px 2px rgba(0, 0, 0, 0.05)",
+                      }
+                    : {}
+                }
+              >
+                <item.icon
+                  className={cn(
+                    "size-3.5",
+                    isActive ? "opacity-100" : "opacity-50",
+                  )}
+                />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-      {/* ── Mobile Sidebar Drawer ─────────────────────────── */}
-      <aside
-        className={cn(
-          "fixed top-0 left-0 z-50 h-full w-72 bg-white shadow-xl flex flex-col transition-transform duration-300 ease-in-out lg:hidden",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full",
-        )}
-      >
-        <div className="flex items-center justify-between px-5 pt-4 pb-2">
-          <span className="text-sm font-semibold text-gray-700">Menu</span>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 text-gray-500"
-            onClick={() => setSidebarOpen(false)}
+      {/* Dynamic Content Grid */}
+      <div className="w-full max-w-[1280px] pt-4 relative min-h-[580px]">
+        {/* Structured Content Tab */}
+        {activeTab === "structured" && (
+          <div
+            key="structured"
+            className="grid grid-cols-1 md:grid-cols-12 gap-6 animate-spring-in"
           >
-            <X className="h-4 w-4" />
-          </Button>
-        </div>
-        <SidebarContent onClose={() => setSidebarOpen(false)} />
-      </aside>
+            {/* Large Featured Card (Left) */}
+            <div className="md:col-span-5 bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-1.5 transition-all duration-500 group/big hover:border-zinc-300 dark:hover:border-[#333]">
+              <div className="w-full h-full bg-white dark:bg-[#161616] rounded-[24px] border border-zinc-100 dark:border-[#222] shadow-sm flex flex-col p-3 overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 dark:bg-blue-500/10 blur-[80px] rounded-full pointer-events-none" />
 
-      {/* ── Main Content ──────────────────────────────────── */}
-      <main className="flex-1 min-w-0">
-        {/* Mobile top bar */}
-        <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100 shadow-sm sticky top-0 z-30">
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-gray-500"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-[#4A4A4A] rounded flex items-center justify-center">
-                <span className="text-white font-semibold text-[10px]">D2</span>
+                <div className="flex-1 w-full bg-zinc-50 dark:bg-[#0C0B0B] rounded-2xl border border-zinc-100 dark:border-[#1F1F1F] shadow-inner mb-4 flex flex-col p-2.5 gap-3 relative overflow-hidden group-hover/big:bg-zinc-100/30 dark:group-hover/big:bg-[#111] transition-colors duration-500">
+                  <div className="flex items-center gap-2">
+                    <div className="size-2.5 rounded-full bg-red-400/80" />
+                    <div className="size-2.5 rounded-full bg-amber-400/80" />
+                    <div className="size-2.5 rounded-full bg-emerald-400/80" />
+                  </div>
+                  <div className="w-3/4 h-3.5 bg-zinc-200 dark:bg-zinc-800 rounded-md animate-pulse" />
+                  <div className="space-y-2.5">
+                    <div className="w-full h-2 bg-zinc-100 dark:bg-zinc-900 rounded-full" />
+                    <div className="w-full h-2 bg-zinc-100 dark:bg-zinc-900 rounded-full opacity-60" />
+                    <div className="w-5/6 h-2 bg-zinc-100 dark:bg-zinc-900 rounded-full opacity-40" />
+                    <div className="w-full h-2 bg-zinc-100 dark:bg-zinc-900 rounded-full" />
+                  </div>
+                  <div className="mt-auto flex items-center justify-between">
+                    <div className="flex -space-x-1.5">
+                      {[1, 2, 3].map((i) => (
+                        <div
+                          key={i}
+                          className="size-7 rounded-full border border-white dark:border-[#161616] bg-zinc-200 dark:bg-zinc-800"
+                        />
+                      ))}
+                    </div>
+                    <div className="px-3 py-1.5 bg-white dark:bg-zinc-800 rounded-lg shadow-sm border border-zinc-100 dark:border-zinc-700 text-[11px] font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide">
+                      Status: Active
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-3 relative z-10">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-md text-[10px] font-bold tracking-wider uppercase">
+                    Structured
+                  </div>
+                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white group-hover/big:translate-x-1 transition-transform">
+                    Long-form Articles
+                  </h3>
+                  <p className="text-zinc-500 dark:text-white/60 text-sm leading-relaxed">
+                    Perfectly formatted articles with headers and section
+                    metadata.
+                  </p>
+                </div>
               </div>
-              <span className="text-sm font-semibold text-gray-700">
-                Studio
-              </span>
+            </div>
+
+            {/* Secondary Cards Column (Right) */}
+            <div className="md:col-span-7 flex flex-col gap-6">
+              <div className="flex-1 bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-1.5 group/item hover:border-zinc-300 dark:hover:border-[#333] transition-all duration-500">
+                <div className="w-full h-full bg-white dark:bg-[#161616] rounded-[24px] border border-zinc-100 dark:border-[#222] shadow-sm p-3 flex flex-col sm:flex-row gap-5 items-start sm:items-center">
+                  <div className="size-20 bg-zinc-100/50 dark:bg-[#0C0B0B] rounded-2xl border border-zinc-200/50 dark:border-[#1F1F1F] flex-shrink-0 flex items-center justify-center shadow-inner relative overflow-hidden">
+                    <IconFiles className="size-10 text-blue-500 dark:text-blue-400 relative z-10" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                      Smart Summarizer
+                    </h3>
+                    <p className="text-zinc-500 dark:text-white/60 text-sm leading-relaxed">
+                      Condense complex academic papers or long reports into key
+                      digestible points.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-1.5 group/item hover:border-zinc-300 dark:hover:border-[#333] transition-all duration-500">
+                <div className="w-full h-full bg-white dark:bg-[#161616] rounded-[24px] border border-zinc-100 dark:border-[#222] shadow-sm p-3 flex flex-col sm:flex-row gap-5 items-start sm:items-center">
+                  <div className="size-20 bg-zinc-100/50 dark:bg-[#0C0B0B] rounded-2xl border border-zinc-200/50 dark:border-[#1F1F1F] flex-shrink-0 flex items-center justify-center shadow-inner relative overflow-hidden">
+                    <IconMagicWandSparkle className="size-10 text-purple-500 dark:text-purple-400 relative z-10" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                      Creative Prompts
+                    </h3>
+                    <p className="text-zinc-500 dark:text-white/60 text-sm leading-relaxed">
+                      Unlock creative potential with contextual prompt
+                      suggestions tailored to your style.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="text-xs text-gray-500 font-medium">Guest Booking</div>
-        </div>
+        )}
 
-        <div className="p-4 sm:p-5 lg:p-6 space-y-4 sm:space-y-5 lg:space-y-6">
-          {/* Header with breadcrumb + date picker */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="text-sm text-gray-600 hidden sm:block">
-              <span className="text-gray-400">Home</span>
-              <span className="mx-2">›</span>
-              <span className="text-gray-700 font-medium">Guest Booking</span>
+        {/* Summarizer Tab */}
+        {activeTab === "summarizer" && (
+          <div
+            key="summarizer"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-spring-in"
+          >
+            <div className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-3">
+              <div className="h-full bg-white dark:bg-[#161616] rounded-[24px] border border-zinc-100 dark:border-[#222] p-4 flex flex-col gap-6 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <div className="size-12 rounded-xl bg-zinc-50 dark:bg-[#0C0B0B] flex items-center justify-center border border-zinc-100 dark:border-zinc-800">
+                    <IconFiles className="size-6 text-zinc-400" />
+                  </div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    Source
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">
+                  Document Analysis
+                </h3>
+                <div className="space-y-3 opacity-60">
+                  <div className="h-2 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full" />
+                  <div className="h-2 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full" />
+                  <div className="h-2 w-5/6 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
+                  <div className="h-2 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full" />
+                </div>
+              </div>
             </div>
-            <Button
-              variant="outline"
-              className="rounded-full border-gray-200 bg-white hover:bg-gray-50 gap-2 px-4 h-9 shadow-[0_1px_1px_rgba(0,0,0,0.04)] text-sm w-full sm:w-auto justify-center"
-            >
-              <Calendar className="h-4 w-4 text-gray-500 shrink-0" />
-              <span className="text-gray-700 truncate">
-                Aug 20 – Sep 09, 2025
-              </span>
-            </Button>
-          </div>
-
-          {/* Metric cards — 2-col on mobile, 4-col on md+ */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            <MetricCard
-              title="Total Vacancy"
-              value="12"
-              change="+ 14.3%"
-              trend="up"
-            />
-            <MetricCard
-              title="Total Booked"
-              value="44"
-              change="+ 14.3%"
-              trend="up"
-            />
-            <MetricCard
-              title="Pending Check-outs"
-              value="15"
-              change="- 8.1%"
-              trend="down"
-            />
-            <MetricCard
-              title="Total Guests"
-              value="58"
-              change="+ 16.4%"
-              trend="up"
-            />
-          </div>
-
-          {/* Search + Filter bar */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input
-                placeholder="Search by booking ID, guest..."
-                className="pl-10 h-10 rounded-full border-gray-200 bg-white shadow-[0_1px_1px_rgba(0,0,0,0.04)] text-sm"
-              />
-            </div>
-            {/* Filter chips — scroll horizontally on mobile */}
-            <div className="flex gap-2 overflow-x-auto pb-0.5 sm:pb-0 shrink-0">
-              {["Special request", "Duration", "Booking date"].map((label) => (
-                <Button
-                  key={label}
-                  variant="outline"
-                  className="rounded-full border-gray-200 bg-white hover:bg-gray-50 gap-1.5 px-3 h-10 shadow-[0_1px_1px_rgba(0,0,0,0.04)] text-xs sm:text-sm whitespace-nowrap shrink-0"
-                >
-                  <span className="text-gray-400 font-light">+</span>
-                  <span className="text-gray-700">{label}</span>
-                </Button>
-              ))}
+            <div className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-3">
+              <div className="h-full bg-[#FAFAFF] dark:bg-[#111116] rounded-[24px] border border-blue-100 dark:border-blue-900/20 p-4 flex flex-col gap-6">
+                <div className="flex items-center justify-between">
+                  <div className="size-12 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
+                    <IconSparkle className="size-6 text-blue-500" />
+                  </div>
+                  <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">
+                    AI Summary
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">
+                  Insights Synthesized
+                </h3>
+                <ul className="space-y-4">
+                  {[1, 2, 3].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <div className="mt-1.5 size-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <div className="h-2 w-full bg-blue-100 dark:bg-zinc-800 rounded-full" />
+                        {item === 1 && (
+                          <div className="h-2 w-2/3 bg-blue-100/40 rounded-full" />
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex items-center justify-between">
+                  <span className="text-xs text-blue-500/80 font-medium">
+                    94% Synthesized
+                  </span>
+                  <button className="px-3.5 py-1.5 bg-blue-500 text-white rounded-lg text-xs font-semibold hover:bg-blue-600 transition-colors">
+                    Copy
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
+        )}
 
-          {/* ── Mobile / tablet: card list (hidden on xl) ── */}
-          <div className="xl:hidden space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-gray-900">
-                All Bookings
-                <Badge variant="secondary" className="ml-2 text-[10px] py-0">
-                  {bookings.length}
-                </Badge>
-              </h2>
+        {/* Creative Prompts Tab */}
+        {activeTab === "prompts" && (
+          <div
+            key="prompts"
+            className="w-full flex justify-center animate-spring-in"
+          >
+            <div className="w-full max-w-[900px] bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-5 flex flex-col gap-10">
+              <div className="text-center space-y-2">
+                <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">
+                  Creative Spark
+                </h3>
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
+                  Suggested prompts based on your historical writing patterns.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { label: "Story", icon: "📖", color: "bg-orange-400" },
+                  { label: "Work", icon: "💼", color: "bg-blue-400" },
+                  { label: "Study", icon: "🎓", color: "bg-emerald-400" },
+                  { label: "Poetry", icon: "✨", color: "bg-pink-400" },
+                ].map((t) => (
+                  <div
+                    key={t.label}
+                    className="group/prompt aspect-square bg-white dark:bg-[#161616] rounded-[20px] border border-zinc-100 dark:border-[#222] flex flex-col items-center justify-center gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 shadow-sm cursor-pointer"
+                  >
+                    <div
+                      className={cn(
+                        "size-12 rounded-2xl flex items-center justify-center text-xl shadow-md",
+                        t.color,
+                      )}
+                    >
+                      {t.icon}
+                    </div>
+                    <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-[13px]">
+                      {t.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-            {bookings.map((booking) => (
-              <BookingCard key={booking.bookingId} booking={booking} />
+          </div>
+        )}
+
+        {/* Data Visualization Tab */}
+        {activeTab === "data" && (
+          <div
+            key="data"
+            className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-2.5 animate-spring-in"
+          >
+            <div className="w-full bg-white dark:bg-[#161616] rounded-[24px] border border-zinc-100 dark:border-[#222] p-5 flex flex-col justify-between gap-8 relative overflow-hidden shadow-sm">
+              <div className="flex justify-between items-start">
+                <div className="space-y-1.5">
+                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">
+                    Engagement Metrics
+                  </h3>
+                  <p className="text-xs font-medium text-blue-500">
+                    +12.4% Increase
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <div className="px-3 py-1.5 bg-zinc-50 dark:bg-zinc-800 rounded-lg text-[10px] font-bold border border-zinc-200/50">
+                    WEEK
+                  </div>
+                  <div className="px-3 py-1.5 bg-blue-500 text-white rounded-lg text-[10px] font-bold">
+                    PDF
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-end gap-4 h-40 mt-8 items-stretch">
+                {[40, 75, 55, 100, 85, 95, 60, 80, 70, 90, 85, 95].map(
+                  (h, i) => (
+                    <div
+                      key={i}
+                      className="flex-1 bg-gradient-to-t from-blue-500/10 to-blue-500/80 rounded-t-lg transition-all duration-1000 origin-bottom"
+                      style={{ height: `${h}%` }}
+                    />
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* User Engagement Strategies Tab */}
+        {activeTab === "engagement" && (
+          <div
+            key="engagement"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-spring-in"
+          >
+            {[
+              {
+                title: "Hook Mastery",
+                desc: "Reduce bounce rates with high-contrast openers.",
+                icon: "⚡",
+              },
+              {
+                title: "Personalization",
+                desc: "Adaptive paths based on user segments.",
+                icon: "👤",
+              },
+              {
+                title: "Visual Rhythm",
+                desc: "Maintain velocity with visual anchors.",
+                icon: "🎨",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[32px] border border-zinc-200 dark:border-[#1F1F1F] p-1.5 group/strat flex flex-col"
+              >
+                <div className="bg-white dark:bg-[#161616] rounded-[24px] p-4 flex flex-col gap-5 flex-1 shadow-sm">
+                  <div className="size-14 rounded-2xl bg-zinc-50 dark:bg-[#0C0B0B] border border-zinc-100 flex items-center justify-center text-2xl shadow-inner group-hover/strat:scale-105 transition-transform">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-white tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-[14px] text-zinc-500 dark:text-white/60 leading-relaxed">
+                    {item.desc}
+                  </p>
+                  <button className="mt-6 text-blue-500 font-bold text-[11px] uppercase tracking-wider flex items-center gap-1.5 hover:underline">
+                    Explore <IconSparkle className="size-3" />
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
+        )}
+      </div>
 
-          {/* ── Desktop: full table (hidden below xl) ── */}
-          <div className="hidden xl:block">
-            <Card className="bg-white border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)] rounded-xl overflow-hidden">
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="border-gray-200 hover:bg-transparent bg-gray-50/60">
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Guest
-                      </TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5"></TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Room
-                      </TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Check-in
-                      </TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Check-out
-                      </TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Payment
-                      </TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Status
-                      </TableHead>
-                      <TableHead className="text-gray-700 font-semibold py-4 px-5">
-                        Actions
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {bookings.map((booking) => (
-                      <TableRow
-                        key={booking.bookingId}
-                        className="border-gray-100 hover:bg-gray-50/50"
-                      >
-                        <TableCell className="py-4 px-5">
-                          <div>
-                            <div className="font-medium text-gray-900 text-sm">
-                              {booking.guestName}
-                            </div>
-                            <div className="text-xs text-gray-400 mt-0.5">
-                              ID: {booking.bookingId}
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 px-5">
-                          <div className="relative inline-flex items-center">
-                            <Users2 className="h-5 w-5 text-gray-400" />
-                            <span className="absolute -top-1.5 -right-1.5 h-4 w-4 bg-gray-200 rounded-full flex items-center justify-center text-[10px] font-medium text-gray-700">
-                              {String(booking.guestCount).padStart(2, "0")}
-                            </span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 px-5">
-                          <div>
-                            <div className="font-medium text-gray-900 text-sm">
-                              {booking.roomNumber}
-                            </div>
-                            <div className="text-xs text-gray-400">
-                              {booking.roomType}
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 px-5 text-gray-700 text-sm">
-                          {booking.checkIn}
-                        </TableCell>
-                        <TableCell className="py-4 px-5 text-gray-700 text-sm">
-                          {booking.checkOut}
-                        </TableCell>
-                        <TableCell className="py-4 px-5 text-gray-900 font-semibold text-sm">
-                          ${booking.payment}
-                        </TableCell>
-                        <TableCell className="py-4 px-5">
-                          <StatusBadge status={booking.status} />
-                        </TableCell>
-                        <TableCell className="py-4 px-5">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 text-gray-400 hover:text-gray-600"
-                              >
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-40">
-                              <DropdownMenuItem className="text-gray-700">
-                                View Details
-                              </DropdownMenuItem>
-                              <DropdownMenuItem className="text-gray-700">
-                                Edit Booking
-                              </DropdownMenuItem>
-                              <DropdownMenuItem className="text-red-600 focus:text-red-700">
-                                Cancel Booking
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </main>
-    </div>
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        @keyframes spring-in {
+          0% {
+            transform: scale(0.95) translateY(10px);
+            opacity: 0;
+          }
+          80% {
+            transform: scale(1.02) translateY(-2px);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes giggle {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          25% {
+            transform: scale(0.95) rotate(-1deg);
+          }
+          50% {
+            transform: scale(1.05) rotate(1deg);
+          }
+          75% {
+            transform: scale(0.98) rotate(-0.5deg);
+          }
+        }
+
+        .animate-spring-in {
+          animation: spring-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .animate-giggle {
+          animation: giggle 0.4s ease-in-out;
+        }
+      `}</style>
+    </section>
   );
 }
