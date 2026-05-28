@@ -147,12 +147,9 @@
     @apply border-border outline-ring/50;
   }
 
-
-
   html {
     @apply motion-safe:scroll-smooth bg-background overscroll-y-none;
   }
-
 
   body {
     @apply bg-background text-foreground font-mono overscroll-y-none antialiased;
@@ -411,7 +408,6 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.035),
     inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.04);
 }
-
 
 .luminous-spinners .cell {
   position: relative;
@@ -825,7 +821,6 @@
 .animate-d2-holo-shine {
   animation: d2-holo-shine 3.5s linear infinite;
 }
-
 
 .luminous-spinners .spinner-grid {
   position: relative;
@@ -2612,8 +2607,6 @@
     animation-play-state: paused;
   }
 }
-
-
 
 /* Pixel-animated icon — drop-in HTML + CSS, no JavaScript. */
 .pixel-icon--coffee {
