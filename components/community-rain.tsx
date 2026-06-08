@@ -61,7 +61,7 @@ const DUMMY_PEOPLE: RainPerson[] = [
   { name: "justverybroken", platform: "threads" },
   { name: "Hồng Linh", platform: "threads" },
   { name: "anaqi", platform: "threads" },
-  { name: "Kirill Svystun", platform: "threads", avatarSrc: "/Kirill Svystun Threads Image.jpg" },
+  { name: "Kirill Svystun", platform: "threads", avatarSrc: "/community-avatars/threads/kirill-svystun.jpg" },
   { name: "Bismark Gyau", platform: "threads" },
   { name: "Baptiste Ducrocq", platform: "threads" },
   { name: "Nadim Massih", platform: "threads" },
@@ -70,7 +70,7 @@ const DUMMY_PEOPLE: RainPerson[] = [
   { name: "scars.in.heaven", platform: "threads" },
   { name: "Haoxi", platform: "threads" },
   { name: "Sohum M", platform: "threads" },
-  { name: "alfianhvfiz", platform: "threads", avatarSrc: "/alfianhvfiz.jpg" },
+  { name: "alfianhvfiz", platform: "threads", avatarSrc: "/community-avatars/threads/alfianhvfiz.jpg" },
   // X engagers
   { name: "Alex Rivera", platform: "x" },
   { name: "Marcus Park", platform: "x" },
@@ -293,14 +293,18 @@ function Avatar({
   avatarSrc?: string;
   heartColor: string;
 }) {
+  const [failed, setFailed] = React.useState(false);
+  const showImage = avatarSrc && !failed;
+
   return (
     <span className="relative shrink-0">
-      {avatarSrc ? (
+      {showImage ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={avatarSrc}
           alt=""
           aria-hidden="true"
+          onError={() => setFailed(true)}
           className="size-5 rounded-full object-cover border border-border/60"
         />
       ) : (
