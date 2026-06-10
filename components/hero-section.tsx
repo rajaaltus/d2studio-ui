@@ -115,7 +115,7 @@ function BrandShowcase() {
   const currentSet = sets[activeSet] ?? [];
 
   return (
-    <div className="relative w-full max-w-6xl  border-x min-h-[7.5rem] h-full mx-auto bg-border">
+    <div className="relative w-full max-w-6xl  border-x min-h-[15rem] md:min-h-[7.5rem] h-full mx-auto bg-border">
       {sets.map((set, setIndex) => {
         const isActive = setIndex === activeSet;
         return (
@@ -123,7 +123,7 @@ function BrandShowcase() {
             key={setIndex}
             aria-hidden={!isActive}
             className={cn(
-              "absolute inset-0 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 bg-border gap-px transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] lg:rounded-xl border m-0 overflow-hidden",
+              "absolute inset-0 grid grid-cols-3 md:grid-cols-6 bg-border gap-px transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] lg:rounded-xl border m-0 overflow-hidden",
               isActive
                 ? "opacity-100 scale-100 blur-0"
                 : "opacity-0 scale-[0.985] blur-[2px] pointer-events-none"

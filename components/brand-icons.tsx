@@ -97,8 +97,9 @@ export const BrandIcons = {
       {...props}
     >
       <text
-        x="0"
+        x="80"
         y="24"
+        textAnchor="middle"
         fill="currentColor"
         fontFamily='ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
         fontSize="28"
@@ -498,16 +499,29 @@ export const BrandIcons = {
   ),
   // Dark wordmark on transparent — flip to white in dark mode.
   codepen: logoIcon("/CodePen%20Logo.png", "CodePen", 721, 137, "dark:invert"),
-  // White artwork baked on a black background — flip the whole thing in
-  // light mode so the black plate becomes white and blends into the card.
-  threejs: logoIcon(
-    "/Three%20JS%20Logo.png",
-    "Three.js",
-    687,
-    360,
-    // Source PNG carries empty padding around the triangle + wordmark, so
-    // it under-reads at a wordmark-friendly height. h-14 compensates.
-    "h-14 invert dark:invert-0"
+  threejs: ({ className, ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 310 128"
+      fill="currentColor"
+      className={cn(className, "h-10")}
+      {...props}
+    >
+      <path d="M16.219 15.762a1.129 1.129 0 00-1.076 1.399l24.394 98.742a1.129 1.129 0 001.879.544l73.386-70.59a1.129 1.129 0 00-.47-1.899L16.55 15.806a1.129 1.129 0 00-.331-.044zm1.584 2.754l94.024 27.07-70.566 67.877-23.458-94.947z" />
+      <path d="M65.137 29.84a1.129 1.129 0 00-.807.315L27.654 65.46a1.129 1.129 0 00.471 1.898L76.984 81.44a1.129 1.129 0 001.409-1.355L66.21 30.698a1.129 1.129 0 00-1.073-.858zm-.651 3.3L75.734 78.73l-45.104-13L64.486 33.14z" />
+      <path d="M46.914 47.313a1.129 1.129 0 00-1.076 1.399l6.054 24.531a1.129 1.129 0 001.88.543l18.222-17.563a1.129 1.129 0 00-.472-1.898l-24.277-6.968a1.129 1.129 0 00-.331-.044zm1.583 2.751l20.522 5.89L53.614 70.8l-5.117-20.736z" />
+      <path d="M40.902 22.809a1.129 1.129 0 00-.807.316L21.873 40.687a1.129 1.129 0 00.472 1.898l24.273 6.969a1.129 1.129 0 001.408-1.356l-6.051-24.53a1.129 1.129 0 00-1.073-.86zm-.65 3.3l5.114 20.736-20.517-5.89 15.403-14.847zM89.453 36.793a1.129 1.129 0 00-.806.316L70.423 54.67a1.129 1.129 0 00.472 1.899l24.274 6.968a1.129 1.129 0 001.408-1.356l-6.05-24.53a1.129 1.129 0 00-1.074-.859zm-.65 3.3l5.114 20.737L73.4 54.94l15.403-14.846zM52.944 71.864a1.129 1.129 0 00-.74.315L33.982 89.742a1.129 1.129 0 00.472 1.898l24.278 6.968a1.129 1.129 0 001.407-1.355l-6.055-24.531a1.129 1.129 0 00-1.14-.858zm-.582 3.3l5.118 20.737-20.522-5.89 15.404-14.846z" />
+      <text
+        x="138"
+        y="80"
+        fontFamily='ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+        fontSize="44"
+        fontWeight="400"
+        letterSpacing="-1"
+      >
+        three.js
+      </text>
+    </svg>
   ),
   // Near-black logo on transparent — flip to white in dark mode.
   reactBits: logoIcon(
