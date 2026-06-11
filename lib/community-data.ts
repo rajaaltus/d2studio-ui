@@ -12,6 +12,7 @@ export type Testimonial = {
   verified?: boolean;
   quote: string;
   fullWidth?: boolean;
+  half?: boolean;
 };
 
 /** Local cached X avatar — no runtime API calls */
@@ -26,6 +27,18 @@ export function threadsAvatar(slug: string): string {
 
 export const testimonials: Testimonial[] = [
   {
+    name: "Martin",
+    handle: "@martin_valchev_",
+    platform: "x",
+    href: "https://x.com/martin_valchev_/status/2065012953754026229?s=20",
+    avatar: "MV",
+    avatarSrc: xAvatar("martin_valchev_"),
+    verified: true,
+    quote:
+      "Those spinners look slick and the export feature is super handy. Nice work.",
+    half: true,
+  },
+  {
     name: "aimltutorviktoria",
     handle: "@aimltutorviktoria",
     platform: "threads",
@@ -33,7 +46,6 @@ export const testimonials: Testimonial[] = [
     avatar: "AV",
     avatarSrc: threadsAvatar("aimltutorviktoria"),
     quote: "Wow i love to drag theese, design is crazy",
-    fullWidth: true,
   },
   {
     name: "Navadeep Goleti",
