@@ -28,7 +28,7 @@ export function CommunitySection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border rounded-xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-px bg-border border rounded-xl overflow-hidden">
           {testimonials.map((t, i) => (
             <TestimonialCard key={i} testimonial={t} />
           ))}
@@ -49,6 +49,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     verified,
     quote,
     fullWidth,
+    half,
   } = testimonial;
   const PlatformIcon = platform === "x" ? XIcon : ThreadsIcon;
   const platformLabel = platform === "x" ? "View on X" : "View on Threads";
@@ -61,8 +62,10 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       aria-label={`${platformLabel} — ${name}`}
       className={`testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors hover:bg-foreground/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset${
         fullWidth
-          ? " md:col-span-2 lg:col-span-3 md:items-center md:text-center"
-          : ""
+          ? " md:col-span-2 lg:col-span-6 md:items-center md:text-center"
+          : half
+            ? " lg:col-span-4"
+            : " lg:col-span-2"
       }`}
     >
       <header
