@@ -13,11 +13,11 @@ const HeroSection2 = () => {
   const docsRef = React.useRef<HTMLAnchorElement>(null);
   return (
     <div className="w-full mx-auto h-full [--pattern-fg:var(--color-black)]/10 dark:bg-background dark:[--pattern-fg:var(--color-white)]/10  overflow-x-hidden">
-      {/* 8x7 Grid Container with max-w-6xl */}
+      {/* 8x7 Grid Container with max-w-7xl */}
       <div className="w-full border-x min-h-[2.5rem] h-full screen-line-after mx-auto bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
-        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto"></div>
+        <div className="w-full h-[2.5rem] max-w-7xl border-x mx-auto"></div>
       </div>
-      <div className="max-w-6xl  border-x min-h-[20rem] h-full screen-line-after mx-auto relative bg-border">
+      <div className="max-w-7xl  border-x min-h-[20rem] h-full screen-line-after mx-auto relative bg-border">
         {/* <GoldenRatioSpiral
           opacity={0.2}
           className="w-auto h-full text-blue-500 absolute left-1/2 -translate-x-1/2 -rotate-90"
@@ -82,7 +82,7 @@ const HeroSection2 = () => {
       </div>
 
       <div className="w-full border-x min-h-[2.5rem] screen-line-after mx-auto bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
-        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto flex items-center justify-center ">
+        <div className="w-full h-[2.5rem] max-w-7xl border-x mx-auto flex items-center justify-center ">
           <h2 className="text-sm px-4 bg-background h-full flex items-center justify-center">Greatly inspired from</h2>
         </div>
       </div>
@@ -115,7 +115,7 @@ function BrandShowcase() {
   const currentSet = sets[activeSet] ?? [];
 
   return (
-    <div className="relative w-full max-w-6xl  border-x min-h-[15rem] md:min-h-[7.5rem] h-full mx-auto bg-border">
+    <div className="relative w-full max-w-7xl  border-x min-h-[15rem] md:min-h-[7.5rem] h-full mx-auto bg-border">
       {sets.map((set, setIndex) => {
         const isActive = setIndex === activeSet;
         return (

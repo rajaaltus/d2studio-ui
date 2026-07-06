@@ -77,7 +77,7 @@ export function ComponentShowcase() {
   return (
     <section className="py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center space-y-4 mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-full text-xs bg-card">

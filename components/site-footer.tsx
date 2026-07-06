@@ -85,15 +85,15 @@ export function SiteFooter() {
   return (
     <footer className="w-full [--pattern-fg:var(--color-black)]/10 dark:[--pattern-fg:var(--color-white)]/10">
       {/* Top divider line */}
-      <div className="w-full max-w-6xl border-x border-t mx-auto" />
+      <div className="w-full max-w-7xl border-x border-t mx-auto" />
 
       {/* Diagonal pattern strip */}
-      <div className="w-full border-x min-h-[2.5rem] mx-auto max-w-6xl border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
-        <div className="w-full h-[2.5rem] max-w-6xl border-x mx-auto"></div>
+      <div className="w-full border-x min-h-[2.5rem] mx-auto max-w-7xl border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
+        <div className="w-full h-[2.5rem] max-w-7xl border-x mx-auto"></div>
       </div>
 
       {/* Main grid */}
-      <section className="max-w-6xl w-full border-x mx-auto bg-border">
+      <section className="max-w-7xl w-full border-x mx-auto bg-border">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-border border overflow-hidden m-0 lg:rounded-xl">
           {/* Brand block – spans full row on md, 2 cols on large */}
           <div className="bg-background p-6 lg:p-8 sm:col-span-2 md:col-span-3 lg:col-span-2 flex flex-col gap-4">
@@ -138,7 +138,7 @@ export function SiteFooter() {
       </section>
 
       {/* Bottom bar */}
-      <section className="max-w-6xl w-full border-x mx-auto">
+      <section className="max-w-7xl w-full border-x mx-auto">
         <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 px-4 lg:px-6 py-5 border-t">
           <div className="text-xs text-muted-foreground inline-flex items-center gap-1.5 font-mono">
             © {new Date().getFullYear()}{" "}

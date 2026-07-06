@@ -72,7 +72,7 @@ export function CoffeeSupportCard({
   );
 
   return (
-    <section className="w-full max-w-6xl border-x border-t mx-auto [--pattern-fg:var(--color-black)]/10 dark:[--pattern-fg:var(--color-white)]/10">
+    <section className="w-full max-w-7xl border-x border-t mx-auto [--pattern-fg:var(--color-black)]/10 dark:[--pattern-fg:var(--color-white)]/10">
       <div
         className={`grid grid-cols-1 divide-y ${gridCols} sm:divide-x sm:divide-y-0`}
       >

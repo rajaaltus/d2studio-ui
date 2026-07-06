@@ -85,7 +85,7 @@ export function PreviewWrapper({
 
   return (
     <div
-      className={cn("relative w-full max-w-6xl border-x mx-auto", className)}
+      className={cn("relative w-full max-w-7xl border-x mx-auto", className)}
     >
       {/* Toolbar */}
       <div className="flex items-center justify-between gap-2 p-1 screen-line-after screen-line-before">
