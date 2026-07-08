@@ -10,6 +10,8 @@ type RevealCardProps = {
   initial?: number;
   /** Initial reveal block size, in CSS px (tunable live via the Size control). */
   block?: number;
+  /** Tailwind aspect-ratio class for the image frame. Default square. */
+  aspect?: string;
   className?: string;
 };
 
@@ -28,6 +30,7 @@ export function RevealCard({
   afterSrc,
   initial = 50,
   block = 8,
+  aspect = "aspect-square",
   className,
 }: RevealCardProps) {
   const clamped = clamp(initial);
@@ -35,7 +38,7 @@ export function RevealCard({
 
   // Reveal-block controls — tuned live from the options bar under the image.
   const [blockPx, setBlockPx] = useState(block); // square size in CSS px
-  const [shape, setShape] = useState<"square" | "circle">("square");
+  const [shape, setShape] = useState<"square" | "circle" | "plain">("square");
   const [flipped, setFlipped] = useState(false); // swap before/after sides
   const [slant, setSlant] = useState(0); // seam angle: 0 straight, else slanted
   const slantDeg = (Math.atan(slant) * 180) / Math.PI;
@@ -122,8 +125,9 @@ export function RevealCard({
     const buildGrid = () => {
       if (!W || !H) return;
       const cssW = W / dpr;
+      const cssH = H / dpr;
       cols = Math.max(1, Math.round(cssW / paramsRef.current.blockPx));
-      rows = cols; // square card → square cells
+      rows = Math.max(1, Math.round(cssH / paramsRef.current.blockPx)); // square cells
 
       thresholds = new Float32Array(cols * rows);
       for (let row = 0; row < rows; row++) {
@@ -203,6 +207,8 @@ export function RevealCard({
           !colOf || !rowOf || !prog || !dx2 || !dy2)
         return;
       const circle = paramsRef.current.shape === "circle";
+      const plain = paramsRef.current.shape === "plain"; // hard seam, no pixels
+      const slant = paramsRef.current.slant;
       const band = ANIM_CELLS / cols; // reveal-distance a cell takes to ease in
       // Flip swaps which image is the base (hidden) vs the top (revealed) side.
       const flip = paramsRef.current.flipped;
@@ -217,6 +223,17 @@ export function RevealCard({
       // revealed after-pixel is composited over before via the blend LUT.
       let curRow = -1;
       for (let y = 0; y < H; y++) {
+        if (plain) {
+          // Straight (or slanted) hard cut — no grid, no blend band. The H/W
+          // factor keeps the seam at the same screen angle as the handle (and
+          // the pixel-grid modes) on non-square cards.
+          const b0 = y * W;
+          const rowT = (y / H - 0.5) * slant * (H / W);
+          for (let x = 0; x < W; x++) {
+            out32[b0 + x] = x / W + rowT <= reveal ? top32[b0 + x] : base32[b0 + x];
+          }
+          continue;
+        }
         const row = rowOf[y];
         if (row !== curRow) {
           curRow = row;
@@ -304,7 +321,10 @@ export function RevealCard({
 
       <div
         ref={containerRef}
-        className="relative aspect-square w-full select-none overflow-hidden rounded-2xl touch-none shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_rgba(0,0,0,0.14)]"
+        className={cn(
+          aspect,
+          "relative w-full select-none overflow-hidden rounded-2xl touch-none shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_rgba(0,0,0,0.14)]",
+        )}
         onPointerDown={(e) => {
           dragging.current = true;
           e.currentTarget.setPointerCapture(e.pointerId);
@@ -340,7 +360,7 @@ export function RevealCard({
             className="absolute left-1/2 top-1/2"
             style={{ transform: `translate(-50%, -50%) rotate(${-slantDeg}deg)` }}
           >
-            <svg width={36} height={46} viewBox="0 0 45 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width={30} height={38} viewBox="0 0 45 58" fill="none" xmlns="http://www.w3.org/2000/svg">
               <foreignObject x={-1} y={-1} width={46.9111} height={59.9688}>
                 <div
                   style={{
@@ -357,8 +377,7 @@ export function RevealCard({
                     <foreignObject x={-1044.53} y={-1044.53} width={2089.06} height={2089.06}>
                       <div
                         style={{
-                          background:
-                            "conic-gradient(from 90deg,rgba(0, 0, 0, 1) 0deg,rgba(255, 254, 254, 1) 360deg)",
+                          background: "rgba(255, 255, 255, 1)",
                           height: "100%",
                           width: "100%",
                           opacity: 0.4,
@@ -496,11 +515,12 @@ export function RevealCard({
           <span>Shape</span>
           <select
             value={shape}
-            onChange={(e) => setShape(e.target.value as "square" | "circle")}
+            onChange={(e) => setShape(e.target.value as "square" | "circle" | "plain")}
             className="rounded border border-neutral-300 bg-white px-2 py-1 capitalize"
           >
             <option value="square">Square</option>
             <option value="circle">Circle</option>
+            <option value="plain">Just divider</option>
           </select>
         </label>
         <label className="flex items-center gap-2">

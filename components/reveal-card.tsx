@@ -8,15 +8,16 @@ type RevealCardProps = {
   afterSrc: string;
   /** Initial reveal position, 0–100. */
   initial?: number;
-  /** Number of pixel blocks per side (grid is grid×grid). */
+  /** Blocks across the width; rows derive from the aspect to keep cells square. */
   grid?: number;
+  /** Tailwind aspect-ratio class for the image frame. Default square. */
+  aspect?: string;
   className?: string;
 };
 
-// Diagonal slant of the reveal seam (rise/run). Shared by the pixel sweep and
-// the divider so they always line up. Gentle = premium.
-const SLANT = 0;
-const SLANT_DEG = (Math.atan(SLANT) * 180) / Math.PI;
+// Diagonal slant of the reveal seam (rise/run) when the "Slant" angle is picked;
+// 0 = straight. Shared by the pixel sweep and the divider so they line up.
+const SLANT_VALUE = 0.35;
 // How far the pixel scatter spreads around the seam, in threshold units.
 const BAND = 0.08;
 // Smoke frontier: just-revealed cells drift + fade like wisps. Rendered once to
@@ -43,6 +44,7 @@ export function RevealCard({
   afterSrc,
   initial = 50,
   grid = 32,
+  aspect = "aspect-square",
   className,
 }: RevealCardProps) {
   const clamped = clamp(initial);
@@ -58,13 +60,19 @@ export function RevealCard({
   const [fxStr, setFxStr] = useState(1); // overlay blur softness
   const [shape, setShape] = useState<"square" | "circle">("square"); // wisp shape
   const [dotSize, setDotSize] = useState(4); // wisp size in px (2–16)
+  const [slant, setSlant] = useState(0); // seam angle: 0 straight, else slanted
+  const slantDeg = (Math.atan(slant) * 180) / Math.PI;
   // Read the latest values inside the rAF loop without restarting it.
-  const optsRef = useRef({ c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize });
-  optsRef.current = { c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize };
+  const optsRef = useRef({ c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize, slant });
+  optsRef.current = { c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize, slant };
   const needsRedraw = useRef(false);
+  const needsRebuild = useRef(false); // slant changed → recompute seam thresholds
   useEffect(() => {
     needsRedraw.current = true;
   }, [c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize]);
+  useEffect(() => {
+    needsRebuild.current = true;
+  }, [slant]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -88,22 +96,41 @@ export function RevealCard({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const cols = Math.max(1, Math.round(grid));
-    const rows = Math.max(1, Math.round(grid));
+    // `grid` = blocks across the width; rows are derived from the frame's
+    // aspect so cells stay SQUARE. Square cells are what keep the seam, handle,
+    // and smoke clip on the same screen angle at any aspect ratio.
+    let cols = Math.max(1, Math.round(grid));
+    let rows = cols;
+    let thresholds = new Float32Array(cols * rows); // scattered (pixelated)
+    let thrClean = new Float32Array(cols * rows); // straight seam, no scatter
 
     // Per-cell reveal threshold: diagonal sweep + a stable random scatter so the
     // seam breaks into pixels instead of a hard edge.
-    const thresholds = new Float32Array(cols * rows); // scattered (pixelated)
-    const thrClean = new Float32Array(cols * rows); // straight seam, no scatter
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        const diag = (col + 0.5 + (row - (rows - 1) / 2) * SLANT) / cols;
-        thrClean[row * cols + col] = diag;
-        // deterministic pseudo-random jitter per cell
-        const j = frac(Math.sin(col * 12.9898 + row * 78.233) * 43758.5453);
-        thresholds[row * cols + col] = diag + (j - 0.5) * BAND;
+    const buildThresholds = () => {
+      const slant = optsRef.current.slant;
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const diag = (col + 0.5 + (row - (rows - 1) / 2) * slant) / cols;
+          thrClean[row * cols + col] = diag;
+          // deterministic pseudo-random jitter per cell
+          const j = frac(Math.sin(col * 12.9898 + row * 78.233) * 43758.5453);
+          thresholds[row * cols + col] = diag + (j - 0.5) * BAND;
+        }
       }
-    }
+    };
+
+    // Recompute the grid whenever the frame size changes: cols fixed by `grid`,
+    // rows scaled to keep cells square, then refill the thresholds.
+    const buildGrid = () => {
+      if (!cw || !ch) return;
+      cols = Math.max(1, Math.round(grid));
+      rows = Math.max(1, Math.round(cols * (ch / cw)));
+      if (thresholds.length !== cols * rows) {
+        thresholds = new Float32Array(cols * rows);
+        thrClean = new Float32Array(cols * rows);
+      }
+      buildThresholds();
+    };
 
     let before: HTMLImageElement | null = null;
     let after: HTMLImageElement | null = null;
@@ -190,6 +217,7 @@ export function RevealCard({
       canvas.height = H;
       smoke.width = W;
       smoke.height = H;
+      buildGrid(); // aspect known now → square cells + thresholds
       rebuild();
     };
 
@@ -270,8 +298,17 @@ export function RevealCard({
 
       ctx.save();
       // Keep smoke on the revealed side only — no bleed onto the mono half.
+      // Clip along the (possibly slanted) seam: a parallelogram that collapses
+      // to a vertical split when slant is 0, so it stays glued to the color edge.
+      const seamSlant = optsRef.current.slant * (rows / cols); // aspect-corrected
+      const xTop = reveal * W + 0.5 * seamSlant * W;
+      const xBot = reveal * W - 0.5 * seamSlant * W;
       ctx.beginPath();
-      ctx.rect(0, 0, reveal * W, H);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(xTop, 0);
+      ctx.lineTo(xBot, H);
+      ctx.lineTo(0, H);
+      ctx.closePath();
       ctx.clip();
       ctx.filter = `blur(${SMOKE_BLUR * optsRef.current.fxStr * dpr}px)`;
       ctx.globalCompositeOperation = optsRef.current.blend;
@@ -281,6 +318,11 @@ export function RevealCard({
     };
 
     const tick = (time: number) => {
+      if (needsRebuild.current) {
+        needsRebuild.current = false;
+        buildThresholds(); // slant changed → recompute seam, force a repaint
+        needsRedraw.current = true;
+      }
       dispRef.current += (targetRef.current - dispRef.current) * 0.18; // ease + delay
       if (Math.abs(targetRef.current - dispRef.current) < 0.0005) {
         dispRef.current = targetRef.current;
@@ -325,7 +367,10 @@ export function RevealCard({
 
       <div
         ref={containerRef}
-        className="relative aspect-square w-full select-none overflow-hidden rounded-2xl touch-none shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_rgba(0,0,0,0.14)]"
+        className={cn(
+          aspect,
+          "relative w-full select-none overflow-hidden rounded-2xl touch-none shadow-[0_1px_2px_rgba(0,0,0,0.06),0_4px_8px_rgba(0,0,0,0.08),0_16px_32px_rgba(0,0,0,0.14)]",
+        )}
         onPointerDown={(e) => {
           dragging.current = true;
           e.currentTarget.setPointerCapture(e.pointerId);
@@ -345,7 +390,7 @@ export function RevealCard({
         <div
           ref={handleRef}
           className="absolute z-10 w-px -inset-y-[8%] bg-gradient-to-b from-white/70 via-white to-white/70 shadow-[0_0_8px_rgba(0,0,0,0.35)]"
-          style={{ left: `${clamped}%`, transform: `translateX(-50%) rotate(${SLANT_DEG}deg)` }}
+          style={{ left: `${clamped}%`, transform: `translateX(-50%) rotate(${slantDeg}deg)` }}
           role="slider"
           aria-label="Reveal position"
           aria-valuenow={label}
@@ -364,7 +409,7 @@ export function RevealCard({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="absolute left-1/2 top-1/2 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
-            style={{ transform: `translate(-50%, -50%) rotate(${-SLANT_DEG}deg)` }}
+            style={{ transform: `translate(-50%, -50%) rotate(${-slantDeg}deg)` }}
           >
             <foreignObject x={-1} y={-1} width={40.1836} height={41.3984}>
               <div
@@ -571,6 +616,17 @@ export function RevealCard({
             aria-label="Shape size in px"
           />
           <span className="tabular-nums">{dotSize}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Angle</span>
+          <select
+            value={slant ? "slant" : "straight"}
+            onChange={(e) => setSlant(e.target.value === "slant" ? SLANT_VALUE : 0)}
+            className="rounded border border-neutral-300 bg-white px-2 py-1 capitalize"
+          >
+            <option value="straight">Straight</option>
+            <option value="slant">Slant</option>
+          </select>
         </label>
         <label className="flex items-center gap-2">
           <span>Smoke opacity</span>
