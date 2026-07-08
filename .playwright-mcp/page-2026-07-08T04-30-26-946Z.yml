@@ -1,0 +1,25 @@
+- generic [active] [ref=f57e1]:
+  - link "Skip to content" [ref=f57e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f57e4]:
+    - generic [ref=f57e6]:
+      - generic [ref=f57e8]: 50%
+      - slider "Reveal position" [ref=f57e9]:
+        - img [ref=f57e11]
+    - paragraph [ref=f57e14]: Drag the handle to reveal
+  - generic [ref=f57e15]:
+    - heading "Command palette" [level=2] [ref=f57e16]
+    - paragraph [ref=f57e17]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f57e18]:
+    - button "Blocks" [ref=f57e19] [cursor=pointer]:
+      - generic [ref=f57e33]: Blocks
+      - img [ref=f57e34]
+    - button "Tools New" [ref=f57e37] [cursor=pointer]:
+      - generic [ref=f57e50]: Tools
+      - generic [ref=f57e52]: New
+      - img [ref=f57e53]
+    - button "Toggle theme" [ref=f57e56] [cursor=pointer]:
+      - img [ref=f57e59]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f57e70] [cursor=pointer]:
+    - img [ref=f57e71]

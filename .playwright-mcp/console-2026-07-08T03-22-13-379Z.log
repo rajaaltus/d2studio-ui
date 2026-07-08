@@ -1,0 +1,780 @@
+[     171ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     186ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     692ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     806ms] [LOG] [Fast Refresh] done in 215ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    3404ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    3632ms] [LOG] [Fast Refresh] done in 328ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  172737ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  172944ms] [LOG] [Fast Refresh] done in 288ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  179329ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  179473ms] [LOG] [Fast Refresh] done in 220ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  182976ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  183130ms] [LOG] [Fast Refresh] done in 230ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  187003ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  187179ms] ReferenceError: groutColor is not defined
+    at RevealCard (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:279:9)
+    at Object.react_stack_bottom_frame (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:15037:24)
+    at renderWithHooks (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:4620:24)
+    at updateFunctionComponent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6081:21)
+    at beginWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at performUnitOfWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9555:97)
+    at workLoopSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9449:40)
+    at renderRootSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9433:13)
+    at performWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:299:13)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:384:38)
+    at applyUpdate (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:878:31)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:886:13
+[  187187ms] [LOG] [Fast Refresh] done in 258ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  187315ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  187335ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  190417ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  190528ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  190531ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  190597ms] [LOG] [Fast Refresh] done in 213ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  190879ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  190895ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  208358ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  208368ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  236134ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  236311ms] [LOG] [Fast Refresh] done in 254ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  242418ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  242579ms] [LOG] [Fast Refresh] done in 237ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  247567ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  247707ms] [LOG] [Fast Refresh] done in 217ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  252615ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  252789ms] [LOG] [Fast Refresh] done in 253ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  258999ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  259353ms] [LOG] [Fast Refresh] done in 236ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  261557ms] ReferenceError: setFromClientX is not defined
+    at onPointerDown (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:326:21)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchDiscreteEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12984:64)
+[  261563ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261576ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261595ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261611ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261627ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261644ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261671ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261676ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261694ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261710ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261726ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261743ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261759ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261776ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261793ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261809ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261826ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261843ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261860ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261877ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261893ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261909ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261927ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261943ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  261960ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262060ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262077ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262093ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262105ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262646ms] ReferenceError: setFromClientX is not defined
+    at onPointerDown (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:326:21)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchDiscreteEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12984:64)
+[  262659ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262676ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262694ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262709ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262726ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262744ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262759ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262777ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262793ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262810ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262826ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262844ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262859ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262877ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262893ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262910ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262927ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262943ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262959ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262977ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  262993ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  263010ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  263027ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  263043ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  263060ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  263077ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266257ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  266420ms] [LOG] [Fast Refresh] done in 238ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  266560ms] ReferenceError: setFromClientX is not defined
+    at onPointerDown (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:326:21)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchDiscreteEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12984:64)
+[  266593ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266610ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266627ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266644ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266683ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266683ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266845ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266877ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  266893ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  267004ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  267009ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  267026ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  267043ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  267053ms] ReferenceError: setFromClientX is not defined
+    at onPointerMove (http://localhost:4200/_next/static/chunks/components_reveal-card_tsx_05s-bru._.js?id=%255Bproject%255D%252Fcomponents%252Freveal-card.tsx+%255Bapp-client%255D+%2528ecmascript%2529:328:57)
+    at executeDispatch (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10329:13)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at processDispatchQueue (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10355:41)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10633:13
+    at batchedUpdates$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:2253:44)
+    at dispatchEventForPluginEventSystem (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10431:9)
+    at dispatchEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:13002:37)
+    at dispatchContinuousEvent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:12994:66)
+[  270987ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  271151ms] [LOG] [Fast Refresh] done in 240ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  284796ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  285399ms] [LOG] [Fast Refresh] done in 701ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
