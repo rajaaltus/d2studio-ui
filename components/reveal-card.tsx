@@ -25,6 +25,19 @@ const SMOKE_BAND = 0.14; // reveal-distance over which a cell's wisp lives
 const SMOKE_BLUR = 6; // px, softness of the whole smoke layer
 const SMOKE_DRIFT = 34; // px, how far a wisp floats as it fades
 
+// Composite modes offered for the smoke layer, with friendly display names.
+const BLEND_MODES: { op: GlobalCompositeOperation; name: string }[] = [
+  { op: "screen", name: "Glow" },
+  { op: "lighten", name: "Aurora" },
+  { op: "overlay", name: "Prism" },
+  { op: "soft-light", name: "Dreamy" },
+  { op: "color-dodge", name: "Neon" },
+  { op: "plus-lighter", name: "Ember" },
+  { op: "hue", name: "Tint" },
+  { op: "luminosity", name: "Frost" },
+  { op: "source-over", name: "Solid" },
+];
+
 export function RevealCard({
   beforeSrc,
   afterSrc,
@@ -34,6 +47,24 @@ export function RevealCard({
 }: RevealCardProps) {
   const clamped = clamp(initial);
   const [label, setLabel] = useState(Math.round(clamped));
+
+  // Smoke look — adjustable from the options bar under the image.
+  const [c1, setC1] = useState("#a7f3d0");
+  const [c2, setC2] = useState("#bfdbfe");
+  const [blend, setBlend] = useState<GlobalCompositeOperation>("screen");
+  const [smokeOp, setSmokeOp] = useState(1); // wisp alpha
+  const [smokeStr, setSmokeStr] = useState(1); // wisp drift distance
+  const [fxOp, setFxOp] = useState(1); // final overlay alpha
+  const [fxStr, setFxStr] = useState(1); // overlay blur softness
+  const [shape, setShape] = useState<"square" | "circle">("square"); // wisp shape
+  const [dotSize, setDotSize] = useState(4); // wisp size in px (2–16)
+  // Read the latest values inside the rAF loop without restarting it.
+  const optsRef = useRef({ c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize });
+  optsRef.current = { c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize };
+  const needsRedraw = useRef(false);
+  useEffect(() => {
+    needsRedraw.current = true;
+  }, [c1, c2, blend, smokeOp, smokeStr, fxOp, fxStr, shape, dotSize]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -165,7 +196,6 @@ export function RevealCard({
     const draw = (reveal: number, time: number) => {
       if (!out || !out32 || !before32 || !after32 || !colOf || !rowOf || !pick)
         return;
-      const aImg = after!;
       const tt = time * 0.004; // smoke turbulence clock
       const baseThr = thrClean; // always a clean straight seam (no pixel scatter)
 
@@ -194,9 +224,12 @@ export function RevealCard({
       // then screen-blended onto the frontier.
       const cellW = cw / cols;
       const cellH = ch / rows;
-      const sx = cover(aImg, cw, ch);
+      const drift = SMOKE_DRIFT * optsRef.current.smokeStr; // wisp spread
+      const { shape, dotSize } = optsRef.current;
+      const half = dotSize / 2;
       sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       sctx.clearRect(0, 0, cw, ch);
+      sctx.fillStyle = "#fff"; // recolored by the gradient (source-in) below
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const t = thresholds[row * cols + col];
@@ -206,20 +239,16 @@ export function RevealCard({
           // time-driven swirl so wisps keep moving while dragging
           const sway = Math.sin(tt + col * 0.5 + row * 0.3) * 8;
           const curl = Math.cos(tt * 1.3 + col * 0.4) * 5;
-          const dx = col * cellW + ((h - 0.5) * SMOKE_DRIFT + sway) * life;
-          const dy = row * cellH - (SMOKE_DRIFT * (0.6 + h * 0.8) + curl) * life;
-          sctx.globalAlpha = (1 - life) * 1.1;
-          sctx.drawImage(
-            aImg,
-            sx.ox + ((col * cellW) / cw) * sx.sw,
-            sx.oy + ((row * cellH) / ch) * sx.sh,
-            (cellW / cw) * sx.sw,
-            (cellH / ch) * sx.sh,
-            dx,
-            dy,
-            cellW + 1,
-            cellH + 1
-          );
+          const cx = col * cellW + cellW / 2 + ((h - 0.5) * drift + sway) * life;
+          const cy = row * cellH + cellH / 2 - (drift * (0.6 + h * 0.8) + curl) * life;
+          sctx.globalAlpha = (1 - life) * 1.1 * optsRef.current.smokeOp;
+          if (shape === "circle") {
+            sctx.beginPath();
+            sctx.arc(cx, cy, half, 0, Math.PI * 2);
+            sctx.fill();
+          } else {
+            sctx.fillRect(cx - half, cy - half, dotSize, dotSize);
+          }
         }
       }
       sctx.globalAlpha = 1;
@@ -228,8 +257,13 @@ export function RevealCard({
       // alpha shape (source-in fills only where wisps were drawn).
       sctx.globalCompositeOperation = "source-in";
       const grad = sctx.createLinearGradient(0, 0, cw, ch);
-      grad.addColorStop(0, "#a7f3d0"); // light green
-      grad.addColorStop(1, "#bfdbfe"); // light blue
+      // Interpolate in OKLCH (canvas gradients otherwise blend in sRGB) by
+      // laying down intermediate color-mix stops the browser resolves for us.
+      const { c1: g1, c2: g2 } = optsRef.current;
+      for (let i = 0; i <= 8; i++) {
+        const p = i / 8;
+        grad.addColorStop(p, `color-mix(in oklch, ${g1}, ${g2} ${p * 100}%)`);
+      }
       sctx.fillStyle = grad;
       sctx.fillRect(0, 0, cw, ch);
       sctx.globalCompositeOperation = "source-over";
@@ -239,8 +273,9 @@ export function RevealCard({
       ctx.beginPath();
       ctx.rect(0, 0, reveal * W, H);
       ctx.clip();
-      ctx.filter = `blur(${SMOKE_BLUR * dpr}px)`;
-      ctx.globalCompositeOperation = "screen";
+      ctx.filter = `blur(${SMOKE_BLUR * optsRef.current.fxStr * dpr}px)`;
+      ctx.globalCompositeOperation = optsRef.current.blend;
+      ctx.globalAlpha = optsRef.current.fxOp;
       ctx.drawImage(smoke, 0, 0);
       ctx.restore();
     };
@@ -253,9 +288,10 @@ export function RevealCard({
       // Redraw every frame while dragging/easing so the smoke keeps swirling;
       // once settled, fall back to the reveal-changed check to stay idle-cheap.
       const active = dragging.current || Math.abs(targetRef.current - dispRef.current) > 0.0005;
-      if (active || Math.abs(dispRef.current - lastDrawn) > 0.0005) {
+      if (active || needsRedraw.current || Math.abs(dispRef.current - lastDrawn) > 0.0005) {
         draw(dispRef.current, time);
         lastDrawn = dispRef.current;
+        needsRedraw.current = false;
       }
 
       if (handleRef.current) handleRef.current.style.left = `${dispRef.current * 100}%`;
@@ -331,6 +367,118 @@ export function RevealCard({
             </svg>
           </div>
         </div>
+      </div>
+
+      {/* Options bar — 24px below the image, tweak the smoke gradient + blend */}
+      <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-600">
+        <label className="flex items-center gap-2">
+          <span>Gradient</span>
+          <input
+            type="color"
+            value={c1}
+            onChange={(e) => setC1(e.target.value)}
+            className="h-6 w-6 cursor-pointer rounded border border-neutral-300 bg-transparent p-0"
+            aria-label="Gradient start color"
+          />
+          <input
+            type="color"
+            value={c2}
+            onChange={(e) => setC2(e.target.value)}
+            className="h-6 w-6 cursor-pointer rounded border border-neutral-300 bg-transparent p-0"
+            aria-label="Gradient end color"
+          />
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Blend</span>
+          <select
+            value={blend}
+            onChange={(e) => setBlend(e.target.value as GlobalCompositeOperation)}
+            className="rounded border border-neutral-300 bg-white px-2 py-1"
+          >
+            {BLEND_MODES.map((m) => (
+              <option key={m.op} value={m.op}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Shape</span>
+          <select
+            value={shape}
+            onChange={(e) => setShape(e.target.value as "square" | "circle")}
+            className="rounded border border-neutral-300 bg-white px-2 py-1 capitalize"
+          >
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+          </select>
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Size</span>
+          <input
+            type="range"
+            min={2}
+            max={16}
+            step={1}
+            value={dotSize}
+            onChange={(e) => setDotSize(Number(e.target.value))}
+            className="cursor-pointer"
+            aria-label="Shape size in px"
+          />
+          <span className="tabular-nums">{dotSize}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Smoke opacity</span>
+          <input
+            type="range"
+            min={0}
+            max={2}
+            step={0.05}
+            value={smokeOp}
+            onChange={(e) => setSmokeOp(Number(e.target.value))}
+            className="cursor-pointer"
+            aria-label="Smoke opacity"
+          />
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Smoke strength</span>
+          <input
+            type="range"
+            min={0}
+            max={3}
+            step={0.05}
+            value={smokeStr}
+            onChange={(e) => setSmokeStr(Number(e.target.value))}
+            className="cursor-pointer"
+            aria-label="Smoke strength (wisp spread)"
+          />
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Effect opacity</span>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.05}
+            value={fxOp}
+            onChange={(e) => setFxOp(Number(e.target.value))}
+            className="cursor-pointer"
+            aria-label="Effect opacity"
+          />
+        </label>
+        <label className="flex items-center gap-2">
+          <span>Effect strength</span>
+          <input
+            type="range"
+            min={0}
+            max={4}
+            step={0.05}
+            value={fxStr}
+            onChange={(e) => setFxStr(Number(e.target.value))}
+            className="cursor-pointer"
+            aria-label="Effect strength (blur softness)"
+          />
+        </label>
       </div>
     </div>
   );
