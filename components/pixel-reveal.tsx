@@ -19,14 +19,8 @@ const SLANT = 0;
 const SLANT_DEG = (Math.atan(SLANT) * 180) / Math.PI;
 // How far the pixel scatter spreads around the seam, in threshold units.
 const BAND = 0.08;
-// Smoke frontier: just-revealed cells drift + fade like wisps. Rendered once to
-// an offscreen buffer and blurred a single time (cheap), not per-cell.
-const SMOKE_BAND = 0.14; // reveal-distance over which a cell's wisp lives
-const SMOKE_BLUR = 6; // px, softness of the whole smoke layer
-const SMOKE_DRIFT = 34; // px, how far a wisp floats as it fades
-const FEATHER = 0.05; // width of the soft before→after seam blend (0..1)
 
-export function RevealCardSmoke({
+export function RevealCard({
   beforeSrc,
   afterSrc,
   initial = 50,
@@ -62,13 +56,13 @@ export function RevealCardSmoke({
     const rows = Math.max(1, Math.round(grid));
 
     // Per-cell reveal threshold: diagonal sweep + a stable random scatter so the
-    // seam breaks into pixels instead of a hard edge.
-    // Per-cell seam position with a stable random scatter, so the smoke wisps
-    // break into pixels along the seam instead of a clean band.
+    // seam breaks into pixel squares instead of a hard edge. One fixed set —
+    // used at rest and while dragging alike, so the frontier never snaps/shakes.
     const thresholds = new Float32Array(cols * rows);
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
         const diag = (col + 0.5 + (row - (rows - 1) / 2) * SLANT) / cols;
+        // deterministic pseudo-random jitter per cell
         const j = frac(Math.sin(col * 12.9898 + row * 78.233) * 43758.5453);
         thresholds[row * cols + col] = diag + (j - 0.5) * BAND;
       }
@@ -79,36 +73,19 @@ export function RevealCardSmoke({
     let raf = 0;
     let disposed = false;
     let dpr = 1;
-    let cw = 0; // css px
-    let ch = 0;
     let W = 0; // device px (canvas backing store)
     let H = 0;
     let lastDrawn = -1; // only repaint when the reveal (or size/images) changed
 
-    // Base composite runs as a single per-pixel pass over these buffers. The
-    // seam is feathered (soft blend) so there's never a hard line — just smoke.
-    let before8: Uint8ClampedArray | null = null; // cover-fit source pixels
-    let after8: Uint8ClampedArray | null = null;
-    let before32: Uint32Array | null = null;
+    // Base composite runs as a single per-pixel pass over these buffers.
+    let before32: Uint32Array | null = null; // cover-fit source pixels
     let after32: Uint32Array | null = null;
     let out: ImageData | null = null;
-    let out8: Uint8ClampedArray | null = null;
     let out32: Uint32Array | null = null;
-    let mCol: Float32Array | null = null; // per-column before→after blend factor
+    let colOf: Int32Array | null = null; // device-x → block column
+    let rowOf: Int32Array | null = null; // device-y → block row
+    let pick: Uint8Array | null = null; // per-row after/before decision
 
-    // Offscreen buffer for the smoke layer — blurred once, then composited.
-    const smoke = document.createElement("canvas");
-    const sctx = smoke.getContext("2d")!;
-    // Soft round puff sprite — drawn per wisp so smoke is smooth, never blocky.
-    const puff = document.createElement("canvas");
-    puff.width = puff.height = 64;
-    const pctx = puff.getContext("2d")!;
-    const pg = pctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    pg.addColorStop(0, "rgba(255,255,255,0.95)");
-    pg.addColorStop(0.5, "rgba(255,255,255,0.35)");
-    pg.addColorStop(1, "rgba(255,255,255,0)");
-    pctx.fillStyle = pg;
-    pctx.fillRect(0, 0, 64, 64);
     // Scratch canvas used to rasterize each source image at device resolution.
     const tmp = document.createElement("canvas");
     const tctx = tmp.getContext("2d", { willReadFrequently: true })!;
@@ -119,20 +96,21 @@ export function RevealCardSmoke({
       const s = cover(img, W, H);
       tctx.clearRect(0, 0, W, H);
       tctx.drawImage(img, s.ox, s.oy, s.sw, s.sh, 0, 0, W, H);
-      return tctx.getImageData(0, 0, W, H).data;
+      return new Uint32Array(tctx.getImageData(0, 0, W, H).data.buffer);
     };
 
-    // (Re)build the pixel buffers. Needs images + a known size.
+    // (Re)build the pixel buffers + block lookups. Needs images + a known size.
     const rebuild = () => {
       if (!before || !after || !W || !H) return;
-      before8 = toData(before);
-      after8 = toData(after);
-      before32 = new Uint32Array(before8.buffer);
-      after32 = new Uint32Array(after8.buffer);
+      before32 = toData(before);
+      after32 = toData(after);
       out = ctx.createImageData(W, H);
-      out8 = out.data;
-      out32 = new Uint32Array(out8.buffer);
-      mCol = new Float32Array(W);
+      out32 = new Uint32Array(out.data.buffer);
+      colOf = new Int32Array(W);
+      for (let x = 0; x < W; x++) colOf[x] = Math.min(cols - 1, (x / W * cols) | 0);
+      rowOf = new Int32Array(H);
+      for (let y = 0; y < H; y++) rowOf[y] = Math.min(rows - 1, (y / H * rows) | 0);
+      pick = new Uint8Array(W);
       lastDrawn = -1;
     };
 
@@ -156,95 +134,46 @@ export function RevealCardSmoke({
       const h = el.clientHeight;
       if (!w || !h) return;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      cw = w;
-      ch = h;
       W = Math.round(w * dpr);
       H = Math.round(h * dpr);
       canvas.width = W;
       canvas.height = H;
-      smoke.width = W;
-      smoke.height = H;
       rebuild();
     };
 
-    const draw = (reveal: number, time: number, motion: number) => {
-      if (!out || !out8 || !out32 || !before8 || !after8 || !before32 || !after32 || !mCol)
+    const draw = (reveal: number) => {
+      if (!out || !out32 || !before32 || !after32 || !colOf || !rowOf || !pick)
         return;
-      const tt = time * 0.004; // smoke turbulence clock
 
-      // Base: soft feathered blend before→after around the seam — no hard line.
-      // Per-column blend factor (1 = after, 0 = before); only the thin band is
-      // per-channel blended, the rest is a fast whole-pixel copy.
-      for (let x = 0; x < W; x++) {
-        const m = (reveal - x / W) / FEATHER + 0.5;
-        mCol[x] = m <= 0 ? 0 : m >= 1 ? 1 : m;
-      }
+      // One per-pixel pass. Each pixel takes its block's threshold and copies the
+      // whole pixel from the after or before buffer (32-bit copy). Pixelated seam.
+      let curRow = -1;
       for (let y = 0; y < H; y++) {
+        const row = rowOf[y];
+        if (row !== curRow) {
+          curRow = row;
+          const roff = row * cols;
+          for (let x = 0; x < W; x++)
+            pick[x] = reveal >= thresholds[roff + colOf[x]] ? 1 : 0;
+        }
         const b = y * W;
         for (let x = 0; x < W; x++) {
-          const m = mCol[x];
           const p = b + x;
-          if (m >= 1) out32[p] = after32[p];
-          else if (m <= 0) out32[p] = before32[p];
-          else {
-            const o = p * 4;
-            const inv = 1 - m;
-            out8[o] = before8[o] * inv + after8[o] * m;
-            out8[o + 1] = before8[o + 1] * inv + after8[o + 1] * m;
-            out8[o + 2] = before8[o + 2] * inv + after8[o + 2] * m;
-            out8[o + 3] = 255;
-          }
+          out32[p] = pick[x] ? after32[p] : before32[p];
         }
       }
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.putImageData(out, 0, 0);
-
-      // Smoke: each just-revealed cell emits a soft puff wisp that drifts up +
-      // fades over its SMOKE_BAND lifetime (one-sided). Emitted by MOTION only —
-      // at rest the seam stays clear. Blurred once, then screen-blended.
-      const cellW = cw / cols;
-      const cellH = ch / rows;
-      const size = cellW * 4; // puffs overlap so the grid never reads as squares
-      sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      sctx.clearRect(0, 0, cw, ch);
-      if (motion > 0.01)
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          const t = thresholds[row * cols + col];
-          const life = (reveal - t) / SMOKE_BAND; // 0 = just born, 1 = gone
-          if (life < 0 || life > 1) continue;
-          const h = frac(Math.sin(col * 3.71 + row * 9.13) * 2749.13);
-          // time-driven swirl so wisps keep moving while dragging
-          const sway = Math.sin(tt + col * 0.5 + row * 0.3) * 8;
-          const curl = Math.cos(tt * 1.3 + col * 0.4) * 5;
-          const cx =
-            col * cellW + cellW / 2 + ((h - 0.5) * SMOKE_DRIFT + sway) * life;
-          const cy =
-            row * cellH + cellH / 2 - (SMOKE_DRIFT * (0.6 + h * 0.8) + curl) * life;
-          sctx.globalAlpha = (1 - life) * 0.6 * motion;
-          sctx.drawImage(puff, cx - size / 2, cy - size / 2, size, size);
-        }
-      }
-      sctx.globalAlpha = 1;
-
-      ctx.save();
-      ctx.filter = `blur(${SMOKE_BLUR * dpr}px)`;
-      ctx.globalCompositeOperation = "screen"; // bright white plume, original smoke
-      ctx.drawImage(smoke, 0, 0);
-      ctx.restore();
     };
 
-    const tick = (time: number) => {
+    const tick = () => {
       dispRef.current += (targetRef.current - dispRef.current) * 0.18; // ease + delay
       if (Math.abs(targetRef.current - dispRef.current) < 0.0005) {
         dispRef.current = targetRef.current;
       }
-      // Smoke is driven by movement: the gap between target and displayed reveal
-      // is ~velocity, so it fades in on drag and fades out as things settle.
-      const motion = Math.min(1, Math.abs(targetRef.current - dispRef.current) / 0.05);
-      const active = dragging.current || Math.abs(targetRef.current - dispRef.current) > 0.0005;
-      if (active || Math.abs(dispRef.current - lastDrawn) > 0.0005) {
-        draw(dispRef.current, time, motion);
+      // Only repaint when the reveal actually moved — idle-cheap, no jitter.
+      if (Math.abs(dispRef.current - lastDrawn) > 0.0005) {
+        draw(dispRef.current);
         lastDrawn = dispRef.current;
       }
 

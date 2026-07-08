@@ -115,6 +115,12 @@ export function RevealCard({
       if (!before || !after || !W || !H) return;
       before32 = toData(before);
       after32 = toData(after);
+      // Before half is monochrome; the revealed (smoke) half keeps full color.
+      const b8 = new Uint8Array(before32.buffer);
+      for (let i = 0; i < b8.length; i += 4) {
+        const g = (b8[i] * 0.299 + b8[i + 1] * 0.587 + b8[i + 2] * 0.114) | 0;
+        b8[i] = b8[i + 1] = b8[i + 2] = g;
+      }
       out = ctx.createImageData(W, H);
       out32 = new Uint32Array(out.data.buffer);
       colOf = new Int32Array(W);
@@ -156,12 +162,12 @@ export function RevealCard({
       rebuild();
     };
 
-    const draw = (reveal: number, time: number, scatter: boolean) => {
+    const draw = (reveal: number, time: number) => {
       if (!out || !out32 || !before32 || !after32 || !colOf || !rowOf || !pick)
         return;
       const aImg = after!;
       const tt = time * 0.004; // smoke turbulence clock
-      const baseThr = scatter ? thresholds : thrClean; // clean seam while moving
+      const baseThr = thrClean; // always a clean straight seam (no pixel scatter)
 
       // Base: one per-pixel pass. Each pixel takes its block's threshold and
       // copies the whole pixel from the after or before buffer (32-bit copy).
@@ -218,7 +224,21 @@ export function RevealCard({
       }
       sctx.globalAlpha = 1;
 
+      // Recolor the wisps with a subtle green→blue gradient, keeping their soft
+      // alpha shape (source-in fills only where wisps were drawn).
+      sctx.globalCompositeOperation = "source-in";
+      const grad = sctx.createLinearGradient(0, 0, cw, ch);
+      grad.addColorStop(0, "#a7f3d0"); // light green
+      grad.addColorStop(1, "#bfdbfe"); // light blue
+      sctx.fillStyle = grad;
+      sctx.fillRect(0, 0, cw, ch);
+      sctx.globalCompositeOperation = "source-over";
+
       ctx.save();
+      // Keep smoke on the revealed side only — no bleed onto the mono half.
+      ctx.beginPath();
+      ctx.rect(0, 0, reveal * W, H);
+      ctx.clip();
       ctx.filter = `blur(${SMOKE_BLUR * dpr}px)`;
       ctx.globalCompositeOperation = "screen";
       ctx.drawImage(smoke, 0, 0);
@@ -234,7 +254,7 @@ export function RevealCard({
       // once settled, fall back to the reveal-changed check to stay idle-cheap.
       const active = dragging.current || Math.abs(targetRef.current - dispRef.current) > 0.0005;
       if (active || Math.abs(dispRef.current - lastDrawn) > 0.0005) {
-        draw(dispRef.current, time, !active); // clean seam while moving, pixelate at rest
+        draw(dispRef.current, time);
         lastDrawn = dispRef.current;
       }
 
