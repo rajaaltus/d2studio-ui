@@ -357,15 +357,160 @@ export function RevealCard({
             if (e.key === "ArrowRight") targetRef.current = clamp01(targetRef.current + 0.02);
           }}
         >
-          <div
-            className="absolute left-1/2 top-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-neutral-700 shadow-[0_2px_10px_rgba(0,0,0,0.25)] ring-1 ring-black/5 backdrop-blur-sm"
+          <svg
+            width={43}
+            height={44}
+            viewBox="0 0 39 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute left-1/2 top-1/2 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
             style={{ transform: `translate(-50%, -50%) rotate(${-SLANT_DEG}deg)` }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m15 18-6-6 6-6" />
-              <path d="m9 6 6 6-6 6" />
-            </svg>
-          </div>
+            <foreignObject x={-1} y={-1} width={40.1836} height={41.3984}>
+              <div
+                xmlns="http://www.w3.org/1999/xhtml"
+                style={{
+                  backdropFilter: "blur(0.5px)",
+                  clipPath: "url(#bgblur_0_8078_244_clip_path)",
+                  height: "100%",
+                  width: "100%",
+                }}
+              />
+            </foreignObject>
+            <g data-figma-bg-blur-radius={1}>
+              <rect
+                x={38.1836}
+                y={39.3984}
+                width={38.1836}
+                height={39.4021}
+                rx={19.0918}
+                transform="rotate(-180 38.1836 39.3984)"
+                fill="url(#paint0_linear_8078_244)"
+                fillOpacity={0.2}
+              />
+              <rect
+                x={37.9336}
+                y={39.1484}
+                width={37.6836}
+                height={38.9021}
+                rx={18.8418}
+                transform="rotate(-180 37.9336 39.1484)"
+                stroke="#FCFCFC"
+                strokeOpacity={0.25}
+                strokeWidth={0.5}
+              />
+            </g>
+            <g filter="url(#filter1_d_8078_244)">
+              <rect
+                x={4.66846}
+                y={5.29688}
+                width={28.847}
+                height={28.847}
+                rx={14.4235}
+                fill="url(#paint1_linear_8078_244)"
+                fillOpacity={1}
+                shapeRendering="crispEdges"
+              />
+              <rect
+                x={5.16846}
+                y={5.79688}
+                width={27.847}
+                height={27.847}
+                rx={13.9235}
+                stroke="white"
+                strokeOpacity={0.3}
+                shapeRendering="crispEdges"
+              />
+              <g clipPath="url(#clip1_8078_244)">
+                <path
+                  d="M14.4446 17.0949C14.4975 17.2536 14.6469 17.3609 14.8141 17.3609C14.9813 17.3609 15.1299 17.2536 15.1835 17.0949L15.511 16.1126L16.4933 15.7851C16.652 15.7322 16.7593 15.5837 16.7593 15.4164C16.7593 15.2492 16.652 15.1007 16.4933 15.0478L15.511 14.7203L15.1835 13.738C15.077 13.4207 14.552 13.4207 14.4454 13.738L14.118 14.7203L13.1356 15.0478C12.977 15.1007 12.8696 15.2492 12.8696 15.4164C12.8696 15.5837 12.977 15.7322 13.1356 15.7851L14.118 16.1126L14.4446 17.0949Z"
+                  fill="black"
+                />
+                <path
+                  d="M24.9445 19.5679L21.4173 18.1734L20.0227 14.6462C19.8462 14.2013 19.1143 14.2013 18.9377 14.6462L17.5432 18.1734L14.0159 19.5679C13.7935 19.6558 13.6465 19.8713 13.6465 20.1101C13.6465 20.3488 13.7927 20.5643 14.0159 20.6522L17.5432 22.0467L18.9377 25.5739C19.0256 25.7964 19.241 25.9426 19.4798 25.9426C19.7186 25.9426 19.934 25.7964 20.0219 25.5739L21.4165 22.0467L24.9437 20.6522C25.1662 20.5643 25.3132 20.3488 25.3132 20.1101C25.3132 19.8713 25.1677 19.6558 24.9445 19.5679Z"
+                  fill="black"
+                />
+              </g>
+            </g>
+            <defs>
+              <clipPath id="bgblur_0_8078_244_clip_path" transform="translate(1 1)">
+                <rect
+                  x={38.1836}
+                  y={39.3984}
+                  width={38.1836}
+                  height={39.4021}
+                  rx={19.0918}
+                  transform="rotate(-180 38.1836 39.3984)"
+                />
+              </clipPath>
+              <filter
+                id="filter1_d_8078_244"
+                x={2.66846}
+                y={3.29688}
+                width={32.8472}
+                height={32.8438}
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset />
+                <feGaussianBlur stdDeviation={1} />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_8078_244"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_8078_244"
+                  result="shape"
+                />
+              </filter>
+              <linearGradient
+                id="paint0_linear_8078_244"
+                x1={57.2754}
+                y1={78.8006}
+                x2={57.2754}
+                y2={39.3984}
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#E1E1E1" />
+                <stop offset={1} stopColor="#E2E2E2" />
+              </linearGradient>
+              <linearGradient
+                id="paint1_linear_8078_244"
+                x1={19.0919}
+                y1={34.1438}
+                x2={19.0919}
+                y2={5.29688}
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#F6F6F6" />
+                <stop offset={0.5} stopColor="#EEEEEE" />
+                <stop offset={1} stopColor="#FEFEFE" />
+              </linearGradient>
+              <clipPath id="clip1_8078_244">
+                <rect
+                  width={14}
+                  height={14}
+                  fill="white"
+                  transform="translate(12.0918 12.7188)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
         </div>
       </div>
 
