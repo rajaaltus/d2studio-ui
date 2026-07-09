@@ -3782,6 +3782,8 @@
 .hero-smoke {
   pointer-events: none;
   opacity: 0;
+  /* Dark is the base (adds light on the near-black card) — the original,
+     known-good look. Light mode overrides to multiply below. */
   background: var(--d2-blue-gradient);
   mix-blend-mode: plus-lighter;
   /* Fractal-noise (feTurbulence) mask, blurred into soft wisps — reads as smoke,
@@ -3799,11 +3801,31 @@
   transition: opacity 0.8s ease;
   will-change: mask-position, opacity;
 }
+/* Light mode: multiply a saturated holo gradient into the white card so the
+   smoke reads (plus-lighter is invisible on white). */
+html:not(.dark) .hero-smoke {
+  mix-blend-mode: multiply;
+  background: linear-gradient(135deg, #785cff 0%, #dc28af 50%, #ff683a 100%);
+}
+
+/* Colored dots: add light on the dark card (base) / multiply into the white
+   card (light) so the color reads on either surface. */
+.glow-dots {
+  mix-blend-mode: plus-lighter;
+}
+html:not(.dark) .glow-dots {
+  mix-blend-mode: multiply;
+}
+
 /* Aurora + Combo: smoke drifts on hover. */
 [data-hover="aurora"] .group:hover .hero-smoke,
 [data-hover="combo"] .group:hover .hero-smoke {
-  opacity: 0.4;
+  opacity: 0.55;
   animation-play-state: running;
+}
+.dark [data-hover="aurora"] .group:hover .hero-smoke,
+.dark [data-hover="combo"] .group:hover .hero-smoke {
+  opacity: 0.4;
 }
 /* Power Up + Combo: the lit dots brighten on hover. */
 [data-hover="powerup"] .group:hover .glow-dots,
@@ -3812,7 +3834,7 @@
 }
 [data-hover="powerup"] .group:hover .nglow-dots,
 [data-hover="combo"] .group:hover .nglow-dots {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 /* Undirected organic drift — mostly a slow rise with a slight sideways wander,
    so it reads as real smoke rather than a sweep in one direction. */

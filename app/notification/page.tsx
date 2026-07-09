@@ -32,6 +32,8 @@ const DOT_SIZE = "4.95px 4.95px";
 const DOT_IMAGE =
   "radial-gradient(circle, rgba(128,128,128,0.28) 0.6px, transparent 0.78px)";
 const DOT_MASK = "radial-gradient(circle, #000 0.6px, transparent 0.78px)";
+/* Colored glow uses the same fine dot as the frame — subtle, not chunky. */
+const GLOW_MASK = DOT_MASK;
 
 /* Neutral gray dot frame, optionally masked to just the card edges. */
 function dotFrame(mask: string | undefined) {
@@ -49,17 +51,17 @@ function glowDots(glow: string) {
     backgroundImage: glow,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    WebkitMaskImage: DOT_MASK,
-    maskImage: DOT_MASK,
+    WebkitMaskImage: GLOW_MASK,
+    maskImage: GLOW_MASK,
     WebkitMaskSize: DOT_SIZE,
     maskSize: DOT_SIZE,
   };
 }
 
 const BLUE_GLOW =
-  "radial-gradient(55% 65% at 20% 22%, rgba(38,96,255,0.85) 0%, transparent 70%)";
+  "radial-gradient(55% 65% at 20% 22%, rgba(38,96,255,0.5) 0%, transparent 70%)";
 const ORANGE_GLOW =
-  "radial-gradient(75% 55% at 50% 114%, rgba(255,122,61,0.85) 0%, transparent 72%)";
+  "radial-gradient(75% 55% at 50% 114%, rgba(255,122,61,0.5) 0%, transparent 72%)";
 
 /* Hollow the gray frame out of the center so text sits on a clean field. */
 const PATTERN_MASK =
@@ -92,7 +94,7 @@ function Card({
           <div
             key={i}
             aria-hidden
-            className="glow-dots pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500"
+            className="glow-dots pointer-events-none absolute inset-0 opacity-45 transition-opacity duration-500"
             style={glowDots(glow)}
           />
         ))}
@@ -224,7 +226,7 @@ export default function NotificationPage() {
         <Card
           innerClassName="justify-center p-6"
           dotGlows={[
-            "radial-gradient(75% 80% at 50% 50%, rgba(38,96,255,0.85) 0%, transparent 72%)",
+            "radial-gradient(75% 80% at 50% 50%, rgba(38,96,255,0.5) 0%, transparent 72%)",
           ]}
         >
           <div className="flex items-center gap-1 text-xs font-medium text-emerald-500">
@@ -235,7 +237,7 @@ export default function NotificationPage() {
             className={cn("mt-2 text-8xl font-semibold tracking-tight tabular-nums", METAL)}
             style={{
               backgroundImage:
-                "linear-gradient(180deg, oklch(90% 0.005 17.3) 0%, oklch(62% 0.008 17.3) 100%)",
+                "linear-gradient(180deg, oklch(18.67% 0 90) 0%, oklch(84.21% 0 90) 100%)",
             }}
           >
             29
@@ -246,7 +248,7 @@ export default function NotificationPage() {
         {/* 4 — Delivery channels */}
         <Card
           innerClassName="p-6"
-          dotGlows={["radial-gradient(80% 80% at 50% 55%, rgba(255,122,61,0.85) 0%, transparent 72%)"]}
+          dotGlows={["radial-gradient(80% 80% at 50% 55%, rgba(255,122,61,0.5) 0%, transparent 72%)"]}
         >
           <h3 className={cn("text-[15px] font-semibold dark:text-white", METAL)} style={metalStyle}>Delivery</h3>
           <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">Where you get notified</p>
