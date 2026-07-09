@@ -1,0 +1,61 @@
+- generic [active] [ref=f25e1]:
+  - link "Skip to content" [ref=f25e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f25e3]:
+    - generic [ref=f25e4]:
+      - img [ref=f25e6]
+      - generic [ref=f25e70]:
+        - generic [ref=f25e71]:
+          - heading "Recent activity" [level=3] [ref=f25e72]
+          - generic [ref=f25e73]: Today
+        - list [ref=f25e74]:
+          - listitem [ref=f25e75]:
+            - img [ref=f25e77]
+            - generic [ref=f25e79]: New comment on “Bento layout”
+            - generic [ref=f25e80]: 2m ago
+          - listitem [ref=f25e81]:
+            - img [ref=f25e83]
+            - generic [ref=f25e85]: Deployment finished successfully
+            - generic [ref=f25e86]: 18m ago
+          - listitem [ref=f25e87]:
+            - img [ref=f25e89]
+            - generic [ref=f25e92]: 3 messages from your team
+            - generic [ref=f25e93]: 1h ago
+      - generic [ref=f25e94]:
+        - generic [ref=f25e95]: "29"
+        - generic [ref=f25e96]: Unread notifications
+      - generic [ref=f25e97]:
+        - heading "Channels" [level=3] [ref=f25e98]
+        - list [ref=f25e99]:
+          - listitem [ref=f25e100]:
+            - img [ref=f25e102]
+            - generic [ref=f25e105]: Push
+            - img [ref=f25e107]
+          - listitem [ref=f25e109]:
+            - img [ref=f25e111]
+            - generic [ref=f25e114]: Email
+            - img [ref=f25e116]
+          - listitem [ref=f25e118]:
+            - img [ref=f25e120]
+            - generic [ref=f25e122]: SMS
+            - img [ref=f25e124]
+      - generic [ref=f25e127]:
+        - heading "Instant delivery" [level=3] [ref=f25e128]
+        - paragraph [ref=f25e129]: Get notified the moment something changes.
+  - generic [ref=f25e132]:
+    - heading "Command palette" [level=2] [ref=f25e133]
+    - paragraph [ref=f25e134]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f25e135]:
+    - button "Blocks" [ref=f25e136] [cursor=pointer]:
+      - generic [ref=f25e150]: Blocks
+      - img [ref=f25e151]
+    - button "Tools New" [ref=f25e154] [cursor=pointer]:
+      - generic [ref=f25e167]: Tools
+      - generic [ref=f25e169]: New
+      - img [ref=f25e170]
+    - button "Switch to light mode" [ref=f25e173] [cursor=pointer]:
+      - img [ref=f25e175]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f25e182] [cursor=pointer]:
+    - img [ref=f25e183]
+  - alert [ref=f25e186]

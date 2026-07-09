@@ -1,0 +1,66 @@
+- generic [active] [ref=f13e1]:
+  - link "Skip to content" [ref=f13e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f13e3]:
+    - generic [ref=f13e4]:
+      - generic [ref=f13e6]:
+        - generic [ref=f13e14]:
+          - img [ref=f13e15]
+          - generic [ref=f13e19]: "29"
+        - paragraph [ref=f13e20]: Keep up to date with any changes by receiving instant notifications.
+      - generic [ref=f13e22]:
+        - generic [ref=f13e23]:
+          - heading "Recent activity" [level=3] [ref=f13e24]
+          - generic [ref=f13e25]: Today
+        - list [ref=f13e26]:
+          - listitem [ref=f13e27]:
+            - img [ref=f13e29]
+            - generic [ref=f13e31]: New comment on Bento layout
+            - generic [ref=f13e32]: Priya · 2m
+          - listitem [ref=f13e33]:
+            - img [ref=f13e35]
+            - generic [ref=f13e39]: Deploy shipped to production
+            - generic [ref=f13e40]: Vercel · 18m
+          - listitem [ref=f13e41]:
+            - img [ref=f13e43]
+            - generic [ref=f13e46]: 3 messages from your team
+            - generic [ref=f13e47]: Inbox · 1h
+      - generic [ref=f13e49]:
+        - generic [ref=f13e50]:
+          - img [ref=f13e51]
+          - text: 12% this week
+        - generic [ref=f13e54]: "29"
+        - generic [ref=f13e55]: Unread notifications
+      - generic [ref=f13e57]:
+        - heading "Delivery" [level=3] [ref=f13e58]
+        - paragraph [ref=f13e59]: Where you get notified
+        - list [ref=f13e60]:
+          - listitem [ref=f13e61]:
+            - button "Push" [pressed] [ref=f13e62]:
+              - generic [ref=f13e63]: Push
+              - img [ref=f13e65]
+          - listitem [ref=f13e67]:
+            - button "Email" [pressed] [ref=f13e68]:
+              - generic [ref=f13e69]: Email
+              - img [ref=f13e71]
+          - listitem [ref=f13e73]:
+            - button "SMS" [ref=f13e74]:
+              - generic [ref=f13e75]: SMS
+              - img [ref=f13e77]
+  - generic [ref=f13e79]:
+    - heading "Command palette" [level=2] [ref=f13e80]
+    - paragraph [ref=f13e81]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f13e82]:
+    - button "Blocks" [ref=f13e83] [cursor=pointer]:
+      - generic [ref=f13e97]: Blocks
+      - img [ref=f13e98]
+    - button "Tools New" [ref=f13e101] [cursor=pointer]:
+      - generic [ref=f13e114]: Tools
+      - generic [ref=f13e116]: New
+      - img [ref=f13e117]
+    - button "Switch to light mode" [ref=f13e120] [cursor=pointer]:
+      - img [ref=f13e122]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f13e129] [cursor=pointer]:
+    - img [ref=f13e130]
+  - alert [ref=f13e133]
