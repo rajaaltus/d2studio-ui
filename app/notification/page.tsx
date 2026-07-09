@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowUpRight, Check, GitMerge, Mail, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
+import { ChatFill, EnvelopeFill, RocketFill } from "@/components/icons/activity-icons";
 import { useState } from "react";
 import NotificationCard from "@/components/notification-card";
 import NotificationCardDark from "@/components/notification-card-dark";
@@ -19,54 +20,93 @@ const rise = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT } },
 };
 
+/* Premium metallic text: top-lit light→dim gradient clipped to the glyphs. */
+const METAL = "text-transparent bg-clip-text";
+const metalStyle = {
+  backgroundImage:
+    "linear-gradient(180deg, oklch(72% 0.005 17.3) 0%, oklch(45% 0.008 17.3) 100%)",
+};
+
+/* Dot-matrix texture (same 4.95px sheet as the hero glow). */
+const DOT_SIZE = "4.95px 4.95px";
+const DOT_IMAGE =
+  "radial-gradient(circle, rgba(128,128,128,0.28) 0.6px, transparent 0.78px)";
+const DOT_MASK = "radial-gradient(circle, #000 0.6px, transparent 0.78px)";
+
+/* Neutral gray dot frame, optionally masked to just the card edges. */
+function dotFrame(mask: string | undefined) {
+  return {
+    backgroundImage: DOT_IMAGE,
+    backgroundSize: DOT_SIZE,
+    ...(mask ? { WebkitMaskImage: mask, maskImage: mask } : {}),
+  };
+}
+
+/* Colored light that shows THROUGH the dots only: the glow radial is the paint,
+   the dot grid is the mask — so the color lands on the dots, not the gaps. */
+function glowDots(glow: string) {
+  return {
+    backgroundImage: glow,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    WebkitMaskImage: DOT_MASK,
+    maskImage: DOT_MASK,
+    WebkitMaskSize: DOT_SIZE,
+    maskSize: DOT_SIZE,
+  };
+}
+
+const BLUE_GLOW =
+  "radial-gradient(55% 65% at 20% 22%, rgba(38,96,255,0.85) 0%, transparent 70%)";
+const ORANGE_GLOW =
+  "radial-gradient(75% 55% at 50% 114%, rgba(255,122,61,0.85) 0%, transparent 72%)";
+
+/* Hollow the gray frame out of the center so text sits on a clean field. */
+const PATTERN_MASK =
+  "radial-gradient(78% 78% at 50% 50%, transparent 32%, #000 82%)";
+
 /* Bezel frame: outer translucent layer with a 24px gap to the inner card. */
 const FRAME =
-  "group relative rounded-[28px] p-2 bg-black/[0.045] dark:bg-white/[0.06]";
+  "group relative rounded-[28px] p-1.5 bg-black/[0.045] dark:bg-white/[0.06]";
 
 /** Framed card: bezel + inner content card, hover lift, holographic top edge. */
 function Card({
   className,
   innerClassName,
-  interactive = true,
+  dotMask = PATTERN_MASK,
+  dotGlows,
   children,
 }: {
   className?: string;
   innerClassName?: string;
-  interactive?: boolean;
+  dotMask?: string;
+  dotGlows?: string[];
   children: React.ReactNode;
 }) {
-  const reduce = useReducedMotion();
   return (
-    <motion.section
-      variants={rise}
-      whileHover={interactive && !reduce ? { y: -4 } : undefined}
-      transition={{ duration: 0.2, ease: EASE_OUT }}
-      className={cn(FRAME, className)}
-    >
-      {interactive && (
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-x-10 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: "var(--d2-blue-gradient)" }}
-        />
-      )}
-      <div
-        className={cn(
-          "relative flex h-full flex-col overflow-hidden rounded-[20px] border border-black/[0.05] bg-white p-5",
-          "shadow-[0_1px_2px_rgba(20,20,40,0.04)] dark:border-white/[0.06] dark:bg-neutral-900",
-          innerClassName
-        )}
-      >
-        {children}
+    <motion.section variants={rise} className={cn(FRAME, className)}>
+      <div className="group relative h-full overflow-hidden rounded-[20px] border border-black/[0.05] bg-white shadow-[0_1px_2px_rgba(20,20,40,0.04)] dark:border-white/[0.06] dark:bg-[#060606]">
+        {/* Masked pattern sits on its own layers so it never clips the content. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={dotFrame(dotMask)} />
+        {dotGlows?.map((glow, i) => (
+          <div
+            key={i}
+            aria-hidden
+            className="glow-dots pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500"
+            style={glowDots(glow)}
+          />
+        ))}
+        <div aria-hidden className="hero-smoke absolute inset-0 rounded-[20px]" />
+        <div className={cn("relative flex h-full flex-col p-5", innerClassName)}>{children}</div>
       </div>
     </motion.section>
   );
 }
 
 const activity = [
-  { icon: MessageSquare, title: "New comment on Bento layout", meta: "Priya · 2m", tint: "text-violet-500" },
-  { icon: GitMerge, title: "Deploy shipped to production", meta: "Vercel · 18m", tint: "text-emerald-500" },
-  { icon: Mail, title: "3 messages from your team", meta: "Inbox · 1h", tint: "text-sky-500" },
+  { icon: ChatFill, title: "New comment on Bento layout", meta: "Priya · 2m", tint: "text-violet-500" },
+  { icon: RocketFill, title: "Deploy shipped to production", meta: "Vercel · 18m", tint: "text-emerald-500" },
+  { icon: EnvelopeFill, title: "3 messages from your team", meta: "Inbox · 1h", tint: "text-sky-500" },
 ];
 
 function Channels() {
@@ -101,9 +141,17 @@ function Channels() {
   );
 }
 
+const HOVER_MODES = [
+  { id: "powerup", label: "Power Up" },
+  { id: "aurora", label: "Aurora" },
+  { id: "combo", label: "Combo" },
+] as const;
+type HoverMode = (typeof HOVER_MODES)[number]["id"];
+
 export default function NotificationPage() {
+  const [mode, setMode] = useState<HoverMode>("combo");
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-neutral-100 p-6 sm:p-10 dark:bg-neutral-950">
+    <main className="relative flex min-h-screen flex-col items-center justify-center gap-6 overflow-hidden bg-neutral-100 p-6 sm:p-10 dark:bg-neutral-950">
       {/* Ambient brand wash — fills the whole section behind the bento */}
       <div
         aria-hidden
@@ -116,27 +164,43 @@ export default function NotificationPage() {
         }}
       />
 
+      {/* Hover-effect switcher */}
+      <div className="relative z-10 inline-flex rounded-full border border-black/10 bg-white/70 p-0.5 text-xs font-medium backdrop-blur dark:border-white/10 dark:bg-white/5">
+        {HOVER_MODES.map((m) => (
+          <button
+            key={m.id}
+            type="button"
+            onClick={() => setMode(m.id)}
+            className={cn(
+              "rounded-full px-3.5 py-1.5 transition-colors",
+              mode === m.id
+                ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
+                : "text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200"
+            )}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+
       <motion.div
+        data-hover={mode}
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-5 lg:grid-cols-3 lg:auto-rows-[256px]"
+        className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-3 lg:grid-cols-3 lg:auto-rows-[256px]"
       >
         {/* 1 — Hero: framed, swaps light/dark by theme */}
-        <motion.section
-          variants={rise}
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.2, ease: EASE_OUT }}
-          className={cn(FRAME, "lg:row-span-2")}
-        >
+        <motion.section variants={rise} className={cn(FRAME, "lg:row-span-2")}>
           <NotificationCard className="h-full w-full rounded-[20px] shadow-none dark:hidden" />
           <NotificationCardDark className="hidden h-full w-full rounded-[20px] dark:flex" />
+          <div aria-hidden className="hero-smoke absolute inset-1.5 overflow-hidden rounded-[20px]" />
         </motion.section>
 
         {/* 2 — Recent activity, wide */}
-        <Card className="lg:col-span-2" innerClassName="p-6">
+        <Card className="lg:col-span-2" innerClassName="p-6" dotGlows={[BLUE_GLOW, ORANGE_GLOW]}>
           <div className="mb-2 flex items-baseline justify-between">
-            <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-white">Recent activity</h3>
+            <h3 className={cn("text-[15px] font-semibold dark:text-white", METAL)} style={metalStyle}>Recent activity</h3>
             <span className="text-xs font-medium text-neutral-400">Today</span>
           </div>
           <motion.ul variants={container} className="space-y-0.5">
@@ -146,7 +210,7 @@ export default function NotificationPage() {
                 variants={rise}
                 className="flex items-center gap-3 rounded-2xl px-2.5 py-2 transition-colors hover:bg-black/[0.03] dark:hover:bg-white/5"
               >
-                <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-neutral-50 shadow-sm dark:bg-neutral-800", tint)}>
+                <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neutral-50 shadow-sm dark:bg-neutral-800", tint)}>
                   <Icon className="h-4 w-4" />
                 </span>
                 <span className="min-w-0 flex-1 truncate text-sm font-medium text-neutral-800 dark:text-neutral-100">{title}</span>
@@ -157,18 +221,34 @@ export default function NotificationPage() {
         </Card>
 
         {/* 3 — Unread stat */}
-        <Card innerClassName="justify-center p-6">
+        <Card
+          innerClassName="justify-center p-6"
+          dotGlows={[
+            "radial-gradient(75% 80% at 50% 50%, rgba(38,96,255,0.85) 0%, transparent 72%)",
+          ]}
+        >
           <div className="flex items-center gap-1 text-xs font-medium text-emerald-500">
             <ArrowUpRight className="h-3.5 w-3.5" />
             12% this week
           </div>
-          <div className="mt-2 text-5xl font-semibold tracking-tight tabular-nums text-neutral-900 dark:text-white">29</div>
+          <div
+            className={cn("mt-2 text-8xl font-semibold tracking-tight tabular-nums", METAL)}
+            style={{
+              backgroundImage:
+                "linear-gradient(180deg, oklch(90% 0.005 17.3) 0%, oklch(62% 0.008 17.3) 100%)",
+            }}
+          >
+            29
+          </div>
           <div className="mt-1 text-sm font-medium text-neutral-500 dark:text-neutral-400">Unread notifications</div>
         </Card>
 
         {/* 4 — Delivery channels */}
-        <Card innerClassName="p-6">
-          <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-white">Delivery</h3>
+        <Card
+          innerClassName="p-6"
+          dotGlows={["radial-gradient(80% 80% at 50% 55%, rgba(255,122,61,0.85) 0%, transparent 72%)"]}
+        >
+          <h3 className={cn("text-[15px] font-semibold dark:text-white", METAL)} style={metalStyle}>Delivery</h3>
           <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">Where you get notified</p>
           <Channels />
         </Card>

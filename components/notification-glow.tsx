@@ -72,14 +72,17 @@ export default function NotificationGlow({
       {/* Dot matrix — a single crisp CSS sheet (no image scaling / moiré),
           masked to a center ellipse, tinted by the lights below. */}
       <div
-        className="absolute inset-0"
+        className={cn(
+          "nglow-dots absolute inset-0 transition-opacity duration-500",
+          // Brighten on hover only in Power Up / Combo modes (gated via [data-hover]).
+          light ? "opacity-[0.55]" : "opacity-50"
+        )}
         style={{
           backgroundImage: `radial-gradient(circle, ${
             light ? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.6)"
           } 0.6px, transparent 0.78px)`,
           backgroundSize: "4.95px 4.95px",
           mixBlendMode: light ? "multiply" : "plus-lighter",
-          opacity: light ? 0.55 : 0.5,
           // Reveal dots only where the lights are (blue upper-left, orange right, bottom glow)
           WebkitMaskImage:
             "radial-gradient(52% 44% at 22% 27%, #000 15%, transparent 80%)," +
