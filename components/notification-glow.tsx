@@ -30,10 +30,10 @@ export default function NotificationGlow({
             top: "4%",
             width: "51%",
             aspectRatio: "1",
-            background: light ? "radial-gradient(circle, #8AA6FF 0%, transparent 66%)" : "#2660FF",
+            background: light ? "radial-gradient(circle, #4B6EF5 0%, transparent 66%)" : "#2660FF",
             filter: "blur(44px)",
-            opacity: light ? 0.5 : 0.42,
-            mixBlendMode: light ? "normal" : "plus-lighter",
+            opacity: light ? 0.6 : 0.32,
+            mixBlendMode: light ? "multiply" : "plus-lighter",
           }}
         />
         <div
@@ -44,11 +44,11 @@ export default function NotificationGlow({
             width: "31%",
             aspectRatio: "1",
             background: light
-              ? "radial-gradient(circle, #FFAD84 0%, transparent 66%)"
+              ? "radial-gradient(circle, #FF7A3D 0%, transparent 66%)"
               : "linear-gradient(135deg, #FF6A00 0%, #EB581E 100%)",
             filter: "blur(40px)",
-            opacity: light ? 0.45 : 0.42,
-            mixBlendMode: light ? "normal" : "plus-lighter",
+            opacity: light ? 0.55 : 0.42,
+            mixBlendMode: light ? "multiply" : "plus-lighter",
           }}
         />
         {/* Second blue disc — builds up the blue light shade (dark only) */}
@@ -62,7 +62,7 @@ export default function NotificationGlow({
               aspectRatio: "1",
               background: "#2660FF",
               filter: "blur(44px)",
-              opacity: 0.38,
+              opacity: 0.29,
               mixBlendMode: "plus-lighter",
             }}
           />
@@ -80,10 +80,15 @@ export default function NotificationGlow({
           backgroundSize: "4.95px 4.95px",
           mixBlendMode: light ? "multiply" : "plus-lighter",
           opacity: light ? 0.55 : 0.5,
+          // Reveal dots only where the lights are (blue upper-left, orange right, bottom glow)
           WebkitMaskImage:
-            "radial-gradient(ellipse 90% 80% at 50% 50%, #000 55%, transparent 100%)",
+            "radial-gradient(52% 44% at 22% 27%, #000 15%, transparent 80%)," +
+            "radial-gradient(48% 42% at 70% 45%, #000 15%, transparent 80%)," +
+            "radial-gradient(80% 55% at 50% 104%, #000 8%, transparent 72%)",
           maskImage:
-            "radial-gradient(ellipse 90% 80% at 50% 50%, #000 55%, transparent 100%)",
+            "radial-gradient(52% 44% at 22% 27%, #000 15%, transparent 80%)," +
+            "radial-gradient(48% 42% at 70% 45%, #000 15%, transparent 80%)," +
+            "radial-gradient(80% 55% at 50% 104%, #000 8%, transparent 72%)",
         }}
       />
     </div>

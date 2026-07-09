@@ -79,8 +79,8 @@ export default function NotificationCardDark({
         />
       </div>
 
-      {/* Fade the texture out under the caption for legibility */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#060606] via-[#060606]/80 to-transparent" />
+      {/* Gentle fade for caption legibility — keeps the dot pattern visible */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#060606]/70 to-transparent" />
       <p className="relative px-8 pb-9 text-center text-lg font-medium leading-snug text-white/60">
         Keep up to date with any changes by receiving instant notifications.
       </p>

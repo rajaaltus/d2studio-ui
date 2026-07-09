@@ -1,0 +1,69 @@
+- generic [active] [ref=f37e1]:
+  - link "Skip to content" [ref=f37e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f37e3]:
+    - generic [ref=f37e4]:
+      - generic [ref=f37e6]:
+        - generic [ref=f37e13]:
+          - img [ref=f37e14]
+          - img [ref=f37e16]
+          - generic [ref=f37e18]:
+            - img [ref=f37e19]
+            - generic [ref=f37e23]: "29"
+        - paragraph [ref=f37e24]: Keep up to date with any changes by receiving instant notifications.
+      - generic [ref=f37e26]:
+        - generic [ref=f37e27]:
+          - heading "Recent activity" [level=3] [ref=f37e28]
+          - generic [ref=f37e29]: Today
+        - list [ref=f37e30]:
+          - listitem [ref=f37e31]:
+            - img [ref=f37e33]
+            - generic [ref=f37e35]: New comment on Bento layout
+            - generic [ref=f37e36]: Priya · 2m
+          - listitem [ref=f37e37]:
+            - img [ref=f37e39]
+            - generic [ref=f37e43]: Deploy shipped to production
+            - generic [ref=f37e44]: Vercel · 18m
+          - listitem [ref=f37e45]:
+            - img [ref=f37e47]
+            - generic [ref=f37e50]: 3 messages from your team
+            - generic [ref=f37e51]: Inbox · 1h
+      - generic [ref=f37e53]:
+        - generic [ref=f37e54]:
+          - img [ref=f37e55]
+          - text: 12% this week
+        - generic [ref=f37e58]: "29"
+        - generic [ref=f37e59]: Unread notifications
+      - generic [ref=f37e61]:
+        - heading "Delivery" [level=3] [ref=f37e62]
+        - paragraph [ref=f37e63]: Where you get notified
+        - list [ref=f37e64]:
+          - listitem [ref=f37e65]:
+            - button "Push" [pressed] [ref=f37e66]:
+              - generic [ref=f37e67]: Push
+              - img [ref=f37e69]
+          - listitem [ref=f37e71]:
+            - button "Email" [pressed] [ref=f37e72]:
+              - generic [ref=f37e73]: Email
+              - img [ref=f37e75]
+          - listitem [ref=f37e77]:
+            - button "SMS" [ref=f37e78]:
+              - generic [ref=f37e79]: SMS
+              - img [ref=f37e81]
+  - generic [ref=f37e83]:
+    - heading "Command palette" [level=2] [ref=f37e84]
+    - paragraph [ref=f37e85]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f37e86]:
+    - button "Blocks" [ref=f37e87] [cursor=pointer]:
+      - generic [ref=f37e101]: Blocks
+      - img [ref=f37e102]
+    - button "Tools New" [ref=f37e105] [cursor=pointer]:
+      - generic [ref=f37e118]: Tools
+      - generic [ref=f37e120]: New
+      - img [ref=f37e121]
+    - button "Toggle theme" [ref=f37e124] [cursor=pointer]:
+      - img [ref=f37e127]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f37e138] [cursor=pointer]:
+    - img [ref=f37e139]
+  - alert [ref=f37e142]
