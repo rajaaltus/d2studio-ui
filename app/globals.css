@@ -3816,6 +3816,10 @@ html:not(.dark) .hero-smoke {
 html:not(.dark) .glow-dots {
   mix-blend-mode: multiply;
 }
+/* Brighten these cards' colored glows in dark mode only. */
+.dark .bright-glow .glow-dots {
+  opacity: 0.9;
+}
 
 /* Aurora + Combo: smoke drifts on hover. */
 [data-hover="aurora"] .group:hover .hero-smoke,

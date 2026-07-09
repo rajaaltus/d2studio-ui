@@ -30,7 +30,7 @@ const metalStyle = {
 /* Dot-matrix texture (same 4.95px sheet as the hero glow). */
 const DOT_SIZE = "4.95px 4.95px";
 const DOT_IMAGE =
-  "radial-gradient(circle, rgba(128,128,128,0.28) 0.6px, transparent 0.78px)";
+  "radial-gradient(circle, rgba(128,128,128,0.5) 0.7px, transparent 0.88px)";
 const DOT_MASK = "radial-gradient(circle, #000 0.6px, transparent 0.78px)";
 /* Colored glow uses the same fine dot as the frame — subtle, not chunky. */
 const GLOW_MASK = DOT_MASK;
@@ -224,6 +224,7 @@ export default function NotificationPage() {
 
         {/* 3 — Unread stat */}
         <Card
+          className="bright-glow"
           innerClassName="justify-center p-6"
           dotGlows={[
             "radial-gradient(75% 80% at 50% 50%, rgba(38,96,255,0.5) 0%, transparent 72%)",
@@ -247,6 +248,7 @@ export default function NotificationPage() {
 
         {/* 4 — Delivery channels */}
         <Card
+          className="bright-glow"
           innerClassName="p-6"
           dotGlows={["radial-gradient(80% 80% at 50% 55%, rgba(255,122,61,0.5) 0%, transparent 72%)"]}
         >
