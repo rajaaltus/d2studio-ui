@@ -3819,6 +3819,12 @@ html:not(.dark) .glow-dots {
 /* Brighten these cards' colored glows in dark mode only. */
 .dark .bright-glow .glow-dots {
   opacity: 0.9;
+  transition: opacity 0.5s, filter 0.5s;
+}
+/* Punchier glow on hover for these cards. */
+.dark [data-hover="powerup"] .bright-glow .group:hover .glow-dots,
+.dark [data-hover="combo"] .bright-glow .group:hover .glow-dots {
+  filter: brightness(1.6) saturate(1.25);
 }
 
 /* Aurora + Combo: smoke drifts on hover. */
