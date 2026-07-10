@@ -3776,16 +3776,20 @@
   92.86%, 99.99% { opacity: 1.000; }
 }
 
-/* Hero card hover smoke — a soft holographic wisp that drifts across the card
-   (right→left→right) while hovered. Mild opacity + wide feathered mask so it
-   reads as premium fog, not a hard shine. Brand gradient per D2 hover rule. */
-.hero-smoke {
+/* notification-bento — hover smoke: a soft holographic wisp that drifts across
+   the card while hovered. Mild opacity + wide feathered mask so it reads as
+   premium fog, not a hard shine. Brand gradient per D2 hover rule.
+
+   Hover state is driven by Motion's hover gesture, which sets [data-hovered]
+   and ignores browser-emulated touch hover — so nothing latches on phones or
+   tablets. The drift itself is a Motion animation on mask-position. */
+.d2-smoke {
   pointer-events: none;
   opacity: 0;
-  /* Dark is the base (adds light on the near-black card) — the original,
-     known-good look. Light mode overrides to multiply below. */
-  background: var(--d2-blue-gradient);
-  mix-blend-mode: plus-lighter;
+  /* Light is the base: multiply a saturated holo gradient into the white card
+     (plus-lighter is invisible on white). Dark overrides to add light. */
+  background: linear-gradient(135deg, #785cff 0%, #dc28af 50%, #ff683a 100%);
+  mix-blend-mode: multiply;
   /* Fractal-noise (feTurbulence) mask, blurred into soft wisps — reads as smoke,
      not a hard band. Panned across the card for drift. */
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='500'%20height='500'%3E%3Cfilter%20id='s'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.011'%20numOctaves='3'%20seed='6'%20stitchTiles='stitch'/%3E%3CfeGaussianBlur%20stdDeviation='4'/%3E%3CfeComponentTransfer%3E%3CfeFuncA%20type='gamma'%20exponent='3.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width='500'%20height='500'%20filter='url(%23s)'/%3E%3C/svg%3E");
@@ -3794,76 +3798,45 @@
   mask-size: 320% 320%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  /* Animation always present but paused, so hover only fades opacity + resumes
-     drift — no mask-position snap on hover-out. */
-  animation: hero-smoke-drift 20s ease-in-out infinite;
-  animation-play-state: paused;
+  -webkit-mask-position: 46% 74%;
+  mask-position: 46% 74%;
   transition: opacity 0.8s ease;
   will-change: mask-position, opacity;
 }
-/* Light mode: multiply a saturated holo gradient into the white card so the
-   smoke reads (plus-lighter is invisible on white). */
-html:not(.dark) .hero-smoke {
-  mix-blend-mode: multiply;
-  background: linear-gradient(135deg, #785cff 0%, #dc28af 50%, #ff683a 100%);
-}
-
-/* Colored dots: add light on the dark card (base) / multiply into the white
-   card (light) so the color reads on either surface. */
-.glow-dots {
+.dark .d2-smoke {
+  background: linear-gradient(135deg, #7dcfff 0%, #56daff 50%, #b8e5ff 100%);
   mix-blend-mode: plus-lighter;
 }
-html:not(.dark) .glow-dots {
-  mix-blend-mode: multiply;
-}
-/* Brighten these cards' colored glows in dark mode only. */
-.dark .bright-glow .glow-dots {
-  opacity: 0.9;
-  transition: opacity 0.5s, filter 0.5s;
-}
-/* Punchier glow on hover for these cards. */
-.dark [data-hover="powerup"] .bright-glow .group:hover .glow-dots,
-.dark [data-hover="combo"] .bright-glow .group:hover .glow-dots {
-  filter: brightness(1.6) saturate(1.25);
-}
-
-/* Aurora + Combo: smoke drifts on hover. */
-[data-hover="aurora"] .group:hover .hero-smoke,
-[data-hover="combo"] .group:hover .hero-smoke {
+[data-hovered="true"] .d2-smoke {
   opacity: 0.55;
-  animation-play-state: running;
 }
-.dark [data-hover="aurora"] .group:hover .hero-smoke,
-.dark [data-hover="combo"] .group:hover .hero-smoke {
+.dark [data-hovered="true"] .d2-smoke {
   opacity: 0.4;
 }
-/* Power Up + Combo: the lit dots brighten on hover. */
-[data-hover="powerup"] .group:hover .glow-dots,
-[data-hover="combo"] .group:hover .glow-dots {
+
+/* Colored dots: multiply into the white card / add light on the dark one, so
+   the color reads on either surface. */
+.d2-dots {
+  mix-blend-mode: multiply;
+  transition:
+    opacity 0.5s,
+    filter 0.5s;
+}
+.dark .d2-dots {
+  mix-blend-mode: plus-lighter;
+}
+/* Brighten these cards' colored glows in dark mode only. */
+.dark .d2-bright .d2-dots {
+  opacity: 0.9;
+}
+/* The lit dots brighten on hover. */
+[data-hovered="true"] .d2-dots {
   opacity: 1;
 }
-[data-hover="powerup"] .group:hover .nglow-dots,
-[data-hover="combo"] .group:hover .nglow-dots {
+.dark .d2-bright [data-hovered="true"] .d2-dots {
+  opacity: 1;
+  filter: brightness(1.6) saturate(1.25);
+}
+[data-hovered="true"] .d2-hero-dots {
   opacity: 0.85;
-}
-/* Undirected organic drift — mostly a slow rise with a slight sideways wander,
-   so it reads as real smoke rather than a sweep in one direction. */
-@keyframes hero-smoke-drift {
-  0% {
-    -webkit-mask-position: 46% 74%;
-    mask-position: 46% 74%;
-  }
-  50% {
-    -webkit-mask-position: 54% 30%;
-    mask-position: 54% 30%;
-  }
-  100% {
-    -webkit-mask-position: 46% 74%;
-    mask-position: 46% 74%;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .group:hover .hero-smoke {
-    animation: none;
-  }
 }

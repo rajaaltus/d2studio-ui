@@ -1,0 +1,35 @@
+/* Route-local hover-mode switcher for the notification demo page.
+ *
+ * The notification-bento block always ships the "combo" look: on hover it both
+ * drifts the smoke (.d2-smoke) and brightens the lit dots (.d2-dots). Those are
+ * two independent layers, so a mode is just "suppress the other one" — the
+ * block itself needs no props and stays untouched.
+ *
+ * Specificity note: the block's rules are unlayered, and its dark + bright
+ * combination reaches (0,4,0). Every override below deliberately clears that,
+ * which is why the `.dark` variants are spelled out rather than folded in.
+ */
+
+/* Power Up — lit dots only, smoke suppressed. */
+[data-hover="powerup"] [data-hovered="true"] .d2-smoke,
+.dark [data-hover="powerup"] [data-hovered="true"] .d2-smoke {
+  opacity: 0;
+}
+
+/* Aurora — smoke only; dots and their glow stay at their resting values. */
+[data-hover="aurora"] [data-hovered="true"] .d2-dots {
+  opacity: 0.45;
+  filter: none;
+}
+.dark [data-hover="aurora"] .d2-bright [data-hovered="true"] .d2-dots {
+  opacity: 0.9;
+  filter: none;
+}
+[data-hover="aurora"] [data-hovered="true"] .d2-hero-dots {
+  opacity: 0.55;
+}
+.dark [data-hover="aurora"] [data-hovered="true"] .d2-hero-dots {
+  opacity: 0.5;
+}
+
+/* Combo — the block's own defaults; nothing to override. */

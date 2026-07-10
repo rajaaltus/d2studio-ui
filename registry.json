@@ -88,7 +88,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Displays a list of options for the user to pick from—triggered by a button.",
+      "description": "Displays a list of options for the user to pick from\u2014triggered by a button.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button"
@@ -389,6 +389,76 @@
         }
       ],
       "categories": [
+        "blocks"
+      ]
+    },
+    {
+      "name": "notification-bento",
+      "type": "registry:component",
+      "title": "Notification Bento",
+      "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, recent activity feed, unread counter and delivery-channel toggles, with drifting holographic smoke on hover.",
+      "author": "D2 Studio",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/notification-bento.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "css": {
+        ".d2-smoke": {
+          "pointer-events": "none",
+          "opacity": "0",
+          "background": "linear-gradient(135deg, #785cff 0%, #dc28af 50%, #ff683a 100%)",
+          "mix-blend-mode": "multiply",
+          "-webkit-mask-image": "url(\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='500'%20height='500'%3E%3Cfilter%20id='s'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.011'%20numOctaves='3'%20seed='6'%20stitchTiles='stitch'/%3E%3CfeGaussianBlur%20stdDeviation='4'/%3E%3CfeComponentTransfer%3E%3CfeFuncA%20type='gamma'%20exponent='3.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width='500'%20height='500'%20filter='url(%23s)'/%3E%3C/svg%3E\")",
+          "mask-image": "url(\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='500'%20height='500'%3E%3Cfilter%20id='s'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.011'%20numOctaves='3'%20seed='6'%20stitchTiles='stitch'/%3E%3CfeGaussianBlur%20stdDeviation='4'/%3E%3CfeComponentTransfer%3E%3CfeFuncA%20type='gamma'%20exponent='3.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width='500'%20height='500'%20filter='url(%23s)'/%3E%3C/svg%3E\")",
+          "-webkit-mask-size": "320% 320%",
+          "mask-size": "320% 320%",
+          "-webkit-mask-repeat": "no-repeat",
+          "mask-repeat": "no-repeat",
+          "-webkit-mask-position": "46% 74%",
+          "mask-position": "46% 74%",
+          "transition": "opacity 0.8s ease",
+          "will-change": "mask-position, opacity"
+        },
+        ".dark .d2-smoke": {
+          "background": "linear-gradient(135deg, #7dcfff 0%, #56daff 50%, #b8e5ff 100%)",
+          "mix-blend-mode": "plus-lighter"
+        },
+        "[data-hovered=\"true\"] .d2-smoke": {
+          "opacity": "0.55"
+        },
+        ".dark [data-hovered=\"true\"] .d2-smoke": {
+          "opacity": "0.4"
+        },
+        ".d2-dots": {
+          "mix-blend-mode": "multiply",
+          "transition": "opacity 0.5s, filter 0.5s"
+        },
+        ".dark .d2-dots": {
+          "mix-blend-mode": "plus-lighter"
+        },
+        ".dark .d2-bright .d2-dots": {
+          "opacity": "0.9"
+        },
+        "[data-hovered=\"true\"] .d2-dots": {
+          "opacity": "1"
+        },
+        ".dark .d2-bright [data-hovered=\"true\"] .d2-dots": {
+          "opacity": "1",
+          "filter": "brightness(1.6) saturate(1.25)"
+        },
+        "[data-hovered=\"true\"] .d2-hero-dots": {
+          "opacity": "0.85"
+        }
+      },
+      "categories": [
+        "bento",
         "blocks"
       ]
     }

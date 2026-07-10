@@ -16,6 +16,8 @@
     "registry:watch": "shadcn build --watch",
     "registry:validate": "shadcn validate",
     "registry:clean": "rm -rf public/r/*.json",
+    "registry:publish": "pnpm registry:build && pnpm seed",
+    "registry:publish:prod": "pnpm registry:build && pnpm seed:prod",
     "seed": "node scripts/seed-content.mjs",
     "seed:prod": "node scripts/seed-content.mjs --prod",
     "content:pull": "node scripts/pull-from-prod.mjs",

@@ -1,0 +1,52 @@
+- generic [active] [ref=f26e1]:
+  - link "Skip to content" [ref=f26e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f26e3]:
+    - radiogroup "Hover effect" [ref=f26e4]:
+      - radio "Power Up" [ref=f26e5]
+      - radio "Aurora" [ref=f26e6]
+      - radio "Combo" [checked] [ref=f26e7]
+    - generic [ref=f26e9]:
+      - generic [ref=f26e11]:
+        - generic [ref=f26e17]: "29"
+        - paragraph [ref=f26e27]: Keep up to date with any changes by receiving instant notifications.
+      - generic [ref=f26e30]:
+        - generic [ref=f26e31]:
+          - heading "Recent activity" [level=3] [ref=f26e32]
+          - generic [ref=f26e33]: Today
+        - list [ref=f26e34]:
+          - listitem [ref=f26e35]:
+            - generic [ref=f26e39]: New comment on Bento layout
+            - generic [ref=f26e40]: Priya · 2m
+          - listitem [ref=f26e41]:
+            - generic [ref=f26e45]: Deploy shipped to production
+            - generic [ref=f26e46]: Vercel · 18m
+          - listitem [ref=f26e47]:
+            - generic [ref=f26e51]: 3 messages from your team
+            - generic [ref=f26e52]: Inbox · 1h
+      - generic [ref=f26e55]:
+        - paragraph [ref=f26e56]: 12% this week
+        - paragraph [ref=f26e60]: "29"
+        - paragraph [ref=f26e61]: Unread notifications
+      - generic [ref=f26e64]:
+        - heading "Delivery" [level=3] [ref=f26e65]
+        - paragraph [ref=f26e66]: Where you get notified
+        - list [ref=f26e67]:
+          - listitem [ref=f26e68]:
+            - button "Push" [pressed] [ref=f26e69]
+          - listitem [ref=f26e74]:
+            - button "Email" [pressed] [ref=f26e75]
+          - listitem [ref=f26e80]:
+            - button "SMS" [ref=f26e81]
+  - generic [ref=f26e86]:
+    - heading "Command palette" [level=2] [ref=f26e87]
+    - paragraph [ref=f26e88]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f26e89]:
+    - button "Blocks" [ref=f26e90] [cursor=pointer]
+    - button "Tools New" [ref=f26e108] [cursor=pointer]:
+      - generic [ref=f26e120]: Tools
+      - generic [ref=f26e122]: New
+    - button "Toggle theme" [ref=f26e127] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f26e141] [cursor=pointer]
+  - alert [ref=f26e145]

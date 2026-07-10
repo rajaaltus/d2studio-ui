@@ -1,6 +1,6 @@
 import * as React from "react";
 import NotificationGlow from "@/components/notification-glow";
-import { HoloBell } from "@/components/notification-card";
+import { Bell } from "@/components/bell";
 import { cn } from "@/lib/utils";
 
 /**
@@ -24,59 +24,45 @@ export default function NotificationCardDark({
       <NotificationGlow className="absolute inset-0 h-full w-full" />
 
       <div className="relative flex aspect-square w-full items-center justify-center">
-        {/* Shadow glow behind the disc — blurred gradient stroke, plus-lighter */}
-        <svg
-          viewBox="0 0 100 100"
+        {/* Shadow glow behind the disc — blurred annulus, masked out of a gradient disc.
+            Blur lives on the parent: on one element the mask would clip the bleed away. */}
+        <div
+          aria-hidden
           className="absolute aspect-square w-[54%]"
           style={{ filter: "blur(5px)", mixBlendMode: "plus-lighter" }}
-          aria-hidden
         >
-          <circle cx="50" cy="50" r="43.5" fill="none" stroke="url(#ring_shadow)" strokeWidth="13" />
-          <defs>
-            <linearGradient id="ring_shadow" x1="16" y1="16" x2="84" y2="84" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#086FED" />
-              <stop offset="1" stopColor="#CF5F1A" />
-            </linearGradient>
-          </defs>
-        </svg>
+          <div
+            className="h-full w-full rounded-full"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #086FED, #CF5F1A)",
+              /* stroke r=43.5 w=13 spans 37..50 of a 50-radius disc → inner edge at 74% */
+              mask: "radial-gradient(farthest-side, transparent 74%, #000 74.5%)",
+              WebkitMask: "radial-gradient(farthest-side, transparent 74%, #000 74.5%)",
+            }}
+          />
+        </div>
 
         {/* Ring around the bell — #080808 disc with a gradient-stroked rim */}
-        <svg
-          viewBox="0 0 100 100"
-          className="absolute aspect-square w-[54%]"
+        <div
           aria-hidden
-        >
-          <circle cx="50" cy="50" r="49" fill="#080808" stroke="url(#ring_stroke)" strokeWidth="1.2" />
-          <defs>
-            <linearGradient id="ring_stroke" x1="14" y1="14" x2="86" y2="86" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#81B3FF" />
-              <stop offset="0.5" stopColor="#7D5C80" stopOpacity="0.3" />
-              <stop offset="1" stopColor="#EB581E" />
-            </linearGradient>
-          </defs>
-        </svg>
+          className="absolute aspect-square w-[54%] rounded-full border-[1.5px] border-transparent"
+          style={{
+            backgroundImage:
+              "linear-gradient(#080808, #080808), " +
+              "linear-gradient(135deg, #81B3FF, rgba(125,92,128,0.3) 50%, #EB581E)",
+            backgroundOrigin: "padding-box, border-box",
+            backgroundClip: "padding-box, border-box",
+          }}
+        />
+
         {/* Bell + badge */}
-        <div className="relative w-[30%]">
-          <HoloBell className="h-auto w-full drop-shadow-[0_12px_30px_rgba(40,90,220,0.35)]" />
+        <div className="relative w-[27%]">
+          <Bell className="h-auto w-full drop-shadow-[0_12px_30px_rgba(40,90,220,0.35)]" />
           <span className="absolute -right-3 -top-2 flex h-8 min-w-8 items-center justify-center rounded-full bg-gradient-to-b from-[#ff5f36] to-[#d1350c] px-1.5 text-sm font-semibold text-white shadow-[0_6px_14px_rgba(209,53,12,0.5)]">
             29
           </span>
         </div>
 
-        {/* Orange half-circle glow — semicircle rotated 62° over the disc, front */}
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 w-[64%]"
-          style={{
-            aspectRatio: "2 / 1",
-            borderRadius: "9999px 9999px 0 0",
-            background: "linear-gradient(90deg, #FF8126 0%, #994D17 100%)",
-            opacity: 0.5,
-            filter: "blur(20px)",
-            mixBlendMode: "plus-lighter",
-            transform: "translate(-50%, -50%) rotate(125deg)",
-          }}
-          aria-hidden
-        />
       </div>
 
       {/* Gentle fade for caption legibility — keeps the dot pattern visible */}
