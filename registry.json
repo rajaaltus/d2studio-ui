@@ -463,6 +463,106 @@
       ]
     },
     {
+      "name": "bento-02",
+      "type": "registry:component",
+      "title": "Bento 02",
+      "description": "A five-card feature bento with metallic-gradient glyphs on lifting icon tiles, a dot-matrix texture and color-dodged glow revealed on hover, and a holographic brand ring tracing each card. Motion-driven, theme-aware, and reduced-motion aware.",
+      "author": "D2 Studio",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/bento-02.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "d2-flash-gradient": "radial-gradient(circle at center, #12D132 0%, #785CFF 27%, #FF683A 57%, #DC28AF 75%, #15588B 100%)"
+        },
+        "dark": {
+          "d2-flash-gradient": "linear-gradient(270deg, #56DAFF 0%, #A8FF80 18%, #FFF4A3 35%, #FF9CC8 55%, #C28AFF 75%, #56DAFF 100%)"
+        }
+      },
+      "css": {
+        ".bento2-card": {
+          "position": "relative",
+          "box-shadow": "0 2px 3.8px 0 rgba(0, 0, 0, 0.12)",
+          "transition": "box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1)"
+        },
+        ".dark .bento2-card": {
+          "box-shadow": "0 8px 24px 0 rgba(0, 0, 0, 0.6)"
+        },
+        ".bento2-card::before": {
+          "content": "\"\"",
+          "position": "absolute",
+          "inset": "0",
+          "border-radius": "inherit",
+          "padding": "1px",
+          "background": "linear-gradient(105deg, #56daff 0%, #a8ff80 20%, #fff4a3 38%, #ff9cc8 56%, #c28aff 74%, #56daff 100%)",
+          "-webkit-mask": "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+          "-webkit-mask-composite": "xor",
+          "mask": "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+          "mask-composite": "exclude",
+          "opacity": "0",
+          "transition": "opacity 0.3s ease",
+          "pointer-events": "none"
+        },
+        ".bento2-tile": {
+          "box-shadow": "6px 5px 0.6px 0 rgba(0, 0, 0, 0.2)",
+          "transition": "box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1)"
+        },
+        ".dark .bento2-tile": {
+          "box-shadow": "6px 5px 0.6px 0 rgba(0, 0, 0, 0.5)"
+        },
+        "@media (hover: hover)": {
+          ".bento2-card:hover": {
+            "box-shadow": "0 12px 28px 0 rgba(0, 0, 0, 0.16)"
+          },
+          ".dark .bento2-card:hover": {
+            "box-shadow": "0 16px 36px 0 rgba(0, 0, 0, 0.7)"
+          },
+          ".bento2-card:hover::before": {
+            "opacity": "0.9"
+          },
+          ".bento2-card:hover .bento2-tile": {
+            "box-shadow": "10px 13px 16.5px 0 rgba(0, 0, 0, 0.18)"
+          },
+          ".dark .bento2-card:hover .bento2-tile": {
+            "box-shadow": "10px 13px 18px 0 rgba(0, 0, 0, 0.55)"
+          }
+        }
+      },
+      "categories": [
+        "bento",
+        "blocks"
+      ]
+    },
+    {
+      "name": "bento-03",
+      "type": "registry:component",
+      "title": "Bento 03",
+      "description": "A flat 3×2 feature grid on thin edge-masked rules — no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
+      "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/bento-03.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "bento",
+        "blocks"
+      ]
+    },
+    {
       "name": "pixel-spinner",
       "type": "registry:ui",
       "title": "Pixel Spinner",

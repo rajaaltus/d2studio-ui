@@ -147,15 +147,15 @@ type Feature = {
 const topRow: Feature[] = [
     {
         custom: <FaceIcon className="h-10 w-10" />,
-        title: "Advance Image Recognition",
+        title: "Advanced Image Recognition",
         description:
-            "Detect, classify, and tag images with industry leading accuracy. Plug and play models for visuals data with explainability tools.",
+            "Detect, classify, and tag images with industry-leading accuracy. Plug-and-play models for visual data with explainability tools.",
     },
     {
         custom: <AnalysisIcon className="h-10 w-10" />,
         title: "Predictive Analytics",
         description:
-            "Forecast outcomes and trends with actionable confidence scores. Time series, classification, and anomaly detection models pre-configures.",
+            "Forecast outcomes and trends with actionable confidence scores. Time-series, classification, and anomaly-detection models pre-configured.",
     },
 ]
 
