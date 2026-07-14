@@ -177,30 +177,47 @@ const bottomRow: Feature[] = [
     },
 ]
 
-// Decorative dot texture revealed on card hover. Promoted to its own GPU
-// layer (translateZ) so the card's transform lift doesn't re-rasterize the
-// masked gradient every frame — that repaint was the hover "glitch".
+// Card decoration: the dot texture (revealed on hover) with a blurred
+// cyan→bronze oval glow layered above it — color-dodged for a soft sheen.
+// Card's own overflow-hidden clips the 150px blur bleed.
 function CardPattern() {
     return (
-        <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
-            style={{
-                backgroundColor: "transparent",
-                backgroundImage:
-                    "radial-gradient(rgba(128,128,128,0.1) 17%, transparent 18% 35%, transparent 36.5%), radial-gradient(rgba(128,128,128,0.1) 17%, transparent 18% 35%, transparent 36.5%), radial-gradient(transparent 34%, rgba(128,128,128,0.1) 36% 68%, transparent 70%), repeating-linear-gradient(45deg, rgba(128,128,128,0.1) -12.5% 12.5%, transparent 0 37.5%)",
-                backgroundPosition: "-2.2px -2.2px, 2.2px 2.2px, 0 0, 0 0",
-                backgroundSize: "8.8px 8.8px, 8.8px 8.8px, 4.4px 4.4px, 8.8px 8.8px",
-                WebkitMaskImage: "linear-gradient(to bottom, #000 0%, transparent 50%)",
-                maskImage: "linear-gradient(to bottom, #000 0%, transparent 50%)",
-                // Force a dedicated compositor layer so the card's transform
-                // lift moves this cached layer instead of repainting the
-                // masked gradient each frame (the hover "glitch").
-                transform: "translateZ(0)",
-                backfaceVisibility: "hidden",
-                willChange: "transform",
-            }}
-        />
+        <>
+            {/* Dot texture — promoted to its own GPU layer (translateZ) so the
+                card's transform lift doesn't re-rasterize the masked gradient. */}
+            <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                style={{
+                    backgroundColor: "transparent",
+                    backgroundImage:
+                        "radial-gradient(rgba(128,128,128,0.1) 17%, transparent 18% 35%, transparent 36.5%), radial-gradient(rgba(128,128,128,0.1) 17%, transparent 18% 35%, transparent 36.5%), radial-gradient(transparent 34%, rgba(128,128,128,0.1) 36% 68%, transparent 70%), repeating-linear-gradient(45deg, rgba(128,128,128,0.1) -12.5% 12.5%, transparent 0 37.5%)",
+                    backgroundPosition: "-2.2px -2.2px, 2.2px 2.2px, 0 0, 0 0",
+                    backgroundSize: "8.8px 8.8px, 8.8px 8.8px, 4.4px 4.4px, 8.8px 8.8px",
+                    WebkitMaskImage: "linear-gradient(to bottom, #000 0%, transparent 50%)",
+                    maskImage: "linear-gradient(to bottom, #000 0%, transparent 50%)",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                    willChange: "transform",
+                }}
+            />
+
+            {/* Oval glow — sits above the dot texture, below the card content. */}
+            <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[80%] rounded-[50%]"
+                style={{
+                    background: "linear-gradient(135deg, #70EAFF 0%, #8D4E36 100%)",
+                    opacity: 0.3,
+                    mixBlendMode: "color-dodge",
+                    filter: "blur(40px)",
+                    // Fade the ellipse out before its geometric edge so the
+                    // hard oval boundary never reads as a line at low blur.
+                    WebkitMaskImage: "radial-gradient(ellipse at center, #000 30%, transparent 72%)",
+                    maskImage: "radial-gradient(ellipse at center, #000 30%, transparent 72%)",
+                }}
+            />
+        </>
     )
 }
 
@@ -208,7 +225,7 @@ function FeatureCard({ custom, title, description }: Feature) {
     const reduce = useReducedMotion()
     return (
         <motion.div
-            className="bento2-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[oklch(0.868_0.005_286.3)] bg-[oklch(0.972_0_0)] p-8 dark:border-white/10 dark:bg-zinc-900"
+            className="bento2-card group relative isolate flex h-full flex-col overflow-hidden rounded-2xl border border-[oklch(0.868_0.005_286.3)] bg-[oklch(0.972_0_0)] p-8 dark:border-white/10 dark:bg-zinc-900"
             initial="rest"
             animate="rest"
             whileHover="hover"
@@ -219,7 +236,7 @@ function FeatureCard({ custom, title, description }: Feature) {
             {/* Icon tile — 80x80, lifts off the card on hover (theme-aware
                 shadow + brand ring stay in CSS; Motion drives the movement) */}
             <motion.div
-                className="bento2-tile relative mb-8 grid h-20 w-20 shrink-0 self-start place-items-center overflow-hidden rounded-[4px] border border-[oklch(0.868_0.005_286.3)] bg-[oklch(0.975_0_0)] dark:border-white/10 dark:bg-zinc-800"
+                className="bento2-tile relative z-10 mb-8 grid h-20 w-20 shrink-0 self-start place-items-center overflow-hidden rounded-[4px] border border-[oklch(0.868_0.005_286.3)] bg-[oklch(0.975_0_0)] dark:border-white/10 dark:bg-zinc-800"
                 variants={reduce ? undefined : tileMotion}
             >
                 {custom}
@@ -230,8 +247,8 @@ function FeatureCard({ custom, title, description }: Feature) {
                 />
             </motion.div>
 
-            <h3 className="text-lg font-semibold text-[oklch(0.21_0.006_285.9)] dark:text-zinc-50">{title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[oklch(0.552_0.016_285.9)] dark:text-zinc-400">
+            <h3 className="relative z-10 text-lg font-semibold text-[oklch(0.21_0.006_285.9)] dark:text-zinc-50">{title}</h3>
+            <p className="relative z-10 mt-2 text-sm leading-relaxed text-[oklch(0.552_0.016_285.9)] dark:text-zinc-400">
                 {description}
             </p>
         </motion.div>
