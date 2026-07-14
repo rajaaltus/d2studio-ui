@@ -1161,3 +1161,39 @@ SPINNER_LIBRARY.sort((a, b) => {
   if (diff !== 0) return diff;
   return hashName(a.name) - hashName(b.name);
 });
+
+/**
+ * Curated "premium" set — the visually distinctive, high-motion spinners.
+ * Used by the standalone showcase and the per-spinner registry generator.
+ * SPINNER_LIBRARY still holds all patterns for the /spinners playground.
+ */
+export const PREMIUM_SPINNERS = [
+  "spiral-in-5",
+  "snake-5",
+  "outer-ring-cw-5",
+  "ring-4-cw",
+  "ring-pulse-5",
+  "neon-ring",
+  "dual-ring-5",
+  "concentric-5",
+  "vortex-in",
+  "wave-lr",
+  "wave-4-lr",
+  "col-wave-5",
+  "diag-wave-5",
+  "row-sweep-5",
+  "swell-roll",
+  "fire-rise",
+  "rain-4",
+  "stars-fall",
+  "bubbles-up",
+  "tide-roll",
+  "wind-flow",
+  "transmit-pulse",
+  "billboard-tiles",
+  "ripple-out",
+] as const;
+
+export const PREMIUM_LIBRARY: SpinnerDef[] = PREMIUM_SPINNERS.map(
+  (name) => SPINNER_LIBRARY.find((s) => s.name === name)!
+);

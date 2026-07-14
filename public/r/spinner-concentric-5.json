@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-concentric-5",
+  "type": "registry:component",
+  "title": "Spinner Concentric 5",
+  "author": "D2 Studio",
+  "description": "A concentric-5 pixel-grid loading spinner.",
+  "registryDependencies": [
+    "https://d2studio.dev/r/pixel-spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/spinner-concentric-5.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  PixelSpinner,\n  type SpinnerColor,\n  type SpinnerPattern,\n} from \"@/components/ui/pixel-spinner\";\n\nconst pattern: SpinnerPattern = {\"size\":5,\"interval\":240,\"frames\":[[12],[6,7,8,11,13,16,17,18],[0,1,2,3,4,5,9,10,14,15,19,20,21,22,23,24]]};\n\ntype SpinnerConcentric5Props = Omit<\n  React.ComponentProps<typeof PixelSpinner>,\n  \"pattern\" | \"color\"\n> & { color?: SpinnerColor };\n\nexport function SpinnerConcentric5({ color = \"blue\", ...props }: SpinnerConcentric5Props) {\n  return <PixelSpinner pattern={pattern} color={color} {...props} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "spinner"
+  ]
+}

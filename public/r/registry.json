@@ -88,7 +88,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Displays a list of options for the user to pick from\u2014triggered by a button.",
+      "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button"
@@ -460,6 +460,483 @@
       "categories": [
         "bento",
         "blocks"
+      ]
+    },
+    {
+      "name": "pixel-spinner",
+      "type": "registry:ui",
+      "title": "Pixel Spinner",
+      "description": "The pixel-grid spinner engine every spinner preset builds on.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/pixel-spinner.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/ui/pixel-spinner.css",
+          "type": "registry:file",
+          "target": "components/ui/pixel-spinner.css"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-spiral-in-5",
+      "type": "registry:component",
+      "title": "Spinner Spiral In 5",
+      "description": "A spiral-in-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-spiral-in-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-snake-5",
+      "type": "registry:component",
+      "title": "Spinner Snake 5",
+      "description": "A snake-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-snake-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-outer-ring-cw-5",
+      "type": "registry:component",
+      "title": "Spinner Outer Ring Cw 5",
+      "description": "A outer-ring-cw-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-outer-ring-cw-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-ring-4-cw",
+      "type": "registry:component",
+      "title": "Spinner Ring 4 Cw",
+      "description": "A ring-4-cw pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-ring-4-cw.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-ring-pulse-5",
+      "type": "registry:component",
+      "title": "Spinner Ring Pulse 5",
+      "description": "A ring-pulse-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-ring-pulse-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-neon-ring",
+      "type": "registry:component",
+      "title": "Spinner Neon Ring",
+      "description": "A neon-ring pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-neon-ring.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-dual-ring-5",
+      "type": "registry:component",
+      "title": "Spinner Dual Ring 5",
+      "description": "A dual-ring-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-dual-ring-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-concentric-5",
+      "type": "registry:component",
+      "title": "Spinner Concentric 5",
+      "description": "A concentric-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-concentric-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-vortex-in",
+      "type": "registry:component",
+      "title": "Spinner Vortex In",
+      "description": "A vortex-in pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-vortex-in.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-wave-lr",
+      "type": "registry:component",
+      "title": "Spinner Wave Lr",
+      "description": "A wave-lr pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-wave-lr.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-wave-4-lr",
+      "type": "registry:component",
+      "title": "Spinner Wave 4 Lr",
+      "description": "A wave-4-lr pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-wave-4-lr.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-col-wave-5",
+      "type": "registry:component",
+      "title": "Spinner Col Wave 5",
+      "description": "A col-wave-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-col-wave-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-diag-wave-5",
+      "type": "registry:component",
+      "title": "Spinner Diag Wave 5",
+      "description": "A diag-wave-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-diag-wave-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-row-sweep-5",
+      "type": "registry:component",
+      "title": "Spinner Row Sweep 5",
+      "description": "A row-sweep-5 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-row-sweep-5.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-swell-roll",
+      "type": "registry:component",
+      "title": "Spinner Swell Roll",
+      "description": "A swell-roll pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-swell-roll.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-fire-rise",
+      "type": "registry:component",
+      "title": "Spinner Fire Rise",
+      "description": "A fire-rise pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-fire-rise.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-rain-4",
+      "type": "registry:component",
+      "title": "Spinner Rain 4",
+      "description": "A rain-4 pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-rain-4.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-stars-fall",
+      "type": "registry:component",
+      "title": "Spinner Stars Fall",
+      "description": "A stars-fall pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-stars-fall.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-bubbles-up",
+      "type": "registry:component",
+      "title": "Spinner Bubbles Up",
+      "description": "A bubbles-up pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-bubbles-up.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-tide-roll",
+      "type": "registry:component",
+      "title": "Spinner Tide Roll",
+      "description": "A tide-roll pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-tide-roll.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-wind-flow",
+      "type": "registry:component",
+      "title": "Spinner Wind Flow",
+      "description": "A wind-flow pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-wind-flow.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-transmit-pulse",
+      "type": "registry:component",
+      "title": "Spinner Transmit Pulse",
+      "description": "A transmit-pulse pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-transmit-pulse.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-billboard-tiles",
+      "type": "registry:component",
+      "title": "Spinner Billboard Tiles",
+      "description": "A billboard-tiles pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-billboard-tiles.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "spinner-ripple-out",
+      "type": "registry:component",
+      "title": "Spinner Ripple Out",
+      "description": "A ripple-out pixel-grid loading spinner.",
+      "author": "D2 Studio",
+      "registryDependencies": [
+        "https://d2studio.dev/r/pixel-spinner.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/spinner-ripple-out.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "spinner"
       ]
     }
   ]

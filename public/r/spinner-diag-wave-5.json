@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-diag-wave-5",
+  "type": "registry:component",
+  "title": "Spinner Diag Wave 5",
+  "author": "D2 Studio",
+  "description": "A diag-wave-5 pixel-grid loading spinner.",
+  "registryDependencies": [
+    "https://d2studio.dev/r/pixel-spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/spinner-diag-wave-5.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  PixelSpinner,\n  type SpinnerColor,\n  type SpinnerPattern,\n} from \"@/components/ui/pixel-spinner\";\n\nconst pattern: SpinnerPattern = {\"size\":5,\"interval\":130,\"frames\":[[0],[1,5],[2,6,10],[3,7,11,15],[4,8,12,16,20],[9,13,17,21],[14,18,22],[19,23],[24]]};\n\ntype SpinnerDiagWave5Props = Omit<\n  React.ComponentProps<typeof PixelSpinner>,\n  \"pattern\" | \"color\"\n> & { color?: SpinnerColor };\n\nexport function SpinnerDiagWave5({ color = \"violet\", ...props }: SpinnerDiagWave5Props) {\n  return <PixelSpinner pattern={pattern} color={color} {...props} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "spinner"
+  ]
+}

@@ -3840,3 +3840,72 @@
 [data-hovered="true"] .d2-hero-dots {
   opacity: 0.85;
 }
+
+/* bento-2 feature cards — theme-aware elevation.
+   Authored here because Tailwind v4 arbitrary box-shadow strings weren't
+   compiling in this file. Light = exact spec (x0 y2 blur3.8 spread0, #000 @12%);
+   dark deepens/spreads it since a 12% black shadow is invisible on a dark surface. */
+.bento2-card {
+  position: relative;
+  box-shadow: 0 2px 3.8px 0 rgba(0, 0, 0, 0.12);
+  /* Transforms are driven by Motion; CSS only eases the shadow + ring. */
+  transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dark .bento2-card {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.6);
+}
+/* Minimal hover: gentle lift + a holographic 1px border ring that fades in.
+   Reuses the fixed linear brand sweep so it reads identically in light/dark. */
+.bento2-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    105deg,
+    #56daff 0%,
+    #a8ff80 20%,
+    #fff4a3 38%,
+    #ff9cc8 56%,
+    #c28aff 74%,
+    #56daff 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .bento2-card:hover {
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.16);
+  }
+  .dark .bento2-card:hover {
+    box-shadow: 0 16px 36px 0 rgba(0, 0, 0, 0.7);
+  }
+  .bento2-card:hover::before {
+    opacity: 0.9;
+  }
+}
+/* icon holder — exact Figma spec: X6 Y5 blur0.6 spread0, #000 @20%.
+   On card hover it lifts off the surface: translates up-left and swaps the
+   crisp sticker shadow for a soft, offset elevation. */
+.bento2-tile {
+  box-shadow: 6px 5px 0.6px 0 rgba(0, 0, 0, 0.2);
+  /* Lift transform is driven by Motion; CSS only eases the shadow. */
+  transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .bento2-card:hover .bento2-tile {
+    box-shadow: 10px 13px 16.5px 0 rgba(0, 0, 0, 0.18);
+  }
+  .dark .bento2-card:hover .bento2-tile {
+    box-shadow: 10px 13px 18px 0 rgba(0, 0, 0, 0.55);
+  }
+}
+.dark .bento2-tile {
+  box-shadow: 6px 5px 0.6px 0 rgba(0, 0, 0, 0.5);
+}

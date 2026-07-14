@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-swell-roll",
+  "type": "registry:component",
+  "title": "Spinner Swell Roll",
+  "author": "D2 Studio",
+  "description": "A swell-roll pixel-grid loading spinner.",
+  "registryDependencies": [
+    "https://d2studio.dev/r/pixel-spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/spinner-swell-roll.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  PixelSpinner,\n  type SpinnerColor,\n  type SpinnerPattern,\n} from \"@/components/ui/pixel-spinner\";\n\nconst pattern: SpinnerPattern = {\"size\":4,\"interval\":160,\"frames\":[[2,5,6,7,8,9,12],[3,4,6,7,9,10,13],[0,4,5,7,10,11,14],[1,4,5,6,8,11,15]]};\n\ntype SpinnerSwellRollProps = Omit<\n  React.ComponentProps<typeof PixelSpinner>,\n  \"pattern\" | \"color\"\n> & { color?: SpinnerColor };\n\nexport function SpinnerSwellRoll({ color = \"crimson\", ...props }: SpinnerSwellRollProps) {\n  return <PixelSpinner pattern={pattern} color={color} {...props} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "spinner"
+  ]
+}

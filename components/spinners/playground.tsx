@@ -67,7 +67,7 @@ import { SPINNER_LIBRARY, type SpinnerDef } from "@/lib/spinner-patterns";
 
 const CUSTOM_PATTERN_NAME = "custom";
 const CUSTOM_EDITOR_SIZE = 3;
-const SAVED_PATTERNS_STORAGE_KEY = "pixel-spinner:saved-patterns:v1";
+export const SAVED_PATTERNS_STORAGE_KEY = "pixel-spinner:saved-patterns:v1";
 const RECENTLY_VIEWED_STORAGE_KEY = "pixel-spinner:recently-viewed:v1";
 const CUSTOM_COLORS_STORAGE_KEY = "pixel-spinner:custom-colors:v1";
 const CUSTOM_COLOR_SLOTS = 10;
@@ -81,7 +81,7 @@ const DEFAULT_CUSTOM_FRAMES: number[][] = [
   [3, 4, 5],
 ];
 
-type SavedPrefs = {
+export type SavedPrefs = {
   colorMode: "preset" | "custom" | "gradient";
   color: SpinnerColor;
   presetId: string;
@@ -104,7 +104,7 @@ type SavedPrefs = {
   direction: Direction;
 };
 
-type SavedPattern = {
+export type SavedPattern = {
   id: string;
   name: string;
   rows: number;
@@ -190,7 +190,7 @@ type ColorPreset = {
   hex?: string;
 };
 
-const PRESETS: ColorPreset[] = [
+export const PRESETS: ColorPreset[] = [
   { id: "green", label: "Green", builtin: "crimson", swatch: "oklch(0.75 0.22 145)" },
   { id: "hotpink", label: "Hot Pink", builtin: "hotpink", swatch: "oklch(0.72 0.24 5)" },
   { id: "violet", label: "Violet", builtin: "violet", swatch: "oklch(0.7 0.22 305)" },
@@ -245,7 +245,7 @@ const SHAPES: { id: SpinnerShape; label: string }[] = [
   { id: "line-3", label: "Line 3" },
 ];
 
-type Direction = "n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw";
+export type Direction = "n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw";
 
 const ALL_DIRECTIONS: Direction[] = ["n", "ne", "e", "se", "s", "sw", "w", "nw"];
 const CARDINALS: Direction[] = ["n", "e", "s", "w"];
@@ -314,7 +314,7 @@ const CARDINAL_ANGLE: Record<Direction, number | undefined> = {
 // rotatePattern treats "e" as identity. For cardinal pairs we subtract angles;
 // for diagonal pairs we treat "natural diagonal" as identity ("e") and map
 // the other 3 diagonals to flips/180°.
-function effectiveRotation(natural: Direction, selected: Direction): Direction {
+export function effectiveRotation(natural: Direction, selected: Direction): Direction {
   if (natural === selected) return "e";
   const naturalAngle = CARDINAL_ANGLE[natural];
   const selectedAngle = CARDINAL_ANGLE[selected];
@@ -3580,7 +3580,7 @@ function SliderControl({
 
 /* ============ Pattern scaling ============ */
 
-function rotatePattern(p: SpinnerPattern, direction: Direction): SpinnerPattern {
+export function rotatePattern(p: SpinnerPattern, direction: Direction): SpinnerPattern {
   if (direction === "e") return p;
   const rows = p.rows ?? p.size ?? 3;
   const cols = p.cols ?? p.size ?? 3;
@@ -3637,7 +3637,7 @@ function rotatePattern(p: SpinnerPattern, direction: Direction): SpinnerPattern 
   return { ...p, rows: newRows, cols: newCols, size: undefined, frames: newFrames };
 }
 
-function scalePattern(
+export function scalePattern(
   p: SpinnerPattern,
   targetRows: number,
   targetCols: number

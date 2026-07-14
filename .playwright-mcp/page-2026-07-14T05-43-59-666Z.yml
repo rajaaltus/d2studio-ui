@@ -1,0 +1,37 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f5e3]:
+    - generic [ref=f5e5]:
+      - generic [ref=f5e6]:
+        - heading "Solution & Features" [level=2] [ref=f5e7]
+        - paragraph [ref=f5e8]: Focused, outcome driven features that translate ML into real business value.
+      - generic [ref=f5e9]:
+        - generic [ref=f5e10]:
+          - heading "Advance Image Recognition" [level=3] [ref=f5e20]
+          - paragraph [ref=f5e21]: Detect, classify, and tag images with industry leading accuracy. Plug and play models for visuals data with explainability tools.
+        - generic [ref=f5e22]:
+          - heading "Predictive Analytics" [level=3] [ref=f5e27]
+          - paragraph [ref=f5e28]: Forecast outcomes and trends with actionable confidence scores. Time series, classification, and anomaly detection models pre-configures.
+      - generic [ref=f5e29]:
+        - generic [ref=f5e30]:
+          - heading "NLP & Conversational AI" [level=3] [ref=f5e36]
+          - paragraph [ref=f5e37]: Semantic search, summarization, and chat solutions.
+        - generic [ref=f5e38]:
+          - heading "Model Ops" [level=3] [ref=f5e46]
+          - paragraph [ref=f5e47]: CI/CD for ML, drift detection, and performance dashboards.
+        - generic [ref=f5e48]:
+          - heading "Privacy & Compliance" [level=3] [ref=f5e54]
+          - paragraph [ref=f5e55]: Built with data protection, role-based access and audit logs.
+  - generic [ref=f5e56]:
+    - heading "Command palette" [level=2] [ref=f5e57]
+    - paragraph [ref=f5e58]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f5e59]:
+    - button "Blocks" [ref=f5e60] [cursor=pointer]
+    - button "Tools New" [ref=f5e78] [cursor=pointer]:
+      - generic [ref=f5e90]: Tools
+      - generic [ref=f5e92]: New
+    - button "Switch to light mode" [ref=f5e115] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e111] [cursor=pointer]
+  - alert [ref=f5e118]

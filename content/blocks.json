@@ -116,23 +116,5 @@
     "codeStatus": "available",
     "codeUrl": "https://ui.d2studio.dev/r/hero-01.json",
     "isActive": true
-  },
-  {
-    "name": "notification-bento",
-    "type": "component",
-    "title": "Notification Bento",
-    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, recent activity feed, unread counter and delivery-channel toggles, with drifting holographic smoke on hover.",
-    "author": "@uxgodwin",
-    "version": "1.0.0",
-    "categories": [
-      "bento"
-    ],
-    "blockType": "bento",
-    "previewImage": "/placeholder.svg",
-    "figmaUrl": "https://www.figma.com",
-    "codeStatus": "available",
-    "codeUrl": "https://ui.d2studio.dev/r/notification-bento.json",
-    "accessTier": "free",
-    "isActive": true
   }
 ]
