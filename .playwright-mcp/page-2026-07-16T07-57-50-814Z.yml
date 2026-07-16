@@ -1,0 +1,37 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f5e3]:
+    - generic [ref=f5e4]:
+      - generic [ref=f5e6]:
+        - generic [ref=f5e8]:
+          - generic [ref=f5e9]:
+            - heading "Web Design & Development" [level=3] [ref=f5e13]
+            - paragraph [ref=f5e14]: We create visually appealing and functional websites that captivate your audience and drive results.
+          - generic [ref=f5e15]:
+            - generic [ref=f5e16]:
+              - generic [ref=f5e17]: "12"
+              - generic [ref=f5e18]: H
+            - paragraph [ref=f5e27]: Website that delivers a unique
+        - generic [ref=f5e28]:
+          - generic [ref=f5e30]:
+            - code [ref=f5e36]: "import { ClassValue, clsx } from \"clsx\" import { twMerge } from \"tailwind-merge\" export { twMerge } from \"tailwind-merge\""
+            - heading "Clean Code" [level=3] [ref=f5e37]
+            - paragraph [ref=f5e38]: our expertise in advanced coding techniques, we ensure your digital projects are delivered on time and surpass your expectations
+          - generic [ref=f5e40]:
+            - heading "Accelerate your project" [level=3] [ref=f5e44]
+            - paragraph [ref=f5e45]: Bring your ideas to life faster with our rapid development services.
+      - generic [ref=f5e148]:
+        - heading "UI/UX Magic" [level=3] [ref=f5e152]
+        - paragraph [ref=f5e153]: Crafting Intuitive and Visually Stunning Interfaces
+  - generic [ref=f5e154]:
+    - heading "Command palette" [level=2] [ref=f5e155]
+    - paragraph [ref=f5e156]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f5e157]:
+    - button "Blocks" [ref=f5e158] [cursor=pointer]
+    - button "Tools New" [ref=f5e176] [cursor=pointer]:
+      - generic [ref=f5e188]: Tools
+      - generic [ref=f5e190]: New
+    - button "Toggle theme" [ref=f5e195] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e209] [cursor=pointer]
