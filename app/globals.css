@@ -3909,3 +3909,8 @@
 .dark .bento2-tile {
   box-shadow: 6px 5px 0.6px 0 rgba(0, 0, 0, 0.5);
 }
+
+/* ── Bento-4 card hover ──────────────────────────────────────────────────────
+   The icon's chromatic bloom is driven by GSAP in components/bento-4/icon-holo
+   (a gradient paint can't be CSS-transitioned). Only the dashed frame's
+   brightening lives here — see dotted-frame.tsx. */

@@ -50,7 +50,7 @@ export default function CleanCodeCard() {
                 </pre>
             </div>
 
-            <h3 className="mt-auto bg-gradient-to-b from-[#F9FAFB] to-[#949495] bg-clip-text pt-8 text-[18px] font-semibold leading-tight text-transparent">
+            <h3 className="mt-[17px] bg-gradient-to-b from-[#F9FAFB] to-[#949495] bg-clip-text text-[18px] font-semibold leading-tight text-transparent">
                 Clean Code
             </h3>
             <p className="mt-2 max-w-[300px] text-[13px] leading-relaxed text-[#7B7B7B]">

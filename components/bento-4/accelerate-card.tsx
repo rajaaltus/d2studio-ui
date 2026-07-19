@@ -69,7 +69,7 @@ export default function AccelerateCard() {
                 </svg>
             </div>
 
-            <h3 className="relative mt-auto max-w-[190px] bg-gradient-to-b from-[#F9FAFB] to-[#949495] bg-clip-text pt-8 text-[18px] font-semibold leading-tight text-transparent">
+            <h3 className="relative mt-[17px] max-w-[190px] bg-gradient-to-b from-[#F9FAFB] to-[#949495] bg-clip-text text-[18px] font-semibold leading-tight text-transparent">
                 Accelerate your project
             </h3>
             <p className="relative mt-2 max-w-[230px] text-[13px] leading-relaxed text-[#7B7B7B]">

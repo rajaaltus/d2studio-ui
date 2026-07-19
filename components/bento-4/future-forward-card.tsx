@@ -29,7 +29,6 @@ export default function FutureForwardCard() {
       <path
         d="M48 49C48.5523 49 49 48.5523 49 48C49 47.4477 48.5523 47 48 47C47.4477 47 47 47.4477 47 48C47 48.5523 47.4477 49 48 49Z"
         stroke="#41A4D2"
-        strokeOpacity={0.7}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -37,7 +36,6 @@ export default function FutureForwardCard() {
       <path
         d="M56.2 56.2C58.24 54.17 56.22 48.84 51.7 44.3C47.16 39.78 41.83 37.76 39.8 39.8C37.76 41.83 39.78 47.16 44.3 51.7C48.84 56.22 54.17 58.24 56.2 56.2Z"
         stroke="#41A4D2"
-        strokeOpacity={0.7}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -45,7 +43,6 @@ export default function FutureForwardCard() {
       <path
         d="M51.7 51.7C56.22 47.16 58.24 41.83 56.2 39.8C54.17 37.76 48.84 39.78 44.3 44.3C39.78 48.84 37.76 54.17 39.8 56.2C41.83 58.24 47.16 56.22 51.7 51.7Z"
         stroke="#41A4D2"
-        strokeOpacity={0.7}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
