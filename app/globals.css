@@ -3911,6 +3911,23 @@
 }
 
 /* ── Bento-4 card hover ──────────────────────────────────────────────────────
-   The icon's chromatic bloom is driven by GSAP in components/bento-4/icon-holo
-   (a gradient paint can't be CSS-transitioned). Only the dashed frame's
-   brightening lives here — see dotted-frame.tsx. */
+   Each card renders its own gradient (<IconHolo />) and points its icons at it
+   through --b4-holo, so hovering one card never recolours another.
+
+   The stop-colour bloom is driven by GSAP in components/bento-4/icon-holo —
+   deliberately not duplicated here, since it writes the stops directly and a
+   :hover rule would be driving the same property. Only the paint reference and
+   the glow live in CSS. */
+.b4-card [stroke="#41A4D2"] {
+  stroke: var(--b4-holo);
+  transition: filter 400ms cubic-bezier(0.33, 1, 0.68, 1); /* power2.out */
+}
+.b4-card:hover [stroke="#41A4D2"] {
+  filter: drop-shadow(0 0 6px rgba(168, 255, 128, 0.4));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b4-card:hover [stroke="#41A4D2"] {
+    filter: none;
+  }
+}

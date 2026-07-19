@@ -11,9 +11,14 @@ import IconHolo from "@/components/bento-4/icon-holo"
 const rise = "animate-brand-item motion-reduce:!animate-none motion-reduce:!opacity-100"
 
 // `b4-card` scopes the hover: it brightens the dashed frame (see dotted-frame)
-// and is what each <IconHolo /> looks up to find its card's icon. Every card
-// gets its own IconHolo so hovering one never recolours the others.
+// and blooms the icon (see globals.css). Each card carries its own gradient id
+// in --b4-holo, so hovering one never recolours the others.
 const card = `relative b4-card ${rise}`
+
+const cardProps = (id: string, delay: number) => ({
+    className: card,
+    style: { animationDelay: `${delay}ms`, "--b4-holo": `url(#${id})` } as React.CSSProperties,
+})
 
 export default function Page() {
     return (
@@ -21,29 +26,29 @@ export default function Page() {
             <div className="flex items-stretch gap-9">
                 {/* Left column: wide hero over a pair of medium cards */}
                 <div className="flex w-[665px] max-w-full flex-col gap-9">
-                    <div className={card} style={{ animationDelay: "0ms" }}>
+                    <div {...cardProps("holo-web", 0)}>
                         <DottedFrame />
-                        <IconHolo />
+                        <IconHolo id="holo-web" />
                         <WebDesignCard />
                     </div>
                     <div className="flex min-h-0 flex-1 gap-9">
-                        <div className={`${card} flex-1`} style={{ animationDelay: "120ms" }}>
+                        <div {...cardProps("holo-clean", 120)} className={`${card} flex-1`}>
                             <DottedFrame />
-                            <IconHolo />
+                            <IconHolo id="holo-clean" />
                             <CleanCodeCard />
                         </div>
-                        <div className={`${card} flex-1`} style={{ animationDelay: "180ms" }}>
+                        <div {...cardProps("holo-accel", 180)} className={`${card} flex-1`}>
                             <DottedFrame />
-                            <IconHolo />
+                            <IconHolo id="holo-accel" />
                             <AccelerateCard />
                         </div>
                     </div>
                 </div>
 
                 {/* Right: tall anchor, matched to the left column height */}
-                <div className={`${card} w-[348px]`} style={{ animationDelay: "60ms" }}>
+                <div {...cardProps("holo-future", 60)} className={`${card} w-[348px]`}>
                     <DottedFrame />
-                    <IconHolo />
+                    <IconHolo id="holo-future" />
                     <FutureForwardCard />
                 </div>
             </div>
