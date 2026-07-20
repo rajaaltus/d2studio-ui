@@ -23,7 +23,17 @@ const cardProps = (id: string, delay: number) => ({
 export default function Page() {
     return (
         <main className="flex min-h-screen items-center justify-center bg-white p-8 dark:bg-zinc-950">
-            <div className="flex items-stretch gap-9">
+            <div className="flex flex-col items-center gap-12">
+                <header className={`max-w-2xl text-center ${rise}`}>
+                    <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                        Built for teams that ship
+                    </h1>
+                    <p className="mt-3 text-base text-zinc-500 dark:text-zinc-400">
+                        Design, code and speed in one system, so every idea reaches production looking exactly the way you imagined it.
+                    </p>
+                </header>
+
+                <div className="flex items-stretch gap-9">
                 {/* Left column: wide hero over a pair of medium cards */}
                 <div className="flex w-[665px] max-w-full flex-col gap-9">
                     <div {...cardProps("holo-web", 0)}>
@@ -50,6 +60,7 @@ export default function Page() {
                     <DottedFrame id="holo-future" />
                     <IconHolo id="holo-future" />
                     <FutureForwardCard />
+                    </div>
                 </div>
             </div>
         </main>
