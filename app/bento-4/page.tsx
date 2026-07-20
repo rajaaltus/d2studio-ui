@@ -4,6 +4,7 @@ import CleanCodeCard from "@/components/bento-4/clean-code-card"
 import AccelerateCard from "@/components/bento-4/accelerate-card"
 import DottedFrame from "@/components/bento-4/dotted-frame"
 import IconHolo from "@/components/bento-4/icon-holo"
+import DitherCursor from "@/components/bento-4/dither-cursor"
 
 // Premium bento — the wide Web Design hero sits over the Clean Code + Accelerate
 // pair on the left; Future Forward (tall) anchors the right. The row stretches so
@@ -41,17 +42,20 @@ export default function Page() {
                         <DottedFrame id="holo-web" />
                         <IconHolo id="holo-web" />
                         <WebDesignCard />
+                        <DitherCursor seed="holo-web" />
                     </div>
                     <div className="flex min-h-0 flex-1 gap-9">
                         <div {...cardProps("holo-clean", 120)} className={`${card} flex-1`}>
                             <DottedFrame id="holo-clean" />
                             <IconHolo id="holo-clean" />
                             <CleanCodeCard />
+                            <DitherCursor seed="holo-clean" />
                         </div>
                         <div {...cardProps("holo-accel", 180)} className={`${card} flex-1`}>
                             <DottedFrame id="holo-accel" />
                             <IconHolo id="holo-accel" />
                             <AccelerateCard />
+                            <DitherCursor seed="holo-accel" />
                         </div>
                     </div>
                 </div>
@@ -61,6 +65,7 @@ export default function Page() {
                     <DottedFrame id="holo-future" />
                     <IconHolo id="holo-future" />
                     <FutureForwardCard />
+                    <DitherCursor seed="holo-future" />
                     </div>
                 </div>
             </div>

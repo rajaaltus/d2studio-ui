@@ -11,7 +11,7 @@ const COLS = [9, 64, 119, 174, 229, 284]
 
 export default function WebDesignCard() {
     return (
-        <div className="relative h-[266px] w-full max-w-full overflow-hidden rounded-2xl bg-[var(--b4-surface)]">
+        <div className="group relative h-[266px] w-full max-w-full overflow-hidden rounded-2xl bg-[var(--b4-surface)]">
             {/* Outline as a top-most overlay, not a `border` on the card itself:
                 the screen panel below overhangs the card's right and bottom
                 edges, and a real border paints *under* children — it vanished
@@ -22,15 +22,15 @@ export default function WebDesignCard() {
             <div className="absolute left-5 top-[55px] w-[250px]">
                 {/* Code-window icon tile */}
                 <div className="grid h-14 w-14 place-items-center rounded-full border border-[var(--b4-border)] bg-[var(--b4-tile)]">
-                    {/* Shared metric across the four cards: ~21px glyph, ~2.1px
+                    {/* Shared metric across the four cards: ~19px glyph, ~2.2px
                         stroke. This one is authored at 18 units and fills its box
-                        edge to edge, so it's drawn at 21 (scale 1.167) and 1.9
+                        edge to edge, so it's drawn at 18.9 (scale 1.05) and 2.1
                         lands the stroke on 2.2. */}
-                    <svg width="21" height="21" viewBox="0 0 18 18" fill="none" aria-hidden>
+                    <svg width="18.9" height="18.9" viewBox="0 0 18 18" fill="none" className="overflow-visible" aria-hidden>
                         <path
                             d="M7 6.5L5 9L7 11.5M11 6.5L13 9L11 11.5M2 0H16C17.1046 0 18 0.8954 18 2V16C18 17.1046 17.1046 18 16 18H2C0.8954 18 0 17.1046 0 16V2C0 0.8954 0.8954 0 2 0Z"
                             stroke={ACCENT}
-                            strokeWidth={1.9}
+                            strokeWidth={2.1}
                             strokeLinecap="round"
                             strokeLinejoin="round"
                         />
@@ -67,11 +67,8 @@ export default function WebDesignCard() {
                 <div className="absolute inset-2 overflow-hidden rounded-lg bg-[var(--b4-scr-inner)] ring-1 ring-inset ring-[var(--b4-scr-line)]">
                     {/* Horizontal gold → blue gradient wash (under the columns) */}
                     <div
-                        className="absolute inset-0"
-                        style={{
-                            background: "var(--b4-scr-wash)",
-                            opacity: "var(--b4-scr-wash-opacity)",
-                        }}
+                        className="absolute inset-0 opacity-35 transition-opacity duration-500 group-hover:opacity-[var(--b4-scr-wash-opacity)]"
+                        style={{ background: "var(--b4-scr-wash)" }}
                     />
 
                     {/* Faint gradient columns */}

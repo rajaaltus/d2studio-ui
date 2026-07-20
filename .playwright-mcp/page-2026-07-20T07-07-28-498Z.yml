@@ -1,0 +1,50 @@
+- generic [active] [ref=f7e1]:
+  - link "Skip to content" [ref=f7e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f7e3]:
+    - generic [ref=f7e4]:
+      - generic [ref=f7e5]:
+        - heading "Built for teams that ship" [level=1] [ref=f7e6]
+        - paragraph [ref=f7e7]: Design, code and speed in one system, so every idea reaches production looking exactly the way you imagined it.
+      - generic [ref=f7e8]:
+        - generic [ref=f7e9]:
+          - generic [ref=f7e11]:
+            - generic [ref=f7e12]:
+              - heading "Web Design & Development" [level=3] [ref=f7e16]
+              - paragraph [ref=f7e17]: We create visually appealing and functional websites that captivate your audience and drive results.
+            - generic [ref=f7e18]:
+              - generic [ref=f7e19]: "12"
+              - paragraph [ref=f7e33]: Website that delivers a unique
+          - generic [ref=f7e34]:
+            - generic [ref=f7e36]:
+              - code [ref=f7e42]: "import { ClassValue, clsx } from \"clsx\" import { twMerge } from \"tailwind-merge\" export { twMerge } from \"tailwind-merge\""
+              - heading "Clean Code" [level=3] [ref=f7e43]
+              - paragraph [ref=f7e44]: our expertise in advanced coding techniques, we ensure your digital projects are delivered on time and surpass your expectations
+            - generic [ref=f7e46]:
+              - heading "Accelerate your project" [level=3] [ref=f7e50]
+              - paragraph [ref=f7e51]: Bring your ideas to life faster with our rapid development services.
+        - generic [ref=f7e53]:
+          - generic [ref=f7e142]:
+            - heading "Future Forward" [level=3] [ref=f7e143]
+            - paragraph [ref=f7e144]: Pushing boundaries with emerging technologies
+          - generic [ref=f7e145]: React
+          - generic [ref=f7e146]: Tailwind CSS
+          - generic [ref=f7e147]: Vercel
+          - generic [ref=f7e148]: Shift
+          - generic [ref=f7e149]: Angular
+          - generic [ref=f7e150]: Java
+          - generic [ref=f7e151]: Vs code
+          - generic [ref=f7e152]: Vue js
+          - generic [ref=f7e153]: Docker
+  - generic [ref=f7e154]:
+    - heading "Command palette" [level=2] [ref=f7e155]
+    - paragraph [ref=f7e156]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f7e157]:
+    - button "Blocks" [ref=f7e158] [cursor=pointer]
+    - button "Tools New" [ref=f7e176] [cursor=pointer]:
+      - generic [ref=f7e188]: Tools
+      - generic [ref=f7e190]: New
+    - button "Switch to light mode" [ref=f7e195] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f7e204] [cursor=pointer]
+  - alert [ref=f7e208]

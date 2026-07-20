@@ -98,6 +98,9 @@ importers:
       convex:
         specifier: ^1.35.1
         version: 1.35.1(react@19.2.5)
+      dither-avatar:
+        specifier: ^1.0.0
+        version: 1.0.0(react@19.2.5)
       gifenc:
         specifier: ^1.0.3
         version: 1.0.3
@@ -2620,6 +2623,14 @@ packages:
   diff@8.0.2:
     resolution: {integrity: sha512-sSuxWU5j5SR9QQji/o2qMvqRNYRDOcBTgsJ/DeCf4iSN4gW+gNMXM7wFIP+fdXZxoNiAnHUTGjCr+TSWXdRDKg==}
     engines: {node: '>=0.3.1'}
+
+  dither-avatar@1.0.0:
+    resolution: {integrity: sha512-D8eOqcqsePWhQOTxGVa1a0gmi+9pBMfP8lFMtcSsY3S0FdttHdBkUiSNcX/M4CHO1ywbc33Po0uxW5UB+41+IQ==}
+    peerDependencies:
+      react: '>=18'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
@@ -7153,6 +7164,10 @@ snapshots:
       dequal: 2.0.3
 
   diff@8.0.2: {}
+
+  dither-avatar@1.0.0(react@19.2.5):
+    optionalDependencies:
+      react: 19.2.5
 
   doctrine@2.1.0:
     dependencies:

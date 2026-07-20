@@ -1,0 +1,149 @@
+- generic [active] [ref=f40e1]:
+  - link "Skip to content" [ref=f40e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f40e3]:
+    - generic [ref=f40e4]:
+      - generic [ref=f40e5]:
+        - heading "Built for teams that ship" [level=1] [ref=f40e6]
+        - paragraph [ref=f40e7]: Design, code and speed in one system, so every idea reaches production looking exactly the way you imagined it.
+      - generic [ref=f40e8]:
+        - generic [ref=f40e9]:
+          - generic [ref=f40e11]:
+            - generic [ref=f40e12]:
+              - heading "Web Design & Development" [level=3] [ref=f40e16]
+              - paragraph [ref=f40e17]: We create visually appealing and functional websites that captivate your audience and drive results.
+            - generic [ref=f40e18]:
+              - generic [ref=f40e19]: "12"
+              - paragraph [ref=f40e33]: Website that delivers a unique
+          - generic [ref=f40e34]:
+            - generic [ref=f40e36]:
+              - generic: ╭───╮ │˘ᴥ˘│ ╰───╯
+              - code [ref=f40e42]:
+                - generic [ref=f40e43]:
+                  - generic [ref=f40e44]: "import { ClassValue, clsx } from \"clsx\""
+                  - generic [ref=f40e45]: "import { ClassValue, clsx } from \"clsx\""
+                - generic [ref=f40e46]:
+                  - generic [ref=f40e47]: "import { twMerge } from \"tailwind-merge\""
+                  - generic [ref=f40e48]: "import { twMerge } from \"tailwind-merge\""
+                - generic [ref=f40e49]:
+                  - generic [ref=f40e50]: "export { twMerge } from \"tailwind-merge\""
+                  - generic [ref=f40e51]: "export { twMerge } from \"tailwind-merge\""
+              - heading "Clean Code" [level=3] [ref=f40e52]
+              - paragraph [ref=f40e53]: our expertise in advanced coding techniques, we ensure your digital projects are delivered on time and surpass your expectations
+            - generic [ref=f40e55]:
+              - heading "Accelerate your project" [level=3] [ref=f40e59]
+              - paragraph [ref=f40e60]: Bring your ideas to life faster with our rapid development services.
+        - generic [ref=f40e62]:
+          - generic [ref=f40e465]:
+            - heading "Future Forward" [level=3] [ref=f40e466]
+            - paragraph [ref=f40e467]: Pushing boundaries with emerging technologies
+          - generic [ref=f40e468]:
+            - generic [ref=f40e469]: React
+            - generic [ref=f40e470]: Tailwind CSS
+            - generic [ref=f40e471]: Vercel
+            - generic [ref=f40e472]: Shift
+            - generic [ref=f40e473]: Angular
+            - generic [ref=f40e474]: Java
+            - generic [ref=f40e475]: Vs code
+            - generic [ref=f40e476]: Vue js
+            - generic [ref=f40e477]: Docker
+            - generic [ref=f40e478]: Claude
+            - generic [ref=f40e479]: Codex
+            - generic [ref=f40e480]: Figma
+            - generic [ref=f40e481]: Antigravity
+            - generic [ref=f40e482]: Kimi
+            - generic [ref=f40e483]: Grok
+            - generic [ref=f40e484]: D2 Studio
+            - generic [ref=f40e485]: React
+            - generic [ref=f40e486]: Tailwind CSS
+            - generic [ref=f40e487]: Vercel
+            - generic [ref=f40e488]: Shift
+            - generic [ref=f40e489]: Angular
+            - generic [ref=f40e490]: Java
+            - generic [ref=f40e491]: Vs code
+            - generic [ref=f40e492]: Vue js
+            - generic [ref=f40e493]: Docker
+            - generic [ref=f40e494]: Claude
+            - generic [ref=f40e495]: Codex
+            - generic [ref=f40e496]: Figma
+            - generic [ref=f40e497]: Antigravity
+            - generic [ref=f40e498]: Kimi
+            - generic [ref=f40e499]: Grok
+            - generic [ref=f40e500]: D2 Studio
+          - generic [ref=f40e501]:
+            - generic [ref=f40e502]: Java
+            - generic [ref=f40e503]: Vs code
+            - generic [ref=f40e504]: Vue js
+            - generic [ref=f40e505]: Docker
+            - generic [ref=f40e506]: Claude
+            - generic [ref=f40e507]: Codex
+            - generic [ref=f40e508]: Figma
+            - generic [ref=f40e509]: Antigravity
+            - generic [ref=f40e510]: Kimi
+            - generic [ref=f40e511]: Grok
+            - generic [ref=f40e512]: D2 Studio
+            - generic [ref=f40e513]: React
+            - generic [ref=f40e514]: Tailwind CSS
+            - generic [ref=f40e515]: Vercel
+            - generic [ref=f40e516]: Shift
+            - generic [ref=f40e517]: Angular
+            - generic [ref=f40e518]: Java
+            - generic [ref=f40e519]: Vs code
+            - generic [ref=f40e520]: Vue js
+            - generic [ref=f40e521]: Docker
+            - generic [ref=f40e522]: Claude
+            - generic [ref=f40e523]: Codex
+            - generic [ref=f40e524]: Figma
+            - generic [ref=f40e525]: Antigravity
+            - generic [ref=f40e526]: Kimi
+            - generic [ref=f40e527]: Grok
+            - generic [ref=f40e528]: D2 Studio
+            - generic [ref=f40e529]: React
+            - generic [ref=f40e530]: Tailwind CSS
+            - generic [ref=f40e531]: Vercel
+            - generic [ref=f40e532]: Shift
+            - generic [ref=f40e533]: Angular
+          - generic [ref=f40e534]:
+            - generic [ref=f40e535]: Codex
+            - generic [ref=f40e536]: Figma
+            - generic [ref=f40e537]: Antigravity
+            - generic [ref=f40e538]: Kimi
+            - generic [ref=f40e539]: Grok
+            - generic [ref=f40e540]: D2 Studio
+            - generic [ref=f40e541]: React
+            - generic [ref=f40e542]: Tailwind CSS
+            - generic [ref=f40e543]: Vercel
+            - generic [ref=f40e544]: Shift
+            - generic [ref=f40e545]: Angular
+            - generic [ref=f40e546]: Java
+            - generic [ref=f40e547]: Vs code
+            - generic [ref=f40e548]: Vue js
+            - generic [ref=f40e549]: Docker
+            - generic [ref=f40e550]: Claude
+            - generic [ref=f40e551]: Codex
+            - generic [ref=f40e552]: Figma
+            - generic [ref=f40e553]: Antigravity
+            - generic [ref=f40e554]: Kimi
+            - generic [ref=f40e555]: Grok
+            - generic [ref=f40e556]: D2 Studio
+            - generic [ref=f40e557]: React
+            - generic [ref=f40e558]: Tailwind CSS
+            - generic [ref=f40e559]: Vercel
+            - generic [ref=f40e560]: Shift
+            - generic [ref=f40e561]: Angular
+            - generic [ref=f40e562]: Java
+            - generic [ref=f40e563]: Vs code
+            - generic [ref=f40e564]: Vue js
+            - generic [ref=f40e565]: Docker
+            - generic [ref=f40e566]: Claude
+  - generic [ref=f40e567]:
+    - heading "Command palette" [level=2] [ref=f40e568]
+    - paragraph [ref=f40e569]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f40e570]:
+    - button "Blocks" [ref=f40e571] [cursor=pointer]
+    - button "Tools New" [ref=f40e589] [cursor=pointer]:
+      - generic [ref=f40e601]: Tools
+      - generic [ref=f40e603]: New
+    - button "Toggle theme" [ref=f40e608] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f40e622] [cursor=pointer]
