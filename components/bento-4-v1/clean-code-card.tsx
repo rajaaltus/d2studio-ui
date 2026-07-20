@@ -1,20 +1,15 @@
-"use client"
-
 // Clean Code — converted from the Figma SVG export to a real React component.
 // Vector text is now selectable HTML; the code icon and syntax-highlighted
 // snippet are the only genuinely-graphical bits. This card's typography is the
 // reference for the whole bento: gradient heading + #7B7B7B body.
 
-import { Fragment, useRef } from "react"
-import gsap from "gsap"
-import { useGSAP } from "@gsap/react"
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
+import { Fragment, type CSSProperties } from "react"
 
-gsap.registerPlugin(useGSAP, ScrambleTextPlugin)
-
-// The snippet as data — each line a list of [text, colour] tokens. One copy in
-// the DOM: it rests grey and, on hover, each token scrambles in place while its
-// colour lands, so the snippet resolves from grey to syntax-coloured.
+// The snippet as data — each line a list of [text, colour] tokens. Rendered
+// twice per line: a grey copy that's always there, and a colour copy stacked
+// on top that types across it on hover. Data rather than JSX so the two copies
+// can't drift apart, and so the step counts below stay honest if the code
+// changes.
 const LINES: [string, string][][] = [
     [
         ["import ", "#6B7280"],
@@ -42,68 +37,33 @@ const LINES: [string, string][][] = [
     ],
 ]
 
-const GREY = "#6B7280"
-const SCRAMBLE = 0.16 // per token
-const STAGGER = 0.015 // between tokens, in DOM order — reads as line-by-line
+const CHAR_MS = 11
+// The reveal is stepped per character, so the cadence only stays even if each
+// line's step count matches its real length.
+const lineCh = (i: number) => LINES[i].reduce((n, [text]) => n + text.length, 0)
+
+// Lines type in sequence: each starts where the previous one finished.
+const typeStyle = (i: number): CSSProperties => {
+    let delay = 0
+    for (let n = 0; n < i; n++) delay += lineCh(n) * CHAR_MS
+    return {
+        "--b4-type-dur": `${lineCh(i) * CHAR_MS}ms`,
+        "--b4-type-steps": `steps(${lineCh(i)}, end)`,
+        "--b4-type-delay": `${delay}ms`,
+        "--b4-caret-delay": `${delay + lineCh(i) * CHAR_MS}ms`,
+    } as CSSProperties
+}
 
 const tokens = (line: [string, string][]) =>
     line.map(([text, color], i) => (
-        <span key={i} data-color={color} style={{ color: GREY }}>
+        <span key={i} style={{ color }}>
             {text}
         </span>
     ))
 
 export default function CleanCodeCard() {
-    const root = useRef<HTMLDivElement>(null)
-
-    useGSAP(
-        () => {
-            const card = root.current!
-            const spans = card.querySelectorAll<HTMLSpanElement>("code span[data-color]")
-            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-            // Freeze the snippet box at its resting size so nothing reflows
-            // while the tokens are scrambling.
-            // Measured after fonts settle — a mono swap mid-load would otherwise
-            // freeze the fallback's metrics.
-            const pre = card.querySelector("pre")!
-            document.fonts.ready.then(() => gsap.set(pre, { width: pre.offsetWidth, height: pre.offsetHeight }))
-
-            // Paused timeline played on enter / reversed on leave, so an
-            // interrupted hover rewinds from wherever it got to.
-            const tl = gsap.timeline({ paused: true })
-            spans.forEach((span, i) => {
-                tl.to(
-                    span,
-                    {
-                        color: span.dataset.color,
-                        duration: reduce ? 0.2 : SCRAMBLE,
-                        ease: "none",
-                        ...(reduce
-                            ? {}
-                            : { scrambleText: { text: span.textContent!, chars: "01<>/{}", speed: 1 } }),
-                    },
-                    reduce ? 0 : i * STAGGER,
-                )
-            })
-
-            const enter = () => tl.play()
-            const leave = () => tl.reverse()
-            card.addEventListener("pointerenter", enter)
-            card.addEventListener("pointerleave", leave)
-            return () => {
-                card.removeEventListener("pointerenter", enter)
-                card.removeEventListener("pointerleave", leave)
-            }
-        },
-        { scope: root },
-    )
-
     return (
-        <div
-            ref={root}
-            className="group relative flex h-full min-h-[230px] w-full flex-col overflow-hidden rounded-2xl border border-[var(--b4-border)] bg-[var(--b4-surface)] p-5"
-        >
+        <div className="group relative flex h-full min-h-[230px] w-full flex-col overflow-hidden rounded-2xl border border-[var(--b4-border)] bg-[var(--b4-surface)] p-5">
             <div className="flex items-start justify-between gap-4">
                 {/* Code-window icon tile */}
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[var(--b4-border)] bg-[var(--b4-tile)]">
@@ -127,10 +87,18 @@ export default function CleanCodeCard() {
                     className="mt-1 select-none overflow-hidden font-mono text-[10px] leading-[1.7] opacity-75 transition-opacity duration-200 ease-out group-hover:opacity-100"
                 >
                     <code>
+                        {/* Grey copy is always there; the colour copy on top types
+                            across it on hover, one line after the other. */}
                         {LINES.map((line, i) => (
                             <Fragment key={i}>
                                 {i > 0 && "\n"}
-                                <span className="inline-block whitespace-nowrap">{tokens(line)}</span>
+                                <span
+                                    className={`b4-type${i === LINES.length - 1 ? " b4-type-last" : ""}`}
+                                    style={typeStyle(i)}
+                                >
+                                    <span className="b4-type-base">{tokens(line)}</span>
+                                    <span className="b4-type-text">{tokens(line)}</span>
+                                </span>
                             </Fragment>
                         ))}
                     </code>
