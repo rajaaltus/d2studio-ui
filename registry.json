@@ -88,7 +88,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Displays a list of options for the user to pick from—triggered by a button.",
+      "description": "Displays a list of options for the user to pick from\u2014triggered by a button.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button"
@@ -544,7 +544,7 @@
       "name": "bento-03",
       "type": "registry:component",
       "title": "Bento 03",
-      "description": "A flat 3×2 feature grid on thin edge-masked rules — no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
+      "description": "A flat 3\u00d72 feature grid on thin edge-masked rules \u2014 no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
       "author": "D2 Studio",
       "dependencies": [
         "lucide-react",
@@ -1037,6 +1037,63 @@
       ],
       "categories": [
         "spinner"
+      ]
+    },
+    {
+      "name": "bento-04",
+      "type": "registry:component",
+      "title": "Bento 04",
+      "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. GSAP-driven, theme-aware and reduced-motion aware.",
+      "author": "D2 Studio",
+      "dependencies": [
+        "gsap",
+        "@gsap/react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/bento-04.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/bento-04/web-design-card.tsx",
+          "type": "registry:component",
+          "target": "components/bento-04/web-design-card.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/future-forward-card.tsx",
+          "type": "registry:component",
+          "target": "components/bento-04/future-forward-card.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/clean-code-card.tsx",
+          "type": "registry:component",
+          "target": "components/bento-04/clean-code-card.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/accelerate-card.tsx",
+          "type": "registry:component",
+          "target": "components/bento-04/accelerate-card.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/dotted-frame.tsx",
+          "type": "registry:component",
+          "target": "components/bento-04/dotted-frame.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/icon-holo.tsx",
+          "type": "registry:component",
+          "target": "components/bento-04/icon-holo.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/bento-04.css",
+          "type": "registry:file",
+          "target": "components/bento-04/bento-04.css"
+        }
+      ],
+      "categories": [
+        "bento",
+        "blocks"
       ]
     }
   ]

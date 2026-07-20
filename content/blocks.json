@@ -116,5 +116,22 @@
     "codeStatus": "available",
     "codeUrl": "https://ui.d2studio.dev/r/hero-01.json",
     "isActive": true
+  },
+  {
+    "name": "bento-04",
+    "type": "component",
+    "title": "Bento 04",
+    "description": "A four-card services bento on marching dashed blueprint frames, with holographic icon bloom, a scrambling code snippet and brand marquees on hover.",
+    "author": "@uxgodwin",
+    "version": "1.0.0",
+    "categories": [
+      "bento",
+      "blocks"
+    ],
+    "blockType": "bento",
+    "previewImage": "/placeholder.svg",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/bento-04.json",
+    "isActive": true
   }
 ]

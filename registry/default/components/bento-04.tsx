@@ -1,168 +1,85 @@
-import {
-    Atom,
-    CodeXml,
-    Figma,
-    PenTool,
-    Smartphone,
-    Target,
-    Zap,
-    type LucideIcon,
-} from "lucide-react"
-import { type ReactNode } from "react"
+// Bento 4 — the whole section as one drop-in component: heading, the four
+// cards, their dashed frames and icon bloom.
+//
+// The wide Web Design hero sits over the Clean Code + Accelerate pair on the
+// left; Future Forward (tall) anchors the right. The row stretches so both
+// sides share one height. Entrance is a subtle staggered rise.
+//
+// Heading is overridable so the section can be reused with different copy;
+// pass `heading={null}` to drop it and use your own.
 
-// Faithful to src-bento-4.tsx: a "Service Overview" bento — 3-col grid where
-// the intro card spans 2 cols and the "Future Forward" stack spans 2 rows.
-// Each card carries a circular green icon tile (top-left) + title + copy, some
-// with a decoration (tech-stack pills, Figma mark, code snippet, bolt). Static —
-// no hover/pattern motion, matching the reference.
+import WebDesignCard from "./bento-04/web-design-card"
+import FutureForwardCard from "./bento-04/future-forward-card"
+import CleanCodeCard from "./bento-04/clean-code-card"
+import AccelerateCard from "./bento-04/accelerate-card"
+import DottedFrame from "./bento-04/dotted-frame"
+import IconHolo from "./bento-04/icon-holo"
+import "./bento-04/bento-04.css"
 
-// D2 brand green — the accent from the reference (#4CD241).
-const GREEN = "#4CD241"
+const rise = "b4-rise"
 
-type Card = {
-    Icon: LucideIcon
-    title: string
-    description: string
-    className?: string // grid spans
-    decoration?: ReactNode
-}
+// `b4-card` scopes the hover: it brightens the dashed frame (see dotted-frame)
+// and blooms the icon (see bento-04.css). Each card carries its own gradient id
+// in --b4-holo, so hovering one never recolours the others.
+const card = `relative b4-card ${rise}`
 
-// Future Forward's tech-stack pills — labels verbatim from the reference.
-// ponytail: text pills, not brand-logo SVGs (monochrome house rule + 9 logos
-// isn't worth the extraction); say the word to swap in real logos.
-const STACK = ["React", "Tailwind CSS", "Vercel", "Shift", "Angular", "Java", "Vs code", "Vue js", "Docker"]
+const cardProps = (id: string, delay: number) => ({
+    className: card,
+    style: { animationDelay: `${delay}ms`, "--b4-holo": `url(#${id})` } as React.CSSProperties,
+})
 
-function StackPills() {
+export default function Bento4({
+    heading = "Built for teams that ship",
+    subheading = "Design, code and speed in one system, so every idea reaches production looking exactly the way you imagined it.",
+    className = "",
+}: {
+    heading?: React.ReactNode
+    subheading?: React.ReactNode
+    className?: string
+}) {
     return (
-        <div className="mt-6 flex flex-wrap gap-2">
-            {STACK.map((t) => (
-                <span
-                    key={t}
-                    className="rounded-lg border border-[oklch(0.9_0.004_286.3)] bg-[oklch(0.975_0_0)] px-2.5 py-1 text-xs text-[oklch(0.442_0.016_285.9)] dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-300"
-                >
-                    {t}
-                </span>
-            ))}
-        </div>
-    )
-}
-
-function CodeSnippet() {
-    return (
-        <pre className="mt-6 overflow-hidden rounded-xl border border-[oklch(0.9_0.004_286.3)] bg-[oklch(0.975_0_0)] p-4 font-mono text-[11px] leading-relaxed text-[oklch(0.552_0.016_285.9)] dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-500">
-            {`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-export { twMerge } from "tailwind-merge";`}
-        </pre>
-    )
-}
-
-const cards: Card[] = [
-    {
-        Icon: CodeXml,
-        title: "Web Design & Development",
-        description: "We create visually appealing and functional websites that captivate your audience and drive results.",
-        className: "lg:col-span-2",
-    },
-    {
-        Icon: Atom,
-        title: "Future Forward",
-        description: "Pushing boundaries with emerging technologies",
-        className: "lg:row-span-2",
-        decoration: <StackPills />,
-    },
-    {
-        Icon: Smartphone,
-        title: "Innovative App Development",
-        description: "Custom Mobile App Development for iOS and Android.",
-    },
-    {
-        Icon: PenTool,
-        title: "UI/UX Magic",
-        description: "Crafting Intuitive and Visually Stunning Interfaces",
-        decoration: (
-            <Figma
-                aria-hidden
-                className="pointer-events-none absolute -right-4 bottom-0 h-28 w-28 opacity-[0.12]"
-                style={{ color: GREEN }}
-            />
-        ),
-    },
-    {
-        Icon: Target,
-        title: "98% Success",
-        description: "A skilled team dedicated to delivering quality results and exceeding client expectations",
-    },
-    {
-        Icon: CodeXml,
-        title: "Clean Code",
-        description: "our expertise in advanced coding techniques, we ensure your digital projects are delivered on time and surpass your expectations",
-        decoration: <CodeSnippet />,
-    },
-    {
-        Icon: Zap,
-        title: "Accelerate your project",
-        description: "Bring your ideas to life faster with our rapid development services.",
-        decoration: (
-            <Zap
-                aria-hidden
-                className="pointer-events-none absolute -right-2 bottom-0 h-28 w-28 opacity-[0.12]"
-                style={{ color: GREEN, fill: GREEN }}
-            />
-        ),
-    },
-]
-
-function BentoCard({ Icon, title, description, className, decoration }: Card) {
-    return (
-        <div
-            className={
-                "relative flex h-full flex-col overflow-hidden rounded-2xl border border-[oklch(0.868_0.005_286.3)] bg-[oklch(0.972_0_0)] p-8 dark:border-white/10 dark:bg-zinc-900 " +
-                (className ?? "")
-            }
-        >
-            {/* Circular green icon tile */}
-            <div
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full"
-                style={{ backgroundColor: `${GREEN}1a`, boxShadow: `inset 0 0 0 1px ${GREEN}33` }}
-            >
-                <Icon className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2} />
-            </div>
-
-            <h3 className="mt-6 text-lg font-semibold text-[oklch(0.21_0.006_285.9)] dark:text-zinc-50">{title}</h3>
-            <p className="mt-2 max-w-sm text-sm leading-relaxed text-[oklch(0.552_0.016_285.9)] dark:text-zinc-400">
-                {description}
-            </p>
-
-            {decoration}
-        </div>
-    )
-}
-
-const Bento4 = () => {
-    return (
-        <section className="w-full px-6 py-16 sm:px-8 md:py-24">
-            <div className="mx-auto max-w-6xl">
-                {/* Header */}
-                <div className="mb-12 text-center">
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                        <span className="text-[oklch(0.552_0.016_285.9)] dark:text-zinc-400">Service </span>
-                        <span style={{ color: GREEN }}>Overview</span>
+        <div className={`flex flex-col items-center gap-12 ${className}`}>
+            {heading !== null && (
+                <header className={`max-w-2xl text-center ${rise}`}>
+                    {/* Same vertical clip-text gradient as the card titles, mirrored for light. */}
+                    <h2 className="bg-gradient-to-b from-[#18181B] to-[#71717A] bg-clip-text text-4xl font-semibold tracking-tight text-transparent dark:from-[#F9FAFB] dark:to-[#949495]">
+                        {heading}
                     </h2>
-                    <p className="mx-auto mt-3 max-w-md text-base text-[oklch(0.552_0.016_285.9)] dark:text-zinc-400">
-                        We take pride in building custom solutions that help founders turn their dreams reality!
-                    </p>
+                    {subheading !== null && (
+                        <p className="mt-3 text-base text-zinc-500 dark:text-zinc-400">{subheading}</p>
+                    )}
+                </header>
+            )}
+
+            <div className="flex items-stretch gap-9">
+                {/* Left column: wide hero over a pair of medium cards */}
+                <div className="flex w-[665px] max-w-full flex-col gap-9">
+                    <div {...cardProps("holo-web", 0)}>
+                        <DottedFrame id="holo-web" />
+                        <IconHolo id="holo-web" />
+                        <WebDesignCard />
+                    </div>
+                    <div className="flex min-h-0 flex-1 gap-9">
+                        <div {...cardProps("holo-clean", 120)} className={`${card} flex-1`}>
+                            <DottedFrame id="holo-clean" />
+                            <IconHolo id="holo-clean" />
+                            <CleanCodeCard />
+                        </div>
+                        <div {...cardProps("holo-accel", 180)} className={`${card} flex-1`}>
+                            <DottedFrame id="holo-accel" />
+                            <IconHolo id="holo-accel" />
+                            <AccelerateCard />
+                        </div>
+                    </div>
                 </div>
 
-                {/* Bento grid — intro spans 2 cols, Future Forward spans 2 rows */}
-                <div className="grid gap-4 lg:auto-rows-fr lg:grid-cols-3">
-                    {cards.map((c) => (
-                        <BentoCard key={c.title} {...c} />
-                    ))}
+                {/* Right: tall anchor, matched to the left column height */}
+                <div {...cardProps("holo-future", 60)} className={`${card} w-[348px]`}>
+                    <DottedFrame id="holo-future" />
+                    <IconHolo id="holo-future" />
+                    <FutureForwardCard />
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
-
-export default Bento4

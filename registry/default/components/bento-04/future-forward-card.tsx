@@ -1,4 +1,4 @@
-// Future Forward card — restored from bento-04 as a standalone file.
+// Future Forward card.
 //
 // The three pill rows are marquees: on card hover each row scrolls in one
 // direction forever, a pill leaving one edge re-entering the other. Each row

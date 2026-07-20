@@ -1,0 +1,147 @@
+/* Bento 04 — card chrome palette, icon-bloom paint hookup and the Future
+   Forward marquee. Everything else in the block is Tailwind or inline SVG.
+   Scoped to .b4-card, so it only ever touches this block. */
+
+
+/* ── Bento-4 card hover ──────────────────────────────────────────────────────
+   Each card renders its own gradient (<IconHolo />) and points its icons at it
+   through --b4-holo, so hovering one card never recolours another.
+
+   The stop-colour bloom is driven by GSAP in components/bento-4/icon-holo —
+   deliberately not duplicated here, since it writes the stops directly and a
+   :hover rule would be driving the same property. Only the paint reference and
+   the glow live in CSS. */
+.b4-card [stroke="#41A4D2"] {
+  stroke: var(--b4-holo);
+  transition: filter 400ms cubic-bezier(0.33, 1, 0.68, 1); /* power2.out */
+}
+.b4-card:hover [stroke="#41A4D2"] {
+  filter: drop-shadow(0 0 6px rgba(168, 255, 128, 0.4));
+}
+
+/* Light theme: the holographic stops are pastels picked to glow on a near-black
+   tile — against the light tile they blow out. Dimmed with a filter rather than
+   a second palette, so the hover stays the D2 brand gradient (just less lit) and
+   the GSAP bloom keeps writing one set of stops. */
+html:not(.dark) .b4-card [stroke="#41A4D2"] {
+  filter: brightness(0.78) saturate(1.3);
+}
+html:not(.dark) .b4-card:hover [stroke="#41A4D2"] {
+  filter: brightness(0.78) saturate(1.3) drop-shadow(0 0 6px rgba(120, 200, 90, 0.35));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b4-card:hover [stroke="#41A4D2"] {
+    filter: none;
+  }
+  html:not(.dark) .b4-card:hover [stroke="#41A4D2"] {
+    filter: brightness(0.78) saturate(1.3);
+  }
+}
+
+/* ── Bento-4 palette ─────────────────────────────────────────────────────────
+   Card *chrome* only — surface, border, icon tile, type. Dark is the Figma
+   reference; light mirrors it. Vars (not `dark:` classes) because half these
+   colours land on raw SVG `fill=`/`stroke=` attributes, which Tailwind variants
+   can't reach.
+
+   Deliberately NOT themed: the "screen" panel in Web Design and the terminal in
+   Future Forward. Those read as devices — a lit display stays dark in both
+   themes, and their gold/blue washes are tuned for it. */
+.b4-card {
+  --b4-surface: #ffffff;
+  --b4-border: #e4e4e7;
+  --b4-tile: #f4f4f5;
+  --b4-title-from: #18181b;
+  --b4-title-to: #71717a;
+  --b4-body: #71717a;
+  --b4-hairline: rgba(10, 10, 10, 0.12);
+  --b4-rings: #f4f4f4;
+  --b4-label-from: #3f3f46;
+  --b4-label-to: #71717a;
+  --b4-glow: rgba(76, 210, 65, 0.18);
+  --b4-dash-tail: oklch(0.925 0 0);
+  --b4-dash-mid: oklch(0.785 0.006 17.5);
+  --b4-dash-peak: oklch(0.625 0.011 17.5);
+  --b4-scr-bezel: rgba(233, 233, 236, 0.15);
+  --b4-scr-inner: rgba(120, 118, 125, 0.14);
+  --b4-scr-line: rgba(132, 132, 140, 0.15);
+  --b4-mark: #c9a800;
+  --b4-scr-text-from: #fff2dc;
+  --b4-scr-text-to: #b6e1ff;
+  --b4-scr-wash: linear-gradient(90deg, #e0a800, #1f74cf);
+  --b4-scr-wash-opacity: 0.6;
+}
+.dark .b4-card {
+  --b4-surface: #151313;
+  --b4-border: #342f2f;
+  --b4-tile: #1e1e1f;
+  --b4-title-from: #f9fafb;
+  --b4-title-to: #949495;
+  --b4-body: #7b7b7b;
+  --b4-hairline: rgba(255, 239, 239, 0.15);
+  --b4-rings: #1f1e1e;
+  --b4-label-from: #f9f9f9;
+  --b4-label-to: #c8c8c8;
+  --b4-glow: rgba(50, 65, 45, 0.36);
+  --b4-dash-tail: oklch(0.217 0.005 17.5);
+  --b4-dash-mid: oklch(0.393 0.008 17.5);
+  --b4-dash-peak: oklch(0.611 0.011 17.5);
+  --b4-scr-bezel: rgba(10, 10, 10, 0.15);
+  --b4-scr-inner: rgba(94, 93, 96, 0.3);
+  --b4-scr-line: rgba(255, 239, 239, 0.15);
+  --b4-mark: #f2d271;
+  --b4-scr-text-from: #fff2dc;
+  --b4-scr-text-to: #b6e1ff;
+  --b4-scr-wash: linear-gradient(90deg, #7d5608, #307bbc);
+  --b4-scr-wash-opacity: 0.6;
+}
+
+/* Bento-4 Future Forward — pill rows marquee left/right/left on card hover:
+   one direction forever, a pill exiting one edge re-entering the other. Each
+   row renders its pill tile twice; --b4-shift is exactly one tile, so at the
+   end of a cycle the duplicate lands where the original started and the reset
+   is invisible. The svg row moves in viewBox user units, the DOM label row in
+   % of the card width — same distance, so they stay locked at any card size. */
+@keyframes b4-marquee {
+  to {
+    transform: translateX(var(--b4-shift));
+  }
+}
+/* Idle speed. Hover speeds the rows up by ramping each animation's
+   playbackRate (see future-forward-card.tsx) rather than swapping
+   animation-duration — swapping duration keeps elapsed time, not progress, so
+   the row would jump. Ramping the rate is also what damps the pick-up and the
+   settle back down. */
+.b4-ff-row {
+  animation: b4-marquee var(--b4-dur-idle) linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .b4-ff-row {
+    animation: none;
+  }
+}
+
+/* Entrance — a short staggered rise per card (delay is set inline). Named
+   locally so the block carries its own keyframes instead of relying on the
+   host app's animation utilities. */
+@keyframes b4-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.b4-rise {
+  opacity: 0;
+  animation: b4-rise 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .b4-rise {
+    opacity: 1;
+    animation: none;
+  }
+}
