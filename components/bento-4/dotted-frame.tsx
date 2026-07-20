@@ -1,3 +1,5 @@
+"use client"
+
 // Dashed blueprint frame — 1px dashed lines (dash 4 / gap 4) 8px outside the
 // parent on all sides. Parent must be `relative`.
 //
@@ -8,7 +10,17 @@
 // Each side is gradiented independently along its own length, symmetric about
 // its midpoint: brightest at the center, fading out only across the overshoot
 // tails so the corners themselves stay lit.
+import { useRef } from "react"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+
+gsap.registerPlugin(useGSAP)
+
 const OVER = 26
+
+// One dash period (4 + 4). Shifting the offset by exactly this loops seamlessly.
+const PERIOD = 8
+const CYCLE = 0.6
 
 const STOPS: [string, string][] = [
     ["0%", "oklch(0.217 0.005 17.5)"],
@@ -32,8 +44,44 @@ const LINES = [
 export default function DottedFrame({ id }: { id: string }) {
     const h = `${id}-h`
     const v = `${id}-v`
+    const root = useRef<SVGSVGElement>(null)
+
+    // Marching dashes on hover: horizontals run right, verticals run up. Both
+    // lines of a pair are drawn in the same direction (h: left→right, v:
+    // top→bottom), so one signed offset per axis is enough.
+    useGSAP(
+        () => {
+            const card = root.current?.closest(".b4-card")
+            if (!card) return
+
+            const march = (axis: string, to: number) =>
+                gsap.to(root.current!.querySelectorAll(`[data-axis="${axis}"]`), {
+                    strokeDashoffset: to,
+                    duration: CYCLE,
+                    ease: "none",
+                    repeat: -1,
+                    paused: true,
+                })
+
+            // Two tweens, not one timeline: they only ever run together, and a
+            // shared repeat would still need per-axis targets anyway.
+            const tweens = [march("h", -PERIOD), march("v", PERIOD)]
+            const enter = () => tweens.forEach((t) => t.play())
+            // Pause, not kill — resuming mid-cycle avoids a snap on re-hover.
+            const leave = () => tweens.forEach((t) => t.pause())
+            card.addEventListener("pointerenter", enter)
+            card.addEventListener("pointerleave", leave)
+            return () => {
+                card.removeEventListener("pointerenter", enter)
+                card.removeEventListener("pointerleave", leave)
+            }
+        },
+        { scope: root },
+    )
+
     return (
         <svg
+            ref={root}
             aria-hidden
             className="pointer-events-none absolute -left-[34px] -top-[34px] h-[calc(100%+68px)] w-[calc(100%+68px)] overflow-visible opacity-70 transition-opacity duration-500 [.b4-card:hover_&]:opacity-100"
         >
@@ -52,6 +100,7 @@ export default function DottedFrame({ id }: { id: string }) {
             {LINES.map((l) => (
                 <line
                     key={l.k}
+                    data-axis={l.g}
                     x1={l.x1}
                     y1={l.y1}
                     x2={l.x2}
