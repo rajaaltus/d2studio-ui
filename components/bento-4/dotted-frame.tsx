@@ -13,26 +13,29 @@ const STOPS: [string, string][] = [
 ]
 
 const LINES = [
-    { k: "top", x1: "0", y1: "0", x2: "100%", y2: "0", g: "dfH" },
-    { k: "bottom", x1: "0", y1: "100%", x2: "100%", y2: "100%", g: "dfH" },
-    { k: "left", x1: "0", y1: "0", x2: "0", y2: "100%", g: "dfV" },
-    { k: "right", x1: "100%", y1: "0", x2: "100%", y2: "100%", g: "dfV" },
+    { k: "top", x1: "0", y1: "0", x2: "100%", y2: "0", g: "h" },
+    { k: "bottom", x1: "0", y1: "100%", x2: "100%", y2: "100%", g: "h" },
+    { k: "left", x1: "0", y1: "0", x2: "0", y2: "100%", g: "v" },
+    { k: "right", x1: "100%", y1: "0", x2: "100%", y2: "100%", g: "v" },
 ] as const
 
-export default function DottedFrame() {
+// `id` must be unique per card: the gradients are userSpaceOnUse, so a shared id
+// would make every frame resolve against the first card's box.
+export default function DottedFrame({ id }: { id: string }) {
+    const h = `${id}-h`
+    const v = `${id}-v`
     return (
         <svg
             aria-hidden
             className="pointer-events-none absolute -left-2 -top-2 h-[calc(100%+16px)] w-[calc(100%+16px)] overflow-visible opacity-70 transition-opacity duration-500 [.b4-card:hover_&]:opacity-100"
-            preserveAspectRatio="none"
         >
             <defs>
-                <linearGradient id="dfH" gradientUnits="userSpaceOnUse" x1="0%" y1="0" x2="100%" y2="0">
+                <linearGradient id={h} gradientUnits="userSpaceOnUse" x1="0%" y1="0" x2="100%" y2="0">
                     {STOPS.map(([o, c]) => (
                         <stop key={o} offset={o} stopColor={c} />
                     ))}
                 </linearGradient>
-                <linearGradient id="dfV" gradientUnits="userSpaceOnUse" x1="0" y1="0%" x2="0" y2="100%">
+                <linearGradient id={v} gradientUnits="userSpaceOnUse" x1="0" y1="0%" x2="0" y2="100%">
                     {STOPS.map(([o, c]) => (
                         <stop key={o} offset={o} stopColor={c} />
                     ))}
@@ -45,7 +48,7 @@ export default function DottedFrame() {
                     y1={l.y1}
                     x2={l.x2}
                     y2={l.y2}
-                    stroke={`url(#${l.g})`}
+                    stroke={`url(#${l.g === "h" ? h : v})`}
                     strokeWidth={1}
                     strokeDasharray="4 4"
                     strokeLinecap="butt"

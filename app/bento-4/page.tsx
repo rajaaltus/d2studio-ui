@@ -27,18 +27,18 @@ export default function Page() {
                 {/* Left column: wide hero over a pair of medium cards */}
                 <div className="flex w-[665px] max-w-full flex-col gap-9">
                     <div {...cardProps("holo-web", 0)}>
-                        <DottedFrame />
+                        <DottedFrame id="holo-web" />
                         <IconHolo id="holo-web" />
                         <WebDesignCard />
                     </div>
                     <div className="flex min-h-0 flex-1 gap-9">
                         <div {...cardProps("holo-clean", 120)} className={`${card} flex-1`}>
-                            <DottedFrame />
+                            <DottedFrame id="holo-clean" />
                             <IconHolo id="holo-clean" />
                             <CleanCodeCard />
                         </div>
                         <div {...cardProps("holo-accel", 180)} className={`${card} flex-1`}>
-                            <DottedFrame />
+                            <DottedFrame id="holo-accel" />
                             <IconHolo id="holo-accel" />
                             <AccelerateCard />
                         </div>
@@ -47,7 +47,7 @@ export default function Page() {
 
                 {/* Right: tall anchor, matched to the left column height */}
                 <div {...cardProps("holo-future", 60)} className={`${card} w-[348px]`}>
-                    <DottedFrame />
+                    <DottedFrame id="holo-future" />
                     <IconHolo id="holo-future" />
                     <FutureForwardCard />
                 </div>
