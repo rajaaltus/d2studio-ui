@@ -515,7 +515,7 @@ export default function FutureForwardCard() {
           <g
             key={y}
             opacity={0.6}
-            className="b4-ff-row"
+            className="b4-ff-row opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90"
             style={
               {
                 "--b4-shift": `${shift}px`,
@@ -782,7 +782,7 @@ export default function FutureForwardCard() {
                         layout(order).map(({ b, x }) => (
                             <div
                                 key={`${offset}-${b}`}
-                                className="absolute inset-y-0 flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[13.93px] font-medium text-transparent opacity-60"
+                                className="absolute inset-y-0 flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[13.93px] font-medium text-transparent opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90"
                                 style={{ left: `${((x + offset + LABEL_X) / VB_W) * 100}%` }}
                             >
                                 {LABELS[b]}
