@@ -22,12 +22,15 @@ const OVER = 26
 const PERIOD = 8
 const CYCLE = 0.6
 
+// Themed in globals.css (.b4-card): dark mode fades up from near-black, light
+// mode fades down from near-white, so the dashes stay a whisper against the
+// page either way instead of a hard outline.
 const STOPS: [string, string][] = [
-    ["0%", "oklch(0.217 0.005 17.5)"],
-    ["6%", "oklch(0.393 0.008 17.5)"],
-    ["50%", "oklch(0.611 0.011 17.5)"],
-    ["94%", "oklch(0.393 0.008 17.5)"],
-    ["100%", "oklch(0.217 0.005 17.5)"],
+    ["0%", "var(--b4-dash-tail)"],
+    ["6%", "var(--b4-dash-mid)"],
+    ["50%", "var(--b4-dash-peak)"],
+    ["94%", "var(--b4-dash-mid)"],
+    ["100%", "var(--b4-dash-tail)"],
 ]
 
 // Lines span 0→100% of the (overshot) svg; `transform` pulls the far edges back

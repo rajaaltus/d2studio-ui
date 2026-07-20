@@ -25,7 +25,8 @@ export default function Page() {
         <main className="flex min-h-screen items-center justify-center bg-white p-8 dark:bg-zinc-950">
             <div className="flex flex-col items-center gap-12">
                 <header className={`max-w-2xl text-center ${rise}`}>
-                    <h1 className="bg-gradient-to-b from-[#F9FAFB] to-[#949495] bg-clip-text text-4xl font-semibold tracking-tight text-transparent">
+                    {/* Same vertical clip-text gradient as the card titles, mirrored for light. */}
+                    <h1 className="bg-gradient-to-b from-[#18181B] to-[#71717A] bg-clip-text text-4xl font-semibold tracking-tight text-transparent dark:from-[#F9FAFB] dark:to-[#949495]">
                         Built for teams that ship
                     </h1>
                     <p className="mt-3 text-base text-zinc-500 dark:text-zinc-400">

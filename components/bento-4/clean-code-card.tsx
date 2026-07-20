@@ -5,11 +5,14 @@
 
 export default function CleanCodeCard() {
     return (
-        <div className="relative flex h-full min-h-[230px] w-full flex-col overflow-hidden rounded-2xl border border-[#342F2F] bg-[#151313] p-5">
+        <div className="relative flex h-full min-h-[230px] w-full flex-col overflow-hidden rounded-2xl border border-[var(--b4-border)] bg-[var(--b4-surface)] p-5">
             <div className="flex items-start justify-between gap-4">
                 {/* Code-window icon tile */}
-                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[#342F2F] bg-[#1E1E1F]">
-                    <svg width="24" height="24" viewBox="34 55 30 22" fill="none" aria-hidden>
+                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-[var(--b4-border)] bg-[var(--b4-tile)]">
+                    {/* 22-unit square viewBox centred on the glyph (bbox 38–58 x,
+                        57–73 y). The old 30×22 box was non-square, so `meet` shrank
+                        the whole icon — and its stroke — to 0.8×. */}
+                    <svg width="24" height="24" viewBox="37 54 22 22" fill="none" aria-hidden>
                         <path
                             d="M54 69L58 65L54 61M42 61L38 65L42 69M50.5 57L45.5 73"
                             stroke="#41A4D2"
@@ -23,7 +26,7 @@ export default function CleanCodeCard() {
                 {/* Faint syntax-highlighted snippet */}
                 <pre
                     aria-hidden
-                    className="mt-1 select-none overflow-hidden font-mono text-[10px] leading-[1.7] opacity-40"
+                    className="mt-1 select-none overflow-hidden font-mono text-[10px] leading-[1.7] opacity-75"
                 >
                     <code>
                         <span className="text-[#6B7280]">import </span>
@@ -50,10 +53,10 @@ export default function CleanCodeCard() {
                 </pre>
             </div>
 
-            <h3 className="mt-[17px] bg-gradient-to-b from-[#F9FAFB] to-[#949495] bg-clip-text text-[18px] font-semibold leading-tight text-transparent">
+            <h3 className="mt-[17px] bg-gradient-to-b from-[var(--b4-title-from)] to-[var(--b4-title-to)] bg-clip-text text-[18px] font-semibold leading-tight text-transparent">
                 Clean Code
             </h3>
-            <p className="mt-2 max-w-[300px] text-[13px] leading-relaxed text-[#7B7B7B]">
+            <p className="mt-2 max-w-[300px] text-[13px] leading-relaxed text-[var(--b4-body)]">
                 our expertise in advanced coding techniques, we ensure your digital
                 projects are delivered on time and surpass your expectations
             </p>

@@ -23,22 +23,26 @@ const STACK: [string, number, number][] = [
 export default function FutureForwardCard() {
     return (
         <div className="relative h-full overflow-hidden rounded-2xl">
+            {/* Outline lives in the DOM so it tracks the wrapper box exactly. The
+                svg fills the width and is cropped at the bottom by the wrapper,
+                which would clip an svg-drawn border off two sides. */}
+            <div className="pointer-events-none absolute inset-0 z-10 rounded-2xl border border-[var(--b4-border)]" />
         <svg
     viewBox="0 0 337 532"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="block h-full w-auto"
+    className="block h-auto w-full"
   >
     <g clipPath="url(#clip0_8189_3102)">
-      <rect width={337} height={532} rx={16} fill="#151313" />
-      <rect x={20.5} y={20.5} width={55} height={55} rx={27.5} fill="#1E1E1F" />
+      <rect width={337} height={532} rx={16} fill="var(--b4-surface)" />
+      <rect x={20.5} y={20.5} width={55} height={55} rx={27.5} fill="var(--b4-tile)" />
       <rect
         x={20.5}
         y={20.5}
         width={55}
         height={55}
         rx={27.5}
-        stroke="#342F2F"
+        stroke="var(--b4-border)"
       />
       <path
         d="M48 49C48.5523 49 49 48.5523 49 48C49 47.4477 48.5523 47 48 47C47.4477 47 47 47.4477 47 48C47 48.5523 47.4477 49 48 49Z"
@@ -79,7 +83,7 @@ export default function FutureForwardCard() {
           height={257}
           transform="rotate(-180 410.5 536.5)"
           fill="#D9D9D9"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
       </mask>
       <g mask="url(#mask0_8189_3102)">
@@ -88,48 +92,48 @@ export default function FutureForwardCard() {
           cy={523.5}
           r={129}
           transform="rotate(-180 169.5 523.5)"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
         <circle
           cx={169.5}
           cy={523.5}
           r={164}
           transform="rotate(-180 169.5 523.5)"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
         <circle
           cx={169.5}
           cy={523.5}
           r={199}
           transform="rotate(-180 169.5 523.5)"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
         <circle
           cx={169.5}
           cy={523.5}
           r={234}
           transform="rotate(-180 169.5 523.5)"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
         <circle
           cx={169.5}
           cy={523.5}
           r={97}
           transform="rotate(-180 169.5 523.5)"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
         <circle
           cx={169.5}
           cy={523.5}
           r={65}
           transform="rotate(-180 169.5 523.5)"
-          stroke="#1F1E1E"
+          stroke="var(--b4-rings)"
         />
       </g>
       <g filter="url(#filter0_f_8189_3102)">
         <path
           d="M317.5 479C317.5 552.73 235.73 616.751 162 616.751C88.27 616.751 14 528.73 14 455C14 381.27 150 310.748 220.5 357C298.5 373.749 317.5 405.27 317.5 479Z"
-          fill="#32412D"
+          fill="var(--b4-glow)"
           fillOpacity={0.36}
         />
       </g>
@@ -140,7 +144,7 @@ export default function FutureForwardCard() {
           width={80}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={0.5}
@@ -148,7 +152,7 @@ export default function FutureForwardCard() {
           width={80}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <g clipPath="url(#clip1_8189_3102)">
           <path
@@ -168,7 +172,7 @@ export default function FutureForwardCard() {
           width={129}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={111.5}
@@ -176,7 +180,7 @@ export default function FutureForwardCard() {
           width={129}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <path
           d="M128 234.7C125.867 234.7 124.533 235.767 124 237.9C124.8 236.833 125.733 236.433 126.8 236.7C127.409 236.852 127.844 237.294 128.325 237.782C129.109 238.578 130.017 239.5 132 239.5C134.133 239.5 135.467 238.433 136 236.3C135.2 237.367 134.267 237.767 133.2 237.5C132.591 237.348 132.156 236.906 131.675 236.418C130.891 235.621 129.983 234.7 128 234.7ZM124 239.5C121.867 239.5 120.533 240.567 120 242.7C120.8 241.633 121.733 241.233 122.8 241.5C123.409 241.652 123.844 242.094 124.325 242.582C125.109 243.378 126.017 244.3 128 244.3C130.133 244.3 131.467 243.233 132 241.1C131.2 242.167 130.267 242.567 129.2 242.3C128.591 242.148 128.156 241.706 127.675 241.218C126.891 240.421 125.983 239.5 124 239.5Z"
@@ -188,7 +192,7 @@ export default function FutureForwardCard() {
           width={83}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={271.5}
@@ -196,7 +200,7 @@ export default function FutureForwardCard() {
           width={83}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <g clipPath="url(#clip2_8189_3102)">
           <path
@@ -212,7 +216,7 @@ export default function FutureForwardCard() {
           width={73}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={0.5}
@@ -220,7 +224,7 @@ export default function FutureForwardCard() {
           width={73}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <path
           d="M20.0678 289.136C18.4175 290.085 16.1483 290.183 13.8654 289.208C12.0169 288.425 10.4832 287.055 9.5 285.488C9.97194 285.88 10.5225 286.193 11.1124 286.467C13.47 287.568 15.8272 287.492 17.486 286.47C15.1263 284.669 13.1181 282.316 11.6237 280.398C11.309 280.084 11.073 279.693 10.8371 279.34C12.6461 280.985 15.5172 283.06 16.5395 283.648C14.3768 281.377 12.4495 278.557 12.5281 278.636C15.9496 282.082 19.1354 284.04 19.1354 284.04C19.2407 284.099 19.3221 284.148 19.3875 284.192C19.4565 284.017 19.5169 283.836 19.5678 283.648C20.1184 281.651 19.4893 279.38 18.1127 277.5C21.2981 279.419 23.186 283.021 22.3992 286.037C22.3787 286.118 22.3565 286.198 22.3324 286.277C23.9053 288.235 23.5004 290.344 23.3038 289.953C22.4505 288.29 20.8709 288.798 20.0678 289.136Z"
@@ -232,7 +236,7 @@ export default function FutureForwardCard() {
           width={93}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={104.5}
@@ -240,7 +244,7 @@ export default function FutureForwardCard() {
           width={93}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <path
           d="M121 277.5L114.5 280L115.5 288.5L121 291.5L126.5 288.5L127.5 280L121 277.5Z"
@@ -260,7 +264,7 @@ export default function FutureForwardCard() {
           width={73}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={228.5}
@@ -268,7 +272,7 @@ export default function FutureForwardCard() {
           width={73}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <g clipPath="url(#clip3_8189_3102)">
           <path
@@ -312,7 +316,7 @@ export default function FutureForwardCard() {
           width={95}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={0.5}
@@ -320,7 +324,7 @@ export default function FutureForwardCard() {
           width={95}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <g clipPath="url(#clip4_8189_3102)">
           <path
@@ -342,7 +346,7 @@ export default function FutureForwardCard() {
           width={83}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={126.5}
@@ -350,7 +354,7 @@ export default function FutureForwardCard() {
           width={83}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <path
           d="M136 323.5L143 335.5L150 323.5H147.25L143 330.75L138.75 323.5H136Z"
@@ -366,7 +370,7 @@ export default function FutureForwardCard() {
           width={89}
           height={26}
           rx={8.5}
-          fill="#151313"
+          fill="var(--b4-surface)"
         />
         <rect
           x={240.5}
@@ -374,7 +378,7 @@ export default function FutureForwardCard() {
           width={89}
           height={26}
           rx={8.5}
-          stroke="#342F2F"
+          stroke="var(--b4-border)"
         />
         <g clipPath="url(#clip5_8189_3102)">
           <circle cx={257} cy={329.5} r={8} fill="#1794D4" />
@@ -437,8 +441,7 @@ export default function FutureForwardCard() {
           y={401.5}
           width={217}
           height={130}
-          fill="#171717"
-          fillOpacity={0.5}
+          fill="#161616"
         />
         <rect
           x={60.7968}
@@ -483,7 +486,6 @@ export default function FutureForwardCard() {
         strokeLinejoin="round"
       />
     </g>
-    <rect x={0.5} y={0.5} width={336} height={531} rx={15.5} stroke="#342F2F" />
     <defs>
       <filter
         id="filter0_f_8189_3102"
@@ -661,10 +663,10 @@ export default function FutureForwardCard() {
                 — that read as a shiver whenever the hover filter repainted the layer.
                 Percentage insets are the viewBox coords the paths used (20.5 / 85). */}
             <div className="absolute left-[6.08%] right-[6.08%] top-[15.98%]">
-                <h3 className="bg-gradient-to-b from-[oklch(0.985_0.002_247.8)] to-[oklch(0.667_0.001_286.4)] bg-clip-text text-[18px] font-semibold leading-tight text-transparent">
+                <h3 className="bg-gradient-to-b from-[var(--b4-title-from)] to-[var(--b4-title-to)] bg-clip-text text-[18px] font-semibold leading-tight text-transparent">
                     Future Forward
                 </h3>
-                <p className="mt-2 max-w-[250px] text-[13px] leading-relaxed text-[oklch(0.583_0_89.9)]">
+                <p className="mt-2 max-w-[250px] text-[13px] leading-relaxed text-[var(--b4-body)]">
                     Pushing boundaries with emerging technologies
                 </p>
             </div>
@@ -674,7 +676,7 @@ export default function FutureForwardCard() {
             {STACK.map(([label, x, y]) => (
                 <div
                     key={label}
-                    className="absolute flex items-center whitespace-nowrap bg-gradient-to-b from-[oklch(0.976_0_89.9)] to-[oklch(0.786_0_89.9)] bg-clip-text text-[13.93px] font-medium text-transparent opacity-60"
+                    className="absolute flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[13.93px] font-medium text-transparent opacity-60"
                     style={{
                         left: `${((x + LABEL_X) / 337) * 100}%`,
                         top: `${(y / 532) * 100}%`,
