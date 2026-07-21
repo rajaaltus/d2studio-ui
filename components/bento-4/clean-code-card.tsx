@@ -9,6 +9,7 @@ import { Fragment, useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
+import { onCardHover } from "@/components/bento-4/card-hover"
 
 gsap.registerPlugin(useGSAP, ScrambleTextPlugin)
 
@@ -87,14 +88,11 @@ export default function CleanCodeCard() {
                 )
             })
 
-            const enter = () => tl.play()
-            const leave = () => tl.reverse()
-            card.addEventListener("pointerenter", enter)
-            card.addEventListener("pointerleave", leave)
-            return () => {
-                card.removeEventListener("pointerenter", enter)
-                card.removeEventListener("pointerleave", leave)
-            }
+            return onCardHover(
+                card,
+                () => tl.play(),
+                () => tl.reverse(),
+            )
         },
         { scope: root },
     )
@@ -124,7 +122,7 @@ export default function CleanCodeCard() {
                 {/* Faint syntax-highlighted snippet */}
                 <pre
                     aria-hidden
-                    className="mt-1 select-none overflow-hidden font-mono text-[10px] leading-[1.7] opacity-75 transition-opacity duration-200 ease-out group-hover:opacity-100"
+                    className="mt-1 select-none overflow-hidden font-mono text-[10px] leading-[1.7] opacity-75 transition-opacity duration-200 ease-out group-hover:opacity-100 [.b4-card.b4-on_&]:opacity-100"
                 >
                     <code>
                         {LINES.map((line, i) => (

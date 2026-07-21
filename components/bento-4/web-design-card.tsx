@@ -11,7 +11,10 @@ const COLS = [9, 64, 119, 174, 229, 284]
 
 export default function WebDesignCard() {
     return (
-        <div className="group relative h-[266px] w-full max-w-full overflow-hidden rounded-2xl bg-[var(--b4-surface)]">
+        // Below sm the card is too narrow to seat the screen panel beside the
+        // copy, so it goes under it and the card grows to suit — same treatment
+        // (bleeding off two edges), just stacked.
+        <div className="group relative h-[430px] w-full max-w-full overflow-hidden rounded-2xl bg-[var(--b4-surface)] sm:h-[266px]">
             {/* Outline as a top-most overlay, not a `border` on the card itself:
                 the screen panel below overhangs the card's right and bottom
                 edges, and a real border paints *under* children — it vanished
@@ -19,7 +22,7 @@ export default function WebDesignCard() {
             <div className="pointer-events-none absolute inset-0 z-10 rounded-2xl border border-[var(--b4-border)]" />
 
             {/* Left column */}
-            <div className="absolute left-5 top-[55px] w-[250px]">
+            <div className="absolute left-5 right-5 top-[55px] sm:right-auto sm:w-[250px]">
                 {/* Code-window icon tile */}
                 <div className="grid h-14 w-14 place-items-center rounded-full border border-[var(--b4-border)] bg-[var(--b4-tile)]">
                     {/* Shared metric across the four cards: ~19px glyph, ~2.2px
@@ -46,8 +49,11 @@ export default function WebDesignCard() {
                 </p>
             </div>
 
-            {/* Right "screen" panel — clipped at the card's bottom edge */}
-            <div className="absolute left-[291px] top-[50px] h-[272px] w-[354px] rounded-xl bg-[var(--b4-scr-bezel)] ring-1 ring-inset ring-[var(--b4-scr-line)]">
+            {/* Right "screen" panel — clipped at the card's bottom edge, and on
+                narrower cards at the right edge too: it holds its 20px gutter
+                from the right until 665 (the reference width), then stays put
+                and bleeds off instead of sliding onto the copy. */}
+            <div className="absolute left-5 top-[240px] h-[272px] w-[354px] rounded-xl bg-[var(--b4-scr-bezel)] ring-1 ring-inset ring-[var(--b4-scr-line)] sm:left-[max(291px,calc(100%-374px))] sm:top-[50px]">
                 {/* "12" dimension mark: gold H-line whose verticals sit on the column stripes (inner-x 52/64) */}
                 <div className="absolute -top-[9px] left-[60px]">
                     <span className="relative block h-[18px] w-[12px]">
@@ -67,7 +73,7 @@ export default function WebDesignCard() {
                 <div className="absolute inset-2 overflow-hidden rounded-lg bg-[var(--b4-scr-inner)] ring-1 ring-inset ring-[var(--b4-scr-line)]">
                     {/* Horizontal gold → blue gradient wash (under the columns) */}
                     <div
-                        className="absolute inset-0 opacity-35 transition-opacity duration-500 group-hover:opacity-[var(--b4-scr-wash-opacity)]"
+                        className="absolute inset-0 opacity-35 transition-opacity duration-500 group-hover:opacity-[var(--b4-scr-wash-opacity)] [.b4-card.b4-on_&]:opacity-[var(--b4-scr-wash-opacity)]"
                         style={{ background: "var(--b4-scr-wash)" }}
                     />
 

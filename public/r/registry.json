@@ -1043,7 +1043,7 @@
       "name": "bento-04",
       "type": "registry:component",
       "title": "Bento 04",
-      "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. GSAP-driven, theme-aware and reduced-motion aware.",
+      "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. Responsive down to mobile \u2014 the grid restacks and the card illustrations shift rather than shrink \u2014 and below lg, where there is no pointer, a tap plays the hover state for a few seconds instead. GSAP-driven, theme-aware and reduced-motion aware.",
       "author": "D2 Studio",
       "dependencies": [
         "gsap",
@@ -1084,6 +1084,11 @@
           "path": "registry/default/components/bento-04/icon-holo.tsx",
           "type": "registry:component",
           "target": "components/bento-04/icon-holo.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-04/card-hover.ts",
+          "type": "registry:component",
+          "target": "components/bento-04/card-hover.ts"
         },
         {
           "path": "registry/default/components/bento-04/bento-04.css",

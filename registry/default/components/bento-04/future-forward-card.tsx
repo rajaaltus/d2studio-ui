@@ -17,6 +17,7 @@
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties, ReactNode } from "react"
+import { onCardHover } from "./card-hover"
 
 const PILL_H = 26
 const GAP = 31
@@ -369,14 +370,14 @@ function useHoverSpeed(root: React.RefObject<HTMLDivElement | null>) {
             if (!raf) raf = requestAnimationFrame(tick)
         }
 
-        const enter = () => to(HOVER_RATE)
-        const leave = () => to(1)
-        el.addEventListener("pointerenter", enter)
-        el.addEventListener("pointerleave", leave)
+        const unbind = onCardHover(
+            el,
+            () => to(HOVER_RATE),
+            () => to(1),
+        )
         return () => {
             cancelAnimationFrame(raf)
-            el.removeEventListener("pointerenter", enter)
-            el.removeEventListener("pointerleave", leave)
+            unbind()
         }
     }, [root])
 }
@@ -386,7 +387,10 @@ export default function FutureForwardCard() {
     useHoverSpeed(root)
 
     return (
-        <div ref={root} className="b4-ff relative h-full overflow-hidden rounded-2xl">
+        // `@container`: the pill labels are DOM text over an svg that scales with
+        // the card, so their size is expressed in cqw (below) to stay locked to
+        // the pills they sit in at any card width.
+        <div ref={root} className="b4-ff @container relative h-full overflow-hidden rounded-2xl">
             {/* Outline lives in the DOM so it tracks the wrapper box exactly. The
                 svg fills the width and is cropped at the bottom by the wrapper,
                 which would clip an svg-drawn border off two sides. */}
@@ -515,7 +519,7 @@ export default function FutureForwardCard() {
           <g
             key={y}
             opacity={0.6}
-            className="b4-ff-row opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90"
+            className="b4-ff-row opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90 [.b4-card.b4-on_&]:opacity-90"
             style={
               {
                 "--b4-shift": `${shift}px`,
@@ -782,7 +786,7 @@ export default function FutureForwardCard() {
                         layout(order).map(({ b, x }) => (
                             <div
                                 key={`${offset}-${b}`}
-                                className="absolute inset-y-0 flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[13.93px] font-medium text-transparent opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90"
+                                className="absolute inset-y-0 flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[4.134cqw] font-medium text-transparent opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90 [.b4-card.b4-on_&]:opacity-90"
                                 style={{ left: `${((x + offset + LABEL_X) / VB_W) * 100}%` }}
                             >
                                 {LABELS[b]}

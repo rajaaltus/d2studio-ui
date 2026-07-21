@@ -121,9 +121,9 @@
     "name": "bento-04",
     "type": "component",
     "title": "Bento 04",
-    "description": "A four-card services bento on marching dashed blueprint frames, with holographic icon bloom, a scrambling code snippet and brand marquees on hover.",
+    "description": "A four-card services bento on marching dashed blueprint frames, with holographic icon bloom, a scrambling code snippet and brand marquees on hover. Fully responsive \u2014 the grid restacks and the illustrations shift for medium and small screens, where a tap plays the hover state.",
     "author": "@uxgodwin",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "categories": [
       "bento",
       "blocks"

@@ -13,6 +13,7 @@
 import { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import { onCardHover } from "@/components/bento-4/card-hover"
 
 gsap.registerPlugin(useGSAP)
 
@@ -69,15 +70,12 @@ export default function DottedFrame({ id }: { id: string }) {
             // Two tweens, not one timeline: they only ever run together, and a
             // shared repeat would still need per-axis targets anyway.
             const tweens = [march("h", -PERIOD), march("v", PERIOD)]
-            const enter = () => tweens.forEach((t) => t.play())
-            // Pause, not kill — resuming mid-cycle avoids a snap on re-hover.
-            const leave = () => tweens.forEach((t) => t.pause())
-            card.addEventListener("pointerenter", enter)
-            card.addEventListener("pointerleave", leave)
-            return () => {
-                card.removeEventListener("pointerenter", enter)
-                card.removeEventListener("pointerleave", leave)
-            }
+            return onCardHover(
+                card,
+                () => tweens.forEach((t) => t.play()),
+                // Pause, not kill — resuming mid-cycle avoids a snap on re-hover.
+                () => tweens.forEach((t) => t.pause()),
+            )
         },
         { scope: root },
     )
@@ -86,7 +84,7 @@ export default function DottedFrame({ id }: { id: string }) {
         <svg
             ref={root}
             aria-hidden
-            className="pointer-events-none absolute -left-[34px] -top-[34px] h-[calc(100%+68px)] w-[calc(100%+68px)] overflow-visible opacity-70 transition-opacity duration-500 [.b4-card:hover_&]:opacity-100"
+            className="pointer-events-none absolute -left-[34px] -top-[34px] h-[calc(100%+68px)] w-[calc(100%+68px)] overflow-visible opacity-70 transition-opacity duration-500 [.b4-card:hover_&]:opacity-100 [.b4-card.b4-on_&]:opacity-100"
         >
             <defs>
                 <linearGradient id={h} gradientUnits="userSpaceOnUse" x1="0%" y1="0" x2="100%" y2="0">

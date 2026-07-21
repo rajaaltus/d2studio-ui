@@ -1,0 +1,57 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - heading "An AI-native studio, engineered to ship" [level=2] [ref=e6]
+        - paragraph [ref=e7]: D2 Studio pairs a real design system with applied AI and a typed, realtime backend, so an idea reaches production in weeks and stays cheap to change after launch.
+      - generic [ref=e8]:
+        - generic [ref=e62]:
+          - heading "16+ AI products in production" [level=3] [ref=e63]
+          - paragraph [ref=e64]: Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic.
+        - generic [ref=e65]:
+          - generic [ref=e112]:
+            - heading "Global by default" [level=3] [ref=e113]
+            - paragraph [ref=e114]: Realtime Convex data on the edge, so every region reads in milliseconds.
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - text: Bengaluru
+                    - generic: 9ms
+                - generic:
+                  - generic:
+                    - text: Singapore
+                    - generic: 14ms
+                - generic:
+                  - generic:
+                    - text: London
+                    - generic: 11ms
+                - generic:
+                  - generic:
+                    - text: San Francisco
+                    - generic: 7ms
+                - generic:
+                  - generic:
+                    - text: Sydney
+                    - generic: 16ms
+        - generic [ref=e164]:
+          - heading "Zero to production, fast" [level=3] [ref=e165]
+          - paragraph [ref=e166]: Design system, typed API and CI wired up on day one.
+        - generic [ref=e218]:
+          - heading "AI woven through the stack" [level=3] [ref=e219]
+          - paragraph [ref=e220]: Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live.
+  - generic [ref=e221]:
+    - heading "Command palette" [level=2] [ref=e222]
+    - paragraph [ref=e223]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e224]:
+    - button "Blocks" [ref=e225] [cursor=pointer]
+    - button "Tools New" [ref=e243] [cursor=pointer]:
+      - generic [ref=e255]: Tools
+      - generic [ref=e257]: New
+    - button "Switch to light mode" [ref=e262] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e271] [cursor=pointer]
+  - alert [ref=e275]

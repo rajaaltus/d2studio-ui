@@ -12,6 +12,7 @@
 import { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import { onCardHover } from "@/components/bento-4/card-hover"
 
 gsap.registerPlugin(useGSAP)
 
@@ -39,14 +40,11 @@ export default function IconHolo({ id }: { id: string }) {
                 tl.to(stop, { attr: { "stop-color": BRAND[i] }, duration: DURATION, ease: "power2.inOut" }, i * STAGGER)
             })
 
-            const enter = () => tl.play()
-            const leave = () => tl.reverse()
-            card.addEventListener("pointerenter", enter)
-            card.addEventListener("pointerleave", leave)
-            return () => {
-                card.removeEventListener("pointerenter", enter)
-                card.removeEventListener("pointerleave", leave)
-            }
+            return onCardHover(
+                card,
+                () => tl.play(),
+                () => tl.reverse(),
+            )
         },
         { scope: root },
     )

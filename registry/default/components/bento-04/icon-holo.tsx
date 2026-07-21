@@ -1,6 +1,6 @@
 "use client"
 
-// Chromatic icon hover for the Bento 04 cards. Renders one private gradient per
+// Chromatic icon hover for the bento-4 cards. Renders one private gradient per
 // card; the card wrapper points its icons at it via --b4-holo (bento-04.css),
 // and GSAP blooms the stops from the resting blue out to the D2 holographic
 // palette on hover.
@@ -12,6 +12,7 @@
 import { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import { onCardHover } from "./card-hover"
 
 gsap.registerPlugin(useGSAP)
 
@@ -39,14 +40,11 @@ export default function IconHolo({ id }: { id: string }) {
                 tl.to(stop, { attr: { "stop-color": BRAND[i] }, duration: DURATION, ease: "power2.inOut" }, i * STAGGER)
             })
 
-            const enter = () => tl.play()
-            const leave = () => tl.reverse()
-            card.addEventListener("pointerenter", enter)
-            card.addEventListener("pointerleave", leave)
-            return () => {
-                card.removeEventListener("pointerenter", enter)
-                card.removeEventListener("pointerleave", leave)
-            }
+            return onCardHover(
+                card,
+                () => tl.play(),
+                () => tl.reverse(),
+            )
         },
         { scope: root },
     )

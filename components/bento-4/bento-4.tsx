@@ -50,21 +50,25 @@ export default function Bento4({
                 </header>
             )}
 
-            <div className="flex items-stretch gap-9">
+            {/* One row at lg (665 + 36 + 348 = 1049, the reference width); below
+                that the right card drops under the left column and the medium
+                pair goes single-file at sm. The cards keep their design at every
+                size — only their illustrations shift/bleed. */}
+            <div className="grid w-full max-w-[1049px] gap-9 lg:grid-cols-[minmax(0,1fr)_348px]">
                 {/* Left column: wide hero over a pair of medium cards */}
-                <div className="flex w-[665px] max-w-full flex-col gap-9">
+                <div className="flex min-w-0 flex-col gap-9">
                     <div {...cardProps("holo-web", 0)}>
                         <DottedFrame id="holo-web" />
                         <IconHolo id="holo-web" />
                         <WebDesignCard />
                     </div>
-                    <div className="flex min-h-0 flex-1 gap-9">
-                        <div {...cardProps("holo-clean", 120)} className={`${card} flex-1`}>
+                    <div className="grid min-h-0 flex-1 gap-9 sm:grid-cols-2">
+                        <div {...cardProps("holo-clean", 120)} className={card}>
                             <DottedFrame id="holo-clean" />
                             <IconHolo id="holo-clean" />
                             <CleanCodeCard />
                         </div>
-                        <div {...cardProps("holo-accel", 180)} className={`${card} flex-1`}>
+                        <div {...cardProps("holo-accel", 180)} className={card}>
                             <DottedFrame id="holo-accel" />
                             <IconHolo id="holo-accel" />
                             <AccelerateCard />
@@ -72,8 +76,10 @@ export default function Bento4({
                     </div>
                 </div>
 
-                {/* Right: tall anchor, matched to the left column height */}
-                <div {...cardProps("holo-future", 60)} className={`${card} w-[348px]`}>
+                {/* Right: tall anchor. At lg the grid row stretches it to the left
+                    column's height (the svg crops); stacked, it stands at its own
+                    full height, centred at the reference width. */}
+                <div {...cardProps("holo-future", 60)} className={`${card} mx-auto w-full max-w-[348px]`}>
                     <DottedFrame id="holo-future" />
                     <IconHolo id="holo-future" />
                     <FutureForwardCard />

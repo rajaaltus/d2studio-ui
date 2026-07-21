@@ -8,7 +8,7 @@ export default function AccelerateCard() {
             {/* Lightning bolt decoration (right) */}
             <svg
                 aria-hidden
-                className="pointer-events-none absolute inset-0 h-full w-full opacity-60 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-0 h-full w-full opacity-60 transition-opacity duration-500 group-hover:opacity-100 [.b4-card.b4-on_&]:opacity-100"
                 viewBox="0 0 337 236"
                 fill="none"
                 preserveAspectRatio="xMaxYMid slice"
