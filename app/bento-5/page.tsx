@@ -4,7 +4,7 @@ import SrcC2 from "./src-c-2"
 import SrcC3 from "./src-c-3"
 import SrcC4 from "./src-c-4"
 import Globe from "./globe"
-import { GLYPH_16, GLYPH_AI } from "./glyphs"
+import { GLYPH_16, GLYPH_16_AT, GLYPH_AI } from "./glyphs"
 
 // The cards are the Figma exports as-is: each SVG already paints its own glass
 // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
@@ -40,84 +40,76 @@ function Glow({ children }: { children: ReactNode }) {
     )
 }
 
-// Figma paints "16+"/"AI" as glass and the SVG export keeps only half of it.
-// Measured against the Figma render (on black, so the numbers are the paint
-// itself): the 20% gradient fill survives the export exactly — interior reads
-// 51/51/46 top to bottom in both — but the rim exports as a flat #ECECEC/0.5,
-// which is 118, while Figma's runs 127-218 and averages ~169. The refraction
-// is dropped entirely. So both go back on: the backdrop blurred through the
-// letterform, then enough white on the rim to carry it from 118 to ~169.
+// "16+"/"AI" repainted opaque over the export's glass, per the Figma frames:
+// F7F7F7 -> DFDFDF -> C3C3C3 with a 2px #FAFAFA rim. The ramp runs to 1.25 of
+// the glyph, not 1 — Figma's handle ends well below the baseline (y=210 on a
+// 169-tall glyph), so the letters only ever reach the middle of it and bottom
+// out at a light grey.
 //
-// The rim is deliberately flat. Figma's varies per edge, but not by any light
-// direction — identically-oriented edges read 178 and 127 — so a bevel
-// (feSpecularLighting over the alpha) fits it no better than a constant does,
-// and costs a filter plus a mask to keep the highlight off the letter's face.
-//
-// The rim can't be a stroke of the glyph path: these paths are unions of
+// The rim goes under the fill (paintOrder) because the AI path is a union of
 // overlapping subpaths — the A's crossbar is a full rectangle buried in its
-// legs, the + is two crossed bars — so stroking outlines every internal seam
-// and the letter comes apart. Filling it and taking dilate minus erode bands
-// the union's true outline, which is the one Figma strokes.
-function GlassGlyph({ d, id }: { d: string; id: string }) {
-    const url = `url("data:image/svg+xml,${encodeURIComponent(
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 313"><path d="${d}" fill="#fff"/></svg>`
-    )}")`
+// legs — so a plain stroke outlines every internal seam and the letter comes
+// apart. Painted first, the fill covers the seams and only the outer half of
+// the stroke survives, so 4 draws a 2px rim.
+//
+// slice, like the card art, so it stays welded to the glyph the SVG underneath
+// already drew once the card crops.
+function Glyph({
+    d,
+    id,
+    transform,
+    opacity,
+}: {
+    d: string
+    id: string
+    transform?: string
+    opacity?: number
+}) {
     return (
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div
-                className="absolute inset-0 backdrop-blur-[7px]"
-                style={{
-                    maskImage: url,
-                    WebkitMaskImage: url,
-                    maskSize: "100% 100%",
-                    WebkitMaskSize: "100% 100%",
-                    maskRepeat: "no-repeat",
-                }}
+        <svg
+            aria-hidden
+            viewBox="0 0 672 313"
+            preserveAspectRatio="xMidYMid slice"
+            opacity={opacity}
+            className="pointer-events-none absolute inset-0 h-full w-full"
+        >
+            <defs>
+                <linearGradient id={id} x1={0} y1={0} x2={0} y2={1.25}>
+                    <stop offset="0%" stopColor="#F7F7F7" />
+                    <stop offset="50%" stopColor="#DFDFDF" />
+                    <stop offset="100%" stopColor="#C3C3C3" />
+                </linearGradient>
+                {/* The letters dissolve into the card's dark bottom rather than
+                    ending on an edge. A mask, not a darker fill, because the rim
+                    has to go with them — and bbox units, so the same ramp fits
+                    either glyph. The rect overhangs the box because the rim is
+                    painted outside it, and anything the rect misses is masked
+                    away: at 1x1 it shaves the rim off the top of every letter. */}
+                <linearGradient
+                    id={`${id}-fade`}
+                    gradientUnits="userSpaceOnUse"
+                    x1={0}
+                    y1={0.35}
+                    x2={0}
+                    y2={0.95}
+                >
+                    <stop offset="0%" stopColor="#fff" />
+                    <stop offset="100%" stopColor="#fff" stopOpacity={0} />
+                </linearGradient>
+                <mask id={`${id}-mask`} maskContentUnits="objectBoundingBox">
+                    <rect x={-0.2} y={-0.2} width={1.4} height={1.4} fill={`url(#${id}-fade)`} />
+                </mask>
+            </defs>
+            <path
+                d={d}
+                transform={transform}
+                fill={`url(#${id})`}
+                stroke="#FAFAFA"
+                strokeWidth={4}
+                paintOrder="stroke"
+                mask={`url(#${id}-mask)`}
             />
-            {/* slice, like the card art, so the rim stays welded to the one the
-                SVG underneath already drew once the card crops. */}
-            <svg
-                viewBox="0 0 672 313"
-                preserveAspectRatio="xMidYMid slice"
-                className="absolute inset-0 h-full w-full"
-            >
-                <defs>
-                    <filter id={id} colorInterpolationFilters="sRGB">
-                        {/* Blurring the alpha turns the flat letter into a bump
-                            whose normals tilt outward at the edges; the light
-                            then picks out whichever edges face it, per edge,
-                            wherever they sit in the word. A gradient across the
-                            glyph can't do this — it lights the first letter and
-                            leaves the last one dead. */}
-                        <feGaussianBlur in="SourceAlpha" stdDeviation={1.2} result="bump" />
-                        <feSpecularLighting
-                            in="bump"
-                            surfaceScale={7}
-                            specularConstant={2.4}
-                            specularExponent={12}
-                            lightingColor="#fff"
-                            result="spec"
-                        >
-                            <feDistantLight azimuth={225} elevation={40} />
-                        </feSpecularLighting>
-                        {/* Floor, so the edges facing away still draw a rim
-                            rather than vanishing. */}
-                        <feFlood floodColor="#fff" floodOpacity={0.16} result="floor" />
-                        <feMerge result="lit">
-                            <feMergeNode in="floor" />
-                            <feMergeNode in="spec" />
-                        </feMerge>
-                        <feMorphology in="SourceAlpha" operator="dilate" radius={1} result="grown" />
-                        <feMorphology in="SourceAlpha" operator="erode" radius={1} result="shrunk" />
-                        <feComposite in="grown" in2="shrunk" operator="out" result="band" />
-                        {/* Clipped to the band: the lighting is only ever a rim,
-                            so the letter's face stays the exported 20% fill. */}
-                        <feComposite in="lit" in2="band" operator="in" />
-                    </filter>
-                </defs>
-                <path d={d} filter={`url(#${id})`} />
-            </svg>
-        </div>
+        </svg>
     )
 }
 
@@ -209,7 +201,7 @@ export default function Page() {
                         </Glow>
                         <div className={cell}>
                             <SrcC1 {...fill} />
-                            <GlassGlyph d={GLYPH_16} id="rim-16" />
+                            <Glyph d={GLYPH_16} id="glyph-16" transform={GLYPH_16_AT} opacity={0.70} />
                             <div className={scrimBottom} />
                             <CardCopy
                                 className="bottom-0"
@@ -265,7 +257,7 @@ export default function Page() {
                         </Glow>
                         <div className={cell}>
                             <SrcC2 {...fill} />
-                            <GlassGlyph d={GLYPH_AI} id="rim-ai" />
+                            <Glyph d={GLYPH_AI} id="glyph-ai" />
                             <div className={scrimBottom} />
                             <CardCopy
                                 className="bottom-0"

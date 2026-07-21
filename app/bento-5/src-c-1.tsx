@@ -515,15 +515,17 @@ const SrcC1 = (props:LucideProps) => (
           result="effect1_foregroundBlur_1305_19245"
         />
       </filter>
+      {/* Square texture at 0.765 of the Figma export: tile and use-scale move
+          together, or the 800px image stops filling the tile. */}
       <pattern
         id="pattern0_1305_19245"
         patternContentUnits="objectBoundingBox"
-        width={1.86025}
-        height={0.854701}
+        width={1.42309}
+        height={0.6538463}
       >
         <use
           xlinkHref="#image0_1305_19245"
-          transform="scale(0.0015528 0.000712251)"
+          transform="scale(0.001187892 0.000544872)"
         />
       </pattern>
       <filter

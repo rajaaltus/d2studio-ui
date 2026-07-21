@@ -306,7 +306,10 @@ const SrcC4 = (props:LucideProps) => (
         fill="#158CC8"
       />
     </g>
-    <g filter="url(#filter16_f_1305_19772)">
+    <g
+      filter="url(#filter16_f_1305_19772)"
+      transform="translate(-54.3 -176.9) scale(1.33)"
+    >
       <path
         d="M120.448 656.453L169.34 494.106L85.1645 507.174L228.939 276.129L185.055 438.288L269.228 425.22L120.448 656.453Z"
         fill="black"
@@ -327,16 +330,39 @@ const SrcC4 = (props:LucideProps) => (
         fillOpacity={0.7}
       />
     </g>
+    <linearGradient id="bolt_fill_1305_19772" x1={0} y1={0} x2={0} y2={1.25}>
+      <stop offset="0%" stopColor="#F7F7F7" />
+      <stop offset="50%" stopColor="#DFDFDF" />
+      <stop offset="100%" stopColor="#C3C3C3" />
+    </linearGradient>
+    <linearGradient
+      id="bolt_fade_1305_19772"
+      gradientUnits="userSpaceOnUse"
+      x1={0}
+      y1={0.35}
+      x2={0}
+      y2={0.95}
+    >
+      <stop offset="0%" stopColor="#fff" />
+      <stop offset="100%" stopColor="#fff" stopOpacity={0} />
+    </linearGradient>
+    <mask id="bolt_mask_1305_19772" maskContentUnits="objectBoundingBox">
+      <rect
+        x={-0.2}
+        y={-0.2}
+        width={1.4}
+        height={1.4}
+        fill="url(#bolt_fade_1305_19772)"
+      />
+    </mask>
     <path
       d="M105.36 630.058L154.252 467.711L70.0768 480.78L213.851 249.734L169.968 411.894L254.14 398.826L105.36 630.058Z"
-      fill="url(#paint8_linear_1305_19772)"
-      fillOpacity={0.05}
-    />
-    <path
-      d="M168.519 411.502L167.917 413.73L170.198 413.376L251.072 400.82L109.875 620.269L155.688 468.144L156.375 465.864L154.022 466.229L73.0779 478.795L209.741 259.178L168.519 411.502Z"
-      stroke="url(#paint9_linear_1305_19772)"
-      strokeOpacity={0.4}
-      strokeWidth={3}
+      fill="url(#bolt_fill_1305_19772)"
+      stroke="#FAFAFA"
+      strokeWidth={2}
+      opacity={0.7}
+      mask="url(#bolt_mask_1305_19772)"
+      transform="translate(-44.7 -160.2) scale(1.33)"
     />
   </g>
   <rect
@@ -476,15 +502,17 @@ const SrcC4 = (props:LucideProps) => (
         result="effect1_foregroundBlur_1305_19772"
       />
     </filter>
+    {/* Square texture at 0.9 of the Figma export: tile and use-scale move
+        together, or the 800px image stops filling the tile. */}
     <pattern
       id="pattern0_1305_19772"
       patternContentUnits="objectBoundingBox"
-      width={3.18012}
-      height={1.45869}
+      width={2.862108}
+      height={1.312821}
     >
       <use
         xlinkHref="#image0_1305_19772"
-        transform="scale(0.00310559 0.0014245)"
+        transform="scale(0.002795031 0.00128205)"
       />
     </pattern>
     <filter
