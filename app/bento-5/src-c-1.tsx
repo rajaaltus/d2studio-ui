@@ -11,7 +11,7 @@ const SrcC1 = (props:LucideProps) => (
     {...props}
   >
     <g clipPath="url(#clip0_1305_19245)">
-      <rect width={672} height={313} rx={16} fill="#1C1A41" />
+      <rect width={672} height={313} rx={24} fill="#1C1A41" />
       <g
         filter="url(#filter0_f_1305_19245)"
         style={{
@@ -384,7 +384,7 @@ const SrcC1 = (props:LucideProps) => (
       y={1}
       width={670}
       height={311}
-      rx={15}
+      rx={23}
       stroke="url(#paint11_linear_1305_19245)"
       strokeWidth={2}
     />
@@ -914,7 +914,7 @@ const SrcC1 = (props:LucideProps) => (
         <stop offset={1} stopColor="#D6D8FF" />
       </linearGradient>
       <clipPath id="clip0_1305_19245">
-        <rect width={672} height={313} rx={16} fill="white" />
+        <rect width={672} height={313} rx={24} fill="white" />
       </clipPath>
       <image
         id="image0_1305_19245"

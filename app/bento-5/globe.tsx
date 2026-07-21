@@ -91,10 +91,11 @@ export default function Globe({ className = "" }: { className?: string }) {
                     el.style.top = `${(1 - y * 0.8) * 50}%`
                     // Fade across the limb instead of popping at z === 0, then
                     // drop the chip outside the slice of sphere the card actually
-                    // shows: past the sides it would be cut in half, and above
-                    // y it would sit under the copy.
+                    // shows: the wrapper is wider than the card and hangs past its
+                    // bottom edge, so chips near either limb or low on the sphere
+                    // would be cut in half.
                     const front = max(0, min(1, (z - 0.08) * 5))
-                    el.style.opacity = `${x > 0.22 || x < -0.22 || y > 0.42 ? 0 : front}`
+                    el.style.opacity = `${x > 0.35 || x < -0.35 || y < -0.58 ? 0 : front}`
                 })
             },
         })

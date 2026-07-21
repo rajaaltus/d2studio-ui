@@ -8,7 +8,17 @@ import { GLYPH_16, GLYPH_AI } from "./glyphs"
 
 // The cards are the Figma exports as-is: each SVG already paints its own glass
 // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
-const cell = "absolute inset-0 overflow-hidden rounded-2xl"
+// Real shadows are four falloffs, not one: a tight contact line where the card
+// meets the page, then progressively softer and more offset layers as the light
+// wraps. A single big blur reads as a sticker.
+const shadow = [
+    "shadow-[0_1px_1px_rgba(0,0,0,0.10),0_4px_8px_-2px_rgba(0,0,0,0.10),0_14px_28px_-8px_rgba(0,0,0,0.14),0_36px_64px_-20px_rgba(0,0,0,0.20)]",
+    "dark:shadow-[0_1px_1px_rgba(0,0,0,0.45),0_4px_8px_-2px_rgba(0,0,0,0.40),0_14px_28px_-8px_rgba(0,0,0,0.50),0_36px_64px_-20px_rgba(0,0,0,0.65)]",
+].join(" ")
+
+// 24px to match the Figma frame radius; the SVGs carry the same 24 on their own
+// base rect, clip and border stroke, so the clip and the artwork agree.
+const cell = `absolute inset-0 overflow-hidden rounded-3xl ${shadow}`
 const fill = {
     className: "absolute inset-0 h-full w-full",
     preserveAspectRatio: "xMidYMid slice",
@@ -23,7 +33,7 @@ function Glow({ children }: { children: ReactNode }) {
     return (
         <div
             aria-hidden
-            className="pointer-events-none absolute -inset-10 opacity-60 mix-blend-multiply blur-[72px] saturate-150 dark:opacity-90 dark:mix-blend-screen"
+            className="pointer-events-none absolute -inset-10 opacity-45 mix-blend-multiply blur-[72px] saturate-150 dark:opacity-65 dark:mix-blend-screen"
         >
             {children}
         </div>
@@ -82,6 +92,10 @@ const patternUrl = `url("data:image/svg+xml,${encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" fill="#000"><path d="M5 1h1v3H5z"/><path d="M1 5h3v1H1z"/><path d="M3 2H4V3H3V4H2V3H1V2H2V1H3V2Z"/></svg>'
 )}")`
 
+// Clear over the content, solid past it.
+const VIGNETTE =
+    "radial-gradient(ellipse 70% 60% at 50% 50%, transparent 25%, #000 90%)"
+
 const scrimTop =
     "pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/55 to-transparent"
 const scrimBottom =
@@ -94,14 +108,21 @@ export default function Page() {
                 aria-hidden
                 className="pointer-events-none absolute inset-0 bg-[#1C1F21]/15 dark:bg-white/15"
                 style={{
-                    // Pattern tile ∩ a centre-out fade, so the dots clear away
-                    // from the copy and only hold the outer frame.
-                    maskImage: `${patternUrl}, radial-gradient(ellipse 70% 60% at 50% 50%, #0006 20%, #000 100%)`,
-                    WebkitMaskImage: `${patternUrl}, radial-gradient(ellipse 70% 60% at 50% 50%, #0006 20%, #000 100%)`,
-                    maskSize: "6px 6px, 100% 100%",
-                    WebkitMaskSize: "6px 6px, 100% 100%",
-                    maskComposite: "intersect",
-                    WebkitMaskComposite: "source-in",
+                    maskImage: patternUrl,
+                    WebkitMaskImage: patternUrl,
+                    maskSize: "6px 6px",
+                    WebkitMaskSize: "6px 6px",
+                }}
+            />
+            {/* The pattern stays at full strength under the content; a page-coloured
+                scrim, held off the centre by a radial mask, sinks it to a whisper
+                everywhere else. */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[#fafafa]/80 dark:bg-black/80"
+                style={{
+                    maskImage: VIGNETTE,
+                    WebkitMaskImage: VIGNETTE,
                 }}
             />
             <div className="relative flex w-full flex-col items-center gap-10 sm:gap-14">
@@ -116,11 +137,13 @@ export default function Page() {
                     </p>
                 </header>
 
-                {/* Same 1049px reference width and 36px gutter as the other bento
-                    sections. At lg the two wide cards stack in column one and the
-                    tall pair spans both rows; below that it folds to two columns,
-                    then one. The SVGs cover, so the tall cards just crop. */}
-                <div className="grid w-full max-w-[1049px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[672fr_314fr_314fr] lg:gap-9">
+                {/* The 1049px Figma reference scaled up 15% (1206px); the gutter
+                    follows on the spacing scale, 36 -> 40px, rather than the exact
+                    41px the ratio asks for. At lg the two wide cards stack in
+                    column one and the tall pair spans both rows; below that it
+                    folds to two columns, then one. The SVGs cover, so the tall
+                    cards just crop. */}
+                <div className="grid w-full max-w-[1206px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[672fr_314fr_314fr] lg:gap-10">
                     <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
                         <Glow>
                             <SrcC1 {...fill} />
@@ -149,10 +172,10 @@ export default function Page() {
                                 title="Global by default"
                                 sub="Realtime Convex data on the edge, so every region reads in milliseconds."
                             />
-                            {/* Centred in the card and oversized, so the sphere
-                                fills it edge to edge and crops on all four sides
-                                rather than reading as a pasted-on widget. */}
-                            <div className="pointer-events-none absolute top-1/2 left-1/2 aspect-square w-[180%] -translate-x-1/2 -translate-y-1/2 sm:w-[270%]">
+                            {/* Sits on the bottom edge and overflows it, so the
+                                sphere reads as rising into the card rather than
+                                floating in the middle of it. */}
+                            <div className="pointer-events-none absolute -bottom-[32%] left-1/2 aspect-square w-[248%] -translate-x-1/2">
                                 <Globe className="h-full w-full" />
                             </div>
                         </div>

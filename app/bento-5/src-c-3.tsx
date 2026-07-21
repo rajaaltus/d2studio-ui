@@ -16,7 +16,7 @@ const SrcC3 = (props:LucideProps) => (
         y={0.0000137254}
         width={672}
         height={313}
-        rx={16}
+        rx={24}
         transform="rotate(90 314 1.37254e-05)"
         fill="#1C1A41"
       />
@@ -380,7 +380,7 @@ const SrcC3 = (props:LucideProps) => (
       y={1.00001}
       width={652}
       height={312}
-      rx={15}
+      rx={23}
       transform="rotate(90 313 1.00001)"
       stroke="url(#paint8_linear_1305_19305)"
       strokeWidth={2}
@@ -880,7 +880,7 @@ const SrcC3 = (props:LucideProps) => (
           y={0.0000137254}
           width={654}
           height={314}
-          rx={16}
+          rx={24}
           transform="rotate(90 314 1.37254e-05)"
           fill="white"
         />
