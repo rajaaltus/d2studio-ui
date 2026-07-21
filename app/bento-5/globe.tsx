@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // Cobe globe for the "Global by default" card.
 //
@@ -10,125 +10,235 @@
 // and only the land dots, the terminator and the glow add light to the gradient.
 // That only works with a dark render, hence dark:1 + a very low baseColor.
 //
-// Fixed 600px backing buffer, CSS-scaled by the wrapper: cobe sizes the sphere
-// against the buffer, so letting it track the (small, responsive) element box
-// shrinks the globe to a dot.
+// cobe centres and scales the sphere against the width/height it is handed, in
+// device pixels, while the backing buffer follows the canvas element's own box.
+// The two have to agree: hand it a fixed size and the sphere lands off-centre and
+// at the wrong scale. So the element is measured, and re-measured on resize.
 
-import createGlobe from "cobe"
-import { useEffect, useRef } from "react"
+import createGlobe from "cobe";
+import { useEffect, useRef } from "react";
 
-const { sin, cos, min, max, PI } = Math
+const { sin, cos, PI } = Math;
 
-const THETA = 0.2
+const THETA = 0.2;
 
-type Vec = [number, number, number]
+type Vec = [number, number, number];
 
 // cobe's marker vector: lat/lng -> unit sphere, with lng offset by a half turn.
 function world(lat: number, lng: number): Vec {
-    const la = (lat * PI) / 180
-    const lo = (lng * PI) / 180 - PI
-    const cl = cos(la)
-    return [-cl * cos(lo), sin(la), cl * sin(lo)]
+  const la = (lat * PI) / 180;
+  const lo = (lng * PI) / 180 - PI;
+  const cl = cos(la);
+  return [-cl * cos(lo), sin(la), cl * sin(lo)];
 }
 
+// The cobe site's "Analytics" showcase: live visitor counts per city with a
+// trend delta, green markers. Its own version positions the chips with CSS
+// anchor positioning, which needs cobe 2.x and is Chrome-only, so the chips
+// here ride the projection below instead.
+// London, Paris and Berlin sit within a few degrees of each other, so on a card
+// this narrow their chips land on top of one another. Sydney is below the
+// card's window entirely. All ten stay as markers; only the ones whose chips
+// never collide, checked pairwise over a full rotation, get a chip.
 const CITIES = [
-    { city: "Bengaluru", stat: "9ms", size: 0.05, location: [12.9716, 77.5946] },
-    { city: "Singapore", stat: "14ms", size: 0.04, location: [1.3521, 103.8198] },
-    { city: "London", stat: "11ms", size: 0.05, location: [51.5072, -0.1276] },
-    { city: "San Francisco", stat: "7ms", size: 0.05, location: [37.7749, -122.4194] },
-    { city: "Sydney", stat: "16ms", size: 0.04, location: [-33.8688, 151.2093] },
-].map((c) => ({ ...c, vec: world(c.location[0], c.location[1]) }))
+  {
+    city: "New York",
+    visitors: 847,
+    trend: 12,
+    chip: true,
+    location: [40.71, -74.01],
+  },
+  {
+    city: "London",
+    visitors: 623,
+    trend: -3,
+    chip: true,
+    location: [51.51, -0.13],
+  },
+  {
+    city: "Los Angeles",
+    visitors: 534,
+    trend: 7,
+    chip: true,
+    location: [34.05, -118.24],
+  },
+  {
+    city: "Mumbai",
+    visitors: 468,
+    trend: 21,
+    chip: true,
+    location: [19.08, 72.88],
+  },
+  {
+    city: "Tokyo",
+    visitors: 412,
+    trend: 8,
+    chip: true,
+    location: [35.68, 139.65],
+  },
+  {
+    city: "Paris",
+    visitors: 385,
+    trend: 5,
+    chip: false,
+    location: [48.86, 2.35],
+  },
+  {
+    city: "Singapore",
+    visitors: 296,
+    trend: 4,
+    chip: true,
+    location: [1.35, 103.82],
+  },
+  {
+    city: "Lagos",
+    visitors: 224,
+    trend: 18,
+    chip: true,
+    location: [6.52, 3.38],
+  },
+  {
+    city: "Sydney",
+    visitors: 201,
+    trend: 15,
+    chip: false,
+    location: [-33.87, 151.21],
+  },
+  {
+    city: "Berlin",
+    visitors: 178,
+    trend: -1,
+    chip: false,
+    location: [52.52, 13.41],
+  },
+].map((c) => ({ ...c, vec: world(c.location[0], c.location[1]) }));
 
 // The shader rotates the view ray by mat3 L(theta, phi); applying the same
 // rotation forward puts a world point in view space. The sphere fills 0.8 of the
 // half-box, and z > 0 is the front hemisphere.
 function project([wx, wy, wz]: Vec, phi: number) {
-    const [ct, st, cp, sp] = [cos(THETA), sin(THETA), cos(phi), sin(phi)]
-    return {
-        x: cp * wx + sp * wz,
-        y: sp * st * wx + ct * wy - cp * st * wz,
-        z: -sp * ct * wx + st * wy + cp * ct * wz,
-    }
+  const [ct, st, cp, sp] = [cos(THETA), sin(THETA), cos(phi), sin(phi)];
+  return {
+    x: cp * wx + sp * wz,
+    y: sp * st * wx + ct * wy - cp * st * wz,
+    z: -sp * ct * wx + st * wy + cp * ct * wz,
+  };
 }
 
 export default function Globe({ className = "" }: { className?: string }) {
-    const ref = useRef<HTMLCanvasElement>(null)
-    const labels = useRef<(HTMLDivElement | null)[]>([])
+  const ref = useRef<HTMLCanvasElement>(null);
+  const labels = useRef<(HTMLDivElement | null)[]>([]);
 
-    useEffect(() => {
-        const canvas = ref.current
-        if (!canvas) return
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
 
-        const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        let phi = 0
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let phi = 0;
+    let globe: { destroy: () => void } | null = null;
+    let built = 0;
 
-        const globe = createGlobe(canvas, {
-            devicePixelRatio: 2,
-            width: 600,
-            height: 600,
-            phi: 0,
-            theta: THETA,
-            dark: 1,
-            diffuse: 1.2,
-            mapSamples: 16000,
-            mapBrightness: 7,
-            baseColor: [0.08, 0.1, 0.18],
-            markerColor: [0.55, 0.62, 1],
-            glowColor: [0.14, 0.18, 0.42],
-            markers: CITIES.map(({ location, size }) => ({
-                location: [location[0], location[1]],
-                size,
-            })),
-            onRender: (state) => {
-                state.phi = phi
-                if (!still) phi += 0.004
+    const build = () => {
+      const size = canvas.offsetWidth * 2;
+      if (!size || size === built) return;
+      built = size;
+      globe?.destroy();
+      globe = createGlobe(canvas, {
+        devicePixelRatio: 2,
+        width: size,
+        height: size,
+        phi: 0,
+        theta: THETA,
+        dark: 1,
+        diffuse: 1.2,
+        mapSamples: 16000,
+        mapBrightness: 7,
+        baseColor: [0.08, 0.1, 0.18],
+        markerColor: [0.3, 0.85, 0.45],
+        glowColor: [0.14, 0.18, 0.42],
+        markers: CITIES.map(({ location }) => ({
+          location: [location[0], location[1]],
+          size: 0.04,
+        })),
+        onRender: (state) => {
+          state.phi = phi;
+          if (!still) phi += 0.004;
 
-                CITIES.forEach((c, i) => {
-                    const el = labels.current[i]
-                    if (!el) return
-                    const { x, y, z } = project(c.vec, phi)
-                    el.style.left = `${(x * 0.8 + 1) * 50}%`
-                    el.style.top = `${(1 - y * 0.8) * 50}%`
-                    // Fade across the limb instead of popping at z === 0, then
-                    // drop the chip outside the slice of sphere the card actually
-                    // shows: the wrapper is wider than the card and hangs past its
-                    // bottom edge, so chips near either limb or low on the sphere
-                    // would be cut in half.
-                    const front = max(0, min(1, (z - 0.08) * 5))
-                    el.style.opacity = `${x > 0.35 || x < -0.35 || y < -0.58 ? 0 : front}`
-                })
-            },
-        })
+          CITIES.forEach((c, i) => {
+            const el = labels.current[i];
+            if (!el) return;
+            const { x, y, z } = project(c.vec, phi);
+            el.style.left = `${(x * 0.8 + 1) * 50}%`;
+            el.style.top = `${(1 - y * 0.8) * 50}%`;
+            // On the front face, and inside the slice of sphere the card
+            // actually shows: the globe box is far wider than the card and
+            // offset right, so the window is the sphere's left side, x in
+            // [-0.79, -0.22] once the chip's own width is allowed for. The
+            // box also sits low enough that the copy is clear of the sphere,
+            // so only the bottom needs a y bound.
+            // Entry/exit is a CSS transition on the flag, not a per-frame
+            // opacity: transitions retarget when a marker skims the boundary,
+            // where a fresh keyframe each frame would restart from zero.
+            // Written only on change so the loop doesn't touch the DOM 60x/s.
+            const on = z > 0.12 && x <= -0.22 && x >= -0.79 && y >= -0.49;
+            if ((el.dataset.on === "true") !== on) el.dataset.on = `${on}`;
+          });
+        },
+      });
+    };
 
-        return () => globe.destroy()
-    }, [])
+    // Fires once on observe, so this is also the initial build.
+    const ro = new ResizeObserver(build);
+    ro.observe(canvas);
 
-    return (
-        <div className={`relative ${className}`}>
-            <canvas
-                ref={ref}
-                aria-hidden
-                className="h-full w-full"
-                style={{ mixBlendMode: "screen" }}
-            />
-            <div aria-hidden className="pointer-events-none absolute inset-0">
-                {CITIES.map((c, i) => (
-                    <div
-                        key={c.city}
-                        ref={(el) => {
-                            labels.current[i] = el
-                        }}
-                        className="absolute -translate-x-1/2 -translate-y-1/2"
-                        style={{ opacity: 0 }}
-                    >
-                        <span className="block size-1.5 rounded-full bg-[#8FB7FF] shadow-[0_0_9px_2px_rgba(119,131,243,0.75)]" />
-                        <span className="absolute bottom-3.5 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-md border border-white/15 bg-white/10 px-2 py-1 font-mono text-[11px] leading-none tracking-wide whitespace-nowrap text-white/90 uppercase backdrop-blur-md">
-                            {c.city}
-                            <span className="text-[#8FB7FF]">{c.stat}</span>
-                        </span>
-                    </div>
-                ))}
+    return () => {
+      ro.disconnect();
+      globe?.destroy();
+    };
+  }, []);
+
+  return (
+    <div className={`relative ${className}`}>
+      <canvas
+        ref={ref}
+        aria-hidden
+        className="h-full w-full"
+        style={{ mixBlendMode: "screen" }}
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        {CITIES.map((c, i) =>
+          !c.chip ? null : (
+            <div
+              key={c.city}
+              ref={(el) => {
+                labels.current[i] = el;
+              }}
+              data-on="false"
+              className="group absolute -translate-x-1/2 -translate-y-1/2"
+            >
+              {/* The dot leads in and trails out; the chip follows it and
+                  leaves first, so the pair reads as one thing arriving.
+                  Exits are quicker than entrances, and each span transitions
+                  only the properties it moves — Tailwind v4 compiles scale
+                  and translate to the standalone CSS properties, not to
+                  `transform`, so those are what have to be named. */}
+              <span className="block size-1.5 scale-50 rounded-full bg-[#4ADE80] opacity-0 shadow-[0_0_9px_2px_rgba(52,211,153,0.7)] transition-[scale,opacity] delay-[90ms] duration-[140ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-data-[on=true]:scale-100 group-data-[on=true]:opacity-100 group-data-[on=true]:delay-0 group-data-[on=true]:duration-200 motion-reduce:scale-100!" />
+              <span className="absolute bottom-3.5 left-1/2 flex origin-bottom -translate-x-1/2 translate-y-[3px] scale-[0.96] items-baseline gap-1.5 rounded-[4px] bg-black/85 px-2 py-[0.3rem] whitespace-nowrap opacity-0 transition-[scale,translate,opacity] duration-[130ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-data-[on=true]:translate-y-0 group-data-[on=true]:scale-100 group-data-[on=true]:opacity-100 group-data-[on=true]:delay-[70ms] group-data-[on=true]:duration-200 motion-reduce:translate-y-0! motion-reduce:scale-100!">
+                <span className="font-mono text-[0.85rem] leading-none font-semibold tracking-[-0.02em] text-white">
+                  {c.visitors}
+                </span>
+                <span
+                  className={`font-mono text-[0.55rem] leading-none font-medium tracking-[0.02em] ${
+                    c.trend >= 0 ? "text-[#34D399]" : "text-[#F87171]"
+                  }`}
+                >
+                  {c.trend >= 0 ? "↑" : "↓"} {Math.abs(c.trend)}%
+                </span>
+              </span>
             </div>
-        </div>
-    )
+          ),
+        )}
+      </div>
+    </div>
+  );
 }

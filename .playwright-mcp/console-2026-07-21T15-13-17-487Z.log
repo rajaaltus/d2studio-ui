@@ -1,0 +1,34 @@
+[    7577ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    7585ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    7834ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    8152ms] [LOG] [Fast Refresh] done in 418ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: useProgram: program not valid @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:391
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71901ms] [WARNING] WebGL: INVALID_OPERATION: getUniformLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:394
+[   71902ms] [WARNING] WebGL: INVALID_OPERATION: getAttribLocation: program not linked @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:415
+[   71902ms] [WARNING] WebGL: INVALID_VALUE: enableVertexAttribArray: index out of range @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:416
+[   71902ms] [WARNING] WebGL: INVALID_VALUE: vertexAttribPointer: index out of range @ http://localhost:4200/_next/static/chunks/_062ekjr._.js:416
+[   71927ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://localhost:4200/bento-5:0
+[   71957ms] TypeError: Failed to execute 'getUniformLocation' on 'WebGL2RenderingContext': parameter 1 is not of type 'WebGLProgram'.
+    at A.onload (http://localhost:4200/_next/static/chunks/_062ekjr._.js:678:70)
+[   72043ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   72209ms] [LOG] [Fast Refresh] done in 268ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   95434ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   95465ms] [LOG] [Fast Refresh] done in 134ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
