@@ -178,8 +178,10 @@ export default function Page() {
             />
             <div className="relative flex w-full flex-col items-center gap-10 sm:gap-14">
                 <header className="max-w-2xl text-center">
-                    <h2 className="bg-gradient-to-b from-[#18181B] to-[#71717A] bg-clip-text text-3xl font-semibold uppercase tracking-tight text-balance text-transparent sm:text-4xl dark:from-[#F9FAFB] dark:to-[#949495]">
-                        An AI-native studio, engineered to ship
+                    {/* pb-1: bg-clip-text paints only inside the padding box, so the
+                        "g" descender needs a sliver of room or it gets sheared off. */}
+                    <h2 className="bg-gradient-to-b from-[#18181B] to-[#71717A] bg-clip-text pb-1 text-3xl font-semibold tracking-tight text-balance text-transparent sm:text-4xl dark:from-[#F9FAFB] dark:to-[#949495]">
+                        An AI-Native Studio, Engineered to Ship
                     </h2>
                     <p className="mt-3 text-pretty text-sm text-zinc-500 sm:text-base dark:text-zinc-400">
                         D2 Studio pairs a real design system with applied AI and a typed,
