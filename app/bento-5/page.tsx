@@ -126,7 +126,7 @@ function CardCopy({
 }) {
     return (
         <div className={`absolute inset-x-0 z-10 flex flex-col gap-1.5 p-5 sm:p-6 lg:p-7 ${className}`}>
-            <h3 className="text-balance text-base font-semibold tracking-tight text-white sm:text-lg">
+            <h3 className="text-balance text-base font-medium tracking-tight text-white sm:text-lg">
                 {title}
             </h3>
             <p className="max-w-[46ch] text-pretty text-xs leading-relaxed text-white/65 sm:text-sm">
@@ -178,8 +178,10 @@ export default function Page() {
             />
             <div className="relative flex w-full flex-col items-center gap-10 sm:gap-14">
                 <header className="max-w-2xl text-center">
-                    <h2 className="bg-gradient-to-b from-[#18181B] to-[#71717A] bg-clip-text text-3xl font-semibold tracking-tight text-balance text-transparent sm:text-4xl dark:from-[#F9FAFB] dark:to-[#949495]">
-                        An AI-native studio, engineered to ship
+                    {/* pb-1: bg-clip-text paints only inside the padding box, so the
+                        "g" descender needs a sliver of room or it gets sheared off. */}
+                    <h2 className="bg-gradient-to-b from-[#18181B] to-[#71717A] bg-clip-text pb-1 text-3xl font-semibold tracking-tight text-balance text-transparent sm:text-4xl dark:from-[#F9FAFB] dark:to-[#949495]">
+                        An AI-Native Studio, Engineered to Ship
                     </h2>
                     <p className="mt-3 text-pretty text-sm text-zinc-500 sm:text-base dark:text-zinc-400">
                         D2 Studio pairs a real design system with applied AI and a typed,
@@ -205,7 +207,7 @@ export default function Page() {
                             <div className={scrimBottom} />
                             <CardCopy
                                 className="bottom-0"
-                                title="16+ AI products in production"
+                                title="16+ AI Products in Production"
                                 sub="Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic."
                             />
                         </div>
@@ -220,7 +222,7 @@ export default function Page() {
                             <div className={scrimTop} />
                             <CardCopy
                                 className="top-0"
-                                title="Global by default"
+                                title="Global by Default"
                                 sub="Realtime Convex data on the edge, so every region reads in milliseconds."
                             />
                             {/* Oversized, so the card is a window onto the sphere;
@@ -245,7 +247,7 @@ export default function Page() {
                             <div className={scrimTop} />
                             <CardCopy
                                 className="top-0"
-                                title="Zero to production, fast"
+                                title="Zero to Production, Fast"
                                 sub="Design system, typed API and CI wired up on day one."
                             />
                         </div>
@@ -261,7 +263,7 @@ export default function Page() {
                             <div className={scrimBottom} />
                             <CardCopy
                                 className="bottom-0"
-                                title="AI woven through the stack"
+                                title="AI Woven Through the Stack"
                                 sub="Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live."
                             />
                         </div>

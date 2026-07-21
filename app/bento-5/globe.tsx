@@ -18,9 +18,10 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 
-const { sin, cos, PI } = Math;
+const { sin, cos, sqrt, PI } = Math;
 
 const THETA = 0.2;
+const SAMPLES = 16000;
 
 type Vec = [number, number, number];
 
@@ -30,6 +31,25 @@ function world(lat: number, lng: number): Vec {
   const lo = (lng * PI) / 180 - PI;
   const cl = cos(la);
   return [-cl * cos(lo), sin(la), cl * sin(lo)];
+}
+
+// The shader paints a marker on the nearest dot of its Fibonacci lattice, not at
+// the exact lat/lng, so a chip placed on the true coordinate misses the dot it
+// belongs to by up to ~5px at this card's globe size. Snap to the same lattice.
+// ponytail: brute force over all samples, once per city at module load (~160k
+// distance tests); index-window the search if the city list ever grows.
+function snap([x, y, z]: Vec): Vec {
+  let best: Vec = [x, y, z];
+  let bd = Infinity;
+  for (let j = 0; j <= SAMPLES; j++) {
+    const zj = 1 - (2 * j) / SAMPLES;
+    const l = sqrt(1 - zj * zj);
+    const k = ((j * 0.618034) % 1) * 2 * PI;
+    const p: Vec = [cos(k) * l, zj, sin(k) * l];
+    const d = (p[0] - x) ** 2 + (p[1] - y) ** 2 + (p[2] - z) ** 2;
+    if (d < bd) [bd, best] = [d, p];
+  }
+  return best;
 }
 
 // The cobe site's "Analytics" showcase: live visitor counts per city with a
@@ -111,7 +131,7 @@ const CITIES = [
     chip: false,
     location: [52.52, 13.41],
   },
-].map((c) => ({ ...c, vec: world(c.location[0], c.location[1]) }));
+].map((c) => ({ ...c, vec: snap(world(c.location[0], c.location[1])) }));
 
 // The shader rotates the view ray by mat3 L(theta, phi); applying the same
 // rotation forward puts a world point in view space. The sphere fills 0.8 of the
@@ -142,6 +162,7 @@ export default function Globe({ className = "" }: { className?: string }) {
       const size = canvas.offsetWidth * 2;
       if (!size || size === built) return;
       built = size;
+      const [w, h] = [canvas.offsetWidth, canvas.offsetHeight];
       globe?.destroy();
       globe = createGlobe(canvas, {
         devicePixelRatio: 2,
@@ -151,7 +172,7 @@ export default function Globe({ className = "" }: { className?: string }) {
         theta: THETA,
         dark: 1,
         diffuse: 1.2,
-        mapSamples: 16000,
+        mapSamples: SAMPLES,
         mapBrightness: 7,
         baseColor: [0.08, 0.1, 0.18],
         markerColor: [0.3, 0.85, 0.45],
@@ -168,8 +189,12 @@ export default function Globe({ className = "" }: { className?: string }) {
             const el = labels.current[i];
             if (!el) return;
             const { x, y, z } = project(c.vec, phi);
-            el.style.left = `${(x * 0.8 + 1) * 50}%`;
-            el.style.top = `${(1 - y * 0.8) * 50}%`;
+            // Positioned with a transform, not left/top: percentage offsets are
+            // laid out, so they snap to whole pixels and the chip shivers as it
+            // creeps sideways while the canvas marker moves subpixel-smooth.
+            el.style.transform = `translate3d(${(x * 0.8 + 1) * 0.5 * w}px, ${
+              (1 - y * 0.8) * 0.5 * h
+            }px, 0) translate(-50%, -50%)`;
             // On the front face, and inside the slice of sphere the card
             // actually shows: the globe box is far wider than the card and
             // offset right, so the window is the sphere's left side, x in
@@ -214,7 +239,7 @@ export default function Globe({ className = "" }: { className?: string }) {
                 labels.current[i] = el;
               }}
               data-on="false"
-              className="group absolute -translate-x-1/2 -translate-y-1/2"
+              className="group absolute top-0 left-0 will-change-transform"
             >
               {/* The dot leads in and trails out; the chip follows it and
                   leaves first, so the pair reads as one thing arriving.
