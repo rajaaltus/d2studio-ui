@@ -18,7 +18,11 @@ const shadow = [
 
 // 24px to match the Figma frame radius; the SVGs carry the same 24 on their own
 // base rect, clip and border stroke, so the clip and the artwork agree.
-const cell = `absolute inset-0 overflow-hidden rounded-3xl ${shadow}`
+const cell = `b5-card absolute inset-0 overflow-hidden rounded-3xl ${shadow}`
+
+// Each cell rises and lights up on its own beat; the two layers share the one
+// delay because they are the same card. See .b5-card / .b5-glow in globals.css.
+const at = (delay: string) => ({ "--b5-delay": delay }) as React.CSSProperties
 const fill = {
     className: "absolute inset-0 h-full w-full",
     preserveAspectRatio: "xMidYMid slice",
@@ -29,11 +33,16 @@ const fill = {
 // gradient throws a bright halo, a flat one barely glows. Screen on dark keeps
 // only the light; multiply on the pale page leaves a tinted aura instead of a
 // grey smudge. Blur is wide enough that the four halos pool across the section.
+// It blooms up on load rather than being there from the first frame. The
+// resting opacity is a variable so the keyframe has something theme-aware to
+// land on, and it is animated on this element rather than a wrapper: a wrapper
+// at opacity < 1 makes its own stacking context, the blend then has no page to
+// blend with, and the raw gradient flashes through for the length of the fade.
 function Glow({ children }: { children: ReactNode }) {
     return (
         <div
             aria-hidden
-            className="pointer-events-none absolute -inset-10 opacity-45 mix-blend-multiply blur-[72px] saturate-150 dark:opacity-50 dark:mix-blend-screen"
+            className="b5-glow pointer-events-none absolute -inset-10 mix-blend-multiply blur-[72px] saturate-150 [--b5-glow:0.45] dark:mix-blend-screen dark:[--b5-glow:0.5]"
         >
             {children}
         </div>
@@ -197,7 +206,7 @@ export default function Page() {
                     folds to two columns, then one. The SVGs cover, so the tall
                     cards just crop. */}
                 <div className="grid w-full max-w-[1206px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[672fr_314fr_314fr] lg:gap-10">
-                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
+                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1" style={at("0s")}>
                         <Glow>
                             <SrcC1 {...fill} />
                         </Glow>
@@ -213,7 +222,7 @@ export default function Page() {
                         </div>
                     </div>
 
-                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
+                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto" style={at("0.12s")}>
                         <Glow>
                             <SrcC3 {...fill} />
                         </Glow>
@@ -238,7 +247,7 @@ export default function Page() {
                         </div>
                     </div>
 
-                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
+                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto" style={at("0.24s")}>
                         <Glow>
                             <SrcC4 {...fill} />
                         </Glow>
@@ -253,7 +262,7 @@ export default function Page() {
                         </div>
                     </div>
 
-                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
+                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1" style={at("0.36s")}>
                         <Glow>
                             <SrcC2 {...fill} />
                         </Glow>

@@ -16,6 +16,7 @@
 // at the wrong scale. So the element is measured, and re-measured on resize.
 
 import createGlobe from "cobe";
+import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
 
 const { sin, cos, sqrt, PI } = Math;
@@ -149,9 +150,18 @@ export default function Globe({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const labels = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Nothing starts until the section is actually on screen: booting the globe
+  // means compiling shaders and rasterising 16k dots, and then a render loop
+  // that never stops. once, because a reader scrolling back should find it
+  // already turning rather than watch it boot a second time.
+  // "some", not a fraction: the canvas is deliberately far bigger than the card
+  // and mostly clipped by it, so any percentage of the canvas itself is the
+  // wrong measure — asking for 30% of it never comes true.
+  const inView = useInView(ref, { once: true, amount: "some" });
+
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas) return;
+    if (!canvas || !inView) return;
 
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let phi = 0;
@@ -162,6 +172,9 @@ export default function Globe({ className = "" }: { className?: string }) {
       const size = canvas.offsetWidth * 2;
       if (!size || size === built) return;
       built = size;
+      // Fades rather than pops: the first frames land while the section is
+      // still settling into view.
+      canvas.style.opacity = "1";
       const [w, h] = [canvas.offsetWidth, canvas.offsetHeight];
       globe?.destroy();
       globe = createGlobe(canvas, {
@@ -220,14 +233,14 @@ export default function Globe({ className = "" }: { className?: string }) {
       ro.disconnect();
       globe?.destroy();
     };
-  }, []);
+  }, [inView]);
 
   return (
     <div className={`relative ${className}`}>
       <canvas
         ref={ref}
         aria-hidden
-        className="h-full w-full"
+        className="h-full w-full opacity-0 transition-opacity duration-700 ease-out"
         style={{ mixBlendMode: "screen" }}
       />
       <div aria-hidden className="pointer-events-none absolute inset-0">
