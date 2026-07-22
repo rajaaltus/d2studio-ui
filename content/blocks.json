@@ -116,5 +116,20 @@
     "codeStatus": "available",
     "codeUrl": "https://ui.d2studio.dev/r/hero-01.json",
     "isActive": true
+  },
+  {
+    "name": "metallic-shimmer",
+    "type": "component",
+    "title": "Metallic Shimmer",
+    "description": "Brushed-metal text: a bright band travels across the glyphs like a reflection, not a glow. Wraps any inline content, flips its stops per theme, and holds still under reduced motion.",
+    "author": "D2 Studio",
+    "version": "1.0.0",
+    "categories": [
+      "Blocks"
+    ],
+    "blockType": "text",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/metallic-shimmer.json",
+    "isActive": true
   }
 ]

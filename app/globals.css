@@ -275,21 +275,25 @@
     animation: badge-shimmer 2.6s ease-in-out infinite;
   }
 
-  @keyframes title-gradient {
-    0% {
+  @keyframes d2-metallic-shimmer {
+    0%,
+    100% {
       background-position: 0% 50%;
     }
     50% {
       background-position: 100% 50%;
     }
-    100% {
-      background-position: 0% 50%;
-    }
   }
 
-  .animate-title-gradient {
+  .d2-metallic-shimmer {
     background-size: 200% 100%;
-    animation: title-gradient 6s ease-in-out infinite;
+    animation: d2-metallic-shimmer 6s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .d2-metallic-shimmer {
+      animation: none;
+    }
   }
 
   @keyframes bmc-message-in {

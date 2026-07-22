@@ -1100,6 +1100,44 @@
         "bento",
         "blocks"
       ]
+    },
+    {
+      "name": "metallic-shimmer",
+      "type": "registry:component",
+      "title": "Metallic Shimmer",
+      "description": "Brushed-metal text: a bright band travels across the glyphs like a reflection, not a glow. Wraps any inline content, flips its stops per theme, and holds still under reduced motion.",
+      "author": "D2 Studio",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/metallic-shimmer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "css": {
+        "@keyframes d2-metallic-shimmer": {
+          "0%, 100%": {
+            "background-position": "0% 50%"
+          },
+          "50%": {
+            "background-position": "100% 50%"
+          }
+        },
+        ".d2-metallic-shimmer": {
+          "background-size": "200% 100%",
+          "animation": "d2-metallic-shimmer 6s ease-in-out infinite"
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          ".d2-metallic-shimmer": {
+            "animation": "none"
+          }
+        }
+      },
+      "categories": [
+        "text",
+        "blocks"
+      ]
     }
   ]
 }

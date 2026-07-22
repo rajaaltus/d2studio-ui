@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "metallic-shimmer",
+  "type": "registry:component",
+  "title": "Metallic Shimmer",
+  "author": "D2 Studio",
+  "description": "Brushed-metal text: a bright band travels across the glyphs like a reflection, not a glow. Wraps any inline content, flips its stops per theme, and holds still under reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/components/metallic-shimmer.tsx",
+      "content": "// Brushed metal type: a highlight panning across the letters, not a glow — the\n// two dark stops either side are what makes the bright band read as a\n// reflection travelling over the glyphs rather than the text lighting up.\n//\n// .d2-metallic-shimmer pans a 200%-wide background; bg-clip-text with\n// transparent text points it at the glyphs instead of the box. The stops flip\n// per theme: dark letters with a light sweep on the pale page, light letters\n// with a bright sweep on the dark one.\n\nimport type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport default function MetallicShimmer({\n  children = \"Metallic Shimmer ↓\",\n  className,\n  ...props\n}: ComponentProps<\"span\">) {\n  return (\n    <span\n      className={cn(\n        \"d2-metallic-shimmer bg-gradient-to-r from-zinc-400 via-zinc-800 to-zinc-400 bg-clip-text text-transparent dark:from-zinc-700 dark:via-zinc-200 dark:to-zinc-700\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </span>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "css": {
+    "@keyframes d2-metallic-shimmer": {
+      "0%, 100%": {
+        "background-position": "0% 50%"
+      },
+      "50%": {
+        "background-position": "100% 50%"
+      }
+    },
+    ".d2-metallic-shimmer": {
+      "background-size": "200% 100%",
+      "animation": "d2-metallic-shimmer 6s ease-in-out infinite"
+    },
+    "@media (prefers-reduced-motion: reduce)": {
+      ".d2-metallic-shimmer": {
+        "animation": "none"
+      }
+    }
+  },
+  "categories": [
+    "text",
+    "blocks"
+  ]
+}

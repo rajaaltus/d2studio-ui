@@ -225,26 +225,11 @@ export default function Globe({ className = "" }: { className?: string }) {
       });
     };
 
-    // Booting costs about half a second of main thread — 16k dots rasterised
-    // and the shaders compiled — and the cards' entrance is blurred and
-    // blended, so it repaints on that same thread and stalls for as long as the
-    // boot runs. The first build therefore waits for the entrance to be over;
-    // the canvas fades in on its own, which covers the late arrival. Resizes
-    // after that build straight away, there is no animation left to protect.
-    let booted = false;
-    let timer: ReturnType<typeof setTimeout>;
-    const boot = () => {
-      if (booted) return build();
-      booted = true;
-      timer = setTimeout(build, 1200);
-    };
-
     // Fires once on observe, so this is also the initial build.
-    const ro = new ResizeObserver(boot);
+    const ro = new ResizeObserver(build);
     ro.observe(canvas);
 
     return () => {
-      clearTimeout(timer);
       ro.disconnect();
       globe?.destroy();
     };
