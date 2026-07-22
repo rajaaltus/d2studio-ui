@@ -1,0 +1,66 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]: Scroll down ↓
+  - main [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - heading "An AI-Native Studio, Engineered to Ship" [level=2] [ref=e8]
+        - paragraph [ref=e9]: D2 Studio pairs a real design system with applied AI and a typed, realtime backend, so an idea reaches production in weeks and stays cheap to change after launch.
+      - generic [ref=e10]:
+        - generic [ref=e65]:
+          - heading "16+ AI products in Production" [level=3] [ref=e66]
+          - paragraph [ref=e67]: Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic.
+        - generic [ref=e69]:
+          - generic [ref=e116]:
+            - heading "Global by default" [level=3] [ref=e117]
+            - paragraph [ref=e118]: Realtime Convex data on the edge, so every region reads in milliseconds.
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: "847"
+                    - generic: ↑ 12%
+                - generic:
+                  - generic:
+                    - generic: "623"
+                    - generic: ↓ 3%
+                - generic:
+                  - generic:
+                    - generic: "534"
+                    - generic: ↑ 7%
+                - generic:
+                  - generic:
+                    - generic: "468"
+                    - generic: ↑ 21%
+                - generic:
+                  - generic:
+                    - generic: "412"
+                    - generic: ↑ 8%
+                - generic:
+                  - generic:
+                    - generic: "296"
+                    - generic: ↑ 4%
+                - generic:
+                  - generic:
+                    - generic: "224"
+                    - generic: ↑ 18%
+        - generic [ref=e168]:
+          - heading "Zero to production, fast" [level=3] [ref=e169]
+          - paragraph [ref=e170]: Design system, typed API and CI wired up on day one.
+        - generic [ref=e223]:
+          - heading "AI woven through the stack" [level=3] [ref=e224]
+          - paragraph [ref=e225]: Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live.
+  - generic [ref=e226]: Scroll up ↑
+  - generic [ref=e228]:
+    - heading "Command palette" [level=2] [ref=e229]
+    - paragraph [ref=e230]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e231]:
+    - button "Blocks" [ref=e232] [cursor=pointer]
+    - button "Tools New" [ref=e250] [cursor=pointer]:
+      - generic [ref=e262]: Tools
+      - generic [ref=e264]: New
+    - button "Toggle theme" [ref=e269] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e283] [cursor=pointer]

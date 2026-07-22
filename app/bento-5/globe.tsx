@@ -16,8 +16,10 @@
 // at the wrong scale. So the element is measured, and re-measured on resize.
 
 import createGlobe from "cobe";
-import { useInView } from "motion/react";
+import { animate, useInView, useMotionValue, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
+
+import { light, useLit } from "./load-in";
 
 const { sin, cos, sqrt, PI } = Math;
 
@@ -159,11 +161,24 @@ export default function Globe({ className = "" }: { className?: string }) {
   // wrong measure — asking for 30% of it never comes true.
   const inView = useInView(ref, { once: true, amount: "some" });
 
+  // The sphere is on the same switch as the light: it spins up as the section
+  // lights and coasts to a stop as the reader leaves, on the glow's curve and
+  // its two durations. A factor on the step rather than a stop/start, so the
+  // rotation eases out of its current angle instead of snapping — and the render
+  // loop keeps running, since the chips still have to be placed at rest.
+  const lit = useLit();
+  const still = useReducedMotion();
+  const spin = useMotionValue(0);
+
+  useEffect(() => {
+    const run = animate(spin, lit ? 1 : 0, light(lit, still));
+    return () => run.stop();
+  }, [lit, still, spin]);
+
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas || !inView) return;
 
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let phi = 0;
     let globe: { destroy: () => void } | null = null;
     let built = 0;
@@ -196,7 +211,7 @@ export default function Globe({ className = "" }: { className?: string }) {
         })),
         onRender: (state) => {
           state.phi = phi;
-          if (!still) phi += 0.004;
+          if (!still) phi += 0.004 * spin.get();
 
           CITIES.forEach((c, i) => {
             const el = labels.current[i];
@@ -233,7 +248,7 @@ export default function Globe({ className = "" }: { className?: string }) {
       ro.disconnect();
       globe?.destroy();
     };
-  }, [inView]);
+  }, [inView, still, spin]);
 
   return (
     <div className={`relative ${className}`}>
