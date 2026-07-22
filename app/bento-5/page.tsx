@@ -4,6 +4,7 @@ import SrcC2 from "./src-c-2"
 import SrcC3 from "./src-c-3"
 import SrcC4 from "./src-c-4"
 import Globe from "./globe"
+import LoadIn from "./load-in"
 import { GLYPH_16, GLYPH_16_AT, GLYPH_AI } from "./glyphs"
 
 // The cards are the Figma exports as-is: each SVG already paints its own glass
@@ -18,11 +19,7 @@ const shadow = [
 
 // 24px to match the Figma frame radius; the SVGs carry the same 24 on their own
 // base rect, clip and border stroke, so the clip and the artwork agree.
-const cell = `b5-card absolute inset-0 overflow-hidden rounded-3xl ${shadow}`
-
-// Each cell rises and lights up on its own beat; the two layers share the one
-// delay because they are the same card. See .b5-card / .b5-glow in globals.css.
-const at = (delay: string) => ({ "--b5-delay": delay }) as React.CSSProperties
+const cell = `absolute inset-0 overflow-hidden rounded-3xl ${shadow}`
 const fill = {
     className: "absolute inset-0 h-full w-full",
     preserveAspectRatio: "xMidYMid slice",
@@ -33,19 +30,18 @@ const fill = {
 // gradient throws a bright halo, a flat one barely glows. Screen on dark keeps
 // only the light; multiply on the pale page leaves a tinted aura instead of a
 // grey smudge. Blur is wide enough that the four halos pool across the section.
-// It blooms up on load rather than being there from the first frame. The
-// resting opacity is a variable so the keyframe has something theme-aware to
-// land on, and it is animated on this element rather than a wrapper: a wrapper
-// at opacity < 1 makes its own stacking context, the blend then has no page to
-// blend with, and the raw gradient flashes through for the length of the fade.
-function Glow({ children }: { children: ReactNode }) {
+// It blooms up on load rather than being there from the first frame — see
+// load-in.tsx. The resting opacity is a variable so the animation has something
+// theme-aware to land on; the class no longer sets it directly.
+function Glow({ children, delay }: { children: ReactNode; delay: number }) {
     return (
-        <div
-            aria-hidden
-            className="b5-glow pointer-events-none absolute -inset-10 mix-blend-multiply blur-[72px] saturate-150 [--b5-glow:0.45] dark:mix-blend-screen dark:[--b5-glow:0.5]"
+        <LoadIn
+            glow
+            delay={delay}
+            className="pointer-events-none absolute -inset-10 mix-blend-multiply blur-[72px] saturate-150 [--b5-glow:0.45] [--b5-peak:0.62] dark:mix-blend-screen dark:[--b5-glow:0.5] dark:[--b5-peak:0.68]"
         >
             {children}
-        </div>
+        </LoadIn>
     )
 }
 
@@ -206,11 +202,11 @@ export default function Page() {
                     folds to two columns, then one. The SVGs cover, so the tall
                     cards just crop. */}
                 <div className="grid w-full max-w-[1206px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[672fr_314fr_314fr] lg:gap-10">
-                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1" style={at("0s")}>
-                        <Glow>
+                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
+                        <Glow delay={0}>
                             <SrcC1 {...fill} />
                         </Glow>
-                        <div className={cell}>
+                        <LoadIn delay={0} className={cell}>
                             <SrcC1 {...fill} />
                             <Glyph d={GLYPH_16} id="glyph-16" transform={GLYPH_16_AT} opacity={0.70} />
                             <div className={scrimBottom} />
@@ -219,14 +215,14 @@ export default function Page() {
                                 title="16+ AI products in Production"
                                 sub="Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic."
                             />
-                        </div>
+                        </LoadIn>
                     </div>
 
-                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto" style={at("0.12s")}>
-                        <Glow>
+                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
+                        <Glow delay={0.12}>
                             <SrcC3 {...fill} />
                         </Glow>
-                        <div className={cell}>
+                        <LoadIn delay={0.12} className={cell}>
                             <SrcC3 {...fill} />
                             <div className={scrimTop} />
                             <CardCopy
@@ -244,14 +240,14 @@ export default function Page() {
                             <div className="pointer-events-none absolute top-3/4 left-1/2 ml-[50%] aspect-square w-[248%] -translate-x-1/2 -translate-y-1/2">
                                 <Globe className="h-full w-full" />
                             </div>
-                        </div>
+                        </LoadIn>
                     </div>
 
-                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto" style={at("0.24s")}>
-                        <Glow>
+                    <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
+                        <Glow delay={0.24}>
                             <SrcC4 {...fill} />
                         </Glow>
-                        <div className={cell}>
+                        <LoadIn delay={0.24} className={cell}>
                             <SrcC4 {...fill} />
                             <div className={scrimTop} />
                             <CardCopy
@@ -259,14 +255,14 @@ export default function Page() {
                                 title="Zero to production, fast"
                                 sub="Design system, typed API and CI wired up on day one."
                             />
-                        </div>
+                        </LoadIn>
                     </div>
 
-                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1" style={at("0.36s")}>
-                        <Glow>
+                    <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
+                        <Glow delay={0.36}>
                             <SrcC2 {...fill} />
                         </Glow>
-                        <div className={cell}>
+                        <LoadIn delay={0.36} className={cell}>
                             <SrcC2 {...fill} />
                             <Glyph d={GLYPH_AI} id="glyph-ai" />
                             <div className={scrimBottom} />
@@ -275,7 +271,7 @@ export default function Page() {
                                 title="AI woven through the stack"
                                 sub="Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live."
                             />
-                        </div>
+                        </LoadIn>
                     </div>
                 </div>
             </div>
