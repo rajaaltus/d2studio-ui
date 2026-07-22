@@ -53,7 +53,15 @@ const VIEWPORT = { once: true, amount: 0.15 } as const;
 // meeting the bottom of the window, 1 its bottom leaving the top. Read as scroll
 // progress rather than a visible fraction because on a phone the grid is taller
 // than the window, and "40% of it is showing" is then never true.
-const [ON, OFF] = [0.4, 0.8];
+//
+// Both ends are placed by what is left to scroll, not by where the section sits:
+// a power-down that starts at 0.8 has a fifth of the pass to play in, which at
+// any real scroll speed is less than the ramp takes — so most of it happened to
+// an empty screen. Off at 0.68 leaves a third of the pass, and the section
+// visibly powers down before it goes. On is early for the same reason from the
+// other side: the bloom then overlaps the cards' rise instead of arriving after
+// the entrance has already finished.
+const [ON, OFF] = [0.34, 0.68];
 
 // How far the cards sink when the light is off. Deep enough to read as the
 // section powering down, shallow enough that the copy stays legible on the way

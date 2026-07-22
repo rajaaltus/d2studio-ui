@@ -17,7 +17,7 @@
 
 import createGlobe from "cobe";
 import { animate, useInView, useMotionValue, useReducedMotion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { light, useLit } from "./load-in";
 
@@ -152,14 +152,33 @@ export default function Globe({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const labels = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Nothing starts until the section is actually on screen: booting the globe
-  // means compiling shaders and rasterising 16k dots, and then a render loop
-  // that never stops. once, because a reader scrolling back should find it
-  // already turning rather than watch it boot a second time.
+  // Booting the globe compiles cobe's fragment shader, and on a browser that has
+  // never compiled it that is ~3s of blocked main thread — measured, and paid
+  // once per profile: every later visit hits Chrome's program cache and boots in
+  // ~20ms. Left to the card's own crossing, that one stall lands on the exact
+  // frames the section is scrolling in, which is the worst place in the page for
+  // it. So it is spent at idle after mount instead, while the reader is still on
+  // the hero and nothing is moving — a stall nobody is scrolling through.
+  //
+  // The viewport gate stays as the backstop: if idle never comes (a busy main
+  // thread, or a browser without requestIdleCallback past the timeout), the
+  // approach still boots it. once on both, because a reader scrolling back
+  // should find it already turning rather than watch it boot a second time.
   // "some", not a fraction: the canvas is deliberately far bigger than the card
   // and mostly clipped by it, so any percentage of the canvas itself is the
   // wrong measure — asking for 30% of it never comes true.
-  const inView = useInView(ref, { once: true, amount: "some" });
+  const inView = useInView(ref, { once: true, amount: "some", margin: "100% 0px" });
+  const [idle, setIdle] = useState(false);
+
+  useEffect(() => {
+    const ric = window.requestIdleCallback;
+    if (!ric) {
+      const t = setTimeout(() => setIdle(true), 1200);
+      return () => clearTimeout(t);
+    }
+    const id = ric(() => setIdle(true), { timeout: 2500 });
+    return () => window.cancelIdleCallback?.(id);
+  }, []);
 
   // The sphere is on the same switch as the light: it spins up as the section
   // lights and coasts to a stop as the reader leaves, on the glow's curve and
@@ -177,14 +196,23 @@ export default function Globe({ className = "" }: { className?: string }) {
 
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas || !inView) return;
+    if (!canvas || !(inView || idle)) return;
 
     let phi = 0;
     let globe: { destroy: () => void } | null = null;
     let built = 0;
 
+    // The globe's first composite costs in proportion to its pixels, and this
+    // canvas is deliberately 2.5x the card, so the buffer is the most expensive
+    // number on the page: measured, halving it took the section's worst frame on
+    // entry from 3.8s to 0.9s. It was pinned at 2 regardless of the screen, which
+    // on a 1x display renders four times the pixels that can ever be shown. So
+    // follow the display, and cap it: past 1.5 the extra pixels land on dots that
+    // are already sub-pixel, and only the stall grows.
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
     const build = () => {
-      const size = canvas.offsetWidth * 2;
+      const size = Math.round(canvas.offsetWidth * dpr);
       if (!size || size === built) return;
       built = size;
       // Fades rather than pops: the first frames land while the section is
@@ -193,7 +221,7 @@ export default function Globe({ className = "" }: { className?: string }) {
       const [w, h] = [canvas.offsetWidth, canvas.offsetHeight];
       globe?.destroy();
       globe = createGlobe(canvas, {
-        devicePixelRatio: 2,
+        devicePixelRatio: dpr,
         width: size,
         height: size,
         phi: 0,
@@ -248,7 +276,7 @@ export default function Globe({ className = "" }: { className?: string }) {
       ro.disconnect();
       globe?.destroy();
     };
-  }, [inView, still, spin]);
+  }, [inView, idle, still, spin]);
 
   return (
     <div className={`relative ${className}`}>
