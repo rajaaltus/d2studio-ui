@@ -80,8 +80,8 @@
   --sidebar-ring: oklch(0.708 0 0);
   --edge: var(--border);
   --pattern-fg: oklch(0 0 0 / 0.1);
-  --d2-flash-gradient: radial-gradient(circle at center, #12D132 0%, #785CFF 27%, #FF683A 57%, #DC28AF 75%, #15588B 100%);
-  --d2-blue-gradient: linear-gradient(135deg, #785CFF 0%, #DC28AF 50%, #FF683A 100%);
+  --d2-flash-gradient: radial-gradient(circle at center, oklch(0.748 0.238 144.1) 0%, oklch(0.596 0.23 284.9) 27%, oklch(0.701 0.194 37.1) 57%, oklch(0.616 0.244 341) 75%, oklch(0.447 0.105 246.8) 100%);
+  --d2-blue-gradient: linear-gradient(135deg, oklch(0.596 0.23 284.9) 0%, oklch(0.616 0.244 341) 50%, oklch(0.701 0.194 37.1) 100%);
 }
 
 .dark {
@@ -96,11 +96,13 @@
   --secondary: oklch(0.18 0 0);
   --secondary-foreground: oklch(0.995 0 0);
   --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.65 0 0);
+  /* L raised from 0.65: APCA Lc 42 -> 60 on both --background and --muted,
+     matching light mode's Lc 73. Below 60 is under the body-text floor. */
+  --muted-foreground: oklch(0.76 0 0);
   --accent: oklch(0.18 0 0);
   --accent-foreground: oklch(0.995 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.291 0 0);;
+  --border: oklch(0.291 0 0);
   --input: oklch(0.18 0 0);
   --ring: oklch(0.65 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -114,12 +116,12 @@
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.18 0 0);
   --sidebar-accent-foreground: oklch(0.995 0 0);
-  --sidebar-border: oklch(0.18 0 0);
+  --sidebar-border: oklch(0.291 0 0);
   --sidebar-ring: oklch(0.65 0 0);
   --edge: var(--border);
   --pattern-fg: oklch(1 0 0 / 0.1);
-  --d2-flash-gradient: linear-gradient(270deg, #56DAFF 0%, #A8FF80 18%, #FFF4A3 35%, #FF9CC8 55%, #C28AFF 75%, #56DAFF 100%);
-  --d2-blue-gradient: linear-gradient(135deg, #7DCFFF 0%, #56DAFF 50%, #B8E5FF 100%);
+  --d2-flash-gradient: linear-gradient(270deg, oklch(0.8303 0.1245 219.879) 0%, oklch(0.917 0.182 136.7) 18%, oklch(0.958 0.102 101.5) 35%, oklch(0.806 0.128 352.2) 55%, oklch(0.735 0.171 304.6) 75%, oklch(0.8303 0.1245 219.879) 100%);
+  --d2-blue-gradient: linear-gradient(135deg, oklch(0.82 0.105 235.7) 0%, oklch(0.8303 0.1245 219.879) 50%, oklch(0.899 0.059 233.6) 100%);
 }
 
 @utility bg-edge {
@@ -3791,8 +3793,9 @@
   pointer-events: none;
   opacity: 0;
   /* Light is the base: multiply a saturated holo gradient into the white card
-     (plus-lighter is invisible on white). Dark overrides to add light. */
-  background: linear-gradient(135deg, #785cff 0%, #dc28af 50%, #ff683a 100%);
+     (plus-lighter is invisible on white). The token already flips under .dark,
+     so only the blend mode needs overriding below. */
+  background: var(--d2-blue-gradient);
   mix-blend-mode: multiply;
   /* Fractal-noise (feTurbulence) mask, blurred into soft wisps — reads as smoke,
      not a hard band. Panned across the card for drift. */
@@ -3808,7 +3811,6 @@
   will-change: mask-position, opacity;
 }
 .dark .d2-smoke {
-  background: linear-gradient(135deg, #7dcfff 0%, #56daff 50%, #b8e5ff 100%);
   mix-blend-mode: plus-lighter;
 }
 [data-hovered="true"] .d2-smoke {
