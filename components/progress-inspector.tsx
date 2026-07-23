@@ -138,9 +138,7 @@ const LIFT =
  *  drops out of: `corner-shape: squircle` for Apple's continuous curvature
  *  (Chromium honours it, everything else falls back to the plain radius), and
  *  the transitions.dev menu-dropdown timing — 250ms open / 150ms close on
- *  cubic-bezier(0.22, 1, 0.36, 1), growing from the trigger's corner. The
- *  border is `.dd-ring` (globals.css): the D2 holographic stroke, travelling
- *  the panel in a circle. */
+ *  cubic-bezier(0.22, 1, 0.36, 1), growing from the trigger's corner. */
 function Picker({
   label,
   items,
@@ -166,7 +164,7 @@ function Picker({
           align="start"
           sideOffset={8}
           className={cn(
-            "dd-ring relative min-w-[9.5rem] rounded-2xl border-transparent bg-background p-1.5 [corner-shape:squircle]",
+            "min-w-[9.5rem] rounded-2xl border-border/60 bg-background p-1.5 [corner-shape:squircle]",
             LIFT,
             "duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[state=closed]:duration-[150ms] data-[state=closed]:zoom-out-[0.99] data-[state=open]:zoom-in-[0.97]",
           )}

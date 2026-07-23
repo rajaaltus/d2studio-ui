@@ -4170,10 +4170,10 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     32% 32%;
   /* Matches the gate's 0% frame, so the first paint doesn't flash before the
      animation takes over. */
-  opacity: 0;
+  opacity: 0.45;
   animation:
     b5-drift 23s ease-in-out infinite,
-    b5-drift-gate 17s ease-in-out infinite;
+    b5-drift-gate 9s ease-in-out infinite;
 }
 @keyframes b5-drift {
   0%,
@@ -4218,29 +4218,28 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
       62% 40%;
   }
 }
-/* 17 against the drift's 23 — coprime, so the pair only returns to the same
-   arrangement once every 391s. The dark stretch at each end is deliberate and
-   long: the bolt card is the quietest of the four, and the light reads as an
-   event arriving rather than a loop only if there's real nothing before it.
-   Peaks run high because the grain is fine and dark — at the drift's old
-   quarter-opacity it was technically on and visually absent. */
+/* 9 against the drift's 23 — coprime, so the pair only returns to the same
+   arrangement once every 207s. The gate no longer closes: it swells and settles
+   between a floor and a peak, so the card is always lit and the variation is in
+   how strongly, not whether. Peaks run high because the grain is fine and dark
+   — at the drift's old quarter-opacity it was technically on and visually
+   absent, which is also why the floor sits where it does. */
 @keyframes b5-drift-gate {
   0%,
-  12% {
-    opacity: 0;
+  100% {
+    opacity: 0.45;
   }
-  30% {
+  25% {
     opacity: 0.72;
   }
-  44% {
+  42% {
     opacity: 0.5;
   }
   60% {
     opacity: 0.82;
   }
-  76%,
-  100% {
-    opacity: 0;
+  81% {
+    opacity: 0.55;
   }
 }
 
@@ -4270,27 +4269,26 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
 
 /* The stripes' gate. It sits on the group rather than on the layers, because
    each layer already carries its own animation-duration for its own sweep and a
-   second animation there would inherit it. 19s against sweeps of 5.8–9.1s, none
-   of them factors of it, so the group goes dark mid-sweep as often as it goes
-   dark between them. */
+   second animation there would inherit it. 11s against sweeps of 5.8–9.1s, none
+   of them factors of it, so the swell lands mid-sweep as often as it lands
+   between them. It dips rather than closes — the lines never all go out. */
 .b5-sweep-gate {
-  opacity: 0;
-  animation: b5-sweep-gate 19s ease-in-out infinite;
+  opacity: 0.55;
+  animation: b5-sweep-gate 11s ease-in-out infinite;
 }
 @keyframes b5-sweep-gate {
   0%,
-  9% {
-    opacity: 0;
-  }
-  24% {
-    opacity: 1;
-  }
-  58% {
-    opacity: 1;
-  }
-  74%,
   100% {
-    opacity: 0;
+    opacity: 0.55;
+  }
+  20% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 1;
+  }
+  83% {
+    opacity: 0.65;
   }
 }
 
@@ -4318,59 +4316,5 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     opacity: 0.4;
     -webkit-mask-position: 0 50%;
     mask-position: 0 50%;
-  }
-}
-
-/* progress-inspector — the dropdown card's ring. A 1px holographic stroke that
-   travels around the panel, per the D2 rule that interactive accents use the
-   brand gradient rather than a palette of their own. Drawn as a masked
-   pseudo-element so it rides the squircle corners the panel already has, and
-   sits under the content because the mask XOR leaves the middle empty. */
-@property --dd-ring-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.dd-ring::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  corner-shape: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from var(--dd-ring-angle),
-    #56daff 0%,
-    #a8ff80 20%,
-    #fff4a3 38%,
-    #ff9cc8 56%,
-    #c28aff 74%,
-    #56daff 100%
-  );
-  /* XOR the inner box out of the outer one: what's left is the 1px frame. */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0.85;
-  animation: dd-ring-travel 6s linear infinite;
-}
-
-@keyframes dd-ring-travel {
-  to {
-    --dd-ring-angle: 360deg;
-  }
-}
-
-/* Still, but still holographic: the stroke parks where it opened. */
-@media (prefers-reduced-motion: reduce) {
-  .dd-ring::before {
-    animation: none;
   }
 }
