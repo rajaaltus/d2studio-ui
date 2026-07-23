@@ -141,38 +141,23 @@ export default function LoadIn({
             </motion.div>
         );
 
-    // The rise is the entrance, on the cell's delay; the dimming is the switch,
-    // on the glow's curve. Two states, so two transitions.
-    //
-    // The dimming is a black veil at 1 - DIM rather than filter: brightness(DIM)
-    // — the same arithmetic, since either way the card's rendered pixels come
-    // out multiplied by DIM, but not the same cost. A filter on the cell is a
-    // filter over everything in it, including the globe card's WebGL canvas and
-    // its mix-blend-mode: screen; a blend inside an animating filter cannot be
-    // handed to the compositor, so Chrome re-rasterised the whole card, globe
-    // frame and all, on every frame of the 1.44s/1.98s sweep — which is exactly
-    // when the globe is meant to be spinning up. An opacity animation on a
-    // sibling layer is composited outright and touches none of that. isolate
-    // keeps the card its own blend group, which the filter used to do for free
-    // and which the globe's screen blend needs: without it the canvas would
-    // blend against the page instead of the card underneath it.
+    // The rise is the entrance, on the cell's delay; the brightness is the
+    // switch, on the glow's curve. Separate transitions on the one element
+    // because they answer to different states.
     const rise = still ? { duration: 0.2 } : { duration: 0.7, ease: EASE, delay };
 
     return (
         <motion.div
-            className={`isolate ${className ?? ""}`}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: entered ? 1 : 0, y: entered ? 0 : 10 }}
-            transition={rise}
+            className={className}
+            initial={{ opacity: 0, y: 10, filter: `brightness(${DIM})` }}
+            animate={{
+                opacity: entered ? 1 : 0,
+                y: entered ? 0 : 10,
+                filter: `brightness(${lit ? 1 : DIM})`,
+            }}
+            transition={{ opacity: rise, y: rise, filter: sweep }}
         >
             {children}
-            <motion.div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 z-20 bg-black"
-                initial={{ opacity: 1 - DIM }}
-                animate={{ opacity: lit ? 0 : 1 - DIM }}
-                transition={sweep}
-            />
         </motion.div>
     );
 }
