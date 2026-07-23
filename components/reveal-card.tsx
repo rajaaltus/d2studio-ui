@@ -26,8 +26,12 @@ const SMOKE_BAND = 0.14; // reveal-distance over which a cell's wisp lives
 const SMOKE_BLUR = 6; // px, softness of the whole smoke layer
 const SMOKE_DRIFT = 34; // px, how far a wisp floats as it fades
 
+// "plus-lighter" is a valid canvas composite op that every target browser
+// supports, but TS's lib.dom GlobalCompositeOperation union omits it — widen.
+type BlendOp = GlobalCompositeOperation | "plus-lighter";
+
 // Composite modes offered for the smoke layer, with friendly display names.
-const BLEND_MODES: { op: GlobalCompositeOperation; name: string }[] = [
+const BLEND_MODES: { op: BlendOp; name: string }[] = [
   { op: "screen", name: "Glow" },
   { op: "lighten", name: "Aurora" },
   { op: "overlay", name: "Prism" },
@@ -53,7 +57,7 @@ export function RevealCard({
   // Smoke look — adjustable from the options bar under the image.
   const [c1, setC1] = useState("#a7f3d0");
   const [c2, setC2] = useState("#bfdbfe");
-  const [blend, setBlend] = useState<GlobalCompositeOperation>("screen");
+  const [blend, setBlend] = useState<BlendOp>("screen");
   const [smokeOp, setSmokeOp] = useState(1); // wisp alpha
   const [smokeStr, setSmokeStr] = useState(1); // wisp drift distance
   const [fxOp, setFxOp] = useState(1); // final overlay alpha
@@ -311,7 +315,7 @@ export function RevealCard({
       ctx.closePath();
       ctx.clip();
       ctx.filter = `blur(${SMOKE_BLUR * optsRef.current.fxStr * dpr}px)`;
-      ctx.globalCompositeOperation = optsRef.current.blend;
+      ctx.globalCompositeOperation = optsRef.current.blend as GlobalCompositeOperation;
       ctx.globalAlpha = optsRef.current.fxOp;
       ctx.drawImage(smoke, 0, 0);
       ctx.restore();
@@ -412,8 +416,9 @@ export function RevealCard({
             style={{ transform: `translate(-50%, -50%) rotate(${-slantDeg}deg)` }}
           >
             <foreignObject x={-1} y={-1} width={40.1836} height={41.3984}>
+              {/* React already renders foreignObject children in the XHTML
+                  namespace; the Figma export's xmlns attr is dead weight. */}
               <div
-                xmlns="http://www.w3.org/1999/xhtml"
                 style={{
                   backdropFilter: "blur(0.5px)",
                   clipPath: "url(#bgblur_0_8078_244_clip_path)",
@@ -582,7 +587,7 @@ export function RevealCard({
           <span>Blend</span>
           <select
             value={blend}
-            onChange={(e) => setBlend(e.target.value as GlobalCompositeOperation)}
+            onChange={(e) => setBlend(e.target.value as BlendOp)}
             className="rounded border border-neutral-300 bg-white px-2 py-1"
           >
             {BLEND_MODES.map((m) => (

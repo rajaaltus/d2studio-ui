@@ -1254,3 +1254,13 @@ https://nextjs.org/docs/messages/module-not-found @ http://localhost:4200/_next/
 [ 4823596ms] [LOG] [Fast Refresh] done in 129ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
 [ 4992273ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
 [ 4992433ms] [LOG] [Fast Refresh] done in 261ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5226035ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5226318ms] [LOG] [Fast Refresh] done in 384ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5228808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5229102ms] [LOG] [Fast Refresh] done in 395ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5231948ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5232115ms] [LOG] [Fast Refresh] done in 266ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5235054ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5235247ms] [LOG] [Fast Refresh] done in 294ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5273613ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5273812ms] [LOG] [Fast Refresh] done in 301ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
