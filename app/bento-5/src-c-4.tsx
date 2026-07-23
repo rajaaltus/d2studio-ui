@@ -1,6 +1,19 @@
+"use client";
+
 import { LucideProps } from "lucide-react";
 import * as React from "react";
-const SrcC4 = (props:LucideProps) => (
+import { grainTile } from "./grain";
+
+const SrcC4 = (props: LucideProps) => {
+  // Empty through the server render and the hydration that has to match it,
+  // then filled on the pass straight after. The grain is a whisper over the
+  // card — it moves the mean luma by about one part in 255 — so arriving a
+  // frame late costs nothing, where a mismatched href would cost a hydration
+  // error on every load.
+  const [grain, setGrain] = React.useState("");
+  React.useEffect(() => setGrain(grainTile()), []);
+
+  return (
   <svg
   width={314}
   height={654}
@@ -902,33 +915,17 @@ const SrcC4 = (props:LucideProps) => (
         fill="white"
       />
     </clipPath>
-    {/* The export inlined this as a 1024² base64 PNG: 2.1MB of string in the
-        page's JS bundle, parsed on the main thread before anything could
-        render, and re-fetched every visit because a data URI has no cache entry
-        of its own. It is a field of per-pixel random noise, which is the one
-        thing compression cannot help with — the bytes ARE the randomness, and
-        greyscale-lossless still came to 718KB.
-
-        So the size had to come off the pixel count and the bit depth, not the
-        encoder. A 256² crop tiles (crop, not downscale: averaging noise lowers
-        its contrast, cropping is still the same noise), and since the image is
-        only ever white at a varying alpha, sixteen levels of it live in a
-        palette with a matching tRNS. That round-trips pixel-identical to the
-        premultiplied RGBA it replaces, at 28KB. Mean alpha 72.8 against the
-        original's 72.7; grain contrast within 0.3%.
-
-        feTurbulence was the tempting answer — the same grain for no bytes at
-        all — but it is band-limited by construction and tops out near a third
-        of uncorrelated noise's per-pixel contrast, so it renders visibly
-        smoother than the frame it is meant to reproduce. */}
+    {/* Generated, not shipped — see grain.ts for what the original image turned
+        out to be and why it is three lines of arithmetic. */}
     <image
       id="image0_1305_19772"
       width={256}
       height={256}
       preserveAspectRatio="none"
-      xlinkHref="/bento-5/c4-texture.png"
+      xlinkHref={grain}
     />
   </defs>
 </svg>
-);
+  );
+};
 export default SrcC4;

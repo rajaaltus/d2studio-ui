@@ -1138,6 +1138,25 @@
         "text",
         "blocks"
       ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:component",
+      "title": "Progress Bar",
+      "description": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout. Every surface property is themeable \u2014 fill (solid or gradient), stroke, backdrop blur, drop and inner shadow \u2014 with light and dark presets shipped. All colours resolve to oklch().",
+      "author": "D2 Studio",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/progress-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "progress",
+        "blocks"
+      ]
     }
   ]
 }
