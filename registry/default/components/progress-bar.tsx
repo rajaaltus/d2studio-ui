@@ -28,7 +28,14 @@ export type BarTheme = {
   text: { pct: string; label: string };
 };
 
-/** Light mode — the Figma source values, unchanged. */
+/** The label pair the dark surfaces share — near-white text, tinted percent. */
+const LIGHT_TEXT = { pct: "#bbffd2", label: "#f8f8f8" };
+
+/** Light mode — the Figma source values. The one departure is the type: the
+ *  Figma frame sits on a dark canvas, but this theme's surface is a 20% wash
+ *  over a light page, and the source's near-white label lands at ~1.3:1 there.
+ *  Both colours are darkened until the label clears 4.5:1 and the percent —
+ *  which the component fades to 80% — clears it composited. */
 export const LIGHT_THEME: BarTheme = {
   surface: {
     mode: "gradient",
@@ -45,16 +52,42 @@ export const LIGHT_THEME: BarTheme = {
   backdropBlur: 20,
   drop: { x: 0, y: 0, blur: 4, spread: 2, color: "#f3f3f3", opacity: 0.25 },
   inner: { x: 1, y: 1, blur: 10, spread: 0, color: "#fafafa", opacity: 1 },
-  text: { pct: "#bbffd2", label: "#f8f8f8" },
+  text: { pct: "#0e3a24", label: "#101013" },
 };
 
-/** Dark mode — same glass, dialled back so the white rim/glow doesn't blow out. */
+/** Dark mode — same glass, dialled back so the white rim/glow doesn't blow out.
+ *  The surface is now a wash over a near-black page, so the type flips back to
+ *  the source pair. */
 export const DARK_THEME: BarTheme = {
   ...LIGHT_THEME,
-  surfaceOpacity: 0.14,
+  surfaceOpacity: 0.16,
+  text: LIGHT_TEXT,
   stroke: { color: "#f4f4f4", opacity: 0.32 },
   drop: { x: 0, y: 0, blur: 12, spread: 2, color: "#f3f3f3", opacity: 0.1 },
   inner: { x: 1, y: 1, blur: 10, spread: 0, color: "#fafafa", opacity: 0.5 },
+};
+
+/** Fancy — the plain read: opaque surface, no backdrop blur, one lifted shadow
+ *  and a 1px top rim instead of the glass halo. Same fill, so the bar still
+ *  reads as the same component. */
+export const FANCY_THEME: BarTheme = {
+  ...LIGHT_THEME,
+  surface: { ...LIGHT_THEME.surface, mode: "solid", solid: "#18181b" },
+  surfaceOpacity: 1,
+  // Opaque near-black in both modes, so the type doesn't flip with the page.
+  text: LIGHT_TEXT,
+  stroke: { color: "#ffffff", opacity: 0.12 },
+  backdropBlur: 0,
+  drop: { x: 0, y: 8, blur: 24, spread: -6, color: "#000000", opacity: 0.35 },
+  inner: { x: 0, y: 1, blur: 0, spread: 0, color: "#ffffff", opacity: 0.14 },
+};
+
+/** Fancy on a dark page — the surface sinks, the shadow works harder. */
+export const FANCY_DARK_THEME: BarTheme = {
+  ...FANCY_THEME,
+  surface: { ...FANCY_THEME.surface, solid: "#1a1a1e" },
+  stroke: { color: "#ffffff", opacity: 0.1 },
+  drop: { ...FANCY_THEME.drop, opacity: 0.6 },
 };
 
 /** 6-digit hex → oklch(), so every colour in the rendered CSS stays in one space. */

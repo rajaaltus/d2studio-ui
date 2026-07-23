@@ -4,6 +4,7 @@ import SrcC2 from "./src-c-2";
 import SrcC3 from "./src-c-3";
 import SrcC4 from "./src-c-4";
 import Globe from "./globe";
+import CardGlow from "./card-glow";
 import LoadIn, { LoadInGroup } from "./load-in";
 import MetallicShimmer from "@/registry/default/components/metallic-shimmer";
 import { GLYPH_16, GLYPH_16_AT, GLYPH_AI } from "./glyphs";
@@ -282,6 +283,7 @@ export default function Page() {
               </Glow>
               <LoadIn delay={0.24} className={cell}>
                 <SrcC4 {...fill} />
+                <CardGlow texture="grain" />
                 <div className={scrimTop} />
                 <CardCopy
                   className="top-0"
@@ -297,6 +299,7 @@ export default function Page() {
               </Glow>
               <LoadIn delay={0.36} className={cell}>
                 <SrcC2 {...fill} />
+                <CardGlow texture="stripes" />
                 <Glyph d={GLYPH_AI} id="glyph-ai" />
                 <div className={scrimBottom} />
                 <CardCopy

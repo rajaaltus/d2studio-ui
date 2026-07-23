@@ -13,7 +13,7 @@ const literal = (v: unknown) =>
 export function usageSnippet(
   theme: BarTheme,
   base: BarTheme,
-  baseName: "LIGHT_THEME" | "DARK_THEME",
+  baseName: string,
   value: number,
   label: string,
 ) {
@@ -21,10 +21,10 @@ export function usageSnippet(
     (k) => JSON.stringify(theme[k]) !== JSON.stringify(base[k]),
   );
 
-  const named = [
-    ...(baseName === "DARK_THEME" ? ["DARK_THEME"] : []),
-    ...(changed.length && baseName === "LIGHT_THEME" ? ["LIGHT_THEME"] : []),
-  ];
+  // LIGHT_THEME is the component's default, so an untouched light theme needs
+  // neither the import nor the prop.
+  const named =
+    changed.length || baseName !== "LIGHT_THEME" ? [baseName] : [];
 
   const props = [`  value={${value}}`];
   if (label !== "Progress..") props.push(`  label="${label}"`);
@@ -34,12 +34,16 @@ export function usageSnippet(
         .map((k) => `    ${k}: ${literal(theme[k])},`)
         .join("\n")}\n  }}`,
     );
-  } else if (baseName === "DARK_THEME") {
-    props.push(`  theme={DARK_THEME}`);
+  } else if (named.length) {
+    props.push(`  theme={${baseName}}`);
   }
 
+  // Named imports go on their own lines: inline, `FANCY_DARK_THEME` pushes the
+  // import past the width of the code block and the path gets clipped.
   return [
-    `import ProgressBar${named.length ? `, { ${named.join(", ")} }` : ""} from "@/components/progress-bar";`,
+    named.length
+      ? `import ProgressBar, {\n${named.map((n) => `  ${n},`).join("\n")}\n} from "@/components/progress-bar";`
+      : `import ProgressBar from "@/components/progress-bar";`,
     "",
     "<ProgressBar",
     ...props,

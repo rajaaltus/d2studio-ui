@@ -4142,3 +4142,235 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     display: block;
   }
 }
+
+/* bento-5 ambient card light. The field that decides which of the card's own
+   grain / stripes are lit; card-glow.tsx supplies the shapes, these move them.
+   Long loops on purpose — the point is that you never catch the card repeating,
+   so the periods are deliberately not multiples of each other.
+
+   Every card runs two animations, never one: the motion, and an on/off gate
+   over the top on a period that shares no factor with it. The card lights,
+   holds, goes dark, comes back somewhere else in the motion loop. That's what
+   keeps it from reading as a screensaver — and it means the gate is the one
+   knob for how present a card's light is, independent of how it moves. */
+
+/* Wandering: three lobes on their own offsets, so the union never resolves into
+   a shape you could name. Sizes differ per lobe, which also means the same
+   position percentage lands somewhere different for each — free irregularity. */
+.b5-drift {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size:
+    58% 58%,
+    42% 42%,
+    32% 32%;
+  mask-size:
+    58% 58%,
+    42% 42%,
+    32% 32%;
+  /* Matches the gate's 0% frame, so the first paint doesn't flash before the
+     animation takes over. */
+  opacity: 0;
+  animation:
+    b5-drift 23s ease-in-out infinite,
+    b5-drift-gate 17s ease-in-out infinite;
+}
+@keyframes b5-drift {
+  0%,
+  100% {
+    -webkit-mask-position:
+      12% 22%,
+      74% 68%,
+      44% 88%;
+    mask-position:
+      12% 22%,
+      74% 68%,
+      44% 88%;
+  }
+  27% {
+    -webkit-mask-position:
+      68% 56%,
+      18% 14%,
+      88% 28%;
+    mask-position:
+      68% 56%,
+      18% 14%,
+      88% 28%;
+  }
+  61% {
+    -webkit-mask-position:
+      34% 84%,
+      92% 38%,
+      8% 52%;
+    mask-position:
+      34% 84%,
+      92% 38%,
+      8% 52%;
+  }
+  83% {
+    -webkit-mask-position:
+      86% 16%,
+      44% 76%,
+      62% 40%;
+    mask-position:
+      86% 16%,
+      44% 76%,
+      62% 40%;
+  }
+}
+/* 17 against the drift's 23 — coprime, so the pair only returns to the same
+   arrangement once every 391s. The dark stretch at each end is deliberate and
+   long: the bolt card is the quietest of the four, and the light reads as an
+   event arriving rather than a loop only if there's real nothing before it.
+   Peaks run high because the grain is fine and dark — at the drift's old
+   quarter-opacity it was technically on and visually absent. */
+@keyframes b5-drift-gate {
+  0%,
+  12% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.72;
+  }
+  44% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.82;
+  }
+  76%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Sweeping: one band down the length of the stripes. The band is 60% of the
+   card, so mask-position percentages resolve against the remaining 40% — -150%
+   puts it fully off the top, 250% fully off the bottom. The easing is the whole
+   character: slow in, gathering speed through the middle, slow out again, so it
+   arrives and leaves rather than scrolling past at a constant rate. */
+.b5-sweep {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 60%;
+  mask-size: 100% 60%;
+  opacity: 0.4;
+  animation: b5-sweep 6.5s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+}
+@keyframes b5-sweep {
+  0% {
+    -webkit-mask-position: 0 -150%;
+    mask-position: 0 -150%;
+  }
+  100% {
+    -webkit-mask-position: 0 250%;
+    mask-position: 0 250%;
+  }
+}
+
+/* The stripes' gate. It sits on the group rather than on the layers, because
+   each layer already carries its own animation-duration for its own sweep and a
+   second animation there would inherit it. 19s against sweeps of 5.8–9.1s, none
+   of them factors of it, so the group goes dark mid-sweep as often as it goes
+   dark between them. */
+.b5-sweep-gate {
+  opacity: 0;
+  animation: b5-sweep-gate 19s ease-in-out infinite;
+}
+@keyframes b5-sweep-gate {
+  0%,
+  9% {
+    opacity: 0;
+  }
+  24% {
+    opacity: 1;
+  }
+  58% {
+    opacity: 1;
+  }
+  74%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Still, but not dark: the field parks where it opens, so the texture keeps a
+   little light instead of the card going flat. */
+@media (prefers-reduced-motion: reduce) {
+  .b5-drift,
+  .b5-sweep,
+  .b5-sweep-gate {
+    animation: none;
+    opacity: 1;
+  }
+  .b5-drift {
+    opacity: 0.5;
+    -webkit-mask-position:
+      12% 22%,
+      74% 68%,
+      44% 88%;
+    mask-position:
+      12% 22%,
+      74% 68%,
+      44% 88%;
+  }
+  .b5-sweep {
+    opacity: 0.4;
+    -webkit-mask-position: 0 50%;
+    mask-position: 0 50%;
+  }
+}
+
+/* progress-inspector — the dropdown card's ring. A 1px holographic stroke that
+   travels around the panel, per the D2 rule that interactive accents use the
+   brand gradient rather than a palette of their own. Drawn as a masked
+   pseudo-element so it rides the squircle corners the panel already has, and
+   sits under the content because the mask XOR leaves the middle empty. */
+@property --dd-ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.dd-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  corner-shape: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--dd-ring-angle),
+    #56daff 0%,
+    #a8ff80 20%,
+    #fff4a3 38%,
+    #ff9cc8 56%,
+    #c28aff 74%,
+    #56daff 100%
+  );
+  /* XOR the inner box out of the outer one: what's left is the 1px frame. */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.85;
+  animation: dd-ring-travel 6s linear infinite;
+}
+
+@keyframes dd-ring-travel {
+  to {
+    --dd-ring-angle: 360deg;
+  }
+}
+
+/* Still, but still holographic: the stroke parks where it opened. */
+@media (prefers-reduced-motion: reduce) {
+  .dd-ring::before {
+    animation: none;
+  }
+}

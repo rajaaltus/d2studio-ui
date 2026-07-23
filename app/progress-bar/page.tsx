@@ -2,63 +2,79 @@
 
 import { useState } from "react";
 import { useTheme } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { CodeBlock } from "@/components/ui/code-block";
 import ProgressBar, {
+  type BarTheme,
   DARK_THEME,
+  FANCY_DARK_THEME,
+  FANCY_THEME,
   LIGHT_THEME,
 } from "@/registry/default/components/progress-bar";
-import Controls from "./controls";
+import ProgressInspector, {
+  type Variant,
+  useProgressRun,
+} from "@/components/progress-inspector";
 import { INSTALL_CMD, usageSnippet } from "./snippet";
+
+// Two looks, each with a light and a dark base. The page follows the app theme;
+// the only choice it offers is which look you're editing. Name + value together
+// so the usage snippet can spell the import instead of dumping every key.
+const BASES = {
+  glass: {
+    light: ["LIGHT_THEME", LIGHT_THEME],
+    dark: ["DARK_THEME", DARK_THEME],
+  },
+  fancy: {
+    light: ["FANCY_THEME", FANCY_THEME],
+    dark: ["FANCY_DARK_THEME", FANCY_DARK_THEME],
+  },
+} as const;
+
+const TARGET = 83;
 
 export default function Page() {
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-  const mode = isDark ? "dark" : "light";
-  // One editable draft per mode, so flipping the toggle doesn't clobber your tweaks.
-  const [drafts, setDrafts] = useState({
-    light: LIGHT_THEME,
-    dark: DARK_THEME,
-  });
-  const [value, setValue] = useState(83);
+  const mode = resolvedTheme === "dark" ? "dark" : "light";
+  const [variant, setVariant] = useState<Variant>("glass");
+  // One draft per look-and-mode, so switching looks doesn't clobber your tweaks.
+  const [drafts, setDrafts] = useState<Record<string, BarTheme>>({});
+  // The bar's own value is animated; the snippet keeps quoting the target, so
+  // a run doesn't rewrite the code block sixty times a second.
+  const run = useProgressRun(TARGET);
 
-  const theme = drafts[mode];
-  const base = isDark ? DARK_THEME : LIGHT_THEME;
-  const snippet = usageSnippet(
-    theme,
-    base,
-    isDark ? "DARK_THEME" : "LIGHT_THEME",
-    value,
-    "Progress..",
-  );
+  const key = `${variant}:${mode}`;
+  const [baseName, base] = BASES[variant][mode];
+  const theme = drafts[key] ?? base;
+  const snippet = usageSnippet(theme, base, baseName, TARGET, "Progress..");
 
   return (
-    <main className="relative min-h-screen bg-[#cbcbcb] px-8 pr-[344px] dark:bg-[#0b0b0b]">
-      <div className="absolute top-8 left-8 z-10">
-        <ThemeToggle />
-      </div>
-
+    <main className="relative min-h-screen bg-[#cbcbcb] px-8 dark:bg-[#0b0b0b]">
       <div className="mx-auto flex min-h-screen w-full max-w-[560px] flex-col items-center justify-center gap-10 py-24">
-        <ProgressBar value={value} theme={theme} />
+        <div className="flex flex-col items-center gap-6">
+          {/* Component first, controls under it — same pill as the site dock,
+              so the page has one control language. */}
+          <ProgressBar value={run.value} label={run.label} theme={theme} />
+          <ProgressInspector
+            theme={theme}
+            onChange={(t) => setDrafts((d) => ({ ...d, [key]: t }))}
+            variant={variant}
+            onVariantChange={setVariant}
+            mode={mode}
+            run={run}
+          />
+        </div>
 
         <div className="w-full space-y-6">
           <Block label="Install">
             <CodeBlock code={INSTALL_CMD} language="bash" />
           </Block>
           <Block label="Usage">
-            <CodeBlock code={snippet} />
+            {/* Fixed height, not auto: the snippet gains a line for every key
+                you tune, and a card that grows shoves the page around while
+                you're picking colours. Longer snippets scroll inside it. */}
+            <CodeBlock code={snippet} className="h-[248px] overflow-y-scroll" />
           </Block>
         </div>
-      </div>
-
-      <div className="fixed top-8 right-8 bottom-8">
-        <Controls
-          theme={theme}
-          onChange={(t) => setDrafts((d) => ({ ...d, [mode]: t }))}
-          value={value}
-          onValueChange={setValue}
-          onReset={() => setDrafts((d) => ({ ...d, [mode]: base }))}
-        />
       </div>
     </main>
   );
