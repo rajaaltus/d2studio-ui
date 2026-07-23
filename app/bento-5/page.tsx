@@ -34,12 +34,25 @@ const fill = {
 // It switches on when the section is on screen and off when it leaves — see
 // load-in.tsx. The lit opacity is a variable so the animation has something
 // theme-aware to land on; the class no longer sets it directly.
+//
+// will-change is pinned rather than left to Motion, which sets it for the length
+// of an animation and drops it after. Dropping it de-promotes the layer, and
+// re-rastering a 72px blur over saturated card art — four of them, two of which
+// are card-height — is not a frame's worth of work: measured, that de-promotion
+// was the section's worst frame at 170ms, and pinning it takes the whole pass to
+// 24ms with no dropped frames. The blur radius is not the problem; at 24px it
+// still cost 145ms. This is the case will-change is for — a layer whose opacity
+// animates every time the reader passes — and the cost is the GPU memory for
+// four promoted layers, held for the life of the page.
+// ponytail: pinned on all four. If the memory ever matters, render the glow's
+// source at a fraction of its size and scale it up — nothing under 72px of
+// detail survives the blur anyway.
 function Glow({ children, delay }: { children: ReactNode; delay: number }) {
   return (
     <LoadIn
       glow
       delay={delay}
-      className="pointer-events-none absolute -inset-10 mix-blend-multiply blur-[72px] saturate-150 [--b5-glow:0.45] dark:mix-blend-screen dark:[--b5-glow:0.5]"
+      className="pointer-events-none absolute -inset-10 mix-blend-multiply blur-[72px] saturate-150 will-change-[opacity] [--b5-glow:0.45] dark:mix-blend-screen dark:[--b5-glow:0.5]"
     >
       {children}
     </LoadIn>
