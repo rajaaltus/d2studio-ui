@@ -11,20 +11,21 @@
 // above the pair so they add to the card as a single thing.
 //
 // Two fields, picked by texture:
-//   drift  three soft lobes wandering on a long loop, so which of the grain is
-//          lit keeps changing and never quite repeats
-//   sweep  a band running the length of the stripes, top to bottom, easing slow
-//          in and slow out so it gathers speed through the middle
+//   ripple  a train of rings going out from the centre of the bolt, each
+//           holding its thickness and fading as it widens, so the grain lights
+//           in a front that passes and leaves — a drop landing, not an orbit
+//   sweep   a band running the length of the stripes, top to bottom, easing slow
+//           in and slow out so it gathers speed through the middle
 //
-// Neither runs continuously. Both are gated by an on/off cycle on a period that
-// shares no factor with the motion underneath it, so the card lights, holds,
-// goes dark, and comes back somewhere else in the loop — the two never line up
-// the same way twice. A light that is always on stops being a light.
+// The sweep is gated by a cycle on a period that shares no factor with it, so
+// how present the light is keeps changing under the motion. The ripple needs no
+// gate: each ring carries its own rise and fall, and the rings overlap, so the
+// swell is already there in the field itself.
 //
 // All of it is CSS keyframes — no per-frame JS, no rects, no listeners. The card
 // lights itself.
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { grainTile } from "./grain";
 
 export type Texture = "grain" | "stripes";
@@ -56,14 +57,31 @@ const tile = (svg: string) =>
 // asking for it again here is a cache read, not a second field.
 const GRAIN_SIZE = "79% 36.75%";
 
-// Three lobes: the wandering field. Sized in the CSS (mask-size), placed and
-// moved by the keyframes — here they only need to be soft, so the edge of the
-// field never shows as an edge in the texture.
-const LOBES = [
-  "radial-gradient(closest-side, #000 0%, rgba(0,0,0,.55) 45%, transparent 100%)",
-  "radial-gradient(closest-side, #000 0%, rgba(0,0,0,.5) 40%, transparent 100%)",
-  "radial-gradient(closest-side, #000 0%, rgba(0,0,0,.45) 38%, transparent 100%)",
-].join(", ");
+// Two waves per drop — four rings, since each wave is a main front with a thin
+// one trailing it (the gradient in the CSS draws the pair). Evenly spaced,
+// which is right here where it was wrong for the stripes: a drop in water
+// throws its fronts at a steady interval, and staggering them irregularly would
+// read as several drops rather than one. The second peak sits well under the
+// first so the trailing wave is clearly the answer to the leading one.
+//
+// Negative delays start the loop mid-flight — otherwise the card opens empty
+// and waits out most of a period for the first front.
+//
+// The origin is the bolt's own centre, not the card's: its path sits at x
+// 48.5–293.3, y 172–678 of the 314x654 viewBox once its transform is applied.
+// ponytail: exact at the card's declared aspect; the slice crops elsewhere and
+// walks it a few percent, which on a field this soft reads as nothing.
+const RIPPLE_ORIGIN = { "--b5-ox": "54%", "--b5-oy": "62%" } as const;
+
+// The burst. One drop throws its rings in quick succession, so these are the
+// first 0.7s of an 11s period and the rest is still water. Positive delays, not
+// negative: the card should open on a drop landing rather than halfway through
+// one.
+const RIPPLES = ["0s", "0.7s"];
+const RIPPLE_PEAK = [0.85, 0.62];
+
+// No cutout for the bolt: the rings run across it, so the light reads as
+// sitting on top of the artwork rather than behind it.
 
 // One band, long and soft, running down a line.
 const BAND =
@@ -161,22 +179,36 @@ export default function CardGlow({ texture }: { texture: Texture }) {
   return (
     <div
       aria-hidden
-      className="b5-drift pointer-events-none absolute inset-0 mix-blend-plus-lighter"
-      style={{ maskImage: LOBES, WebkitMaskImage: LOBES }}
+      className="pointer-events-none absolute inset-0 mix-blend-plus-lighter"
     >
-      {/* No texture yet means the grain hasn't been drawn; an empty mask-image
-          would paint the field solid, so the layer waits a frame for it. */}
-      <div
-        className="absolute inset-0"
-        hidden={!grain}
-        style={{
-          maskImage: grain,
-          WebkitMaskImage: grain,
-          maskSize: GRAIN_SIZE,
-          WebkitMaskSize: GRAIN_SIZE,
-          ...lit,
-        }}
-      />
+      {RIPPLES.map((delay, i) => (
+        <div
+          key={i}
+          className="b5-ripple absolute inset-0"
+          style={
+            {
+              ...RIPPLE_ORIGIN,
+              "--b5-peak": RIPPLE_PEAK[i],
+              animationDelay: delay,
+            } as CSSProperties
+          }
+        >
+          {/* No texture yet means the grain hasn't been drawn; an empty
+              mask-image would paint the field solid, so the layer waits a frame
+              for it. */}
+          <div
+            className="absolute inset-0"
+            hidden={!grain}
+            style={{
+              maskImage: grain,
+              WebkitMaskImage: grain,
+              maskSize: GRAIN_SIZE,
+              WebkitMaskSize: GRAIN_SIZE,
+              ...lit,
+            }}
+          />
+        </div>
+      ))}
     </div>
   );
 }
