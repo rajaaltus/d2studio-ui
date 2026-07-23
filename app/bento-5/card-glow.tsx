@@ -11,9 +11,9 @@
 // above the pair so they add to the card as a single thing.
 //
 // Two fields, picked by texture:
-//   ripple  a train of rings going out from the centre of the bolt, each
-//           holding its thickness and fading as it widens, so the grain lights
-//           in a front that passes and leaves — a drop landing, not an orbit
+//   pin     a lit dot held at the centre of the bolt with thin rings breathing
+//           out of it, holding their thickness and fading as they widen — the
+//           card marking a location, the way a device pulses on a map
 //   sweep   a band running the length of the stripes, top to bottom, easing slow
 //           in and slow out so it gathers speed through the middle
 //
@@ -57,31 +57,112 @@ const tile = (svg: string) =>
 // asking for it again here is a cache read, not a second field.
 const GRAIN_SIZE = "79% 36.75%";
 
-// Two waves per drop — four rings, since each wave is a main front with a thin
-// one trailing it (the gradient in the CSS draws the pair). Evenly spaced,
-// which is right here where it was wrong for the stripes: a drop in water
-// throws its fronts at a steady interval, and staggering them irregularly would
-// read as several drops rather than one. The second peak sits well under the
-// first so the trailing wave is clearly the answer to the leading one.
+// One ping, two circles — a main ring with a second behind it at a fixed gap.
+// Both come out of the single gradient in the CSS, so they're one layer and one
+// radius: they cannot drift apart, and the card animates one full-card gradient
+// per frame per pass instead of two.
 //
-// Negative delays start the loop mid-flight — otherwise the card opens empty
-// and waits out most of a period for the first front.
+// One wave at a time, back to back. It leaves the pin, crosses, and the next
+// goes the moment it clears — the keyframes fill the whole period, so there's
+// no gap to stagger a second layer into. That's why this is a one-element
+// array: succession, not overlap.
 //
 // The origin is the bolt's own centre, not the card's: its path sits at x
 // 48.5–293.3, y 172–678 of the 314x654 viewBox once its transform is applied.
 // ponytail: exact at the card's declared aspect; the slice crops elsewhere and
-// walks it a few percent, which on a field this soft reads as nothing.
+// walks it a few percent, which at this ring width reads as nothing.
 const RIPPLE_ORIGIN = { "--b5-ox": "54%", "--b5-oy": "62%" } as const;
 
-// The burst. One drop throws its rings in quick succession, so these are the
-// first 0.7s of an 11s period and the rest is still water. Positive delays, not
-// negative: the card should open on a drop landing rather than halfway through
-// one.
-const RIPPLES = ["0s", "0.7s"];
-const RIPPLE_PEAK = [0.85, 0.62];
+// No delay: the card opens on a wave leaving the pin.
+const RIPPLES = ["0s"];
 
 // No cutout for the bolt: the rings run across it, so the light reads as
 // sitting on top of the artwork rather than behind it.
+//
+// But running across it isn't the same as showing on it. The field is added
+// light, and the bolt is already near-white — there's no headroom left up
+// there, so a front that's obvious against the dark card all but vanishes the
+// moment it crosses the metal. The fix is a second pass over the bolt alone,
+// multiplying instead of adding: on white, multiply by the brand gradient tints
+// where adding did nothing, so the front reads as the wave bending the light
+// through it rather than as more light on top. Masked to the bolt, because the
+// same multiply over the dark card would just fight the plus-lighter pass and
+// muddy it.
+//
+// The path is src-c-4's bolt with its transform baked in (translate(-44.7
+// -160.2) scale(1.33) applied to each point) — a <g> transform can't survive
+// the trip into a mask image, so the coordinates carry it instead. The artwork
+// fades the bolt out down its lower half and this follows the same ramp: bbox y
+// 171.95–677.78, faded across 0.35 to 0.95 of its own height, so y 349 to
+// 652.5. Without that the tint would keep going after the bolt had gone.
+const BOLT_D =
+  "M95.43 677.78L160.46 461.86L48.5 479.24L239.72 171.95L181.36 387.62L293.31 370.24Z";
+const BOLT_ONLY = tile(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314 654">' +
+    '<linearGradient id="f" gradientUnits="userSpaceOnUse" x1="0" y1="349" x2="0" y2="652.5">' +
+    '<stop offset="0" stop-color="#fff"/>' +
+    '<stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
+    `<path d="${BOLT_D}" fill="url(#f)"/></svg>`,
+);
+
+// The inverse: everything except the bolt. Same path and same fade ramp, but
+// punched out of a full-card rect instead of drawn on its own — which needs the
+// rect and the bolt inside an SVG <mask>, since a CSS alpha mask has no way to
+// paint transparency over opacity. This is what puts the disc behind the bolt
+// without it actually being behind the artwork, where the card's own background
+// would swallow it.
+const BOLT_HOLE = tile(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314 654">' +
+    '<linearGradient id="f" gradientUnits="userSpaceOnUse" x1="0" y1="349" x2="0" y2="652.5">' +
+    '<stop offset="0" stop-color="#000"/>' +
+    '<stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>' +
+    '<mask id="m"><rect width="314" height="654" fill="#fff"/>' +
+    `<path d="${BOLT_D}" fill="url(#f)" stroke="url(#f)" stroke-width="7"/></mask>` +
+    '<rect width="314" height="654" fill="#fff" mask="url(#m)"/></svg>',
+);
+
+// cover + center is what xMidYMid slice resolves to, which is how the card
+// paints the artwork — so the mask stays registered with the bolt at every
+// aspect the grid gives the cell.
+const fitToBolt = (mask: string) =>
+  ({
+    maskImage: mask,
+    WebkitMaskImage: mask,
+    maskSize: "cover",
+    WebkitMaskSize: "cover",
+    maskPosition: "center",
+    WebkitMaskPosition: "center",
+    maskRepeat: "no-repeat",
+    WebkitMaskRepeat: "no-repeat",
+  }) as const;
+
+const BOLT_FIT = fitToBolt(BOLT_ONLY);
+const HOLE_FIT = fitToBolt(BOLT_HOLE);
+
+// The rings the bolt stands on: four concentric hairlines from the same origin
+// the live ripple leaves from, so the moving front travels along the same
+// geometry the static ones describe rather than cutting across it.
+//
+// Four means a plain gradient rather than a repeating one — repeating has no
+// count, it just tiles to the corners, so the stops are written out. One
+// element either way.
+// ponytail: the radii are pixels, per the 24px spec, so unlike the rest of this
+// file they don't scale with the cell. At the desktop size that's what was
+// asked for; if the card ever gets much larger they'll sit in close to the
+// middle and want redoing as percentages of the corner distance.
+const RING_GAP = 24;
+const RING_HALF = 0.5;
+const RINGS = `radial-gradient(circle at ${RIPPLE_ORIGIN["--b5-ox"]} ${RIPPLE_ORIGIN["--b5-oy"]}, ${[1, 2, 3, 4]
+  .flatMap((n) => {
+    const r = n * RING_GAP;
+    return [
+      `transparent ${r - RING_HALF}px`,
+      `#f3f3f3 ${r - RING_HALF}px`,
+      `#f3f3f3 ${r + RING_HALF}px`,
+      `transparent ${r + RING_HALF}px`,
+    ];
+  })
+  .join(", ")}, transparent 100%)`;
 
 // One band, long and soft, running down a line.
 const BAND =
@@ -176,39 +257,75 @@ export default function CardGlow({ texture }: { texture: Texture }) {
       </div>
     );
 
-  return (
+  // What every layer lights: the card's own grain. No texture yet means the
+  // grain hasn't been drawn, and an empty mask-image would paint the field
+  // solid, so the layer waits a frame for it.
+  const grainLayer = (
     <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 mix-blend-plus-lighter"
-    >
+      className="absolute inset-0"
+      hidden={!grain}
+      style={{
+        maskImage: grain,
+        WebkitMaskImage: grain,
+        maskSize: GRAIN_SIZE,
+        WebkitMaskSize: GRAIN_SIZE,
+        ...lit,
+      }}
+    />
+  );
+
+  // Both passes draw the same pin and the same rings off the same delays, so
+  // they stay in step without anything having to keep them there.
+  const signal = (
+    <>
+      {/* The source, first — everything after it is what leaves it. */}
+      <div
+        className="b5-pin absolute inset-0"
+        style={RIPPLE_ORIGIN as CSSProperties}
+      >
+        {grainLayer}
+      </div>
       {RIPPLES.map((delay, i) => (
         <div
           key={i}
           className="b5-ripple absolute inset-0"
-          style={
-            {
-              ...RIPPLE_ORIGIN,
-              "--b5-peak": RIPPLE_PEAK[i],
-              animationDelay: delay,
-            } as CSSProperties
-          }
+          style={{ ...RIPPLE_ORIGIN, animationDelay: delay } as CSSProperties}
         >
-          {/* No texture yet means the grain hasn't been drawn; an empty
-              mask-image would paint the field solid, so the layer waits a frame
-              for it. */}
-          <div
-            className="absolute inset-0"
-            hidden={!grain}
-            style={{
-              maskImage: grain,
-              WebkitMaskImage: grain,
-              maskSize: GRAIN_SIZE,
-              WebkitMaskSize: GRAIN_SIZE,
-              ...lit,
-            }}
-          />
+          {grainLayer}
         </div>
       ))}
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* The rings, under everything. Overlay rather than a flat stroke, so
+          they lift the artwork they cross instead of drawing a grey line over
+          it — the card's own colour still reads through each hairline. Held out
+          of the bolt by the cutout, which is what makes them read as behind. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay"
+        style={{ ...HOLE_FIT, background: RINGS }}
+      />
+      {/* The card: added light, which is what the dark artwork wants. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 mix-blend-plus-lighter"
+      >
+        {signal}
+      </div>
+      {/* The bolt: the same fronts, tinting instead of adding. Full strength —
+          the ring band is thin and the grain inside it is fine, so what lands on
+          the metal is a swing of about 77/255 at the crest and nothing at all
+          either side of it. Dialled back it just disappeared into the artwork. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 mix-blend-multiply"
+        style={BOLT_FIT}
+      >
+        {signal}
+      </div>
+    </>
   );
 }

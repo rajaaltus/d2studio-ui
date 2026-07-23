@@ -1,0 +1,4677 @@
+[      73ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5:0
+[      89ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[      94ms] Error: ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx
+
+
+    at <unknown> (Error: ./app/bento-5/card-glow.tsx:228:9)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1745:26)
+[      99ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[     105ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     135ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     236ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[     421ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     495ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     562ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     626ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     690ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     757ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     821ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     880ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[     943ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1009ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1075ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1141ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1206ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1275ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1333ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1400ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1467ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1536ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1597ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1654ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1723ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1802ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1873ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    1941ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2008ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2076ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2143ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2208ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2274ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2339ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2404ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2468ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2536ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2601ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2666ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2733ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2799ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2865ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2939ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    2993ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[    3083ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3148ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3216ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3280ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3344ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3409ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3475ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3542ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3607ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3672ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3739ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3804ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3870ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    3937ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4003ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4066ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[    4133ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4199ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4263ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4338ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4401ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4465ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4530ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4594ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4675ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4748ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4813ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4878ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    4944ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5011ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5068ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5134ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5203ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5277ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5346ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5414ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5472ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5538ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5604ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5663ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5730ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5793ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5859ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5925ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    5992ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6059ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6127ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6195ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6261ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6328ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6394ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6461ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6528ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6596ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6660ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6728ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6792ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6857ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6923ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    6988ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7054ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7122ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7187ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7253ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7320ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7387ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7450ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7515ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7581ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7646ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7713ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7778ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7843ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7909ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    7974ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8040ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8106ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8168ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8236ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8301ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8367ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8433ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8501ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8568ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8635ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8703ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8771ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8839ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8905ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    8972ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9030ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9095ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9159ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9223ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9289ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9349ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9408ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9474ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9542ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9608ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9675ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9738ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9805ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9872ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[    9937ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10000ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10066ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10133ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10200ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10271ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10339ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10409ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10491ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10562ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10628ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10696ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10765ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10833ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10897ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   10962ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11027ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11093ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11159ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11225ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11291ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11358ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11424ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11490ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11554ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11618ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11683ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11749ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11813ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11879ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   11945ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12012ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12078ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12144ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12209ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12272ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12336ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12400ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12464ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12529ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12599ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12666ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12733ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12799ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12867ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   12935ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13004ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13072ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13140ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13203ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13269ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13335ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13402ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13470ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13538ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13606ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13674ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13741ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13807ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13872ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   13941ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14003ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14069ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14136ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14213ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14272ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   14413ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14442ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   14554ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14660ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14692ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   14801ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14805ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   14871ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   14936ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15000ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15069ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15125ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15191ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15256ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15324ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15395ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15477ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15555ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15646ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15724ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15791ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15858ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15922ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   15988ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16057ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16123ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16191ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16256ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16325ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16386ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16451ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16516ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16580ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16646ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16711ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16780ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16847ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16913ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   16977ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17038ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17106ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17173ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17238ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17305ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17371ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17437ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17497ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17561ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17621ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17689ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17756ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17823ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17890ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   17955ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18022ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18089ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18153ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18217ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18281ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18347ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18411ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18474ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18540ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18607ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18672ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18728ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18793ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18859ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18924ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   18987ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19051ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19117ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19182ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19247ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19313ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19378ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19444ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19508ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19572ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19637ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19700ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19767ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19836ms] [ERROR] ./app/bento-5/card-glow.tsx:228:9
+the name `texture` is defined multiple times
+  226 |   // grain hasn't been drawn, and an empty mask-image would paint the field
+  227 |   // solid, so the layer waits a frame for it.
+> 228 |   const texture = (
+      |         ^^^^^^^
+  229 |     <div
+  230 |       className="absolute inset-0"
+  231 |       hidden={!grain}
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/bento-5/card-glow.tsx
+    ./app/bento-5/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[   19938ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   20297ms] [LOG] [Fast Refresh] done in 435ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   20556ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   20619ms] [LOG] [Fast Refresh] done in 168ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   20720ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   20792ms] [LOG] [Fast Refresh] done in 173ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   20911ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   21017ms] [LOG] [Fast Refresh] done in 207ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[   21382ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   21439ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   22764ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   24152ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   24356ms] [LOG] [Fast Refresh] done in 285ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   43882ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   43949ms] [LOG] [Fast Refresh] done in 168ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   53604ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   53899ms] [LOG] [Fast Refresh] done in 366ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   63553ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   63554ms] [LOG] [Fast Refresh] done in 109ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

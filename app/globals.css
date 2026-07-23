@@ -4163,13 +4163,15 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
    — a percentage mask-position only stays put at 50% 50%, so a growing box
    would drag any other origin along with it.
 
-   Each layer is a wave packet, not a single ring: a main front at the radius
-   and a thin trailing one a fixed gap behind it, both in the one gradient. That
-   gap is what a real ring looks like up close — a crest with a smaller one
-   chasing it — and putting the pair in a single gradient means they cannot
-   drift out of sync, since there is only one radius driving them. It also costs
-   one layer's worth of raster for two rings, so the card animates two
-   full-card gradients per frame instead of four.
+   The layer is a double ring, not a single one: a main front at the radius and
+   a second behind it at a fixed gap, both in the one gradient. Putting the pair
+   in a single gradient means they cannot drift out of sync, since there is only
+   one radius driving them, and it costs one layer's worth of raster for two
+   circles.
+
+   Both are drawn thin and hard-shouldered. This is a signal going out, not
+   water — an alert ping reads by its edge, and the soft wide crest that made it
+   look like a drop is exactly what has to go.
 
    Stops are offsets around that radius, not multiples of it, so both fronts
    keep one thickness the whole way out. A wave front doesn't get fatter as it
@@ -4183,17 +4185,17 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
    the ring crawling off-card while the period ran out. It scales with the card
    either way, which a pixel radius wouldn't.
 
-   Barely eased. Water carries a front out at close to constant speed and loses
-   amplitude as it spreads, so the fade does the work and the curve only takes
-   the edge off the start. A hard ease-out looked right in isolation and then
-   spent most of each period parked at the far end with the card dark.
+   Eased out, but only moderately. The ping still leaves the origin quicker than
+   it arrives, which is the character; push the curve any harder and every ring
+   is at 80%+ within a third of its life, so all four pile up at the rim and the
+   card reads as one flickering edge instead of a field of rings. The curve has
+   to leave them spread across the radius.
 
-   One drop per cycle. The travel is over by 46% and the rest of the period is
-   the ring held off-card at zero — so the two waves go out as one burst
-   (card-glow.tsx staggers them across the first 0.7s, which is the drop
-   throwing its rings), cross the card, and the water goes still for about five
-   seconds before the next one lands. The still stretch is the point: a ripple
-   that never stops isn't a drop, it's a fountain. */
+   One wave per cycle, back to back. Travel and fade run the full length of the
+   period, so the next leaves the pin exactly as the last one clears the card —
+   no hold, no dead frame. The period is the wave's own crossing time and
+   nothing more, which is why it's 4.5s: that's how long the crossing took when
+   there was still silence after it. Same wave, same speed, just no wait. */
 @property --b5-r {
   syntax: "<percentage>";
   initial-value: 0%;
@@ -4203,19 +4205,19 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
 .b5-ripple {
   --b5-ox: 54%;
   --b5-oy: 62%;
-  --b5-peak: 0.8;
-  /* Main front width, gap back to the thin one, thin front width. The gap has
-     to clear both half-widths or the stop list stops being monotonic and the
-     trough between the two crests closes up. */
-  --b5-w: 9%;
-  --b5-g: 16%;
-  --b5-t: 3%;
+  --b5-peak: 0.85;
+  /* Main ring width, gap back to the second, second ring width. The gap has to
+     clear both half-widths or the stop list stops being monotonic and the
+     trough between the two closes up — at these widths that floor is 7.75%. */
+  --b5-w: 5%;
+  --b5-g: 11%;
+  --b5-t: 2.5%;
   -webkit-mask-image: radial-gradient(
     circle at var(--b5-ox) var(--b5-oy),
     transparent calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 1.2),
-    rgba(0, 0, 0, 0.22) calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 0.5),
-    rgba(0, 0, 0, 0.45) calc(var(--b5-r) - var(--b5-g)),
-    rgba(0, 0, 0, 0.14) calc(var(--b5-r) - var(--b5-g) + var(--b5-t) * 0.6),
+    rgba(0, 0, 0, 0.32) calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 0.5),
+    rgba(0, 0, 0, 0.62) calc(var(--b5-r) - var(--b5-g)),
+    rgba(0, 0, 0, 0.2) calc(var(--b5-r) - var(--b5-g) + var(--b5-t) * 0.6),
     transparent calc(var(--b5-r) - var(--b5-w) * 1.25),
     rgba(0, 0, 0, 0.3) calc(var(--b5-r) - var(--b5-w) * 0.66),
     rgba(0, 0, 0, 0.85) calc(var(--b5-r) - var(--b5-w) * 0.2),
@@ -4226,9 +4228,9 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
   mask-image: radial-gradient(
     circle at var(--b5-ox) var(--b5-oy),
     transparent calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 1.2),
-    rgba(0, 0, 0, 0.22) calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 0.5),
-    rgba(0, 0, 0, 0.45) calc(var(--b5-r) - var(--b5-g)),
-    rgba(0, 0, 0, 0.14) calc(var(--b5-r) - var(--b5-g) + var(--b5-t) * 0.6),
+    rgba(0, 0, 0, 0.32) calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 0.5),
+    rgba(0, 0, 0, 0.62) calc(var(--b5-r) - var(--b5-g)),
+    rgba(0, 0, 0, 0.2) calc(var(--b5-r) - var(--b5-g) + var(--b5-t) * 0.6),
     transparent calc(var(--b5-r) - var(--b5-w) * 1.25),
     rgba(0, 0, 0, 0.3) calc(var(--b5-r) - var(--b5-w) * 0.66),
     rgba(0, 0, 0, 0.85) calc(var(--b5-r) - var(--b5-w) * 0.2),
@@ -4239,25 +4241,22 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
   /* Matches the 0% frame, so the first paint doesn't flash before the animation
      takes over. */
   opacity: 0;
-  animation: b5-ripple 11s cubic-bezier(0.28, 0.6, 0.42, 1) infinite;
+  animation: b5-ripple 4.5s cubic-bezier(0.33, 0.55, 0.45, 1) infinite;
 }
 @keyframes b5-ripple {
+  /* Starts at the pin's own radius, not at nothing — the ring leaves the dot
+     rather than materialising in the middle of it. The wrap back to this frame
+     is invisible because 100% is already at zero opacity. */
   0% {
-    --b5-r: 0%;
+    --b5-r: 6%;
     opacity: 0;
   }
-  5% {
+  22% {
     opacity: var(--b5-peak);
   }
-  30% {
+  67% {
     opacity: calc(var(--b5-peak) * 0.55);
   }
-  46% {
-    --b5-r: 92%;
-    opacity: 0;
-  }
-  /* Held out at the edge, dark, until the next drop. The jump back to 0% at the
-     wrap is invisible because both ends sit at zero opacity. */
   100% {
     --b5-r: 92%;
     opacity: 0;
@@ -4313,22 +4312,59 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
   }
 }
 
+/* The pin. A small soft dot held at the origin, breathing on the same period
+   the rings leave on — this is the part that makes the card read as marking a
+   location rather than as rings for their own sake. Rings alone are an effect;
+   rings with a source are a signal, and the eye goes to the source. It never
+   goes fully out, because the thing being pointed at doesn't stop existing
+   between pulses. */
+.b5-pin {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--b5-ox) var(--b5-oy),
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 4%,
+    transparent 11%
+  );
+  mask-image: radial-gradient(
+    circle at var(--b5-ox) var(--b5-oy),
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 4%,
+    transparent 11%
+  );
+  opacity: 0.55;
+  animation: b5-pin 4.5s ease-in-out infinite;
+}
+@keyframes b5-pin {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  22% {
+    opacity: 0.92;
+  }
+}
+
 /* Still, but not dark: the field parks where it opens, so the texture keeps a
    little light instead of the card going flat. */
 @media (prefers-reduced-motion: reduce) {
   .b5-ripple,
+  .b5-pin,
   .b5-sweep,
   .b5-sweep-gate {
     animation: none;
     opacity: 1;
   }
-  /* One ring, parked mid-flight. The others would only stack more light on the
-     same still frame, so they stay out of it. */
+  /* The pin stays lit and one ring parks mid-flight around it, so the card
+     still reads as marking the spot. The other rings would only stack more
+     light on the same still frame, so they stay out of it. */
+  .b5-pin {
+    opacity: 0.7;
+  }
   .b5-ripple {
     --b5-r: 55%;
     opacity: 0;
   }
-  .b5-ripple:first-child {
+  .b5-ripple:first-of-type {
     opacity: 0.6;
   }
   .b5-sweep {
