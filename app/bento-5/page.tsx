@@ -53,26 +53,31 @@ const fill = {
 // slice, like the card art, so it stays welded to the glyph the SVG underneath
 // already drew once the card crops.
 //
-// holdTo keeps the ramp near-solid down to a fraction of the glyph's own box.
-// The A's counter does not close at the top like the 6's or the 0's — it closes
-// on the crossbar, at 0.77 of the letter. The plain 0.35 -> 0.95 ramp is a third
-// of the way to nothing by then, so the bar arrives at about a third of the
-// fill's alpha over the card's darkest quarter and stops separating the counter
-// from the space below it: the A reads as a triangle. Small screens show it
-// first, because there the letter is 121px tall rather than 145 and the bar is
-// six pixels of it. So the ramp holds, then falls the rest of the way over what
-// is left — the letters still dissolve into the bottom, they just stay letters
-// while they are still legible.
+// One ramp for both glyphs. The AI card used to hold its ramp near-solid past
+// the crossbar, to keep the A's counter from closing — but the copy block is
+// ~45% of the card below sm and the glyph runs 25px into it, so the hold put
+// the title on a near-white letter. Held or not the letters cross the copy;
+// what makes the "16+" card read is that they are half gone by the time they
+// get there. So the AI card gets the same ramp. The crossbar staying legible
+// was the underlying export's problem anyway: its outside-stroke rimmed that
+// internal seam, and it is the rim, not the fade, that drew a box in the
+// counter. That rim is gone from src-c-2 now.
+//
+// That ramp is anchored to the glyph's own box, which is the right anchor from
+// sm up and the wrong one below it: on the 3/2 mobile card the copy takes the
+// bottom ~40% and the ramp is only half done by the time it gets there, so the
+// letters run through the title at half strength — legible, but the title is
+// sitting on them. Hence a second, card-relative fade below sm, finished before
+// the copy starts. What is left under the text is the export's own glass glyph,
+// which is what it is for.
 function Glyph({
   d,
   id,
   transform,
-  holdTo = 0,
 }: {
   d: string;
   id: string;
   transform?: string;
-  holdTo?: number;
 }) {
   const [y1, y2] = [0.35, 0.95];
   return (
@@ -80,7 +85,7 @@ function Glyph({
       aria-hidden
       viewBox="0 0 672 313"
       preserveAspectRatio="xMidYMid slice"
-      className="pointer-events-none absolute inset-0 h-full w-full"
+      className="pointer-events-none absolute inset-0 h-full w-full max-sm:[mask-image:linear-gradient(to_bottom,#000_22%,transparent_58%)]"
     >
       <defs>
         <linearGradient id={id} x1={0} y1={0} x2={0} y2={1.25}>
@@ -103,13 +108,6 @@ function Glyph({
           y2={y2}
         >
           <stop offset="0%" stopColor="#fff" />
-          {holdTo > 0 && (
-            <stop
-              offset={`${((holdTo - y1) / (y2 - y1)) * 100}%`}
-              stopColor="#fff"
-              stopOpacity={0.88}
-            />
-          )}
           <stop offset="100%" stopColor="#fff" stopOpacity={0} />
         </linearGradient>
         <mask id={`${id}-mask`} maskContentUnits="objectBoundingBox">
@@ -289,7 +287,7 @@ export default function Page() {
               <Glow delay={0.24} card={4} />
               <LoadIn delay={0.24} className={cell}>
                 {/* The brightest of the four and the flattest: colour, not light. */}
-                <Flat boost="saturate(1.35) brightness(1.04)">
+                <Flat boost="saturate(1.35) brightness(1.14)">
                   <SrcC4 {...fill} />
                 </Flat>
                 <CardGlow texture="grain" />
@@ -309,14 +307,11 @@ export default function Page() {
             <div className="relative aspect-[3/2] sm:aspect-[672/313] sm:col-span-2 lg:col-span-1">
               <Glow delay={0.36} card={2} />
               <LoadIn delay={0.36} className={cell}>
-                <Flat boost="saturate(1.12) brightness(1.06)">
+                <Flat boost="saturate(1.12) brightness(1.16)">
                   <SrcC2 {...fill} />
                 </Flat>
                 <CardGlow texture="stripes" />
-                {/* 0.8: the crossbar's underside is at 0.772 of the glyph box,
-                                so the hold clears it and the fall starts under the letter
-                                rather than through it. */}
-                <Glyph d={GLYPH_AI} id="glyph-ai" holdTo={0.8} />
+                <Glyph d={GLYPH_AI} id="glyph-ai" />
                 <div className={scrimBottom} />
                 <CardCopy
                   className="bottom-0"

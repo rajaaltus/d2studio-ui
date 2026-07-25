@@ -16,6 +16,18 @@
 // at the wrong scale. So the element is measured, and re-measured on resize.
 
 import createGlobe from "cobe";
+import {
+  Building2,
+  Castle,
+  Drum,
+  FerrisWheel,
+  Landmark,
+  RadioTower,
+  Sailboat,
+  Ship,
+  TowerControl,
+  TreePalm,
+} from "lucide-react";
 import { animate, useInView, useMotionValue, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -73,6 +85,7 @@ function snapAll(targets: Vec[]): Vec[] {
 const CITIES = [
   {
     city: "New York",
+    icon: Building2,
     visitors: 847,
     trend: 12,
     chip: true,
@@ -80,6 +93,7 @@ const CITIES = [
   },
   {
     city: "London",
+    icon: FerrisWheel,
     visitors: 623,
     trend: -3,
     chip: true,
@@ -87,6 +101,7 @@ const CITIES = [
   },
   {
     city: "Los Angeles",
+    icon: TreePalm,
     visitors: 534,
     trend: 7,
     chip: true,
@@ -94,6 +109,7 @@ const CITIES = [
   },
   {
     city: "Mumbai",
+    icon: Landmark,
     visitors: 468,
     trend: 21,
     chip: true,
@@ -101,6 +117,7 @@ const CITIES = [
   },
   {
     city: "Tokyo",
+    icon: RadioTower,
     visitors: 412,
     trend: 8,
     chip: true,
@@ -108,6 +125,7 @@ const CITIES = [
   },
   {
     city: "Paris",
+    icon: TowerControl,
     visitors: 385,
     trend: 5,
     chip: false,
@@ -115,6 +133,7 @@ const CITIES = [
   },
   {
     city: "Singapore",
+    icon: Sailboat,
     visitors: 296,
     trend: 4,
     chip: true,
@@ -122,6 +141,7 @@ const CITIES = [
   },
   {
     city: "Lagos",
+    icon: Drum,
     visitors: 224,
     trend: 18,
     chip: true,
@@ -129,6 +149,7 @@ const CITIES = [
   },
   {
     city: "Sydney",
+    icon: Ship,
     visitors: 201,
     trend: 15,
     chip: false,
@@ -136,6 +157,7 @@ const CITIES = [
   },
   {
     city: "Berlin",
+    icon: Castle,
     visitors: 178,
     trend: -1,
     chip: false,
@@ -181,9 +203,20 @@ function Stats() {
         // earlier ones by document order, which is the direction a hand of
         // cards fans, so no z-index is needed.
         //
-        // The fill is flat, not backdrop-blur: seven blurred panels over
-        // artwork is the sort of thing this section is being pulled back from,
-        // and against a gradient this dark the difference does not show.
+        // The fill is solid, not glass: no tint over the artwork and no
+        // backdrop-blur. Seven blurred panels over artwork is the sort of thing
+        // this section is being pulled back from, and a translucent row picks
+        // up whatever gradient happens to be behind it, so the deck changed
+        // colour down its own length. One flat colour, and the rows read as one
+        // stack of the same object.
+        //
+        // 8px radius, not the 12 it had: the deck sits 16px inside a card
+        // rounded at 24, and concentric corners want inner = outer - inset.
+        //
+        // Below sm the deck also fans — each row a step wider than the one it
+        // tucks under, so three rows read as cards laid down in perspective
+        // rather than a list. Only below sm: from sm up the card is tall and
+        // carries all seven, and seven steps of that is a wedge.
         //
         // Nothing here waits for anything, and an entrance was tried and taken
         // back out: it started the rows at opacity 0 and turned them on from an
@@ -197,18 +230,25 @@ function Stats() {
         // the cutoff is the card's shape and nothing else knows it.
         <div
           key={c.city}
-          className={`-mt-2 flex items-baseline gap-2.5 rounded-xl border border-white/[0.09] bg-[#080c14]/55 px-3 pt-4 pb-2.5 first:mt-0 first:pt-2.5 ${
-            i > 2 ? "max-sm:hidden" : ""
+          className={`-mt-2 flex items-center gap-2.5 rounded-lg bg-white px-3 pt-4 pb-2.5 shadow-[-1px_-2px_2px_rgba(0,0,0,0.35)] first:mt-0 first:pt-2.5 ${
+            i > 2 ? "max-sm:hidden" : ["max-sm:mx-3", "max-sm:mx-1.5", ""][i]
           }`}
         >
-          <span className="size-1.5 shrink-0 translate-y-[-1px] rounded-full bg-[#4ADE80] shadow-[0_0_9px_2px_rgba(52,211,153,0.7)]" />
-          <span className="truncate text-xs text-white/70">{c.city}</span>
-          <span className="ml-auto font-mono text-[0.85rem] leading-none font-semibold tracking-[-0.02em] text-white">
+          {/* The city, not a status light: a landmark reads at 14px and says
+              which place the row is without the name having to be read. */}
+          <c.icon
+            className="size-3.5 shrink-0 text-[#1C1F21]/45"
+            strokeWidth={1.75}
+          />
+          <span className="truncate text-xs text-[#1C1F21]/70">{c.city}</span>
+          <span className="ml-auto font-mono text-[0.85rem] leading-none font-semibold tracking-[-0.02em] text-[#1C1F21]">
             {c.visitors}
           </span>
+          {/* The dark-row greens and reds are tuned for a dark backing; on
+              white they wash out, so both step down two stops. */}
           <span
             className={`w-11 shrink-0 text-right font-mono text-[0.55rem] leading-none font-medium tracking-[0.02em] ${
-              c.trend >= 0 ? "text-[#34D399]" : "text-[#F87171]"
+              c.trend >= 0 ? "text-[#059669]" : "text-[#DC2626]"
             }`}
           >
             {c.trend >= 0 ? "↑" : "↓"} {Math.abs(c.trend)}%

@@ -62,7 +62,7 @@ export default function Page() {
   );
 
   return (
-    <main className="relative min-h-screen bg-[#cbcbcb] px-8 dark:bg-[#0b0b0b]">
+    <main className="relative min-h-screen bg-white px-8 dark:bg-[#0b0b0b]">
       <div className="mx-auto flex min-h-screen w-full max-w-[560px] flex-col items-center justify-center gap-10 py-24">
         <div className="flex flex-col items-center gap-6">
           {/* Component first, controls under it — same pill as the site dock,

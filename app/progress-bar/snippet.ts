@@ -109,7 +109,7 @@ export function designPrompt({
     full: "Layout — the readout sits in a gap bracketed by two tick leaders (a 24px rule into a 9px stem, hairline colour, at x=184.8 and x=348.3). Fill starts 16.2px in and runs 158.9px at 100%.",
     bar: "Layout — no tick leaders. Fill starts 16.2px in and runs 222.7px at 100%; the readout is pinned 16.2px off the right end.",
     plain:
-      "Layout — no leaders and no pill. Fill starts at the left edge and runs 255px at 100%; the readout is pinned to the right edge.",
+      "Layout — no leaders and no pill. A 255px rail runs from the left edge, fully rounded, in the label colour at 14% — the fill paints over it and the readout is pinned to the right edge. The rail is what says how much is left, since there's no surface to do it.",
   }[chrome];
 
   return [

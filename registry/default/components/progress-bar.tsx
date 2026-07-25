@@ -157,11 +157,11 @@ const CELL = 4;
 const DOT_MASK =
   "radial-gradient(circle at 2px 2px, #000 1px, transparent 1.05px)";
 
-/** The fill's light bleeding into the surface. Wider blur, lower opacity: a
- *  tight bright halo reads as a glow effect stuck on the bar, a diffuse faint
- *  one reads as the glass catching the light. The spread clears the pill's left
- *  cap in both cases — hence the clip on the root. */
-const GLOW = { blur: 18, opacity: 0.27 };
+/** The fill's light bleeding into the surface. Kept tight and faint: with no
+ *  pill to contain it (`plain`) anything wider reads as a smudge on the page
+ *  rather than as the glass catching the light. The spread still clears the
+ *  pill's left cap — hence the clip on the root. */
+const GLOW = { blur: 8, opacity: 0.14 };
 
 const shadow = (s: Shadow, inset = false) =>
   `${inset ? "inset " : ""}${s.x}px ${s.y}px ${s.blur}px ${s.spread}px ${toOklch(s.color, s.opacity)}`;
@@ -200,16 +200,29 @@ export default function ProgressBar({
   // go to the edges rather than keeping a cap's worth of air off a rim that
   // isn't drawn.
   const pad = cased ? PAD : 0;
-  const width =
-    ((full ? TRACK_WIDTH : PILL_WIDTH - 2 * pad - READOUT) * pct) / 100;
+  const span = full ? TRACK_WIDTH : PILL_WIDTH - 2 * pad - READOUT;
+  const width = (span * pct) / 100;
   // Shared by the fill and the glow it throws — same ramp, same track, so the
   // reflection can't drift out of step with the value.
   const ramp = paint(theme.fill, FILL_OFFSETS, FILL_ALPHAS);
   const track = fill === "beam" ? width : Math.round(width / CELL) * CELL;
+  // Round caps read as a beam; on the dot grid they'd clip the leading and
+  // trailing columns mid-circle, so matrix stays square.
   const strip = cn(
     "absolute",
-    fill === "beam" ? "top-[21px] h-1.5" : "top-[18px] h-3",
+    fill === "beam" ? "top-[21px] h-1.5 rounded-full" : "top-[18px] h-3",
   );
+  // The dot grid, as style props — the fill wears it, and so does the rail
+  // behind it, which would otherwise be a solid block behind a dotted bar.
+  const dots =
+    fill === "matrix"
+      ? {
+          maskImage: DOT_MASK,
+          maskSize: `${CELL}px ${CELL}px`,
+          WebkitMaskImage: DOT_MASK,
+          WebkitMaskSize: `${CELL}px ${CELL}px`,
+        }
+      : undefined;
 
   return (
     <div
@@ -241,34 +254,51 @@ export default function ProgressBar({
           : undefined
       }
     >
+      {/* The unrun remainder, drawn only when there's no pill: the surface is
+          what says how far there is left to go, and `plain` doesn't have one —
+          without a rail the fill is a stripe with nothing to read it against.
+          Taken from the label colour rather than the stroke, which is the glass
+          rim's near-white and would vanish on a light page. */}
+      {!cased && (
+        <div
+          aria-hidden
+          className={strip}
+          style={{
+            left: pad,
+            width: span,
+            background: toOklch(theme.text.label, 0.14),
+            ...dots,
+          }}
+        />
+      )}
+
       {/* The light the fill throws into the glass. Unmasked even in matrix mode:
-          what the surface catches is the beam's colour, not its dot grid. */}
-      <div
-        aria-hidden
-        className={cn(strip, "pointer-events-none")}
-        style={{
-          left: pad,
-          width: track,
-          background: ramp,
-          filter: `blur(${GLOW.blur}px)`,
-          opacity: GLOW.opacity,
-        }}
-      />
+          what the surface catches is the beam's colour, not its dot grid.
+          Dropped for a plain matrix: there's no glass to catch anything, so the
+          blur just fogs the gaps the dot grid is there to show. */}
+      {!(fill === "matrix" && !cased) && (
+        <div
+          aria-hidden
+          className={cn(strip, "pointer-events-none")}
+          style={{
+            left: pad,
+            width: track,
+            background: ramp,
+            filter: `blur(${GLOW.blur}px)`,
+            opacity: GLOW.opacity,
+          }}
+        />
+      )}
 
       {/* progress fill */}
       <div
-        className={cn(strip, "rounded-[3px]")}
+        className={strip}
         style={{
           left: pad,
           width: track,
           background: ramp,
           filter: fillFilter,
-          ...(fill === "matrix" && {
-            maskImage: DOT_MASK,
-            maskSize: `${CELL}px ${CELL}px`,
-            WebkitMaskImage: DOT_MASK,
-            WebkitMaskSize: `${CELL}px ${CELL}px`,
-          }),
+          ...dots,
         }}
       />
 
