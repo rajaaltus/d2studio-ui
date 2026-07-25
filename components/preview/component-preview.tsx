@@ -18,7 +18,7 @@ import {
   Maximize2,
   ExternalLink,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, copyText } from "@/lib/utils";
 
 interface Device {
   name: string;
@@ -78,7 +78,7 @@ export function ComponentPreview({
   const currentDevice = devices[activeDevice];
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
+    await copyText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

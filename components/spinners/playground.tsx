@@ -1,5 +1,7 @@
 "use client";
 
+import { copyText } from "@/lib/utils";
+
 import * as React from "react";
 import {
   ArrowDown,
@@ -1131,7 +1133,7 @@ export function SpinnerPlayground() {
   const handleCopySnippet = React.useCallback(
     async (kind: string, code: string) => {
       try {
-        await navigator.clipboard.writeText(code);
+        await copyText(code);
       } catch {
         return;
       }
@@ -3176,7 +3178,7 @@ function CodePanel({
 }) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
+    await copyText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };

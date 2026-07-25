@@ -27,6 +27,7 @@
 
 import { useEffect, useState, type CSSProperties } from "react";
 import { grainTile } from "./grain";
+import { useStill } from "./load-in";
 
 export type Texture = "grain" | "stripes";
 
@@ -69,9 +70,24 @@ const GRAIN_SIZE = "79% 36.75%";
 //
 // The origin is the bolt's own centre, not the card's: its path sits at x
 // 48.5–293.3, y 172–678 of the 314x654 viewBox once its transform is applied.
-// ponytail: exact at the card's declared aspect; the slice crops elsewhere and
-// walks it a few percent, which at this ring width reads as nothing.
+// Percentages of the artwork box below, not of the cell, so they hold at every
+// aspect the grid gives the card.
 const RIPPLE_ORIGIN = { "--b5-ox": "54%", "--b5-oy": "62%" } as const;
+
+// Every layer here is measured against the export's 314x654 frame, so it is laid
+// out on a box of that shape rather than on the cell: the smallest 314x654 box
+// that covers the cell, centred — which is what the SVG's xMidYMid slice does
+// with the artwork. min-w/min-h supply the "covers", aspect-ratio grows the
+// other axis, and the cell's own overflow-hidden trims the overhang.
+//
+// Without it the origin drifts with the cell's aspect. At the mobile 4/5 the
+// slice is width-driven and the artwork hangs ~140px past the cell top and
+// bottom, which walks the bolt's centre from 62% of the cell to 70% — the rings
+// end up a ring and a half above the bolt. The masks below are unaffected either
+// way (cover on a box of the same aspect is an exact fit), but they cost nothing
+// to move onto it and it keeps every layer in one coordinate space.
+const ART =
+  "absolute top-1/2 left-1/2 aspect-[314/654] min-h-full min-w-full -translate-x-1/2 -translate-y-1/2";
 
 // No delay: the card opens on a wave leaving the pin.
 const RIPPLES = ["0s"];
@@ -221,9 +237,22 @@ export default function CardGlow({ texture }: { texture: Texture }) {
   // The grain needs a canvas, so it arrives on the pass after mount — the same
   // deal the bolt card itself makes for it.
   const [grain, setGrain] = useState("");
+  const still = useStill();
   useEffect(() => {
-    if (texture === "grain") setGrain(`url("${grainTile()}")`);
-  }, [texture]);
+    if (texture === "grain" && !still) setGrain(`url("${grainTile()}")`);
+  }, [texture, still]);
+
+  // Every layer here exists to move. Still, the stripes have nothing to show —
+  // the light is the effect — and the bolt keeps the rings it stands on, which
+  // are a static gradient and cost a paint once. No grain canvas either.
+  if (still)
+    return texture === "stripes" ? null : (
+      <div
+        aria-hidden
+        className={`pointer-events-none opacity-40 mix-blend-overlay ${ART}`}
+        style={{ ...HOLE_FIT, background: RINGS }}
+      />
+    );
 
   if (texture === "stripes")
     return (
@@ -305,13 +334,13 @@ export default function CardGlow({ texture }: { texture: Texture }) {
           of the bolt by the cutout, which is what makes them read as behind. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay"
+        className={`pointer-events-none opacity-40 mix-blend-overlay ${ART}`}
         style={{ ...HOLE_FIT, background: RINGS }}
       />
       {/* The card: added light, which is what the dark artwork wants. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-plus-lighter"
+        className={`pointer-events-none mix-blend-plus-lighter ${ART}`}
       >
         {signal}
       </div>
@@ -321,7 +350,7 @@ export default function CardGlow({ texture }: { texture: Texture }) {
           either side of it. Dialled back it just disappeared into the artwork. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-multiply"
+        className={`pointer-events-none mix-blend-multiply ${ART}`}
         style={BOLT_FIT}
       >
         {signal}

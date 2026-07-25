@@ -22,7 +22,7 @@ import {
   Code,
   Lock,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, copyText } from "@/lib/utils";
 import { SyntaxHighlighter } from "@/components/ui/syntax-highlighter";
 import { ComingSoonSpinner } from "@/components/preview/coming-soon-spinner";
 
@@ -62,7 +62,7 @@ export function PreviewWrapper({
   const installCommand = `npx shadcn@latest add https://ui.d2studio.dev/r/${componentName.toLowerCase()}.json`;
 
   const handleCopyInstall = React.useCallback(async () => {
-    await navigator.clipboard.writeText(installCommand);
+    await copyText(installCommand);
     setCopiedInstall(true);
     setTimeout(() => setCopiedInstall(false), 2000);
   }, [installCommand]);

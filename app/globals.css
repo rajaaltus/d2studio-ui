@@ -4373,3 +4373,64 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     mask-position: 0 50%;
   }
 }
+
+/* transitions.dev — menu dropdown (05-menu-dropdown.md). The snippet's exact
+   tuning: 250ms open / 150ms close, 0.97 pre-scale, 0.99 closing scale, on
+   cubic-bezier(0.22, 1, 0.36, 1), growing from the trigger's corner.
+
+   Expressed as keyframes rather than the snippet's transitions: Radix unmounts
+   the menu on close and its Presence only waits on *animations*, so a
+   transition on the closing state never gets to play. `forceMount` would keep
+   the node, but then its dismissable layer treats the trigger click as an
+   outside press and the menu can't open at all. Same motion, same numbers. */
+:root {
+  --dropdown-open-dur: 250ms;
+  --dropdown-close-dur: 150ms;
+  --dropdown-pre-scale: 0.97;
+  --dropdown-closing-scale: 0.99;
+  --dropdown-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.t-dropdown {
+  transform-origin: var(
+    --radix-dropdown-menu-content-transform-origin,
+    top left
+  );
+  will-change: transform, opacity;
+}
+
+.t-dropdown[data-state="open"] {
+  animation: t-dropdown-open var(--dropdown-open-dur) var(--dropdown-ease);
+}
+
+.t-dropdown[data-state="closed"] {
+  animation: t-dropdown-close var(--dropdown-close-dur) var(--dropdown-ease);
+}
+
+@keyframes t-dropdown-open {
+  from {
+    opacity: 0;
+    transform: scale(var(--dropdown-pre-scale));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes t-dropdown-close {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(var(--dropdown-closing-scale));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-dropdown {
+    animation: none !important;
+  }
+}

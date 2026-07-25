@@ -1,5 +1,7 @@
 "use client";
 
+import { copyText } from "@/lib/utils";
+
 import * as React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
@@ -858,7 +860,7 @@ export function CosmoPlayground() {
   const [promptCopied, setPromptCopied] = React.useState(false);
   const copyAiPrompt = React.useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(aiPromptSnippet);
+      await copyText(aiPromptSnippet);
       setPromptCopied(true);
       window.setTimeout(() => setPromptCopied(false), 1500);
     } catch {
@@ -3279,7 +3281,7 @@ function CodePanel({
 }) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
+    await copyText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };

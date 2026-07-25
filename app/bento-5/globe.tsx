@@ -19,7 +19,7 @@ import createGlobe from "cobe";
 import { animate, useInView, useMotionValue, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-import { light, useLit } from "./load-in";
+import { light, useLit, useWide } from "./load-in";
 
 const { sin, cos, sqrt, PI } = Math;
 
@@ -157,7 +157,74 @@ function project([wx, wy, wz]: Vec, phi: number) {
   };
 }
 
-export default function Globe({ className = "" }: { className?: string }) {
+// What the card is actually saying, for a screen that cannot afford to say it
+// with a sphere. Booting cobe compiles its fragment shader — ~3s of blocked main
+// thread on a browser that has never compiled it, per the note below — onto a
+// canvas 2.5x the card, and that is the page's single worst moment on a phone.
+// The chips were always the payload; the globe was the frame around them. So
+// below lg the frame goes and the chips stay, as a table.
+//
+// Static: no entrance, no counting up. Same numbers, same mono, same greens as
+// the chips the sphere carries, so the two read as one component at two sizes.
+function Stats() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-x-4 bottom-4 flex flex-col sm:inset-x-5 sm:bottom-5"
+    >
+      {CITIES.filter((c) => c.chip).map((c, i) => (
+        // A deck, not a table: each row is its own card and each one tucks a
+        // few pixels under the one before it, so the column reads as cards laid
+        // down rather than rules drawn across the artwork. The overlap only
+        // ever eats padding — the extra pt is exactly what the -mt takes back —
+        // so every row stays clear of the card above it. Later rows paint over
+        // earlier ones by document order, which is the direction a hand of
+        // cards fans, so no z-index is needed.
+        //
+        // The fill is flat, not backdrop-blur: seven blurred panels over
+        // artwork is the sort of thing this section is being pulled back from,
+        // and against a gradient this dark the difference does not show.
+        //
+        // Nothing here waits for anything, and an entrance was tried and taken
+        // back out: it started the rows at opacity 0 and turned them on from an
+        // IntersectionObserver, and that observer sits inside a
+        // content-visibility: auto subtree, whose contents a browser is free
+        // not to report. Where it never fired, the starting state was what
+        // stayed — a blank card. On a screen this size these numbers are the
+        // card's whole content, so nothing about them is conditional.
+        // Below sm the card is the wide cards' 3/2 and has room for three, so
+        // the tail of the list is dropped rather than squeezed — in CSS, since
+        // the cutoff is the card's shape and nothing else knows it.
+        <div
+          key={c.city}
+          className={`-mt-2 flex items-baseline gap-2.5 rounded-xl border border-white/[0.09] bg-[#080c14]/55 px-3 pt-4 pb-2.5 first:mt-0 first:pt-2.5 ${
+            i > 2 ? "max-sm:hidden" : ""
+          }`}
+        >
+          <span className="size-1.5 shrink-0 translate-y-[-1px] rounded-full bg-[#4ADE80] shadow-[0_0_9px_2px_rgba(52,211,153,0.7)]" />
+          <span className="truncate text-xs text-white/70">{c.city}</span>
+          <span className="ml-auto font-mono text-[0.85rem] leading-none font-semibold tracking-[-0.02em] text-white">
+            {c.visitors}
+          </span>
+          <span
+            className={`w-11 shrink-0 text-right font-mono text-[0.55rem] leading-none font-medium tracking-[0.02em] ${
+              c.trend >= 0 ? "text-[#34D399]" : "text-[#F87171]"
+            }`}
+          >
+            {c.trend >= 0 ? "↑" : "↓"} {Math.abs(c.trend)}%
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// The sphere below lg is never mounted, not hidden: a hidden canvas still boots.
+export default function Globe() {
+  return useWide() ? <Sphere /> : <Stats />;
+}
+
+function Sphere() {
   const ref = useRef<HTMLCanvasElement>(null);
   const labels = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -318,8 +385,15 @@ export default function Globe({ className = "" }: { className?: string }) {
     };
   }, [inView, idle, still, spin]);
 
+  // Oversized, so the card is a window onto the sphere; pushed half a card-width
+  // right, so the window lands on the left limb rather than the middle. ml is a
+  // % of the card, unlike translate which is a % of the (much wider) globe box.
+  // Down a quarter of the card via top, not mt: percentage margins resolve
+  // against the container's width even vertically. It lives here rather than in
+  // the page because it is the sphere's framing, and the card's other occupant
+  // wants none of it.
   return (
-    <div className={`relative ${className}`}>
+    <div className="pointer-events-none absolute top-3/4 left-1/2 ml-[50%] aspect-square w-[248%] -translate-x-1/2 -translate-y-1/2">
       <canvas
         ref={ref}
         aria-hidden

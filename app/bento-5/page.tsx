@@ -1,10 +1,11 @@
-import type { ReactNode } from "react";
 import SrcC1 from "./src-c-1";
 import SrcC2 from "./src-c-2";
 import SrcC3 from "./src-c-3";
 import SrcC4 from "./src-c-4";
 import Globe from "./globe";
 import CardGlow from "./card-glow";
+import Flat from "./flat";
+import Glow from "./glow";
 import LoadIn, { LoadInGroup } from "./load-in";
 import MetallicShimmer from "@/registry/default/components/metallic-shimmer";
 import { GLYPH_16, GLYPH_16_AT, GLYPH_AI } from "./glyphs";
@@ -21,44 +22,21 @@ const shadow = [
 
 // 24px to match the Figma frame radius; the SVGs carry the same 24 on their own
 // base rect, clip and border stroke, so the clip and the artwork agree.
+//
+// No content-visibility here. It was worth it when a card off screen was still
+// running a ripple and a grain field; below lg none of that exists any more, and
+// what is left — painting artwork that is not on screen — a browser skips on its
+// own. What it did keep doing was hiding anything inside it from an
+// IntersectionObserver, which is a blank card for the price of an optimisation
+// that had nothing left to save.
 const cell = `absolute inset-0 overflow-hidden rounded-3xl ${shadow}`;
 const fill = {
   className: "absolute inset-0 h-full w-full",
   preserveAspectRatio: "xMidYMid slice",
 } as const;
 
-// Ambilight: the card's own artwork, blown out and blurred behind it, so the
-// spill is sampled from the card instead of guessed — a card with a hot
-// gradient throws a bright halo, a flat one barely glows. Screen on dark keeps
-// only the light; multiply on the pale page leaves a tinted aura instead of a
-// grey smudge. Blur is wide enough that the four halos pool across the section.
-// It switches on when the section is on screen and off when it leaves — see
-// load-in.tsx. The lit opacity is a variable so the animation has something
-// theme-aware to land on; the class no longer sets it directly.
-//
-// will-change is pinned rather than left to Motion, which sets it for the length
-// of an animation and drops it after. Dropping it de-promotes the layer, and
-// re-rastering a 72px blur over saturated card art — four of them, two of which
-// are card-height — is not a frame's worth of work: measured, that de-promotion
-// was the section's worst frame at 170ms, and pinning it takes the whole pass to
-// 24ms with no dropped frames. The blur radius is not the problem; at 24px it
-// still cost 145ms. This is the case will-change is for — a layer whose opacity
-// animates every time the reader passes — and the cost is the GPU memory for
-// four promoted layers, held for the life of the page.
-// ponytail: pinned on all four. If the memory ever matters, render the glow's
-// source at a fraction of its size and scale it up — nothing under 72px of
-// detail survives the blur anyway.
-function Glow({ children, delay }: { children: ReactNode; delay: number }) {
-  return (
-    <LoadIn
-      glow
-      delay={delay}
-      className="pointer-events-none absolute -inset-10 mix-blend-multiply blur-[72px] saturate-150 will-change-[opacity] [--b5-glow:0.45] dark:mix-blend-screen dark:[--b5-glow:0.5]"
-    >
-      {children}
-    </LoadIn>
-  );
-}
+// The ambilight lives in glow.tsx now — desktop-only, and its copy of the
+// artwork is code-split so the phone never carries it.
 
 // "16+"/"AI" repainted opaque over the export's glass, per the Figma frames:
 // F7F7F7 -> DFDFDF -> C3C3C3 with a 2px #FAFAFA rim. The ramp runs to 1.25 of
@@ -74,15 +52,29 @@ function Glow({ children, delay }: { children: ReactNode; delay: number }) {
 //
 // slice, like the card art, so it stays welded to the glyph the SVG underneath
 // already drew once the card crops.
+//
+// holdTo keeps the ramp near-solid down to a fraction of the glyph's own box.
+// The A's counter does not close at the top like the 6's or the 0's — it closes
+// on the crossbar, at 0.77 of the letter. The plain 0.35 -> 0.95 ramp is a third
+// of the way to nothing by then, so the bar arrives at about a third of the
+// fill's alpha over the card's darkest quarter and stops separating the counter
+// from the space below it: the A reads as a triangle. Small screens show it
+// first, because there the letter is 121px tall rather than 145 and the bar is
+// six pixels of it. So the ramp holds, then falls the rest of the way over what
+// is left — the letters still dissolve into the bottom, they just stay letters
+// while they are still legible.
 function Glyph({
   d,
   id,
   transform,
+  holdTo = 0,
 }: {
   d: string;
   id: string;
   transform?: string;
+  holdTo?: number;
 }) {
+  const [y1, y2] = [0.35, 0.95];
   return (
     <svg
       aria-hidden
@@ -106,11 +98,18 @@ function Glyph({
           id={`${id}-fade`}
           gradientUnits="userSpaceOnUse"
           x1={0}
-          y1={0.35}
+          y1={y1}
           x2={0}
-          y2={0.95}
+          y2={y2}
         >
           <stop offset="0%" stopColor="#fff" />
+          {holdTo > 0 && (
+            <stop
+              offset={`${((holdTo - y1) / (y2 - y1)) * 100}%`}
+              stopColor="#fff"
+              stopOpacity={0.88}
+            />
+          )}
           <stop offset="100%" stopColor="#fff" stopOpacity={0} />
         </linearGradient>
         <mask id={`${id}-mask`} maskContentUnits="objectBoundingBox">
@@ -193,7 +192,11 @@ export default function Page() {
   return (
     <>
       <Runway label="Scroll down ↓" />
-      <main className="relative flex min-h-screen items-center justify-center bg-[#fafafa] px-5 py-12 sm:p-10 dark:bg-black">
+      {/* overflow-x-clip, not hidden: the glows sit 40px outside their cards and
+                the page padding is only 20px at mobile, so they'd otherwise add a
+                strip of horizontal scroll. clip doesn't make main a scroll
+                container, so position: sticky anywhere inside still works. */}
+      <main className="relative flex min-h-screen items-center justify-center overflow-x-clip bg-[#fafafa] px-5 py-12 sm:p-10 dark:bg-black">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[#1C1F21]/15 dark:bg-white/15"
@@ -236,12 +239,16 @@ export default function Page() {
                     folds to two columns, then one. The SVGs cover, so the tall
                     cards just crop. */}
           <LoadInGroup className="grid w-full max-w-[1206px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[672fr_314fr_314fr] lg:gap-10">
-            <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
-              <Glow delay={0}>
-                <SrcC1 {...fill} />
-              </Glow>
+            {/* One column at mobile: at the Figma 672/313 the card is only ~156px
+                        tall, which the copy alone fills — so it goes to 3/2 and the SVG
+                        crops the sides. The glyph is `slice` too and its ink stops well
+                        inside the 672 box, so it survives the crop. */}
+            <div className="relative aspect-[3/2] sm:aspect-[672/313] sm:col-span-2 lg:col-span-1">
+              <Glow delay={0} card={1} />
               <LoadIn delay={0} className={cell}>
-                <SrcC1 {...fill} />
+                <Flat>
+                  <SrcC1 {...fill} />
+                </Flat>
                 <Glyph d={GLYPH_16} id="glyph-16" transform={GLYPH_16_AT} />
                 <div className={scrimBottom} />
                 <CardCopy
@@ -252,37 +259,39 @@ export default function Page() {
               </LoadIn>
             </div>
 
-            <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
-              <Glow delay={0.12}>
-                <SrcC3 {...fill} />
-              </Glow>
+            {/* One column, one shape: below sm the tall pair takes the wide
+                        cards' 3/2 so the four read as one stack rather than two
+                        formats. Everything from sm up is the Figma grid, untouched. */}
+            <div className="relative aspect-[3/2] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
+              <Glow delay={0.12} card={3} />
               <LoadIn delay={0.12} className={cell}>
-                <SrcC3 {...fill} />
+                {/* Dark, already saturated: light, not colour. */}
+                <Flat boost="brightness(1.16)">
+                  <SrcC3 {...fill} />
+                </Flat>
                 <div className={scrimTop} />
                 <CardCopy
                   className="top-0"
                   title="Global by default"
                   sub="Realtime Convex data on the edge, so every region reads in milliseconds."
                 />
-                {/* Oversized, so the card is a window onto the sphere;
-                                pushed half a card-width right, so the window lands
-                                on the left limb rather than the middle. ml is a %
-                                of the card, unlike translate which is a % of the
-                                (much wider) globe box. Down a quarter of the card
-                                via top, not mt: percentage margins resolve against
-                                the container's width even vertically. */}
-                <div className="pointer-events-none absolute top-3/4 left-1/2 ml-[50%] aspect-square w-[248%] -translate-x-1/2 -translate-y-1/2">
-                  <Globe className="h-full w-full" />
-                </div>
+                {/* The sphere, or below lg the numbers it carries — it does its
+                                own framing, which is not the same framing in the two
+                                cases. */}
+                <Globe />
               </LoadIn>
             </div>
 
-            <div className="relative aspect-[4/5] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
-              <Glow delay={0.24}>
-                <SrcC4 {...fill} />
-              </Glow>
+            {/* One column, one shape: below sm the tall pair takes the wide
+                        cards' 3/2 so the four read as one stack rather than two
+                        formats. Everything from sm up is the Figma grid, untouched. */}
+            <div className="relative aspect-[3/2] sm:aspect-[314/654] lg:row-span-2 lg:aspect-auto">
+              <Glow delay={0.24} card={4} />
               <LoadIn delay={0.24} className={cell}>
-                <SrcC4 {...fill} />
+                {/* The brightest of the four and the flattest: colour, not light. */}
+                <Flat boost="saturate(1.35) brightness(1.04)">
+                  <SrcC4 {...fill} />
+                </Flat>
                 <CardGlow texture="grain" />
                 <div className={scrimTop} />
                 <CardCopy
@@ -293,14 +302,21 @@ export default function Page() {
               </LoadIn>
             </div>
 
-            <div className="relative aspect-[672/313] sm:col-span-2 lg:col-span-1">
-              <Glow delay={0.36}>
-                <SrcC2 {...fill} />
-              </Glow>
+            {/* One column at mobile: at the Figma 672/313 the card is only ~156px
+                        tall, which the copy alone fills — so it goes to 3/2 and the SVG
+                        crops the sides. The glyph is `slice` too and its ink stops well
+                        inside the 672 box, so it survives the crop. */}
+            <div className="relative aspect-[3/2] sm:aspect-[672/313] sm:col-span-2 lg:col-span-1">
+              <Glow delay={0.36} card={2} />
               <LoadIn delay={0.36} className={cell}>
-                <SrcC2 {...fill} />
+                <Flat boost="saturate(1.12) brightness(1.06)">
+                  <SrcC2 {...fill} />
+                </Flat>
                 <CardGlow texture="stripes" />
-                <Glyph d={GLYPH_AI} id="glyph-ai" />
+                {/* 0.8: the crossbar's underside is at 0.772 of the glyph box,
+                                so the hold clears it and the fall starts under the letter
+                                rather than through it. */}
+                <Glyph d={GLYPH_AI} id="glyph-ai" holdTo={0.8} />
                 <div className={scrimBottom} />
                 <CardCopy
                   className="bottom-0"

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTheme } from "@/components/theme-provider";
 import ProgressInspector, {
+  type Fill,
   type Variant,
   useProgressRun,
 } from "@/components/progress-inspector";
@@ -25,6 +26,7 @@ export default function Page() {
   const { resolvedTheme } = useTheme();
   const mode = resolvedTheme === "dark" ? "dark" : "light";
   const [variant, setVariant] = useState<Variant>("glass");
+  const [fill, setFill] = useState<Fill>("beam");
   const [drafts, setDrafts] = useState<Record<string, BarTheme>>({});
   const run = useProgressRun();
 
@@ -43,13 +45,21 @@ export default function Page() {
         </p>
       </header>
 
-      <ProgressBar value={run.value} label={run.label} theme={theme} />
+      <ProgressBar
+        value={run.value}
+        label={run.label}
+        theme={theme}
+        fill={fill}
+        fillFilter={run.fillFilter(theme.fill.solid)}
+      />
 
       <ProgressInspector
         theme={theme}
         onChange={(t) => setDrafts((d) => ({ ...d, [key]: t }))}
         variant={variant}
         onVariantChange={setVariant}
+        fill={fill}
+        onFillChange={setFill}
         mode={mode}
         run={run}
       />

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["192.168.0.2", "*.local", "192.168.0.14"],
+  // Subnet wildcard, not fixed IPs — DHCP reassigns these on every reconnect.
+  allowedDevOrigins: ["192.168.0.*", "192.168.1.*", "*.local"],
   images: {
     remotePatterns: [
       {

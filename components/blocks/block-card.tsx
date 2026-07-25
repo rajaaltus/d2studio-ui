@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
+import { cn, copyText } from "@/lib/utils";
 import type { Doc } from "@/convex/_generated/dataModel";
 
 interface BlockCardProps {
@@ -24,7 +24,7 @@ export function BlockCard({ block }: BlockCardProps) {
 
   const copyInstall = React.useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(
+      await copyText(
         `npx shadcn@latest add @d2/${block.name}`,
       );
       setCopied(true);

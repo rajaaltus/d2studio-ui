@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - progressbar "Progress.." [ref=e6]:
+          - generic [ref=e10]:
+            - generic [ref=e11]: (83%)
+            - generic [ref=e12]: Progress..
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]:
+              - button "Glass" [ref=e18] [cursor=pointer]
+              - button "Fancy" [ref=e19] [cursor=pointer]
+            - generic [ref=e21]:
+              - button "Beam" [ref=e22] [cursor=pointer]
+              - button "Matrix" [ref=e23] [cursor=pointer]
+          - generic [ref=e24]:
+            - generic [ref=e25]: Theme
+            - button "Aurora" [ref=e26] [cursor=pointer]
+            - generic [ref=e31]: Motion
+            - button "Glide" [ref=e32] [cursor=pointer]
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: Install
+          - generic [ref=e38]:
+            - code [ref=e40]:
+              - generic [ref=e41]: npx shadcn@latest add https://d2studio.dev/r/progress-bar.json
+            - button "Copy" [ref=e42]
+        - generic [ref=e44]:
+          - paragraph [ref=e45]: Usage
+          - generic [ref=e46]:
+            - code [ref=e48]:
+              - generic [ref=e49]: "import ProgressBar, {"
+              - generic [ref=e50]: DARK_THEME,
+              - generic [ref=e51]: "} from \"@/components/progress-bar\";"
+              - generic [ref=e53]: <ProgressBar
+              - generic [ref=e54]: "value={83}"
+              - generic [ref=e55]: "theme={DARK_THEME}"
+              - generic [ref=e56]: />
+            - button "Copy" [ref=e57]
+  - generic [ref=e59]:
+    - heading "Command palette" [level=2] [ref=e60]
+    - paragraph [ref=e61]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e62]:
+    - button "Blocks" [ref=e63] [cursor=pointer]
+    - button "Tools New" [ref=e81] [cursor=pointer]:
+      - generic [ref=e93]: Tools
+      - generic [ref=e95]: New
+    - button "Toggle theme" [ref=e100] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e114] [cursor=pointer]

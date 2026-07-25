@@ -2,6 +2,13 @@ import { cn } from "@/lib/utils";
 
 /** Fill track spans x=16.158 → 175.042 inside the 392px pill (83% ⇒ 131.87, per the Figma source). */
 const TRACK_WIDTH = 158.884;
+/** The pill, and the cap the fill and the readout keep clear of its ends. */
+const PILL_WIDTH = 392;
+const PAD = 16.158;
+/** What the readout reserves once the tick leaders are gone: the percent's
+ *  6-char box, the 9.5px gap, the label's 10-char box — 16 mono chars at 12px —
+ *  and 12px of clear air between the fill and the bracket. */
+const READOUT = 137;
 /** Stop offsets baked into the Figma gradients — only the colours are tunable. */
 const SURFACE_OFFSETS = [0, 50, 100];
 const FILL_OFFSETS = [37.4, 59.7, 75.6, 100];
@@ -31,11 +38,12 @@ export type BarTheme = {
 /** The label pair the dark surfaces share — near-white text, tinted percent. */
 const LIGHT_TEXT = { pct: "#bbffd2", label: "#f8f8f8" };
 
-/** Light mode — the Figma source values. The one departure is the type: the
- *  Figma frame sits on a dark canvas, but this theme's surface is a 20% wash
- *  over a light page, and the source's near-white label lands at ~1.3:1 there.
- *  Both colours are darkened until the label clears 4.5:1 and the percent —
- *  which the component fades to 80% — clears it composited. */
+/** Light mode — the Figma source values. Two departures, both because the
+ *  Figma frame sits on a dark canvas and this theme doesn't: the type, whose
+ *  near-white label lands at ~1.3:1 over a light page and is darkened until the
+ *  label clears 4.5:1 and the percent — which the component fades to 80% —
+ *  clears it composited; and the fill, whose near-white tail stop vanishes into
+ *  a light surface and is replaced by a grey that still reads as a fade. */
 export const LIGHT_THEME: BarTheme = {
   surface: {
     mode: "gradient",
@@ -45,8 +53,8 @@ export const LIGHT_THEME: BarTheme = {
   surfaceOpacity: 0.2,
   fill: {
     mode: "gradient",
-    solid: "#ac82ff",
-    stops: ["#ac82ff", "#67dbff", "#8bff9e", "#e5e5e5"],
+    solid: "#8b5cf6",
+    stops: ["#8b5cf6", "#06b6d4", "#22c55e", "#c2c6d1"],
   },
   stroke: { color: "#f4f4f4", opacity: 0.6 },
   backdropBlur: 20,
@@ -61,6 +69,12 @@ export const LIGHT_THEME: BarTheme = {
 export const DARK_THEME: BarTheme = {
   ...LIGHT_THEME,
   surfaceOpacity: 0.16,
+  // The source ramp: brighter, and free to fade out into near-white again.
+  fill: {
+    mode: "gradient",
+    solid: "#ac82ff",
+    stops: ["#ac82ff", "#67dbff", "#8bff9e", "#e5e5e5"],
+  },
   text: LIGHT_TEXT,
   stroke: { color: "#f4f4f4", opacity: 0.32 },
   drop: { x: 0, y: 0, blur: 12, spread: 2, color: "#f3f3f3", opacity: 0.1 },
@@ -68,26 +82,31 @@ export const DARK_THEME: BarTheme = {
 };
 
 /** Fancy — the plain read: opaque surface, no backdrop blur, one lifted shadow
- *  and a 1px top rim instead of the glass halo. Same fill, so the bar still
- *  reads as the same component. */
+ *  and a 1px rim instead of the glass halo. Same fill, so the bar still reads
+ *  as the same component. Opaque means the surface has to follow the page —
+ *  a near-black card on a light page is the one thing that can't stay put — so
+ *  light mode gets a near-white surface, dark type, and a dark hairline. */
 export const FANCY_THEME: BarTheme = {
   ...LIGHT_THEME,
-  surface: { ...LIGHT_THEME.surface, mode: "solid", solid: "#18181b" },
+  surface: { ...LIGHT_THEME.surface, mode: "solid", solid: "#fbfcff" },
   surfaceOpacity: 1,
-  // Opaque near-black in both modes, so the type doesn't flip with the page.
-  text: LIGHT_TEXT,
-  stroke: { color: "#ffffff", opacity: 0.12 },
+  text: LIGHT_THEME.text,
+  stroke: { color: "#000000", opacity: 0.12 },
   backdropBlur: 0,
-  drop: { x: 0, y: 8, blur: 24, spread: -6, color: "#000000", opacity: 0.35 },
-  inner: { x: 0, y: 1, blur: 0, spread: 0, color: "#ffffff", opacity: 0.14 },
+  drop: { x: 0, y: 8, blur: 24, spread: -6, color: "#000000", opacity: 0.14 },
+  inner: { x: 0, y: 1, blur: 0, spread: 0, color: "#ffffff", opacity: 1 },
 };
 
-/** Fancy on a dark page — the surface sinks, the shadow works harder. */
+/** Fancy on a dark page — the surface sinks, the rim flips white, the shadow
+ *  works harder. */
 export const FANCY_DARK_THEME: BarTheme = {
   ...FANCY_THEME,
   surface: { ...FANCY_THEME.surface, solid: "#1a1a1e" },
+  fill: DARK_THEME.fill,
+  text: LIGHT_TEXT,
   stroke: { color: "#ffffff", opacity: 0.1 },
   drop: { ...FANCY_THEME.drop, opacity: 0.6 },
+  inner: { ...FANCY_THEME.inner, opacity: 0.14 },
 };
 
 /** 6-digit hex → oklch(), so every colour in the rendered CSS stays in one space. */
@@ -122,6 +141,28 @@ const paint = (
         .map((c, i) => `${toOklch(c, alphas[i] * scale)} ${offsets[i]}%`)
         .join(", ")})`;
 
+/** The dotted fill, as a mask on a 4px cell: three rows of 2px dots with a full
+ *  dot of gutter between them, so the grid reads as dots rather than as a
+ *  screened strip. It occupies 12px — the same 6px strip grown about its own
+ *  centreline — so the bar's axis doesn't move when you switch.
+ *
+ *  Masked rather than repainted: the gradient, its alpha ramp and any
+ *  `fillFilter` all still apply, they just land on dots.
+ *
+ *  The width snaps to whole cells, so the leading column is always a full dot.
+ *  An unsnapped width cuts that column mid-circle and the bar ends on a sliver
+ *  that reads as a rendering fault rather than as a value. The cost is real and
+ *  small: the dotted read is quantised to 4px, a hair over 2% of the track. */
+const CELL = 4;
+const DOT_MASK =
+  "radial-gradient(circle at 2px 2px, #000 1px, transparent 1.05px)";
+
+/** The fill's light bleeding into the surface. Wider blur, lower opacity: a
+ *  tight bright halo reads as a glow effect stuck on the bar, a diffuse faint
+ *  one reads as the glass catching the light. The spread clears the pill's left
+ *  cap in both cases — hence the clip on the root. */
+const GLOW = { blur: 18, opacity: 0.27 };
+
 const shadow = (s: Shadow, inset = false) =>
   `${inset ? "inset " : ""}${s.x}px ${s.y}px ${s.blur}px ${s.spread}px ${toOklch(s.color, s.opacity)}`;
 
@@ -129,15 +170,46 @@ export default function ProgressBar({
   value = 83,
   label = "Progress..",
   theme = LIGHT_THEME,
+  fill = "beam",
+  chrome = "full",
+  fillFilter,
   className,
 }: {
   value?: number;
   label?: string;
   theme?: BarTheme;
+  /** How the fill is drawn: `beam` is one 6px strip, `matrix` is three rows of
+   *  dots reading the same value. */
+  fill?: "beam" | "matrix";
+  /** How much is around the fill. `full` is the reference: percent and label
+   *  bracketed by tick leaders. `bar` drops the leaders and gives the fill the
+   *  room they held. `plain` drops the pill too — no surface, rim or shadow,
+   *  just the fill, the percent and the status on the page itself. */
+  chrome?: "full" | "bar" | "plain";
+  /** A CSS filter for the fill alone — blur, saturate, brightness — so a caller
+   *  animating the value can soften the gradient while it travels without
+   *  touching the label, the ticks, or the surface. */
+  fillFilter?: string;
   className?: string;
 }) {
   const pct = Math.min(100, Math.max(0, Math.round(value)));
   const hairline = toOklch(theme.stroke.color, theme.stroke.opacity);
+  const full = chrome === "full";
+  const cased = chrome !== "plain";
+  // Without a pill there is nothing to sit inside, so the fill and the readout
+  // go to the edges rather than keeping a cap's worth of air off a rim that
+  // isn't drawn.
+  const pad = cased ? PAD : 0;
+  const width =
+    ((full ? TRACK_WIDTH : PILL_WIDTH - 2 * pad - READOUT) * pct) / 100;
+  // Shared by the fill and the glow it throws — same ramp, same track, so the
+  // reflection can't drift out of step with the value.
+  const ramp = paint(theme.fill, FILL_OFFSETS, FILL_ALPHAS);
+  const track = fill === "beam" ? width : Math.round(width / CELL) * CELL;
+  const strip = cn(
+    "absolute",
+    fill === "beam" ? "top-[21px] h-1.5" : "top-[18px] h-3",
+  );
 
   return (
     <div
@@ -146,55 +218,123 @@ export default function ProgressBar({
       aria-valuemin={0}
       aria-valuemax={100}
       aria-label={label}
-      className={cn("relative h-12 w-[392px] rounded-full", className)}
-      style={{
-        background: paint(
-          theme.surface,
-          SURFACE_OFFSETS,
-          [1, 1, 1],
-          theme.surfaceOpacity,
-        ),
-        backdropFilter: `blur(${theme.backdropBlur}px)`,
-        WebkitBackdropFilter: `blur(${theme.backdropBlur}px)`,
-        outline: `1px solid ${hairline}`,
-        outlineOffset: "-1px",
-        boxShadow: `${shadow(theme.drop)}, ${shadow(theme.inner, true)}`,
-      }}
+      className={cn(
+        "relative h-12 w-[392px] overflow-hidden",
+        cased && "rounded-full",
+        className,
+      )}
+      style={
+        cased
+          ? {
+              background: paint(
+                theme.surface,
+                SURFACE_OFFSETS,
+                [1, 1, 1],
+                theme.surfaceOpacity,
+              ),
+              backdropFilter: `blur(${theme.backdropBlur}px)`,
+              WebkitBackdropFilter: `blur(${theme.backdropBlur}px)`,
+              outline: `1px solid ${hairline}`,
+              outlineOffset: "-1px",
+              boxShadow: `${shadow(theme.drop)}, ${shadow(theme.inner, true)}`,
+            }
+          : undefined
+      }
     >
+      {/* The light the fill throws into the glass. Unmasked even in matrix mode:
+          what the surface catches is the beam's colour, not its dot grid. */}
+      <div
+        aria-hidden
+        className={cn(strip, "pointer-events-none")}
+        style={{
+          left: pad,
+          width: track,
+          background: ramp,
+          filter: `blur(${GLOW.blur}px)`,
+          opacity: GLOW.opacity,
+        }}
+      />
+
       {/* progress fill */}
       <div
-        className="absolute top-[21px] left-[16.158px] h-1.5 rounded-[3px]"
+        className={cn(strip, "rounded-[3px]")}
         style={{
-          width: (TRACK_WIDTH * pct) / 100,
-          background: paint(theme.fill, FILL_OFFSETS, FILL_ALPHAS),
+          left: pad,
+          width: track,
+          background: ramp,
+          filter: fillFilter,
+          ...(fill === "matrix" && {
+            maskImage: DOT_MASK,
+            maskSize: `${CELL}px ${CELL}px`,
+            WebkitMaskImage: DOT_MASK,
+            WebkitMaskSize: `${CELL}px ${CELL}px`,
+          }),
         }}
       />
 
       {/* left leader ──┤ */}
-      <div
-        className="absolute top-[23.5px] left-[184.807px] h-px w-6"
-        style={{ background: hairline }}
-      />
-      <div
-        className="absolute top-[19.5px] left-[209.307px] h-[9px] w-px"
-        style={{ background: hairline }}
-      />
+      {full && (
+        <>
+          <div
+            className="absolute top-[23.5px] left-[184.807px] h-px w-6"
+            style={{ background: hairline }}
+          />
+          <div
+            className="absolute top-[19.5px] left-[209.307px] h-[9px] w-px"
+            style={{ background: hairline }}
+          />
+        </>
+      )}
 
-      {/* label, centred between the ticks */}
-      <div className="absolute inset-y-0 right-[59.693px] left-[209.807px] flex items-center justify-center gap-[9.5px] font-mono text-xs whitespace-nowrap">
-        <span style={{ color: toOklch(theme.text.pct, 0.8) }}>({pct}%)</span>
-        <span style={{ color: toOklch(theme.text.label) }}>{label}</span>
+      {/* Centred in the tick gap, but on reserved widths rather than on the
+          text: both spans get the width of their widest reading — "(100%)" is
+          6 mono chars, "Progress.." is 10 — so the pair is a constant 16ch and
+          centring it can't re-measure. Centring the glyphs instead would slide
+          the whole line on every frame of a run, as digits are added and the
+          ellipsis cycles.
+          The percent is right-aligned in its box so the spare digit slot falls
+          next to the tick; the label is left-aligned in its own so the trailing
+          dots grow into dead space instead of pushing the word about. */}
+      <div
+        className={cn(
+          "absolute inset-y-0 flex items-center gap-[9.5px] font-mono text-xs whitespace-nowrap",
+          // Full centres the pair in the gap the leaders bracket; the other two
+          // have no gap to sit in, so the readout pins to the right and the
+          // fill takes what's left.
+          full && "right-[43.693px] left-[209.807px] justify-center",
+        )}
+        style={full ? undefined : { right: pad }}
+      >
+        <span
+          className="inline-block w-[6ch] text-right"
+          style={{ color: toOklch(theme.text.pct, 0.8) }}
+        >
+          ({pct}%)
+        </span>
+        <span
+          className="inline-block w-[10ch] text-left"
+          style={{ color: toOklch(theme.text.label) }}
+        >
+          {label}
+        </span>
       </div>
 
-      {/* right leader ├── */}
-      <div
-        className="absolute top-[19.5px] left-[332.307px] h-[9px] w-px"
-        style={{ background: hairline }}
-      />
-      <div
-        className="absolute top-[23.5px] left-[332.807px] h-px w-6"
-        style={{ background: hairline }}
-      />
+      {/* Right leader ├── — moved out 12px from the Figma x. The source gap
+          fits "(83%) Progress.." but not a reserved third digit, and the slack
+          has to come from this side: the left leader sits 9.8px off a full
+          fill and can't move. Still leaves 23px to the pill's cap. */}
+      {full && (
+        <>
+          <div
+            className="absolute top-[19.5px] left-[348.307px] h-[9px] w-px"
+            style={{ background: hairline }}
+          />
+          <div
+            className="absolute top-[23.5px] left-[348.807px] h-px w-6"
+            style={{ background: hairline }}
+          />
+        </>
+      )}
     </div>
   );
 }
