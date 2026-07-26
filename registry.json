@@ -88,7 +88,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Displays a list of options for the user to pick from\u2014triggered by a button.",
+      "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button"
@@ -544,7 +544,7 @@
       "name": "bento-03",
       "type": "registry:component",
       "title": "Bento 03",
-      "description": "A flat 3\u00d72 feature grid on thin edge-masked rules \u2014 no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
+      "description": "A flat 3×2 feature grid on thin edge-masked rules — no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
       "author": "D2 Studio",
       "dependencies": [
         "lucide-react",
@@ -1043,7 +1043,7 @@
       "name": "bento-04",
       "type": "registry:component",
       "title": "Bento 04",
-      "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. Responsive down to mobile \u2014 the grid restacks and the card illustrations shift rather than shrink \u2014 and below lg, where there is no pointer, a tap plays the hover state for a few seconds instead. GSAP-driven, theme-aware and reduced-motion aware.",
+      "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. Responsive down to mobile — the grid restacks and the card illustrations shift rather than shrink — and below lg, where there is no pointer, a tap plays the hover state for a few seconds instead. GSAP-driven, theme-aware and reduced-motion aware.",
       "author": "D2 Studio",
       "dependencies": [
         "gsap",
@@ -1102,6 +1102,94 @@
       ]
     },
     {
+      "name": "bento-05",
+      "type": "registry:component",
+      "title": "Bento 05",
+      "description": "A four-card studio bento on a masked dot field. Each card is a Figma gradient export carrying its own glass fill and 16px border; an ambilight sampled from the artwork blooms behind the grid as the section scrolls through, and the cards rise and brighten on the same switch. The bolt card lights its own grain with a radar ping, the AI card runs five out-of-phase sweeps down its stripes, and the globe card spins a cobe sphere with projected visitor chips. Below lg the section becomes a still picture — no ambilight, no ripple, no sphere — and the artwork is rasterised to a canvas once instead of re-running eighteen SVG blurs per paint; the globe card swaps the sphere for the stat deck it was carrying. Theme-aware and reduced-motion aware throughout.",
+      "author": "D2 Studio",
+      "dependencies": [
+        "cobe@^0.6.4",
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/bento-05.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/bento-05/load-in.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/load-in.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/glow.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/glow.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/glow-art.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/glow-art.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/card-glow.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/card-glow.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/flat.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/flat.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/globe.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/globe.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/grain.ts",
+          "type": "registry:component",
+          "target": "components/bento-05/grain.ts"
+        },
+        {
+          "path": "registry/default/components/bento-05/glyphs.ts",
+          "type": "registry:component",
+          "target": "components/bento-05/glyphs.ts"
+        },
+        {
+          "path": "registry/default/components/bento-05/card-art-1.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/card-art-1.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/card-art-2.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/card-art-2.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/card-art-3.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/card-art-3.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/card-art-4.tsx",
+          "type": "registry:component",
+          "target": "components/bento-05/card-art-4.tsx"
+        },
+        {
+          "path": "registry/default/components/bento-05/bento-05.css",
+          "type": "registry:file",
+          "target": "components/bento-05/bento-05.css"
+        }
+      ],
+      "categories": [
+        "bento",
+        "blocks"
+      ]
+    },
+    {
       "name": "metallic-shimmer",
       "type": "registry:component",
       "title": "Metallic Shimmer",
@@ -1143,7 +1231,7 @@
       "name": "progress-bar",
       "type": "registry:component",
       "title": "Progress Bar",
-      "description": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout. Every surface property is themeable \u2014 fill (solid or gradient), stroke, backdrop blur, drop and inner shadow \u2014 with light and dark presets shipped. All colours resolve to oklch().",
+      "description": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout. Three levels of chrome — full, bar, plain — and two fill styles: a 6px beam or a three-row dot matrix. Every surface property is themeable — fill (solid or gradient), stroke, backdrop blur, drop and inner shadow — with glass and opaque presets shipped for light and dark. All colours resolve to oklch(), and fillFilter dresses the gradient alone so a caller can animate the value without touching the type or the ticks.",
       "author": "D2 Studio",
       "dependencies": [],
       "registryDependencies": [],
@@ -1155,6 +1243,25 @@
       ],
       "categories": [
         "progress",
+        "blocks"
+      ]
+    },
+    {
+      "name": "button-matt",
+      "type": "registry:component",
+      "title": "Matte Button",
+      "description": "A matte chip button with a holographic rim: three blurred glows pinned under the top edge, a bounce light along the bottom, and a gradient-clipped label and mask-painted icon. Four shadcn sizes with the corner curvature held constant, an expo-out hover that lifts the chip and pushes the ink, and a light theme that is the same layer stack with swapped tokens and a multiplied rim. Every custom property is defined on the button, so it needs nothing from the host stylesheet.",
+      "author": "D2 Studio",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/button-matt.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "button",
         "blocks"
       ]
     }

@@ -116,5 +116,20 @@
     "codeStatus": "available",
     "codeUrl": "https://ui.d2studio.dev/r/hero-01.json",
     "isActive": true
+  },
+  {
+    "name": "button-matt",
+    "type": "component",
+    "title": "Matte Button",
+    "description": "A matte chip button with a holographic rim, a gradient-clipped label and a mask-painted icon. Four shadcn sizes, an expo-out hover, light and dark from one token set.",
+    "author": "@uxgodwin",
+    "version": "1.0.0",
+    "categories": [
+      "blocks"
+    ],
+    "blockType": "blocks",
+    "codeStatus": "available",
+    "codeUrl": "https://ui.d2studio.dev/r/button-matt.json",
+    "isActive": true
   }
 ]

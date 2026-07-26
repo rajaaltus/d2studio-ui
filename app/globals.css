@@ -4143,237 +4143,6 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
   }
 }
 
-/* bento-5 ambient card light. The field that decides which of the card's own
-   grain / stripes are lit; card-glow.tsx supplies the shapes, these move them.
-   Long loops on purpose — the point is that you never catch the card repeating,
-   so the periods are deliberately not multiples of each other.
-
-   Every card runs two animations, never one: the motion, and an on/off gate
-   over the top on a period that shares no factor with it. The card lights,
-   holds, goes dark, comes back somewhere else in the motion loop. That's what
-   keeps it from reading as a screensaver — and it means the gate is the one
-   knob for how present a card's light is, independent of how it moves. */
-
-/* Rippling: rings going out from the strike, like a drop landing in water.
-
-   The radius is a registered property the gradient reads, rather than the
-   mask's own size. Two reasons, both of which the size approach fails:
-   the ring stays a true circle (mask-size would stretch it to the card's
-   aspect), and the origin holds still at the bolt instead of the card's middle
-   — a percentage mask-position only stays put at 50% 50%, so a growing box
-   would drag any other origin along with it.
-
-   The layer is a double ring, not a single one: a main front at the radius and
-   a second behind it at a fixed gap, both in the one gradient. Putting the pair
-   in a single gradient means they cannot drift out of sync, since there is only
-   one radius driving them, and it costs one layer's worth of raster for two
-   circles.
-
-   Both are drawn thin and hard-shouldered. This is a signal going out, not
-   water — an alert ping reads by its edge, and the soft wide crest that made it
-   look like a drop is exactly what has to go.
-
-   Stops are offsets around that radius, not multiples of it, so both fronts
-   keep one thickness the whole way out. A wave front doesn't get fatter as it
-   travels; one that does reads as a blur, not a ripple. Soft on both sides,
-   softer ahead than behind.
-
-   Percentages resolve against the distance to the farthest corner, and from an
-   origin down at 62% that corner is a long way past the near edges — the sides
-   sit at roughly a third of it. So the front stops at 92%: everything the eye
-   is actually on has been crossed by then, and the rest of the trip would be
-   the ring crawling off-card while the period ran out. It scales with the card
-   either way, which a pixel radius wouldn't.
-
-   Eased out, but only moderately. The ping still leaves the origin quicker than
-   it arrives, which is the character; push the curve any harder and every ring
-   is at 80%+ within a third of its life, so all four pile up at the rim and the
-   card reads as one flickering edge instead of a field of rings. The curve has
-   to leave them spread across the radius.
-
-   One wave per cycle, back to back. Travel and fade run the full length of the
-   period, so the next leaves the pin exactly as the last one clears the card —
-   no hold, no dead frame. The period is the wave's own crossing time and
-   nothing more, which is why it's 4.5s: that's how long the crossing took when
-   there was still silence after it. Same wave, same speed, just no wait. */
-@property --b5-r {
-  syntax: "<percentage>";
-  initial-value: 0%;
-  inherits: false;
-}
-
-.b5-ripple {
-  --b5-ox: 54%;
-  --b5-oy: 62%;
-  --b5-peak: 0.85;
-  /* Main ring width, gap back to the second, second ring width. The gap has to
-     clear both half-widths or the stop list stops being monotonic and the
-     trough between the two closes up — at these widths that floor is 7.75%. */
-  --b5-w: 5%;
-  --b5-g: 11%;
-  --b5-t: 2.5%;
-  -webkit-mask-image: radial-gradient(
-    circle at var(--b5-ox) var(--b5-oy),
-    transparent calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 1.2),
-    rgba(0, 0, 0, 0.32) calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 0.5),
-    rgba(0, 0, 0, 0.62) calc(var(--b5-r) - var(--b5-g)),
-    rgba(0, 0, 0, 0.2) calc(var(--b5-r) - var(--b5-g) + var(--b5-t) * 0.6),
-    transparent calc(var(--b5-r) - var(--b5-w) * 1.25),
-    rgba(0, 0, 0, 0.3) calc(var(--b5-r) - var(--b5-w) * 0.66),
-    rgba(0, 0, 0, 0.85) calc(var(--b5-r) - var(--b5-w) * 0.2),
-    #000 var(--b5-r),
-    rgba(0, 0, 0, 0.5) calc(var(--b5-r) + var(--b5-w) * 0.4),
-    transparent calc(var(--b5-r) + var(--b5-w))
-  );
-  mask-image: radial-gradient(
-    circle at var(--b5-ox) var(--b5-oy),
-    transparent calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 1.2),
-    rgba(0, 0, 0, 0.32) calc(var(--b5-r) - var(--b5-g) - var(--b5-t) * 0.5),
-    rgba(0, 0, 0, 0.62) calc(var(--b5-r) - var(--b5-g)),
-    rgba(0, 0, 0, 0.2) calc(var(--b5-r) - var(--b5-g) + var(--b5-t) * 0.6),
-    transparent calc(var(--b5-r) - var(--b5-w) * 1.25),
-    rgba(0, 0, 0, 0.3) calc(var(--b5-r) - var(--b5-w) * 0.66),
-    rgba(0, 0, 0, 0.85) calc(var(--b5-r) - var(--b5-w) * 0.2),
-    #000 var(--b5-r),
-    rgba(0, 0, 0, 0.5) calc(var(--b5-r) + var(--b5-w) * 0.4),
-    transparent calc(var(--b5-r) + var(--b5-w))
-  );
-  /* Matches the 0% frame, so the first paint doesn't flash before the animation
-     takes over. */
-  opacity: 0;
-  animation: b5-ripple 4.5s cubic-bezier(0.33, 0.55, 0.45, 1) infinite;
-}
-@keyframes b5-ripple {
-  /* Starts at the pin's own radius, not at nothing — the ring leaves the dot
-     rather than materialising in the middle of it. The wrap back to this frame
-     is invisible because 100% is already at zero opacity. */
-  0% {
-    --b5-r: 6%;
-    opacity: 0;
-  }
-  22% {
-    opacity: var(--b5-peak);
-  }
-  67% {
-    opacity: calc(var(--b5-peak) * 0.55);
-  }
-  100% {
-    --b5-r: 92%;
-    opacity: 0;
-  }
-}
-
-/* Sweeping: one band down the length of the stripes. The band is 60% of the
-   card, so mask-position percentages resolve against the remaining 40% — -150%
-   puts it fully off the top, 250% fully off the bottom. The easing is the whole
-   character: slow in, gathering speed through the middle, slow out again, so it
-   arrives and leaves rather than scrolling past at a constant rate. */
-.b5-sweep {
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 60%;
-  mask-size: 100% 60%;
-  opacity: 0.4;
-  animation: b5-sweep 6.5s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-}
-@keyframes b5-sweep {
-  0% {
-    -webkit-mask-position: 0 -150%;
-    mask-position: 0 -150%;
-  }
-  100% {
-    -webkit-mask-position: 0 250%;
-    mask-position: 0 250%;
-  }
-}
-
-/* The stripes' gate. It sits on the group rather than on the layers, because
-   each layer already carries its own animation-duration for its own sweep and a
-   second animation there would inherit it. 11s against sweeps of 5.8–9.1s, none
-   of them factors of it, so the swell lands mid-sweep as often as it lands
-   between them. It dips rather than closes — the lines never all go out. */
-.b5-sweep-gate {
-  opacity: 0.55;
-  animation: b5-sweep-gate 11s ease-in-out infinite;
-}
-@keyframes b5-sweep-gate {
-  0%,
-  100% {
-    opacity: 0.55;
-  }
-  20% {
-    opacity: 1;
-  }
-  64% {
-    opacity: 1;
-  }
-  83% {
-    opacity: 0.65;
-  }
-}
-
-/* The pin. A small soft dot held at the origin, breathing on the same period
-   the rings leave on — this is the part that makes the card read as marking a
-   location rather than as rings for their own sake. Rings alone are an effect;
-   rings with a source are a signal, and the eye goes to the source. It never
-   goes fully out, because the thing being pointed at doesn't stop existing
-   between pulses. */
-.b5-pin {
-  -webkit-mask-image: radial-gradient(
-    circle at var(--b5-ox) var(--b5-oy),
-    #000 0%,
-    rgba(0, 0, 0, 0.55) 4%,
-    transparent 11%
-  );
-  mask-image: radial-gradient(
-    circle at var(--b5-ox) var(--b5-oy),
-    #000 0%,
-    rgba(0, 0, 0, 0.55) 4%,
-    transparent 11%
-  );
-  opacity: 0.55;
-  animation: b5-pin 4.5s ease-in-out infinite;
-}
-@keyframes b5-pin {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  22% {
-    opacity: 0.92;
-  }
-}
-
-/* Still, but not dark: the field parks where it opens, so the texture keeps a
-   little light instead of the card going flat. */
-@media (prefers-reduced-motion: reduce) {
-  .b5-ripple,
-  .b5-pin,
-  .b5-sweep,
-  .b5-sweep-gate {
-    animation: none;
-    opacity: 1;
-  }
-  /* The pin stays lit and one ring parks mid-flight around it, so the card
-     still reads as marking the spot. The other rings would only stack more
-     light on the same still frame, so they stay out of it. */
-  .b5-pin {
-    opacity: 0.7;
-  }
-  .b5-ripple {
-    --b5-r: 55%;
-    opacity: 0;
-  }
-  .b5-ripple:first-of-type {
-    opacity: 0.6;
-  }
-  .b5-sweep {
-    opacity: 0.4;
-    -webkit-mask-position: 0 50%;
-    mask-position: 0 50%;
-  }
-}
-
 /* transitions.dev — menu dropdown (05-menu-dropdown.md). The snippet's exact
    tuning: 250ms open / 150ms close, 0.97 pre-scale, 0.99 closing scale, on
    cubic-bezier(0.22, 1, 0.36, 1), growing from the trigger's corner.
@@ -4434,3 +4203,20 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     animation: none !important;
   }
 }
+
+/* The matt button's hover ring. A conic gradient painted into a 1.5px band by
+   the two-mask exclude trick, then spun by hue-rotate — the band is static
+   geometry, so only the filter animates. Paused until hover, and stopped
+   outright for anyone who asked the OS for less motion. */
+@keyframes matt-ring-hue {
+  to {
+    filter: hue-rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matt-ring::after {
+    animation: none !important;
+  }
+}
+

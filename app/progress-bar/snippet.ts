@@ -123,8 +123,8 @@ export function designPrompt({
     `Readout — the percent in brackets, "(83%)", in a mono 12px 6-character right-aligned box, 9.5px gap, then the status label in a 10-character left-aligned box${chrome === "full" ? ", the pair centred in the tick gap" : ""}. Both widths are reserved so nothing re-measures while the value animates. Percent ${theme.text.pct} at 80%, label ${theme.text.label}.`,
     `Fill — ${combo}, ${theme.fill.mode}: ${css(theme.fill)}${theme.fill.mode === "gradient" ? " with stops at 37.4/59.7/75.6/100% and the tail stop faded to 70%" : ""}.`,
     fill === "beam"
-      ? "  Drawn as one 6px strip with 3px rounded ends, plus the same paint blurred 18px at 27% behind it — the light it throws into the surface."
-      : "  Drawn as three rows of 2px dots: a 12px strip masked with radial-gradient(circle at 2px 2px, #000 1px, transparent 1.05px) on a 4px cell, its width snapped to whole cells so the leading column is always a full dot. Same 18px/27% glow behind it, unmasked.",
+      ? "  Drawn as one 6px strip with fully rounded ends, plus the same paint blurred 8px at 14% behind it — the light it throws into the surface."
+      : "  Drawn as three rows of 2px dots: a 12px strip masked with radial-gradient(circle at 2px 2px, #000 1px, transparent 1.05px) on a 4px cell, its width snapped to whole cells so the leading column is always a full dot. Square ends, and the unrun rail wears the same mask.",
     preset
       ? `Motion — ${preset.name}: the value travels in two stages, 18% then 100%, with a 0.35s hold between, ${preset.spec.duration}s in total on cubic-bezier(0.65, 0, 0.35, 1) — ${MOTION_NOTE[preset.name]}.`
       : "Motion — none; the bar sits at its value.",

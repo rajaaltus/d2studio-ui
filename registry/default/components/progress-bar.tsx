@@ -9,6 +9,9 @@ const PAD = 16.158;
  *  6-char box, the 9.5px gap, the label's 10-char box — 16 mono chars at 12px —
  *  and 12px of clear air between the fill and the bracket. */
 const READOUT = 137;
+/** The two reserved boxes, in mono chars: "(100%)" and "Progress..". */
+const PCT_CH = 6;
+const LABEL_CH = 10;
 /** Stop offsets baked into the Figma gradients — only the colours are tunable. */
 const SURFACE_OFFSETS = [0, 50, 100];
 const FILL_OFFSETS = [37.4, 59.7, 75.6, 100];
@@ -109,8 +112,21 @@ export const FANCY_DARK_THEME: BarTheme = {
   inner: { ...FANCY_THEME.inner, opacity: 0.14 },
 };
 
-/** 6-digit hex → oklch(), so every colour in the rendered CSS stays in one space. */
-export function toOklch(hex: string, alpha = 1) {
+/** Hex → oklch(), so every colour in the rendered CSS stays in one space.
+ *  `#abc` and `#aabbcc` convert; anything else — `oklch(...)`, `var(--brand)`,
+ *  a named colour — is handed to CSS untouched with its alpha applied through
+ *  `color-mix`, so a theme written in any other notation still renders instead
+ *  of resolving to a silent NaN. */
+export function toOklch(color: string, alpha = 1) {
+  const hex = /^#([\da-f]{3}|[\da-f]{6})$/i.test(color)
+    ? color.length === 4
+      ? `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`
+      : color
+    : null;
+  if (!hex)
+    return alpha < 1
+      ? `color-mix(in oklch, ${color} ${(alpha * 100).toFixed(1)}%, transparent)`
+      : color;
   const n = parseInt(hex.slice(1), 16);
   const lin = (c: number) =>
     c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
@@ -192,7 +208,12 @@ export default function ProgressBar({
   fillFilter?: string;
   className?: string;
 }) {
-  const pct = Math.min(100, Math.max(0, Math.round(value)));
+  // Clamped, and NaN reads as 0 rather than propagating into every width and
+  // gradient stop downstream — a caller dividing by a total that hasn't loaded
+  // is the ordinary way this gets an undefined value.
+  const pct = Number.isFinite(value)
+    ? Math.min(100, Math.max(0, Math.round(value)))
+    : 0;
   const hairline = toOklch(theme.stroke.color, theme.stroke.opacity);
   const full = chrome === "full";
   const cased = chrome !== "plain";
@@ -206,12 +227,31 @@ export default function ProgressBar({
   // reflection can't drift out of step with the value.
   const ramp = paint(theme.fill, FILL_OFFSETS, FILL_ALPHAS);
   const track = fill === "beam" ? width : Math.round(width / CELL) * CELL;
+  const rail = toOklch(theme.text.label, 0.14);
   // Round caps read as a beam; on the dot grid they'd clip the leading and
   // trailing columns mid-circle, so matrix stays square.
   const strip = cn(
     "absolute",
     fill === "beam" ? "top-[21px] h-1.5 rounded-full" : "top-[18px] h-3",
   );
+  // What the readout's reserved boxes leave unused, in mono chars. The boxes
+  // are sized for the longest reading each span can take, so a shorter one —
+  // "Done." in a 10ch label box, "(83%)" in a 6ch percent box — leaves dead
+  // space that would otherwise read as the line being off its centre. Counted
+  // on the padded string, not the trimmed one: `Init. ` and `Init..` are the
+  // same length, so the ellipsis can cycle without dragging the line with it.
+  const pctText = `(${pct}%)`;
+  // Never negative: a caller's label longer than the reserved box has no slack
+  // to slide over, and letting it go negative would drag the percent left into
+  // the tick instead.
+  const slack = Math.max(0, LABEL_CH - label.length);
+  // Centred, half the slack recentres the pair — and the percent's own slack
+  // sits on its left, so it pulls the other way. Pinned right there's nothing to
+  // recentre in, so the readout doesn't move at all: closing the label's dead
+  // space would slide the whole line as the stage changes ("Init  " has 4ch of
+  // slack, "Progress.." none, "Done." 5), which reads as the readout jumping
+  // mid-run. The dead space is constant instead, and sits at the right edge.
+  const nudge = full ? (slack - (PCT_CH - pctText.length)) / 2 : 0;
   // The dot grid, as style props — the fill wears it, and so does the rail
   // behind it, which would otherwise be a solid block behind a dotted bar.
   const dots =
@@ -230,7 +270,12 @@ export default function ProgressBar({
       aria-valuenow={pct}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={label}
+      // The label is padded to a fixed width so the ellipsis can cycle without
+      // moving the line; a screen reader should hear the word, not the padding,
+      // and should hear the stage alongside the number rather than instead of
+      // it — `aria-label` on its own replaces the value.
+      aria-label={label.trim()}
+      aria-valuetext={`${pct}%, ${label.trim()}`}
       className={cn(
         "relative h-12 w-[392px] overflow-hidden",
         cased && "rounded-full",
@@ -266,7 +311,7 @@ export default function ProgressBar({
           style={{
             left: pad,
             width: span,
-            background: toOklch(theme.text.label, 0.14),
+            background: rail,
             ...dots,
           }}
         />
@@ -324,7 +369,10 @@ export default function ProgressBar({
           ellipsis cycles.
           The percent is right-aligned in its box so the spare digit slot falls
           next to the tick; the label is left-aligned in its own so the trailing
-          dots grow into dead space instead of pushing the word about. */}
+          dots grow into dead space instead of pushing the word about.
+          Then the pair slides back over whatever the boxes didn't use — see
+          `nudge`, which is what keeps a short reading ("Done.") from sitting off
+          to one side of a gap sized for a long one. */}
       <div
         className={cn(
           "absolute inset-y-0 flex items-center gap-[9.5px] font-mono text-xs whitespace-nowrap",
@@ -332,17 +380,27 @@ export default function ProgressBar({
           // have no gap to sit in, so the readout pins to the right and the
           // fill takes what's left.
           full && "right-[43.693px] left-[209.807px] justify-center",
+          // The nudge only moves when the reading changes length — a handful of
+          // times in a run, as the percent gains a digit and at each stage —
+          // never per frame, so it can afford to ease instead of jumping.
+          "transition-transform duration-200 ease-out motion-reduce:transition-none",
         )}
-        style={full ? undefined : { right: pad }}
+        style={{
+          ...(full ? undefined : { right: pad }),
+          transform: `translateX(${nudge}ch)`,
+        }}
       >
         <span
           className="inline-block w-[6ch] text-right"
           style={{ color: toOklch(theme.text.pct, 0.8) }}
         >
-          ({pct}%)
+          {pctText}
         </span>
+        {/* Clipped, because the box is what the leaders were placed around: a
+            caller's longer status has to end in an ellipsis rather than run
+            out under the right tick. */}
         <span
-          className="inline-block w-[10ch] text-left"
+          className="inline-block w-[10ch] overflow-hidden text-left text-ellipsis"
           style={{ color: toOklch(theme.text.label) }}
         >
           {label}

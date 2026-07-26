@@ -236,7 +236,7 @@ export const MOTIONS = [
       // flare can't leave a residue, and an interrupted one can't strand a glow.
       const a = Math.sin(Math.PI * q);
       return [
-        `brightness(${(1 + 0.5 * a).toFixed(3)})`,
+        `brightness(${(1 + 0.4 * a).toFixed(3)})`,
         `saturate(${(1 + a).toFixed(3)})`,
         `drop-shadow(0 0 ${(7 * a).toFixed(2)}px ${toOklch(glow, 0.9 * a)})`,
         `drop-shadow(0 0 ${(18 * a).toFixed(2)}px ${toOklch(glow, 0.55 * a)})`,
@@ -275,20 +275,22 @@ const Caret = () => (
   </svg>
 );
 
-const GroupLabel = ({ children }: { children: string }) => (
+export const GroupLabel = ({ children }: { children: string }) => (
   <span className="pr-0.5 pl-1.5 text-[10px] tracking-[0.12em] text-muted-foreground uppercase">
     {children}
   </span>
 );
 
-const Divider = () => <span className="mx-1 h-6 w-px shrink-0 bg-border" />;
+export const Divider = () => (
+  <span className="mx-1 h-6 w-px shrink-0 bg-border" />
+);
 
 // Same spec as the site's bottom dock: h-12, rounded-full, one border and one
 // lifted shadow. Shared so the two pills can't drift apart.
-const PILL =
+export const PILL =
   "flex h-12 shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-border/60 bg-background px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]";
 
-const LIFT =
+export const LIFT =
   "shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]";
 
 /** One dropdown, two uses. The panel is a card on the same spec as the pill it
@@ -593,10 +595,17 @@ export default function ProgressInspector({
       className={cn("flex w-max items-center justify-center gap-2", className)}
     >
       <div className={PILL}>
-        <Segmented
-          options={{ Glass: "glass", Fancy: "fancy" } as const}
-          value={variant}
-          onChange={onVariantChange}
+        {/* Plain sits with the surfaces because that's what it is: no pill at
+            all. It's stored as a chrome, so picking it sets the chrome and
+            picking a surface takes the bar back out of it. */}
+        <Segmented<Variant | "plain">
+          options={{ Glass: "glass", Fancy: "fancy", Plain: "plain" } as const}
+          value={chrome === "plain" ? "plain" : variant}
+          onChange={(v) => {
+            if (v === "plain") return onChromeChange?.("plain");
+            onVariantChange(v);
+            if (chrome === "plain") onChromeChange?.("full");
+          }}
         />
         {/* Same pill as the surface pick, because it's the same question asked
             of the other half of the component: what the bar looks like, not what
@@ -612,13 +621,14 @@ export default function ProgressInspector({
           </>
         )}
         {/* The third question of the same kind: how much of the component there
-            is. Bar drops the tick leaders, Plain drops the pill as well and
-            leaves the fill, the percent and the status on the page. */}
+            is — Bar drops the tick leaders. Neither reads as picked while Plain
+            is, since Plain has no pill for them to trim; clicking one is the
+            way back. */}
         {chrome && onChromeChange && (
           <>
             <Divider />
             <Segmented
-              options={{ Full: "full", Bar: "bar", Plain: "plain" } as const}
+              options={{ Full: "full", Bar: "bar" } as const}
               value={chrome}
               onChange={onChromeChange}
             />

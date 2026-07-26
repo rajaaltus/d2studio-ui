@@ -1,0 +1,75 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f5e3]:
+    - generic [ref=f5e4]:
+      - generic [ref=f5e5]:
+        - button "github" [ref=f5e6]
+        - generic [ref=f5e10]: Small (sm)
+      - generic [ref=f5e11]:
+        - button "github" [ref=f5e12]
+        - generic [ref=f5e16]: Medium (default)
+      - generic [ref=f5e17]:
+        - button "github" [ref=f5e18]
+        - generic [ref=f5e22]: Large (lg)
+      - generic [ref=f5e23]:
+        - button "github" [ref=f5e24]
+        - generic [ref=f5e28]: Extra Large (xl)
+    - generic [ref=f5e29]:
+      - generic [ref=f5e30]:
+        - generic [ref=f5e31]: Icon
+        - button "GitHub" [pressed] [ref=f5e32] [cursor=pointer]
+        - button "Star" [ref=f5e35] [cursor=pointer]
+        - button "Download" [ref=f5e38] [cursor=pointer]
+        - button "Sparkles" [ref=f5e43] [cursor=pointer]
+        - generic "Upload an SVG icon" [ref=f5e48] [cursor=pointer]:
+          - button "Upload an SVG icon" [ref=f5e52]
+        - button "Hide icon" [ref=f5e54] [cursor=pointer]
+      - generic [ref=f5e58]:
+        - generic [ref=f5e59]: Label
+        - textbox "Button label" [ref=f5e60]:
+          - /placeholder: github
+      - generic [ref=f5e61]:
+        - generic [ref=f5e62]: Size
+        - generic [ref=f5e63]:
+          - button "SM" [ref=f5e64] [cursor=pointer]
+          - button "MD" [ref=f5e65] [cursor=pointer]
+          - button "LG" [ref=f5e66] [cursor=pointer]
+          - button "XL" [ref=f5e67] [cursor=pointer]
+      - generic [ref=f5e68]:
+        - generic [ref=f5e69]: Shadow
+        - generic [ref=f5e70]:
+          - button "On" [ref=f5e71] [cursor=pointer]
+          - button "Off" [ref=f5e72] [cursor=pointer]
+        - button "Reset" [disabled]
+    - generic [ref=f5e75]:
+      - generic [ref=f5e76]:
+        - generic [ref=f5e77]: Prompt
+        - button "Copy Prompt" [ref=f5e78]:
+          - generic [ref=f5e79]: Copy
+      - code [ref=f5e81]: "Build a React + Tailwind button component called MattButton, matte-dark chip style: - 36px tall — medium (default) on the shadcn size scale — with a 10px radius and a small medium-weight label. - Surface is a flat matte fill with a 1px gradient border (light top edge fading to a darker bottom), plus an inset shadow so the face reads slightly recessed. - Three blurred elliptical glows pinned just under the top edge — white→violet→magenta, then the reverse, then a neutral haze — composited with mix-blend-mode: plus-lighter, so the top rim looks holographic. - One soft-light violet blur along the bottom edge for the bounce light. - Label and icon are painted with a horizontal gradient — gold → green → coral → teal in dark, a pastel #FFE4DC → #C7FFAF → #9DE7FB in light — the icon via a CSS mask so the mark takes the same sweep. - Label and icon carry a drop shadow: x -1, y 0, blur 1, black at 25%. On the masked mark the filter must sit on a parent of the mask, or it shadows the gradient's box instead of the glyph. - Light and dark themes are the same layers with swapped CSS custom properties. Light also swaps the rim's blend mode: plus-lighter reads as holographic on the dark face but disappears on the light one, which composites the same layers normally with near-white stops. - Content: label \"github\", leading GitHub icon. - The icon box scales with the size (14px / 16px / 16px / 18px); icons are fitted with mask-size: contain, never with intrinsic dimensions. - Presses scale to 0.97, has a visible focus ring, and supports all native button props."
+    - generic [ref=f5e82]:
+      - generic [ref=f5e83]:
+        - generic [ref=f5e84]:
+          - generic [ref=f5e85]: Usage
+          - button "Copy Usage" [ref=f5e86]:
+            - generic [ref=f5e87]: Copy
+        - code [ref=f5e89]: "import { MattButton } from \"@/components/button-matt\"; <MattButton> github </MattButton>"
+      - generic [ref=f5e90]:
+        - generic [ref=f5e91]:
+          - generic [ref=f5e92]: CLI
+          - button "Copy CLI" [ref=f5e93]:
+            - generic [ref=f5e94]: Copy
+        - code [ref=f5e96]: npx shadcn@latest add https://d2studio.dev/r/button-matt.json
+  - generic [ref=f5e97]:
+    - heading "Command palette" [level=2] [ref=f5e98]
+    - paragraph [ref=f5e99]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f5e100]:
+    - button "Blocks" [ref=f5e101] [cursor=pointer]
+    - button "Tools New" [ref=f5e119] [cursor=pointer]:
+      - generic [ref=f5e131]: Tools
+      - generic [ref=f5e133]: New
+    - button "Toggle theme" [ref=f5e138] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e152] [cursor=pointer]
+  - alert [ref=f5e156]
