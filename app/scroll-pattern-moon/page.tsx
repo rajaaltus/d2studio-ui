@@ -4,45 +4,20 @@ import * as React from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { PixelSpinner } from "@/components/pixel-spinner";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-/* Copied from components/spinners/spinner-morph.tsx — the wedge texture and
- * its scrub-bound parallax, isolated so the scroll effect is the only thing
- * on the page. */
+/* Wedge texture from components/spinners/spinner-morph.tsx, scaled up. */
+const TILE = 8;
 const DOT_PATTERN: React.CSSProperties = {
-  backgroundImage:
-    "radial-gradient(ellipse farthest-corner at 6.25px 6.25px, var(--pattern-fg), var(--pattern-fg) 50%, transparent 50%)",
-  backgroundSize: "6.25px 6.25px",
+  backgroundImage: `radial-gradient(ellipse farthest-corner at ${TILE}px ${TILE}px, var(--pattern-fg), var(--pattern-fg) 50%, transparent 50%)`,
+  backgroundSize: `${TILE}px ${TILE}px`,
 };
-
-const GUIDE_LINES = [
-  { x1: "50%", y1: "0", x2: "50%", y2: "100%" },
-  { x1: "0", y1: "50%", x2: "100%", y2: "50%" },
-];
-
-const CENTER_SPINNER = {
-  pattern: {
-    rows: 3,
-    cols: 3,
-    interval: 170,
-    frames: [
-      [4],
-      [4],
-      [1, 3, 4, 5, 7],
-      [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      [1, 3, 4, 5, 7],
-      [4],
-    ],
-  },
-  gradient: { from: "#f6d365", to: "#fda085", glow: "#fda085" },
-  glow: 0.25,
-} as const;
 
 export default function ScrollPatternMoonPage() {
   const stageRef = React.useRef<HTMLDivElement>(null);
 
+  /* Scrub-bound parallax on the texture layer — copied from SpinnerMorph. */
   useGSAP(
     () => {
       const stage = stageRef.current;
@@ -72,83 +47,114 @@ export default function ScrollPatternMoonPage() {
 
   return (
     <main className="bg-background">
-      <div className="flex h-[70vh] items-end justify-center pb-16 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-        Scroll
-      </div>
+      <style>{css}</style>
 
-      <div className="luminous-spinners relative overflow-hidden border-y">
+      <div className="h-[30vh]" />
+
+      <div
+        ref={stageRef}
+        className="relative min-h-[85vh] overflow-hidden border-y bg-background"
+      >
+        {/* Texture is clipped to the rectangle the four rules describe, so the
+            outer margins stay clean. Clipping sits on the static parent — the
+            child is what parallaxes. */}
         <div
-          ref={stageRef}
-          className="relative min-h-[70vh] overflow-hidden bg-[#f0f0f0] dark:bg-background"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-[12%] inset-y-[14%] overflow-hidden"
         >
           <div
-            aria-hidden="true"
             data-dot-layer
-            className="pointer-events-none absolute -inset-y-44 inset-x-0"
+            className="absolute inset-x-0 -inset-y-44"
             style={DOT_PATTERN}
           />
+        </div>
 
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full"
-            aria-hidden="true"
-          >
-            {GUIDE_LINES.map((l, i) => (
-              <line
-                key={`halo-${i}`}
-                {...l}
-                className="text-[#f0f0f0] dark:text-background"
-                stroke="currentColor"
-                strokeWidth="6"
-              />
-            ))}
-            {GUIDE_LINES.map((l, i) => (
-              <line
-                key={`trace-${i}`}
-                {...l}
-                className="text-black/20 dark:text-white/15"
-                stroke="currentColor"
-                strokeWidth="1.25"
-              />
-            ))}
-          </svg>
+        {/* Four rules — the framing grid. */}
+        <div className="pointer-events-none absolute inset-y-0 left-[12%] w-px bg-border" />
+        <div className="pointer-events-none absolute inset-y-0 right-[12%] w-px bg-border" />
+        <div className="pointer-events-none absolute inset-x-0 top-[14%] h-px bg-border" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-[14%] h-px bg-border" />
 
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="rounded-[48px] bg-[#f0f0f0] p-1 dark:bg-background">
-              <div className="chip-body relative flex h-[240px] w-[240px] items-center justify-center">
-                {[
-                  { top: 18, left: 18 },
-                  { top: 18, right: 18 },
-                  { bottom: 18, left: 18 },
-                  { bottom: 18, right: 18 },
-                ].map((pos, i) => (
-                  <span
-                    key={`stud-${i}`}
-                    aria-hidden="true"
-                    className="chip-stud pointer-events-none absolute h-2 w-2 rounded-full"
-                    style={pos}
-                  />
-                ))}
-
-                <div className="chip-panel flex h-[176px] w-[176px] items-center justify-center">
-                  <PixelSpinner
-                    pattern={CENTER_SPINNER.pattern}
-                    color="violet"
-                    gradient={CENTER_SPINNER.gradient}
-                    glow={CENTER_SPINNER.glow}
-                    cellSize={21}
-                    gap={8}
-                    shape="square"
-                    effect="none"
-                    pop
-                  />
-                </div>
-              </div>
-            </div>
+        {/* Centered square. */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="spm-square grid size-40 place-items-center rounded-2xl">
+            <span className="spm-shimmer-text text-sm font-medium tracking-tight">
+              Scroll me
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="h-[120vh]" />
+      {/* Dummy bento — scroll fodder below the stage. */}
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-6 py-24 sm:grid-cols-2">
+        {BENTO.map((card) => (
+          <div
+            key={card.kicker}
+            className={`rounded-xl border bg-card p-6 ${card.span}`}
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              {card.kicker}
+            </p>
+            <h3 className="mt-3 text-lg font-medium tracking-tight">
+              {card.title}
+            </h3>
+            <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+              {card.body}
+            </p>
+            <div className="mt-6 h-24 rounded-lg border border-dashed" />
+          </div>
+        ))}
+      </div>
+
+      <div className="h-[30vh]" />
     </main>
   );
 }
+
+const BENTO = [
+  {
+    kicker: "One",
+    title: "Placeholder card",
+    body: "Dummy copy so the grid has something to render.",
+    span: "sm:col-span-2",
+  },
+  {
+    kicker: "Two",
+    title: "Placeholder card",
+    body: "Dummy copy so the grid has something to render.",
+    span: "",
+  },
+  {
+    kicker: "Three",
+    title: "Placeholder card",
+    body: "Dummy copy so the grid has something to render.",
+    span: "",
+  },
+  {
+    kicker: "Four",
+    title: "Placeholder card",
+    body: "Dummy copy so the grid has something to render.",
+    span: "sm:col-span-2",
+  },
+];
+
+const css = `
+.spm-square {
+  background: #111111;
+  box-shadow: inset -2px 2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+.spm-shimmer-text {
+  background-image: linear-gradient(105deg, #6b6b6b 0%, #ffebc6 53%, #6b6b6b 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 3.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spm-shimmer-text { animation: none; }
+  .spm-shimmer-text { color: #cfcfcf; background-image: none; }
+}
+`;
