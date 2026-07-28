@@ -380,7 +380,7 @@ const SHAPE_PREVIEW: Record<SpinnerShape, React.CSSProperties> = {
   },
 };
 
-const GRADIENTS: GradientDef[] = [
+export const GRADIENTS: GradientDef[] = [
   { id: "sunset", label: "Sunset", from: "#ff9966", to: "#ff5e62", glow: "#ff5e62" },
   { id: "aurora", label: "Aurora", from: "#00f5a0", to: "#00d9f5", glow: "#00d9f5" },
   { id: "ultraviolet", label: "Ultraviolet", from: "#b06ab3", to: "#4568dc", glow: "#7c5cff" },

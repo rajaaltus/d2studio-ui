@@ -53,7 +53,7 @@ export default function ScrollPatternMoonPage() {
 
       <div
         ref={stageRef}
-        className="relative min-h-[85vh] overflow-hidden border-y bg-background"
+        className="relative min-h-[85vh] overflow-hidden bg-background"
       >
         {/* Texture is clipped to the rectangle the four rules describe, so the
             outer margins stay clean. Clipping sits on the static parent — the
@@ -69,11 +69,9 @@ export default function ScrollPatternMoonPage() {
           />
         </div>
 
-        {/* Four rules — the framing grid. */}
+        {/* Two rules — the framing grid. */}
         <div className="pointer-events-none absolute inset-y-0 left-[12%] w-px bg-border" />
         <div className="pointer-events-none absolute inset-y-0 right-[12%] w-px bg-border" />
-        <div className="pointer-events-none absolute inset-x-0 top-[14%] h-px bg-border" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-[14%] h-px bg-border" />
 
         {/* Centered square. */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -85,58 +83,10 @@ export default function ScrollPatternMoonPage() {
         </div>
       </div>
 
-      {/* Dummy bento — scroll fodder below the stage. */}
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-6 py-24 sm:grid-cols-2">
-        {BENTO.map((card) => (
-          <div
-            key={card.kicker}
-            className={`rounded-xl border bg-card p-6 ${card.span}`}
-          >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              {card.kicker}
-            </p>
-            <h3 className="mt-3 text-lg font-medium tracking-tight">
-              {card.title}
-            </h3>
-            <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-              {card.body}
-            </p>
-            <div className="mt-6 h-24 rounded-lg border border-dashed" />
-          </div>
-        ))}
-      </div>
-
       <div className="h-[30vh]" />
     </main>
   );
 }
-
-const BENTO = [
-  {
-    kicker: "One",
-    title: "Placeholder card",
-    body: "Dummy copy so the grid has something to render.",
-    span: "sm:col-span-2",
-  },
-  {
-    kicker: "Two",
-    title: "Placeholder card",
-    body: "Dummy copy so the grid has something to render.",
-    span: "",
-  },
-  {
-    kicker: "Three",
-    title: "Placeholder card",
-    body: "Dummy copy so the grid has something to render.",
-    span: "",
-  },
-  {
-    kicker: "Four",
-    title: "Placeholder card",
-    body: "Dummy copy so the grid has something to render.",
-    span: "sm:col-span-2",
-  },
-];
 
 const css = `
 .spm-square {
