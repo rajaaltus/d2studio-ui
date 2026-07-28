@@ -328,6 +328,173 @@
   }
 }
 /* ===========================
+   Icon swap (transitions.dev)
+   =========================== */
+
+:root {
+  --icon-swap-dur: 200ms;
+  --icon-swap-blur: 2px;
+  --icon-swap-start-scale: 0.25;
+  --icon-swap-ease: ease-in-out;
+}
+
+.t-icon-swap {
+  position: relative;
+  display: inline-grid;
+}
+.t-icon-swap .t-icon {
+  grid-area: 1 / 1;
+  transition:
+    opacity var(--icon-swap-dur) var(--icon-swap-ease),
+    filter var(--icon-swap-dur) var(--icon-swap-ease),
+    transform var(--icon-swap-dur) var(--icon-swap-ease);
+  will-change: opacity, filter, transform;
+}
+.t-icon-swap[data-state="a"] .t-icon[data-icon="a"],
+.t-icon-swap[data-state="b"] .t-icon[data-icon="b"] {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+.t-icon-swap[data-state="a"] .t-icon[data-icon="b"],
+.t-icon-swap[data-state="b"] .t-icon[data-icon="a"] {
+  opacity: 0;
+  filter: blur(var(--icon-swap-blur));
+  transform: scale(var(--icon-swap-start-scale));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-icon-swap .t-icon {
+    transition: none !important;
+  }
+}
+
+/* The pending word beside the spinner, shimmering the way the Claude CLI does:
+   the text keeps its original ink, dimmed, and a full-strength band of it
+   sweeps across. Stated per theme rather than via currentColor: background-clip
+   needs color:transparent, and currentColor would then resolve to that. */
+.t-shimmer {
+  --shimmer-ink: oklch(0 0 0);
+  background-image: linear-gradient(
+    105deg,
+    color-mix(in oklab, var(--shimmer-ink) 40%, transparent) 0%,
+    color-mix(in oklab, var(--shimmer-ink) 80%, transparent) 50%,
+    color-mix(in oklab, var(--shimmer-ink) 40%, transparent) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 3.6s linear infinite;
+}
+
+.dark .t-shimmer {
+  --shimmer-ink: oklch(1 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-shimmer {
+    animation: none;
+    background-image: none;
+    color: color-mix(in oklab, var(--shimmer-ink) 80%, transparent);
+  }
+}
+
+/* Block caret in the mock's prompt row. Reuses the b4 blink further down. */
+.t-caret {
+  animation: b4-caret 1.06s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-caret {
+    animation: none;
+  }
+}
+
+/* ===========================
+   Texts reveal (transitions.dev)
+   =========================== */
+
+:root {
+  --stagger-dur: 600ms;
+  --stagger-distance: 12px;
+  --stagger-stagger: 40ms;
+  --stagger-blur: 3px;
+  --stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Lines start translated down + blurred + invisible; .is-shown
+   on the parent flips them to their resting state. The second
+   line's transition-delay holds it back by --stagger-stagger
+   so the eye lands on the headline first. */
+.t-stagger-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(var(--stagger-distance));
+  filter: blur(var(--stagger-blur));
+  transition:
+    opacity var(--stagger-dur) var(--stagger-ease),
+    transform var(--stagger-dur) var(--stagger-ease),
+    filter var(--stagger-dur) var(--stagger-ease);
+  will-change: transform, opacity, filter;
+}
+.t-stagger-line--2 {
+  transition-delay: var(--stagger-stagger);
+}
+
+.t-stagger.is-shown .t-stagger-line {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+/* Exit decouples from the stagger: same fade for every line,
+   no Y return, no blur — so the disappearance reads as a
+   single quiet fade instead of a reverse reveal. */
+.t-stagger.is-hiding .t-stagger-line {
+  opacity: 0;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 200ms ease,
+    transform 0s linear,
+    filter 0s linear;
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-stagger-line {
+    transition: none !important;
+  }
+}
+
+/* Log ticker: a fixed-height window over a list that is one row
+   taller than it. Each tick re-runs the slide, so the outgoing row
+   leaves through the top edge instead of the survivors snapping up
+   a row. The window never changes size, so nothing outside moves. */
+.t-log {
+  overflow: hidden;
+}
+.t-log-list {
+  animation: t-log-scroll var(--stagger-dur) var(--stagger-ease) forwards;
+  will-change: transform;
+}
+@keyframes t-log-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-1 * var(--log-row)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-log-list {
+    animation: none;
+    transform: translateY(calc(-1 * var(--log-row)));
+  }
+}
+
+/* ===========================
    Luminous Spinners (scoped)
    =========================== */
 
@@ -355,6 +522,13 @@
   --ls-gradient-hotpink: linear-gradient(135deg, oklch(0.85 0.2 350), oklch(0.65 0.25 10));
   --ls-gradient-violet: linear-gradient(135deg, oklch(0.85 0.18 320), oklch(0.6 0.25 285));
   --ls-gradient-blue: linear-gradient(135deg, oklch(0.85 0.16 240), oklch(0.55 0.24 265));
+
+  /* Paint tokens for the spinner gallery. White sits at L 0.833 so it does not
+     blow out at small cell sizes. */
+  --ls-paint-white: oklch(0.833 0 0);
+  --ls-paint-blue: var(--ls-blue);
+  --ls-paint-orange: oklch(0.705 0.187 47.604);
+  --ls-paint-green: var(--ls-crimson);
 }
 
 .dark .luminous-spinners {
@@ -445,7 +619,9 @@
     opacity 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .luminous-spinners .anim-wavy .cell.on {
-  transform: scale(1.35);
+  /* No extra grow: cells are 3-4px against a 1px gap, so scaling a lit cell
+     past the shared 1.08 closes the gap entirely. The spring easing below is
+     what makes this mode feel smooth, not the size jump. */
   transition:
     background 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -4219,4 +4395,3 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     animation: none !important;
   }
 }
-

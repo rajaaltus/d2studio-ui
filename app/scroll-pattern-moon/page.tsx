@@ -53,14 +53,14 @@ export default function ScrollPatternMoonPage() {
 
       <div
         ref={stageRef}
-        className="relative min-h-[85vh] overflow-hidden bg-background"
+        className="relative min-h-[120vh] overflow-hidden bg-background"
       >
         {/* Texture is clipped to the rectangle the four rules describe, so the
             outer margins stay clean. Clipping sits on the static parent — the
             child is what parallaxes. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-[12%] inset-y-[14%] overflow-hidden"
+          className="pointer-events-none absolute inset-x-[24%] inset-y-[14%] overflow-hidden"
         >
           <div
             data-dot-layer
@@ -70,8 +70,8 @@ export default function ScrollPatternMoonPage() {
         </div>
 
         {/* Two rules — the framing grid. */}
-        <div className="pointer-events-none absolute inset-y-0 left-[12%] w-px bg-border" />
-        <div className="pointer-events-none absolute inset-y-0 right-[12%] w-px bg-border" />
+        <div className="pointer-events-none absolute inset-y-0 left-[24%] w-px bg-border" />
+        <div className="pointer-events-none absolute inset-y-0 right-[24%] w-px bg-border" />
 
         {/* Centered square. */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
