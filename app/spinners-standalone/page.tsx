@@ -7,7 +7,7 @@ import {
   type SpinnerGradient,
   type SpinnerShape,
 } from "@/components/pixel-spinner";
-import { ChevronDown } from "lucide-react";
+import { BatteryFull, ChevronDown, Search, Wifi } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -311,7 +311,7 @@ const BUILTIN_SAVED: SavedPattern[] = [
       [5, 6, 8, 9, 10, 12, 13],
       [2, 3, 5, 6, 7, 9, 10],
       [],
-      [5, 6, 9, 10],
+      [],
     ],
     createdAt: 1785226900003,
     prefs: { ...BASE_PREFS, speed: 160 },
@@ -332,6 +332,17 @@ const BUILTIN_SAVED: SavedPattern[] = [
     ],
     createdAt: 1785226900004,
     prefs: { ...BASE_PREFS, speed: 120, gridRows: 0, gridCols: 0 },
+  },
+  {
+    id: "ms4pro9",
+    name: "Pro-9",
+    rows: 4,
+    cols: 2,
+    // One cell per frame: down the right column, up the left, so the trail
+    // reads as a single dot orbiting the 2-wide grid.
+    frames: [[6], [4], [3], [1], [0], [2], [5], [7]],
+    createdAt: 1785226900005,
+    prefs: { ...BASE_PREFS, speed: 160, gridRows: 0, gridCols: 0 },
   },
   {
     id: "ms4pro10",
@@ -372,6 +383,25 @@ const BUILTIN_SAVED: SavedPattern[] = [
     ],
     createdAt: 1785227900002,
     prefs: { ...BASE_PREFS, speed: 110, gridRows: 0, gridCols: 0 },
+  },
+  {
+    id: "ms4pro12",
+    name: "Pro-12",
+    rows: 4,
+    cols: 2,
+    // A pair climbs the grid to the top, then widening groups sweep back down.
+    frames: [
+      [5, 6],
+      [3, 4],
+      [1, 2],
+      [0],
+      [0, 1],
+      [2, 3, 4],
+      [5, 6],
+      [4, 7],
+    ],
+    createdAt: 1785227900003,
+    prefs: { ...BASE_PREFS, speed: 160, gridRows: 0, gridCols: 0 },
   },
 ];
 
@@ -521,6 +551,7 @@ function Panel({
   setShape,
   paintId,
   setPaintId,
+  show,
 }: {
   size: number;
   setSize: (s: number) => void;
@@ -528,11 +559,23 @@ function Panel({
   setShape: (s: SpinnerShape) => void;
   paintId: string;
   setPaintId: (id: string) => void;
+  show: boolean;
 }) {
   return (
     // Floating dock: fixed so it stays reachable while the gallery scrolls, and
-    // w-fit so it only ever covers as much as the controls need.
-    <div className="fixed inset-x-0 top-5 z-20 mx-auto flex w-fit max-w-[calc(100%-2rem)] flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-black/80 px-5 py-2.5 shadow-lg shadow-black/10 dark:shadow-black/50 backdrop-blur">
+    // w-fit so it only ever covers as much as the controls need. It belongs to
+    // the gallery, so it drops in only once the gallery is under it — over the
+    // hero it would sit on top of the desktop mock with nothing to control.
+    <div
+      aria-hidden={!show}
+      className={cn(
+        "fixed inset-x-0 top-5 z-20 mx-auto flex w-fit max-w-[calc(100%-2rem)] flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-black/80 px-5 py-2.5 shadow-lg shadow-black/10 dark:shadow-black/50 backdrop-blur",
+        "transition duration-300 ease-out motion-reduce:transition-none",
+        show
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none -translate-y-4 opacity-0",
+      )}
+    >
       <div className="flex items-center gap-1">
         {SIZES.map((s) => (
           <button
@@ -786,28 +829,90 @@ function LogEntry({
   );
 }
 
-function Terminal({
-  saved,
-  shape,
-  paint,
-}: {
-  saved: SavedPattern[];
-  shape: SpinnerShape;
-  paint: Paint;
-}) {
+// Editor chrome: window title, two tabs, the pane buttons on the right. Pure
+// decoration — nothing here is interactive, so it is all plain markup.
+function WindowChrome() {
+  return (
+    <div className="text-[12px] text-black/45 dark:text-white/45">
+      <div className="flex h-8 items-center justify-center border-b border-black/10 dark:border-white/10">
+        d2studio-ui
+      </div>
+      <div className="flex items-stretch border-b border-black/10 dark:border-white/10">
+        <div className="flex min-w-0 items-center gap-2 border-r border-black/10 dark:border-white/10 px-3 py-2">
+          <span className="size-1.5 shrink-0 rounded-full bg-current" />
+          <span className="truncate">D2 Studio | Modern Component Library</span>
+        </div>
+        {/* Active tab: lit ink and a lifted plate, the way the focused editor
+            tab reads against the rest of the strip. */}
+        <div className="flex items-center gap-2 border-r border-black/10 dark:border-white/10 bg-black/[0.04] px-3 py-2 text-black/75 dark:bg-white/[0.06] dark:text-white/75">
+          <span style={{ color: "var(--ls-paint-orange)" }}>✳</span>
+          Claude Code
+          <span className="opacity-40">✕</span>
+        </div>
+        <div className="ml-auto flex items-center gap-3 px-3 opacity-70">
+          <span>▤</span>
+          <span>⋯</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// The desktop the window sits on. The scrim over the photo is what makes the
+// menu bar and the window's own chrome legible against a bright misty sky.
+const WALLPAPER =
+  "linear-gradient(180deg, oklch(0 0 0 / 0.62), oklch(0 0 0 / 0.38) 35%, oklch(0 0 0 / 0.66))," +
+  "url(/Forest.jpg) center/cover no-repeat";
+
+// macOS menu bar. Static chrome — nothing here is interactive, so it is all
+// plain markup, and the clock is a fixed time like the rest of the mock.
+const MENUS = ["File", "Edit", "View", "Window", "Help"];
+
+function MenuBar() {
+  return (
+    <div className="absolute inset-x-0 top-0 z-10 flex h-7 items-center gap-4 bg-black/25 px-4 text-[12px] text-white/85 backdrop-blur-md">
+      <span className="font-semibold">D2 Agent</span>
+      {MENUS.map((m) => (
+        <span key={m} className="hidden text-white/70 sm:inline">
+          {m}
+        </span>
+      ))}
+      <span className="ml-auto flex items-center gap-3 text-white/70">
+        <BatteryFull className="size-4" />
+        <Wifi className="size-3.5" />
+        <Search className="size-3.5" />
+        <span className="tabular-nums">Thu 10:48 PM</span>
+      </span>
+    </div>
+  );
+}
+
+// The hero window is chrome, not a demo surface — it wears the CLI's own
+// orange square whatever the gallery dock below is set to.
+const HERO_PAINT = paintFor("orange");
+const HERO_SHAPE: SpinnerShape = "square";
+
+function Terminal({ saved }: { saved: SavedPattern[] }) {
   const { state, slots, current } = useShuffle(saved);
   const { head, entries } = useLog();
   if (!saved.length || !current) return null;
   const word = wordFor(current.name);
 
   return (
-    // No window chrome — this is the agent CLI itself, drawn the way it looks
-    // in a terminal. w-fit keeps it as wide as its longest line.
-    <div className="luminous-spinners mx-auto w-fit max-w-full space-y-3 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-black px-5 py-4 font-mono text-[13px] leading-6">
+    // The editor window the CLI actually runs in: titlebar, tab strip, the
+    // agent pane, statusline. Fixed width rather than w-fit — a window keeps
+    // its shape whatever the longest log line happens to be.
+    <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-black font-mono text-[13px] leading-6 shadow-2xl shadow-black/60">
+      <WindowChrome />
+
       {/* Every glyph in here is the same dim neutral ink: the pending line
           below is the only moving thing on screen, so the eye goes to it. */}
-      <div className="space-y-3">
-        <div className="rounded-md border border-black/15 dark:border-white/15 px-3 py-2">
+      <div className="luminous-spinners space-y-3 px-5 py-4">
+        {/* Rules only, edge to edge: side borders and corners would read as a
+            panel floating inside the terminal. -mx-5 cancels the card's
+            padding so the lines run the full width, the way a terminal's own
+            separators do. */}
+        <div className="-mx-5 border-y border-black/15 dark:border-white/15 px-5 py-2">
           <p className="flex items-center gap-2 text-black/70 dark:text-white/70">
             <D2Mark />
             Welcome to the D2 agent
@@ -846,7 +951,6 @@ function Terminal({
             ))}
           </div>
         </div>
-      </div>
 
       {/* div, not p: the spinner renders a div and cannot sit inside one. The
           word swaps on the same beat as the pattern and shimmers in place. */}
@@ -857,8 +961,8 @@ function Terminal({
               <SavedSpinner
                 saved={s.pattern}
                 size={TERMINAL_SIZE}
-                shape={shape}
-                paint={paint}
+                shape={HERO_SHAPE}
+                paint={HERO_PAINT}
               />
             </div>
           ))}
@@ -876,9 +980,10 @@ function Terminal({
 
       {/* The empty prompt the CLI parks under a running task: chevron, blinking
           block caret, nothing typed. */}
-      <div className="flex items-center gap-2 rounded-md border border-black/15 dark:border-white/15 px-3 py-2">
+      <div className="-mx-5 flex items-center gap-2 border-y border-black/15 dark:border-white/15 px-5 py-2">
         <span className="text-black/35 dark:text-white/35">&gt;</span>
         <span className="t-caret inline-block h-[15px] w-[7px] bg-black/60 dark:bg-white/60" />
+        </div>
       </div>
     </div>
   );
@@ -961,10 +1066,26 @@ export default function SpinnersStandalonePage() {
   const [saved, setSaved] = React.useState<SavedPattern[]>([]);
   const [size, setSize] = React.useState<number>(16);
   const [shape, setShape] = React.useState<SpinnerShape>("square");
-  // Orange to start: the hero terminal wears the gallery's paint now, and this
-  // is the accent the CLI mock was drawn around.
+  // Orange to start, matching the hero window the visitor just scrolled past.
   const [paintId, setPaintId] = React.useState("orange");
   const paint = paintFor(paintId);
+
+  // The control dock rides the gallery, not the page. rootMargin crops the
+  // viewport to a band at the top, so the dock arrives when the gallery has
+  // actually reached the top of the screen rather than the moment its first
+  // pixel appears at the bottom.
+  const gallery = React.useRef<HTMLElement>(null);
+  const [atGallery, setAtGallery] = React.useState(false);
+  React.useEffect(() => {
+    const el = gallery.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => setAtGallery(e.isIntersecting),
+      { rootMargin: "0px 0px -85% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   // Re-read on mount, on writes from the /spinners tab, and on refocus
   // (the storage event does not fire in the tab that wrote it).
@@ -983,16 +1104,21 @@ export default function SpinnersStandalonePage() {
     // The gallery is dark only — the theme toggle is here to show the terminal
     // mock on light and on dark, not to repaint the whole page.
     <main className="bg-black text-white">
-      {/* Hero: the terminal alone, centred, with nothing else competing. */}
-      <section className="flex min-h-screen flex-col items-center justify-center gap-10 px-8">
-        <Terminal saved={saved} shape={shape} paint={paint} />
+      {/* Hero: the window on a macOS desktop, which is where these spinners
+          actually get seen. pt-7 clears the menu bar. */}
+      <section
+        className="relative flex min-h-screen flex-col items-center justify-center gap-10 overflow-hidden px-8 pt-7"
+        style={{ background: WALLPAPER }}
+      >
+        <MenuBar />
+        <Terminal saved={saved} />
         {/* A plain anchor: html already carries motion-safe:scroll-smooth, so
             the scroll and its reduced-motion opt-out come for free. */}
         <a
           href="#gallery"
           className="flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-mono text-[12px] text-white/60 transition hover:border-white/30 hover:text-white"
         >
-          Explore more
+          Explore spinners
           <ChevronDown className="size-3.5" />
         </a>
       </section>
@@ -1001,7 +1127,11 @@ export default function SpinnersStandalonePage() {
           .spinner-grid rule in globals.css. Terminal carries its own copy of
           the scope so it follows the real theme. pt-28 clears the floating
           control dock. */}
-      <section id="gallery" className="dark luminous-spinners px-8 pb-16 pt-28">
+      <section
+        id="gallery"
+        ref={gallery}
+        className="dark luminous-spinners px-8 pb-16 pt-28"
+      >
         <h2 className="text-xs uppercase tracking-[0.3em] text-black/40 dark:text-white/40">
           Saved ({saved.length})
         </h2>
@@ -1083,6 +1213,7 @@ export default function SpinnersStandalonePage() {
           setShape={setShape}
           paintId={paintId}
           setPaintId={setPaintId}
+          show={atGallery}
         />
       </section>
     </main>
