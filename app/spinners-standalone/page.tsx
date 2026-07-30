@@ -296,11 +296,6 @@ const BASE_PREFS: SavedPrefs = {
 // edited copy still overrides the built-in one.
 const PRO_ID: Record<string, string> = { "pro-1": "ms47kaog", "pro-5": "ms4pro5b" };
 
-// Sampled off the D2 app icon (public/icon-dark.png) along its own top-left to
-// bottom-right diagonal, with the blue end given the longer run.
-const LOGO_GRADIENT =
-  "linear-gradient(100deg, #F4D6EC 0%, #EEB9D9 14%, #DB97B9 30%, #AB6AB1 46%, #6271A7 66%, #4379A1 100%)";
-
 // Display names for the Pro set. The registry item stays spinner-pro-N — this
 // is the label only, keyed by the saved name so a user-saved pattern of their
 // own falls through to its own name.
@@ -1401,26 +1396,15 @@ function Cell({
         {tag && (
           <span
             className={cn(
-              "shrink-0 rounded-full px-1.5 py-px font-mono text-[10px] uppercase tracking-[0.08em]",
-              // Same pill either way; only the paint changes — free is the one
-              // green on the page, pro takes the brand gradient on the label.
-              tag === "pro" ? "bg-white/[0.07]" : "bg-emerald-500/15 text-emerald-400",
+              "shrink-0 rounded-full border px-1.5 py-px font-mono text-[10px] uppercase tracking-[0.08em]",
+              // Same pill either way; only the hue changes — outlined and lit
+              // from within, blue for pro, green for free.
+              tag === "pro"
+                ? "border-blue-500/40 bg-blue-500/10 text-blue-400 shadow-[0_0_10px_-2px] shadow-blue-500/40"
+                : "border-emerald-500/40 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_-2px] shadow-emerald-500/40",
             )}
           >
-            {tag === "pro" ? (
-              <span
-                className="bg-clip-text text-transparent"
-                // The logo mark's own stops (public/d2-dark.svg, paint2), laid
-                // out linearly so all five read across three letters — the
-                // token's dark-mode value is a radial that would show green
-                // centre and nothing else at this size.
-                style={{ backgroundImage: LOGO_GRADIENT }}
-              >
-                pro
-              </span>
-            ) : (
-              tag
-            )}
+            {tag}
           </span>
         )}
         <DropdownMenu>
