@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Tide Roll",
   "author": "D2 Studio",
-  "description": "A tide-roll pixel-grid loading spinner.",
+  "description": "A 4×4 pixel-grid loading spinner: 6 frames at 180ms (1080ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],

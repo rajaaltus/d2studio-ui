@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Spiral In 5",
   "author": "D2 Studio",
-  "description": "A spiral-in-5 pixel-grid loading spinner.",
+  "description": "A 5×5 pixel-grid loading spinner: 25 frames at 75ms (1875ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],

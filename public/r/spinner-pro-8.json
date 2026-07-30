@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-pro-8",
+  "type": "registry:component",
+  "title": "Spinner Pro 8",
+  "author": "D2 Studio",
+  "description": "A 4×2 pixel-grid loading spinner: 6 frames at 120ms (720ms loop).",
+  "registryDependencies": [
+    "https://d2studio.dev/r/pixel-spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/spinner-pro-8.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  PixelSpinner,\n  type SpinnerColor,\n  type SpinnerPattern,\n} from \"@/components/ui/pixel-spinner\";\n\nconst pattern: SpinnerPattern = {\"rows\":4,\"cols\":2,\"interval\":120,\"frames\":[[0,1],[2,3],[4,5],[6,7],[4,5],[2,3]]};\n\ntype SpinnerPro8Props = Omit<\n  React.ComponentProps<typeof PixelSpinner>,\n  \"pattern\" | \"color\"\n> & { color?: SpinnerColor };\n\nexport function SpinnerPro8({ color = \"violet\", ...props }: SpinnerPro8Props) {\n  return <PixelSpinner pattern={pattern} color={color} {...props} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "spinner"
+  ]
+}

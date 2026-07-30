@@ -14,8 +14,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { CodeBlock } from "@/components/ui/code-block";
 import { cn, copyText } from "@/lib/utils";
-import { PREMIUM_LIBRARY } from "@/lib/spinner-patterns";
+import { PREMIUM_LIBRARY, PRO_LIBRARY } from "@/lib/spinner-patterns";
 import {
   GRADIENTS,
   PRESETS,
@@ -131,6 +140,18 @@ function paintFor(id: string): Paint {
 
 // Display names only — the pattern id stays the registry/install name.
 const FANCY: Record<string, string> = {
+  // Three of the hand-drawn Pro patterns ship free, so they sit with the
+  // presets rather than in the Pro set.
+  "pro-27": "Bounce",
+  "pro-28": "Pulse",
+  "pro-29": "Hourglass",
+  "pro-30": "Spark",
+  "pro-31": "Strobe",
+  "pro-32": "Tumble",
+  "pro-33": "Splash",
+  "pro-34": "Aperture",
+  "pro-35": "Piston",
+  "pro-38": "Pinwheel",
   "ring-4-cw": "Halo",
   "dual-ring-5": "Binary",
   "vortex-in": "Vortex",
@@ -157,12 +178,27 @@ const wordFor = (name: string) =>
 
 // Hidden from this gallery; all still ship in the registry.
 const HIDDEN = new Set(["swell-roll", "ripple-out", "spiral-in-5"]);
-const SHOWN = PREMIUM_LIBRARY.filter((s) => !HIDDEN.has(s.name));
+// The free Pro patterns, by their lib name.
+const FREE_PRO = new Set([
+  "pro-27",
+  "pro-28",
+  "pro-29",
+  "pro-30",
+  "pro-31",
+  "pro-32",
+  "pro-33",
+  "pro-34",
+  "pro-35",
+  "pro-38",
+]);
+const SHOWN = [
+  ...PREMIUM_LIBRARY.filter((s) => !HIDDEN.has(s.name)),
+  ...PRO_LIBRARY.filter((s) => FREE_PRO.has(s.name)),
+];
 
-// Presets each ship as their own registry item; saved patterns exist only in
-// this browser, so they install the base engine and supply their own frames.
-const PRESET_COMMAND = (name: string) =>
-  `npx shadcn@latest add @d2/spinner-${name}`;
+// Every preset and every Pro pattern ships as its own registry item; the
+// install line for one is built by installLine() further down, off the item
+// name. The engine on its own is what a pattern with no item falls back to.
 const BASE_COMMAND = "npx shadcn@latest add @d2/pixel-spinner";
 
 // Imported patterns only bring their frames and timing across; size, spacing
@@ -191,219 +227,68 @@ const BASE_PREFS: SavedPrefs = {
   direction: "e",
 };
 
-// Exported from the pixel-spinner-latest playground so it ships with the page
-// instead of living only in one browser's localStorage.
-const BUILTIN_SAVED: SavedPattern[] = [
-  {
-    id: "ms47kaog",
-    name: "Pro-1",
-    rows: 4,
-    cols: 4,
-    frames: [
-      [8],
-      [4, 8],
-      [0, 4, 8, 12],
-      [0, 4, 5, 8, 9, 12],
-      [0, 4, 5, 6, 8, 9, 10, 12],
-      [0, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      [0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15],
-      [5, 6, 9, 10],
-      [0, 3, 5, 6, 9, 10, 12, 15],
-      [0, 3, 5, 6, 9, 10, 12, 15],
-      [2, 4, 5, 6, 9, 10, 11, 13],
-      [1, 5, 6, 7, 8, 9, 10, 14],
-      [0, 3, 5, 6, 9, 10, 12, 15],
-    ],
-    createdAt: 1785216236306,
-    prefs: BASE_PREFS,
+// The Pro patterns live in lib/spinner-patterns.ts so the gallery, the docs
+// and the registry generator all read the same frames. Everything the gallery
+// adds on top of the raw pattern is here: a stable id for the localStorage
+// merge below, and the display name.
+// Pro-1 and Pro-5 keep the ids they were first saved under, so a locally
+// edited copy still overrides the built-in one.
+const PRO_ID: Record<string, string> = { "pro-1": "ms47kaog", "pro-5": "ms4pro5b" };
+
+// Sampled off the D2 app icon (public/icon-dark.png) along its own top-left to
+// bottom-right diagonal, with the blue end given the longer run.
+const LOGO_GRADIENT =
+  "linear-gradient(100deg, #F4D6EC 0%, #EEB9D9 14%, #DB97B9 30%, #AB6AB1 46%, #6271A7 66%, #4379A1 100%)";
+
+// Display names for the Pro set. The registry item stays spinner-pro-N — this
+// is the label only, keyed by the saved name so a user-saved pattern of their
+// own falls through to its own name.
+const PRO_FANCY: Record<string, string> = {
+  "Pro-1": "Overture",
+  "Pro-2": "Slant",
+  "Pro-3": "Bellows",
+  "Pro-4": "Comet",
+  "Pro-5": "Flood",
+  "Pro-6": "Breath",
+  "Pro-7": "Relay",
+  "Pro-8": "Sweep",
+  "Pro-9": "Orbit",
+  "Pro-10": "Trickle",
+  "Pro-11": "Pulse",
+  "Pro-12": "Spill",
+  "Pro-13": "Shuffle",
+  "Pro-14": "Clasp",
+  "Pro-15": "Sway",
+  "Pro-16": "Skip",
+  "Pro-17": "Bloom",
+  "Pro-18": "Turbine",
+  "Pro-19": "Shuttle",
+  "Pro-20": "Fork",
+  "Pro-21": "Pincer",
+  "Pro-22": "Weave",
+  "Pro-23": "Buoy",
+  "Pro-24": "Ascent",
+  "Pro-25": "Barber",
+  "Pro-26": "Convoy",
+  "Pro-36": "Beacon",
+  "Pro-37": "Kaleido",
+};
+
+const BUILTIN_SAVED: SavedPattern[] = PRO_LIBRARY.filter(
+  (d) => !FREE_PRO.has(d.name),
+).map((d) => ({
+  id: PRO_ID[d.name] ?? `ms4${d.name.replace("-", "")}`,
+  name: d.name.replace("pro-", "Pro-"),
+  rows: d.pattern.rows ?? d.pattern.size ?? 4,
+  cols: d.pattern.cols ?? d.pattern.size ?? 4,
+  frames: d.pattern.frames,
+  createdAt: 0,
+  prefs: {
+    ...BASE_PREFS,
+    speed: d.pattern.interval ?? 220,
+    ...(d.animation ? { animation: d.animation } : null),
   },
-  {
-    id: "ms4pro2",
-    name: "Pro-2",
-    rows: 4,
-    cols: 4,
-    // Diagonal pairs stepping bottom-right to top-left across the grid.
-    frames: [
-      [13, 14],
-      [9, 10, 12, 15],
-      [1, 2],
-      [0, 3, 5, 6],
-    ],
-    createdAt: 1785228500000,
-    prefs: { ...BASE_PREFS, speed: 120 },
-  },
-  {
-    id: "ms4pro3",
-    name: "Pro-3",
-    rows: 4,
-    cols: 2,
-    frames: [
-      [0, 2, 4, 6],
-      [0, 2, 3, 4, 5, 6],
-      [1, 3, 5, 7],
-      [1, 2, 3, 4, 5, 7],
-    ],
-    createdAt: 1785226400000,
-    prefs: { ...BASE_PREFS, speed: 110, gridRows: 0, gridCols: 0 },
-  },
-  {
-    id: "ms4pro4",
-    name: "Pro-4",
-    rows: 4,
-    cols: 2,
-    // One cell walks the ring clockwise; the 4-step trail turns it into a
-    // comet orbiting the grid, the way Claude's terminal star rotates.
-    frames: [[0], [1], [3], [5], [7], [6], [4], [2]],
-    createdAt: 1785226900000,
-    prefs: { ...BASE_PREFS, speed: 100, gridRows: 0, gridCols: 0 },
-  },
-  {
-    id: "ms4pro5b",
-    name: "Pro-5",
-    rows: 4,
-    cols: 4,
-    // A diagonal walk down to the corner, then the grid floods back up it.
-    frames: [
-      [0],
-      [1, 4],
-      [5],
-      [6, 9, 10],
-      [15],
-      [11, 14, 15],
-      [7, 10, 11, 13, 14, 15],
-      [3, 6, 7, 9, 10, 11, 12, 13, 14, 15],
-      [2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-    ],
-    createdAt: 1785229400000,
-    prefs: { ...BASE_PREFS, speed: 110 },
-  },
-  {
-    id: "ms4pro6",
-    name: "Pro-6",
-    rows: 4,
-    cols: 2,
-    // Breathes out from the middle rows and back in.
-    frames: [
-      [2, 3, 4, 5],
-      [0, 1, 2, 3, 4, 5, 6, 7],
-      [0, 1, 6, 7],
-      [2, 3, 4, 5],
-    ],
-    createdAt: 1785226900002,
-    prefs: { ...BASE_PREFS, speed: 130, gridRows: 0, gridCols: 0 },
-  },
-  {
-    id: "ms4pro7",
-    name: "Pro-7",
-    rows: 4,
-    cols: 4,
-    // A 2x2 block climbs the diagonal to the top-left, pauses, then a second
-    // block sweeps up from the bottom and settles in the middle.
-    frames: [
-      [15],
-      [10, 11, 14, 15],
-      [5, 6, 9, 10],
-      [0, 1, 4, 5],
-      [0],
-      [],
-      [8, 9, 12, 13],
-      [5, 6, 8, 9, 10, 12, 13],
-      [2, 3, 5, 6, 7, 9, 10],
-      [],
-      [],
-    ],
-    createdAt: 1785226900003,
-    prefs: { ...BASE_PREFS, speed: 160 },
-  },
-  {
-    id: "ms4pro8",
-    name: "Pro-8",
-    rows: 4,
-    cols: 2,
-    // A scan line bouncing down and back up.
-    frames: [
-      [0, 1],
-      [2, 3],
-      [4, 5],
-      [6, 7],
-      [4, 5],
-      [2, 3],
-    ],
-    createdAt: 1785226900004,
-    prefs: { ...BASE_PREFS, speed: 120, gridRows: 0, gridCols: 0 },
-  },
-  {
-    id: "ms4pro9",
-    name: "Pro-9",
-    rows: 4,
-    cols: 2,
-    // One cell per frame: down the right column, up the left, so the trail
-    // reads as a single dot orbiting the 2-wide grid.
-    frames: [[6], [4], [3], [1], [0], [2], [5], [7]],
-    createdAt: 1785226900005,
-    prefs: { ...BASE_PREFS, speed: 160, gridRows: 0, gridCols: 0 },
-  },
-  {
-    id: "ms4pro10",
-    name: "Pro-10",
-    rows: 4,
-    cols: 2,
-    // One cell per frame: with a 4-step trail, two per frame would keep all
-    // eight lit at once and the grid would read as a solid block. A single
-    // drop falls down one column, then the other, so the loop stays unbroken.
-    frames: [[0], [2], [4], [6], [1], [3], [5], [7]],
-    createdAt: 1785227900001,
-    // "wavy" swaps the hard pixel step for the eased 320ms cell transition, so
-    // cells glide between frames instead of snapping.
-    prefs: {
-      ...BASE_PREFS,
-      speed: 110,
-      gridRows: 0,
-      gridCols: 0,
-      animation: "wavy",
-    },
-  },
-  {
-    id: "ms4pro11",
-    name: "Pro-11",
-    rows: 4,
-    cols: 2,
-    // Heartbeat: two quick beats, then empty frames let the trail decay so the
-    // rest is real silence rather than more motion.
-    frames: [
-      [2, 3, 4, 5],
-      [0, 1, 6, 7],
-      [],
-      [2, 3, 4, 5],
-      [0, 1, 6, 7],
-      [],
-      [],
-      [],
-    ],
-    createdAt: 1785227900002,
-    prefs: { ...BASE_PREFS, speed: 110, gridRows: 0, gridCols: 0 },
-  },
-  {
-    id: "ms4pro12",
-    name: "Pro-12",
-    rows: 4,
-    cols: 2,
-    // A pair climbs the grid to the top, then widening groups sweep back down.
-    frames: [
-      [5, 6],
-      [3, 4],
-      [1, 2],
-      [0],
-      [0, 1],
-      [2, 3, 4],
-      [5, 6],
-      [4, 7],
-    ],
-    createdAt: 1785227900003,
-    prefs: { ...BASE_PREFS, speed: 160, gridRows: 0, gridCols: 0 },
-  },
-];
+}));
 
 function readSavedPatterns(): SavedPattern[] {
   let stored: SavedPattern[] = [];
@@ -989,12 +874,245 @@ function Terminal({ saved }: { saved: SavedPattern[] }) {
   );
 }
 
+// Both card states share one box height, so swapping the spinner for the
+// terminal never resizes the cell.
+const PREVIEW_H = 132;
+
+// ── Per-spinner docs ────────────────────────────────────────────────────────
+// Everything a visitor needs to put one spinner in their own app: the install
+// line, a usage snippet and the frame data. Derived from the pattern, never
+// written per item, so it cannot drift from what the registry ships.
+
+type Spec = { rows: number; cols: number; frames: number[][]; interval: number };
+type SpinnerDocs = { name: string; item: string | null; spec: Spec };
+
+// Everything that ships as its own registry item. A pattern the visitor saved
+// in their own browser is not in here, and installs the engine instead.
+const REGISTRY_ITEMS = new Set(
+  [...PREMIUM_LIBRARY, ...PRO_LIBRARY].map((d) => `spinner-${d.name}`),
+);
+const itemFor = (registryName: string) => {
+  const item = `spinner-${registryName.toLowerCase()}`;
+  return REGISTRY_ITEMS.has(item) ? item : null;
+};
+
+const pascal = (s: string) =>
+  s
+    .split("-")
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+    .join("");
+
+const installLine = (item: string | null) =>
+  item ? `npx shadcn@latest add @d2/${item}` : BASE_COMMAND;
+
+const summary = ({ rows, cols, frames, interval }: Spec) =>
+  `${rows}×${cols} grid · ${frames.length} frames · ${interval}ms step · ${frames.length * interval}ms loop`;
+
+function usageSnippet({ item, spec }: SpinnerDocs) {
+  if (item) {
+    const comp = pascal(item);
+    return `import { ${comp} } from "@/components/${item}";
+
+export function Pending() {
+  return <${comp} cellSize={4} gap={2} />;
+}`;
+  }
+  // No registry item: install the engine and hand it these frames.
+  return `import { PixelSpinner } from "@/components/ui/pixel-spinner";
+
+const pattern = {
+  rows: ${spec.rows},
+  cols: ${spec.cols},
+  interval: ${spec.interval},
+  frames: ${JSON.stringify(spec.frames)},
+};
+
+export function Pending() {
+  return <PixelSpinner pattern={pattern} cellSize={4} gap={2} />;
+}`;
+}
+
+// Frames are the whole pattern, so they get their own block rather than being
+// buried in the usage snippet: one row per frame, the way they were drawn.
+const framesSnippet = (spec: Spec) =>
+  `frames: [\n${spec.frames.map((f) => `  [${f.join(", ")}],`).join("\n")}\n]`;
+
+function DocsDialog({
+  docs,
+  shape,
+  paint,
+  children,
+}: {
+  docs: SpinnerDocs;
+  shape: SpinnerShape;
+  paint: Paint;
+  children: React.ReactNode;
+}) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+        <DialogHeader>
+          <DialogTitle className="font-mono">{docs.name}</DialogTitle>
+          <DialogDescription className="font-mono text-xs">
+            {summary(docs.spec)}
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="space-y-6">
+          {/* The pattern itself, at reading scale — the blocks below describe
+              it, this is it running. */}
+          {/* The dialog portals out of the gallery, so the cell styles have to
+              come along with it. Shape and paint follow the toolbar; only the
+              scale is the dialog's own, since cell sizes are card-sized. */}
+          <div className="dark luminous-spinners flex items-center justify-center py-[72px]">
+            <PixelSpinner
+              pattern={docs.spec}
+              {...paint}
+              shape={shape}
+              glow={0}
+              cellSize={7}
+              gap={3}
+            />
+          </div>
+
+          <section className="space-y-2">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              CLI
+            </h3>
+            <CodeBlock code={installLine(docs.item)} language="bash" />
+            {!docs.item && (
+              <p className="text-xs text-muted-foreground">
+                This pattern is saved in your browser, not published, so it
+                installs the engine and brings its own frames.
+              </p>
+            )}
+          </section>
+
+          <section className="space-y-2">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Usage
+            </h3>
+            <CodeBlock code={usageSnippet(docs)} />
+          </section>
+
+          <section className="space-y-2">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Pattern
+            </h3>
+            <CodeBlock code={framesSnippet(docs.spec)} language="ts" />
+            <p className="text-xs text-muted-foreground">
+              Cells are indexed row-major from 0. Each frame lists the cells
+              that light on that step; a lit cell then fades over the next three
+              steps, which is what draws the trail.
+            </p>
+          </section>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Page-level docs ────────────────────────────────────────────────────────
+// The three things a visitor needs before any single spinner: what this is, how
+// to draw one, and how to install the engine by hand if they would rather not
+// run the CLI. Per-spinner docs live in the dialog on each card.
+
+const ENGINE_USAGE = `import { PixelSpinner } from "@/components/ui/pixel-spinner";
+
+// Cells are indexed row-major from 0. Each frame lists the cells that light on
+// that step, and a lit cell fades over the next three. That is the trail.
+const pattern = {
+  rows: 4,
+  cols: 4,
+  interval: 130,
+  frames: [
+    [1, 5, 6, 7, 8, 9, 10, 14],
+    [2, 4, 5, 6, 9, 10, 11, 13],
+    [0, 3, 5, 6, 9, 10, 12, 15],
+  ],
+};
+
+export function Pending() {
+  return <PixelSpinner pattern={pattern} cellSize={4} gap={2} />;
+}`;
+
+const MANUAL_STEPS = [
+  "Copy registry/default/ui/pixel-spinner.tsx into components/ui/.",
+  "Copy registry/default/ui/pixel-spinner.css next to it — the component imports it directly.",
+  "Render <PixelSpinner pattern={…} /> with the frames of whichever spinner you want.",
+];
+
+function Docs() {
+  return (
+    <section
+      id="docs"
+      className="dark mx-auto w-full max-w-3xl space-y-12 px-8 py-20"
+    >
+      <div className="space-y-4">
+        <h2
+          id="introduction"
+          className="text-xs uppercase tracking-[0.3em] text-white/40"
+        >
+          Introduction
+        </h2>
+        <p className="text-2xl text-white">
+          Pixel-grid loaders for every app.
+        </p>
+        <p className="text-sm leading-6 text-white/50">
+          {REGISTRY_ITEMS.size} spinners, built with React, TypeScript, Tailwind
+          CSS and shadcn. Every one is the same engine driven by a different
+          frame table: a grid of cells, a list of which cells light on each
+          step, and a four-step fade that turns the steps into a trail. Install
+          one from the CLI, or install the engine and draw your own.
+        </p>
+        <CodeBlock code={BASE_COMMAND} language="bash" />
+        <p className="text-sm text-white/40">
+          Every card below carries its own install line. Open one to see it.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="usage"
+          className="text-xs uppercase tracking-[0.3em] text-white/40"
+        >
+          Usage
+        </h2>
+        <CodeBlock code={ENGINE_USAGE} />
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="manual-setup"
+          className="text-xs uppercase tracking-[0.3em] text-white/40"
+        >
+          Manual setup
+        </h2>
+        <ol className="space-y-3 text-sm leading-6 text-white/50">
+          {MANUAL_STEPS.map((step, i) => (
+            <li key={step} className="flex gap-3">
+              <span className="shrink-0 font-mono text-white/30">{i + 1}</span>
+              {step}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 function Cell({
   name,
   command,
   prompt,
   word,
   size,
+  shape,
+  paint,
+  tag,
+  log,
+  docs,
   children,
 }: {
   name: string;
@@ -1002,41 +1120,124 @@ function Cell({
   prompt: string;
   word: string;
   size: number;
+  shape: SpinnerShape;
+  paint: Paint;
+  tag?: "pro" | "free";
+  log: (typeof LOG)[number];
+  docs: SpinnerDocs;
   children: React.ReactNode;
 }) {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] transition-colors hover:border-black/20 dark:hover:border-white/20 hover:bg-black/[0.04] dark:hover:bg-white/[0.04]">
-      <div
-        className="flex items-center justify-center"
-        // Small spinners need less breathing room before the label.
-        style={{ height: 132, gap: size <= 16 ? 8 : 12 }}
-      >
-        {/* Every spinner sits centred in the same `size` square with the same
-            gutter on all four sides, at 8, 16 and 24 alike.
-            Hovering just this box magnifies it: cells are solid-colour divs,
-            so a transform scales them without going soft, and the hit area is
-            the spinner itself rather than the whole card. */}
-        <span
-          className="inline-flex items-center justify-center transition-transform duration-300 ease-out hover:scale-[1.8]"
-          // content-box so the padding sits outside the size square rather
-          // than eating into it.
-          style={{
-            boxSizing: "content-box",
-            width: size,
-            height: size,
-            padding: size / 4,
-          }}
+    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] transition-colors duration-300 ease-out hover:border-black/20 dark:hover:border-white/20 hover:bg-black/[0.04] dark:hover:bg-white/[0.04]">
+      {/* Two faces in one slot, cross-fading on hover via the transitions.dev
+          icon-swap rules in globals.css. The whole slot is the dialog trigger,
+          so on touch — where there is no hover — a tap opens the docs instead
+          of leaving the swap stranded half-way. */}
+      <DocsDialog docs={docs} shape={shape} paint={paint}>
+        <button
+          type="button"
+          aria-label={`${name} documentation`}
+          className="t-swap-hover w-full cursor-pointer text-left"
+          style={{ height: PREVIEW_H }}
         >
-          {children}
-        </span>
-        <span className="font-mono text-[14px] text-black/50 dark:text-white/50">
-          {word}
-        </span>
-      </div>
-      <div className="flex items-center gap-2 border-t border-black/[0.06] dark:border-white/[0.06] px-3 py-1.5">
-        <p className="truncate font-mono text-[11px] text-black/50 dark:text-white/50">
+          {/* Resting face: the spinner and its word, centred. */}
+          <span
+            className="t-swap-face flex items-center justify-center"
+            data-face="rest"
+            // Small spinners need less breathing room before the label.
+            style={{ gap: size <= 16 ? 8 : 12 }}
+          >
+            {/* content-box so the padding sits outside the size square rather
+                than eating into it. */}
+            <span
+              className="inline-flex items-center justify-center"
+              style={{
+                boxSizing: "content-box",
+                width: size,
+                height: size,
+                padding: size / 4,
+              }}
+            >
+              {children}
+            </span>
+            <span className="font-mono text-[14px] text-black/50 dark:text-white/50">
+              {word}
+            </span>
+          </span>
+
+          {/* Hover face: where the spinner actually lands — a finished tool
+              call, the pending line, the parked prompt. Same markup as the hero
+              window's statusline at cell scale, so the tail is the short
+              "(esc · 12.4k)"; the full one does not fit 5 up. */}
+          <span
+            className="t-swap-face flex flex-col justify-center px-[18px] font-mono text-[11.2px] leading-[20px]"
+            data-face="hover"
+          >
+            <span className="truncate text-black/50 dark:text-white/50">
+              <span className="text-black/30 dark:text-white/30">⏺</span>{" "}
+              {log.call}
+            </span>
+            <span className="truncate pl-3 text-black/30 dark:text-white/30">
+              ⎿ {log.result}
+            </span>
+
+            <span className="flex items-center gap-1.5 py-0.5 text-black/80 dark:text-white/80">
+              <span
+                className="inline-flex shrink-0 items-center justify-center"
+                style={{ width: size, height: size }}
+              >
+                {children}
+              </span>
+              <span className="truncate">
+                <span className="t-shimmer">{word}</span>
+                <span className="text-black/35 dark:text-white/35">
+                  {" "}
+                  (esc · 12.4k)
+                </span>
+              </span>
+            </span>
+
+            {/* The negative margin cancels the card padding so the rules run
+                edge to edge, the way a terminal's own separators do. The caret
+                is held still: the spinner is the only thing that should move
+                in a cell. */}
+            <span className="-mx-[18px] mt-[7px] flex items-center gap-1.5 border-y border-black/15 dark:border-white/15 px-[18px] py-[7px]">
+              <span className="text-black/35 dark:text-white/35">&gt;</span>
+              <span className="inline-block h-[12px] w-[6px] bg-black/60 dark:bg-white/60" />
+            </span>
+          </span>
+        </button>
+      </DocsDialog>
+
+      <div className="flex items-center gap-2 border-t border-black/[0.06] dark:border-white/[0.06] px-[13px] py-[7px]">
+        <p className="truncate font-mono text-[12px] text-black/50 dark:text-white/50">
           {name}
         </p>
+        {tag && (
+          <span
+            className={cn(
+              "shrink-0 rounded-full px-1.5 py-px font-mono text-[10px] uppercase tracking-[0.08em]",
+              // Same pill either way; only the paint changes — free is the one
+              // green on the page, pro takes the brand gradient on the label.
+              tag === "pro" ? "bg-white/[0.07]" : "bg-emerald-500/15 text-emerald-400",
+            )}
+          >
+            {tag === "pro" ? (
+              <span
+                className="bg-clip-text text-transparent"
+                // The logo mark's own stops (public/d2-dark.svg, paint2), laid
+                // out linearly so all five read across three letters — the
+                // token's dark-mode value is a radial that would show green
+                // centre and nothing else at this size.
+                style={{ backgroundImage: LOGO_GRADIENT }}
+              >
+                pro
+              </span>
+            ) : (
+              tag
+            )}
+          </span>
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger
             aria-label={`Copy options for ${name}`}
@@ -1064,7 +1265,9 @@ function Cell({
 
 export default function SpinnersStandalonePage() {
   const [saved, setSaved] = React.useState<SavedPattern[]>([]);
-  const [size, setSize] = React.useState<number>(16);
+  // 12 is the terminal-line size the cards are drawn around, so it is where
+  // the gallery starts.
+  const [size, setSize] = React.useState<number>(12);
   const [shape, setShape] = React.useState<SpinnerShape>("square");
   // Orange to start, matching the hero window the visitor just scrolled past.
   const [paintId, setPaintId] = React.useState("orange");
@@ -1115,13 +1318,15 @@ export default function SpinnersStandalonePage() {
         {/* A plain anchor: html already carries motion-safe:scroll-smooth, so
             the scroll and its reduced-motion opt-out come for free. */}
         <a
-          href="#gallery"
+          href="#docs"
           className="flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-mono text-[12px] text-white/60 transition hover:border-white/30 hover:text-white"
         >
           Explore spinners
           <ChevronDown className="size-3.5" />
         </a>
       </section>
+
+      <Docs />
 
       {/* .dark pins the gallery; .luminous-spinners scopes every .cell /
           .spinner-grid rule in globals.css. Terminal carries its own copy of
@@ -1136,29 +1341,53 @@ export default function SpinnersStandalonePage() {
           Saved ({saved.length})
         </h2>
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {saved.map((s) => (
-            <Cell
-              key={s.id}
-              name={s.name}
-              command={BASE_COMMAND}
-              word={wordFor(s.name)}
-              prompt={specPrompt({
-                name: s.name,
-                word: wordFor(s.name),
-                command: BASE_COMMAND,
+          {saved.map((s, i) => {
+            // Labels are the fancy names; the registry item still comes off the
+            // saved name, so "Shuffle" ships as @d2/spinner-pro-13. A pattern
+            // the visitor saved themselves has neither, and itemFor returns
+            // null for it.
+            const label = PRO_FANCY[s.name] ?? s.name;
+            const docs: SpinnerDocs = {
+              name: label,
+              item: itemFor(s.name),
+              spec: {
                 rows: s.prefs?.gridRows || s.rows,
                 cols: s.prefs?.gridCols || s.cols,
                 frames: s.frames,
                 interval: s.prefs?.speed ?? 220,
-                size,
-                shape,
-                paint,
-              })}
-              size={size}
-            >
-              <SavedSpinner saved={s} size={size} shape={shape} paint={paint} />
-            </Cell>
-          ))}
+              },
+            };
+            return (
+              <Cell
+                key={s.id}
+                name={label}
+                command={installLine(docs.item)}
+                log={LOG[i % LOG.length]}
+                word={wordFor(s.name)}
+                prompt={specPrompt({
+                  name: label,
+                  word: wordFor(s.name),
+                  command: installLine(docs.item),
+                  ...docs.spec,
+                  size,
+                  shape,
+                  paint,
+                })}
+                size={size}
+                shape={shape}
+                paint={paint}
+                tag={PRO_FANCY[s.name] ? "pro" : undefined}
+                docs={docs}
+              >
+                <SavedSpinner
+                  saved={s}
+                  size={size}
+                  shape={shape}
+                  paint={paint}
+                />
+              </Cell>
+            );
+          })}
           {saved.length === 0 && (
             <p className="col-span-full text-sm text-black/40 dark:text-white/40">
               Nothing saved yet — save a pattern on /spinners and it shows up
@@ -1171,28 +1400,41 @@ export default function SpinnersStandalonePage() {
           Presets ({SHOWN.length})
         </h2>
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {SHOWN.map((s) => {
-            const cols = s.pattern.cols ?? s.pattern.size ?? 3;
-            const rows = s.pattern.rows ?? s.pattern.size ?? 3;
+          {SHOWN.map((s, i) => {
+            // Presets are titled by their fancy name but keep the pattern name
+            // as their registry item, so docs read off the pattern, not the
+            // label.
+            const docs: SpinnerDocs = {
+              name: FANCY[s.name] ?? s.name,
+              item: itemFor(s.name),
+              spec: {
+                rows: s.pattern.rows ?? s.pattern.size ?? 3,
+                cols: s.pattern.cols ?? s.pattern.size ?? 3,
+                frames: s.pattern.frames,
+                interval: s.pattern.interval ?? 220,
+              },
+            };
             return (
               <Cell
                 key={s.name}
-                name={FANCY[s.name] ?? s.name}
-                command={PRESET_COMMAND(s.name)}
+                name={docs.name}
+                command={installLine(docs.item)}
+                log={LOG[i % LOG.length]}
                 word={wordFor(s.name)}
                 prompt={specPrompt({
-                  name: FANCY[s.name] ?? s.name,
+                  name: docs.name,
                   word: wordFor(s.name),
-                  command: PRESET_COMMAND(s.name),
-                  rows,
-                  cols,
-                  frames: s.pattern.frames,
-                  interval: s.pattern.interval ?? 220,
+                  command: installLine(docs.item),
+                  ...docs.spec,
                   size,
                   shape,
                   paint,
                 })}
                 size={size}
+                shape={shape}
+                paint={paint}
+                tag="free"
+                docs={docs}
               >
                 <PixelSpinner
                   pattern={s.pattern}
@@ -1200,6 +1442,9 @@ export default function SpinnersStandalonePage() {
                   {...metrics(size, STANDARD_COLS)}
                   glow={0}
                   shape={shape}
+                  // The free Pro patterns are drawn for the eased step, and
+                  // read as a flicker without it.
+                  animation={s.animation}
                 />
               </Cell>
             );

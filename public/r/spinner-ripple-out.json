@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Ripple Out",
   "author": "D2 Studio",
-  "description": "A ripple-out pixel-grid loading spinner.",
+  "description": "A 3×3 pixel-grid loading spinner: 3 frames at 260ms (780ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],

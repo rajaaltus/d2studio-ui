@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Billboard Tiles",
   "author": "D2 Studio",
-  "description": "A billboard-tiles pixel-grid loading spinner.",
+  "description": "A 4×4 pixel-grid loading spinner: 5 frames at 180ms (900ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],

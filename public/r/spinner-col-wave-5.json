@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Col Wave 5",
   "author": "D2 Studio",
-  "description": "A col-wave-5 pixel-grid loading spinner.",
+  "description": "A 5×5 pixel-grid loading spinner: 8 frames at 120ms (960ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],

@@ -369,6 +369,50 @@
   }
 }
 
+/* Card face swap: the same icon-swap cross-fade at card scale. Two faces share
+   one grid cell, the resting one holds the spinner and its word, the hover one
+   the tool call it stands in for. A whole face scales less than an icon does —
+   0.25 on a block of text reads as a collapse, not a swap. */
+.t-swap-hover {
+  --swap-face-scale: 0.97;
+  position: relative;
+  display: grid;
+}
+.t-swap-hover .t-swap-face {
+  grid-area: 1 / 1;
+  /* Grid items floor at min-content; the hover face truncates, so it needs to
+     be allowed to shrink below that. */
+  min-width: 0;
+  transition:
+    opacity var(--icon-swap-dur) var(--icon-swap-ease),
+    filter var(--icon-swap-dur) var(--icon-swap-ease),
+    transform var(--icon-swap-dur) var(--icon-swap-ease);
+  will-change: opacity, filter, transform;
+}
+.t-swap-hover .t-swap-face[data-face="hover"] {
+  opacity: 0;
+  filter: blur(var(--icon-swap-blur));
+  transform: scale(var(--swap-face-scale));
+}
+.t-swap-hover:hover .t-swap-face[data-face="rest"],
+.t-swap-hover:focus-visible .t-swap-face[data-face="rest"] {
+  opacity: 0;
+  filter: blur(var(--icon-swap-blur));
+  transform: scale(var(--swap-face-scale));
+}
+.t-swap-hover:hover .t-swap-face[data-face="hover"],
+.t-swap-hover:focus-visible .t-swap-face[data-face="hover"] {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-swap-hover .t-swap-face {
+    transition: none !important;
+  }
+}
+
 /* The pending word beside the spinner, shimmering the way the Claude CLI does:
    the text keeps its original ink, dimmed, and a full-strength band of it
    sweeps across. Stated per theme rather than via currentColor: background-clip

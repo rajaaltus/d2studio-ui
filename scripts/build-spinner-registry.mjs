@@ -35,8 +35,9 @@ function loadLibrary() {
   if (!fs.existsSync(js)) throw new Error("tsc emitted nothing");
   return import(pathToFileURL(js).href).then((m) => {
     fs.rmSync(tmp, { recursive: true, force: true });
-    // Only the curated premium set ships as installable registry items.
-    return m.PREMIUM_LIBRARY;
+    // The curated premium set plus the hand-drawn Pro set ship as installable
+    // registry items; the rest of SPINNER_LIBRARY stays playground-only.
+    return [...m.PREMIUM_LIBRARY, ...m.PRO_LIBRARY];
   });
 }
 
@@ -47,6 +48,9 @@ const title = (name) =>
 
 function wrapperSource(def) {
   const comp = `Spinner${pascal(def.name)}`;
+  // Only the patterns that need the eased step carry an animation prop, so the
+  // rest of the wrappers stay one line.
+  const anim = def.animation ? ` animation="${def.animation}"` : "";
   return `"use client";
 
 import * as React from "react";
@@ -64,7 +68,7 @@ type ${comp}Props = Omit<
 > & { color?: SpinnerColor };
 
 export function ${comp}({ color = "${def.color}", ...props }: ${comp}Props) {
-  return <PixelSpinner pattern={pattern} color={color} {...props} />;
+  return <PixelSpinner pattern={pattern} color={color}${anim} {...props} />;
 }
 `;
 }
@@ -80,6 +84,16 @@ for (const f of fs.readdirSync(OUT_DIR)) {
   }
 }
 
+// Derived rather than written per item: the grid, frame count and beat are the
+// whole spec of a pixel spinner, and they stay true when a pattern is edited.
+function describe(def) {
+  const p = def.pattern;
+  const rows = p.rows ?? p.size;
+  const cols = p.cols ?? p.size;
+  const beat = p.interval ?? 220;
+  return `A ${rows}×${cols} pixel-grid loading spinner: ${p.frames.length} frames at ${beat}ms (${p.frames.length * beat}ms loop).`;
+}
+
 const items = library.map((def) => {
   const name = `spinner-${def.name}`;
   fs.writeFileSync(path.join(OUT_DIR, `${name}.tsx`), wrapperSource(def));
@@ -87,7 +101,7 @@ const items = library.map((def) => {
     name,
     type: "registry:component",
     title: `Spinner ${title(def.name)}`,
-    description: `A ${def.name} pixel-grid loading spinner.`,
+    description: describe(def),
     author: "D2 Studio",
     registryDependencies: [BASE_URL],
     files: [

@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Vortex In",
   "author": "D2 Studio",
-  "description": "A vortex-in pixel-grid loading spinner.",
+  "description": "A 4×4 pixel-grid loading spinner: 16 frames at 90ms (1440ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],

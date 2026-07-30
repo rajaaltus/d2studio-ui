@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Spinner Ring 4 Cw",
   "author": "D2 Studio",
-  "description": "A ring-4-cw pixel-grid loading spinner.",
+  "description": "A 4×4 pixel-grid loading spinner: 12 frames at 110ms (1320ms loop).",
   "registryDependencies": [
     "https://d2studio.dev/r/pixel-spinner.json"
   ],
