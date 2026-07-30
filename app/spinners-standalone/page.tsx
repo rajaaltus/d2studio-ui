@@ -25,7 +25,11 @@ import {
 } from "@/components/ui/dialog";
 import { CodeBlock } from "@/components/ui/code-block";
 import { cn, copyText } from "@/lib/utils";
-import { PREMIUM_LIBRARY, PRO_LIBRARY } from "@/lib/spinner-patterns";
+import {
+  PREMIUM_LIBRARY,
+  PRO_LIBRARY,
+  type SpinnerDef,
+} from "@/lib/spinner-patterns";
 import {
   GRADIENTS,
   PRESETS,
@@ -192,9 +196,42 @@ const FREE_PRO = new Set([
   "pro-35",
   "pro-38",
 ]);
+// Free patterns that live on this page rather than in lib/spinner-patterns.ts,
+// so they carry no registry item: their card installs the engine and brings its
+// own frames. Move one into the library when it is ready to publish.
+const FREE_EXTRA: SpinnerDef[] = [
+  {
+    name: "free23",
+    color: "blue",
+    // 3×6, wider than it is tall: two runs sweep the lower rows left to right
+    // while single cells drop in from the top row, so the grid reads as rain
+    // landing rather than one shape moving.
+    pattern: {
+      rows: 3,
+      cols: 6,
+      interval: 110,
+      frames: [
+        [12],
+        [7, 13],
+        [2, 8, 14],
+        [9, 15],
+        [16],
+        [11, 17],
+        [6, 12],
+        [2, 8, 13, 14],
+        [8, 14],
+        [3, 9, 15],
+        [10, 16],
+        [5, 11, 17],
+      ],
+    },
+  },
+];
+
 const SHOWN = [
   ...PREMIUM_LIBRARY.filter((s) => !HIDDEN.has(s.name)),
   ...PRO_LIBRARY.filter((s) => FREE_PRO.has(s.name)),
+  ...FREE_EXTRA,
 ];
 
 // Every preset and every Pro pattern ships as its own registry item; the

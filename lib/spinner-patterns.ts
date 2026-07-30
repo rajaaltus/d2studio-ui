@@ -1338,7 +1338,7 @@ export const PRO_LIBRARY: SpinnerDef[] = [
     pattern: {
       rows: 4,
       cols: 2,
-      interval: 160,
+      interval: 100,
       frames: f([6], [4], [3], [1], [0], [2], [5], [7]),
     },
   },
