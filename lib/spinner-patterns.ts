@@ -1884,11 +1884,11 @@ export const PRO_LIBRARY: SpinnerDef[] = [
     // The loop runs one frame long on purpose: it comes back through the second
     // row twice, so the return does not land on the same beat as the descent.
     // Hard step, not wavy: the eased mode fades over a fixed 320ms, which at
-    // this interval swallows five frames and caps how fast the travel can read.
+    // this interval swallows two frames and caps how fast the travel can read.
     pattern: {
       rows: 4,
       cols: 4,
-      interval: 60,
+      interval: 150,
       frames: f(
         [0, 3],
         [1, 2],
@@ -1919,7 +1919,7 @@ export const PRO_LIBRARY: SpinnerDef[] = [
     pattern: {
       rows: 4,
       cols: 4,
-      interval: 110,
+      interval: 120,
       frames: f(
         [5, 6, 9, 10],
         [0],

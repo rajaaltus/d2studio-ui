@@ -29,7 +29,7 @@ export type SpinnerEffect = "none" | "light" | "wave";
 
 export type SpinnerAnimation = "pixels" | "wavy";
 
-const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
+export const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
   square: {},
   rounded: { borderRadius: "22%" },
   circle: { borderRadius: "50%" },

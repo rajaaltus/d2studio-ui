@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import {
-  PixelSpinner,
+  SHAPE_STYLE,
   type SpinnerColor,
   type SpinnerGradient,
+  type SpinnerPattern,
   type SpinnerShape,
 } from "@/components/pixel-spinner";
 import { BatteryFull, ChevronDown, Search, Wifi } from "lucide-react";
@@ -306,6 +307,135 @@ function readSavedPatterns(): SavedPattern[] {
 // The trail and glow layer counts are fixed by PixelSpinner and globals.css.
 const TRAIL = [1, 0.5, 0.25, 0.15];
 
+// Gallery speed against each pattern's saved timing: 1 is the library's own
+// speed, 0.75 would be 25% faster. Kept as the one knob so the page can be
+// retimed without touching lib/spinner-patterns.ts, which every other page
+// reads. The docs specs go through it too, so the numbers on a card match
+// what the card is actually running.
+const SPEEDUP = 1;
+const quick = (ms: number | undefined) => Math.round((ms ?? 220) * SPEEDUP);
+
+// Every spinner on this page is CSS only. PixelSpinner keeps one setInterval
+// per instance and re-renders its whole grid on each tick; at gallery scale
+// that is ~150 unsynchronised React renders a second, which is what made
+// scrolling stutter. The frames are known upfront, so the loop is expressible
+// as one @keyframes track per cell: no timers, no re-renders, and opacity is
+// the only animated property, so it stays off the main thread.
+
+// A cell's opacity across the whole loop, trail included: the freshest frame it
+// appears in wins, the same pass PixelSpinner runs per tick.
+function cellTrack(frames: number[][], cell: number): number[] {
+  return frames.map((_, f) => {
+    for (let t = 0; t < TRAIL.length; t++) {
+      const src = frames[(f - t + frames.length) % frames.length] ?? [];
+      if (src.includes(cell)) return TRAIL[t];
+    }
+    return 0;
+  });
+}
+
+// The track is its own name, so the many cells that share one — patterns are
+// symmetric, and a 4×4 grid rarely holds more than a handful of distinct
+// tracks — collapse onto a single @keyframes rule.
+const trackName = (track: number[]) =>
+  `ls-t${track.map((v) => Math.round(v * 100)).join("-")}`;
+
+// Linear between stops: at these durations the ramp is the fade the CSS
+// transition used to draw, so the eased look survives losing the transition.
+const trackRule = (track: number[]) =>
+  `@keyframes ${trackName(track)}{` +
+  track
+    .map((v, i) => `${((i * 100) / track.length).toFixed(3)}%{opacity:${v}}`)
+    .join("") +
+  `100%{opacity:${track[0]}}}`;
+
+// Two layers per cell: the dim plate holds still, the lit one on top is the
+// only thing that animates. Splitting them is what keeps the animation to
+// opacity — colour and glow are static, set once by the .cell.on classes.
+function CssSpinner({
+  pattern,
+  paint,
+  cellSize,
+  gap,
+  shape,
+  duration,
+}: {
+  pattern: SpinnerPattern;
+  paint: Paint;
+  cellSize: number;
+  gap: number;
+  shape: SpinnerShape;
+  duration: number;
+}) {
+  const cols = pattern.cols ?? pattern.size ?? 3;
+  const rows = pattern.rows ?? pattern.size ?? 3;
+  const tracks = Array.from({ length: rows * cols }, (_, i) =>
+    cellTrack(pattern.frames, i),
+  );
+  const lit = tracks.filter((t) => t.some(Boolean));
+  const rules = [
+    ...new Map(lit.map((t) => [trackName(t), trackRule(t)])).values(),
+  ].join("");
+
+  const variant = paint.gradient || paint.token ? "c-custom" : `c-${paint.color}`;
+  const vars = paint.gradient
+    ? {
+        "--cell-gradient": `linear-gradient(135deg, ${paint.gradient.from}, ${paint.gradient.to})`,
+        "--cell-glow": paint.gradient.glow,
+      }
+    : paint.token
+      ? { "--cell-color": paint.token }
+      : {};
+  const shapeStyle = SHAPE_STYLE[shape];
+
+  return (
+    <div
+      className="spinner-grid grid effect-light anim-pixels"
+      style={
+        {
+          gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`,
+          gap: `${gap}px`,
+          "--glow": "0",
+        } as React.CSSProperties
+      }
+      role="status"
+      aria-label="Loading"
+    >
+      {/* display:none by UA rule, so it is not a grid item. */}
+      <style>{rules}</style>
+      {tracks.map((track, i) => (
+        <div
+          key={i}
+          className={cn("cell", `shape-${shape}`)}
+          style={{ width: cellSize, height: cellSize, ...shapeStyle }}
+        >
+          {track.some(Boolean) && (
+            <div
+              className={cn("cell on", variant, `shape-${shape}`)}
+              style={
+                {
+                  position: "absolute",
+                  inset: 0,
+                  width: cellSize,
+                  height: cellSize,
+                  opacity: 0,
+                  animation: `${trackName(track)} ${duration}ms linear infinite`,
+                  ...shapeStyle,
+                  ...vars,
+                } as React.CSSProperties
+              }
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// One loop is every frame at the quickened step.
+const loopMs = (pattern: SpinnerPattern, interval: number) =>
+  interval * pattern.frames.length;
+
 // Everything an agent needs to rebuild this exact spinner in CSS, matching what
 // the gallery is rendering right now.
 function specPrompt({
@@ -547,21 +677,16 @@ function SavedSpinner({
   const pattern = scalePattern(rotated, rows, cols);
 
   return (
-    <PixelSpinner
+    <CssSpinner
       pattern={pattern}
-      {...paint}
+      paint={paint}
       // Cell size always comes off the standard 4-wide grid, never this
       // pattern's own width: sizing per pattern makes a 5-col draw render 2px
       // cells next to a 4-col draw's 3px ones, and the gallery reads uneven.
       // A wider grid overflows the `size` square into the cell's padding.
       {...metrics(size, STANDARD_COLS)}
-      intervalOverride={p?.speed}
-      glow={0}
       shape={shape}
-      animation={p?.animation}
-      pop={p?.popOnPeak}
-      popStrength={p?.popStrength}
-      popDuration={p?.popDuration}
+      duration={loopMs(pattern, quick(p?.speed))}
     />
   );
 }
@@ -966,13 +1091,13 @@ function DocsDialog({
               come along with it. Shape and paint follow the toolbar; only the
               scale is the dialog's own, since cell sizes are card-sized. */}
           <div className="dark luminous-spinners flex items-center justify-center py-[72px]">
-            <PixelSpinner
+            <CssSpinner
               pattern={docs.spec}
-              {...paint}
+              paint={paint}
               shape={shape}
-              glow={0}
               cellSize={7}
               gap={3}
+              duration={loopMs(docs.spec, docs.spec.interval)}
             />
           </div>
 
@@ -1265,9 +1390,9 @@ function Cell({
 
 export default function SpinnersStandalonePage() {
   const [saved, setSaved] = React.useState<SavedPattern[]>([]);
-  // 12 is the terminal-line size the cards are drawn around, so it is where
-  // the gallery starts.
-  const [size, setSize] = React.useState<number>(12);
+  // The gallery opens in the middle of the three: the frames read clearly at
+  // 16, with 12 a click away for the terminal-line view.
+  const [size, setSize] = React.useState<number>(16);
   const [shape, setShape] = React.useState<SpinnerShape>("square");
   // Orange to start, matching the hero window the visitor just scrolled past.
   const [paintId, setPaintId] = React.useState("orange");
@@ -1354,7 +1479,7 @@ export default function SpinnersStandalonePage() {
                 rows: s.prefs?.gridRows || s.rows,
                 cols: s.prefs?.gridCols || s.cols,
                 frames: s.frames,
-                interval: s.prefs?.speed ?? 220,
+                interval: quick(s.prefs?.speed),
               },
             };
             return (
@@ -1411,7 +1536,7 @@ export default function SpinnersStandalonePage() {
                 rows: s.pattern.rows ?? s.pattern.size ?? 3,
                 cols: s.pattern.cols ?? s.pattern.size ?? 3,
                 frames: s.pattern.frames,
-                interval: s.pattern.interval ?? 220,
+                interval: quick(s.pattern.interval),
               },
             };
             return (
@@ -1436,15 +1561,12 @@ export default function SpinnersStandalonePage() {
                 tag="free"
                 docs={docs}
               >
-                <PixelSpinner
+                <CssSpinner
                   pattern={s.pattern}
-                  {...paint}
+                  paint={paint}
                   {...metrics(size, STANDARD_COLS)}
-                  glow={0}
                   shape={shape}
-                  // The free Pro patterns are drawn for the eased step, and
-                  // read as a flicker without it.
-                  animation={s.animation}
+                  duration={loopMs(s.pattern, quick(s.pattern.interval))}
                 />
               </Cell>
             );
