@@ -226,6 +226,29 @@ const FREE_EXTRA: SpinnerDef[] = [
       ],
     },
   },
+  {
+    name: "free24",
+    color: "blue",
+    // Starts full and empties: cells drop out a few at a time, top row first,
+    // until only the middle of the bottom row is left. The last frame refills
+    // the lower two rows, so the loop reads as a collapse and a catch rather
+    // than a dissolve that snaps back to full.
+    pattern: {
+      rows: 3,
+      cols: 6,
+      interval: 100,
+      frames: [
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        [0, 2, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17],
+        [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        [2, 4, 6, 8, 10, 11, 12, 13, 14, 15, 16, 17],
+        [6, 8, 10, 12, 13, 14, 15, 16, 17],
+        [6, 8, 12, 14, 15],
+        [14, 15],
+        [3, 7, 9, 10, 12, 13, 14, 15, 16, 17],
+      ],
+    },
+  },
 ];
 
 const SHOWN = [
