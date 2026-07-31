@@ -1502,7 +1502,7 @@ export function SpinnerPlayground() {
       </div>
     </section>
 
-    <div className="hidden sm:block">
+    <div className="hidden">
       <CustomFrameEditor
         frames={customFrames}
         setFrames={setCustomFrames}
