@@ -12,7 +12,7 @@ import {
 
 export function CommunitySection() {
   return (
-    <section className="max-w-6xl w-full border-x mx-auto bg-border">
+    <section className="max-w-7xl w-full border-x mx-auto bg-border">
       <div className="relative lg:rounded-xl border m-0 bg-background py-16 lg:py-24 px-4 sm:px-6 lg:px-10">
         <CommunityRain
           people={rainPeople}

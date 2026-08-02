@@ -1,5 +1,7 @@
 "use client";
 
+import { copyText } from "@/lib/utils";
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,7 +25,7 @@ export function PathInstructionCard({ slug, type }: PathInstructionCardProps) {
 
     const copyToClipboard = async (text: string, setCopied: (v: boolean) => void) => {
         try {
-            await navigator.clipboard.writeText(text);
+            await copyText(text);
             setCopied(true);
             toast.success("Command copied to clipboard");
             setTimeout(() => setCopied(false), 2000);

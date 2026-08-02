@@ -1,0 +1,86 @@
+- generic [active] [ref=f20e1]:
+  - link "Skip to content" [ref=f20e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f20e4]:
+    - generic [ref=f20e5]:
+      - generic [ref=f20e6]:
+        - generic [ref=f20e8]: 50%
+        - slider "Reveal position" [ref=f20e9]:
+          - img [ref=f20e11]
+      - generic [ref=f20e26]:
+        - generic [ref=f20e27]:
+          - generic [ref=f20e28]: Shape
+          - combobox "Shape" [ref=f20e29]:
+            - option "Square" [selected]
+            - option "Circle"
+            - option "Just divider"
+        - generic [ref=f20e30]:
+          - generic [ref=f20e31]: Size
+          - slider "Reveal block size in px" [ref=f20e32] [cursor=pointer]: "4"
+          - generic [ref=f20e33]: 4px
+        - generic [ref=f20e34]:
+          - generic [ref=f20e35]: Angle
+          - combobox "Angle" [ref=f20e36]:
+            - option "Straight" [selected]
+            - option "Slant"
+        - button "Flip sides" [ref=f20e37]
+    - generic [ref=f20e38]:
+      - generic [ref=f20e39]:
+        - generic [ref=f20e41]: 50%
+        - slider "Reveal position" [ref=f20e42]:
+          - img [ref=f20e44]
+      - generic [ref=f20e59]:
+        - generic [ref=f20e60]:
+          - generic [ref=f20e61]: Shape
+          - combobox "Shape" [ref=f20e62]:
+            - option "Square" [selected]
+            - option "Circle"
+            - option "Just divider"
+        - generic [ref=f20e63]:
+          - generic [ref=f20e64]: Size
+          - slider "Reveal block size in px" [ref=f20e65] [cursor=pointer]: "8"
+          - generic [ref=f20e66]: 8px
+        - generic [ref=f20e67]:
+          - generic [ref=f20e68]: Angle
+          - combobox "Angle" [ref=f20e69]:
+            - option "Straight" [selected]
+            - option "Slant"
+        - button "Flip sides" [ref=f20e70]
+    - generic [ref=f20e71]:
+      - generic [ref=f20e72]:
+        - generic [ref=f20e74]: 50%
+        - slider "Reveal position" [ref=f20e75]:
+          - img [ref=f20e77]
+      - generic [ref=f20e92]:
+        - generic [ref=f20e93]:
+          - generic [ref=f20e94]: Shape
+          - combobox "Shape" [ref=f20e95]:
+            - option "Square" [selected]
+            - option "Circle"
+            - option "Just divider"
+        - generic [ref=f20e96]:
+          - generic [ref=f20e97]: Size
+          - slider "Reveal block size in px" [ref=f20e98] [cursor=pointer]: "8"
+          - generic [ref=f20e99]: 8px
+        - generic [ref=f20e100]:
+          - generic [ref=f20e101]: Angle
+          - combobox "Angle" [ref=f20e102]:
+            - option "Straight" [selected]
+            - option "Slant"
+        - button "Flip sides" [ref=f20e103]
+  - generic [ref=f20e104]:
+    - heading "Command palette" [level=2] [ref=f20e105]
+    - paragraph [ref=f20e106]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f20e107]:
+    - button "Blocks" [ref=f20e108] [cursor=pointer]:
+      - generic [ref=f20e122]: Blocks
+      - img [ref=f20e123]
+    - button "Tools New" [ref=f20e126] [cursor=pointer]:
+      - generic [ref=f20e139]: Tools
+      - generic [ref=f20e141]: New
+      - img [ref=f20e142]
+    - button "Toggle theme" [ref=f20e145] [cursor=pointer]:
+      - img [ref=f20e148]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f20e159] [cursor=pointer]:
+    - img [ref=f20e160]

@@ -64,7 +64,7 @@ export function Navigation() {
 
   return (
     <header className="border-b border-border bg-background">
-      <nav className="w-full max-w-6xl border-x mx-auto px-4">
+      <nav className="w-full max-w-7xl border-x mx-auto px-4">
         <div className="flex h-16 items-center justify-between gap-3">
           <Logo />
 

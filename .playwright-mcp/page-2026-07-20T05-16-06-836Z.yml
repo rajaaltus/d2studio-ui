@@ -1,0 +1,35 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - heading "Built for teams that ship" [level=1] [ref=e6]
+        - paragraph [ref=e7]: Design, code and speed in one system, so every idea reaches production looking exactly the way you imagined it.
+      - generic [ref=e9]:
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - heading "Web Design & Development" [level=3] [ref=e16]
+            - paragraph [ref=e17]: We create visually appealing and functional websites that captivate your audience and drive results.
+          - generic [ref=e18]:
+            - generic [ref=e19]: "12"
+            - paragraph [ref=e33]: Website that delivers a unique
+        - generic [ref=e34]:
+          - generic [ref=e36]:
+            - code [ref=e42]: "import { ClassValue, clsx } from \"clsx\" import { twMerge } from \"tailwind-merge\" export { twMerge } from \"tailwind-merge\""
+            - heading "Clean Code" [level=3] [ref=e43]
+            - paragraph [ref=e44]: our expertise in advanced coding techniques, we ensure your digital projects are delivered on time and surpass your expectations
+          - generic [ref=e46]:
+            - heading "Accelerate your project" [level=3] [ref=e50]
+            - paragraph [ref=e51]: Bring your ideas to life faster with our rapid development services.
+  - generic [ref=e153]:
+    - heading "Command palette" [level=2] [ref=e154]
+    - paragraph [ref=e155]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e156]:
+    - button "Blocks" [ref=e157] [cursor=pointer]
+    - button "Tools New" [ref=e175] [cursor=pointer]:
+      - generic [ref=e187]: Tools
+      - generic [ref=e189]: New
+    - button "Toggle theme" [ref=e194] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e208] [cursor=pointer]

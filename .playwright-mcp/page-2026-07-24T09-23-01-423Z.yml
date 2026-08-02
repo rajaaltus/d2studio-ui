@@ -1,0 +1,64 @@
+- generic [active] [ref=f10e1]:
+  - link "Skip to content" [ref=f10e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f10e3]: Scroll down ↓
+  - main [ref=f10e5]:
+    - generic [ref=f10e6]:
+      - generic [ref=f10e7]:
+        - heading "An AI-Native Studio, Engineered to Ship" [level=2] [ref=f10e8]
+        - paragraph [ref=f10e9]: D2 Studio pairs a real design system with applied AI and a typed, realtime backend, so an idea reaches production in weeks and stays cheap to change after launch.
+      - generic [ref=f10e10]:
+        - generic [ref=f10e66]:
+          - heading "16+ AI products in Production" [level=3] [ref=f10e67]
+          - paragraph [ref=f10e68]: Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic.
+        - generic [ref=f10e70]:
+          - generic [ref=f10e118]:
+            - heading "Global by default" [level=3] [ref=f10e119]
+            - paragraph [ref=f10e120]: Realtime Convex data on the edge, so every region reads in milliseconds.
+          - generic [ref=f10e121]:
+            - generic [ref=f10e122]:
+              - generic [ref=f10e124]: New York
+              - generic [ref=f10e125]: "847"
+              - generic [ref=f10e126]: ↑ 12%
+            - generic [ref=f10e127]:
+              - generic [ref=f10e129]: London
+              - generic [ref=f10e130]: "623"
+              - generic [ref=f10e131]: ↓ 3%
+            - generic [ref=f10e132]:
+              - generic [ref=f10e134]: Los Angeles
+              - generic [ref=f10e135]: "534"
+              - generic [ref=f10e136]: ↑ 7%
+            - generic [ref=f10e137]:
+              - generic [ref=f10e139]: Mumbai
+              - generic [ref=f10e140]: "468"
+              - generic [ref=f10e141]: ↑ 21%
+            - generic [ref=f10e142]:
+              - generic [ref=f10e144]: Tokyo
+              - generic [ref=f10e145]: "412"
+              - generic [ref=f10e146]: ↑ 8%
+            - generic [ref=f10e147]:
+              - generic [ref=f10e149]: Singapore
+              - generic [ref=f10e150]: "296"
+              - generic [ref=f10e151]: ↑ 4%
+            - generic [ref=f10e152]:
+              - generic [ref=f10e154]: Lagos
+              - generic [ref=f10e155]: "224"
+              - generic [ref=f10e156]: ↑ 18%
+        - generic [ref=f10e207]:
+          - heading "Zero to production, fast" [level=3] [ref=f10e208]
+          - paragraph [ref=f10e209]: Design system, typed API and CI wired up on day one.
+        - generic [ref=f10e263]:
+          - heading "AI woven through the stack" [level=3] [ref=f10e264]
+          - paragraph [ref=f10e265]: Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live.
+  - generic [ref=f10e266]: Scroll up ↑
+  - generic [ref=f10e268]:
+    - heading "Command palette" [level=2] [ref=f10e269]
+    - paragraph [ref=f10e270]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f10e271]:
+    - button "Blocks" [ref=f10e272] [cursor=pointer]
+    - button "Tools New" [ref=f10e290] [cursor=pointer]:
+      - generic [ref=f10e302]: Tools
+      - generic [ref=f10e304]: New
+    - button "Toggle theme" [ref=f10e309] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f10e323] [cursor=pointer]

@@ -52,7 +52,10 @@ export function CodeBlock({
           {code.split('\n').map((line, index) => (
             <span
               key={index}
-              className="block px-4 py-0.5 min-h-[1rem]"
+              // pr clears the copy button, which floats over the code at
+              // right-4 and otherwise sits on top of any line long enough to
+              // reach it.
+              className="block min-h-[1rem] py-0.5 pl-4 pr-14"
               data-line={index + 1}
             >
               {line || ' '}
@@ -65,7 +68,10 @@ export function CodeBlock({
       <CopyButton
         value={code}
         className={cn(
-          "absolute right-4 top-4",
+          // Opaque, because a line longer than the block scrolls *under* the
+          // button — right padding only moves the line's end, which is already
+          // off-screen. The backdrop is what keeps the icon readable.
+          "absolute right-3 top-3 bg-zinc-950 dark:bg-zinc-900",
           withMeta && "top-16"
         )}
       />

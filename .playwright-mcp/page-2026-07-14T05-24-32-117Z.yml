@@ -1,0 +1,36 @@
+- generic [active] [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f3e3]:
+    - generic [ref=f3e5]:
+      - generic [ref=f3e6]:
+        - heading "Solution & Features" [level=2] [ref=f3e7]
+        - paragraph [ref=f3e8]: Focused, outcome driven features that translate ML into real business value.
+      - generic [ref=f3e9]:
+        - generic [ref=f3e10]:
+          - heading "Advance Image Recognition" [level=3] [ref=f3e20]
+          - paragraph [ref=f3e21]: Detect, classify, and tag images with industry leading accuracy. Plug and play models for visuals data with explainability tools.
+        - generic [ref=f3e22]:
+          - heading "Predictive Analytics" [level=3] [ref=f3e27]
+          - paragraph [ref=f3e28]: Forecast outcomes and trends with actionable confidence scores. Time series, classification, and anomaly detection models pre-configures.
+      - generic [ref=f3e29]:
+        - generic [ref=f3e30]:
+          - heading "NLP & Conversational AI" [level=3] [ref=f3e36]
+          - paragraph [ref=f3e37]: Semantic search, summarization, and chat solutions.
+        - generic [ref=f3e38]:
+          - heading "Model Ops" [level=3] [ref=f3e46]
+          - paragraph [ref=f3e47]: CI/CD for ML, drift detection, and performance dashboards.
+        - generic [ref=f3e48]:
+          - heading "Privacy & Compliance" [level=3] [ref=f3e54]
+          - paragraph [ref=f3e55]: Built with data protection, role-based access and audit logs.
+  - generic [ref=f3e56]:
+    - heading "Command palette" [level=2] [ref=f3e57]
+    - paragraph [ref=f3e58]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f3e59]:
+    - button "Blocks" [ref=f3e60] [cursor=pointer]
+    - button "Tools New" [ref=f3e78] [cursor=pointer]:
+      - generic [ref=f3e90]: Tools
+      - generic [ref=f3e92]: New
+    - button "Toggle theme" [ref=f3e97] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e111] [cursor=pointer]

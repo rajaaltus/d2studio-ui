@@ -1,0 +1,49 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f4e3]: Scroll down ↓
+  - main [ref=f4e5]:
+    - generic [ref=f4e6]:
+      - generic [ref=f4e7]:
+        - heading "An AI-Native Studio, Engineered to Ship" [level=2] [ref=f4e8]
+        - paragraph [ref=f4e9]: D2 Studio pairs a real design system with applied AI and a typed, realtime backend, so an idea reaches production in weeks and stays cheap to change after launch.
+      - generic [ref=f4e10]:
+        - generic [ref=f4e65]:
+          - heading "16+ AI products in Production" [level=3] [ref=f4e66]
+          - paragraph [ref=f4e67]: Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic.
+        - generic [ref=f4e69]:
+          - generic [ref=f4e116]:
+            - heading "Global by default" [level=3] [ref=f4e117]
+            - paragraph [ref=f4e118]: Realtime Convex data on the edge, so every region reads in milliseconds.
+          - generic [ref=f4e119]:
+            - generic [ref=f4e120]:
+              - generic [ref=f4e122]: New York
+              - generic [ref=f4e123]: "847"
+              - generic [ref=f4e124]: ↑ 12%
+            - generic [ref=f4e125]:
+              - generic [ref=f4e127]: London
+              - generic [ref=f4e128]: "623"
+              - generic [ref=f4e129]: ↓ 3%
+            - generic [ref=f4e130]:
+              - generic [ref=f4e132]: Los Angeles
+              - generic [ref=f4e133]: "534"
+              - generic [ref=f4e134]: ↑ 7%
+        - generic [ref=f4e184]:
+          - heading "Zero to production, fast" [level=3] [ref=f4e185]
+          - paragraph [ref=f4e186]: Design system, typed API and CI wired up on day one.
+        - generic [ref=f4e239]:
+          - heading "AI woven through the stack" [level=3] [ref=f4e240]
+          - paragraph [ref=f4e241]: Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live.
+  - generic [ref=f4e242]: Scroll up ↑
+  - generic [ref=f4e244]:
+    - heading "Command palette" [level=2] [ref=f4e245]
+    - paragraph [ref=f4e246]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f4e247]:
+    - button "Blocks" [ref=f4e248] [cursor=pointer]
+    - button "Tools New" [ref=f4e254] [cursor=pointer]:
+      - generic [ref=f4e255]: Tools
+      - generic [ref=f4e257]: New
+    - button "Toggle theme" [ref=f4e262] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f4e276] [cursor=pointer]
+  - alert [ref=f4e280]

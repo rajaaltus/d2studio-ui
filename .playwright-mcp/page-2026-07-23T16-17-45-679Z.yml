@@ -1,0 +1,54 @@
+- generic [active] [ref=f132e1]:
+  - link "Skip to content" [ref=f132e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f132e3]: Scroll down ↓
+  - main [ref=f132e5]:
+    - generic [ref=f132e6]:
+      - generic [ref=f132e7]:
+        - heading "An AI-Native Studio, Engineered to Ship" [level=2] [ref=f132e8]
+        - paragraph [ref=f132e9]: D2 Studio pairs a real design system with applied AI and a typed, realtime backend, so an idea reaches production in weeks and stays cheap to change after launch.
+      - generic [ref=f132e10]:
+        - generic [ref=f132e65]:
+          - heading "16+ AI products in Production" [level=3] [ref=f132e66]
+          - paragraph [ref=f132e67]: Copilots, retrieval search and agent workflows shipped end to end, from the first Figma frame to the deploy that carries real traffic.
+        - generic [ref=f132e69]:
+          - generic [ref=f132e116]:
+            - heading "Global by default" [level=3] [ref=f132e117]
+            - paragraph [ref=f132e118]: Realtime Convex data on the edge, so every region reads in milliseconds.
+          - generic [ref=f132e119]:
+            - generic [ref=f132e120]:
+              - generic [ref=f132e122]: New York
+              - generic [ref=f132e123]: "847"
+              - generic [ref=f132e124]: ↑ 12%
+            - generic [ref=f132e125]:
+              - generic [ref=f132e127]: London
+              - generic [ref=f132e128]: "623"
+              - generic [ref=f132e129]: ↓ 3%
+            - generic [ref=f132e130]:
+              - generic [ref=f132e132]: Los Angeles
+              - generic [ref=f132e133]: "534"
+              - generic [ref=f132e134]: ↑ 7%
+        - generic [ref=f132e184]:
+          - heading "Zero to production, fast" [level=3] [ref=f132e185]
+          - paragraph [ref=f132e186]: Design system, typed API and CI wired up on day one.
+        - generic [ref=f132e239]:
+          - heading "AI woven through the stack" [level=3] [ref=f132e240]
+          - paragraph [ref=f132e241]: Model routing, evals and guardrails built into the product from day one, not bolted on once it is already live.
+  - generic [ref=f132e242]: Scroll up ↑
+  - generic [ref=f132e244]:
+    - heading "Command palette" [level=2] [ref=f132e245]
+    - paragraph [ref=f132e246]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f132e247]:
+    - button "Blocks" [ref=f132e248] [cursor=pointer]
+    - button "Tools New" [ref=f132e254] [cursor=pointer]:
+      - generic [ref=f132e255]: Tools
+      - generic [ref=f132e257]: New
+    - button "Toggle theme" [ref=f132e262] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f132e276] [cursor=pointer]:
+    - generic [ref=f132e279]:
+      - text: Compiling
+      - generic [ref=f132e280]:
+        - generic [ref=f132e281]: .
+        - generic [ref=f132e282]: .
+        - generic [ref=f132e283]: .

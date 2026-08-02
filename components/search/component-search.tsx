@@ -1,5 +1,7 @@
 "use client";
 
+import { copyText } from "@/lib/utils";
+
 import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/registry/default/ui/input";
 import { Button } from "@/registry/default/ui/button";
@@ -348,7 +350,7 @@ export function ComponentSearch({
                           className="flex-1"
                           onClick={() => {
                             const command = `npx shadcn@latest add https://d2studio.dev/r/${key}.json`;
-                            navigator.clipboard.writeText(command);
+                            copyText(command);
                           }}
                         >
                           Copy Install

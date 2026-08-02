@@ -1,0 +1,32 @@
+- generic [active] [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f3e3]:
+    - generic [ref=f3e5]:
+      - generic [ref=f3e7]:
+        - generic [ref=f3e8]:
+          - heading "Web Design & Development" [level=3] [ref=f3e12]
+          - paragraph [ref=f3e13]: We create visually appealing and functional websites that captivate your audience and drive results.
+        - generic [ref=f3e14]:
+          - generic [ref=f3e15]: "12"
+          - paragraph [ref=f3e29]: Website that delivers a unique
+      - generic [ref=f3e30]:
+        - generic [ref=f3e32]:
+          - code [ref=f3e38]: "import { ClassValue, clsx } from \"clsx\" import { twMerge } from \"tailwind-merge\" export { twMerge } from \"tailwind-merge\""
+          - heading "Clean Code" [level=3] [ref=f3e39]
+          - paragraph [ref=f3e40]: our expertise in advanced coding techniques, we ensure your digital projects are delivered on time and surpass your expectations
+        - generic [ref=f3e42]:
+          - heading "Accelerate your project" [level=3] [ref=f3e46]
+          - paragraph [ref=f3e47]: Bring your ideas to life faster with our rapid development services.
+  - generic [ref=f3e149]:
+    - heading "Command palette" [level=2] [ref=f3e150]
+    - paragraph [ref=f3e151]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f3e152]:
+    - button "Blocks" [ref=f3e153] [cursor=pointer]
+    - button "Tools New" [ref=f3e171] [cursor=pointer]:
+      - generic [ref=f3e183]: Tools
+      - generic [ref=f3e185]: New
+    - button "Switch to light mode" [ref=f3e190] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e199] [cursor=pointer]
+  - alert [ref=f3e203]

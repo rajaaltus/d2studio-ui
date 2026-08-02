@@ -56,7 +56,7 @@ export default function BlockPage() {
       <div id="main-content" tabIndex={-1} className="outline-none" />
 
       {/* Header Section */}
-      <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-8">
+      <section className="w-full max-w-7xl border-x mx-auto px-4 lg:px-8">
         <div className="py-8">
           <Button asChild variant="ghost" size="sm" className="mb-6 -ml-3">
             <Link href="/blocks">
@@ -112,7 +112,7 @@ export default function BlockPage() {
       </section>
 
       {/* Metadata Section */}
-      <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-8 py-8">
+      <section className="w-full max-w-7xl border-x mx-auto px-4 lg:px-8 py-8">
         <div className="rounded-lg border bg-muted/50 p-6">
           <h2 className="text-lg font-semibold mb-4">Block Details</h2>
           <div className="grid gap-4 md:grid-cols-2">

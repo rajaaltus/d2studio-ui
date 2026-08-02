@@ -1,0 +1,66 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e11]:
+          - img [ref=e12]
+          - generic [ref=e16]: "29"
+        - paragraph [ref=e17]: Keep up to date with any changes by receiving instant notifications.
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - heading "Recent activity" [level=3] [ref=e20]
+          - generic [ref=e21]: Today
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - img [ref=e25]
+            - generic [ref=e27]: New comment on Bento layout
+            - generic [ref=e28]: Priya · 2m
+          - listitem [ref=e29]:
+            - img [ref=e31]
+            - generic [ref=e35]: Deploy shipped to production
+            - generic [ref=e36]: Vercel · 18m
+          - listitem [ref=e37]:
+            - img [ref=e39]
+            - generic [ref=e42]: 3 messages from your team
+            - generic [ref=e43]: Inbox · 1h
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - img [ref=e46]
+          - text: 12% this week
+        - generic [ref=e49]: "29"
+        - generic [ref=e50]: Unread notifications
+      - generic [ref=e51]:
+        - heading "Delivery" [level=3] [ref=e52]
+        - paragraph [ref=e53]: Where you get notified
+        - list [ref=e54]:
+          - listitem [ref=e55]:
+            - button "Push" [pressed] [ref=e56]:
+              - generic [ref=e57]: Push
+              - img [ref=e59]
+          - listitem [ref=e61]:
+            - button "Email" [pressed] [ref=e62]:
+              - generic [ref=e63]: Email
+              - img [ref=e65]
+          - listitem [ref=e67]:
+            - button "SMS" [ref=e68]:
+              - generic [ref=e69]: SMS
+              - img [ref=e71]
+  - generic [ref=e73]:
+    - heading "Command palette" [level=2] [ref=e74]
+    - paragraph [ref=e75]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e76]:
+    - button "Blocks" [ref=e77] [cursor=pointer]:
+      - generic [ref=e91]: Blocks
+      - img [ref=e92]
+    - button "Tools New" [ref=e95] [cursor=pointer]:
+      - generic [ref=e108]: Tools
+      - generic [ref=e110]: New
+      - img [ref=e111]
+    - button "Toggle theme" [ref=e114] [cursor=pointer]:
+      - img [ref=e117]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e128] [cursor=pointer]:
+    - img [ref=e129]
+  - alert [ref=e132]

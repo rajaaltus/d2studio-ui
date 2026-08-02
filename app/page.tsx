@@ -85,7 +85,7 @@ export default function HomePage() {
       <HeroSection2 />
 
       {/* Features Section */}
-      <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
+      <section className="max-w-7xl w-full border-x mx-auto  lg:px-0 bg-border">
         <CosmoMorph />
 
         <div className="flex flex-col gap-px bg-border lg:rounded-xl border overflow-hidden m-0">
@@ -121,20 +121,20 @@ export default function HomePage() {
       </section>
 
       {/* Pixel Spinner Section */}
-      <section className="max-w-6xl w-full border-x mx-auto lg:px-0 bg-border">
+      <section className="max-w-7xl w-full border-x mx-auto lg:px-0 bg-border">
         <SpinnerMorph />
       </section>
 
       {/* Separator Section */}
       <section className="grid grid-rows-[2.5rem_2.5rem_2.5rem] [--pattern-fg:var(--color-black)]/10 dark:bg-background dark:[--pattern-fg:var(--color-white)]/10 ">
         <div className="screen-line-after h-full">
-          <div className="max-w-6xl mx-auto border-x h-full"></div>
+          <div className="max-w-7xl mx-auto border-x h-full"></div>
         </div>
         <div className="w-full border-x min-h-[2.5rem]  screen-line-after  mx-auto border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed">
-          <div className="w-full h-[2.5rem] max-w-6xl b border-x mx-auto"></div>
+          <div className="w-full h-[2.5rem] max-w-7xl b border-x mx-auto"></div>
         </div>
         <div className="h-full">
-          <div className="max-w-6xl mx-auto border-x h-full"></div>
+          <div className="max-w-7xl mx-auto border-x h-full"></div>
         </div>
       </section>
 
@@ -182,7 +182,7 @@ export default function HomePage() {
       <CommunitySection />
 
       {/* CTA Section */}
-      <section className="max-w-6xl w-full border-x mx-auto  lg:px-0 bg-border">
+      <section className="max-w-7xl w-full border-x mx-auto  lg:px-0 bg-border">
         <div className="lg:rounded-xl border m-0 bg-background py-16 lg:py-20 grid grid-cols-1 md:grid-cols-2 items-center">
           <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-12 py-6 md:py-0 md:pr-10 lg:pr-16 md:border-r md:border-dashed md:border-border">
             <IsoIcon

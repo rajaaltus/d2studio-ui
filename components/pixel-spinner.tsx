@@ -29,7 +29,7 @@ export type SpinnerEffect = "none" | "light" | "wave";
 
 export type SpinnerAnimation = "pixels" | "wavy";
 
-const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
+export const SHAPE_STYLE: Record<SpinnerShape, React.CSSProperties> = {
   square: {},
   rounded: { borderRadius: "22%" },
   circle: { borderRadius: "50%" },
@@ -54,6 +54,9 @@ interface PixelSpinnerProps {
   gap?: number;
   className?: string;
   customColor?: string;
+  /** Design token for the lit cell color: a `var(--token)` reference or any
+   * CSS color. Wins over `customColor` and `color` when set. */
+  token?: string;
   gradient?: SpinnerGradient;
   intervalOverride?: number;
   glow?: number;
@@ -80,6 +83,7 @@ export function PixelSpinner({
   gap = 2,
   className,
   customColor,
+  token,
   gradient,
   intervalOverride,
   glow,
@@ -154,15 +158,16 @@ export function PixelSpinner({
     >
       {Array.from({ length: total }).map((_, i) => {
         const op = cellOpacity.get(i);
-        const useCustom = !!customColor || !!gradient;
+        const paint = token ?? customColor;
+        const useCustom = !!paint || !!gradient;
         const variant = useCustom ? "c-custom" : `c-${color}`;
         const customVars: Record<string, string> = {};
         if (gradient) {
           customVars["--cell-gradient"] =
             `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`;
           customVars["--cell-glow"] = gradient.glow;
-        } else if (customColor) {
-          customVars["--cell-color"] = customColor;
+        } else if (paint) {
+          customVars["--cell-color"] = paint;
         }
         return (
           <div

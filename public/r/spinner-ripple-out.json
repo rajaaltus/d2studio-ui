@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-ripple-out",
+  "type": "registry:component",
+  "title": "Spinner Ripple Out",
+  "author": "D2 Studio",
+  "description": "A 3×3 pixel-grid loading spinner: 3 frames at 260ms (780ms loop).",
+  "registryDependencies": [
+    "https://d2studio.dev/r/pixel-spinner.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/spinner-ripple-out.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  PixelSpinner,\n  type SpinnerColor,\n  type SpinnerPattern,\n} from \"@/components/ui/pixel-spinner\";\n\nconst pattern: SpinnerPattern = {\"size\":3,\"interval\":260,\"frames\":[[4],[1,3,5,7],[0,2,6,8]]};\n\ntype SpinnerRippleOutProps = Omit<\n  React.ComponentProps<typeof PixelSpinner>,\n  \"pattern\" | \"color\"\n> & { color?: SpinnerColor };\n\nexport function SpinnerRippleOut({ color = \"hotpink\", ...props }: SpinnerRippleOutProps) {\n  return <PixelSpinner pattern={pattern} color={color} {...props} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "spinner"
+  ]
+}

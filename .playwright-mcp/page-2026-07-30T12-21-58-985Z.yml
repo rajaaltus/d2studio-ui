@@ -1,0 +1,948 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: D2 Agent
+        - generic [ref=e7]: File
+        - generic [ref=e8]: Edit
+        - generic [ref=e9]: View
+        - generic [ref=e10]: Window
+        - generic [ref=e11]: Help
+        - generic [ref=e12]: Thu 10:48 PM
+      - generic [ref=e1122]:
+        - generic [ref=e1123]:
+          - generic [ref=e1124]: d2studio-ui
+          - generic [ref=e1125]:
+            - generic [ref=e1126]: D2 Studio | Modern Component Library
+            - generic [ref=e1129]:
+              - generic [ref=e1130]: ✳
+              - text: Claude Code
+              - generic [ref=e1131]: ✕
+            - generic [ref=e1132]:
+              - generic [ref=e1133]: ▤
+              - generic [ref=e1134]: ⋯
+        - generic [ref=e1135]:
+          - generic [ref=e1136]:
+            - paragraph [ref=e1137]:
+              - img "D2 Studio" [ref=e1138]
+              - text: Welcome to the D2 agent
+            - paragraph [ref=e1140]: /help for help, /status for setup
+            - paragraph [ref=e1141]: "cwd: ~/projects/d2studio-ui"
+          - paragraph [ref=e1142]: "> audit the spinner registry and flag anything unused"
+          - generic [ref=e2615]:
+            - generic [ref=e2616]:
+              - paragraph [ref=e2617]: ⏺ Glob("app/**/spinner*.tsx")
+              - paragraph [ref=e2618]: ⎿ Found 5 files
+            - generic [ref=e2619]:
+              - paragraph [ref=e2620]: ⏺ Edit(registry.json)
+              - paragraph [ref=e2621]: ⎿ Updated 3 additions
+            - generic [ref=e2622]:
+              - paragraph [ref=e2623]: ⏺ Read(components/pixel-spinner.tsx)
+              - paragraph [ref=e2624]: ⎿ Read 214 lines
+            - generic [ref=e2625]:
+              - paragraph [ref=e2626]: ⏺ Bash(pnpm lint)
+              - paragraph [ref=e2627]: ⎿ No ESLint warnings
+            - generic [ref=e2628]:
+              - paragraph [ref=e2629]: ⏺ Read(registry.json)
+              - paragraph [ref=e2630]: ⎿ Read 47 items
+          - generic [ref=e1160]:
+            - generic [ref=e1161]:
+              - status "Loading" [ref=e1163]
+              - status "Loading" [ref=e1181]
+            - generic [ref=e1198]:
+              - generic [ref=e1199]: Accomplishing..
+              - generic [ref=e1200]: (esc to interrupt · 12.4k tokens)
+          - generic [ref=e1201]: ">"
+      - link "Explore spinners" [ref=e23] [cursor=pointer]:
+        - /url: "#docs"
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - heading "Introduction" [level=2] [ref=e28]
+        - paragraph [ref=e29]: Pixel-grid loaders for every app.
+        - paragraph [ref=e30]: "48 spinners, built with React, TypeScript, Tailwind CSS and shadcn. Every one is the same engine driven by a different frame table: a grid of cells, a list of which cells light on each step, and a four-step fade that turns the steps into a trail. Install one from the CLI, or install the engine and draw your own."
+        - generic [ref=e31]:
+          - code [ref=e33]:
+            - generic [ref=e34]: npx shadcn@latest add @d2/pixel-spinner
+          - button "Copy" [ref=e35]
+        - paragraph [ref=e37]: Every card below carries its own install line. Open one to see it.
+      - generic [ref=e38]:
+        - heading "Usage" [level=2] [ref=e39]
+        - generic [ref=e40]:
+          - code [ref=e42]:
+            - generic [ref=e43]: "import { PixelSpinner } from \"@/components/ui/pixel-spinner\";"
+            - generic [ref=e45]: // Cells are indexed row-major from 0. Each frame lists the cells that light on
+            - generic [ref=e46]: // that step, and a lit cell fades over the next three. That is the trail.
+            - generic [ref=e47]: "const pattern = {"
+            - generic [ref=e48]: "rows: 4,"
+            - generic [ref=e49]: "cols: 4,"
+            - generic [ref=e50]: "interval: 130,"
+            - generic [ref=e51]: "frames: ["
+            - generic [ref=e52]: "[1, 5, 6, 7, 8, 9, 10, 14],"
+            - generic [ref=e53]: "[2, 4, 5, 6, 9, 10, 11, 13],"
+            - generic [ref=e54]: "[0, 3, 5, 6, 9, 10, 12, 15],"
+            - generic [ref=e55]: "],"
+            - generic [ref=e56]: "};"
+            - generic [ref=e58]: "export function Pending() {"
+            - generic [ref=e59]: "return <PixelSpinner pattern={pattern} cellSize={4} gap={2} />;"
+            - generic [ref=e60]: "}"
+          - button "Copy" [ref=e61]
+      - generic [ref=e63]:
+        - heading "Manual setup" [level=2] [ref=e64]
+        - list [ref=e65]:
+          - listitem [ref=e66]:
+            - generic [ref=e67]: "1"
+            - text: Copy registry/default/ui/pixel-spinner.tsx into components/ui/.
+          - listitem [ref=e68]:
+            - generic [ref=e69]: "2"
+            - text: Copy registry/default/ui/pixel-spinner.css next to it — the component imports it directly.
+          - listitem [ref=e70]:
+            - generic [ref=e71]: "3"
+            - text: "Render <PixelSpinner pattern={…} /> with the frames of whichever spinner you want."
+    - generic [ref=e72]:
+      - heading "Saved (28)" [level=2] [ref=e1204]
+      - generic [ref=e74]:
+        - generic [ref=e1205]:
+          - button "Overture documentation" [ref=e1206] [cursor=pointer]:
+            - generic [ref=e1207]:
+              - status "Loading" [ref=e1209]
+              - generic [ref=e1226]: Billowing..
+            - generic [ref=e1227]:
+              - generic [ref=e1228]: ⏺ Read(registry.json)
+              - generic [ref=e1229]: ⎿ Read 47 items
+              - generic [ref=e1230]:
+                - status "Loading" [ref=e1232]
+                - generic [ref=e1249]:
+                  - text: Billowing..
+                  - generic [ref=e1250]: (esc · 12.4k)
+              - generic [ref=e1251]: ">"
+          - generic [ref=e1254]:
+            - paragraph [ref=e1255]: Overture
+            - generic [ref=e1256]: pro
+            - button "Copy options for Overture" [ref=e1257]: Copy as
+        - generic [ref=e1260]:
+          - button "Slant documentation" [ref=e1261] [cursor=pointer]:
+            - generic [ref=e1262]:
+              - status "Loading" [ref=e1264]
+              - generic [ref=e1281]: Accomplishing..
+            - generic [ref=e1282]:
+              - generic [ref=e1283]: "⏺ Grep(pattern: \"spinner-\")"
+              - generic [ref=e1284]: ⎿ Found 12 files
+              - generic [ref=e1285]:
+                - status "Loading" [ref=e1287]
+                - generic [ref=e1304]:
+                  - text: Accomplishing..
+                  - generic [ref=e1305]: (esc · 12.4k)
+              - generic [ref=e1306]: ">"
+          - generic [ref=e1309]:
+            - paragraph [ref=e1310]: Slant
+            - generic [ref=e1311]: pro
+            - button "Copy options for Slant" [ref=e1312]: Copy as
+        - generic [ref=e1315]:
+          - button "Bellows documentation" [ref=e1316] [cursor=pointer]:
+            - generic [ref=e1317]:
+              - status "Loading" [ref=e1319]
+              - generic [ref=e1328]: Channelling...
+            - generic [ref=e1329]:
+              - generic [ref=e1330]: ⏺ Read(lib/spinner-patterns.ts)
+              - generic [ref=e1331]: ⎿ Read 612 lines
+              - generic [ref=e1332]:
+                - status "Loading" [ref=e1334]
+                - generic [ref=e1343]:
+                  - text: Channelling...
+                  - generic [ref=e1344]: (esc · 12.4k)
+              - generic [ref=e1345]: ">"
+          - generic [ref=e1348]:
+            - paragraph [ref=e1349]: Bellows
+            - generic [ref=e1350]: pro
+            - button "Copy options for Bellows" [ref=e1351]: Copy as
+        - generic [ref=e1354]:
+          - button "Comet documentation" [ref=e1355] [cursor=pointer]:
+            - generic [ref=e1356]:
+              - status "Loading" [ref=e1358]
+              - generic [ref=e1367]: Tinkering.
+            - generic [ref=e1368]:
+              - generic [ref=e1369]: ⏺ Bash(pnpm registry:build)
+              - generic [ref=e1370]: ⎿ Built 47 items in 1.2s
+              - generic [ref=e1371]:
+                - status "Loading" [ref=e1373]
+                - generic [ref=e1382]:
+                  - text: Tinkering.
+                  - generic [ref=e1383]: (esc · 12.4k)
+              - generic [ref=e1384]: ">"
+          - generic [ref=e1387]:
+            - paragraph [ref=e1388]: Comet
+            - generic [ref=e1389]: pro
+            - button "Copy options for Comet" [ref=e1390]: Copy as
+        - generic [ref=e1393]:
+          - button "Flood documentation" [ref=e1394] [cursor=pointer]:
+            - generic [ref=e1395]:
+              - status "Loading" [ref=e1397]
+              - generic [ref=e1414]: Boogieing..
+            - generic [ref=e1415]:
+              - generic [ref=e1416]: ⏺ Glob("app/**/spinner*.tsx")
+              - generic [ref=e1417]: ⎿ Found 5 files
+              - generic [ref=e1418]:
+                - status "Loading" [ref=e1420]
+                - generic [ref=e1437]:
+                  - text: Boogieing..
+                  - generic [ref=e1438]: (esc · 12.4k)
+              - generic [ref=e1439]: ">"
+          - generic [ref=e1442]:
+            - paragraph [ref=e1443]: Flood
+            - generic [ref=e1444]: pro
+            - button "Copy options for Flood" [ref=e1445]: Copy as
+        - generic [ref=e1448]:
+          - button "Breath documentation" [ref=e1449] [cursor=pointer]:
+            - generic [ref=e1450]:
+              - status "Loading" [ref=e1452]
+              - generic [ref=e1461]: Levitating.
+            - generic [ref=e1462]:
+              - generic [ref=e1463]: ⏺ Edit(registry.json)
+              - generic [ref=e1464]: ⎿ Updated 3 additions
+              - generic [ref=e1465]:
+                - status "Loading" [ref=e1467]
+                - generic [ref=e1476]:
+                  - text: Levitating.
+                  - generic [ref=e1477]: (esc · 12.4k)
+              - generic [ref=e1478]: ">"
+          - generic [ref=e1481]:
+            - paragraph [ref=e1482]: Breath
+            - generic [ref=e1483]: pro
+            - button "Copy options for Breath" [ref=e1484]: Copy as
+        - generic [ref=e1487]:
+          - button "Relay documentation" [ref=e1488] [cursor=pointer]:
+            - generic [ref=e1489]:
+              - status "Loading" [ref=e1491]
+              - generic [ref=e1508]: Elucidating..
+            - generic [ref=e1509]:
+              - generic [ref=e1510]: ⏺ Read(components/pixel-spinner.tsx)
+              - generic [ref=e1511]: ⎿ Read 214 lines
+              - generic [ref=e1512]:
+                - status "Loading" [ref=e1514]
+                - generic [ref=e1531]:
+                  - text: Elucidating..
+                  - generic [ref=e1532]: (esc · 12.4k)
+              - generic [ref=e1533]: ">"
+          - generic [ref=e1536]:
+            - paragraph [ref=e1537]: Relay
+            - generic [ref=e1538]: pro
+            - button "Copy options for Relay" [ref=e1539]: Copy as
+        - generic [ref=e1542]:
+          - button "Sweep documentation" [ref=e1543] [cursor=pointer]:
+            - generic [ref=e1544]:
+              - status "Loading" [ref=e1546]
+              - generic [ref=e1555]: Billowing..
+            - generic [ref=e1556]:
+              - generic [ref=e1557]: ⏺ Bash(pnpm lint)
+              - generic [ref=e1558]: ⎿ No ESLint warnings
+              - generic [ref=e1559]:
+                - status "Loading" [ref=e1561]
+                - generic [ref=e1570]:
+                  - text: Billowing..
+                  - generic [ref=e1571]: (esc · 12.4k)
+              - generic [ref=e1572]: ">"
+          - generic [ref=e1575]:
+            - paragraph [ref=e1576]: Sweep
+            - generic [ref=e1577]: pro
+            - button "Copy options for Sweep" [ref=e1578]: Copy as
+        - generic [ref=e1581]:
+          - button "Orbit documentation" [ref=e1582] [cursor=pointer]:
+            - generic [ref=e1583]:
+              - status "Loading" [ref=e1585]
+              - generic [ref=e1594]: Accomplishing..
+            - generic [ref=e1595]:
+              - generic [ref=e1596]: ⏺ Read(registry.json)
+              - generic [ref=e1597]: ⎿ Read 47 items
+              - generic [ref=e1598]:
+                - status "Loading" [ref=e1600]
+                - generic [ref=e1609]:
+                  - text: Accomplishing..
+                  - generic [ref=e1610]: (esc · 12.4k)
+              - generic [ref=e1611]: ">"
+          - generic [ref=e1614]:
+            - paragraph [ref=e1615]: Orbit
+            - generic [ref=e1616]: pro
+            - button "Copy options for Orbit" [ref=e1617]: Copy as
+        - generic [ref=e1620]:
+          - button "Trickle documentation" [ref=e1621] [cursor=pointer]:
+            - generic [ref=e1622]:
+              - status "Loading" [ref=e1624]
+              - generic [ref=e1633]: Elucidating..
+            - generic [ref=e1634]:
+              - generic [ref=e1635]: "⏺ Grep(pattern: \"spinner-\")"
+              - generic [ref=e1636]: ⎿ Found 12 files
+              - generic [ref=e1637]:
+                - status "Loading" [ref=e1639]
+                - generic [ref=e1648]:
+                  - text: Elucidating..
+                  - generic [ref=e1649]: (esc · 12.4k)
+              - generic [ref=e1650]: ">"
+          - generic [ref=e1653]:
+            - paragraph [ref=e1654]: Trickle
+            - generic [ref=e1655]: pro
+            - button "Copy options for Trickle" [ref=e1656]: Copy as
+        - generic [ref=e1659]:
+          - button "Pulse documentation" [ref=e1660] [cursor=pointer]:
+            - generic [ref=e1661]:
+              - status "Loading" [ref=e1663]
+              - generic [ref=e1672]: Billowing..
+            - generic [ref=e1673]:
+              - generic [ref=e1674]: ⏺ Read(lib/spinner-patterns.ts)
+              - generic [ref=e1675]: ⎿ Read 612 lines
+              - generic [ref=e1676]:
+                - status "Loading" [ref=e1678]
+                - generic [ref=e1687]:
+                  - text: Billowing..
+                  - generic [ref=e1688]: (esc · 12.4k)
+              - generic [ref=e1689]: ">"
+          - generic [ref=e1692]:
+            - paragraph [ref=e1693]: Pulse
+            - generic [ref=e1694]: pro
+            - button "Copy options for Pulse" [ref=e1695]: Copy as
+        - generic [ref=e1698]:
+          - button "Spill documentation" [ref=e1699] [cursor=pointer]:
+            - generic [ref=e1700]:
+              - status "Loading" [ref=e1702]
+              - generic [ref=e1711]: Accomplishing..
+            - generic [ref=e1712]:
+              - generic [ref=e1713]: ⏺ Bash(pnpm registry:build)
+              - generic [ref=e1714]: ⎿ Built 47 items in 1.2s
+              - generic [ref=e1715]:
+                - status "Loading" [ref=e1717]
+                - generic [ref=e1726]:
+                  - text: Accomplishing..
+                  - generic [ref=e1727]: (esc · 12.4k)
+              - generic [ref=e1728]: ">"
+          - generic [ref=e1731]:
+            - paragraph [ref=e1732]: Spill
+            - generic [ref=e1733]: pro
+            - button "Copy options for Spill" [ref=e1734]: Copy as
+        - generic [ref=e1737]:
+          - button "Shuffle documentation" [ref=e1738] [cursor=pointer]:
+            - generic [ref=e1739]:
+              - status "Loading" [ref=e1741]
+              - generic [ref=e1758]: Channelling...
+            - generic [ref=e1759]:
+              - generic [ref=e1760]: ⏺ Glob("app/**/spinner*.tsx")
+              - generic [ref=e1761]: ⎿ Found 5 files
+              - generic [ref=e1762]:
+                - status "Loading" [ref=e1764]
+                - generic [ref=e1781]:
+                  - text: Channelling...
+                  - generic [ref=e1782]: (esc · 12.4k)
+              - generic [ref=e1783]: ">"
+          - generic [ref=e1786]:
+            - paragraph [ref=e1787]: Shuffle
+            - generic [ref=e1788]: pro
+            - button "Copy options for Shuffle" [ref=e1789]: Copy as
+        - generic [ref=e1792]:
+          - button "Clasp documentation" [ref=e1793] [cursor=pointer]:
+            - generic [ref=e1794]:
+              - status "Loading" [ref=e1796]
+              - generic [ref=e1813]: Tinkering.
+            - generic [ref=e1814]:
+              - generic [ref=e1815]: ⏺ Edit(registry.json)
+              - generic [ref=e1816]: ⎿ Updated 3 additions
+              - generic [ref=e1817]:
+                - status "Loading" [ref=e1819]
+                - generic [ref=e1836]:
+                  - text: Tinkering.
+                  - generic [ref=e1837]: (esc · 12.4k)
+              - generic [ref=e1838]: ">"
+          - generic [ref=e1841]:
+            - paragraph [ref=e1842]: Clasp
+            - generic [ref=e1843]: pro
+            - button "Copy options for Clasp" [ref=e1844]: Copy as
+        - generic [ref=e1847]:
+          - button "Sway documentation" [ref=e1848] [cursor=pointer]:
+            - generic [ref=e1849]:
+              - status "Loading" [ref=e1851]
+              - generic [ref=e1868]: Boogieing..
+            - generic [ref=e1869]:
+              - generic [ref=e1870]: ⏺ Read(components/pixel-spinner.tsx)
+              - generic [ref=e1871]: ⎿ Read 214 lines
+              - generic [ref=e1872]:
+                - status "Loading" [ref=e1874]
+                - generic [ref=e1891]:
+                  - text: Boogieing..
+                  - generic [ref=e1892]: (esc · 12.4k)
+              - generic [ref=e1893]: ">"
+          - generic [ref=e1896]:
+            - paragraph [ref=e1897]: Sway
+            - generic [ref=e1898]: pro
+            - button "Copy options for Sway" [ref=e1899]: Copy as
+        - generic [ref=e1902]:
+          - button "Skip documentation" [ref=e1903] [cursor=pointer]:
+            - generic [ref=e1904]:
+              - status "Loading" [ref=e1906]
+              - generic [ref=e1919]: Levitating.
+            - generic [ref=e1920]:
+              - generic [ref=e1921]: ⏺ Bash(pnpm lint)
+              - generic [ref=e1922]: ⎿ No ESLint warnings
+              - generic [ref=e1923]:
+                - status "Loading" [ref=e1925]
+                - generic [ref=e1938]:
+                  - text: Levitating.
+                  - generic [ref=e1939]: (esc · 12.4k)
+              - generic [ref=e1940]: ">"
+          - generic [ref=e1943]:
+            - paragraph [ref=e1944]: Skip
+            - generic [ref=e1945]: pro
+            - button "Copy options for Skip" [ref=e1946]: Copy as
+        - generic [ref=e1949]:
+          - button "Bloom documentation" [ref=e1950] [cursor=pointer]:
+            - generic [ref=e1951]:
+              - status "Loading" [ref=e1953]
+              - generic [ref=e1963]: Elucidating..
+            - generic [ref=e1964]:
+              - generic [ref=e1965]: ⏺ Read(registry.json)
+              - generic [ref=e1966]: ⎿ Read 47 items
+              - generic [ref=e1967]:
+                - status "Loading" [ref=e1969]
+                - generic [ref=e1979]:
+                  - text: Elucidating..
+                  - generic [ref=e1980]: (esc · 12.4k)
+              - generic [ref=e1981]: ">"
+          - generic [ref=e1984]:
+            - paragraph [ref=e1985]: Bloom
+            - generic [ref=e1986]: pro
+            - button "Copy options for Bloom" [ref=e1987]: Copy as
+        - generic [ref=e1990]:
+          - button "Turbine documentation" [ref=e1991] [cursor=pointer]:
+            - generic [ref=e1992]:
+              - status "Loading" [ref=e1994]
+              - generic [ref=e2004]: Billowing..
+            - generic [ref=e2005]:
+              - generic [ref=e2006]: "⏺ Grep(pattern: \"spinner-\")"
+              - generic [ref=e2007]: ⎿ Found 12 files
+              - generic [ref=e2008]:
+                - status "Loading" [ref=e2010]
+                - generic [ref=e2020]:
+                  - text: Billowing..
+                  - generic [ref=e2021]: (esc · 12.4k)
+              - generic [ref=e2022]: ">"
+          - generic [ref=e2025]:
+            - paragraph [ref=e2026]: Turbine
+            - generic [ref=e2027]: pro
+            - button "Copy options for Turbine" [ref=e2028]: Copy as
+        - generic [ref=e2031]:
+          - button "Shuttle documentation" [ref=e2032] [cursor=pointer]:
+            - generic [ref=e2033]:
+              - status "Loading" [ref=e2035]
+              - generic [ref=e2051]: Accomplishing..
+            - generic [ref=e2052]:
+              - generic [ref=e2053]: ⏺ Read(lib/spinner-patterns.ts)
+              - generic [ref=e2054]: ⎿ Read 612 lines
+              - generic [ref=e2055]:
+                - status "Loading" [ref=e2057]
+                - generic [ref=e2073]:
+                  - text: Accomplishing..
+                  - generic [ref=e2074]: (esc · 12.4k)
+              - generic [ref=e2075]: ">"
+          - generic [ref=e2078]:
+            - paragraph [ref=e2079]: Shuttle
+            - generic [ref=e2080]: pro
+            - button "Copy options for Shuttle" [ref=e2081]: Copy as
+        - generic [ref=e2084]:
+          - button "Fork documentation" [ref=e2085] [cursor=pointer]:
+            - generic [ref=e2086]:
+              - status "Loading" [ref=e2088]
+              - generic [ref=e2104]: Billowing..
+            - generic [ref=e2105]:
+              - generic [ref=e2106]: ⏺ Bash(pnpm registry:build)
+              - generic [ref=e2107]: ⎿ Built 47 items in 1.2s
+              - generic [ref=e2108]:
+                - status "Loading" [ref=e2110]
+                - generic [ref=e2126]:
+                  - text: Billowing..
+                  - generic [ref=e2127]: (esc · 12.4k)
+              - generic [ref=e2128]: ">"
+          - generic [ref=e2131]:
+            - paragraph [ref=e2132]: Fork
+            - generic [ref=e2133]: pro
+            - button "Copy options for Fork" [ref=e2134]: Copy as
+        - generic [ref=e2137]:
+          - button "Pincer documentation" [ref=e2138] [cursor=pointer]:
+            - generic [ref=e2139]:
+              - status "Loading" [ref=e2141]
+              - generic [ref=e2157]: Accomplishing..
+            - generic [ref=e2158]:
+              - generic [ref=e2159]: ⏺ Glob("app/**/spinner*.tsx")
+              - generic [ref=e2160]: ⎿ Found 5 files
+              - generic [ref=e2161]:
+                - status "Loading" [ref=e2163]
+                - generic [ref=e2179]:
+                  - text: Accomplishing..
+                  - generic [ref=e2180]: (esc · 12.4k)
+              - generic [ref=e2181]: ">"
+          - generic [ref=e2184]:
+            - paragraph [ref=e2185]: Pincer
+            - generic [ref=e2186]: pro
+            - button "Copy options for Pincer" [ref=e2187]: Copy as
+        - generic [ref=e2190]:
+          - button "Weave documentation" [ref=e2191] [cursor=pointer]:
+            - generic [ref=e2192]:
+              - status "Loading" [ref=e2194]
+              - generic [ref=e2213]: Channelling...
+            - generic [ref=e2214]:
+              - generic [ref=e2215]: ⏺ Edit(registry.json)
+              - generic [ref=e2216]: ⎿ Updated 3 additions
+              - generic [ref=e2217]:
+                - status "Loading" [ref=e2219]
+                - generic [ref=e2238]:
+                  - text: Channelling...
+                  - generic [ref=e2239]: (esc · 12.4k)
+              - generic [ref=e2240]: ">"
+          - generic [ref=e2243]:
+            - paragraph [ref=e2244]: Weave
+            - generic [ref=e2245]: pro
+            - button "Copy options for Weave" [ref=e2246]: Copy as
+        - generic [ref=e2249]:
+          - button "Buoy documentation" [ref=e2250] [cursor=pointer]:
+            - generic [ref=e2251]:
+              - status "Loading" [ref=e2253]
+              - generic [ref=e2272]: Tinkering.
+            - generic [ref=e2273]:
+              - generic [ref=e2274]: ⏺ Read(components/pixel-spinner.tsx)
+              - generic [ref=e2275]: ⎿ Read 214 lines
+              - generic [ref=e2276]:
+                - status "Loading" [ref=e2278]
+                - generic [ref=e2297]:
+                  - text: Tinkering.
+                  - generic [ref=e2298]: (esc · 12.4k)
+              - generic [ref=e2299]: ">"
+          - generic [ref=e2302]:
+            - paragraph [ref=e2303]: Buoy
+            - generic [ref=e2304]: pro
+            - button "Copy options for Buoy" [ref=e2305]: Copy as
+        - generic [ref=e2308]:
+          - button "Ascent documentation" [ref=e2309] [cursor=pointer]:
+            - generic [ref=e2310]:
+              - status "Loading" [ref=e2312]
+              - generic [ref=e2331]: Boogieing..
+            - generic [ref=e2332]:
+              - generic [ref=e2333]: ⏺ Bash(pnpm lint)
+              - generic [ref=e2334]: ⎿ No ESLint warnings
+              - generic [ref=e2335]:
+                - status "Loading" [ref=e2337]
+                - generic [ref=e2356]:
+                  - text: Boogieing..
+                  - generic [ref=e2357]: (esc · 12.4k)
+              - generic [ref=e2358]: ">"
+          - generic [ref=e2361]:
+            - paragraph [ref=e2362]: Ascent
+            - generic [ref=e2363]: pro
+            - button "Copy options for Ascent" [ref=e2364]: Copy as
+        - generic [ref=e2367]:
+          - button "Barber documentation" [ref=e2368] [cursor=pointer]:
+            - generic [ref=e2369]:
+              - status "Loading" [ref=e2371]
+              - generic [ref=e2390]: Levitating.
+            - generic [ref=e2391]:
+              - generic [ref=e2392]: ⏺ Read(registry.json)
+              - generic [ref=e2393]: ⎿ Read 47 items
+              - generic [ref=e2394]:
+                - status "Loading" [ref=e2396]
+                - generic [ref=e2415]:
+                  - text: Levitating.
+                  - generic [ref=e2416]: (esc · 12.4k)
+              - generic [ref=e2417]: ">"
+          - generic [ref=e2420]:
+            - paragraph [ref=e2421]: Barber
+            - generic [ref=e2422]: pro
+            - button "Copy options for Barber" [ref=e2423]: Copy as
+        - generic [ref=e2426]:
+          - button "Convoy documentation" [ref=e2427] [cursor=pointer]:
+            - generic [ref=e2428]:
+              - status "Loading" [ref=e2430]
+              - generic [ref=e2449]: Elucidating..
+            - generic [ref=e2450]:
+              - generic [ref=e2451]: "⏺ Grep(pattern: \"spinner-\")"
+              - generic [ref=e2452]: ⎿ Found 12 files
+              - generic [ref=e2453]:
+                - status "Loading" [ref=e2455]
+                - generic [ref=e2474]:
+                  - text: Elucidating..
+                  - generic [ref=e2475]: (esc · 12.4k)
+              - generic [ref=e2476]: ">"
+          - generic [ref=e2479]:
+            - paragraph [ref=e2480]: Convoy
+            - generic [ref=e2481]: pro
+            - button "Copy options for Convoy" [ref=e2482]: Copy as
+        - generic [ref=e2485]:
+          - button "Beacon documentation" [ref=e2486] [cursor=pointer]:
+            - generic [ref=e2487]:
+              - status "Loading" [ref=e2489]
+              - generic [ref=e2506]: Billowing..
+            - generic [ref=e2507]:
+              - generic [ref=e2508]: ⏺ Read(lib/spinner-patterns.ts)
+              - generic [ref=e2509]: ⎿ Read 612 lines
+              - generic [ref=e2510]:
+                - status "Loading" [ref=e2512]
+                - generic [ref=e2529]:
+                  - text: Billowing..
+                  - generic [ref=e2530]: (esc · 12.4k)
+              - generic [ref=e2531]: ">"
+          - generic [ref=e2534]:
+            - paragraph [ref=e2535]: Beacon
+            - generic [ref=e2536]: pro
+            - button "Copy options for Beacon" [ref=e2537]: Copy as
+        - generic [ref=e2540]:
+          - button "Kaleido documentation" [ref=e2541] [cursor=pointer]:
+            - generic [ref=e2542]:
+              - status "Loading" [ref=e2544]
+              - generic [ref=e2561]: Accomplishing..
+            - generic [ref=e2562]:
+              - generic [ref=e2563]: ⏺ Bash(pnpm registry:build)
+              - generic [ref=e2564]: ⎿ Built 47 items in 1.2s
+              - generic [ref=e2565]:
+                - status "Loading" [ref=e2567]
+                - generic [ref=e2584]:
+                  - text: Accomplishing..
+                  - generic [ref=e2585]: (esc · 12.4k)
+              - generic [ref=e2586]: ">"
+          - generic [ref=e2589]:
+            - paragraph [ref=e2590]: Kaleido
+            - generic [ref=e2591]: pro
+            - button "Copy options for Kaleido" [ref=e2592]: Copy as
+      - heading "Presets (17)" [level=2] [ref=e76]
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - button "Halo documentation" [ref=e79] [cursor=pointer]:
+            - generic [ref=e80]:
+              - status "Loading" [ref=e82]
+              - generic [ref=e99]: Accomplishing..
+            - generic [ref=e100]:
+              - generic [ref=e101]: ⏺ Read(registry.json)
+              - generic [ref=e102]: ⎿ Read 47 items
+              - generic [ref=e103]:
+                - status "Loading" [ref=e105]
+                - generic [ref=e122]:
+                  - text: Accomplishing..
+                  - generic [ref=e123]: (esc · 12.4k)
+              - generic [ref=e124]: ">"
+          - generic [ref=e127]:
+            - paragraph [ref=e128]: Halo
+            - generic [ref=e129]: free
+            - button "Copy options for Halo" [ref=e130]: Copy as
+        - generic [ref=e133]:
+          - button "Binary documentation" [ref=e134] [cursor=pointer]:
+            - generic [ref=e135]:
+              - status "Loading" [ref=e137]
+              - generic [ref=e163]: Tinkering.
+            - generic [ref=e164]:
+              - generic [ref=e165]: "⏺ Grep(pattern: \"spinner-\")"
+              - generic [ref=e166]: ⎿ Found 12 files
+              - generic [ref=e167]:
+                - status "Loading" [ref=e169]
+                - generic [ref=e195]:
+                  - text: Tinkering.
+                  - generic [ref=e196]: (esc · 12.4k)
+              - generic [ref=e197]: ">"
+          - generic [ref=e200]:
+            - paragraph [ref=e201]: Binary
+            - generic [ref=e202]: free
+            - button "Copy options for Binary" [ref=e203]: Copy as
+        - generic [ref=e206]:
+          - button "Vortex documentation" [ref=e207] [cursor=pointer]:
+            - generic [ref=e208]:
+              - status "Loading" [ref=e210]
+              - generic [ref=e227]: Channelling...
+            - generic [ref=e228]:
+              - generic [ref=e229]: ⏺ Read(lib/spinner-patterns.ts)
+              - generic [ref=e230]: ⎿ Read 612 lines
+              - generic [ref=e231]:
+                - status "Loading" [ref=e233]
+                - generic [ref=e250]:
+                  - text: Channelling...
+                  - generic [ref=e251]: (esc · 12.4k)
+              - generic [ref=e252]: ">"
+          - generic [ref=e255]:
+            - paragraph [ref=e256]: Vortex
+            - generic [ref=e257]: free
+            - button "Copy options for Vortex" [ref=e258]: Copy as
+        - generic [ref=e261]:
+          - button "Cascade documentation" [ref=e262] [cursor=pointer]:
+            - generic [ref=e263]:
+              - status "Loading" [ref=e265]
+              - generic [ref=e291]: Billowing..
+            - generic [ref=e292]:
+              - generic [ref=e293]: ⏺ Bash(pnpm registry:build)
+              - generic [ref=e294]: ⎿ Built 47 items in 1.2s
+              - generic [ref=e295]:
+                - status "Loading" [ref=e297]
+                - generic [ref=e323]:
+                  - text: Billowing..
+                  - generic [ref=e324]: (esc · 12.4k)
+              - generic [ref=e325]: ">"
+          - generic [ref=e328]:
+            - paragraph [ref=e329]: Cascade
+            - generic [ref=e330]: free
+            - button "Copy options for Cascade" [ref=e331]: Copy as
+        - generic [ref=e334]:
+          - button "Drizzle documentation" [ref=e335] [cursor=pointer]:
+            - generic [ref=e336]:
+              - status "Loading" [ref=e338]
+              - generic [ref=e355]: Levitating.
+            - generic [ref=e356]:
+              - generic [ref=e357]: ⏺ Glob("app/**/spinner*.tsx")
+              - generic [ref=e358]: ⎿ Found 5 files
+              - generic [ref=e359]:
+                - status "Loading" [ref=e361]
+                - generic [ref=e378]:
+                  - text: Levitating.
+                  - generic [ref=e379]: (esc · 12.4k)
+              - generic [ref=e380]: ">"
+          - generic [ref=e383]:
+            - paragraph [ref=e384]: Drizzle
+            - generic [ref=e385]: free
+            - button "Copy options for Drizzle" [ref=e386]: Copy as
+        - generic [ref=e389]:
+          - button "Tide documentation" [ref=e390] [cursor=pointer]:
+            - generic [ref=e391]:
+              - status "Loading" [ref=e393]
+              - generic [ref=e410]: Levitating.
+            - generic [ref=e411]:
+              - generic [ref=e412]: ⏺ Edit(registry.json)
+              - generic [ref=e413]: ⎿ Updated 3 additions
+              - generic [ref=e414]:
+                - status "Loading" [ref=e416]
+                - generic [ref=e433]:
+                  - text: Levitating.
+                  - generic [ref=e434]: (esc · 12.4k)
+              - generic [ref=e435]: ">"
+          - generic [ref=e438]:
+            - paragraph [ref=e439]: Tide
+            - generic [ref=e440]: free
+            - button "Copy options for Tide" [ref=e441]: Copy as
+        - generic [ref=e444]:
+          - button "Mosaic documentation" [ref=e445] [cursor=pointer]:
+            - generic [ref=e446]:
+              - status "Loading" [ref=e448]
+              - generic [ref=e465]: Tinkering.
+            - generic [ref=e466]:
+              - generic [ref=e467]: ⏺ Read(components/pixel-spinner.tsx)
+              - generic [ref=e468]: ⎿ Read 214 lines
+              - generic [ref=e469]:
+                - status "Loading" [ref=e471]
+                - generic [ref=e488]:
+                  - text: Tinkering.
+                  - generic [ref=e489]: (esc · 12.4k)
+              - generic [ref=e490]: ">"
+          - generic [ref=e493]:
+            - paragraph [ref=e494]: Mosaic
+            - generic [ref=e495]: free
+            - button "Copy options for Mosaic" [ref=e496]: Copy as
+        - generic [ref=e499]:
+          - button "Bounce documentation" [ref=e500] [cursor=pointer]:
+            - generic [ref=e501]:
+              - status "Loading" [ref=e503]
+              - generic [ref=e524]: Boogieing..
+            - generic [ref=e525]:
+              - generic [ref=e526]: ⏺ Bash(pnpm lint)
+              - generic [ref=e527]: ⎿ No ESLint warnings
+              - generic [ref=e528]:
+                - status "Loading" [ref=e530]
+                - generic [ref=e551]:
+                  - text: Boogieing..
+                  - generic [ref=e552]: (esc · 12.4k)
+              - generic [ref=e553]: ">"
+          - generic [ref=e556]:
+            - paragraph [ref=e557]: Bounce
+            - generic [ref=e558]: free
+            - button "Copy options for Bounce" [ref=e559]: Copy as
+        - generic [ref=e562]:
+          - button "Pulse documentation" [ref=e563] [cursor=pointer]:
+            - generic [ref=e564]:
+              - status "Loading" [ref=e566]
+              - generic [ref=e585]: Levitating.
+            - generic [ref=e586]:
+              - generic [ref=e587]: ⏺ Read(registry.json)
+              - generic [ref=e588]: ⎿ Read 47 items
+              - generic [ref=e589]:
+                - status "Loading" [ref=e591]
+                - generic [ref=e610]:
+                  - text: Levitating.
+                  - generic [ref=e611]: (esc · 12.4k)
+              - generic [ref=e612]: ">"
+          - generic [ref=e615]:
+            - paragraph [ref=e616]: Pulse
+            - generic [ref=e617]: free
+            - button "Copy options for Pulse" [ref=e618]: Copy as
+        - generic [ref=e621]:
+          - button "Hourglass documentation" [ref=e622] [cursor=pointer]:
+            - generic [ref=e623]:
+              - status "Loading" [ref=e625]
+              - generic [ref=e638]: Elucidating..
+            - generic [ref=e639]:
+              - generic [ref=e640]: "⏺ Grep(pattern: \"spinner-\")"
+              - generic [ref=e641]: ⎿ Found 12 files
+              - generic [ref=e642]:
+                - status "Loading" [ref=e644]
+                - generic [ref=e657]:
+                  - text: Elucidating..
+                  - generic [ref=e658]: (esc · 12.4k)
+              - generic [ref=e659]: ">"
+          - generic [ref=e662]:
+            - paragraph [ref=e663]: Hourglass
+            - generic [ref=e664]: free
+            - button "Copy options for Hourglass" [ref=e665]: Copy as
+        - generic [ref=e668]:
+          - button "Spark documentation" [ref=e669] [cursor=pointer]:
+            - generic [ref=e670]:
+              - status "Loading" [ref=e672]
+              - generic [ref=e689]: Levitating.
+            - generic [ref=e690]:
+              - generic [ref=e691]: ⏺ Read(lib/spinner-patterns.ts)
+              - generic [ref=e692]: ⎿ Read 612 lines
+              - generic [ref=e693]:
+                - status "Loading" [ref=e695]
+                - generic [ref=e712]:
+                  - text: Levitating.
+                  - generic [ref=e713]: (esc · 12.4k)
+              - generic [ref=e714]: ">"
+          - generic [ref=e717]:
+            - paragraph [ref=e718]: Spark
+            - generic [ref=e719]: free
+            - button "Copy options for Spark" [ref=e720]: Copy as
+        - generic [ref=e723]:
+          - button "Strobe documentation" [ref=e724] [cursor=pointer]:
+            - generic [ref=e725]:
+              - status "Loading" [ref=e727]
+              - generic [ref=e744]: Elucidating..
+            - generic [ref=e745]:
+              - generic [ref=e746]: ⏺ Bash(pnpm registry:build)
+              - generic [ref=e747]: ⎿ Built 47 items in 1.2s
+              - generic [ref=e748]:
+                - status "Loading" [ref=e750]
+                - generic [ref=e767]:
+                  - text: Elucidating..
+                  - generic [ref=e768]: (esc · 12.4k)
+              - generic [ref=e769]: ">"
+          - generic [ref=e772]:
+            - paragraph [ref=e773]: Strobe
+            - generic [ref=e774]: free
+            - button "Copy options for Strobe" [ref=e775]: Copy as
+        - generic [ref=e778]:
+          - button "Tumble documentation" [ref=e779] [cursor=pointer]:
+            - generic [ref=e780]:
+              - status "Loading" [ref=e782]
+              - generic [ref=e799]: Billowing..
+            - generic [ref=e800]:
+              - generic [ref=e801]: ⏺ Glob("app/**/spinner*.tsx")
+              - generic [ref=e802]: ⎿ Found 5 files
+              - generic [ref=e803]:
+                - status "Loading" [ref=e805]
+                - generic [ref=e822]:
+                  - text: Billowing..
+                  - generic [ref=e823]: (esc · 12.4k)
+              - generic [ref=e824]: ">"
+          - generic [ref=e827]:
+            - paragraph [ref=e828]: Tumble
+            - generic [ref=e829]: free
+            - button "Copy options for Tumble" [ref=e830]: Copy as
+        - generic [ref=e833]:
+          - button "Splash documentation" [ref=e834] [cursor=pointer]:
+            - generic [ref=e835]:
+              - status "Loading" [ref=e837]
+              - generic [ref=e850]: Accomplishing..
+            - generic [ref=e851]:
+              - generic [ref=e852]: ⏺ Edit(registry.json)
+              - generic [ref=e853]: ⎿ Updated 3 additions
+              - generic [ref=e854]:
+                - status "Loading" [ref=e856]
+                - generic [ref=e869]:
+                  - text: Accomplishing..
+                  - generic [ref=e870]: (esc · 12.4k)
+              - generic [ref=e871]: ">"
+          - generic [ref=e874]:
+            - paragraph [ref=e875]: Splash
+            - generic [ref=e876]: free
+            - button "Copy options for Splash" [ref=e877]: Copy as
+        - generic [ref=e880]:
+          - button "Aperture documentation" [ref=e881] [cursor=pointer]:
+            - generic [ref=e882]:
+              - status "Loading" [ref=e884]
+              - generic [ref=e910]: Channelling...
+            - generic [ref=e911]:
+              - generic [ref=e912]: ⏺ Read(components/pixel-spinner.tsx)
+              - generic [ref=e913]: ⎿ Read 214 lines
+              - generic [ref=e914]:
+                - status "Loading" [ref=e916]
+                - generic [ref=e942]:
+                  - text: Channelling...
+                  - generic [ref=e943]: (esc · 12.4k)
+              - generic [ref=e944]: ">"
+          - generic [ref=e947]:
+            - paragraph [ref=e948]: Aperture
+            - generic [ref=e949]: free
+            - button "Copy options for Aperture" [ref=e950]: Copy as
+        - generic [ref=e953]:
+          - button "Piston documentation" [ref=e954] [cursor=pointer]:
+            - generic [ref=e955]:
+              - status "Loading" [ref=e957]
+              - generic [ref=e974]: Tinkering.
+            - generic [ref=e975]:
+              - generic [ref=e976]: ⏺ Bash(pnpm lint)
+              - generic [ref=e977]: ⎿ No ESLint warnings
+              - generic [ref=e978]:
+                - status "Loading" [ref=e980]
+                - generic [ref=e997]:
+                  - text: Tinkering.
+                  - generic [ref=e998]: (esc · 12.4k)
+              - generic [ref=e999]: ">"
+          - generic [ref=e1002]:
+            - paragraph [ref=e1003]: Piston
+            - generic [ref=e1004]: free
+            - button "Copy options for Piston" [ref=e1005]: Copy as
+        - generic [ref=e1008]:
+          - button "Pinwheel documentation" [ref=e1009] [cursor=pointer]:
+            - generic [ref=e1010]:
+              - status "Loading" [ref=e1012]
+              - generic [ref=e1029]: Elucidating..
+            - generic [ref=e1030]:
+              - generic [ref=e1031]: ⏺ Read(registry.json)
+              - generic [ref=e1032]: ⎿ Read 47 items
+              - generic [ref=e1033]:
+                - status "Loading" [ref=e1035]
+                - generic [ref=e1052]:
+                  - text: Elucidating..
+                  - generic [ref=e1053]: (esc · 12.4k)
+              - generic [ref=e1054]: ">"
+          - generic [ref=e1057]:
+            - paragraph [ref=e1058]: Pinwheel
+            - generic [ref=e1059]: free
+            - button "Copy options for Pinwheel" [ref=e1060]: Copy as
+      - generic:
+        - generic:
+          - button: "12"
+          - button: "16"
+          - button: "20"
+        - generic:
+          - button [pressed]: Square
+          - button: Circle
+          - button: Diamond
+        - generic:
+          - button
+          - button
+          - button [pressed]
+          - button
+        - generic:
+          - button
+          - button
+          - button
+          - button
+  - generic [ref=e1063]:
+    - heading "Command palette" [level=2] [ref=e1064]
+    - paragraph [ref=e1065]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=e1066]:
+    - button "Blocks" [ref=e1067] [cursor=pointer]
+    - button "Spinners New" [ref=e1085] [cursor=pointer]:
+      - generic [ref=e1097]: Spinners
+      - generic [ref=e1099]: New
+    - button "Switch to light mode" [ref=e2595] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e1118] [cursor=pointer]
+  - alert [ref=e2598]

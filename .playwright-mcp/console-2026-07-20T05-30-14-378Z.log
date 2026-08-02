@@ -1,0 +1,427 @@
+[     177ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     360ms] [LOG] [Fast Refresh] done in 284ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     461ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     889ms] [LOG] [Fast Refresh] done in 529ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     947ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     968ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1228ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1425ms] [LOG] [Fast Refresh] done in 297ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   14173ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   14312ms] [LOG] [Fast Refresh] done in 240ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   19481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   19648ms] [LOG] [Fast Refresh] done in 269ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  367761ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  370707ms] [LOG] [Fast Refresh] done in 3045ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  371028ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  371032ms] [LOG] [Fast Refresh] done in 104ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  371363ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  371633ms] [LOG] [Fast Refresh] done in 370ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  371782ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  371814ms] [LOG] [Fast Refresh] done in 132ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382019ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382188ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382190ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382190ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382190ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382191ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382191ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382191ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382192ms] [WARNING] GSAP target [object NodeList] not found. https://gsap.com @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382245ms] [LOG] [Fast Refresh] done in 265ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382347ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  382396ms] [LOG] [Fast Refresh] done in 149ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  385005ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  385177ms] [LOG] [Fast Refresh] done in 246ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  426828ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  427096ms] [LOG] [Fast Refresh] done in 300ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  718626ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  719254ms] [LOG] [Fast Refresh] done in 658ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  823499ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  824233ms] [LOG] [Fast Refresh] done in 831ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  824599ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  824666ms] [LOG] [Fast Refresh] done in 168ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  830852ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  831598ms] [LOG] [Fast Refresh] done in 842ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  831699ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  831740ms] [LOG] [Fast Refresh] done in 141ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  864162ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  865045ms] [LOG] [Fast Refresh] done in 888ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  865161ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  865207ms] [LOG] [Fast Refresh] done in 146ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  872179ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  872386ms] [LOG] [Fast Refresh] done in 234ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  982429ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  982680ms] [LOG] [Fast Refresh] done in 324ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  990566ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  991499ms] [LOG] [Fast Refresh] done in 1032ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  991677ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  991754ms] [LOG] [Fast Refresh] done in 177ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1028672ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1029458ms] [LOG] [Fast Refresh] done in 885ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1042864ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1042876ms] [LOG] [Fast Refresh] done in 114ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1057409ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1057603ms] [LOG] [Fast Refresh] done in 243ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1061767ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1061963ms] [LOG] [Fast Refresh] done in 240ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1322989ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1323654ms] [LOG] [Fast Refresh] done in 765ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1327960ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1328122ms] [LOG] [Fast Refresh] done in 219ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1332479ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1332672ms] [LOG] [Fast Refresh] done in 234ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1499572ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1499917ms] [LOG] [Fast Refresh] done in 366ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1504211ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1504447ms] [LOG] [Fast Refresh] done in 265ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1637615ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1637852ms] [LOG] [Fast Refresh] done in 292ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1641963ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1642175ms] [LOG] [Fast Refresh] done in 244ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2246574ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2247452ms] [LOG] [Fast Refresh] done in 977ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2272731ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2273458ms] [LOG] [Fast Refresh] done in 829ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2273893ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2273972ms] [LOG] [Fast Refresh] done in 180ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2384433ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2384753ms] [LOG] [Fast Refresh] done in 336ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2387270ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2387498ms] [LOG] [Fast Refresh] done in 263ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2470076ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2470992ms] [LOG] [Fast Refresh] done in 1013ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2544430ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2544633ms] [LOG] [Fast Refresh] done in 304ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2547362ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2547554ms] [LOG] [Fast Refresh] done in 231ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2615521ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2616196ms] [LOG] [Fast Refresh] done in 775ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2616590ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2616703ms] [LOG] [Fast Refresh] done in 214ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2623066ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2623755ms] [LOG] [Fast Refresh] done in 725ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2624165ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2624217ms] [LOG] [Fast Refresh] done in 152ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2670843ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2670878ms] [LOG] [Fast Refresh] done in 137ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2734684ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2735367ms] [LOG] [Fast Refresh] done in 696ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2735797ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2735832ms] [LOG] [Fast Refresh] done in 136ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2765067ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2765688ms] [LOG] [Fast Refresh] done in 719ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2766060ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2766123ms] [LOG] [Fast Refresh] done in 163ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2881869ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2882636ms] [LOG] [Fast Refresh] done in 867ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2882895ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2882951ms] [LOG] [Fast Refresh] done in 158ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2967381ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2968186ms] [LOG] [Fast Refresh] done in 905ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3000029ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3000752ms] [LOG] [Fast Refresh] done in 824ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3014104ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3014721ms] [LOG] [Fast Refresh] done in 717ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3015040ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3015127ms] [LOG] [Fast Refresh] done in 188ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3021579ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3021597ms] [LOG] [Fast Refresh] done in 119ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3034064ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3034784ms] [LOG] [Fast Refresh] done in 819ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3034983ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3035020ms] [LOG] [Fast Refresh] done in 137ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3171772ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3172561ms] [LOG] [Fast Refresh] done in 888ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3172816ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3172939ms] [LOG] [Fast Refresh] done in 224ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3307728ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3307990ms] [LOG] [Fast Refresh] done in 298ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3329250ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3329634ms] [LOG] [Fast Refresh] done in 302ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3374157ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3375073ms] [LOG] [Fast Refresh] done in 1014ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3403384ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3403687ms] [LOG] [Fast Refresh] done in 280ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3407764ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3407997ms] [LOG] [Fast Refresh] done in 289ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3444171ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3444522ms] [LOG] [Fast Refresh] done in 375ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3454593ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3454852ms] [LOG] [Fast Refresh] done in 287ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3503102ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3503993ms] [LOG] [Fast Refresh] done in 989ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3504307ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3504375ms] [LOG] [Fast Refresh] done in 168ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3504547ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3504554ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3550541ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3551292ms] [LOG] [Fast Refresh] done in 849ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3568039ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3568774ms] [LOG] [Fast Refresh] done in 832ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3569569ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3569570ms] [LOG] [Fast Refresh] done in 101ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3580429ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3580520ms] [LOG] [Fast Refresh] done in 191ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3616374ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3617084ms] [LOG] [Fast Refresh] done in 739ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3617385ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3617448ms] [LOG] [Fast Refresh] done in 165ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3636354ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3636565ms] [LOG] [Fast Refresh] done in 242ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4041259ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4042119ms] [LOG] [Fast Refresh] done in 954ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4042602ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4042770ms] [LOG] [Fast Refresh] done in 269ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4144141ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4144756ms] [LOG] [Fast Refresh] done in 715ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4145155ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4145226ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4145734ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4145751ms] [LOG] [Fast Refresh] done in 118ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4154180ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4154217ms] [LOG] [Fast Refresh] done in 137ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4178205ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4178895ms] [LOG] [Fast Refresh] done in 791ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4179195ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4179275ms] [LOG] [Fast Refresh] done in 180ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4202706ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4203468ms] [LOG] [Fast Refresh] done in 805ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4203894ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4204030ms] [LOG] [Fast Refresh] done in 236ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4210438ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4210509ms] [LOG] [Fast Refresh] done in 171ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4264731ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4265011ms] [LOG] [Fast Refresh] done in 340ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4268618ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4268797ms] [LOG] [Fast Refresh] done in 231ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4271758ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4271984ms] [LOG] [Fast Refresh] done in 280ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4279986ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4280239ms] [LOG] [Fast Refresh] done in 289ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4283527ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4283713ms] [LOG] [Fast Refresh] done in 226ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4292039ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4292667ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[ 4292893ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[ 4292894ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-4?_rsc=13923:0
+[ 4292984ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-4:0
+[ 4293306ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[ 4293345ms] Error: ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx
+
+
+    at <unknown> (Error: ./components/bento-4/future-forward-card.tsx:662:9)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1745:26)
+[ 4293500ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4293522ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[ 4293622ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4293633ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[ 4293664ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[ 4293672ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4200/favicon.ico:0
+[ 4293745ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[ 4293793ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4297569ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4297794ms] [ERROR] ./components/bento-4/future-forward-card.tsx:662:9
+Expected '</', got 'jsx text'
+  660 |       </clipPath>
+  661 |     </defs>
+> 662 |   </svg>
+      |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 663 |
+      | ^
+> 664 |             {/* Title/subtitle live in the DOM, not as outlined glyph paths in the svg
+      | ^^^^^^^^^^^^
+  665 |                 above. The svg scales by a fractional factor (viewBox 337×532 drawn at
+  666 |                 h-full), so outlined text lands on subpixel boundaries and re-rasterises
+  667 |                 — that read as a shiver whenever the hover filter repainted the layer.
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/bento-4/future-forward-card.tsx
+    ./app/bento-4/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[ 4302994ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4303296ms] [LOG] [Fast Refresh] done in 399ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4303549ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4303648ms] [LOG] [Fast Refresh] done in 199ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[ 4304215ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4304251ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4404407ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4405118ms] [LOG] [Fast Refresh] done in 810ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4406094ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4406276ms] [LOG] [Fast Refresh] done in 282ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4410322ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4410566ms] [LOG] [Fast Refresh] done in 292ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4429217ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4429879ms] [LOG] [Fast Refresh] done in 668ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4482396ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4483466ms] [LOG] [Fast Refresh] done in 1094ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4483583ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4483660ms] [LOG] [Fast Refresh] done in 179ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4507700ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4508098ms] [LOG] [Fast Refresh] done in 445ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4564527ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4564818ms] [LOG] [Fast Refresh] done in 359ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4601133ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4601224ms] [LOG] [Fast Refresh] done in 191ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4635046ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4635262ms] [LOG] [Fast Refresh] done in 270ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4653952ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 4654161ms] [LOG] [Fast Refresh] done in 262ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5025436ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5025713ms] [LOG] [Fast Refresh] done in 300ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5030196ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5030951ms] [LOG] [Fast Refresh] done in 852ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5031237ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5031619ms] [LOG] [Fast Refresh] done in 483ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5035249ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5036069ms] [LOG] [Fast Refresh] done in 921ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5036418ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5036538ms] [LOG] [Fast Refresh] done in 221ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5075021ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5075271ms] [LOG] [Fast Refresh] done in 310ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5122821ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5123000ms] [LOG] [Fast Refresh] done in 245ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5123101ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5123161ms] [LOG] [Fast Refresh] done in 161ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5125783ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5125983ms] [LOG] [Fast Refresh] done in 242ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5372297ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5372526ms] [LOG] [Fast Refresh] done in 293ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

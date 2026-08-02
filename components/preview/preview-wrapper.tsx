@@ -22,7 +22,7 @@ import {
   Code,
   Lock,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, copyText } from "@/lib/utils";
 import { SyntaxHighlighter } from "@/components/ui/syntax-highlighter";
 import { ComingSoonSpinner } from "@/components/preview/coming-soon-spinner";
 
@@ -62,7 +62,7 @@ export function PreviewWrapper({
   const installCommand = `npx shadcn@latest add https://ui.d2studio.dev/r/${componentName.toLowerCase()}.json`;
 
   const handleCopyInstall = React.useCallback(async () => {
-    await navigator.clipboard.writeText(installCommand);
+    await copyText(installCommand);
     setCopiedInstall(true);
     setTimeout(() => setCopiedInstall(false), 2000);
   }, [installCommand]);
@@ -85,7 +85,7 @@ export function PreviewWrapper({
 
   return (
     <div
-      className={cn("relative w-full max-w-6xl border-x mx-auto", className)}
+      className={cn("relative w-full max-w-7xl border-x mx-auto", className)}
     >
       {/* Toolbar */}
       <div className="flex items-center justify-between gap-2 p-1 screen-line-after screen-line-before">

@@ -1,0 +1,48 @@
+- generic [active] [ref=f23e1]:
+  - link "Skip to content" [ref=f23e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f23e3]:
+    - generic [ref=f23e4]:
+      - generic [ref=f23e6]:
+        - generic [ref=f23e12]: "29"
+        - paragraph [ref=f23e22]: Keep up to date with any changes by receiving instant notifications.
+      - generic [ref=f23e27]:
+        - generic [ref=f23e28]:
+          - heading "Recent activity" [level=3] [ref=f23e29]
+          - generic [ref=f23e30]: Today
+        - list [ref=f23e31]:
+          - listitem [ref=f23e32]:
+            - generic [ref=f23e36]: New comment on Bento layout
+            - generic [ref=f23e37]: Priya · 2m
+          - listitem [ref=f23e38]:
+            - generic [ref=f23e42]: Deploy shipped to production
+            - generic [ref=f23e43]: Vercel · 18m
+          - listitem [ref=f23e44]:
+            - generic [ref=f23e48]: 3 messages from your team
+            - generic [ref=f23e49]: Inbox · 1h
+      - generic [ref=f23e53]:
+        - paragraph [ref=f23e54]: 12% this week
+        - paragraph [ref=f23e58]: "29"
+        - paragraph [ref=f23e59]: Unread notifications
+      - generic [ref=f23e63]:
+        - heading "Delivery" [level=3] [ref=f23e64]
+        - paragraph [ref=f23e65]: Where you get notified
+        - list [ref=f23e66]:
+          - listitem [ref=f23e67]:
+            - button "Push" [pressed] [ref=f23e68]
+          - listitem [ref=f23e73]:
+            - button "Email" [pressed] [ref=f23e74]
+          - listitem [ref=f23e79]:
+            - button "SMS" [ref=f23e80]
+  - generic [ref=f23e85]:
+    - heading "Command palette" [level=2] [ref=f23e86]
+    - paragraph [ref=f23e87]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f23e88]:
+    - button "Blocks" [ref=f23e89] [cursor=pointer]
+    - button "Tools New" [ref=f23e107] [cursor=pointer]:
+      - generic [ref=f23e119]: Tools
+      - generic [ref=f23e121]: New
+    - button "Switch to light mode" [ref=f23e126] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f23e144] [cursor=pointer]
+  - alert [ref=f23e148]

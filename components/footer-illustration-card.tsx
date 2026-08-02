@@ -71,7 +71,7 @@ export function FooterIllustrationCard() {
   return (
     <section
       aria-hidden="true"
-      className="max-w-6xl w-full border-x mx-auto overflow-hidden select-none"
+      className="max-w-7xl w-full border-x mx-auto overflow-hidden select-none"
     >
       <div
         ref={wrapRef}

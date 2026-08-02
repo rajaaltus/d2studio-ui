@@ -4,7 +4,7 @@ import * as React from "react"
 import { Clipboard, Check } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { cn, copyText } from "@/lib/utils"
 
 interface CopyButtonProps extends React.ComponentProps<typeof Button> {
   value: string
@@ -26,7 +26,7 @@ export function CopyButton({ value, className, ...props }: CopyButtonProps) {
 
   const copyToClipboard = React.useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(value)
+      await copyText(value)
       setHasCopied(true)
     } catch (err) {
       console.error("Failed to copy to clipboard:", err)

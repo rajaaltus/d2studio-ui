@@ -1,0 +1,39 @@
+- generic [active] [ref=f22e1]:
+  - link "Skip to content" [ref=f22e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f22e3]:
+    - generic [ref=f22e5]:
+      - generic [ref=f22e6]:
+        - heading "Beautifully Designed Components" [level=2] [ref=f22e7]
+        - paragraph [ref=f22e8]: A modern, minimal component library — crafted with attention to detail and built for real-world usability.
+      - generic [ref=f22e9]:
+        - generic [ref=f22e10]:
+          - heading "Copy & Paste" [level=3] [ref=f22e16]
+          - paragraph [ref=f22e17]: No packages to install. just copy and paste components into your project.
+        - generic [ref=f22e18]:
+          - heading "Beautifully Designed" [level=3] [ref=f22e22]
+          - paragraph [ref=f22e23]: Modern minimal components designed with attention to details and usability.
+        - generic [ref=f22e24]:
+          - heading "Shadcn Compatible" [level=3] [ref=f22e30]
+          - paragraph [ref=f22e31]: Built on Shadcn/ui conversions. Works seamlessly with your existing setup.
+        - generic [ref=f22e32]:
+          - heading "Production Ready" [level=3] [ref=f22e37]
+          - paragraph [ref=f22e38]: Fully typed, accessible and optimized for performance out of the box.
+        - generic [ref=f22e39]:
+          - heading "Open Source" [level=3] [ref=f22e44]
+          - paragraph [ref=f22e45]: MIT licensed. Use it in personal and commercial projects without restrictions.
+        - generic [ref=f22e46]:
+          - heading "Regular Updates" [level=3] [ref=f22e50]
+          - paragraph [ref=f22e51]: New components added weekly. Stay up to date with the latest UI trends.
+  - generic [ref=f22e52]:
+    - heading "Command palette" [level=2] [ref=f22e53]
+    - paragraph [ref=f22e54]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f22e55]:
+    - button "Blocks" [ref=f22e56] [cursor=pointer]
+    - button "Tools New" [ref=f22e74] [cursor=pointer]:
+      - generic [ref=f22e86]: Tools
+      - generic [ref=f22e88]: New
+    - button "Switch to light mode" [ref=f22e93] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f22e111] [cursor=pointer]
+  - alert [ref=f22e115]

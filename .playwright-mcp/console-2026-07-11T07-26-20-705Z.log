@@ -1,0 +1,14 @@
+[     166ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     179ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     320ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     584ms] [LOG] [Fast Refresh] done in 366ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   91478ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=Xjs1bvdP_ANYg1-7Oml4Q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   92480ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=Xjs1bvdP_ANYg1-7Oml4Q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   93484ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=Xjs1bvdP_ANYg1-7Oml4Q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   94488ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=Xjs1bvdP_ANYg1-7Oml4Q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[   95493ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=Xjs1bvdP_ANYg1-7Oml4Q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[  108462ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  112331ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  112505ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  112723ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  112880ms] [LOG] [Fast Refresh] done in 258ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

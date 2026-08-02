@@ -29,7 +29,7 @@ export default function IllustrationPage() {
       <Navigation />
       <div id="main-content" tabIndex={-1} className="outline-none" />
 
-      <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
+      <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
         <div className="bg-background border rounded-xl m-0 px-6 md:px-10 lg:px-16 py-16 lg:py-24 flex flex-col items-center text-center gap-6">
           <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground">
             <span className="size-1.5 rounded-full bg-foreground/60" />
@@ -46,11 +46,11 @@ export default function IllustrationPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl w-full border-x mx-auto bg-background">
+      <section className="max-w-7xl w-full border-x mx-auto bg-background">
         <FooterIllustrationCard />
       </section>
 
-      <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
+      <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-xl border overflow-hidden m-0">
           {META.map((item) => (
             <div
@@ -66,7 +66,7 @@ export default function IllustrationPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl w-full border-x mx-auto px-4 lg:px-0 bg-border mt-px">
+      <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border mt-px">
         <div className="bg-background border rounded-xl m-0 px-6 md:px-10 lg:px-16 py-12 lg:py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="md:col-span-1">
             <h2 className="text-lg font-medium">About this piece</h2>

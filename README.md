@@ -49,3 +49,8 @@ Join thousands of developers building full-stack apps with Convex:
 
 - Join the [Convex Discord community](https://convex.dev/community) to get help in real-time.
 - Follow [Convex on GitHub](https://github.com/get-convex/), star and contribute to the open-source implementation of Convex.
+
+
+ this is the bento block i have created newly, so make sure the code quality is good enough to
+  submit as a shacdcn registry block, then add this block entry in our backend and build the
+  registry to make it ready for publish.

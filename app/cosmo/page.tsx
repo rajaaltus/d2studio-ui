@@ -17,7 +17,7 @@ export default function CosmoPage() {
       <div id="main-content" tabIndex={-1} className="outline-none" />
 
       <div className="luminous-spinners bg-background">
-        <section className="w-full max-w-6xl border-x mx-auto px-4 lg:px-8">
+        <section className="w-full max-w-7xl border-x mx-auto px-4 lg:px-8">
           <header className="py-10 lg:py-14 text-left">
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               Motion Library

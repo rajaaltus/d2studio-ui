@@ -1,0 +1,248 @@
+[     522ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     563ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     686ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1051ms] [LOG] [Fast Refresh] done in 465ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    5431ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    5491ms] [LOG] [Fast Refresh] done in 160ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   57241ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   57295ms] [LOG] [Fast Refresh] done in 154ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  149547ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  149796ms] [LOG] [Fast Refresh] done in 350ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  460522ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  461542ms] [LOG] [Fast Refresh] done in 1117ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  461756ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  461767ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  525149ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  526985ms] [ERROR] ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  526985ms] [ERROR] ./registry/default/components/bento-03.tsx:142:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  140 |         </motion.div>
+  141 |     )
+> 142 | }
+      | ^
+  143 |
+  144 | const Bento3 = () => {
+  145 |     return (
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527399ms] [ERROR] ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527400ms] [ERROR] ./registry/default/components/bento-03.tsx:142:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  140 |         </motion.div>
+  141 |     )
+> 142 | }
+      | ^
+  143 |
+  144 | const Bento3 = () => {
+  145 |     return (
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527506ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  527620ms] [ERROR] ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527620ms] [ERROR] ./registry/default/components/bento-03.tsx:142:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  140 |         </motion.div>
+  141 |     )
+> 142 | }
+      | ^
+  143 |
+  144 | const Bento3 = () => {
+  145 |     return (
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527621ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-3?_rsc=zia2i:0
+[  527677ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-3?_rsc=zia2i:0
+[  527688ms] [ERROR] ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527688ms] [ERROR] ./registry/default/components/bento-03.tsx:142:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  140 |         </motion.div>
+  141 |     )
+> 142 | }
+      | ^
+  143 |
+  144 | const Bento3 = () => {
+  145 |     return (
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  527793ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-3:0
+[  528053ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[  528111ms] Error: ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx
+
+
+    at <unknown> (Error: ./registry/default/components/bento-03.tsx:144:20)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1745:26)
+[  528109ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  528163ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4200/favicon.ico:0
+[  528166ms] [ERROR] ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  528167ms] [ERROR] ./registry/default/components/bento-03.tsx:142:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  140 |         </motion.div>
+  141 |     )
+> 142 | }
+      | ^
+  143 |
+  144 | const Bento3 = () => {
+  145 |     return (
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  528254ms] [ERROR] ./registry/default/components/bento-03.tsx:144:20
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  142 | }
+  143 |
+> 144 | const Bento3 = () => {
+      |                    ^
+  145 |     return (
+  146 |         <section className="w-full px-6 py-16 sm:px-8 md:py-24">
+  147 |             <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  528254ms] [ERROR] ./registry/default/components/bento-03.tsx:142:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  140 |         </motion.div>
+  141 |     )
+> 142 | }
+      | ^
+  143 |
+  144 | const Bento3 = () => {
+  145 |     return (
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./registry/default/components/bento-03.tsx
+    ./app/bento-3/page.tsx @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  536126ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  536898ms] [LOG] [Fast Refresh] done in 869ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  537096ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  537102ms] [LOG] [Fast Refresh] done in 107ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  537491ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  537528ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  546509ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  547060ms] [LOG] [Fast Refresh] done in 645ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  547554ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  547698ms] [LOG] [Fast Refresh] done in 246ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

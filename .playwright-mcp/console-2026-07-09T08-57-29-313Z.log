@@ -1,0 +1,343 @@
+[     175ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     301ms] [LOG] [Fast Refresh] done in 228ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     438ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     456ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   14995ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   15065ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  229013ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  229741ms] [LOG] [Fast Refresh] done in 809ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  338357ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  338616ms] [LOG] [Fast Refresh] done in 337ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  342368ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  342504ms] [LOG] [Fast Refresh] done in 213ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  351308ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  351498ms] [LOG] [Fast Refresh] done in 263ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  356180ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  356386ms] [LOG] [Fast Refresh] done in 283ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  455794ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  455847ms] [LOG] [Fast Refresh] done in 154ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  456108ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  456128ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  521783ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  522004ms] [LOG] [Fast Refresh] done in 295ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  538277ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  538293ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  596395ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  596681ms] [LOG] [Fast Refresh] done in 361ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  603860ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  604021ms] [LOG] [Fast Refresh] done in 236ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  749221ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  749491ms] [LOG] [Fast Refresh] done in 346ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  757608ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  757819ms] [LOG] [Fast Refresh] done in 288ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  765267ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  765453ms] [LOG] [Fast Refresh] done in 259ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  855384ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  855696ms] [LOG] [Fast Refresh] done in 388ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  886141ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  886404ms] [LOG] [Fast Refresh] done in 339ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  893449ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  893465ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  907018ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  907221ms] [LOG] [Fast Refresh] done in 279ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  915314ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  915476ms] [LOG] [Fast Refresh] done in 235ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  921958ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  922098ms] [LOG] [Fast Refresh] done in 214ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  931785ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  931970ms] [LOG] [Fast Refresh] done in 259ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  939092ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  939257ms] [LOG] [Fast Refresh] done in 239ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  943107ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  943258ms] [LOG] [Fast Refresh] done in 228ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  978038ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  978051ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  983926ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  984119ms] [LOG] [Fast Refresh] done in 267ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1106008ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1106699ms] [LOG] [Fast Refresh] done in 790ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1106912ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1106978ms] [LOG] [Fast Refresh] done in 167ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1112824ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1112872ms] [LOG] [Fast Refresh] done in 149ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1113012ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1113022ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1182366ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1182378ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1187366ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1187586ms] [LOG] [Fast Refresh] done in 298ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1245417ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1245430ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1375114ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1375363ms] [LOG] [Fast Refresh] done in 325ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1386910ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1387096ms] [LOG] [Fast Refresh] done in 259ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1392984ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1393144ms] [LOG] [Fast Refresh] done in 236ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1393765ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1393775ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1402525ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1402667ms] [LOG] [Fast Refresh] done in 217ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1431412ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1431654ms] [LOG] [Fast Refresh] done in 330ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1431775ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1431786ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1438908ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1439073ms] [LOG] [Fast Refresh] done in 240ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1503054ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1503331ms] [LOG] [Fast Refresh] done in 357ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1668698ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1668964ms] [LOG] [Fast Refresh] done in 344ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1675606ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1675756ms] [LOG] [Fast Refresh] done in 224ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1689831ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1689841ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1762845ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1762858ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1779551ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1779769ms] ReferenceError: dotStyle is not defined
+    at Card (http://localhost:4200/_next/static/chunks/_0.mhpx0._.js?id=%255Bproject%255D%252Fapp%252Fnotification%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:101:28)
+    at Object.react_stack_bottom_frame (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:15037:24)
+    at renderWithHooks (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:4620:24)
+    at updateFunctionComponent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6081:21)
+    at beginWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at performUnitOfWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9555:97)
+    at workLoopSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9449:40)
+    at renderRootSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9433:13)
+    at performWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:299:13)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:384:38)
+    at applyUpdate (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:878:31)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:886:13
+[ 1779782ms] [LOG] [Fast Refresh] done in 292ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1779924ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1780479ms] [LOG] [Fast Refresh] done in 656ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1793302ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1793456ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1793459ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[ 1793602ms] [LOG] [Fast Refresh] done in 255ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1793923ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1793951ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1808873ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1809039ms] [LOG] [Fast Refresh] done in 241ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1814476ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1814694ms] [LOG] [Fast Refresh] done in 293ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1855984ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1856001ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1921901ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1922451ms] [LOG] [Fast Refresh] done in 649ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1922553ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1922660ms] [LOG] [Fast Refresh] done in 207ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2119634ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2119988ms] [LOG] [Fast Refresh] done in 430ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2127622ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2127896ms] [LOG] [Fast Refresh] done in 355ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2187635ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2187653ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2348538ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2348752ms] [LOG] [Fast Refresh] done in 289ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2647407ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2648267ms] [LOG] [Fast Refresh] done in 960ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2674451ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2679488ms] [LOG] [Fast Refresh] done in 5138ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2687611ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2688603ms] [LOG] [Fast Refresh] done in 1073ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2688842ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2688895ms] [LOG] [Fast Refresh] done in 154ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2700094ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2700493ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2700496ms] [LOG] [Fast Refresh] done in 498ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2700807ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2700838ms] [LOG] [Fast Refresh] done in 131ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2700940ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2701112ms] [LOG] [Fast Refresh] done in 271ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2701623ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2701701ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2701717ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/notification:0
+[ 2701814ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2701844ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2701870ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[ 2702055ms] ReferenceError: MessageSquare is not defined
+    at module evaluation (http://localhost:4200/_next/static/chunks/_10_m_5w._.js:687:15)
+    at http://localhost:4200/_next/static/chunks/turbopack-_0z5pnsk._.js:1307:27
+    at runModuleExecutionHooks (http://localhost:4200/_next/static/chunks/turbopack-_0z5pnsk._.js:1636:13)
+    at instantiateModuleShared (http://localhost:4200/_next/static/chunks/turbopack-_0z5pnsk._.js:1305:9)
+    at instantiateModule (http://localhost:4200/_next/static/chunks/turbopack-_0z5pnsk._.js:1621:12)
+    at getOrInstantiateModuleFromParent (http://localhost:4200/_next/static/chunks/turbopack-_0z5pnsk._.js:1604:12)
+    at DevContext.commonJsRequire [as r] (http://localhost:4200/_next/static/chunks/turbopack-_0z5pnsk._.js:299:12)
+    at requireModule (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:95:84)
+    at initializeModuleChunk (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:1110:25)
+    at resolveModuleChunk (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:1030:43)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:1758:24
+[ 2702120ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4200/favicon.ico:0
+[ 2713952ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2714101ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2714103ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2714128ms] [LOG] [Fast Refresh] done in 250ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2714572ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/notification:0
+[ 2714625ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2714647ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2714685ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[ 2715092ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2716118ms] [LOG] [Fast Refresh] done in 1127ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2723924ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2724077ms] ReferenceError: icon is not defined
+    at eval (http://localhost:4200/_next/static/chunks/_10_m_5w._.js?id=%255Bproject%255D%252Fapp%252Fnotification%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:319:198)
+    at Array.map (<anonymous>)
+    at NotificationPage (http://localhost:4200/_next/static/chunks/_10_m_5w._.js?id=%255Bproject%255D%252Fapp%252Fnotification%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:311:52)
+    at Object.react_stack_bottom_frame (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:15037:24)
+    at renderWithHooks (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:4620:24)
+    at updateFunctionComponent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6081:21)
+    at beginWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at performUnitOfWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9555:97)
+    at workLoopSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9449:40)
+    at renderRootSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9433:13)
+    at performWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:299:13)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:384:38)
+    at applyUpdate (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:878:31)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:886:13
+[ 2724104ms] [LOG] [Fast Refresh] done in 243ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2724205ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2724254ms] [LOG] [Fast Refresh] done in 149ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2735147ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2735342ms] [LOG] [Fast Refresh] done in 296ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2740703ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2740845ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2740917ms] [LOG] [Fast Refresh] done in 242ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2741214ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2741241ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2783228ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2783304ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2783496ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 2783759ms] [LOG] [Fast Refresh] done in 364ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3039909ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3039994ms] [LOG] [Fast Refresh] done in 185ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3040155ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3040390ms] [LOG] [Fast Refresh] done in 337ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3046504ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3046767ms] [LOG] [Fast Refresh] done in 349ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3060015ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3060028ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3144468ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3144478ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3145381ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3145389ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3145718ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3145727ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3145981ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3145989ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3146240ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3146248ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3162199ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3162401ms] [LOG] [Fast Refresh] done in 303ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3168822ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3169082ms] [LOG] [Fast Refresh] done in 338ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3175836ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3176384ms] [LOG] [Fast Refresh] done in 637ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3176699ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3176744ms] [LOG] [Fast Refresh] done in 146ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3181686ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3181934ms] ReferenceError: icon is not defined
+    at eval (http://localhost:4200/_next/static/chunks/_066mbbn._.js?id=%255Bproject%255D%252Fapp%252Fnotification%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:321:198)
+    at Array.map (<anonymous>)
+    at NotificationPage (http://localhost:4200/_next/static/chunks/_066mbbn._.js?id=%255Bproject%255D%252Fapp%252Fnotification%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:313:52)
+    at Object.react_stack_bottom_frame (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:15037:24)
+    at renderWithHooks (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:4620:24)
+    at updateFunctionComponent (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6081:21)
+    at beginWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:965:74)
+    at performUnitOfWork (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9555:97)
+    at workLoopSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9449:40)
+    at renderRootSync (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9433:13)
+    at performWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9098:47)
+    at performSyncWorkOnRoot (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:10179:316)
+    at flushSyncWork$1 (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:9230:86)
+    at Object.scheduleRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-dom_0v6ubys._.js:299:13)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:384:38)
+    at applyUpdate (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:878:31)
+    at http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_0da0l5i._.js:886:13
+[ 3181938ms] [LOG] [Fast Refresh] done in 289ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3182057ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3182069ms] [LOG] [Fast Refresh] done in 115ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3188697ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3188838ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3188841ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[ 3188901ms] [LOG] [Fast Refresh] done in 242ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3189498ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3189544ms] [LOG] [Fast Refresh] done in 147ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3189673ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3189709ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3418900ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3419825ms] [LOG] [Fast Refresh] done in 1025ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3425292ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3426017ms] [LOG] [Fast Refresh] done in 824ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3426211ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3426314ms] [LOG] [Fast Refresh] done in 204ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3560208ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3560244ms] [LOG] [Fast Refresh] done in 138ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3560464ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3560487ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3607635ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3607648ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3649376ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3650037ms] [LOG] [Fast Refresh] done in 760ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3716146ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3716263ms] [LOG] [Fast Refresh] done in 219ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3716432ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3716447ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3759074ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3759096ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3768916ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3772297ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3772337ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3773593ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3773640ms] [LOG] [Fast Refresh] done in 149ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3875649ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3876776ms] [LOG] [Fast Refresh] done in 1230ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3940508ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3941814ms] [LOG] [Fast Refresh] done in 1406ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3968357ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 3968973ms] [LOG] [Fast Refresh] done in 711ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5830594ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[16900255ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[16902139ms] [LOG] [Fast Refresh] done in 1988ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[16923205ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[16923234ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17005042ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17006004ms] [LOG] [Fast Refresh] done in 1056ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17006188ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17006231ms] [LOG] [Fast Refresh] done in 143ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17030174ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17030428ms] [LOG] [Fast Refresh] done in 356ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17051903ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[17052196ms] [LOG] [Fast Refresh] done in 394ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

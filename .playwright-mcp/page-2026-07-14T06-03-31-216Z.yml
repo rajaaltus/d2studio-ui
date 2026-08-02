@@ -1,0 +1,37 @@
+- generic [active] [ref=f9e1]:
+  - link "Skip to content" [ref=f9e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f9e3]:
+    - generic [ref=f9e5]:
+      - generic [ref=f9e6]:
+        - heading "Solution & Features" [level=2] [ref=f9e7]
+        - paragraph [ref=f9e8]: Focused, outcome driven features that translate ML into real business value.
+      - generic [ref=f9e9]:
+        - generic [ref=f9e10]:
+          - heading "Advance Image Recognition" [level=3] [ref=f9e20]
+          - paragraph [ref=f9e21]: Detect, classify, and tag images with industry leading accuracy. Plug and play models for visuals data with explainability tools.
+        - generic [ref=f9e22]:
+          - heading "Predictive Analytics" [level=3] [ref=f9e27]
+          - paragraph [ref=f9e28]: Forecast outcomes and trends with actionable confidence scores. Time series, classification, and anomaly detection models pre-configures.
+      - generic [ref=f9e29]:
+        - generic [ref=f9e30]:
+          - heading "NLP & Conversational AI" [level=3] [ref=f9e36]
+          - paragraph [ref=f9e37]: Semantic search, summarization, and chat solutions.
+        - generic [ref=f9e38]:
+          - heading "Model Ops" [level=3] [ref=f9e46]
+          - paragraph [ref=f9e47]: CI/CD for ML, drift detection, and performance dashboards.
+        - generic [ref=f9e48]:
+          - heading "Privacy & Compliance" [level=3] [ref=f9e54]
+          - paragraph [ref=f9e55]: Built with data protection, role-based access and audit logs.
+  - generic [ref=f9e56]:
+    - heading "Command palette" [level=2] [ref=f9e57]
+    - paragraph [ref=f9e58]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f9e59]:
+    - button "Blocks" [ref=f9e60] [cursor=pointer]
+    - button "Tools New" [ref=f9e78] [cursor=pointer]:
+      - generic [ref=f9e90]: Tools
+      - generic [ref=f9e92]: New
+    - button "Switch to light mode" [ref=f9e97] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f9e106] [cursor=pointer]
+  - alert [ref=f9e110]

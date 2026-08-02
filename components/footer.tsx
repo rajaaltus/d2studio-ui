@@ -30,7 +30,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/50 bg-muted/20">
       <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
 
           {/* Top Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">

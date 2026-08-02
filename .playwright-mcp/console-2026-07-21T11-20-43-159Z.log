@@ -1,0 +1,299 @@
+[     301ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     365ms] [LOG] [Fast Refresh] done in 165ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     548ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     704ms] [LOG] [Fast Refresh] done in 257ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     806ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1102ms] [LOG] [Fast Refresh] done in 396ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1898ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1920ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    3836ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    4445ms] [LOG] [Fast Refresh] done in 709ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    8669ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    8941ms] [LOG] [Fast Refresh] done in 374ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   66216ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   66513ms] [LOG] [Fast Refresh] done in 397ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  235792ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  238985ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  239109ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  239133ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  262891ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  264614ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  265037ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  265548ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  265560ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  265568ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5?_rsc=16zu3:0
+[  265678ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5?_rsc=16zu3:0
+[  265704ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  265717ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  265795ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  265819ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  265952ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5:0
+[  266275ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0e-u_react-dom_0037m-m._.js:15305
+[  266322ms] Error: ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+    at <unknown> (Error: ./app/bento-5/page.tsx:7:1)
+    at Object.getCompilationErrors (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/node_modules/.pnpm/next@16.2.4_@babel+core@7.28.4_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/next/dist/server/base-server.js:1745:26)
+[  266321ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  266324ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266362ms] [ERROR] ./app/bento-5/page.tsx:7:1
+Export GLYPH_BOLT doesn't exist in target module
+   5 | import SrcC4 from "./src-c-4"
+   6 | import Globe from "./globe"
+>  7 | import { GLYPH_16, GLYPH_AI, GLYPH_BOLT } from "./glyphs"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | // The cards are the Figma exports as-is: each SVG already paints its own glass
+  10 | // fill and 16px gradient border, so a cell is just a clip + a covering SVG.
+
+The export GLYPH_BOLT was not found in module [project]/app/bento-5/glyphs.ts [app-rsc] (ecmascript).
+Did you mean to import GLYPH_AI?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1945
+[  266597ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  266974ms] [LOG] [Fast Refresh] done in 476ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  267136ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  267160ms] [LOG] [Fast Refresh] done in 125ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  267271ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  267547ms] [LOG] [Fast Refresh] done in 377ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_00tg.dm._.js:1226
+[  267748ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5:0
+[  267865ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  267899ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  267945ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  268113ms] ReferenceError: GLYPH_BOLT is not defined
+    at Page (about://React/Server/file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/.next/dev/server/chunks/ssr/app_bento-5_0hf1w93._.js?0:382:52)
+    at resolveErrorDev (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:1919:105)
+    at processFullStringRow (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2434:29)
+    at processFullBinaryRow (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2393:9)
+    at processBinaryChunk (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2502:221)
+    at progress (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2689:13)
+[  268099ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  268119ms] [LOG] [Fast Refresh] done in 120ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  269808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  269977ms] [LOG] [Fast Refresh] done in 223ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  270000ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5:0
+[  270063ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  270081ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  270132ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  270147ms] ReferenceError: GLYPH_BOLT is not defined
+    at Page (about://React/Server/file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/.next/dev/server/chunks/ssr/app_bento-5_0hf1w93._.js?id=%255Bproject%255D%252Fapp%252Fbento-5%252Fpage.tsx+%255Bapp-rsc%255D+%2528ecmascript%2529?0:330:52)
+    at resolveErrorDev (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:1919:105)
+    at processFullStringRow (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2434:29)
+    at processFullBinaryRow (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2393:9)
+    at processBinaryChunk (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2502:221)
+    at progress (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2689:13)
+[  273275ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  273439ms] [LOG] [Fast Refresh] done in 208ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  273458ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4200/bento-5:0
+[  273523ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  273542ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  273615ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:3272
+[  273681ms] ReferenceError: GLYPH_BOLT is not defined
+    at Page (about://React/Server/file:///Users/godwinjanarthan/Documents/Projects/d2studio-ui/.next/dev/server/chunks/ssr/app_bento-5_0hf1w93._.js?id=%255Bproject%255D%252Fapp%252Fbento-5%252Fpage.tsx+%255Bapp-rsc%255D+%2528ecmascript%2529?0:330:52)
+    at resolveErrorDev (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:1919:105)
+    at processFullStringRow (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2434:29)
+    at processFullBinaryRow (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2393:9)
+    at processBinaryChunk (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2502:221)
+    at progress (http://localhost:4200/_next/static/chunks/0aus_next_dist_compiled_react-server-dom-turbopack_0bo9_ln._.js:2689:13)
+[  277201ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  277352ms] [LOG] [Fast Refresh] done in 221ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  277470ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  277525ms] [LOG] [Fast Refresh] done in 158ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  278982ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  279011ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1704481ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=pj4D9Z6SVIcfnu_hm4VKa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1705483ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=pj4D9Z6SVIcfnu_hm4VKa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1706485ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=pj4D9Z6SVIcfnu_hm4VKa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1707487ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=pj4D9Z6SVIcfnu_hm4VKa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1708490ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=pj4D9Z6SVIcfnu_hm4VKa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1713498ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=pj4D9Z6SVIcfnu_hm4VKa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1743970ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1780407ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1780532ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1780893ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1789369ms] [LOG] [Fast Refresh] done in 8576ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 1845798ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1846800ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1847801ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1848804ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1849807ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1854810ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1859813ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1864818ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1869821ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1874824ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1883349ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 1888352ms] [ERROR] WebSocket connection to 'ws://localhost:4200/_next/webpack-hmr?id=5r35XC453WuM_n60nelT0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4200/_next/static/chunks/0aus_next_dist_client_02k4~6y._.js:13299
+[ 5957735ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[ 5957828ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12452531ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12452697ms] [LOG] [Fast Refresh] done in 269ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12484163ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12491716ms] [LOG] [Fast Refresh] done in 7655ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12495331ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12496316ms] [LOG] [Fast Refresh] done in 1085ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12497424ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12520427ms] [LOG] [Fast Refresh] done in 22033ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12521241ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12521776ms] [LOG] [Fast Refresh] done in 637ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12523887ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12524475ms] [LOG] [Fast Refresh] done in 694ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12524686ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12524821ms] [LOG] [Fast Refresh] done in 236ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12525601ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12526416ms] [LOG] [Fast Refresh] done in 917ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12526622ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12526722ms] [LOG] [Fast Refresh] done in 200ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12527153ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12527180ms] [LOG] [Fast Refresh] done in 129ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12537624ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12537651ms] [LOG] [Fast Refresh] done in 128ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12634801ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12635081ms] [LOG] [Fast Refresh] done in 381ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12636108ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12636120ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12641450ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12642698ms] [LOG] [Fast Refresh] done in 1348ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12687961ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12690576ms] [LOG] [Fast Refresh] done in 2705ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12695337ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12695646ms] [LOG] [Fast Refresh] done in 410ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12695963ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12696610ms] [LOG] [Fast Refresh] done in 746ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12696819ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12697123ms] [LOG] [Fast Refresh] done in 404ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12707762ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[12709062ms] [LOG] [Fast Refresh] done in 1400ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13053831ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13054949ms] [LOG] [Fast Refresh] done in 1219ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13068502ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13068507ms] [LOG] [Fast Refresh] done in 106ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13254814ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13255972ms] [LOG] [Fast Refresh] done in 1120ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13256122ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13256597ms] [LOG] [Fast Refresh] done in 575ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13258710ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[13260502ms] [LOG] [Fast Refresh] done in 1430ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

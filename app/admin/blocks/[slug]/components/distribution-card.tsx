@@ -1,5 +1,7 @@
 "use client";
 
+import { copyText } from "@/lib/utils";
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, Copy, Share2, ExternalLink } from "lucide-react";
@@ -24,7 +26,7 @@ export function DistributionCard({ slug }: DistributionCardProps) {
 
     const copyToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(installCommand);
+            await copyText(installCommand);
             setCopied(true);
             toast.success("Installation command copied");
             setTimeout(() => setCopied(false), 2000);
