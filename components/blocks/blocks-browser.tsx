@@ -25,8 +25,7 @@ import {
   Columns2,
   Columns3,
   Boxes,
-  FileText,
-  Image as ImageIcon,
+  // FileText, Image as ImageIcon — used by the commented-out Types entries.
   LayoutGrid,
   Rows3,
 } from "lucide-react";
@@ -40,13 +39,14 @@ type View = "all" | "category";
 
 const TYPES = [
   { key: "blocks", label: "Blocks", icon: Boxes, href: "/blocks" },
-  { key: "pages", label: "Pages", icon: FileText, href: "/templates" },
-  {
-    key: "illustrations",
-    label: "Illustrations",
-    icon: ImageIcon,
-    href: "/illustration",
-  },
+  // Hidden until /templates and /illustration are ready to link out to.
+  // { key: "pages", label: "Pages", icon: FileText, href: "/templates" },
+  // {
+  //   key: "illustrations",
+  //   label: "Illustrations",
+  //   icon: ImageIcon,
+  //   href: "/illustration",
+  // },
 ] as const;
 
 const PAGE_SIZES = [6, 12, 24];
@@ -54,7 +54,8 @@ const PAGE_SIZES = [6, 12, 24];
 const ACCESS_OPTIONS = [
   { value: "all", label: "All tiers" },
   { value: "free", label: "Free" },
-  { value: "pro", label: "Pro" },
+  // Hidden until pro blocks ship.
+  // { value: "pro", label: "Pro" },
 ] as const;
 
 const STATUS_OPTIONS = [
