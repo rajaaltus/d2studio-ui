@@ -4037,7 +4037,7 @@
    still dissolve gently on leave. */
 [data-hovered="true"] .d2-smoke {
   opacity: 0.55;
-  transition-duration: 0.18s;
+  transition-duration: 0s;
 }
 .dark [data-hovered="true"] .d2-smoke {
   opacity: 0.4;
@@ -4061,6 +4061,7 @@
 /* The lit dots brighten on hover. */
 [data-hovered="true"] .d2-dots {
   opacity: 1;
+  transition-duration: 0s;
 }
 .dark .d2-bright [data-hovered="true"] .d2-dots {
   opacity: 1;
