@@ -35,7 +35,6 @@ import {
   Hand,
   Headphones,
   IceCream,
-  ImageIcon,
   Key,
   Leaf,
   Lightbulb,
@@ -45,15 +44,11 @@ import {
   Moon,
   Music,
   Paperclip,
-  Pause,
   Pizza,
-  Play,
   Plus,
   Rabbit,
-  Redo2,
   Rocket,
   RotateCcw,
-  Save,
   Search,
   Shapes,
   Skull,
@@ -62,10 +57,8 @@ import {
   Sparkles,
   Star,
   Sun,
-  Trash2,
   Trophy,
   Type,
-  Undo2,
   Upload,
   Wind,
   Wine,
@@ -84,6 +77,7 @@ import {
   type MotionValue,
 } from "motion/react";
 import { TickSlider } from "./tick-slider";
+import { MoreSoonCard } from "@/components/blocks/more-soon-card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useTheme } from "@/components/theme-provider";
 import { ConfirmSheet } from "@/components/ui/confirm-sheet";
@@ -180,23 +174,7 @@ const TEXT_FONTS: { id: TextFont; label: string; weight: string; family: string 
   { id: "rounded", label: "Rounded", weight: "800", family: 'ui-rounded, "SF Pro Rounded", "Helvetica Neue", system-ui, sans-serif' },
 ];
 
-type ColorPreset = { id: string; label: string; hex: string };
 type GradientPreset = { id: string; label: string; from: string; to: string };
-
-const COLOR_PRESETS: ColorPreset[] = [
-  { id: "violet", label: "Violet", hex: "#a78bfa" },
-  { id: "hotpink", label: "Hot Pink", hex: "#ec4899" },
-  { id: "crimson", label: "Crimson", hex: "#f43f5e" },
-  { id: "amber", label: "Amber", hex: "#f59e0b" },
-  { id: "lime", label: "Lime", hex: "#84cc16" },
-  { id: "cyan", label: "Cyan", hex: "#22d3ee" },
-  { id: "indigo", label: "Indigo", hex: "#6366f1" },
-  { id: "rose", label: "Rose", hex: "#fb7185" },
-  { id: "teal", label: "Teal", hex: "#14b8a6" },
-  { id: "yellow", label: "Yellow", hex: "#facc15" },
-  { id: "mint", label: "Mint", hex: "#34d399" },
-  { id: "pearl", label: "Pearl", hex: "#f8fafc" },
-];
 
 const GRADIENT_PRESETS: GradientPreset[] = [
   { id: "ultraviolet", label: "Ultraviolet", from: "#7c3aed", to: "#ec4899" },
@@ -255,10 +233,10 @@ type Settings = {
 type MouseMode = "repel" | "attract" | "circle";
 
 const DEFAULT_SETTINGS: Settings = {
-  count: 4000,
-  size: 0.8,
-  speed: 0.75,
-  drift: 0.2,
+  count: 1000,
+  size: 1.4,
+  speed: 0.6,
+  drift: 0.45,
   colorMode: "gradient",
   color: "#a78bfa",
   gradientFrom: "#00f5a0",
@@ -306,7 +284,6 @@ function gradientCssString(s: Settings): string {
 
 const FAST_RENDER_THRESHOLD = 6000;
 
-const PARTICLE_PRESETS_STORAGE_KEY = "particle-playground:saved-presets:v1";
 const PARTICLE_CUSTOM_GRADIENTS_STORAGE_KEY = "particle-playground:custom-gradients:v1";
 const PARTICLE_CUSTOM_COLORS_STORAGE_KEY = "particle-playground:custom-colors:v1";
 const MAX_CUSTOM_COLORS = 5;
@@ -321,11 +298,6 @@ function gradientAngleToCoords(angle: number, w: number, h: number) {
   return { x0: cx - dx, y0: cy - dy, x1: cx + dx, y1: cy + dy };
 }
 
-type SavedPreset = {
-  id: string;
-  name: string;
-  settings: Settings;
-};
 
 type Particle = {
   x: number;
@@ -352,7 +324,7 @@ type ImageBuffer = {
 
 export function CosmoPlayground() {
   const [settings, setSettings] = React.useState<Settings>(DEFAULT_SETTINGS);
-  const [playing, setPlaying] = React.useState(true);
+  const [playing] = React.useState(true);
   const [sampling, setSampling] = React.useState(false);
   const { theme, setTheme } = useTheme();
   const [themeMounted, setThemeMounted] = React.useState(false);
@@ -647,51 +619,12 @@ export function CosmoPlayground() {
     });
   }, [settings]);
 
-  const canUndo = history.index > 0;
-  const canRedo = history.index < history.stack.length - 1;
 
-  const undo = React.useCallback(() => {
-    setHistory((h) => {
-      if (h.index <= 0) return h;
-      const newIndex = h.index - 1;
-      skipHistoryRef.current = true;
-      setSettings(h.stack[newIndex]);
-      return { ...h, index: newIndex };
-    });
-  }, []);
 
-  const redo = React.useCallback(() => {
-    setHistory((h) => {
-      if (h.index >= h.stack.length - 1) return h;
-      const newIndex = h.index + 1;
-      skipHistoryRef.current = true;
-      setSettings(h.stack[newIndex]);
-      return { ...h, index: newIndex };
-    });
-  }, []);
 
-  const [savedPresets, setSavedPresets] = React.useState<SavedPreset[]>([]);
   const [customGradients, setCustomGradients] = React.useState<GradientPreset[]>([]);
   const [customColors, setCustomColors] = React.useState<string[]>([]);
-  const [presetsOpen, setPresetsOpen] = React.useState(false);
   const [gradientPresetsOpen, setGradientPresetsOpen] = React.useState(false);
-  const [saveDialogOpen, setSaveDialogOpen] = React.useState(false);
-  const [saveDialogName, setSaveDialogName] = React.useState("");
-  const [saveDialogError, setSaveDialogError] = React.useState<string | null>(null);
-  const [deleteCandidate, setDeleteCandidate] = React.useState<
-    { id: string; name: string } | null
-  >(null);
-
-  React.useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(PARTICLE_PRESETS_STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) setSavedPresets(parsed as SavedPreset[]);
-    } catch {
-      /* ignore corrupted storage */
-    }
-  }, []);
 
   React.useEffect(() => {
     try {
@@ -724,18 +657,6 @@ export function CosmoPlayground() {
     try {
       window.localStorage.setItem(
         PARTICLE_CUSTOM_COLORS_STORAGE_KEY,
-        JSON.stringify(next)
-      );
-    } catch {
-      /* storage may be unavailable */
-    }
-  }, []);
-
-  const persistPresets = React.useCallback((next: SavedPreset[]) => {
-    setSavedPresets(next);
-    try {
-      window.localStorage.setItem(
-        PARTICLE_PRESETS_STORAGE_KEY,
         JSON.stringify(next)
       );
     } catch {
@@ -785,48 +706,6 @@ export function CosmoPlayground() {
     [customGradients, persistCustomGradients]
   );
 
-  const openSaveDialog = React.useCallback(() => {
-    const used = new Set(savedPresets.map((p) => p.name));
-    const base = `preset-${savedPresets.length + 1}`;
-    let candidate = base;
-    let i = 2;
-    while (used.has(candidate)) candidate = `${base}-${i++}`;
-    setSaveDialogName(candidate);
-    setSaveDialogError(null);
-    setSaveDialogOpen(true);
-  }, [savedPresets]);
-
-  const commitSavePreset = React.useCallback(() => {
-    const trimmed = saveDialogName.trim();
-    if (!trimmed) {
-      setSaveDialogError("Name can't be empty.");
-      return;
-    }
-    if (savedPresets.some((p) => p.name === trimmed)) {
-      setSaveDialogError(`A preset named "${trimmed}" already exists.`);
-      return;
-    }
-    const preset: SavedPreset = {
-      id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
-      name: trimmed,
-      settings,
-    };
-    persistPresets([...savedPresets, preset]);
-    setSaveDialogOpen(false);
-  }, [saveDialogName, savedPresets, settings, persistPresets]);
-
-  const handleLoadPreset = React.useCallback((p: SavedPreset) => {
-    setSettings({ ...DEFAULT_SETTINGS, ...p.settings });
-    setPresetsOpen(false);
-  }, []);
-
-  const handleDeletePreset = React.useCallback(
-    (id: string) => {
-      persistPresets(savedPresets.filter((p) => p.id !== id));
-    },
-    [savedPresets, persistPresets]
-  );
-
   const onSourceTypeChange = (type: SourceType) => {
     setSettings((s) => {
       if (type === "shape") return { ...s, source: type, sourceLabel: shapeLabel(s.sourceShape) };
@@ -850,7 +729,7 @@ export function CosmoPlayground() {
         useImageColors,
         // Original image colors override the gradient — leave that tool.
         colorMode:
-          useImageColors && s.colorMode === "gradient" ? "preset" : s.colorMode,
+          useImageColors && s.colorMode === "gradient" ? "custom" : s.colorMode,
       };
     });
   };
@@ -910,14 +789,6 @@ export function CosmoPlayground() {
               Playback &amp; history
             </p>
             <ul className="space-y-1.5">
-              <li className="flex items-start gap-2">
-                <Play size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Play / Pause</span> — stop and resume the simulation</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Undo2 size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Undo / Redo</span> — step through control changes</span>
-              </li>
             </ul>
           </div>
           <div>
@@ -928,14 +799,6 @@ export function CosmoPlayground() {
               <li className="flex items-start gap-2">
                 <RotateCcw size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
                 <span><span className="text-[var(--ls-foreground)]">Reset</span> — restore every control to its default</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Bookmark size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Presets</span> — load a saved look</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Save size={11} className="mt-[3px] shrink-0 text-emerald-500 dark:text-emerald-400" />
-                <span><span className="text-[var(--ls-foreground)]">Save</span> — keep the current settings as a preset</span>
               </li>
               <li className="flex items-start gap-2">
                 <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
@@ -949,10 +812,6 @@ export function CosmoPlayground() {
             </p>
             <ul className="space-y-1.5">
               <li className="flex items-start gap-2">
-                <Upload size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Upload</span> — bring your own SVG or image as the particle source</span>
-              </li>
-              <li className="flex items-start gap-2">
                 <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
                 <span><span className="text-[var(--ls-foreground)]">Custom color</span> — paint particles with any hex you pick</span>
               </li>
@@ -964,51 +823,6 @@ export function CosmoPlayground() {
           </div>
         </div>
       </details>
-      <section className="rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
-        <div
-          className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] backdrop-blur-sm"
-          style={{ backgroundColor: resolvedCanvasBg }}
-        >
-          <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={copyAiPrompt}
-              title="Copy the AI prompt that recreates this effect"
-              className="group inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/50"
-            >
-              <PixelFireSpinner />
-              <span className="font-semibold uppercase tracking-[0.15em]">AI Prompt</span>
-              <span
-                className={
-                  "ml-1 inline-flex items-center gap-1 border-l border-[var(--ls-border)] pl-1.5 text-[10px] transition-colors " +
-                  (promptCopied
-                    ? "text-[var(--ls-foreground)]"
-                    : "text-[var(--ls-foreground)] group-hover:text-orange-500 dark:group-hover:text-orange-400")
-                }
-              >
-                {promptCopied ? (
-                  <Check size={11} className="text-emerald-500 dark:text-emerald-400" />
-                ) : (
-                  <Copy size={11} />
-                )}
-                {promptCopied ? "Copied" : "Copy"}
-              </span>
-            </button>
-          </div>
-          <canvas
-            ref={canvasRef}
-            className="h-[420px] w-full [touch-action:none] lg:h-[560px] lg:[touch-action:auto]"
-            style={{ display: "block" }}
-          />
-        </div>
-      </section>
-
-      {(settings.source === "image" || settings.source === "svg") && settings.sourceDataUrl && (
-        <section>
-          <AttachSourceTip kind={settings.source} fileName={settings.sourceLabel} />
-        </section>
-      )}
-
       <section className="rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm lg:p-6">
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -1026,35 +840,6 @@ export function CosmoPlayground() {
                 Sampling…
               </span>
             )}
-            <button
-              type="button"
-              onClick={() => setPlaying((v) => !v)}
-              aria-label={playing ? "Pause" : "Play"}
-              title={playing ? "Pause" : "Play"}
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
-            >
-              {playing ? <Pause size={13} /> : <Play size={13} />}
-            </button>
-            <button
-              type="button"
-              onClick={undo}
-              disabled={!canUndo}
-              aria-label="Undo"
-              title="Undo"
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
-            >
-              <Undo2 size={13} />
-            </button>
-            <button
-              type="button"
-              onClick={redo}
-              disabled={!canRedo}
-              aria-label="Redo"
-              title="Redo"
-              className="inline-flex h-[26px] w-[26px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
-            >
-              <Redo2 size={13} />
-            </button>
             </div>
             <button
               type="button"
@@ -1077,157 +862,19 @@ export function CosmoPlayground() {
             >
               <RotateCcw size={13} />
             </button>
-            <Popover open={presetsOpen} onOpenChange={setPresetsOpen}>
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
-                  title="Load a saved preset"
-                >
-                  <Bookmark size={11} />
-                  Presets
-                  {savedPresets.length > 0 && (
-                    <span className="rounded-sm bg-[var(--ls-border)]/60 px-1 text-[9px] tabular-nums text-[var(--ls-muted-foreground)]">
-                      {savedPresets.length}
-                    </span>
-                  )}
-                </button>
-              </PopoverTrigger>
-              <PopoverContent
-                align="end"
-                sideOffset={8}
-                className="luminous-spinners w-[280px] border-[var(--ls-border)] bg-[var(--ls-card)] p-2 text-[var(--ls-foreground)] shadow-xl"
-              >
-                <p className="mb-2 px-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
-                  Saved presets
-                </p>
-                {savedPresets.length === 0 ? (
-                  <p className="px-1.5 py-3 text-[11px] text-[var(--ls-muted-foreground)]">
-                    No presets yet. Tune the controls and tap{" "}
-                    <span className="font-medium text-[var(--ls-foreground)]">Save</span>{" "}
-                    to keep this look.
-                  </p>
-                ) : (
-                  <div className="max-h-[260px] space-y-0.5 overflow-y-auto">
-                    {savedPresets.map((p) => (
-                      <div
-                        key={p.id}
-                        className="group flex items-center gap-1 rounded-md hover:bg-[var(--ls-border)]/30"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => handleLoadPreset(p)}
-                          className="flex min-w-0 flex-1 items-center gap-2 rounded-md px-2 py-1.5 text-left text-[11px] text-[var(--ls-foreground)]"
-                          title={`Load ${p.name}`}
-                        >
-                          <Bookmark
-                            size={10}
-                            className="shrink-0 text-[var(--ls-muted-foreground)]"
-                          />
-                          <span className="truncate font-mono">{p.name}</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setDeleteCandidate({ id: p.id, name: p.name });
-                          }}
-                          aria-label={`Delete ${p.name}`}
-                          title={`Delete ${p.name}`}
-                          className="mr-1 inline-flex h-6 w-6 items-center justify-center rounded text-[var(--ls-muted-foreground)] opacity-0 transition-opacity hover:bg-rose-500/15 hover:text-rose-300 group-hover:opacity-100"
-                        >
-                          <Trash2 size={11} />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </PopoverContent>
-            </Popover>
-            <Popover
-              open={saveDialogOpen}
-              onOpenChange={(open) => {
-                if (open) openSaveDialog();
-                else setSaveDialogOpen(false);
-              }}
-            >
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/50 bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-700 transition-colors hover:bg-emerald-500/20 dark:border-emerald-400/40 dark:text-emerald-300"
-                  title="Save the current settings as a preset"
-                >
-                  <Save size={11} />
-                  Save
-                </button>
-              </PopoverTrigger>
-              <PopoverContent
-                align="end"
-                sideOffset={8}
-                className="luminous-spinners w-[280px] border-[var(--ls-border)] bg-[var(--ls-card)] p-3 text-[var(--ls-foreground)] shadow-xl"
-              >
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
-                  Save current as preset
-                </p>
-                <input
-                  value={saveDialogName}
-                  onChange={(e) => {
-                    setSaveDialogName(e.target.value);
-                    setSaveDialogError(null);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      commitSavePreset();
-                    }
-                  }}
-                  autoFocus
-                  spellCheck={false}
-                  placeholder="Preset name"
-                  className="h-8 w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-emerald-400/60"
-                />
-                {saveDialogError && (
-                  <p className="mt-1.5 text-[10px] text-rose-400">
-                    {saveDialogError}
-                  </p>
-                )}
-                <div className="mt-3 flex justify-end gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => setSaveDialogOpen(false)}
-                    className="rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 py-1 text-[11px] font-medium text-[var(--ls-foreground)] hover:bg-[var(--ls-border)]/40"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    onClick={commitSavePreset}
-                    className="rounded-md border border-emerald-500/50 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-700 hover:bg-emerald-500/20 dark:border-emerald-400/40 dark:text-emerald-300"
-                  >
-                    Save
-                  </button>
-                </div>
-              </PopoverContent>
-            </Popover>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 xl:grid-cols-3 xl:items-start">
-          {/* Column 1: Color + Particles */}
-          <div className="space-y-4">
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 gap-4 lg:auto-rows-min lg:grid-cols-[280px_minmax(0,1fr)_400px]">
+          {/* Left: Color */}
+          <div className="rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 p-4 space-y-4">
           <SectionHeading
             title="Color"
-            subtitle="Pick a preset, a custom hex, or a gradient."
+            subtitle="Pick a custom hex or a gradient."
           />
           <div className="space-y-3">
             <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
-              <SegmentTab
-                active={settings.colorMode === "preset"}
-                onClick={() => setSettings((s) => ({ ...s, colorMode: "preset" }))}
-                label="Preset"
-              />
               <SegmentTab
                 active={settings.colorMode === "custom"}
                 onClick={() => setSettings((s) => ({ ...s, colorMode: "custom" }))}
@@ -1247,30 +894,6 @@ export function CosmoPlayground() {
             </div>
 
             <div className="min-h-[100px]">
-            {settings.colorMode === "preset" && (
-              <div className="grid grid-cols-6 gap-1.5">
-                {COLOR_PRESETS.map((p) => {
-                  const active = settings.color.toLowerCase() === p.hex.toLowerCase();
-                  return (
-                    <button
-                      key={p.id}
-                      type="button"
-                      onClick={() => setSettings((s) => ({ ...s, color: p.hex }))}
-                      title={p.label}
-                      aria-label={p.label}
-                      className={
-                        "relative h-8 w-full rounded-md border transition-transform hover:scale-105 " +
-                        (active
-                          ? "border-white/70 ring-2 ring-white/30 ring-offset-1 ring-offset-[var(--ls-card)]"
-                          : "border-white/10")
-                      }
-                      style={{ backgroundColor: p.hex }}
-                    />
-                  );
-                })}
-              </div>
-            )}
-
             {settings.colorMode === "custom" && (
               <div className="space-y-1.5">
                 <SwatchRow
@@ -1462,7 +1085,7 @@ export function CosmoPlayground() {
                     </span>
                   </div>
                 </div>
-                <div className="grid grid-cols-4 gap-1.5">
+                <div className="grid grid-cols-2 gap-2">
                   {(() => {
                     const stops = getGradientStops(settings);
                     const handleSwap = (a: number, b: number) => {
@@ -1515,39 +1138,6 @@ export function CosmoPlayground() {
                             onDropStop={(target) => handleSwap(stopIndex, target)}
                           />
                         );
-                      } else {
-                        const nextStopExists = settings.gradientMidStops[idx - 1] !== undefined;
-                        const enabled = idx === 0 || nextStopExists;
-                        cards.push(
-                          <button
-                            key={`mid-${idx}`}
-                            type="button"
-                            disabled={!enabled}
-                            onClick={() => {
-                              const mid = blendHex(
-                                settings.gradientFrom,
-                                settings.gradientTo,
-                                0.5
-                              );
-                              setSettings((s) => ({
-                                ...s,
-                                gradientMidStops: [...s.gradientMidStops, mid].slice(
-                                  0,
-                                  MAX_GRADIENT_MID_STOPS
-                                ),
-                              }));
-                            }}
-                            title={
-                              enabled
-                                ? "Add an intermediate gradient stop"
-                                : "Add the previous stop first"
-                            }
-                            aria-label="Add gradient stop"
-                            className="flex h-full min-h-[44px] w-full items-center justify-center rounded-md border border-dashed border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] transition-colors hover:border-white/40 hover:bg-[var(--ls-border)]/30 hover:text-[var(--ls-foreground)] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[var(--ls-card)]"
-                          >
-                            <Plus size={14} />
-                          </button>
-                        );
                       }
                     }
                     const toIndex = stops.length - 1;
@@ -1571,69 +1161,23 @@ export function CosmoPlayground() {
           </div>
           </div>
 
-          <div className="space-y-4">
-          <SectionHeading title="Canvas" subtitle="Background color behind the particles." />
-          <div className="flex items-center gap-2">
-            <div className="flex-1">
-              <SwatchRow
-                label="Background"
-                value={resolvedCanvasBg}
-                onChange={(v) => setSettings((s) => ({ ...s, canvasBg: v }))}
-              />
-            </div>
-            <button
-              type="button"
-              onClick={() => setSettings((s) => ({ ...s, canvasBg: null }))}
-              disabled={settings.canvasBg === null}
-              title="Follow theme"
-              className="h-9 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
-            >
-              Auto
-            </button>
-          </div>
+          {/* Center: live preview */}
+            <section className="rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
+              <div
+                className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] backdrop-blur-sm"
+                style={{ backgroundColor: resolvedCanvasBg }}
+              >
+                <canvas
+                  ref={canvasRef}
+                  className="h-[210px] w-full [touch-action:none] lg:h-[280px] lg:[touch-action:auto]"
+                  style={{ display: "block" }}
+                />
+              </div>
+            </section>
 
-          <SectionHeading title="Particles" subtitle="Density and motion." />
-          <TickSlider
-            label="Particles"
-            value={settings.count}
-            min={200}
-            max={50000}
-            step={100}
-            editable
-            onChange={(v) => setSettings((s) => ({ ...s, count: v }))}
-          />
-          <TickSlider
-            label="Size"
-            value={settings.size}
-            min={0.5}
-            max={6}
-            step={0.1}
-            unit="px"
-            onChange={(v) => setSettings((s) => ({ ...s, size: v }))}
-          />
-          <TickSlider
-            label="Speed"
-            value={settings.speed}
-            min={0.2}
-            max={3}
-            step={0.05}
-            onChange={(v) => setSettings((s) => ({ ...s, speed: v }))}
-          />
-          <TickSlider
-            label="Drift"
-            value={settings.drift}
-            min={0}
-            max={3}
-            step={0.05}
-            onChange={(v) => setSettings((s) => ({ ...s, drift: v }))}
-          />
-          </div>
 
-          </div>
-
-          {/* Column 2: Source + Mouse */}
-          <div className="space-y-4">
-          <div className="space-y-4">
+          {/* Right: Source */}
+          <div className="rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 p-4 space-y-4">
           <SectionHeading title="Source" subtitle="Particles form the shape you pick." />
           <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
             <SourceTab
@@ -1648,18 +1192,8 @@ export function CosmoPlayground() {
               icon={<Type className="h-3.5 w-3.5" />}
               label="Text"
             />
-            <SourceTab
-              active={settings.source === "svg"}
-              onClick={() => onSourceTypeChange("svg")}
-              icon={<Upload className="h-3.5 w-3.5" />}
-              label="SVG"
-            />
-            <SourceTab
-              active={settings.source === "image"}
-              onClick={() => onSourceTypeChange("image")}
-              icon={<ImageIcon className="h-3.5 w-3.5" />}
-              label="Image"
-            />
+            {/* SVG / Image upload tabs hidden — the panels below stay in place
+                for when they come back. */}
           </div>
 
           {settings.source === "shape" && (
@@ -1786,7 +1320,7 @@ export function CosmoPlayground() {
                       useImageColors: v,
                       // Turning Original on overrides the gradient — leave that tool.
                       colorMode:
-                        v && s.colorMode === "gradient" ? "preset" : s.colorMode,
+                        v && s.colorMode === "gradient" ? "custom" : s.colorMode,
                     }))
                   }
                   label="Use original image colors"
@@ -1796,59 +1330,113 @@ export function CosmoPlayground() {
           )}
           </div>
 
-          <div className="space-y-4">
-          <SectionHeading title="Mouse" subtitle="Hover the canvas to interact." />
 
-          <div className="space-y-2">
-            <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
-              <SegmentTab
-                active={settings.mouseMode === "repel"}
-                onClick={() => setSettings((s) => ({ ...s, mouseMode: "repel" }))}
-                label="Repel"
-              />
-              <SegmentTab
-                active={settings.mouseMode === "attract"}
-                onClick={() => setSettings((s) => ({ ...s, mouseMode: "attract" }))}
-                label="Attract"
-              />
-              <SegmentTab
-                active={settings.mouseMode === "circle"}
-                onClick={() => setSettings((s) => ({ ...s, mouseMode: "circle" }))}
-                label="Circle"
+          {/* Bottom-left: teaser fills this bento cell. The wrapper cancels
+              the card's own xl:col-span-2 (that belongs to the blocks grid) and
+              scales its type + pixel icon down to bento size. */}
+          <div className="h-full [&>div]:h-full [&>div]:min-h-[160px] [&>div]:md:min-h-[180px] md:[&>div]:[--pix-cell:2.5px] md:[&>div]:[--pix-gap:1px] [&_h2]:translate-y-0 [&_h2]:border-b [&_h2]:pb-0.5 [&_h2]:text-2xl [&_h2]:md:translate-y-0 [&_h2]:md:text-3xl [&_h2]:lg:text-3xl">
+            <MoreSoonCard />
+          </div>
+
+          {/* Bottom-center: particle motion — sliders run compact here so the
+              row stays short and the teaser beside it gets the space. */}
+          <div className="rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 p-4 space-y-2 [&_.group]:gap-2 [&_.group]:px-3 [&_.group]:py-1">
+          <SectionHeading title="Particles" subtitle="Density and motion." />
+          <TickSlider
+            label="Particles"
+            value={settings.count}
+            min={200}
+            max={1000}
+            step={50}
+            editable
+            onChange={(v) => setSettings((s) => ({ ...s, count: v }))}
+          />
+          <TickSlider
+            label="Size"
+            value={settings.size}
+            min={0.5}
+            max={1.4}
+            step={0.05}
+            unit="px"
+            onChange={(v) => setSettings((s) => ({ ...s, size: v }))}
+          />
+          <TickSlider
+            label="Speed"
+            value={settings.speed}
+            min={0.2}
+            max={0.6}
+            step={0.02}
+            onChange={(v) => setSettings((s) => ({ ...s, speed: v }))}
+          />
+          <TickSlider
+            label="Drift"
+            value={settings.drift}
+            min={0}
+            max={0.45}
+            step={0.05}
+            onChange={(v) => setSettings((s) => ({ ...s, drift: v }))}
+          />
+          </div>
+
+          {/* Bottom-right: canvas background + export */}
+          <div className="rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 p-4 space-y-4">
+          <SectionHeading title="Canvas" subtitle="Background color behind the particles." />
+          <div className="flex items-center gap-2">
+            <div className="flex-1">
+              <SwatchRow
+                label="Background"
+                value={resolvedCanvasBg}
+                onChange={(v) => setSettings((s) => ({ ...s, canvasBg: v }))}
               />
             </div>
-            <p className="text-[10px] text-[var(--ls-muted-foreground)]">
-              {settings.mouseMode === "repel"
-                ? "Push particles away from the cursor."
-                : settings.mouseMode === "attract"
-                ? "Pull particles toward the cursor — opposite of Repel."
-                : "Capture particles inside the cursor's disc."}
-            </p>
+            <button
+              type="button"
+              onClick={() => setSettings((s) => ({ ...s, canvasBg: null }))}
+              disabled={settings.canvasBg === null}
+              title="Follow theme"
+              className="h-9 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
+            >
+              Auto
+            </button>
           </div>
 
-          <TickSlider
-            label="Radius"
-            value={settings.mouseRadius}
-            min={0}
-            max={240}
-            step={1}
-            unit="px"
-            onChange={(v) => setSettings((s) => ({ ...s, mouseRadius: v }))}
-          />
-          <TickSlider
-            label="Force"
-            value={settings.mouseForce}
-            min={0}
-            max={120}
-            step={1}
-            onChange={(v) => setSettings((s) => ({ ...s, mouseForce: v }))}
-          />
-          </div>
+            {(settings.source === "image" || settings.source === "svg") && settings.sourceDataUrl && (
+              <AttachSourceTip kind={settings.source} fileName={settings.sourceLabel} />
+            )}
+
+            {/* Export lives on its own card now instead of floating over the canvas. */}
+            <div className="space-y-2 rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-3">
+              <SectionHeading title="Export" subtitle="Copy a prompt that recreates this look." />
+              <button
+                type="button"
+                onClick={copyAiPrompt}
+                title="Copy the AI prompt that recreates this effect"
+                className="group inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/50"
+              >
+                <PixelFireSpinner />
+                <span className="font-semibold uppercase tracking-[0.15em]">AI Prompt</span>
+                <span
+                  className={
+                    "ml-1 inline-flex items-center gap-1 border-l border-[var(--ls-border)] pl-1.5 text-[10px] transition-colors " +
+                    (promptCopied
+                      ? "text-[var(--ls-foreground)]"
+                      : "text-[var(--ls-foreground)] group-hover:text-orange-500 dark:group-hover:text-orange-400")
+                  }
+                >
+                  {promptCopied ? (
+                    <Check size={11} className="text-emerald-500 dark:text-emerald-400" />
+                  ) : (
+                    <Copy size={11} />
+                  )}
+                  {promptCopied ? "Copied" : "Copy"}
+                </span>
+              </button>
+            </div>
 
           </div>
 
-          {/* Column 3: Effects */}
-          <div className="space-y-3">
+          {/* Effects column — commented out
+                    <div className="space-y-3">
             <SectionHeading title="Effects" subtitle="Layer extras on top of the base render." />
             <EffectCard
               label="Glow"
@@ -1938,24 +1526,10 @@ export function CosmoPlayground() {
               onToggle={(v) => setSettings((s) => ({ ...s, velocityBoost: v }))}
             />
           </div>
+          */}
 
         </div>
       </section>
-
-      <ConfirmSheet
-        open={deleteCandidate !== null}
-        title={
-          deleteCandidate ? `Delete preset "${deleteCandidate.name}"?` : ""
-        }
-        description="This can't be undone — the preset will be removed from your saved list."
-        confirmLabel="Delete"
-        onCancel={() => setDeleteCandidate(null)}
-        onConfirm={() => {
-          if (!deleteCandidate) return;
-          handleDeletePreset(deleteCandidate.id);
-          setDeleteCandidate(null);
-        }}
-      />
 
       <ConfirmSheet
         open={resetConfirmOpen}
@@ -2696,13 +2270,6 @@ function SwatchRow({
   );
 }
 
-function blendHex(a: string, b: string, t: number): string {
-  const ra = hexToRgb(a);
-  const rb = hexToRgb(b);
-  const mix = (x: number, y: number) => Math.round(x + (y - x) * t);
-  const toHex = (n: number) => n.toString(16).padStart(2, "0");
-  return `#${toHex(mix(ra.r, rb.r))}${toHex(mix(ra.g, rb.g))}${toHex(mix(ra.b, rb.b))}`;
-}
 
 const SIZE_PRESETS: { label: string; value: number }[] = [
   { label: "S", value: 0.4 },

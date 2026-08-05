@@ -1,0 +1,18 @@
+[     756ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     793ms] [LOG] [HMR] connected @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[     954ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    1510ms] [LOG] [Fast Refresh] done in 694ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    4344ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[    4798ms] [LOG] [Fast Refresh] done in 554ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   13372ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[   13400ms] [LOG] [Fast Refresh] done in 130ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  132173ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  132261ms] [LOG] [Fast Refresh] done in 191ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  134272ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  134291ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  504740ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  504759ms] [LOG] [Fast Refresh] done in 122ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  582507ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  584217ms] [LOG] [Fast Refresh] done in 1641ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  584436ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
+[  584590ms] [LOG] [Fast Refresh] done in 262ms @ http://localhost:4500/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

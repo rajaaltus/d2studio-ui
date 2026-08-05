@@ -27,8 +27,9 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { name: "Blocks", href: "/blocks" },
-  { name: "Spinners", href: "/spinners", badge: "Updated", badgeTone: "blue" },
-  { name: "Cosmo", href: "/cosmo", badge: "New", badgeTone: "green" },
+  // badges hidden for now — restore by putting back badge/badgeTone
+  { name: "Spinners", href: "/spinners" },
+  { name: "Cosmo", href: "/cosmo" },
   { name: "Docs", href: "/docs" },
 ];
 
