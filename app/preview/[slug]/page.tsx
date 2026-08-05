@@ -6,6 +6,16 @@ import { useEffect, useMemo, Suspense } from "react";
 import { useTheme } from "@/components/theme-provider";
 import { Loader2 } from "lucide-react";
 
+// Many registry items export a single named component instead of a default.
+function resolveComponent(mod: Record<string, unknown>) {
+    if (mod.default) return { default: mod.default as React.ComponentType };
+    const found = Object.values(mod).find(
+        (v) => typeof v === "function" && /^[A-Z]/.test(v.name)
+    );
+    if (!found) throw new Error("no component export");
+    return { default: found as React.ComponentType };
+}
+
 function PreviewContent() {
     const params = useParams();
     const searchParams = useSearchParams();
@@ -29,7 +39,7 @@ function PreviewContent() {
         const folder = (cleanType === "ui" || cleanType === "registry:ui") ? "ui" : "components";
 
         if (folder === "ui") {
-            return dynamic(() => import(`@/registry/default/ui/${slug}`).catch((err) => {
+            return dynamic(() => import(`@/registry/default/ui/${slug}`).then(resolveComponent).catch((err) => {
                 console.error(`Failed to load UI component: ${slug}`, err);
                 return function UIComponentNotFound() {
                     return (
@@ -41,7 +51,7 @@ function PreviewContent() {
                 };
             }), { ssr: false });
         } else {
-            return dynamic(() => import(`@/registry/default/components/${slug}`).catch((err) => {
+            return dynamic(() => import(`@/registry/default/components/${slug}`).then(resolveComponent).catch((err) => {
                 console.error(`Failed to load component: ${slug}`, err);
                 return function ComponentNotFound() {
                     return (
@@ -58,7 +68,8 @@ function PreviewContent() {
     if (!Component) return null;
 
     return (
-        <div className="min-h-screen bg-background p-4 sm:p-8">
+        // .luminous-spinners scopes the .cell/.spinner-grid rules in globals.css
+        <div className="luminous-spinners min-h-screen bg-background p-4 sm:p-8">
             <Component />
         </div>
     );

@@ -4033,8 +4033,11 @@
 .dark .d2-smoke {
   mix-blend-mode: plus-lighter;
 }
+/* Fast in, slow out: the fog should land as soon as the pointer arrives, but
+   still dissolve gently on leave. */
 [data-hovered="true"] .d2-smoke {
   opacity: 0.55;
+  transition-duration: 0.18s;
 }
 .dark [data-hovered="true"] .d2-smoke {
   opacity: 0.4;
