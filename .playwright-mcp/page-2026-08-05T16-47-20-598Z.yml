@@ -1,0 +1,611 @@
+- generic [ref=f10e1]:
+  - link "Skip to content" [ref=f10e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f10e3]:
+    - banner [ref=f10e4]:
+      - navigation [ref=f10e5]:
+        - generic [ref=f10e6]:
+          - link "D2 Studio" [ref=f10e7] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=f10e8]
+          - generic [ref=f10e9]:
+            - link "Blocks" [ref=f10e10] [cursor=pointer]:
+              - /url: /blocks
+            - link "Spinners" [ref=f10e11] [cursor=pointer]:
+              - /url: /spinners
+            - link "Cosmo" [ref=f10e12] [cursor=pointer]:
+              - /url: /cosmo
+            - link "Docs" [ref=f10e13] [cursor=pointer]:
+              - /url: /docs
+          - generic [ref=f10e14]:
+            - link "Buy me a coffee" [ref=f10e15] [cursor=pointer]:
+              - /url: https://buymeacoffee.com/godwindev
+            - switch "Toggle theme" [checked] [ref=f10e19] [cursor=pointer]
+    - generic [ref=f10e43]:
+      - generic [ref=f10e44]:
+        - generic [ref=f10e45]:
+          - paragraph [ref=f10e46]: Loading Library
+          - heading "Pixel Glow Spinners" [level=1] [ref=f10e47]
+          - paragraph [ref=f10e48]: Tune color, size, spacing, and speed. Preview live, then copy the snippet.
+        - generic [ref=f10e50]:
+          - generic [ref=f10e52]:
+            - generic [ref=f10e53]:
+              - generic [ref=f10e54]: rain-4
+              - generic [ref=f10e59]:
+                - button "Random" [ref=f10e60]
+                - button "HTML" [ref=f10e67]
+                - button "CSS" [ref=f10e72]
+                - button "JS" [ref=f10e78]
+                - button "AI Prompt Copy" [ref=f10e83]:
+                  - generic [ref=f10e101]: AI Prompt
+                  - generic [ref=f10e102]: Copy
+            - status "Loading" [ref=f10e107]
+          - generic [ref=f10e124]:
+            - generic [ref=f10e125]:
+              - paragraph [ref=f10e139]: Controls
+              - generic [ref=f10e140]:
+                - button "Toggle theme" [ref=f10e141]
+                - button "Export GIF" [ref=f10e145]
+            - generic [ref=f10e149]:
+              - generic [ref=f10e150]:
+                - paragraph [ref=f10e151]: Pattern
+                - button [expanded] [ref=f10e152]:
+                  - generic [ref=f10e153]:
+                    - status "Loading" [ref=f10e155]
+                    - text: rain-4
+              - generic [ref=f10e174]:
+                - paragraph [ref=f10e175]: Color
+                - generic [ref=f10e176]:
+                  - button "gradient" [ref=f10e177]
+                  - button "preset" [ref=f10e178]
+                - generic [ref=f10e180]:
+                  - button "Electric" [ref=f10e181]
+                  - generic [ref=f10e187]:
+                    - generic [ref=f10e188]:
+                      - paragraph [ref=f10e189]: From
+                      - generic [ref=f10e190]:
+                        - button "From color" [ref=f10e191] [cursor=pointer]
+                        - textbox [ref=f10e192]: "#4facfe"
+                    - generic [ref=f10e193]:
+                      - paragraph [ref=f10e194]: To
+                      - generic [ref=f10e195]:
+                        - button "To color" [ref=f10e196] [cursor=pointer]
+                        - textbox [ref=f10e197]: "#00f2fe"
+                    - generic [ref=f10e198]:
+                      - paragraph [ref=f10e199]: Glow
+                      - generic [ref=f10e200]:
+                        - button "Glow color" [ref=f10e201] [cursor=pointer]
+                        - textbox [ref=f10e202]: "#00f2fe"
+              - generic [ref=f10e203]:
+                - paragraph [ref=f10e204]: Canvas
+                - generic [ref=f10e205]:
+                  - button "Pick canvas color" [ref=f10e206] [cursor=pointer]
+                  - generic [ref=f10e207]: Auto
+                  - button "Auto" [disabled] [ref=f10e208]
+              - generic [ref=f10e209]:
+                - paragraph [ref=f10e210]: Animation Style
+                - generic [ref=f10e211]:
+                  - button "pixels" [ref=f10e212]
+                  - button "wavy" [ref=f10e213]
+              - generic [ref=f10e214]:
+                - paragraph [ref=f10e215]: Bounce on peak
+                - generic [ref=f10e216]:
+                  - generic [ref=f10e217]:
+                    - generic [ref=f10e218]: "Off"
+                    - generic [ref=f10e219]:
+                      - checkbox "Toggle bounce on peak" [ref=f10e220] [cursor=pointer]
+                      - generic "Toggle bounce on peak" [ref=f10e221] [cursor=pointer]
+                  - generic:
+                    - generic:
+                      - generic:
+                        - paragraph: Strength
+                        - generic: 1x
+                      - slider [disabled]: "1"
+                    - generic:
+                      - generic:
+                        - paragraph: Duration
+                        - generic: 480ms
+                      - slider [disabled]: "480"
+              - generic [ref=f10e223]:
+                - paragraph [ref=f10e224]: Direction
+                - generic [ref=f10e225]:
+                  - button "Up" [ref=f10e226]
+                  - button "Right" [ref=f10e229]
+                  - button "Down" [ref=f10e232]
+                  - button "Left" [ref=f10e235]
+              - generic [ref=f10e238]:
+                - paragraph [ref=f10e239]: Shape
+                - generic [ref=f10e240]:
+                  - button "Square" [ref=f10e241]
+                  - button "Rounded" [ref=f10e243]
+                  - button "Circle" [ref=f10e245]
+                  - button "Diamond" [ref=f10e247]
+                  - button "Triangle" [ref=f10e249]
+                  - button "Lines" [ref=f10e251]
+                  - button "Line 2" [ref=f10e253]
+                  - button "Line 3" [ref=f10e255]
+              - generic [ref=f10e257]:
+                - paragraph [ref=f10e258]: Grid
+                - button "4×4" [ref=f10e259]
+                - generic [ref=f10e263]:
+                  - button "8×8" [ref=f10e264]
+                  - button "16×16" [ref=f10e265]
+                  - button "32×32" [ref=f10e266]
+                  - button "64×64" [ref=f10e267]
+              - generic [ref=f10e268]:
+                - generic [ref=f10e269]:
+                  - generic [ref=f10e270]:
+                    - paragraph [ref=f10e271]: Cell size
+                    - generic [ref=f10e272]: 6px
+                  - slider [ref=f10e273] [cursor=pointer]: "6"
+                - generic [ref=f10e274]:
+                  - generic [ref=f10e275]:
+                    - paragraph [ref=f10e276]: Gap
+                    - generic [ref=f10e277]: 3px
+                  - slider [ref=f10e278] [cursor=pointer]: "3"
+                - generic [ref=f10e279]:
+                  - generic [ref=f10e280]:
+                    - paragraph [ref=f10e281]: Animation Speed
+                    - generic [ref=f10e282]:
+                      - spinbutton [ref=f10e283]: "200"
+                      - generic [ref=f10e284]: ms
+                  - slider [ref=f10e285] [cursor=pointer]: "200"
+                  - generic [ref=f10e286]:
+                    - generic [ref=f10e287]: Fast
+                    - generic [ref=f10e288]: Slow
+                - generic [ref=f10e289]:
+                  - generic [ref=f10e290]:
+                    - paragraph [ref=f10e291]: Glow
+                    - generic [ref=f10e292]: 0.25x
+                  - slider [ref=f10e296] [cursor=pointer]: "0.25"
+            - generic [ref=f10e297]:
+              - paragraph [ref=f10e298]: Recently Viewed
+              - paragraph [ref=f10e299]: Switch patterns to build your history.
+      - generic [ref=f10e301]:
+        - generic [ref=f10e303]:
+          - paragraph [ref=f10e304]:
+            - text: Enjoying the Pixel Glow Spinners? Encourage us with a coffee — your support helps us build more experiments like this.
+            - generic [ref=f10e305]: Your support truly makes a difference.
+          - blockquote [ref=f10e306]:
+            - text: “No one has ever become poor by giving.”
+            - generic [ref=f10e307]: — Anne Frank
+        - generic [ref=f10e308]:
+          - link "Buy me a coffee" [ref=f10e310] [cursor=pointer]:
+            - /url: https://buymeacoffee.com/godwindev
+          - generic [ref=f10e316]: buy me a coffee
+    - contentinfo [ref=f10e317]:
+      - generic [ref=f10e322]:
+        - generic [ref=f10e323]:
+          - link "D2 Studio" [ref=f10e324] [cursor=pointer]:
+            - /url: /
+            - img "D2 Studio" [ref=f10e325]
+          - paragraph [ref=f10e326]: A premium collection of copy & paste components built with React, Tailwind CSS and shadcn/ui. Beautiful, accessible, and ready for production.
+          - generic [ref=f10e327]: New blocks shipping every weekend
+        - generic [ref=f10e338]:
+          - heading "Library" [level=3] [ref=f10e339]
+          - list [ref=f10e340]:
+            - listitem [ref=f10e341]:
+              - link "Blocks" [ref=f10e342] [cursor=pointer]:
+                - /url: /blocks
+            - listitem [ref=f10e344]:
+              - link "Spinners" [ref=f10e345] [cursor=pointer]:
+                - /url: /spinners
+            - listitem [ref=f10e347]:
+              - link "Cosmo" [ref=f10e348] [cursor=pointer]:
+                - /url: /cosmo
+            - listitem [ref=f10e350]:
+              - link "Components" [ref=f10e351] [cursor=pointer]:
+                - /url: /blocks
+            - listitem [ref=f10e353]:
+              - link "Docs" [ref=f10e354] [cursor=pointer]:
+                - /url: /docs
+        - generic [ref=f10e356]:
+          - heading "Resources" [level=3] [ref=f10e357]
+          - list [ref=f10e358]:
+            - listitem [ref=f10e359]:
+              - link "Getting started" [ref=f10e360] [cursor=pointer]:
+                - /url: /docs
+            - listitem [ref=f10e362]:
+              - link "Changelog" [ref=f10e363] [cursor=pointer]:
+                - /url: /docs#changelog
+            - listitem [ref=f10e365]:
+              - link "shadcn/ui" [ref=f10e366] [cursor=pointer]:
+                - /url: https://ui.shadcn.com
+            - listitem [ref=f10e371]:
+              - link "Tailwind CSS" [ref=f10e372] [cursor=pointer]:
+                - /url: https://tailwindcss.com
+        - generic [ref=f10e377]:
+          - heading "Connect" [level=3] [ref=f10e378]
+          - list [ref=f10e379]:
+            - listitem [ref=f10e380]:
+              - generic [ref=f10e381]:
+                - link "X / @uxgodwin" [ref=f10e382] [cursor=pointer]:
+                  - /url: https://x.com/uxgodwin
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=f10e387]:
+              - generic [ref=f10e388]:
+                - link "X / @rajaaltus" [ref=f10e389] [cursor=pointer]:
+                  - /url: https://x.com/rajaaltus
+                - tooltip "Raja Altus":
+                  - img "Raja Altus"
+            - listitem [ref=f10e394]:
+              - generic [ref=f10e395]:
+                - link "Threads" [ref=f10e396] [cursor=pointer]:
+                  - /url: https://www.threads.com/@godwin.d2
+                - tooltip "Godwin":
+                  - img "Godwin"
+            - listitem [ref=f10e401]:
+              - link "GitHub" [ref=f10e402] [cursor=pointer]:
+                - /url: https://github.com/godwin159
+            - listitem [ref=f10e407]:
+              - link "Buy me a coffee" [ref=f10e408] [cursor=pointer]:
+                - /url: https://buymeacoffee.com/godwindev
+      - generic [ref=f10e414]:
+        - generic [ref=f10e415]:
+          - text: © 2026
+          - link "D2 Studio" [ref=f10e416] [cursor=pointer]:
+            - /url: https://www.d2studio.dev/
+          - generic [ref=f10e417]: ·
+          - text: Built with for the community.
+        - generic [ref=f10e422]:
+          - link "X (formerly Twitter)" [ref=f10e423] [cursor=pointer]:
+            - /url: https://x.com/uxgodwin
+          - link "Threads" [ref=f10e426] [cursor=pointer]:
+            - /url: https://www.threads.com/@godwin.d2
+          - link "GitHub" [ref=f10e429] [cursor=pointer]:
+            - /url: https://github.com/godwin159
+      - generic [ref=f10e433]:
+        - generic [ref=f10e434]: D2 STUDIO
+        - generic: D2 STUDIO
+        - generic: D2 STUDIO
+  - generic [ref=f10e435]:
+    - heading "Command palette" [level=2] [ref=f10e436]
+    - paragraph [ref=f10e437]: Search pages, categories, and actions
+  - navigation "Quick navigation" [ref=f10e438]:
+    - button "Blocks" [ref=f10e439] [cursor=pointer]
+    - button "Spinners New" [ref=f10e457] [cursor=pointer]:
+      - generic [ref=f10e469]: Spinners
+      - generic [ref=f10e471]: New
+    - button "Switch to light mode" [ref=f10e502] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f10e490] [cursor=pointer]
+  - alert [ref=f10e506]
+  - dialog [ref=f10e508]:
+    - textbox "Search patterns…" [active] [ref=f10e511]
+    - generic [ref=f10e513]:
+      - paragraph [ref=f10e514]: Library
+      - generic [ref=f10e515]:
+        - button [ref=f10e516]:
+          - status "Loading" [ref=f10e518]
+          - paragraph [ref=f10e544]: spiral-in-5
+        - button [ref=f10e545]:
+          - status "Loading" [ref=f10e547]
+          - paragraph [ref=f10e573]: snake-5
+        - button [ref=f10e574]:
+          - status "Loading" [ref=f10e576]
+          - paragraph [ref=f10e602]: dual-ring-5
+        - button [ref=f10e603]:
+          - status "Loading" [ref=f10e605]
+          - paragraph [ref=f10e631]: outer-ring-cw-5
+        - button [ref=f10e632]:
+          - status "Loading" [ref=f10e634]
+          - paragraph [ref=f10e651]: vortex-in
+        - button [ref=f10e652]:
+          - status "Loading" [ref=f10e654]
+          - paragraph [ref=f10e680]: col-wave-5
+        - button [ref=f10e681]:
+          - status "Loading" [ref=f10e683]
+          - paragraph [ref=f10e709]: tr-bl-sweep-5
+        - button [ref=f10e710]:
+          - status "Loading" [ref=f10e712]
+          - paragraph [ref=f10e738]: collapse-5
+        - button [ref=f10e739]:
+          - status "Loading" [ref=f10e741]
+          - paragraph [ref=f10e767]: diag-wave-5
+        - button [ref=f10e768]:
+          - status "Loading" [ref=f10e770]
+          - paragraph [ref=f10e787]: ring-4-cw
+        - button [ref=f10e788]:
+          - status "Loading" [ref=f10e790]
+          - paragraph [ref=f10e816]: row-sweep-5
+        - button [ref=f10e817]:
+          - status "Loading" [ref=f10e819]
+          - paragraph [ref=f10e845]: ring-pulse-5
+        - button [ref=f10e846]:
+          - status "Loading" [ref=f10e848]
+          - paragraph [ref=f10e865]: stars-fall
+        - button [ref=f10e866]:
+          - status "Loading" [ref=f10e868]
+          - paragraph [ref=f10e885]: ticker-lr
+        - button [ref=f10e886]:
+          - status "Loading" [ref=f10e888]
+          - paragraph [ref=f10e905]: fire-rise
+        - button [ref=f10e906]:
+          - status "Loading" [ref=f10e908]
+          - paragraph [ref=f10e925]: blizzard-snow
+        - button [ref=f10e926]:
+          - status "Loading" [ref=f10e928]
+          - paragraph [ref=f10e945]: sparse-3
+        - button [ref=f10e946]:
+          - status "Loading" [ref=f10e948]
+          - paragraph [ref=f10e965]: tide-roll
+        - button [ref=f10e966]:
+          - status "Loading" [ref=f10e968]
+          - paragraph [ref=f10e985]: wind-flow
+        - button [ref=f10e986]:
+          - status "Loading" [ref=f10e988]
+          - paragraph [ref=f10e1005]: storm-zap
+        - button [ref=f10e1006]:
+          - status "Loading" [ref=f10e1008]
+          - paragraph [ref=f10e1025]: neon-ring
+        - button [ref=f10e1026]:
+          - status "Loading" [ref=f10e1028]
+          - paragraph [ref=f10e1045]: bubbles-up
+        - button [ref=f10e1046]:
+          - status "Loading" [ref=f10e1048]
+          - paragraph [ref=f10e1074]: concentric-5
+        - button [ref=f10e1075]:
+          - status "Loading" [ref=f10e1077]
+          - paragraph [ref=f10e1094]: sparse-2
+        - button [ref=f10e1095]:
+          - status "Loading" [ref=f10e1097]
+          - paragraph [ref=f10e1114]: billboard-tiles
+        - button [ref=f10e1115]:
+          - status "Loading" [ref=f10e1117]
+          - paragraph [ref=f10e1134]: swell-roll
+        - button [ref=f10e1135]:
+          - status "Loading" [ref=f10e1137]
+          - paragraph [ref=f10e1147]: circuit-path
+        - button [ref=f10e1148]:
+          - status "Loading" [ref=f10e1150]
+          - paragraph [ref=f10e1160]: thunder-hit
+        - button [ref=f10e1161]:
+          - status "Loading" [ref=f10e1163]
+          - paragraph [ref=f10e1173]: heart-bt
+        - button [ref=f10e1174]:
+          - status "Loading" [ref=f10e1176]
+          - paragraph [ref=f10e1193]: jellyfish-bn
+        - button [ref=f10e1194]:
+          - status "Loading" [ref=f10e1196]
+          - paragraph [ref=f10e1206]: spiral-cw
+        - button [ref=f10e1207]:
+          - status "Loading" [ref=f10e1209]
+          - paragraph [ref=f10e1226]: transmit-pulse
+        - button [ref=f10e1227]:
+          - status "Loading" [ref=f10e1229]
+          - paragraph [ref=f10e1239]: clock-rg
+        - button [ref=f10e1240]:
+          - status "Loading" [ref=f10e1242]
+          - paragraph [ref=f10e1252]: spiral-ccw
+        - button [ref=f10e1253]:
+          - status "Loading" [ref=f10e1255]
+          - paragraph [ref=f10e1265]: ember-glow
+        - button [ref=f10e1266]:
+          - status "Loading" [ref=f10e1268]
+          - paragraph [ref=f10e1285]: wave-4-tb
+        - button [ref=f10e1286]:
+          - status "Loading" [ref=f10e1288]
+          - paragraph [ref=f10e1305]: wave-4-lr
+        - button [ref=f10e1306]:
+          - status "Loading" [ref=f10e1308]
+          - paragraph [ref=f10e1325]: rain-4
+        - button [ref=f10e1326]:
+          - status "Loading" [ref=f10e1328]
+          - paragraph [ref=f10e1345]: tsunami-wall
+        - button [ref=f10e1346]:
+          - status "Loading" [ref=f10e1348]
+          - paragraph [ref=f10e1365]: pier-gt
+        - button [ref=f10e1366]:
+          - status "Loading" [ref=f10e1368]
+          - paragraph [ref=f10e1378]: alert-blink
+        - button [ref=f10e1379]:
+          - status "Loading" [ref=f10e1381]
+          - paragraph [ref=f10e1391]: foghorn-bl
+        - button [ref=f10e1392]:
+          - status "Loading" [ref=f10e1394]
+          - paragraph [ref=f10e1404]: glitch-flip
+        - button [ref=f10e1405]:
+          - status "Loading" [ref=f10e1407]
+          - paragraph [ref=f10e1417]: frame
+        - button [ref=f10e1418]:
+          - status "Loading" [ref=f10e1420]
+          - paragraph [ref=f10e1430]: geyser-up
+        - button [ref=f10e1431]:
+          - status "Loading" [ref=f10e1433]
+          - paragraph [ref=f10e1443]: chaos-rn
+        - button [ref=f10e1444]:
+          - status "Loading" [ref=f10e1446]
+          - paragraph [ref=f10e1456]: breathing-gj
+        - button [ref=f10e1457]:
+          - status "Loading" [ref=f10e1459]
+          - paragraph [ref=f10e1476]: sparse-1
+        - button [ref=f10e1477]:
+          - status "Loading" [ref=f10e1479]
+          - paragraph [ref=f10e1489]: anchor-ar
+        - button [ref=f10e1490]:
+          - status "Loading" [ref=f10e1492]
+          - paragraph [ref=f10e1502]: diamond-h
+        - button [ref=f10e1503]:
+          - status "Loading" [ref=f10e1505]
+          - paragraph [ref=f10e1515]: hourglass-g
+        - button [ref=f10e1516]:
+          - status "Loading" [ref=f10e1518]
+          - paragraph [ref=f10e1528]: frame-sync
+        - button [ref=f10e1529]:
+          - status "Loading" [ref=f10e1531]
+          - paragraph [ref=f10e1541]: coral-wv
+        - button [ref=f10e1542]:
+          - status "Loading" [ref=f10e1544]
+          - paragraph [ref=f10e1554]: rows-alt
+        - button [ref=f10e1555]:
+          - status "Loading" [ref=f10e1557]
+          - paragraph [ref=f10e1567]: snake-v
+        - button [ref=f10e1568]:
+          - status "Loading" [ref=f10e1570]
+          - paragraph [ref=f10e1580]: sparkle-gt
+        - button [ref=f10e1581]:
+          - status "Loading" [ref=f10e1583]
+          - paragraph [ref=f10e1593]: snake-rev
+        - button [ref=f10e1594]:
+          - status "Loading" [ref=f10e1596]
+          - paragraph [ref=f10e1606]: edge-cw
+        - button [ref=f10e1607]:
+          - status "Loading" [ref=f10e1609]
+          - paragraph [ref=f10e1619]: twinkle-fr
+        - button [ref=f10e1620]:
+          - status "Loading" [ref=f10e1622]
+          - paragraph [ref=f10e1632]: waterfall-en
+        - button [ref=f10e1633]:
+          - status "Loading" [ref=f10e1635]
+          - paragraph [ref=f10e1645]: rain-2
+        - button [ref=f10e1646]:
+          - status "Loading" [ref=f10e1648]
+          - paragraph [ref=f10e1658]: rain-3
+        - button [ref=f10e1659]:
+          - status "Loading" [ref=f10e1661]
+          - paragraph [ref=f10e1671]: duo-v
+        - button [ref=f10e1672]:
+          - status "Loading" [ref=f10e1674]
+          - paragraph [ref=f10e1684]: duo-h
+        - button [ref=f10e1685]:
+          - status "Loading" [ref=f10e1687]
+          - paragraph [ref=f10e1697]: dots-load
+        - button [ref=f10e1698]:
+          - status "Loading" [ref=f10e1700]
+          - paragraph [ref=f10e1710]: zigzag-zl
+        - button [ref=f10e1711]:
+          - status "Loading" [ref=f10e1713]
+          - paragraph [ref=f10e1723]: diagonal-tr
+        - button [ref=f10e1724]:
+          - status "Loading" [ref=f10e1726]
+          - paragraph [ref=f10e1736]: diagonal-br
+        - button [ref=f10e1737]:
+          - status "Loading" [ref=f10e1739]
+          - paragraph [ref=f10e1749]: diagonal-bl
+        - button [ref=f10e1750]:
+          - status "Loading" [ref=f10e1752]
+          - paragraph [ref=f10e1762]: diagonal-tl
+        - button [ref=f10e1763]:
+          - status "Loading" [ref=f10e1765]
+          - paragraph [ref=f10e1775]: ripple-out
+        - button [ref=f10e1776]:
+          - status "Loading" [ref=f10e1778]
+          - paragraph [ref=f10e1788]: ripple-in
+        - button [ref=f10e1789]:
+          - status "Loading" [ref=f10e1791]
+          - paragraph [ref=f10e1801]: plus-hollow
+        - button [ref=f10e1802]:
+          - status "Loading" [ref=f10e1804]
+          - paragraph [ref=f10e1814]: wave-rl
+        - button [ref=f10e1815]:
+          - status "Loading" [ref=f10e1817]
+          - paragraph [ref=f10e1827]: wave-lr
+        - button [ref=f10e1828]:
+          - status "Loading" [ref=f10e1830]
+          - paragraph [ref=f10e1840]: wave-bt
+        - button [ref=f10e1841]:
+          - status "Loading" [ref=f10e1843]
+          - paragraph [ref=f10e1853]: wave-tb
+        - button [ref=f10e1854]:
+          - status "Loading" [ref=f10e1856]
+          - paragraph [ref=f10e1866]: corners-only
+        - button [ref=f10e1867]:
+          - status "Loading" [ref=f10e1869]
+          - paragraph [ref=f10e1879]: line-v-left
+        - button [ref=f10e1880]:
+          - status "Loading" [ref=f10e1882]
+          - paragraph [ref=f10e1892]: line-v-right
+        - button [ref=f10e1893]:
+          - status "Loading" [ref=f10e1895]
+          - paragraph [ref=f10e1905]: line-diag-1
+        - button [ref=f10e1906]:
+          - status "Loading" [ref=f10e1908]
+          - paragraph [ref=f10e1918]: line-diag-2
+        - button [ref=f10e1919]:
+          - status "Loading" [ref=f10e1921]
+          - paragraph [ref=f10e1931]: bounce-bt
+        - button [ref=f10e1932]:
+          - status "Loading" [ref=f10e1934]
+          - paragraph [ref=f10e1944]: line-h-top
+        - button [ref=f10e1945]:
+          - status "Loading" [ref=f10e1947]
+          - paragraph [ref=f10e1957]: line-h-mid
+        - button [ref=f10e1958]:
+          - status "Loading" [ref=f10e1960]
+          - paragraph [ref=f10e1970]: line-v-mid
+        - button [ref=f10e1971]:
+          - status "Loading" [ref=f10e1973]
+          - paragraph [ref=f10e1983]: line-h-bot
+        - button [ref=f10e1984]:
+          - status "Loading" [ref=f10e1986]
+          - paragraph [ref=f10e1996]: wink-k
+        - button [ref=f10e1997]:
+          - status "Loading" [ref=f10e1999]
+          - paragraph [ref=f10e2009]: L-bl
+        - button [ref=f10e2010]:
+          - status "Loading" [ref=f10e2012]
+          - paragraph [ref=f10e2022]: L-tl
+        - button [ref=f10e2023]:
+          - status "Loading" [ref=f10e2025]
+          - paragraph [ref=f10e2035]: L-tr
+        - button [ref=f10e2036]:
+          - status "Loading" [ref=f10e2038]
+          - paragraph [ref=f10e2048]: L-br
+        - button [ref=f10e2049]:
+          - status "Loading" [ref=f10e2051]
+          - paragraph [ref=f10e2061]: border-cn
+        - button [ref=f10e2062]:
+          - status "Loading" [ref=f10e2064]
+          - paragraph [ref=f10e2074]: stripes-v
+        - button [ref=f10e2075]:
+          - status "Loading" [ref=f10e2077]
+          - paragraph [ref=f10e2087]: checkerboard
+        - button [ref=f10e2088]:
+          - status "Loading" [ref=f10e2090]
+          - paragraph [ref=f10e2100]: stripes-h
+        - button [ref=f10e2101]:
+          - status "Loading" [ref=f10e2103]
+          - paragraph [ref=f10e2113]: arrow-up
+        - button [ref=f10e2114]:
+          - status "Loading" [ref=f10e2116]
+          - paragraph [ref=f10e2126]: arrow-down
+        - button [ref=f10e2127]:
+          - status "Loading" [ref=f10e2129]
+          - paragraph [ref=f10e2139]: corners-y
+        - button [ref=f10e2140]:
+          - status "Loading" [ref=f10e2142]
+          - paragraph [ref=f10e2152]: arrow-right
+        - button [ref=f10e2153]:
+          - status "Loading" [ref=f10e2155]
+          - paragraph [ref=f10e2165]: arrow-left
+        - button [ref=f10e2166]:
+          - status "Loading" [ref=f10e2168]
+          - paragraph [ref=f10e2178]: T-left
+        - button [ref=f10e2179]:
+          - status "Loading" [ref=f10e2181]
+          - paragraph [ref=f10e2191]: T-right
+        - button [ref=f10e2192]:
+          - status "Loading" [ref=f10e2194]
+          - paragraph [ref=f10e2204]: T-top
+        - button [ref=f10e2205]:
+          - status "Loading" [ref=f10e2207]
+          - paragraph [ref=f10e2217]: x-shape
+        - button [ref=f10e2218]:
+          - status "Loading" [ref=f10e2220]
+          - paragraph [ref=f10e2230]: T-bot
+        - button [ref=f10e2231]:
+          - status "Loading" [ref=f10e2233]
+          - paragraph [ref=f10e2243]: duo-diag
+        - button [ref=f10e2244]:
+          - status "Loading" [ref=f10e2246]
+          - paragraph [ref=f10e2256]: cross-w
+        - button [ref=f10e2257]:
+          - status "Loading" [ref=f10e2259]
+          - paragraph [ref=f10e2269]: solo-center
+        - button [ref=f10e2270]:
+          - status "Loading" [ref=f10e2272]
+          - paragraph [ref=f10e2282]: solo-tl
+        - button [ref=f10e2283]:
+          - status "Loading" [ref=f10e2285]
+          - paragraph [ref=f10e2295]: solo-br

@@ -40,7 +40,6 @@ import {
   Lightbulb,
   Lock,
   Mic,
-  Monitor,
   Moon,
   Music,
   Paperclip,
@@ -772,57 +771,6 @@ export function CosmoPlayground() {
 
   return (
     <div className="space-y-6">
-      <details className="group rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden [&_summary::-webkit-details-marker]:hidden">
-        <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2">
-          <Monitor size={13} className="shrink-0 text-[var(--ls-foreground)]" />
-          <span className="flex-1 leading-snug">
-            For the best experience, open this on a desktop — some controls are hidden on mobile.
-          </span>
-          <ChevronDown
-            size={13}
-            className="shrink-0 text-[var(--ls-muted-foreground)] transition-transform duration-200 group-open:rotate-180"
-          />
-        </summary>
-        <div className="space-y-3 border-t border-[var(--ls-border)] px-3 pb-3 pt-3">
-          <div>
-            <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-              Playback &amp; history
-            </p>
-            <ul className="space-y-1.5">
-            </ul>
-          </div>
-          <div>
-            <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-              Pattern actions
-            </p>
-            <ul className="space-y-1.5">
-              <li className="flex items-start gap-2">
-                <RotateCcw size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Reset</span> — restore every control to its default</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">AI Prompt</span> — copy a ready-made prompt that recreates this look</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-              Source &amp; color
-            </p>
-            <ul className="space-y-1.5">
-              <li className="flex items-start gap-2">
-                <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Custom color</span> — paint particles with any hex you pick</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-                <span><span className="text-[var(--ls-foreground)]">Custom gradient</span> — fade between two colors and save your own From / To</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </details>
       <section className="rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 p-5 backdrop-blur-sm lg:p-6">
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -1192,8 +1140,14 @@ export function CosmoPlayground() {
               icon={<Type className="h-3.5 w-3.5" />}
               label="Text"
             />
-            {/* SVG / Image upload tabs hidden — the panels below stay in place
-                for when they come back. */}
+            <SourceTab
+              active={settings.source === "svg"}
+              onClick={() => onSourceTypeChange("svg")}
+              icon={<Upload className="h-3.5 w-3.5" />}
+              label="SVG"
+            />
+            {/* Image upload tab stays hidden — its panel below is intact for
+                when it comes back. */}
           </div>
 
           {settings.source === "shape" && (

@@ -28,21 +28,16 @@ import {
   Paintbrush,
   Loader2,
   Minus,
-  Monitor,
   Moon,
   MoreHorizontal,
-  PackagePlus,
   Pause,
   Play,
   Plus,
   Redo2,
   RotateCcw,
-  Save,
   Shuffle,
-  Sparkles,
   Sun,
   Trash2,
-  Undo2,
   X,
 } from "lucide-react";
 import {
@@ -1335,77 +1330,6 @@ export function SpinnerPlayground() {
 
   return (
     <div className="space-y-4">
-    <details className="group rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden [&_summary::-webkit-details-marker]:hidden">
-      <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2">
-        <Monitor size={13} className="shrink-0 text-[var(--ls-foreground)]" />
-        <span className="flex-1 leading-snug">
-          For the best experience, open this on a desktop — some controls are hidden on mobile.
-        </span>
-        <ChevronDown
-          size={13}
-          className="shrink-0 text-[var(--ls-muted-foreground)] transition-transform duration-200 group-open:rotate-180"
-        />
-      </summary>
-      <div className="space-y-3 border-t border-[var(--ls-border)] px-3 pb-3 pt-3">
-        <div>
-          <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-            Preview header
-          </p>
-          <ul className="space-y-1.5">
-            <li className="flex items-start gap-2">
-              <Shuffle size={11} className="mt-[3px] shrink-0 text-[#f59e0b]" />
-              <span><span className="text-[var(--ls-foreground)]">Random</span> — shuffle to a different pattern</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Code size={11} className="mt-[3px] shrink-0 text-[#e34c26]" />
-              <span><span className="text-[var(--ls-foreground)]">HTML</span> — copy the markup snippet</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Paintbrush size={11} className="mt-[3px] shrink-0 text-[#2965f1]" />
-              <span><span className="text-[var(--ls-foreground)]">CSS</span> — copy the keyframes + styles</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Braces size={11} className="mt-[3px] shrink-0 text-[#f7df1e]" />
-              <span><span className="text-[var(--ls-foreground)]">JS</span> — copy the runtime snippet</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-            Pattern editor
-          </p>
-          <ul className="space-y-1.5">
-            <li className="flex items-start gap-2">
-              <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-              <span><span className="text-[var(--ls-foreground)]">Custom frame editor</span> — draw, resize and animate your own pixel grid</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-            Pattern actions
-          </p>
-          <ul className="space-y-1.5">
-            <li className="flex items-start gap-2">
-              <Undo2 size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-              <span><span className="text-[var(--ls-foreground)]">Undo / Redo</span> — step through edit history</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <RotateCcw size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-              <span><span className="text-[var(--ls-foreground)]">Reset</span> — restore every control to its default</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Save size={11} className="mt-[3px] shrink-0 text-emerald-500 dark:text-emerald-400" />
-              <span><span className="text-[var(--ls-foreground)]">Save as new / Update</span> — persist your edits as a pattern</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Download size={11} className="mt-[3px] shrink-0 text-sky-500 dark:text-sky-400" />
-              <span><span className="text-[var(--ls-foreground)]">Export GIF</span> — render the spinner as an animated GIF</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </details>
     <section className="rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
       {/* Preview */}
       <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 backdrop-blur-sm">
@@ -1799,28 +1723,6 @@ export function SpinnerPlayground() {
                     Library
                   </p>
                   <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5">
-                    {CUSTOM_PATTERN_NAME.includes(patternQuery.toLowerCase()) && (
-                      <button
-                        key="__custom"
-                        onClick={() => {
-                          setPatternName(CUSTOM_PATTERN_NAME);
-                          setPickerOpen(false);
-                        }}
-                        className={
-                          "group flex flex-col items-center justify-center rounded-lg border p-2 transition-colors " +
-                          (patternName === CUSTOM_PATTERN_NAME
-                            ? "border-emerald-400/60 bg-emerald-500/10"
-                            : "border-dashed border-[var(--ls-border)] bg-[var(--ls-card)]/60 hover:border-emerald-400/40 hover:bg-emerald-500/5")
-                        }
-                      >
-                        <div className="flex h-10 items-center justify-center">
-                          <PackagePlus size={18} className="text-emerald-400" />
-                        </div>
-                        <p className="mt-1.5 truncate font-mono text-[9px] text-[var(--ls-muted-foreground)]">
-                          custom
-                        </p>
-                      </button>
-                    )}
                     {SPINNER_LIBRARY.filter((s) =>
                       s.name.toLowerCase().includes(patternQuery.toLowerCase())
                     ).map((s) => {
