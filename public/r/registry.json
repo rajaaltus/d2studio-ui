@@ -124,22 +124,6 @@
       ]
     },
     {
-      "name": "button",
-      "type": "registry:ui",
-      "title": "Button",
-      "description": "Displays a button or a component that looks like a button.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/button.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
@@ -188,22 +172,6 @@
       ]
     },
     {
-      "name": "badge",
-      "type": "registry:ui",
-      "title": "Badge",
-      "description": "Displays a badge or a component that looks like a badge.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/badge.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
@@ -231,22 +199,6 @@
       "files": [
         {
           "path": "registry/default/ui/checkbox.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "categories": [
-        "ui"
-      ]
-    },
-    {
-      "name": "avatar",
-      "type": "registry:ui",
-      "title": "Avatar",
-      "description": "An image element with a fallback for representing the user.",
-      "author": "D2 Studio",
-      "files": [
-        {
-          "path": "registry/default/ui/avatar.tsx",
           "type": "registry:ui"
         }
       ],

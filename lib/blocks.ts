@@ -119,12 +119,6 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     version: "1.0.0",
   },
   {
-    name: "button",
-    title: "Button",
-    description: "Displays a button or a component that looks like a button.",
-    categories: ["ui"],
-  },
-  {
     name: "input",
     title: "Input",
     description: "Displays a form input field or a component that looks like an input field.",
@@ -143,12 +137,6 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     categories: ["ui"],
   },
   {
-    name: "badge",
-    title: "Badge",
-    description: "Displays a badge or a component that looks like a badge.",
-    categories: ["ui"],
-  },
-  {
     name: "select",
     title: "Select",
     description: "Displays a list of options for the user to pick from—triggered by a button.",
@@ -159,12 +147,6 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     name: "checkbox",
     title: "Checkbox",
     description: "A control that allows the user to toggle between checked and not checked.",
-    categories: ["ui"],
-  },
-  {
-    name: "avatar",
-    title: "Avatar",
-    description: "An image element with a fallback for representing the user.",
     categories: ["ui"],
   },
   {

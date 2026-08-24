@@ -183,9 +183,22 @@ that exists. The four previews still render in the browser.
 `components/ui/{button,badge,avatar}`, which are current shadcn v4 files, rather
 than the older copies under `registry/default/ui/`. That is the point — the
 preview now shows what an installer actually gets — but the styling shifts
-slightly (`shadow-xs`, the newer focus rings). The stale `button`, `badge` and
-`avatar` items in `registry/default/ui/` are now imported by nothing and are
-just old forks of shadcn primitives; unpublishing them is a reasonable follow-up.
+slightly (`shadow-xs`, the newer focus rings).
+
+**Follow-up, done:** `button`, `badge` and `avatar` were unpublished and their
+sources deleted. They were forks of shadcn primitives that nothing imported, and
+the five items that name them as dependencies were always resolving to shadcn's
+own registry — a bare name in `registryDependencies` never pointed here. The
+install test confirms it: the `button.tsx` that landed in the scratch project is
+shadcn's current one (`import { Slot } from "radix-ui"`), neither of the two
+copies in this repo.
+
+**Still published, same shape:** `input`, `label`, `card`, `select`, `checkbox`,
+`progress`, `alert` and `drawer` are also forks with no importer, and most have
+drifted well behind the app's own copy — `select` by 291 lines, `card` by 149.
+`progress` and `alert` have no app copy at all, so they are the only two that
+would need one written if anything ever imports them. Unpublishing the other six
+is the same one-line-per-item change.
 
 ---
 
