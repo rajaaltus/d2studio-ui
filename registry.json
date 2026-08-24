@@ -108,6 +108,11 @@
       "title": "Hero 01",
       "description": "Hero section 01",
       "author": "D2 Studio",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "avatar"
+      ],
       "files": [
         {
           "path": "registry/default/ui/hero-01.tsx",
@@ -304,9 +309,9 @@
       "description": "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
       "author": "D2 Studio",
       "registryDependencies": [
-        "card",
         "button",
-        "badge"
+        "badge",
+        "https://d2studio.dev/r/d2-card.json"
       ],
       "files": [
         {
@@ -325,6 +330,11 @@
       "title": "Hero-01",
       "description": "A premium landing page",
       "author": "D2 Studio",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "avatar"
+      ],
       "files": [
         {
           "path": "registry/default/components/hero-section-01.tsx",
@@ -341,6 +351,11 @@
       "title": "hero-section-02",
       "description": "3D modern hero section",
       "author": "D2 Studio",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "avatar"
+      ],
       "files": [
         {
           "path": "registry/default/components/hero-section-02.tsx",
@@ -768,6 +783,22 @@
       "categories": [
         "button",
         "blocks"
+      ]
+    },
+    {
+      "name": "d2-card",
+      "type": "registry:ui",
+      "title": "D2 Card",
+      "description": "The card surface pricing-01 is built on: header, content, footer and a title/description pair.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/ui/d2-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "ui"
       ]
     },
     {

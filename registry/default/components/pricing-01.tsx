@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "@/registry/default/ui/button";
-import { Badge } from "@/registry/default/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Check, X } from "lucide-react";
 import {
   D2Card,
   CardContent,
   CardHeader,
   CardDescription,
-} from "../ui/d2-card";
+} from "@/components/ui/d2-card";
 
 export default function PricingSection() {
   const plans = [

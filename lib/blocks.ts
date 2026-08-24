@@ -111,6 +111,7 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     title: "Hero 01",
     description: "Hero section 01",
     categories: ["hero"],
+    registryDependencies: ["button", "badge", "avatar"],
     shelf: "blocks",
     image: "/blocks/hero-01.png",
     status: "available",
@@ -189,19 +190,25 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     title: "Pricing Cards",
     description: "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
     categories: ["marketing", "pricing"],
-    registryDependencies: ["card", "button", "badge"],
+    registryDependencies: [
+      "button",
+      "badge",
+      "https://d2studio.dev/r/d2-card.json",
+    ],
   },
   {
     name: "hero-section-01",
     title: "Hero-01",
     description: "A premium landing page",
     categories: ["landing"],
+    registryDependencies: ["button", "badge", "avatar"],
   },
   {
     name: "hero-section-02",
     title: "hero-section-02",
     description: "3D modern hero section",
     categories: ["landing"],
+    registryDependencies: ["button", "badge", "avatar"],
   },
   {
     name: "ai-writing-assistance",
@@ -393,6 +400,12 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     title: "Matte Button",
     description: "A matte chip button with a holographic rim: three blurred glows pinned under the top edge, a bounce light along the bottom, and a gradient-clipped label and mask-painted icon. Four shadcn sizes with the corner curvature held constant, an expo-out hover that lifts the chip and pushes the ink, and a light theme that is the same layer stack with swapped tokens and a multiplied rim. Every custom property is defined on the button, so it needs nothing from the host stylesheet.",
     categories: ["button", "blocks"],
+  },
+  {
+    name: "d2-card",
+    title: "D2 Card",
+    description: "The card surface pricing-01 is built on: header, content, footer and a title/description pair.",
+    categories: ["ui"],
   },
   {
     name: "pixel-spinner",

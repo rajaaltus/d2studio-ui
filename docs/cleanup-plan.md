@@ -141,7 +141,7 @@ because a build was never run, not because anyone chose it.
 
 ---
 
-## 6. Four published items are broken for installers
+## 6. Four published items were broken for installers — done
 
 Found while doing item 2, and the reason `ui/d2-card.tsx` survived it.
 
@@ -164,20 +164,28 @@ but not after install (the file lands in `components/`, the card would land in
 `components/ui/`), and `d2-card` is not published at all, so nothing ships it
 either way. That is why it looked like an orphan.
 
-**Fix.**
+**Fixed.** All four now import `@/components/ui/*`, the same path every other
+item in the registry already used. `d2-card` is published as an unlisted item
+(no `shelf`) with a copy at `components/ui/d2-card.tsx` so previews resolve it,
+matching how `pixel-spinner` already works. `pricing-01` declares it as
+`https://d2studio.dev/r/d2-card.json` — the absolute form, because a bare name
+resolves against shadcn's own registry and `@d2/` requires the consumer to have
+configured this registry. The other three declare `button`, `badge` and `avatar`,
+which correctly resolve to shadcn's official primitives.
 
-1. Rewrite the four files' imports to the consumer-side paths — `@/components/ui/button`,
-   `@/components/ui/badge`, `@/components/ui/d2-card`. These still resolve in this
-   repo through the existing alias, so previews keep working.
-2. Give `d2-card` an entry in `lib/blocks.ts` with no `shelf`, so it ships as an
-   installable-but-unlisted item.
-3. Add `d2-card` to `pricing-01`'s `registryDependencies`, and check the other
-   three declare everything they import.
-4. `pnpm registry:build`, then install one into a scratch project to confirm.
+**Verified by installing, not by reading.** All four items were installed from a
+local copy of `public/r` into a scratch project with the standard aliases:
+`pricing-01` pulled in `d2-card` from this registry plus `button` and `badge`
+from shadcn's, and every `@/` import in the installed files resolves to a file
+that exists. The four previews still render in the browser.
 
-**Worth checking whether it matters first:** these four have been installable and
-broken for months. If nobody has hit it, fixing them is still right, but it is not
-urgent — and step 4 is the part that actually proves it.
+**One consequence worth knowing:** those four previews now use the app's
+`components/ui/{button,badge,avatar}`, which are current shadcn v4 files, rather
+than the older copies under `registry/default/ui/`. That is the point — the
+preview now shows what an installer actually gets — but the styling shifts
+slightly (`shadow-xs`, the newer focus rings). The stale `button`, `badge` and
+`avatar` items in `registry/default/ui/` are now imported by nothing and are
+just old forks of shadcn primitives; unpublishing them is a reasonable follow-up.
 
 ---
 
