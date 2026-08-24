@@ -45,7 +45,6 @@ const formSchema = z.object({
     category: z.string().min(1, "Please select a category."),
     description: z.string().min(10, "Description must be at least 10 characters."),
     author: z.string().min(2, "Author must be at least 2 characters."),
-    figmaUrl: z.string().url("Please enter a valid Figma URL.").or(z.literal("")),
     previewImage: z.string().url("Please enter a valid Image URL.").or(z.literal("")),
 });
 
@@ -63,7 +62,6 @@ export function CreateBlockDialog() {
             category: "",
             description: "",
             author: "Admin",
-            figmaUrl: "",
             previewImage: "",
         },
     });
@@ -80,7 +78,6 @@ export function CreateBlockDialog() {
                 categories: [values.category],
                 type: "component",
                 version: "1.0.0",
-                figmaUrl: values.figmaUrl || undefined,
                 previewImage: values.previewImage || undefined,
             });
             toast.success("Block registered successfully!");
@@ -191,19 +188,6 @@ export function CreateBlockDialog() {
                                     <FormLabel>Author</FormLabel>
                                     <FormControl>
                                         <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="figmaUrl"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Figma URL (Optional)</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="https://figma.com/file/..." {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

@@ -9,6 +9,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Lint code**: `pnpm lint` - Runs Next.js ESLint
 - **Start production**: `pnpm start` - Starts production server
 
+### Pro catalogue commands
+
+The pro blocks, components, illustrations and templates sold on
+`pro.d2studio.dev` are showcased here from a generated mirror. Both scripts are
+dev-time only — their committed output is what ships.
+
+- **Sync the catalogue**: `pnpm pro:sync` — reads `../pro-d2/lib/blocks.ts` and
+  `lib/spinner-patterns.ts` and rewrites `lib/pro-catalog.ts` and
+  `lib/pro-spinners.ts`. Items the pro source declares but the live site does not
+  serve yet are skipped and named; `--offline` mirrors the source as written.
+  Point elsewhere with `PRO_D2_DIR=/path/to/pro-d2`.
+- **Capture card art**: `pnpm pro:previews` — screenshots each item off
+  `pro.d2studio.dev/preview/<name>` into `public/pro/<name>.jpg`. Only missing
+  ones by default; `--force` re-shoots, and named items re-shoot just those.
+  Drives the installed Chrome through `playwright-core`, so no browser download.
+
+Run them in that order after the pro repo ships new items. A pro card links out
+to `pro.d2studio.dev` in a new tab with UTM parameters, built in `lib/pro.ts`;
+`lib/catalog.ts` flattens the free (Convex) and pro (static) halves into the one
+`CatalogItem` shape every card and filter reads.
+
 ### Convex-specific commands
 - **Frontend only**: `pnpm dev:frontend` - Next.js dev server only
 - **Backend only**: `pnpm dev:backend` - Convex dev server only

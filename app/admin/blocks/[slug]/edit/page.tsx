@@ -32,7 +32,6 @@ interface BlockFormData {
   version: string;
   blockType: string;
   previewImage: string;
-  figmaUrl: string;
   codeStatus: "coming_soon" | "available";
   codeUrl?: string;
   categories: string;
@@ -80,7 +79,6 @@ export default function EditBlockPage() {
         version: block.version,
         blockType: block.blockType || "",
         previewImage: block.previewImage || "",
-        figmaUrl: block.figmaUrl || "",
         codeStatus: block.codeStatus || "coming_soon",
         codeUrl: block.codeUrl,
         categories: block.categories.join(", "),
@@ -103,7 +101,6 @@ export default function EditBlockPage() {
       setValue("version", block.version);
       setValue("blockType", block.blockType || "");
       setValue("previewImage", block.previewImage || "");
-      setValue("figmaUrl", block.figmaUrl || "");
       setValue("codeStatus", block.codeStatus || "coming_soon");
       setValue("codeUrl", block.codeUrl);
       setValue("categories", block.categories.join(", "));
@@ -213,7 +210,6 @@ export default function EditBlockPage() {
         version: data.version,
         blockType: data.blockType,
         previewImage: finalPreviewImage,
-        figmaUrl: data.figmaUrl,
         codeStatus: data.codeStatus as "coming_soon" | "available",
         codeUrl: data.codeStatus === "available" ? data.codeUrl : undefined,
         categories,
@@ -538,22 +534,6 @@ export default function EditBlockPage() {
                   ? "Upload a new image file to replace the current preview (PNG, JPG, etc.)"
                   : "Upload an image file (PNG, JPG, etc.)"}
               </p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="figmaUrl">
-                Figma URL <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="figmaUrl"
-                type="url"
-                {...register("figmaUrl", { required: "Figma URL is required" })}
-              />
-              {errors.figmaUrl && (
-                <p className="text-sm text-destructive">
-                  {errors.figmaUrl.message}
-                </p>
-              )}
             </div>
 
             <div className="space-y-2">

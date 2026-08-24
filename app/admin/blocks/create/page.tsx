@@ -37,7 +37,6 @@ interface BlockFormData {
   version: string;
   blockType: string;
   previewImage: string;
-  figmaUrl: string;
   codeStatus: "coming_soon" | "available";
   codeUrl?: string;
   categories: string;
@@ -154,7 +153,6 @@ export default function CreateBlockPage() {
         version: data.version,
         blockType: data.blockType,
         previewImage: finalPreviewImage,
-        figmaUrl: data.figmaUrl,
         codeStatus: data.codeStatus,
         codeUrl: data.codeStatus === "available" ? data.codeUrl : undefined,
         categories,
@@ -419,25 +417,6 @@ export default function CreateBlockPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="figmaUrl">
-                  Figma URL <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="figmaUrl"
-                  type="url"
-                  {...register("figmaUrl", {
-                    required: "Figma URL is required",
-                  })}
-                  placeholder="https://www.figma.com/file/..."
-                />
-                {errors.figmaUrl && (
-                  <p className="text-sm text-destructive">
-                    {errors.figmaUrl.message}
-                  </p>
-                )}
-              </div>
-
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="codeStatus">Code Status</Label>

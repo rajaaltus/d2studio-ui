@@ -59,7 +59,6 @@ export const importBlocksFromRegistry = action({
             registryDependencies: item.registryDependencies,
             tags: item.tags,
             previewImage: item.previewImage || "/placeholder.svg",
-            figmaUrl: item.figmaUrl || "https://www.figma.com",
             codeStatus: item.codeStatus || "coming_soon",
             codeUrl: item.codeUrl,
             blockType: item.blockType,
@@ -159,7 +158,6 @@ export const seedSampleBlocks = mutation({
         await ctx.db.insert("blocks", {
           ...blockData,
           previewImage: "/placeholder.svg",
-          figmaUrl: "https://www.figma.com",
           codeStatus: "coming_soon",
           isActive: true,
           createdAt: now,

@@ -32,7 +32,6 @@ export default defineSchema({
     tags: v.optional(v.array(v.string())),
     isActive: v.boolean(),
     previewImage: v.optional(v.string()), // Temporarily optional for migration
-    figmaUrl: v.optional(v.string()), // Temporarily optional for migration
     codeStatus: v.optional(v.union(v.literal("coming_soon"), v.literal("available"))), // Temporarily optional for migration
     codeUrl: v.optional(v.string()),
     blockType: v.optional(v.string()),

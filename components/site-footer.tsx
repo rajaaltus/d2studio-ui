@@ -28,9 +28,11 @@ export function SiteFooter() {
       title: "Library",
       links: [
         { label: "Blocks", href: "/blocks" },
+        { label: "Components", href: "/components" },
+        { label: "Illustrations", href: "/illustration" },
+        { label: "Templates", href: "/templates" },
         { label: "Spinners", href: "/spinners" },
         { label: "Cosmo", href: "/cosmo" },
-        { label: "Components", href: "/blocks" },
         { label: "Docs", href: "/docs" },
       ],
     },

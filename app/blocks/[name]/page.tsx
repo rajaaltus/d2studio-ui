@@ -94,7 +94,6 @@ export default function BlockPage() {
         <PreviewWrapper
           componentName={block.name}
           code={undefined}
-          figmaUrl={block.figmaUrl}
           codeStatus={block.codeStatus}
           isNew={block.isNew}
           accessTier={block.accessTier ?? "free"}

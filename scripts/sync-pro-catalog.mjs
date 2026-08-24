@@ -1,0 +1,184 @@
+// Mirrors the pro catalogue into this repo as plain data, so ui.d2studio.dev can
+// showcase everything pro.d2studio.dev sells without owning any of its source.
+//
+// The two pro data files are pure data with type annotations and nothing else —
+// lib/blocks.ts has no imports at all, lib/spinner-patterns.ts has only an
+// `import type` — so node's type stripping is enough to import them directly.
+// That is the whole reason this is one script and not a build step:
+//
+//   node --experimental-strip-types scripts/sync-pro-catalog.mjs
+//
+// Items the source declares but the live site does not serve yet are skipped
+// and named — see onlyLive below. --offline turns that check off.
+//
+// Writes lib/pro-catalog.ts and lib/pro-spinners.ts, both generated and
+// committed. Nothing here runs on Vercel — the checked-in output is what ships,
+// so a missing ../pro-d2 is only ever a local problem.
+//
+// Deliberately not deduped against the Convex blocks table: this file is a
+// faithful mirror of what pro sells, and which of those names this site already
+// carries for free is a question the browser answers at render time, where it
+// stays right as Convex changes.
+
+import { execFileSync } from "node:child_process";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const PRO = process.env.PRO_D2_DIR
+  ? resolve(process.env.PRO_D2_DIR)
+  : resolve(ROOT, "../pro-d2");
+const ORIGIN = process.env.PRO_ORIGIN ?? "https://pro.d2studio.dev";
+
+// Re-exec ourselves with type stripping on rather than asking the caller to
+// remember the flag. `pnpm pro:sync` stays a plain script name.
+if (!process.execArgv.includes("--experimental-strip-types")) {
+  execFileSync(
+    process.execPath,
+    ["--experimental-strip-types", fileURLToPath(import.meta.url), ...process.argv.slice(2)],
+    { stdio: "inherit" },
+  );
+  process.exit(0);
+}
+
+const blocks = await import(join(PRO, "lib/blocks.ts"));
+const spinners = await import(join(PRO, "lib/spinner-patterns.ts"));
+
+const { BLOCK_LIBRARY, labelOf } = blocks;
+const { PREMIUM_LIBRARY, PRO_LIBRARY } = spinners;
+
+// The registry description is written for a CLI, where length is the point. As
+// a card subtitle it is a paragraph, so the card gets the first sentence — the
+// same cut pro's own leaf pages make with `summaryOf`.
+const summaryOf = (d) => d.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? d;
+
+const all = BLOCK_LIBRARY.map((b) => ({
+  name: b.name,
+  title: b.title,
+  summary: summaryOf(b.description),
+  description: b.description,
+  group: b.group,
+  category: b.category,
+  categoryLabel: labelOf(b.category),
+  tier: b.tier,
+  dependencies: b.dependencies ?? [],
+}));
+
+// The source repo is ahead of its own deployment: an item can be in the library
+// here and not yet on the site, where every card on this side sends people. A
+// card whose link 404s is worse than no card, and the screenshot pass would
+// otherwise photograph the 404 page and ship that as the art. So the mirror is
+// what pro *serves*, not what its source declares — checked against the live
+// preview route, which exists for exactly one item each.
+//
+// Pass --offline to skip the check and mirror the source as written.
+const catalog = process.argv.includes("--offline") ? all : await onlyLive(all);
+
+async function onlyLive(items) {
+  const live = [];
+  const missing = [];
+
+  for (let i = 0; i < items.length; i += 12) {
+    const batch = items.slice(i, i + 12);
+    const results = await Promise.all(
+      batch.map(async (item) => {
+        try {
+          const res = await fetch(`${ORIGIN}/preview/${item.name}`, { method: "HEAD" });
+          return res.ok;
+        } catch {
+          // A network failure is not evidence the item is missing, so it stays.
+          return true;
+        }
+      }),
+    );
+    results.forEach((ok, n) => (ok ? live : missing).push(batch[n]));
+  }
+
+  if (missing.length) {
+    console.log(`skipped ${missing.length} not yet deployed on ${ORIGIN}:`);
+    for (const item of missing) console.log(`  ${item.name}`);
+  }
+  return live;
+}
+
+// Pro's own two shelves: the hand-drawn 4x4 set plus the curated premium subset
+// of the generated library. Frames come along because this site renders them
+// live with its own engine — a spinner is the one thing in the catalogue that
+// needs no screenshot.
+const spinnerItems = [
+  ...PRO_LIBRARY.map((s) => ({ ...s, shelf: "pro" })),
+  ...PREMIUM_LIBRARY.map((s) => ({ ...s, shelf: "premium" })),
+].map((s) => ({
+  name: s.name,
+  color: s.color,
+  animation: s.animation ?? null,
+  shelf: s.shelf,
+  pattern: {
+    size: s.pattern.size ?? null,
+    rows: s.pattern.rows ?? null,
+    cols: s.pattern.cols ?? null,
+    interval: s.pattern.interval ?? null,
+    frames: s.pattern.frames,
+  },
+}));
+
+const banner = (from) => `// GENERATED by scripts/sync-pro-catalog.mjs — do not edit by hand.
+// Source: ${from} in the pro-d2 repo. Refresh with \`pnpm pro:sync\`.
+`;
+
+mkdirSync(join(ROOT, "lib"), { recursive: true });
+
+writeFileSync(
+  join(ROOT, "lib/pro-catalog.ts"),
+  `${banner("lib/blocks.ts")}
+export type ProGroup = "marketing" | "components" | "illustrations" | "templates";
+
+export type ProItem = {
+  name: string;
+  title: string;
+  /** First sentence of the description — what a card is given room for. */
+  summary: string;
+  description: string;
+  group: ProGroup;
+  category: string;
+  categoryLabel: string;
+  tier: "pro" | "free";
+  dependencies: string[];
+};
+
+export const PRO_CATALOG: ProItem[] = ${JSON.stringify(catalog, null, 2)};
+`,
+);
+
+writeFileSync(
+  join(ROOT, "lib/pro-spinners.ts"),
+  `${banner("lib/spinner-patterns.ts")}
+import type { SpinnerColor, SpinnerAnimation } from "@/components/pixel-spinner";
+
+export type ProSpinner = {
+  name: string;
+  color: SpinnerColor;
+  animation: SpinnerAnimation | null;
+  /** "pro" is the hand-drawn 4x4 set, "premium" the curated generated subset. */
+  shelf: "pro" | "premium";
+  pattern: {
+    size: number | null;
+    rows: number | null;
+    cols: number | null;
+    interval: number | null;
+    frames: number[][];
+  };
+};
+
+export const PRO_SPINNERS: ProSpinner[] = ${JSON.stringify(spinnerItems, null, 2)};
+`,
+);
+
+const byGroup = catalog.reduce((acc, i) => {
+  acc[i.group] = (acc[i.group] ?? 0) + 1;
+  return acc;
+}, {});
+
+console.log(`pro-catalog: ${catalog.length} items`, byGroup);
+console.log(`pro-spinners: ${spinnerItems.length} patterns`);

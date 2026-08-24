@@ -174,21 +174,6 @@ export default function BlockDetailPage() {
                         </CardContent>
                     </Card>
 
-                    {block.figmaUrl && (
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Resources</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <Button asChild variant="outline" className="w-full justify-start">
-                                    <Link href={block.figmaUrl} target="_blank">
-                                        <ExternalLink className="mr-2 h-4 w-4" />
-                                        Open in Figma
-                                    </Link>
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    )}
                 </div>
             </div>
         </div>

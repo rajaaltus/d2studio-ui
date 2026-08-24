@@ -2,10 +2,11 @@
 
 import * as React from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Coffee, Menu, X } from "lucide-react";
+import { ArrowUpRight, Coffee, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./logo";
+import { PRO_LINK_PROPS, proShelfHref } from "@/lib/pro";
 import {
   Drawer,
   DrawerClose,
@@ -23,14 +24,20 @@ type NavItem = {
   href: string;
   badge?: string;
   badgeTone?: BadgeTone;
+  /** Off this site, in a new tab — pro.d2studio.dev. */
+  external?: boolean;
 };
 
 const NAV_ITEMS: NavItem[] = [
   { name: "Blocks", href: "/blocks" },
   // badges hidden for now — restore by putting back badge/badgeTone
+  { name: "Components", href: "/components" },
+  { name: "Illustrations", href: "/illustration" },
+  { name: "Templates", href: "/templates" },
   { name: "Spinners", href: "/spinners" },
   { name: "Cosmo", href: "/cosmo" },
   { name: "Docs", href: "/docs" },
+  { name: "Pro", href: proShelfHref("/blocks", "nav"), external: true },
 ];
 
 const BADGE_TONES: Record<BadgeTone, string> = {
@@ -55,6 +62,13 @@ function Badge({ label, tone = "orange" }: { label: string; tone?: BadgeTone }) 
   );
 }
 
+// /illustration must not light up for /illustrations, and / must not light up
+// for everything — so a prefix match is only right when it stops at a segment.
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Navigation() {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = React.useState(false);
@@ -70,18 +84,33 @@ export function Navigation() {
           <Logo />
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-4 sm:gap-6 md:gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             {NAV_ITEMS.map((item) => {
-              const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              if (item.external) {
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    {...PRO_LINK_PROPS}
+                    className="group inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:text-foreground"
+                  >
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{ backgroundImage: "var(--d2-flash-gradient)" }}
+                    >
+                      {item.name}
+                    </span>
+                    <ArrowUpRight className="size-3.5 transition-transform duration-200 ease-out group-hover:-translate-y-px group-hover:translate-x-px" />
+                  </a>
+                );
+              }
+              const active = isActive(pathname, item.href);
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`inline-flex items-center gap-1.5 text-sm font-medium transition-colors ${
+                  className={`inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-150 ${
                     active
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -117,12 +146,12 @@ export function Navigation() {
                 <button
                   type="button"
                   aria-label="Open menu"
-                  className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+                  className="lg:hidden inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <Menu className="h-5 w-5" />
                 </button>
               </DrawerTrigger>
-              <DrawerContent className="md:hidden">
+              <DrawerContent className="lg:hidden">
                 <DrawerHeader className="flex flex-row items-center justify-between text-left">
                   <div className="flex flex-col gap-0.5">
                     <DrawerTitle>Menu</DrawerTitle>
@@ -142,10 +171,25 @@ export function Navigation() {
                 </DrawerHeader>
                 <div className="flex flex-col gap-1 p-4 pt-0">
                   {NAV_ITEMS.map((item) => {
-                    const active =
-                      item.href === "/"
-                        ? pathname === "/"
-                        : pathname.startsWith(item.href);
+                    if (item.external) {
+                      return (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          {...PRO_LINK_PROPS}
+                          className="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium text-foreground/80"
+                        >
+                          <span
+                            className="bg-clip-text font-semibold text-transparent"
+                            style={{ backgroundImage: "var(--d2-flash-gradient)" }}
+                          >
+                            D2 {item.name}
+                          </span>
+                          <ArrowUpRight className="size-4 text-muted-foreground" />
+                        </a>
+                      );
+                    }
+                    const active = isActive(pathname, item.href);
                     return (
                       <Link
                         key={item.name}

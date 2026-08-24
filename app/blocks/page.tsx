@@ -1,9 +1,14 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Navigation } from "@/components/navigation";
 import { BlocksBrowser } from "@/components/blocks/blocks-browser";
 import { SiteFooter } from "@/components/site-footer";
+
+export const metadata: Metadata = {
+  title: "Blocks — D2 Studio",
+  description:
+    "Page sections for React, TypeScript and Tailwind CSS — bentos, heroes, CTAs, pricing and testimonials. Free and Pro, installable from the shadcn registry.",
+};
 
 export default function BlocksPage() {
   return (
@@ -18,7 +23,7 @@ export default function BlocksPage() {
           </div>
         }
       >
-        <BlocksBrowser />
+        <BlocksBrowser scope="blocks" />
       </Suspense>
 
       <SiteFooter />

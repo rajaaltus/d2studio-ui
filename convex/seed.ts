@@ -13,7 +13,6 @@ const blockInput = v.object({
   tags: v.optional(v.array(v.string())),
   isActive: v.boolean(),
   previewImage: v.optional(v.string()),
-  figmaUrl: v.optional(v.string()),
   codeStatus: v.optional(
     v.union(v.literal("coming_soon"), v.literal("available")),
   ),

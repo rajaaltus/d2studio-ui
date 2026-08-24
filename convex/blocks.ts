@@ -42,7 +42,6 @@ export const createBlock = mutation({
     registryDependencies: v.optional(v.array(v.string())),
     tags: v.optional(v.array(v.string())),
     previewImage: v.optional(v.string()), // Temporarily optional for migration
-    figmaUrl: v.optional(v.string()), // Temporarily optional for migration
     codeStatus: v.optional(
       v.union(v.literal("coming_soon"), v.literal("available")),
     ),
@@ -68,7 +67,6 @@ export const createBlock = mutation({
     const blockId = await ctx.db.insert("blocks", {
       ...args,
       previewImage: args.previewImage || "/placeholder.svg",
-      figmaUrl: args.figmaUrl || "https://www.figma.com",
       codeStatus: args.codeStatus ?? "coming_soon",
       isFeatured: args.isFeatured ?? false,
       isActive: true,
@@ -118,7 +116,6 @@ export const getBlock = query({
       tags: v.optional(v.array(v.string())),
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
-      figmaUrl: v.optional(v.string()),
       codeStatus: v.optional(
         v.union(v.literal("coming_soon"), v.literal("available")),
       ),
@@ -163,7 +160,6 @@ export const listBlocks = query({
       tags: v.optional(v.array(v.string())),
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
-      figmaUrl: v.optional(v.string()),
       codeStatus: v.optional(
         v.union(v.literal("coming_soon"), v.literal("available")),
       ),
@@ -220,7 +216,6 @@ export const getBlocksByType = query({
       tags: v.optional(v.array(v.string())),
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
-      figmaUrl: v.optional(v.string()),
       codeStatus: v.optional(
         v.union(v.literal("coming_soon"), v.literal("available")),
       ),
@@ -264,7 +259,6 @@ export const listFeaturedBlocks = query({
       tags: v.optional(v.array(v.string())),
       isActive: v.boolean(),
       previewImage: v.optional(v.string()),
-      figmaUrl: v.optional(v.string()),
       codeStatus: v.optional(
         v.union(v.literal("coming_soon"), v.literal("available")),
       ),
@@ -312,7 +306,6 @@ export const updateBlock = mutation({
     registryDependencies: v.optional(v.array(v.string())),
     tags: v.optional(v.array(v.string())),
     previewImage: v.optional(v.string()),
-    figmaUrl: v.optional(v.string()),
     codeStatus: v.optional(
       v.union(v.literal("coming_soon"), v.literal("available")),
     ),
@@ -698,9 +691,9 @@ export const migrateBlocksSchema = mutation({
         needsUpdate = true;
       }
 
-      // Add missing figmaUrl
-      if (!block.figmaUrl) {
-        updates.figmaUrl = "https://www.figma.com";
+      // Drop the retired figmaUrl field
+      if ("figmaUrl" in block) {
+        updates.figmaUrl = undefined;
         needsUpdate = true;
       }
 
