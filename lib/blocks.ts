@@ -399,9 +399,9 @@ export const BLOCK_LIBRARY: BlockDef[] = [
 
 /**
  * Spinner presets from lib/spinner-patterns.ts that ship as installable items.
- * Named rather than taken wholesale: the pro set is also sold on
- * pro.d2studio.dev, so publishing one here is a decision, not a side effect of
- * drawing it in the playground.
+ * Named rather than taken wholesale: the whole `pro-*` set is sold on
+ * pro.d2studio.dev and is only advertised here, so publishing one is a decision
+ * rather than a side effect of it existing in the library.
  */
 export const PUBLISHED_SPINNERS: string[] = [
   "spiral-in-5",
@@ -414,22 +414,6 @@ export const PUBLISHED_SPINNERS: string[] = [
   "tide-roll",
   "billboard-tiles",
   "ripple-out",
-  "pro-1",
-  "pro-2",
-  "pro-3",
-  "pro-4",
-  "pro-5",
-  "pro-6",
-  "pro-7",
-  "pro-8",
-  "pro-9",
-  "pro-10",
-  "pro-11",
-  "pro-12",
-  "pro-13",
-  "pro-14",
-  "pro-15",
-  "pro-16",
 ];
 
 /** The half of the library the browse shelf draws. */

@@ -109,7 +109,7 @@ those are dated planning artifacts rather than live docs. Leave them as history.
 
 ---
 
-## 5. Decision needed: 22 unpublished pro spinners
+## 5. Pro spinners — done, unpublished
 
 **The situation.** `lib/spinner-patterns.ts` defines 38 presets in
 `PRO_LIBRARY`. Only `pro-1` … `pro-16` were ever built into the registry;
@@ -124,20 +124,27 @@ already free here. So the line between free and paid spinners is not "pro
 presets are paid"; it is "the first 16 pro presets happen to be free". Whichever
 way you go, it is worth making deliberate.
 
-**Three options.**
+**Decided: the pro set is a product, not a funnel.** Pro spinners are shown on
+`pro.d2studio.dev` and only advertised here, so `pro-1` … `pro-16` were dropped
+from `PUBLISHED_SPINNERS`. Ten spinner items remain published, all non-pro.
 
-1. **Publish all 38** — consistent with what is already free, gives the free
-   registry more to offer. Add the names to `PUBLISHED_SPINNERS` and rebuild.
-   The generator writes the 22 wrapper components on its own.
-2. **Keep 16** (status quo) — no action. The gap stays, and the playground keeps
-   showing 22 presets a visitor cannot install here.
-3. **Retire the overlap** — drop the 16 from the free registry so the pro set is
-   genuinely pro. The most defensible line, and the only one that removes
-   something people can install today, so it needs a deprecation note.
+Worth separating display from publication, because they had drifted apart:
 
-I would take option 1 if the spinners are a funnel into pro, and option 3 if they
-are a product. Option 2 is the one to avoid — it is the current state only
-because a build was never run, not because anyone chose it.
+- The `/spinners` playground reads `SPINNER_LIBRARY`, which contains no `pro-*`
+  at all. Nothing pro was ever *drawn* free. That part was always right.
+- But 16 were *published* — live at `/r/spinner-pro-N.json` and listed in
+  `/r/registry.json`, which is served with `Access-Control-Allow-Origin: *`. No
+  link pointed at them; the manifest did.
+
+`/spinners-standalone`, an unlinked gallery, derived its install commands from
+the whole `PRO_LIBRARY` and so advertised `@d2/spinner-pro-N` for presets that
+were never published — those lines 404'd before this change. It now reads
+`PUBLISHED_SPINNERS` directly, so an unpublished pattern falls back to the base
+`@d2/pixel-spinner` command instead of a broken one.
+
+**If anyone already installed one**, their copy keeps working; a re-install now
+404s. Nothing linked to those URLs, so the exposure is limited to whoever read
+the manifest.
 
 ---
 

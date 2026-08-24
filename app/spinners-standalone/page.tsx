@@ -24,6 +24,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { CodeBlock } from "@/components/ui/code-block";
+import { PUBLISHED_SPINNERS } from "@/lib/blocks";
 import { cn, copyText } from "@/lib/utils";
 import {
   PREMIUM_LIBRARY,
@@ -257,9 +258,10 @@ const SHOWN = [
   ...FREE_EXTRA,
 ];
 
-// Every preset and every Pro pattern ships as its own registry item; the
+// Only the presets named in PUBLISHED_SPINNERS ship as registry items; the
 // install line for one is built by installLine() further down, off the item
-// name. The engine on its own is what a pattern with no item falls back to.
+// name. Everything else — the whole Pro set included — falls back to the
+// engine on its own, since those are sold on pro.d2studio.dev.
 const BASE_COMMAND = "npx shadcn@latest add @d2/pixel-spinner";
 
 // Imported patterns only bring their frames and timing across; size, spacing
@@ -1068,8 +1070,11 @@ type SpinnerDocs = { name: string; item: string | null; spec: Spec };
 
 // Everything that ships as its own registry item. A pattern the visitor saved
 // in their own browser is not in here, and installs the engine instead.
+// What is actually installable, straight from the registry's own source of
+// truth — not every preset in the library. The pro set is advertised here and
+// sold on pro.d2studio.dev, so its install line falls back to the base item.
 const REGISTRY_ITEMS = new Set(
-  [...PREMIUM_LIBRARY, ...PRO_LIBRARY].map((d) => `spinner-${d.name}`),
+  PUBLISHED_SPINNERS.map((name) => `spinner-${name}`),
 );
 const itemFor = (registryName: string) => {
   const item = `spinner-${registryName.toLowerCase()}`;
