@@ -3,8 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,7 +30,7 @@ import {
 import { BlockCard } from "./block-card";
 import { MoreSoonCard } from "./more-soon-card";
 import { SlidingTabs } from "@/components/ui/sliding-tabs";
-import { fromBlockDoc, proItemsFor, type CatalogItem } from "@/lib/catalog";
+import { FREE_CATALOG, proItemsFor, type CatalogItem } from "@/lib/catalog";
 import type { ProGroup } from "@/lib/pro-catalog";
 
 type Density = "comfortable" | "compact";
@@ -47,14 +45,14 @@ export type BrowserScope = "blocks" | "components";
 
 const SCOPES: Record<
   BrowserScope,
-  { proGroups: ProGroup[]; includeConvex: boolean; noun: string; source: string }
+  { proGroups: ProGroup[]; includeFree: boolean; noun: string; source: string }
 > = {
   // Page sections. Templates get their own route rather than crowding in here:
   // a whole page and a section of one are not the same unit of work.
-  blocks: { proGroups: ["marketing"], includeConvex: true, noun: "block", source: "blocks" },
+  blocks: { proGroups: ["marketing"], includeFree: true, noun: "block", source: "blocks" },
   components: {
     proGroups: ["components"],
-    includeConvex: false,
+    includeFree: false,
     noun: "component",
     source: "components",
   },
@@ -92,12 +90,7 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
   const router = useRouter();
   const pathname = usePathname() ?? "/blocks";
   const searchParams = useSearchParams();
-  const { proGroups, includeConvex, noun, source } = SCOPES[scope];
-
-  // Free blocks are this site's own rows; skipped entirely on a shelf that has
-  // none, so /components never opens a subscription it has no use for.
-  const blocks = useQuery(api.blocks.listBlocks, includeConvex ? { limit: 100 } : "skip");
-  const convexCategories = useQuery(api.categories.get, includeConvex ? {} : "skip");
+  const { proGroups, includeFree, noun, source } = SCOPES[scope];
 
   const [filtersOpen, setFiltersOpen] = React.useState(true);
   const [category, setCategory] = React.useState(
@@ -111,26 +104,18 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
   const [pageSize, setPageSize] = React.useState(12);
   const [page, setPage] = React.useState(1);
 
-  // Only the free half is still in flight. The pro half is a static import, so
-  // the grid is drawn from it immediately rather than held behind a websocket —
-  // which also means /blocks still has 55 blocks on it if Convex is unreachable.
-  const pending = includeConvex && blocks === undefined;
-
-  // Both catalogues flattened to one list. The pro half is a static mirror, so
-  // it is the free half arriving that changes this — and the free half is also
-  // what decides which pro items are dropped as already-free here.
+  // Both catalogues flattened to one list. Both halves are static imports, so
+  // the grid is drawn on the first paint with nothing in flight — and the free
+  // half is also what decides which pro items are dropped as already-free here.
   const items = React.useMemo<CatalogItem[]>(() => {
-    const free = (blocks ?? []).map(fromBlockDoc);
+    const free = includeFree ? FREE_CATALOG : [];
     return [...free, ...proItemsFor(proGroups, source, free.map((f) => f.name))];
-  }, [blocks, proGroups, source]);
+  }, [includeFree, proGroups, source]);
 
   // Folded out of the items themselves rather than declared beside them, so a
-  // category exists exactly as long as something is in it. Convex supplies the
-  // display name where it has one; everything else is title-cased off the slug.
+  // category exists exactly as long as something is in it, and its display name
+  // is title-cased off the slug.
   const categories = React.useMemo(() => {
-    const named = new Map(
-      (convexCategories ?? []).map((c) => [c.slug.toLowerCase(), c.name] as const),
-    );
     const counts = new Map<string, number>();
     for (const item of items) {
       for (const slug of new Set(item.categories)) {
@@ -138,9 +123,9 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
       }
     }
     return [...counts]
-      .map(([slug, count]) => ({ slug, name: named.get(slug) ?? labelOf(slug), count }))
+      .map(([slug, count]) => ({ slug, name: labelOf(slug), count }))
       .sort((a, b) => a.name.localeCompare(b.name));
-  }, [items, convexCategories]);
+  }, [items]);
 
   const setCategoryAndUrl = React.useCallback(
     (slug: string) => {
@@ -347,12 +332,11 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
           {/* Result count */}
           <div className="px-4 pt-4 text-xs text-muted-foreground">
             {`${filtered.length} ${noun}${filtered.length === 1 ? "" : "s"}`}
-            {pending && " · loading free blocks…"}
           </div>
 
           {/* Content */}
           <div className="flex-1 p-4">
-            {filtered.length === 0 && !pending ? (
+            {filtered.length === 0 ? (
               <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border bg-muted/40 p-12 text-center">
                 <p className="mb-2 text-lg font-semibold">No {noun}s found</p>
                 <p className="text-sm text-muted-foreground">
@@ -386,14 +370,6 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
               </div>
             ) : (
               <div className={cn("grid gap-4", gridCols)}>
-                {pending &&
-                  currentPage === 1 &&
-                  [...Array(3)].map((_, i) => (
-                    <div
-                      key={`pending-${i}`}
-                      className="h-64 animate-pulse rounded-xl border bg-muted"
-                    />
-                  ))}
                 {paged.map((item) => (
                   <BlockCard key={item.name} item={item} />
                 ))}

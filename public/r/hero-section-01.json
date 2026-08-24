@@ -3,9 +3,8 @@
   "name": "hero-section-01",
   "type": "registry:component",
   "title": "Hero-01",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "A premium landing page",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/hero-section-01.tsx",

@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import { cookies } from "next/headers";
-import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeFlashScript } from "@/components/theme-flash-script";
 import "./globals.css";
-import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { FloatingDock } from "@/components/floating-dock";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { Toaster } from "@/components/ui/sonner";
@@ -127,36 +125,34 @@ export default async function RootLayout({
     cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : "dark";
 
   return (
-    <ConvexAuthNextjsServerProvider>
-      <html
-        lang="en"
-        className={initialResolvedTheme === "dark" ? "dark" : undefined}
-        style={{ colorScheme: initialResolvedTheme }}
-        suppressHydrationWarning
+    <html
+      lang="en"
+      className={initialResolvedTheme === "dark" ? "dark" : undefined}
+      style={{ colorScheme: initialResolvedTheme }}
+      suppressHydrationWarning
+    >
+      <head>
+        <ThemeFlashScript />
+        <GoogleAnalytics />
+      </head>
+      <body
+        className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased font-sans`}
       >
-        <head>
-          <ThemeFlashScript />
-          <GoogleAnalytics />
-        </head>
-        <body
-          className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased font-sans`}
+        <ThemeProvider
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+          initialTheme={initialResolvedTheme}
+          initialResolvedTheme={initialResolvedTheme}
         >
-          <ThemeProvider
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-            initialTheme={initialResolvedTheme}
-            initialResolvedTheme={initialResolvedTheme}
-          >
-            <SkipToContent />
-            <RouteProgress />
-            <ConvexClientProvider>{children}</ConvexClientProvider>
-            <CommandPalette />
-            <FloatingDock />
-            <Toaster richColors closeButton />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ConvexAuthNextjsServerProvider>
+          <SkipToContent />
+          <RouteProgress />
+          {children}
+          <CommandPalette />
+          <FloatingDock />
+          <Toaster richColors closeButton />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

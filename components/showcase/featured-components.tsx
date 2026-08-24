@@ -1,12 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { ComponentWithCode } from "@/components/showcase/component-with-code";
-import type { Doc } from "@/convex/_generated/dataModel";
+import { BLOCK_LIBRARY, type BlockDef } from "@/lib/blocks";
 
-type FeaturedBlock = Doc<"blocks">;
+// Ordered by the `featured` rank in lib/blocks.ts. Nothing carries one today,
+// so the section draws nothing until an entry claims a slot.
+const FEATURED: BlockDef[] = BLOCK_LIBRARY.filter((b) => b.featured != null).sort(
+  (a, b) => (a.featured ?? 0) - (b.featured ?? 0),
+);
 
 type LoadState =
   | { status: "loading" }
@@ -15,7 +17,7 @@ type LoadState =
 
 const componentCache = new Map<string, LoadState>();
 
-function FeaturedBlockItem({ block }: { block: FeaturedBlock }) {
+function FeaturedBlockItem({ block }: { block: BlockDef }) {
   const cached = componentCache.get(block.name);
   const [state, setState] = React.useState<LoadState>(
     cached ?? { status: "loading" },
@@ -68,16 +70,14 @@ function FeaturedBlockItem({ block }: { block: FeaturedBlock }) {
 }
 
 export function FeaturedComponents() {
-  const blocks = useQuery(api.blocks.listFeaturedBlocks, {});
-
-  if (blocks === undefined || blocks.length === 0) return null;
+  if (FEATURED.length === 0) return null;
 
   return (
     <section className="w-full">
       <div className="border-x mx-auto">
         <div className="space-y-16 mx-auto">
-          {blocks.map((block) => (
-            <FeaturedBlockItem key={block._id} block={block} />
+          {FEATURED.map((block) => (
+            <FeaturedBlockItem key={block.name} block={block} />
           ))}
         </div>
       </div>

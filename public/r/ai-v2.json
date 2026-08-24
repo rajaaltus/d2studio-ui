@@ -3,9 +3,8 @@
   "name": "ai-v2",
   "type": "registry:ui",
   "title": "AI tab",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "Select field",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/ui/ai-v2.tsx",

@@ -9,7 +9,6 @@
     "motion",
     "lucide-react"
   ],
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/notification-bento.tsx",

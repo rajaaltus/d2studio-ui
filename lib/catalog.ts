@@ -1,9 +1,10 @@
-import type { Doc } from "@/convex/_generated/dataModel";
+import { SHELVED, type BlockDef } from "@/lib/blocks";
 import { PRO_CATALOG, type ProGroup, type ProItem } from "@/lib/pro-catalog";
 import { proHref } from "@/lib/pro";
 
-// Two catalogues browse as one shelf. A free block is a Convex row this site
-// owns; a pro item is a line in a generated mirror of another site's library.
+// Two catalogues browse as one shelf. A free block is an entry this site
+// publishes itself; a pro item is a line in a generated mirror of another
+// site's library.
 // They differ in almost every field, so rather than teach the card and the
 // filters about both, both are flattened to this once, at the edge.
 export type CatalogItem = {
@@ -31,23 +32,23 @@ export type CatalogItem = {
   keywords: string;
 };
 
-export const fromBlockDoc = (b: Doc<"blocks">): CatalogItem => {
-  const categories = (b.categories ?? []).map((c) => c.toLowerCase());
-  return {
-    name: b.name,
-    title: b.title,
-    subtitle: b.categories?.[0] ?? "",
-    description: b.description,
-    categories: b.blockType ? [...new Set([...categories, b.blockType])] : categories,
-    tier: b.accessTier ?? "free",
-    status: b.codeStatus === "available" ? "available" : "coming_soon",
-    image: b.previewImage || "/placeholder.svg",
-    fit: "cover",
-    href: `/blocks/${b.name}`,
-    external: false,
-    keywords: [b.title, b.description, ...(b.categories ?? []), ...(b.tags ?? [])].join(" "),
-  };
-};
+export const fromBlock = (b: BlockDef): CatalogItem => ({
+  name: b.name,
+  title: b.title,
+  subtitle: b.categories[0] ?? "",
+  description: b.description,
+  categories: b.categories,
+  tier: "free",
+  status: b.status === "coming_soon" ? "coming_soon" : "available",
+  image: b.image || "/placeholder.svg",
+  fit: "cover",
+  href: `/blocks/${b.name}`,
+  external: false,
+  keywords: [b.title, b.description, ...b.categories].join(" "),
+});
+
+/** Every free block on the browse shelf, in library order. */
+export const FREE_CATALOG: CatalogItem[] = SHELVED.map(fromBlock);
 
 export const fromProItem = (item: ProItem, source: string): CatalogItem => ({
   name: item.name,
@@ -73,8 +74,8 @@ export const fromProItem = (item: ProItem, source: string): CatalogItem => ({
  * notification-bento) exist in both catalogues, free here and paid there. The
  * free row wins: showing the same block twice, once with a Pro badge, would
  * read as a downgrade of something the visitor can already install. Resolved
- * here against live Convex data rather than baked into the generated mirror, so
- * a block added or removed in Convex settles it without a re-sync.
+ * against this site's own library rather than baked into the generated mirror,
+ * so a block added or removed here settles it without a re-sync.
  */
 export function proItemsFor(
   group: ProGroup | ProGroup[],

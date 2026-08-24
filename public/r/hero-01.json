@@ -3,9 +3,8 @@
   "name": "hero-01",
   "type": "registry:ui",
   "title": "Hero 01",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "Hero section 01",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/ui/hero-01.tsx",

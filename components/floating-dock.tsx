@@ -283,13 +283,7 @@ function DockInner() {
     [],
   );
 
-  if (
-    pathname.startsWith("/preview") ||
-    pathname.startsWith("/admin") ||
-    pathname.startsWith("/login")
-  ) {
-    return null;
-  }
+  if (pathname.startsWith("/preview")) return null;
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-40 flex justify-center px-4">

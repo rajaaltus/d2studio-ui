@@ -5,8 +5,6 @@
   "title": "Matte Button",
   "author": "D2 Studio",
   "description": "A matte chip button with a holographic rim: three blurred glows pinned under the top edge, a bounce light along the bottom, and a gradient-clipped label and mask-painted icon. Four shadcn sizes with the corner curvature held constant, an expo-out hover that lifts the chip and pushes the ink, and a light theme that is the same layer stack with swapped tokens and a multiplied rim. Every custom property is defined on the button, so it needs nothing from the host stylesheet.",
-  "dependencies": [],
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/button-matt.tsx",

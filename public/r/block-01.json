@@ -3,9 +3,8 @@
   "name": "block-01",
   "type": "registry:component",
   "title": "Block 01",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "Blocks for free",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/block-01.tsx",

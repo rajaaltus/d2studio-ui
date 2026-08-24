@@ -3,9 +3,8 @@
   "name": "hero-section-02",
   "type": "registry:component",
   "title": "hero-section-02",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "3D modern hero section",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/hero-section-02.tsx",

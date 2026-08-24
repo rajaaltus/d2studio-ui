@@ -15,10 +15,10 @@
 // committed. Nothing here runs on Vercel — the checked-in output is what ships,
 // so a missing ../pro-d2 is only ever a local problem.
 //
-// Deliberately not deduped against the Convex blocks table: this file is a
+// Deliberately not deduped against lib/blocks.ts: this file is a
 // faithful mirror of what pro sells, and which of those names this site already
 // carries for free is a question the browser answers at render time, where it
-// stays right as Convex changes.
+// stays right as the free library changes.
 
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";

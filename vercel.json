@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx convex deploy --cmd 'pnpm build && pnpm registry:build' && pnpm seed:prod",
+  "buildCommand": "pnpm registry:build && pnpm build",
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "functions": {

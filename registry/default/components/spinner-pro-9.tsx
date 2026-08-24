@@ -7,7 +7,7 @@ import {
   type SpinnerPattern,
 } from "@/components/ui/pixel-spinner";
 
-const pattern: SpinnerPattern = {"rows":4,"cols":2,"interval":160,"frames":[[6],[4],[3],[1],[0],[2],[5],[7]]};
+const pattern: SpinnerPattern = {"rows":4,"cols":2,"interval":100,"frames":[[6],[4],[3],[1],[0],[2],[5],[7]]};
 
 type SpinnerPro9Props = Omit<
   React.ComponentProps<typeof PixelSpinner>,

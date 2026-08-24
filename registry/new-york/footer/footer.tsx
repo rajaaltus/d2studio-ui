@@ -122,7 +122,7 @@ export function Footer() {
           {/* Build Info */}
           <div className="mt-8 text-center">
             <p className="text-xs text-muted-foreground/60 font-mono">
-              Built with Next.js • shadcn/ui • Tailwind CSS • Convex • Clerk
+              Built with Next.js • shadcn/ui • Tailwind CSS
             </p>
           </div>
         </div>
