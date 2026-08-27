@@ -3,9 +3,8 @@
   "name": "ai-writing-assistance",
   "type": "registry:component",
   "title": "Ai writing assistant",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "field assistance",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/ai-writing-assistance.tsx",

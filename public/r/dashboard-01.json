@@ -3,9 +3,8 @@
   "name": "dashboard-01",
   "type": "registry:ui",
   "title": "Dashboard 01",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "Dashboard ",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/ui/dashboard-01.tsx",

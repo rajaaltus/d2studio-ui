@@ -1,9 +1,6 @@
-"use client";
-
-import * as React from "react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { SiteFooter } from "@/components/site-footer";
@@ -11,44 +8,60 @@ import { PreviewWrapper } from "@/components/preview/preview-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { SHELVED, findBlock } from "@/lib/blocks";
 
-export default function BlockPage() {
-  const params = useParams();
-  const blockName = params.name as string;
+export const dynamicParams = false;
 
-  const block = useQuery(api.blocks.getBlock, { name: blockName });
+export function generateStaticParams() {
+  return SHELVED.map((b) => ({ name: b.name }));
+}
 
-  if (block === undefined) {
-    return (
-      <div className="relative min-h-screen overflow-x-hidden">
-        <Navigation />
-        <div className="flex min-h-[400px] items-center justify-center">
-          <div className="text-center space-y-2">
-            <p>Loading block...</p>
-          </div>
-        </div>
-        <SiteFooter />
-      </div>
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}) {
+  const block = findBlock((await params).name);
+  if (!block) return {};
+  return { title: block.title, description: block.description };
+}
+
+/**
+ * The built item, read off disk. It is what the install command actually
+ * serves, so the Code tab shows the shipped file rather than the working tree,
+ * and `type` decides whether the preview loads from ui/ or components/ without
+ * that being written down a second time in lib/blocks.ts.
+ */
+async function builtItem(name: string) {
+  try {
+    const raw = await readFile(
+      path.join(process.cwd(), "public", "r", `${name}.json`),
+      "utf8",
     );
+    const item = JSON.parse(raw) as {
+      type: string;
+      files: { path: string; content: string }[];
+    };
+    const source =
+      item.files.length === 1
+        ? item.files[0].content
+        : item.files.map((f) => `// ${f.path}\n\n${f.content}`).join("\n\n");
+    return { kind: item.type === "registry:ui" ? "ui" : "component", source };
+  } catch {
+    return { kind: "component", source: undefined };
   }
+}
 
-  if (block === null) {
-    return (
-      <div className="relative min-h-screen overflow-x-hidden">
-        <Navigation />
-        <div className="flex min-h-[400px] flex-col items-center justify-center space-y-4">
-          <p className="text-lg font-semibold">Block not found</p>
-          <Button asChild variant="outline">
-            <Link href="/blocks">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blocks
-            </Link>
-          </Button>
-        </div>
-        <SiteFooter />
-      </div>
-    );
-  }
+export default async function BlockPage({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}) {
+  const block = findBlock((await params).name);
+  if (!block) notFound();
+
+  const { kind, source } = await builtItem(block.name);
+  const comingSoon = block.status === "coming_soon";
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -78,12 +91,7 @@ export default function BlockPage() {
                   {category}
                 </Badge>
               ))}
-              {block.blockType && (
-                <Badge variant="secondary">{block.blockType}</Badge>
-              )}
-              {block.codeStatus === "coming_soon" && (
-                <Badge variant="secondary">Code Coming Soon</Badge>
-              )}
+              {comingSoon && <Badge variant="secondary">Code Coming Soon</Badge>}
             </div>
           </div>
         </div>
@@ -93,16 +101,13 @@ export default function BlockPage() {
       <section className="w-full">
         <PreviewWrapper
           componentName={block.name}
-          code={undefined}
-          figmaUrl={block.figmaUrl}
-          codeStatus={block.codeStatus}
-          isNew={block.isNew}
-          accessTier={block.accessTier ?? "free"}
+          code={comingSoon ? undefined : source}
+          codeStatus={block.status}
           minHeight="500px"
         >
           <div className="w-full h-full min-h-[600px] bg-background">
             <iframe
-              src={`/preview/${block.name}?type=${block.type}`}
+              src={`/preview/${block.name}?type=${kind}`}
               className="w-full h-full min-h-[600px] border-none"
               title={`Preview for ${block.name}`}
               sandbox="allow-scripts allow-same-origin"
@@ -118,37 +123,23 @@ export default function BlockPage() {
           <div className="grid gap-4 md:grid-cols-2">
             <div>
               <p className="text-sm text-muted-foreground mb-1">Author</p>
-              <p className="font-medium">{block.author}</p>
+              <p className="font-medium">{block.author ?? "D2 Studio"}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">Version</p>
-              <p className="font-medium">{block.version}</p>
+              <p className="font-medium">{block.version ?? "1.0.0"}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">Type</p>
-              <p className="font-medium capitalize">{block.type}</p>
+              <p className="font-medium capitalize">{kind}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">Code Status</p>
-              <p className="font-medium capitalize">
-                {block.codeStatus === "coming_soon"
-                  ? "Coming Soon"
-                  : "Available"}
+              <p className="font-medium">
+                {comingSoon ? "Coming Soon" : "Available"}
               </p>
             </div>
           </div>
-          {block.tags && block.tags.length > 0 && (
-            <div className="mt-4">
-              <p className="text-sm text-muted-foreground mb-2">Tags</p>
-              <div className="flex flex-wrap gap-2">
-                {block.tags.map((tag) => (
-                  <Badge key={tag} variant="outline" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </section>
 

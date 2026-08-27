@@ -51,33 +51,58 @@ export default function Bento4V1({
                 </header>
             )}
 
-            <div className="flex items-stretch gap-9">
-                {/* Left column: wide hero over a pair of medium cards */}
-                <div className="flex w-[665px] max-w-full flex-col gap-9">
-                    <div {...cardProps("v1-holo-web", 0)}>
-                        <DottedFrame id="v1-holo-web" />
-                        <IconHolo id="v1-holo-web" />
-                        <WebDesignCard />
-                        <DitherCursor seed="holo-web" />
+            {/* Three shapes out of one flat grid — the hero, the medium pair and
+                the tall anchor are siblings so each breakpoint can place them
+                independently. Nesting the hero and the pair in a left column (the
+                obvious reading of the lg layout) is what makes the tablet
+                arrangement impossible: the pair could never sit beside the anchor
+                while the hero spanned the row above it.
+
+                  <sm   one column, everything stacked.
+                  sm    two columns. Hero spans both; below it the pair stacks
+                        single-file on the left with the anchor beside it at its
+                        native 348 — otherwise the anchor is a narrow card
+                        stranded under two full-width rows, and widening it is no
+                        answer since its art scales with width and would double
+                        the card's height.
+                  lg    665 + 36 + 348 = 1049, the reference width. Hero back over
+                        the pair, which goes two-across, and the anchor spans both
+                        rows down the right. */}
+            <div className="grid w-full max-w-[1049px] gap-9 sm:grid-cols-[minmax(0,1fr)_348px]">
+                <div
+                    {...cardProps("v1-holo-web", 0)}
+                    className={`${card} sm:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1`}
+                >
+                    <DottedFrame id="v1-holo-web" />
+                    <IconHolo id="v1-holo-web" />
+                    <WebDesignCard />
+                    <DitherCursor seed="holo-web" />
+                </div>
+
+                {/* The medium pair. Single-file until lg, where the left column is
+                    finally wide enough to seat them side by side. */}
+                <div className="grid min-h-0 min-w-0 gap-9 sm:col-start-1 lg:row-start-2 lg:grid-cols-2">
+                    <div {...cardProps("v1-holo-clean", 120)} className={card}>
+                        <DottedFrame id="v1-holo-clean" />
+                        <IconHolo id="v1-holo-clean" />
+                        <CleanCodeCard />
+                        <DitherCursor seed="holo-clean" />
                     </div>
-                    <div className="flex min-h-0 flex-1 gap-9">
-                        <div {...cardProps("v1-holo-clean", 120)} className={`${card} flex-1`}>
-                            <DottedFrame id="v1-holo-clean" />
-                            <IconHolo id="v1-holo-clean" />
-                            <CleanCodeCard />
-                            <DitherCursor seed="holo-clean" />
-                        </div>
-                        <div {...cardProps("v1-holo-accel", 180)} className={`${card} flex-1`}>
-                            <DottedFrame id="v1-holo-accel" />
-                            <IconHolo id="v1-holo-accel" />
-                            <AccelerateCard />
-                            <DitherCursor seed="holo-accel" />
-                        </div>
+                    <div {...cardProps("v1-holo-accel", 180)} className={card}>
+                        <DottedFrame id="v1-holo-accel" />
+                        <IconHolo id="v1-holo-accel" />
+                        <AccelerateCard />
+                        <DitherCursor seed="holo-accel" />
                     </div>
                 </div>
 
-                {/* Right: tall anchor, matched to the left column height */}
-                <div {...cardProps("v1-holo-future", 60)} className={`${card} w-[348px]`}>
+                {/* Tall anchor. At lg it spans both rows and the stretch crops its
+                    svg to the left column's height; at sm it shares row 2 with the
+                    pair; stacked, it stands at its own full height, centred. */}
+                <div
+                    {...cardProps("v1-holo-future", 60)}
+                    className={`${card} mx-auto w-full max-w-[348px] sm:col-start-2 sm:row-start-2 lg:row-start-1 lg:row-span-2`}
+                >
                     <DottedFrame id="v1-holo-future" />
                     <IconHolo id="v1-holo-future" />
                     <FutureForwardCard />

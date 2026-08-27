@@ -3,6 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { SpinnerPlayground } from "@/components/spinners/playground";
 import { SiteFooter } from "@/components/site-footer";
 import { CoffeeSupportCard } from "@/components/coffee-support-card";
+import { ProSpinnerShelf } from "@/components/spinners/pro-spinner-shelf";
 
 export const metadata: Metadata = {
   title: "Pixel Glow Spinners",
@@ -35,6 +36,8 @@ export default function SpinnersPage() {
             <SpinnerPlayground />
           </div>
         </section>
+
+        <ProSpinnerShelf />
 
         <CoffeeSupportCard
           pitch="Enjoying the Pixel Glow Spinners? Encourage us with a coffee — your support helps us build more experiments like this."

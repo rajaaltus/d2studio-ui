@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/registry/default/ui/button";
-import { Badge } from "@/registry/default/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ArrowRight, FlameKindling, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import {
     Avatar,
     AvatarFallback,
     AvatarImage,
-} from "@/registry/default/ui/avatar";
+} from "@/components/ui/avatar";
 import { useState, ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 

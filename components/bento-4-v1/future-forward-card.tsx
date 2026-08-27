@@ -386,7 +386,10 @@ export default function FutureForwardCard() {
     useHoverSpeed(root)
 
     return (
-        <div ref={root} className="b4-ff relative h-full overflow-hidden rounded-2xl">
+        // `@container`: the pill labels are DOM text over an svg that scales with
+        // the card, so their size is expressed in cqw (below) to stay locked to
+        // the pills they sit in at any card width.
+        <div ref={root} className="b4-ff @container relative h-full overflow-hidden rounded-2xl">
             {/* Outline lives in the DOM so it tracks the wrapper box exactly. The
                 svg fills the width and is cropped at the bottom by the wrapper,
                 which would clip an svg-drawn border off two sides. */}
@@ -782,7 +785,7 @@ export default function FutureForwardCard() {
                         layout(order).map(({ b, x }) => (
                             <div
                                 key={`${offset}-${b}`}
-                                className="absolute inset-y-0 flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[13.93px] font-medium text-transparent opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90"
+                                className="absolute inset-y-0 flex items-center whitespace-nowrap bg-gradient-to-b from-[var(--b4-label-from)] to-[var(--b4-label-to)] bg-clip-text text-[4.134cqw] font-medium text-transparent opacity-60 transition-opacity duration-500 [.b4-card:hover_&]:opacity-90"
                                 style={{ left: `${((x + offset + LABEL_X) / VB_W) * 100}%` }}
                             >
                                 {LABELS[b]}

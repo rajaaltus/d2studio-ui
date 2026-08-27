@@ -28,21 +28,16 @@ import {
   Paintbrush,
   Loader2,
   Minus,
-  Monitor,
   Moon,
   MoreHorizontal,
-  PackagePlus,
   Pause,
   Play,
   Plus,
   Redo2,
   RotateCcw,
-  Save,
   Shuffle,
-  Sparkles,
   Sun,
   Trash2,
-  Undo2,
   X,
 } from "lucide-react";
 import {
@@ -1335,77 +1330,6 @@ export function SpinnerPlayground() {
 
   return (
     <div className="space-y-4">
-    <details className="group rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card)]/60 text-[11px] text-[var(--ls-muted-foreground)] sm:hidden [&_summary::-webkit-details-marker]:hidden">
-      <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2">
-        <Monitor size={13} className="shrink-0 text-[var(--ls-foreground)]" />
-        <span className="flex-1 leading-snug">
-          For the best experience, open this on a desktop — some controls are hidden on mobile.
-        </span>
-        <ChevronDown
-          size={13}
-          className="shrink-0 text-[var(--ls-muted-foreground)] transition-transform duration-200 group-open:rotate-180"
-        />
-      </summary>
-      <div className="space-y-3 border-t border-[var(--ls-border)] px-3 pb-3 pt-3">
-        <div>
-          <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-            Preview header
-          </p>
-          <ul className="space-y-1.5">
-            <li className="flex items-start gap-2">
-              <Shuffle size={11} className="mt-[3px] shrink-0 text-[#f59e0b]" />
-              <span><span className="text-[var(--ls-foreground)]">Random</span> — shuffle to a different pattern</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Code size={11} className="mt-[3px] shrink-0 text-[#e34c26]" />
-              <span><span className="text-[var(--ls-foreground)]">HTML</span> — copy the markup snippet</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Paintbrush size={11} className="mt-[3px] shrink-0 text-[#2965f1]" />
-              <span><span className="text-[var(--ls-foreground)]">CSS</span> — copy the keyframes + styles</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Braces size={11} className="mt-[3px] shrink-0 text-[#f7df1e]" />
-              <span><span className="text-[var(--ls-foreground)]">JS</span> — copy the runtime snippet</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-            Pattern editor
-          </p>
-          <ul className="space-y-1.5">
-            <li className="flex items-start gap-2">
-              <Sparkles size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-              <span><span className="text-[var(--ls-foreground)]">Custom frame editor</span> — draw, resize and animate your own pixel grid</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-foreground)]">
-            Pattern actions
-          </p>
-          <ul className="space-y-1.5">
-            <li className="flex items-start gap-2">
-              <Undo2 size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-              <span><span className="text-[var(--ls-foreground)]">Undo / Redo</span> — step through edit history</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <RotateCcw size={11} className="mt-[3px] shrink-0 text-[var(--ls-foreground)]" />
-              <span><span className="text-[var(--ls-foreground)]">Reset</span> — restore every control to its default</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Save size={11} className="mt-[3px] shrink-0 text-emerald-500 dark:text-emerald-400" />
-              <span><span className="text-[var(--ls-foreground)]">Save as new / Update</span> — persist your edits as a pattern</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Download size={11} className="mt-[3px] shrink-0 text-sky-500 dark:text-sky-400" />
-              <span><span className="text-[var(--ls-foreground)]">Export GIF</span> — render the spinner as an animated GIF</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </details>
     <section className="rounded-3xl border border-[var(--ls-border)] bg-[var(--ls-card)] p-1.5 lg:p-2.5">
       {/* Preview */}
       <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--ls-border)] bg-[var(--ls-card)]/50 backdrop-blur-sm">
@@ -1560,26 +1484,6 @@ export function SpinnerPlayground() {
           </p>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="hidden sm:contents">
-          <button
-            onClick={undoEdit}
-            disabled={!canUndo}
-            aria-label="Undo"
-            title="Undo"
-            className="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
-          >
-            <Undo2 size={11} />
-          </button>
-          <button
-            onClick={redoEdit}
-            disabled={!canRedo}
-            aria-label="Redo"
-            title="Redo"
-            className="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[var(--ls-card)]"
-          >
-            <Redo2 size={11} />
-          </button>
-          </div>
           <button
             onClick={() => setTheme(isDark ? "light" : "dark")}
             aria-label="Toggle theme"
@@ -1588,93 +1492,6 @@ export function SpinnerPlayground() {
             {isDark ? <Sun size={11} /> : <Moon size={11} />}
           </button>
           <div className="hidden sm:contents">
-          <button
-            onClick={() => setResetConfirmOpen(true)}
-            className="inline-flex items-center gap-1.5 rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2 py-1 text-[11px] font-medium text-[var(--ls-foreground)] transition-colors hover:bg-[var(--ls-border)]/40"
-            title="Reset all controls to defaults"
-          >
-            <RotateCcw size={11} />
-            Reset
-          </button>
-          {editingSavedId && (
-            <button
-              onClick={handleUpdateSavedPattern}
-              className="inline-flex items-center gap-1.5 rounded-md border border-emerald-400/40 bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20"
-              title="Save changes back to this pattern"
-            >
-              <Save size={11} />
-              Update
-            </button>
-          )}
-          <Popover
-            open={saveDialogOpen}
-            onOpenChange={(open) => {
-              if (open) openSaveDialog();
-              else setSaveDialogOpen(false);
-            }}
-          >
-            <PopoverTrigger asChild>
-              <button
-                className={
-                  "inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] font-medium transition-colors " +
-                  (editingSavedId
-                    ? "border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-foreground)] hover:bg-[var(--ls-border)]/40"
-                    : "border-emerald-500/50 bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500/20 dark:border-emerald-400/40 dark:text-emerald-300")
-                }
-                title="Save current edits as a brand-new pattern"
-              >
-                <Save size={11} />
-                Save as new
-              </button>
-            </PopoverTrigger>
-            <PopoverContent
-              align="end"
-              sideOffset={8}
-              className="luminous-spinners w-[280px] border-[var(--ls-border)] bg-[var(--ls-card)] p-3 text-[var(--ls-foreground)]"
-            >
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
-                Save as new pattern
-              </p>
-              <input
-                value={saveDialogName}
-                onChange={(e) => {
-                  setSaveDialogName(e.target.value);
-                  setSaveDialogError(null);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    commitSaveAsNew();
-                  }
-                }}
-                autoFocus
-                spellCheck={false}
-                placeholder="Pattern name"
-                className="h-8 w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-emerald-400/60"
-              />
-              {saveDialogError && (
-                <p className="mt-1.5 text-[10px] text-rose-400">
-                  {saveDialogError}
-                </p>
-              )}
-              <div className="mt-3 flex justify-end gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => setSaveDialogOpen(false)}
-                  className="rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 py-1 text-[11px] font-medium text-[var(--ls-foreground)] hover:bg-[var(--ls-border)]/40"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={commitSaveAsNew}
-                  className="rounded-md border border-emerald-500/50 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-700 hover:bg-emerald-500/20 dark:border-emerald-400/40 dark:text-emerald-300"
-                >
-                  Save
-                </button>
-              </div>
-            </PopoverContent>
-          </Popover>
           <Popover open={exportOpen} onOpenChange={setExportOpen}>
             <PopoverTrigger asChild>
               <button
@@ -1906,28 +1723,6 @@ export function SpinnerPlayground() {
                     Library
                   </p>
                   <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5">
-                    {CUSTOM_PATTERN_NAME.includes(patternQuery.toLowerCase()) && (
-                      <button
-                        key="__custom"
-                        onClick={() => {
-                          setPatternName(CUSTOM_PATTERN_NAME);
-                          setPickerOpen(false);
-                        }}
-                        className={
-                          "group flex flex-col items-center justify-center rounded-lg border p-2 transition-colors " +
-                          (patternName === CUSTOM_PATTERN_NAME
-                            ? "border-emerald-400/60 bg-emerald-500/10"
-                            : "border-dashed border-[var(--ls-border)] bg-[var(--ls-card)]/60 hover:border-emerald-400/40 hover:bg-emerald-500/5")
-                        }
-                      >
-                        <div className="flex h-10 items-center justify-center">
-                          <PackagePlus size={18} className="text-emerald-400" />
-                        </div>
-                        <p className="mt-1.5 truncate font-mono text-[9px] text-[var(--ls-muted-foreground)]">
-                          custom
-                        </p>
-                      </button>
-                    )}
                     {SPINNER_LIBRARY.filter((s) =>
                       s.name.toLowerCase().includes(patternQuery.toLowerCase())
                     ).map((s) => {
@@ -1969,7 +1764,7 @@ export function SpinnerPlayground() {
 
         <ControlGroup label="Color">
           <div className="inline-flex w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] p-0.5">
-            {(["gradient", "preset", "custom"] as const).map((m) => {
+            {(["gradient", "preset"] as const).map((m) => {
               const active = colorMode === m;
               return (
                 <button
@@ -2015,74 +1810,6 @@ export function SpinnerPlayground() {
             </div>
           )}
 
-          {colorMode === "custom" && (
-            <div className="mt-3 space-y-2.5">
-              <div className="flex items-center gap-2">
-                <ColorPickerPopover
-                  value={customColor}
-                  onChange={(v) => setCustomColor(v)}
-                  trigger={
-                    <button
-                      type="button"
-                      aria-label="Pick custom color"
-                      className="relative h-8 w-8 shrink-0 cursor-pointer overflow-hidden rounded-full border-2 border-white/60 transition-transform hover:scale-105"
-                      style={{ background: customColor }}
-                    />
-                  }
-                />
-                <input
-                  value={customColor}
-                  onChange={(e) => setCustomColor(e.target.value)}
-                  spellCheck={false}
-                  className="w-full rounded-md border border-[var(--ls-border)] bg-[var(--ls-card)] px-2.5 py-1.5 font-mono text-xs text-[var(--ls-foreground)] outline-none focus:border-white/40"
-                />
-              </div>
-              <div className="grid grid-cols-5 gap-2">
-                {customColorSlots.map((slot, i) =>
-                  slot ? (
-                    <div key={i} className="group/slot relative">
-                      <button
-                        type="button"
-                        onClick={() => setCustomColor(slot)}
-                        title={`Load ${slot}`}
-                        aria-label={`Load saved color ${slot}`}
-                        className="h-9 w-9 rounded-full border border-white/20 transition-transform hover:scale-105"
-                        style={{ background: slot }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const next = [...customColorSlots];
-                          next[i] = null;
-                          persistCustomColorSlots(next);
-                        }}
-                        title="Remove"
-                        aria-label="Remove saved color"
-                        className="absolute -right-1 -top-1 hidden h-4 w-4 items-center justify-center rounded-full border border-[var(--ls-border)] bg-[var(--ls-card)] text-[var(--ls-muted-foreground)] hover:text-rose-400 group-hover/slot:flex"
-                      >
-                        <X size={9} />
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => {
-                        const next = [...customColorSlots];
-                        next[i] = customColor;
-                        persistCustomColorSlots(next);
-                      }}
-                      title="Save current color"
-                      aria-label="Save current color"
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-dashed border-[var(--ls-border)] text-[var(--ls-muted-foreground)] transition-colors hover:border-white/40 hover:text-[var(--ls-foreground)]"
-                    >
-                      <Plus size={14} />
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          )}
 
           {colorMode === "gradient" && (
             <div className="mt-3 space-y-3">

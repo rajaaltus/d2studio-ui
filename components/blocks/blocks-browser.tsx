@@ -2,9 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,28 +23,46 @@ import {
   Columns2,
   Columns3,
   Boxes,
+  Component,
   FileText,
   Image as ImageIcon,
-  LayoutGrid,
-  Rows3,
 } from "lucide-react";
 import { BlockCard } from "./block-card";
 import { MoreSoonCard } from "./more-soon-card";
-import type { Doc } from "@/convex/_generated/dataModel";
+import { SlidingTabs } from "@/components/ui/sliding-tabs";
+import { FREE_CATALOG, proItemsFor, type CatalogItem } from "@/lib/catalog";
+import type { ProGroup } from "@/lib/pro-catalog";
 
-type Block = Doc<"blocks">;
 type Density = "comfortable" | "compact";
 type View = "all" | "category";
 
+/**
+ * Which shelf this browser draws. One component, two routes: the filters, the
+ * grid, the pagination and the empty state are the same furniture either way,
+ * and the only real difference is which half of the catalogue is on the shelf.
+ */
+export type BrowserScope = "blocks" | "components";
+
+const SCOPES: Record<
+  BrowserScope,
+  { proGroups: ProGroup[]; includeFree: boolean; noun: string; source: string }
+> = {
+  // Page sections. Templates get their own route rather than crowding in here:
+  // a whole page and a section of one are not the same unit of work.
+  blocks: { proGroups: ["marketing"], includeFree: true, noun: "block", source: "blocks" },
+  components: {
+    proGroups: ["components"],
+    includeFree: false,
+    noun: "component",
+    source: "components",
+  },
+};
+
 const TYPES = [
   { key: "blocks", label: "Blocks", icon: Boxes, href: "/blocks" },
-  { key: "pages", label: "Pages", icon: FileText, href: "/templates" },
-  {
-    key: "illustrations",
-    label: "Illustrations",
-    icon: ImageIcon,
-    href: "/illustration",
-  },
+  { key: "components", label: "Components", icon: Component, href: "/components" },
+  { key: "illustrations", label: "Illustrations", icon: ImageIcon, href: "/illustration" },
+  { key: "templates", label: "Templates", icon: FileText, href: "/templates" },
 ] as const;
 
 const PAGE_SIZES = [6, 12, 24];
@@ -63,12 +79,18 @@ const STATUS_OPTIONS = [
   { value: "coming_soon", label: "Coming soon" },
 ] as const;
 
-export function BlocksBrowser() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+// No icons: the bar sits in a 256px sidebar, and an icon on each tab was what
+// pushed both labels onto two lines.
+const VIEW_TABS = [
+  { value: "category", label: "By category" },
+  { value: "all", label: "All items" },
+];
 
-  const blocks = useQuery(api.blocks.listBlocks, { limit: 100 });
-  const categories = useQuery(api.categories.get);
+export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
+  const router = useRouter();
+  const pathname = usePathname() ?? "/blocks";
+  const searchParams = useSearchParams();
+  const { proGroups, includeFree, noun, source } = SCOPES[scope];
 
   const [filtersOpen, setFiltersOpen] = React.useState(true);
   const [category, setCategory] = React.useState(
@@ -82,56 +104,52 @@ export function BlocksBrowser() {
   const [pageSize, setPageSize] = React.useState(12);
   const [page, setPage] = React.useState(1);
 
+  // Both catalogues flattened to one list. Both halves are static imports, so
+  // the grid is drawn on the first paint with nothing in flight — and the free
+  // half is also what decides which pro items are dropped as already-free here.
+  const items = React.useMemo<CatalogItem[]>(() => {
+    const free = includeFree ? FREE_CATALOG : [];
+    return [...free, ...proItemsFor(proGroups, source, free.map((f) => f.name))];
+  }, [includeFree, proGroups, source]);
+
+  // Folded out of the items themselves rather than declared beside them, so a
+  // category exists exactly as long as something is in it, and its display name
+  // is title-cased off the slug.
+  const categories = React.useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const item of items) {
+      for (const slug of new Set(item.categories)) {
+        counts.set(slug, (counts.get(slug) ?? 0) + 1);
+      }
+    }
+    return [...counts]
+      .map(([slug, count]) => ({ slug, name: labelOf(slug), count }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [items]);
+
   const setCategoryAndUrl = React.useCallback(
     (slug: string) => {
-      setCategory((prev) => (prev === slug ? "all" : slug));
       const next = category === slug ? "all" : slug;
+      setCategory(next);
       const params = new URLSearchParams(searchParams.toString());
       if (next === "all") params.delete("type");
       else params.set("type", next);
       const qs = params.toString();
-      router.replace(qs ? `/blocks?${qs}` : "/blocks", { scroll: false });
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
     },
-    [router, searchParams, category],
+    [router, pathname, searchParams, category],
   );
-
-  const matchesCategory = React.useCallback((b: Block, slug: string) => {
-    if (slug === "all") return true;
-    if (b.blockType === slug) return true;
-    return (b.categories ?? []).some((c) => c.toLowerCase() === slug);
-  }, []);
-
-  const counts = React.useMemo(() => {
-    const map: Record<string, number> = { all: blocks?.length ?? 0 };
-    for (const c of categories ?? []) {
-      map[c.slug] = (blocks ?? []).filter((b) =>
-        matchesCategory(b, c.slug),
-      ).length;
-    }
-    return map;
-  }, [blocks, categories, matchesCategory]);
 
   const filtered = React.useMemo(() => {
     const q = search.trim().toLowerCase();
-    return (blocks ?? []).filter((b: Block) => {
-      if (!matchesCategory(b, category)) return false;
-      if (access !== "all" && (b.accessTier ?? "free") !== access) return false;
-      if (status !== "all" && (b.codeStatus ?? "coming_soon") !== status)
-        return false;
-      if (q) {
-        const haystack = [
-          b.title,
-          b.description,
-          ...(b.categories ?? []),
-          ...(b.tags ?? []),
-        ]
-          .join(" ")
-          .toLowerCase();
-        if (!haystack.includes(q)) return false;
-      }
+    return items.filter((item) => {
+      if (category !== "all" && !item.categories.includes(category)) return false;
+      if (access !== "all" && item.tier !== access) return false;
+      if (status !== "all" && item.status !== status) return false;
+      if (q && !item.keywords.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [blocks, category, access, status, search, matchesCategory]);
+  }, [items, category, access, status, search]);
 
   // Reset to first page whenever the result set changes
   React.useEffect(() => {
@@ -157,7 +175,7 @@ export function BlocksBrowser() {
         {/* Filters sidebar */}
         <aside
           className={cn(
-            "hidden shrink-0 border-r bg-background transition-[width] duration-200 md:block",
+            "hidden shrink-0 border-r bg-background transition-[width] duration-200 ease-out md:block",
             filtersOpen ? "w-64" : "w-14",
           )}
         >
@@ -173,7 +191,7 @@ export function BlocksBrowser() {
                     type="button"
                     aria-label="Collapse filters"
                     onClick={() => setFiltersOpen(false)}
-                    className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className="inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-[color,background-color,transform] duration-150 ease-out hover:bg-muted hover:text-foreground active:scale-95"
                   >
                     <PanelLeftClose className="size-4" />
                   </button>
@@ -183,7 +201,7 @@ export function BlocksBrowser() {
                   <FilterGroup label="Types">
                     <div className="flex flex-wrap gap-1.5">
                       {TYPES.map((t) => {
-                        const active = t.key === "blocks";
+                        const active = t.key === scope;
                         const Icon = t.icon;
                         return (
                           <Link
@@ -191,7 +209,7 @@ export function BlocksBrowser() {
                             href={t.href}
                             aria-current={active ? "page" : undefined}
                             className={cn(
-                              "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm transition-colors",
+                              "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm transition-colors duration-150",
                               active
                                 ? "border-foreground/30 bg-muted font-medium text-foreground"
                                 : "border-border text-muted-foreground hover:bg-muted/60 hover:text-foreground",
@@ -208,33 +226,23 @@ export function BlocksBrowser() {
                   <Divider />
 
                   <FilterGroup label="View">
-                    <div className="flex flex-wrap gap-1.5">
-                      <SegBtn
-                        active={view === "category"}
-                        onClick={() => setView("category")}
-                        icon={<LayoutGrid className="size-4" />}
-                      >
-                        By category
-                      </SegBtn>
-                      <SegBtn
-                        active={view === "all"}
-                        onClick={() => setView("all")}
-                        icon={<Rows3 className="size-4" />}
-                      >
-                        All blocks
-                      </SegBtn>
-                    </div>
+                    <SlidingTabs
+                      value={view}
+                      onValueChange={(v) => setView(v as View)}
+                      tabs={VIEW_TABS}
+                      aria-label="Group results"
+                    />
                   </FilterGroup>
 
                   <Divider />
 
                   <FilterGroup label="Categories">
                     <div className="flex flex-wrap gap-1.5">
-                      {(categories ?? []).map((c) => (
+                      {categories.map((c) => (
                         <CategoryPill
                           key={c.slug}
                           active={category === c.slug}
-                          count={counts[c.slug] ?? 0}
+                          count={c.count}
                           onClick={() => setCategoryAndUrl(c.slug)}
                         >
                           {c.name}
@@ -280,7 +288,7 @@ export function BlocksBrowser() {
                   type="button"
                   aria-label="Open filters"
                   onClick={() => setFiltersOpen(true)}
-                  className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-[color,background-color,transform] duration-150 ease-out hover:bg-muted hover:text-foreground active:scale-95"
                 >
                   <PanelLeftOpen className="size-4" />
                 </button>
@@ -298,7 +306,7 @@ export function BlocksBrowser() {
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search blocks..."
+                placeholder={`Search ${noun}s...`}
                 className="h-9 border-0 bg-transparent pl-9 shadow-none focus-visible:ring-0"
               />
             </div>
@@ -323,47 +331,36 @@ export function BlocksBrowser() {
 
           {/* Result count */}
           <div className="px-4 pt-4 text-xs text-muted-foreground">
-            {blocks === undefined
-              ? "Loading blocks…"
-              : `${filtered.length} block${filtered.length === 1 ? "" : "s"}`}
+            {`${filtered.length} ${noun}${filtered.length === 1 ? "" : "s"}`}
           </div>
 
           {/* Content */}
           <div className="flex-1 p-4">
-            {blocks === undefined ? (
-              <div className={cn("grid gap-4", gridCols)}>
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-64 animate-pulse rounded-xl border bg-muted"
-                  />
-                ))}
-              </div>
-            ) : filtered.length === 0 ? (
+            {filtered.length === 0 ? (
               <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border bg-muted/40 p-12 text-center">
-                <p className="mb-2 text-lg font-semibold">No blocks found</p>
+                <p className="mb-2 text-lg font-semibold">No {noun}s found</p>
                 <p className="text-sm text-muted-foreground">
                   Try a different category or clear your search.
                 </p>
               </div>
             ) : grouped ? (
               <div className="flex flex-col gap-10">
-                {(categories ?? []).map((c) => {
-                  const items = filtered.filter((b) =>
-                    matchesCategory(b, c.slug),
+                {categories.map((c) => {
+                  const inCategory = filtered.filter((item) =>
+                    item.categories.includes(c.slug),
                   );
-                  if (items.length === 0) return null;
+                  if (inCategory.length === 0) return null;
                   return (
                     <section key={c.slug} className="flex flex-col gap-4">
                       <div className="flex items-baseline gap-2">
                         <h2 className="text-sm font-semibold">{c.name}</h2>
                         <span className="text-xs text-muted-foreground">
-                          {items.length}
+                          {inCategory.length}
                         </span>
                       </div>
                       <div className={cn("grid gap-4", gridCols)}>
-                        {items.map((block) => (
-                          <BlockCard key={block._id} block={block} />
+                        {inCategory.map((item) => (
+                          <BlockCard key={item.name} item={item} />
                         ))}
                       </div>
                     </section>
@@ -373,8 +370,8 @@ export function BlocksBrowser() {
               </div>
             ) : (
               <div className={cn("grid gap-4", gridCols)}>
-                {paged.map((block) => (
-                  <BlockCard key={block._id} block={block} />
+                {paged.map((item) => (
+                  <BlockCard key={item.name} item={item} />
                 ))}
                 {currentPage === totalPages && <MoreSoonCard />}
               </div>
@@ -392,7 +389,7 @@ export function BlocksBrowser() {
                 <select
                   value={pageSize}
                   onChange={(e) => setPageSize(Number(e.target.value))}
-                  aria-label="Blocks per page"
+                  aria-label={`${noun}s per page`}
                   className="rounded-md border bg-background px-1.5 py-1 text-foreground outline-none focus-visible:ring-1 focus-visible:ring-ring"
                 >
                   {PAGE_SIZES.map((n) => (
@@ -448,6 +445,17 @@ export function BlocksBrowser() {
   );
 }
 
+// "color-pickers" -> "Color Pickers". Slugs come from two catalogues and only
+// one of them ships display names, so the other is title-cased here.
+const LABELS: Record<string, string> = { cta: "CTA", tv: "TV", ui: "UI", ai: "AI" };
+
+const labelOf = (slug: string) =>
+  LABELS[slug] ??
+  slug
+    .split("-")
+    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+
 function getPageItems(
   current: number,
   total: number,
@@ -487,34 +495,6 @@ function Divider() {
   );
 }
 
-function SegBtn({
-  active,
-  onClick,
-  icon,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm transition-colors",
-        active
-          ? "border-transparent bg-muted font-medium text-foreground ring-1 ring-foreground/20"
-          : "border-border text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-      )}
-    >
-      {icon}
-      {children}
-    </button>
-  );
-}
-
 function CategoryPill({
   active,
   count,
@@ -530,8 +510,9 @@ function CategoryPill({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm transition-colors",
+        "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.97]",
         active
           ? "border-foreground/30 bg-muted font-medium text-foreground"
           : "border-border text-muted-foreground hover:bg-muted/60 hover:text-foreground",
@@ -570,7 +551,7 @@ function DensityButton({
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "inline-flex size-7 items-center justify-center rounded transition-colors",
+        "inline-flex size-7 items-center justify-center rounded transition-[color,background-color,transform] duration-150 ease-out active:scale-95",
         active
           ? "bg-muted text-foreground"
           : "text-muted-foreground hover:text-foreground",

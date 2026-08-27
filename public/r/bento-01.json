@@ -3,9 +3,8 @@
   "name": "bento-01",
   "type": "registry:ui",
   "title": "Bento 01",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "Bento gradsfbasd",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/ui/bento-01.tsx",

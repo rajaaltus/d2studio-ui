@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { SiteFooter } from "@/components/site-footer";
 import { FooterIllustrationCard } from "@/components/footer-illustration-card";
+import { ProGrid, ProCta } from "@/components/blocks/pro-grid";
+import { proItemsFor } from "@/lib/catalog";
+import { proShelfHref } from "@/lib/pro";
 
 export const metadata: Metadata = {
-  title: "Illustration — D2 Studio",
+  title: "Illustrations — D2 Studio",
   description:
-    "A standalone showcase of the D2 Studio custom wordmark illustration with chromatic spotlight reveal.",
+    "The D2 Studio wordmark with its chromatic spotlight reveal, and the full illustration library: isometric scenes, particle portraits, logos and screens.",
 };
 
 const META = [
@@ -86,7 +89,47 @@ export default function IllustrationPage() {
         </div>
       </section>
 
+      <ProIllustrationWall />
+
       <SiteFooter />
     </div>
+  );
+}
+
+// The rest of the library, which lives on pro.d2studio.dev.
+//
+// One flat wall rather than a heading per category: eighteen pieces spread over
+// ten categories left most rows holding a single card with two empty columns
+// beside it, and the category is already on every card. Grouping earns its keep
+// on /blocks, where the categories have ten items each.
+function ProIllustrationWall() {
+  const items = proItemsFor("illustrations", "illustration");
+  if (items.length === 0) return null;
+
+  return (
+    <section className="max-w-7xl w-full border-x mx-auto bg-background mt-px">
+      <div className="px-4 md:px-10 lg:px-16 py-16 lg:py-24 flex flex-col gap-12">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-3">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              The full library
+            </span>
+            <h2 className="text-2xl md:text-3xl font-medium tracking-tight">
+              {items.length} illustrations
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-xl">
+              Isometric scenes, particle portraits, logo systems and device
+              screens. Each one is a single React component with no page layout
+              of its own, so it drops into a card, a hero or an empty state.
+            </p>
+          </div>
+          <ProCta href={proShelfHref("/illustrations", "illustration")}>
+            Browse on D2 Pro
+          </ProCta>
+        </div>
+
+        <ProGrid items={items} />
+      </div>
+    </section>
   );
 }

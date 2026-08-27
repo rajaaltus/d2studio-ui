@@ -3,9 +3,8 @@
   "name": "ai-block",
   "type": "registry:ui",
   "title": "AI Block",
-  "author": "@uxgodwin",
+  "author": "D2 Studio",
   "description": "Advanced AI usage",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/ui/ai-block.tsx",
@@ -14,6 +13,7 @@
     }
   ],
   "categories": [
-    "blocks"
+    "blocks",
+    "ai-components"
   ]
 }

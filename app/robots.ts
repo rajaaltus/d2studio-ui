@@ -33,10 +33,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',
-          '/admin/',
           '/private/',
           '/.well-known/',
-          '/login',
           '/preview/',
           '/test',
         ],

@@ -4,78 +4,92 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- **Start development**: `pnpm dev` - Runs frontend (Next.js) and backend (Convex) in parallel
-- **Build application**: `pnpm build` - Creates production build
-- **Lint code**: `pnpm lint` - Runs Next.js ESLint
-- **Start production**: `pnpm start` - Starts production server
+- **Start development**: `pnpm dev` — Next.js on port 4500
+- **Build application**: `pnpm build` — production build
+- **Lint code**: `pnpm lint`
+- **Start production**: `pnpm start`
 
-### Convex-specific commands
-- **Frontend only**: `pnpm dev:frontend` - Next.js dev server only
-- **Backend only**: `pnpm dev:backend` - Convex dev server only
-- **Convex setup**: `pnpm predev` - Initializes Convex dev environment and dashboard
+There is no backend. The site is static files end to end: the catalogue, the
+registry and the pro mirror are all committed TypeScript and JSON.
+
+### The registry
+
+`lib/blocks.ts` is the source of truth for everything this site publishes.
+`pnpm registry:build` reads it, walks `registry/default/**` for each item's
+files, rewrites `registry.json`, and runs `shadcn build` to emit
+`public/r/<name>.json` — what `npx shadcn add` actually fetches.
+
+**Adding a block:**
+
+1. Drop the source at `registry/default/ui/<name>.tsx` (a primitive) or
+   `registry/default/components/<name>.tsx` (a section). Multi-file blocks put
+   their parts in a `<name>/` beside the entry and import them relatively — the
+   build walks that directory, so nothing is listed by hand.
+2. Add an entry to `BLOCK_LIBRARY` in `lib/blocks.ts`: `name`, `title`,
+   `description` (card copy and registry description at once), `categories`,
+   `dependencies` in `pkg@range` form, and `registryDependencies` if it installs
+   other items alongside itself.
+3. Give it `shelf: "blocks"` plus `image`, `status`, `author` and `version` if it
+   should be drawn on `/blocks`. Without a shelf it is installable but unlisted —
+   which is right for a ui primitive or a part another block pulls in.
+4. Run `pnpm registry:build` and commit `registry.json` and `public/r/`.
+
+The route, the card, the category filter, the sitemap entry and the install
+command all fall out of that entry. Nothing else to touch.
+
+Spinner items are generated from `lib/spinner-patterns.ts`, one wrapper
+component per preset, but only for the names listed in `PUBLISHED_SPINNERS` in
+`lib/blocks.ts` — several presets are sold on pro, so publishing one here is a
+decision rather than a side effect of drawing it in the playground.
+
+### Pro catalogue commands
+
+The pro blocks, components, illustrations and templates sold on
+`pro.d2studio.dev` are showcased here from a generated mirror. Both scripts are
+dev-time only — their committed output is what ships.
+
+- **Sync the catalogue**: `pnpm pro:sync` — reads `../pro-d2/lib/blocks.ts` and
+  `lib/spinner-patterns.ts` and rewrites `lib/pro-catalog.ts` and
+  `lib/pro-spinners.ts`. Items the pro source declares but the live site does not
+  serve yet are skipped and named; `--offline` mirrors the source as written.
+  Point elsewhere with `PRO_D2_DIR=/path/to/pro-d2`.
+- **Capture card art**: `pnpm pro:previews` — screenshots each item off
+  `pro.d2studio.dev/preview/<name>` into `public/pro/<name>.jpg`. Only missing
+  ones by default; `--force` re-shoots, and named items re-shoot just those.
+  Drives the installed Chrome through `playwright-core`, so no browser download.
+
+Run them in that order after the pro repo ships new items. A pro card links out
+to `pro.d2studio.dev` in a new tab with UTM parameters, built in `lib/pro.ts`;
+`lib/catalog.ts` flattens the free and pro halves into the one `CatalogItem`
+shape every card and filter reads.
 
 ## Architecture Overview
 
-This is a **Next.js 15 + Convex + Clerk** full-stack application:
+A **Next.js 16 + React 19** static site.
 
 ### Tech Stack
-- **Frontend**: Next.js 15 with React 19, TypeScript, Tailwind CSS
-- **Backend**: Convex (real-time database and server functions)
-- **Authentication**: Clerk (currently commented out, needs setup)
-- **UI Components**: shadcn/ui components (New York style)
+- **Frontend**: Next.js with React 19, TypeScript, Tailwind CSS v4
+- **UI Components**: shadcn/ui (New York style)
 - **Package Manager**: pnpm
 
 ### Project Structure
-- `app/` - Next.js App Router pages and layouts
-- `convex/` - Convex backend functions, schema, and configuration
-- `components/` - React components including ConvexClientProvider
-- `lib/` - Utility functions and configurations
+- `app/` — App Router pages. `/blocks` and `/components` are two shelves of one
+  browser; `/blocks/[name]` is the detail page; `/preview/[slug]` is the bare
+  component the detail iframe loads.
+- `registry/default/{ui,components}/` — the published sources.
+- `lib/blocks.ts` — the free catalogue. `lib/pro-catalog.ts` and
+  `lib/pro-spinners.ts` — generated mirrors of the pro library.
+- `lib/catalog.ts` — the seam both halves flatten through.
+- `public/r/` — the built registry, served with CORS (see `vercel.json`).
+- `public/blocks/`, `public/pro/` — card art.
 
 ### Key Files
-- `app/layout.tsx` - Root layout with Clerk and Convex providers
-- `convex/schema.ts` - Database schema definitions (currently has sample numbers table)
-- `convex/myFunctions.ts` - Sample Convex functions (queries, mutations, actions)
-- `convex/auth.config.ts` - Clerk authentication configuration (commented out)
-- `components.json` - shadcn/ui configuration
-
-## Important Convex Guidelines
-
-This project uses Convex with comprehensive coding standards documented in `.cursor/rules/convex_rules.mdc`. Key patterns:
-
-### Function Definition
-Always use the new function syntax with validators:
-```typescript
-export const exampleQuery = query({
-  args: { param: v.string() },
-  returns: v.object({ result: v.string() }),
-  handler: async (ctx, args) => {
-    // implementation
-  },
-});
-```
-
-### Database Operations
-- Use indexes instead of filters for queries
-- Convex uses file-based routing (functions in `convex/` are automatically exposed)
-- All functions must include `args` and `returns` validators
-
-### Authentication Setup Required
-The Clerk authentication is currently commented out. To enable:
-1. Set up Clerk application and get JWT issuer domain
-2. Configure `CLERK_JWT_ISSUER_DOMAIN` environment variable
-3. Uncomment the Clerk provider in `convex/auth.config.ts`
+- `app/layout.tsx` — root layout, theme provider, dock, command palette
+- `scripts/build-registry.mjs` — the one script that writes `registry.json`
+- `components.json` — shadcn/ui configuration
 
 ## Development Notes
 
 - Uses pnpm as package manager (see `pnpm-lock.yaml`)
 - Tailwind CSS configured with custom variables and neutral base color
-- Geist fonts loaded from Google Fonts
-- Environment variables stored in `.env.local`
-
-<!-- convex-ai-start -->
-This project uses [Convex](https://convex.dev) as its backend.
-
-When working on Convex code, **always read `convex/_generated/ai/guidelines.md` first** for important guidelines on how to correctly use Convex APIs and patterns. The file contains rules that override what you may have learned about Convex from training data.
-
-Convex agent skills for common tasks can be installed by running `npx convex ai-files install`.
-<!-- convex-ai-end -->
+- Deploys on Vercel with `pnpm registry:build && pnpm build` (see `vercel.json`)

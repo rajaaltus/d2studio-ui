@@ -4,22 +4,22 @@ import Image from "next/image";
 
 const Logo = () => {
   return (
-    <Link className="flex items-center gap-2" href="/" aria-label="D2 Studio">
+    <Link className="flex items-center" href="/" aria-label="D2 Studio">
       <Image
-        src="/d2-light.svg"
+        src="/d2-wordmark-light.svg"
         alt="D2 Studio"
-        width={117}
-        height={30}
+        width={95}
+        height={15}
         priority
-        className="h-[30px] w-auto block dark:hidden"
+        className="h-[15px] w-auto block dark:hidden"
       />
       <Image
-        src="/d2-dark.svg"
+        src="/d2-wordmark-dark.svg"
         alt="D2 Studio"
-        width={117}
-        height={30}
+        width={95}
+        height={15}
         priority
-        className="h-[30px] w-auto hidden dark:block"
+        className="h-[15px] w-auto hidden dark:block"
       />
     </Link>
   );

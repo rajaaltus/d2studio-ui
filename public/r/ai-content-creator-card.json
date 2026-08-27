@@ -3,9 +3,8 @@
   "name": "ai-content-creator-card",
   "type": "registry:ui",
   "title": "AI Content Creator Card",
-  "author": "Admin",
+  "author": "D2 Studio",
   "description": "Pro version content creation card",
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/ui/ai-content-creator-card.tsx",
@@ -14,6 +13,7 @@
     }
   ],
   "categories": [
-    "card"
+    "card",
+    "bento"
   ]
 }

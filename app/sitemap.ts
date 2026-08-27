@@ -1,10 +1,5 @@
 import { MetadataRoute } from 'next'
-import blocks from '@/content/blocks.json'
-
-type Block = {
-  name: string
-  isActive?: boolean
-}
+import { SHELVED } from '@/lib/blocks'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://d2studio.dev'
@@ -22,6 +17,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/components`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/illustration`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/templates`,
@@ -43,8 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const blockRoutes: MetadataRoute.Sitemap = (blocks as Block[])
-    .filter((block) => block.isActive !== false)
+  const blockRoutes: MetadataRoute.Sitemap = SHELVED
     .map((block) => ({
       url: `${baseUrl}/blocks/${block.name}`,
       lastModified: now,

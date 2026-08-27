@@ -8,7 +8,6 @@
   "dependencies": [
     "motion"
   ],
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/bento-02.tsx",

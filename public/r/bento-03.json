@@ -9,7 +9,6 @@
     "lucide-react",
     "motion"
   ],
-  "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/bento-03.tsx",
