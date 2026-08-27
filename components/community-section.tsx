@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { CommunityRain } from "@/components/community-rain";
 import {
   rainPeople,
@@ -10,7 +10,15 @@ import {
   type Testimonial,
 } from "@/lib/community-data";
 
+/** Four rows of three at lg — the rest is behind "View more". */
+const COLLAPSED_COUNT = 12;
+
 export function CommunitySection() {
+  const [expanded, setExpanded] = React.useState(false);
+  const shown = expanded
+    ? testimonials
+    : testimonials.slice(0, COLLAPSED_COUNT);
+
   return (
     <section className="max-w-7xl w-full border-x mx-auto bg-border">
       <div className="relative lg:rounded-xl border m-0 bg-background py-16 lg:py-24 px-4 sm:px-6 lg:px-10">
@@ -29,10 +37,24 @@ export function CommunitySection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-px bg-border border rounded-xl overflow-hidden">
-          {testimonials.map((t, i) => (
+          {shown.map((t, i) => (
             <TestimonialCard key={i} testimonial={t} />
           ))}
         </div>
+
+        {testimonials.length > COLLAPSED_COUNT && (
+          <div className="mt-6 flex justify-center">
+            <Button
+              variant="outline"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+            >
+              {expanded
+                ? "View less"
+                : `View ${testimonials.length - COLLAPSED_COUNT} more`}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -43,24 +65,23 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     name,
     handle,
     platform,
-    href,
     avatar,
     avatarSrc,
     verified,
     quote,
+    about,
     fullWidth,
     half,
   } = testimonial;
   const PlatformIcon = platform === "x" ? XIcon : ThreadsIcon;
-  const platformLabel = platform === "x" ? "View on X" : "View on Threads";
 
+  // Cards no longer link out — `href` stays in community-data.ts. To restore,
+  // pull `href` back off the testimonial and swap the <div> for:
+  //   <Link href={href} target="_blank" rel="noopener noreferrer"
+  //     aria-label={`View on ${platform === "x" ? "X" : "Threads"} — ${name}`} ...>
   return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${platformLabel} — ${name}`}
-      className={`testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors hover:bg-foreground/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset${
+    <div
+      className={`testimonial-shimmer relative overflow-hidden bg-background p-6 flex flex-col gap-4 group transition-colors${
         fullWidth
           ? " md:col-span-2 lg:col-span-6 md:items-center md:text-center"
           : half
@@ -104,7 +125,12 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       >
         &ldquo;{quote}&rdquo;
       </p>
-    </Link>
+      {about && (
+        <span className="text-xs text-muted-foreground mt-auto">
+          on {about}
+        </span>
+      )}
+    </div>
   );
 }
 
