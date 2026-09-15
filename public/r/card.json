@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
-  "type": "registry:ui",
   "title": "Card",
   "author": "D2 Studio",
   "description": "Displays a card with header, content, and footer.",
@@ -14,5 +13,6 @@
   ],
   "categories": [
     "ui"
-  ]
+  ],
+  "type": "registry:ui"
 }

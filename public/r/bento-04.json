@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "bento-04",
-  "type": "registry:component",
   "title": "Bento 04",
   "author": "D2 Studio",
   "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. Responsive down to mobile — the grid restacks and the card illustrations shift rather than shrink — and below lg, where there is no pointer, a tap plays the hover state for a few seconds instead. GSAP-driven, theme-aware and reduced-motion aware.",
@@ -67,5 +66,6 @@
   "categories": [
     "bento",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

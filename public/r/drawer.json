@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "drawer",
-  "type": "registry:ui",
   "title": "Drawer",
   "author": "D2 Studio",
   "description": "A drawer component that slides in from the bottom or sides of the screen.",
@@ -14,5 +13,6 @@
   ],
   "categories": [
     "ui"
-  ]
+  ],
+  "type": "registry:ui"
 }

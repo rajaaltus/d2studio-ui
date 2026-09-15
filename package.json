@@ -2,11 +2,12 @@
   "name": "d2studio-v2",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --port 4500",
     "build": "next build",
     "registry:build": "pnpm registry:clean && node scripts/build-registry.mjs && shadcn build",
-    "registry:validate": "shadcn validate",
+    "registry:validate": "shadcn registry validate",
     "registry:clean": "rm -rf public/r/*.json",
     "pro:sync": "node scripts/sync-pro-catalog.mjs",
     "pro:previews": "node --experimental-strip-types scripts/capture-pro-previews.mjs",
@@ -82,7 +83,7 @@
     "eslint-config-next": "^16.2.4",
     "playwright-core": "^1.62.1",
     "prettier": "^3.5.3",
-    "shadcn": "^3.3.0",
+    "shadcn": "^4.21.0",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.8",
     "typescript": "^5"

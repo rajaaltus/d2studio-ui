@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input",
-  "type": "registry:ui",
   "title": "Input",
   "author": "D2 Studio",
   "description": "Displays a form input field or a component that looks like an input field.",
@@ -14,5 +13,6 @@
   ],
   "categories": [
     "ui"
-  ]
+  ],
+  "type": "registry:ui"
 }

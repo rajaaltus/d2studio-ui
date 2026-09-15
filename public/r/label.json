@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "label",
-  "type": "registry:ui",
   "title": "Label",
   "author": "D2 Studio",
   "description": "Renders an accessible label associated with controls.",
@@ -14,5 +13,6 @@
   ],
   "categories": [
     "ui"
-  ]
+  ],
+  "type": "registry:ui"
 }

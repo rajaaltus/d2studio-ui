@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "bento-03",
-  "type": "registry:component",
   "title": "Bento 03",
   "author": "D2 Studio",
   "description": "A flat 3×2 feature grid on thin edge-masked rules — no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
@@ -19,5 +18,6 @@
   "categories": [
     "bento",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

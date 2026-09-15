@@ -1,10 +1,9 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hero-section-02",
-  "type": "registry:component",
-  "title": "hero-section-02",
+  "title": "Hero Section 02",
   "author": "D2 Studio",
-  "description": "3D modern hero section",
+  "description": "Modern landing page hero section with badge, headline and avatar social proof.",
   "registryDependencies": [
     "button",
     "badge",
@@ -19,5 +18,6 @@
   ],
   "categories": [
     "landing"
-  ]
+  ],
+  "type": "registry:component"
 }

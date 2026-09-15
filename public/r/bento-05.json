@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "bento-05",
-  "type": "registry:component",
   "title": "Bento 05",
   "author": "D2 Studio",
   "description": "A four-card studio bento on a masked dot field. Each card is a Figma gradient export carrying its own glass fill and 16px border; an ambilight sampled from the artwork blooms behind the grid as the section scrolls through, and the cards rise and brighten on the same switch. The bolt card lights its own grain with a radar ping, the AI card runs five out-of-phase sweeps down its stripes, and the globe card spins a cobe sphere with projected visitor chips. Below lg the section becomes a still picture — no ambilight, no ripple, no sphere — and the artwork is rasterised to a canvas once instead of re-running eighteen SVG blurs per paint; the globe card swaps the sphere for the stat deck it was carrying. Theme-aware and reduced-motion aware throughout.",
@@ -98,5 +97,6 @@
   "categories": [
     "bento",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

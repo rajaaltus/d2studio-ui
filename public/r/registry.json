@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "d2-studio",
-  "homepage": "https://d2studio.dev",
+  "homepage": "https://ui.d2studio.dev",
   "description": "Ultra modern monospace component library",
   "items": [
     {
       "name": "ai-block",
       "type": "registry:ui",
       "title": "AI Block",
-      "description": "Advanced AI usage",
+      "description": "AI prompt template grid with creative prompts, summarizer, story, poetry and study presets.",
       "author": "D2 Studio",
       "files": [
         {
@@ -24,8 +24,8 @@
     {
       "name": "ai-content-creator-card-v2",
       "type": "registry:ui",
-      "title": "AI content creator card v.2",
-      "description": "AI content creator card v.2 Glass ",
+      "title": "AI Content Creator Card v2",
+      "description": "Glassmorphic AI content generator card with content type and tone pickers and a prompt field.",
       "author": "D2 Studio",
       "files": [
         {
@@ -58,7 +58,7 @@
       "name": "dashboard-01",
       "type": "registry:ui",
       "title": "Dashboard 01",
-      "description": "Dashboard ",
+      "description": "Hotel booking dashboard with guest and vacancy stats, booking search and a check-in and check-out table.",
       "author": "D2 Studio",
       "files": [
         {
@@ -74,7 +74,7 @@
       "name": "bento-01",
       "type": "registry:ui",
       "title": "Bento 01",
-      "description": "Bento gradsfbasd",
+      "description": "Bento grid for an education program platform with admin overview, faculty view and a program form.",
       "author": "D2 Studio",
       "files": [
         {
@@ -89,8 +89,8 @@
     {
       "name": "ai-v2",
       "type": "registry:ui",
-      "title": "AI tab",
-      "description": "Select field",
+      "title": "AI Tabs",
+      "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
       "author": "D2 Studio",
       "files": [
         {
@@ -106,7 +106,7 @@
       "name": "hero-01",
       "type": "registry:ui",
       "title": "Hero 01",
-      "description": "Hero section 01",
+      "description": "Startup mentorship landing hero with a headline, call to action and mentor avatar group.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button",
@@ -263,7 +263,7 @@
       "registryDependencies": [
         "button",
         "badge",
-        "https://d2studio.dev/r/d2-card.json"
+        "https://ui.d2studio.dev/r/d2-card.json"
       ],
       "files": [
         {
@@ -279,8 +279,8 @@
     {
       "name": "hero-section-01",
       "type": "registry:component",
-      "title": "Hero-01",
-      "description": "A premium landing page",
+      "title": "Hero Section 01",
+      "description": "Premium landing page hero with a serif accent headline, badge and mentor avatar group.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button",
@@ -300,8 +300,8 @@
     {
       "name": "hero-section-02",
       "type": "registry:component",
-      "title": "hero-section-02",
-      "description": "3D modern hero section",
+      "title": "Hero Section 02",
+      "description": "Modern landing page hero section with badge, headline and avatar social proof.",
       "author": "D2 Studio",
       "registryDependencies": [
         "button",
@@ -321,8 +321,8 @@
     {
       "name": "ai-writing-assistance",
       "type": "registry:component",
-      "title": "Ai writing assistant",
-      "description": "field assistance",
+      "title": "AI Writing Assistant",
+      "description": "AI writing assistant panel with assistant, blog and pro modes and a prompt field.",
       "author": "D2 Studio",
       "files": [
         {
@@ -338,7 +338,7 @@
       "name": "block-01",
       "type": "registry:component",
       "title": "Block 01",
-      "description": "Blocks for free",
+      "description": "AI feature showcase with smart summarizer, creative prompts, document analysis and engagement metrics cards.",
       "author": "D2 Studio",
       "files": [
         {
@@ -781,7 +781,7 @@
       "description": "A 5×5 pixel-grid loading spinner: 25 frames at 75ms (1875ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -800,7 +800,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 12 frames at 110ms (1320ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -819,7 +819,7 @@
       "description": "A 5×5 pixel-grid loading spinner: 16 frames at 110ms (1760ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -838,7 +838,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 16 frames at 90ms (1440ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -857,7 +857,7 @@
       "description": "A 5×5 pixel-grid loading spinner: 8 frames at 120ms (960ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -876,7 +876,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 4 frames at 160ms (640ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -895,7 +895,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 4 frames at 180ms (720ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -914,7 +914,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 6 frames at 180ms (1080ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -933,7 +933,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 5 frames at 180ms (900ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -952,7 +952,7 @@
       "description": "A 3×3 pixel-grid loading spinner: 3 frames at 260ms (780ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {

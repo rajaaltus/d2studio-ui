@@ -1,10 +1,9 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-writing-assistance",
-  "type": "registry:component",
-  "title": "Ai writing assistant",
+  "title": "AI Writing Assistant",
   "author": "D2 Studio",
-  "description": "field assistance",
+  "description": "AI writing assistant panel with assistant, blog and pro modes and a prompt field.",
   "files": [
     {
       "path": "registry/default/components/ai-writing-assistance.tsx",
@@ -14,5 +13,6 @@
   ],
   "categories": [
     "ai-tab"
-  ]
+  ],
+  "type": "registry:component"
 }
