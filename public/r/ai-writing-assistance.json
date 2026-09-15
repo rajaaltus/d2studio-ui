@@ -4,6 +4,14 @@
   "title": "AI Writing Assistant",
   "author": "D2 Studio",
   "description": "AI writing assistant panel with assistant, blog and pro modes and a prompt field.",
+  "dependencies": [
+    "lucide-react",
+    "nucleo-glass"
+  ],
+  "registryDependencies": [
+    "button",
+    "dropdown-menu"
+  ],
   "files": [
     {
       "path": "registry/default/components/ai-writing-assistance.tsx",

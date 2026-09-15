@@ -4,6 +4,9 @@
   "title": "Hero 01",
   "author": "D2 Studio",
   "description": "Startup mentorship landing hero with a headline, call to action and mentor avatar group.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "button",
     "badge",

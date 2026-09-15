@@ -4,6 +4,9 @@
   "title": "Block 01",
   "author": "D2 Studio",
   "description": "AI feature showcase with smart summarizer, creative prompts, document analysis and engagement metrics cards.",
+  "dependencies": [
+    "nucleo-glass"
+  ],
   "files": [
     {
       "path": "registry/default/components/block-01.tsx",

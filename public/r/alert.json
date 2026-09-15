@@ -4,6 +4,9 @@
   "title": "Alert",
   "author": "D2 Studio",
   "description": "Displays a callout for user attention.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "files": [
     {
       "path": "registry/default/ui/alert.tsx",

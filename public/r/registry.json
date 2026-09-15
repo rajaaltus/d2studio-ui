@@ -10,6 +10,9 @@
       "title": "AI Block",
       "description": "AI prompt template grid with creative prompts, summarizer, story, poetry and study presets.",
       "author": "D2 Studio",
+      "dependencies": [
+        "nucleo-glass"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-block.tsx",
@@ -27,6 +30,16 @@
       "title": "AI Content Creator Card v2",
       "description": "Glassmorphic AI content generator card with content type and tone pickers and a prompt field.",
       "author": "D2 Studio",
+      "dependencies": [
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "select",
+        "textarea"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-content-creator-card-v2.tsx",
@@ -43,6 +56,18 @@
       "title": "AI Content Creator Card",
       "description": "Pro version content creation card",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "input",
+        "label",
+        "select",
+        "textarea"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-content-creator-card.tsx",
@@ -60,6 +85,17 @@
       "title": "Dashboard 01",
       "description": "Hotel booking dashboard with guest and vacancy stats, booking search and a check-in and check-out table.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "input",
+        "table"
+      ],
       "files": [
         {
           "path": "registry/default/ui/dashboard-01.tsx",
@@ -76,6 +112,17 @@
       "title": "Bento 01",
       "description": "Bento grid for an education program platform with admin overview, faculty view and a program form.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "input",
+        "https://ui.aceternity.com/registry/dotted-glow-background.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/bento-01.tsx",
@@ -92,6 +139,14 @@
       "title": "AI Tabs",
       "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-v2.tsx",
@@ -108,6 +163,9 @@
       "title": "Hero 01",
       "description": "Startup mentorship landing hero with a headline, call to action and mentor avatar group.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -145,6 +203,10 @@
       "title": "Label",
       "description": "Renders an accessible label associated with controls.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-label",
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/default/ui/label.tsx",
@@ -177,6 +239,10 @@
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button"
       ],
@@ -196,6 +262,10 @@
       "title": "Checkbox",
       "description": "A control that allows the user to toggle between checked and not checked.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/checkbox.tsx",
@@ -212,6 +282,9 @@
       "title": "Progress",
       "description": "Displays an indicator showing the completion progress of a task.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-progress"
+      ],
       "files": [
         {
           "path": "registry/default/ui/progress.tsx",
@@ -228,6 +301,9 @@
       "title": "Alert",
       "description": "Displays a callout for user attention.",
       "author": "D2 Studio",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/default/ui/alert.tsx",
@@ -244,6 +320,9 @@
       "title": "Drawer",
       "description": "A drawer component that slides in from the bottom or sides of the screen.",
       "author": "D2 Studio",
+      "dependencies": [
+        "vaul"
+      ],
       "files": [
         {
           "path": "registry/default/ui/drawer.tsx",
@@ -260,6 +339,9 @@
       "title": "Pricing Cards",
       "description": "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -282,6 +364,9 @@
       "title": "Hero Section 01",
       "description": "Premium landing page hero with a serif accent headline, badge and mentor avatar group.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -303,6 +388,9 @@
       "title": "Hero Section 02",
       "description": "Modern landing page hero section with badge, headline and avatar social proof.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -324,6 +412,14 @@
       "title": "AI Writing Assistant",
       "description": "AI writing assistant panel with assistant, blog and pro modes and a prompt field.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
       "files": [
         {
           "path": "registry/default/components/ai-writing-assistance.tsx",
@@ -340,6 +436,9 @@
       "title": "Block 01",
       "description": "AI feature showcase with smart summarizer, creative prompts, document analysis and engagement metrics cards.",
       "author": "D2 Studio",
+      "dependencies": [
+        "nucleo-glass"
+      ],
       "files": [
         {
           "path": "registry/default/components/block-01.tsx",

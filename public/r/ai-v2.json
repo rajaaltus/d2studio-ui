@@ -4,6 +4,14 @@
   "title": "AI Tabs",
   "author": "D2 Studio",
   "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
+  "dependencies": [
+    "lucide-react",
+    "nucleo-glass"
+  ],
+  "registryDependencies": [
+    "button",
+    "dropdown-menu"
+  ],
   "files": [
     {
       "path": "registry/default/ui/ai-v2.tsx",

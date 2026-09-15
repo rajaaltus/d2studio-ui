@@ -4,6 +4,9 @@
   "title": "AI Block",
   "author": "D2 Studio",
   "description": "AI prompt template grid with creative prompts, summarizer, story, poetry and study presets.",
+  "dependencies": [
+    "nucleo-glass"
+  ],
   "files": [
     {
       "path": "registry/default/ui/ai-block.tsx",

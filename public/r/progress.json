@@ -4,6 +4,9 @@
   "title": "Progress",
   "author": "D2 Studio",
   "description": "Displays an indicator showing the completion progress of a task.",
+  "dependencies": [
+    "@radix-ui/react-progress"
+  ],
   "files": [
     {
       "path": "registry/default/ui/progress.tsx",

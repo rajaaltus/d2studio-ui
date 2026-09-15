@@ -4,6 +4,10 @@
   "title": "Select",
   "author": "D2 Studio",
   "description": "Displays a list of options for the user to pick from—triggered by a button.",
+  "dependencies": [
+    "@radix-ui/react-select",
+    "lucide-react"
+  ],
   "registryDependencies": [
     "button"
   ],

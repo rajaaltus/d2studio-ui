@@ -4,6 +4,9 @@
   "title": "Pricing Cards",
   "author": "D2 Studio",
   "description": "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "button",
     "badge",

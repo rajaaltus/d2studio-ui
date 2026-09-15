@@ -4,6 +4,10 @@
   "title": "Label",
   "author": "D2 Studio",
   "description": "Renders an accessible label associated with controls.",
+  "dependencies": [
+    "@radix-ui/react-label",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "path": "registry/default/ui/label.tsx",

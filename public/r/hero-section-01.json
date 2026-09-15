@@ -4,6 +4,9 @@
   "title": "Hero Section 01",
   "author": "D2 Studio",
   "description": "Premium landing page hero with a serif accent headline, badge and mentor avatar group.",
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "button",
     "badge",

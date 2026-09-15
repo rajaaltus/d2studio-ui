@@ -4,6 +4,16 @@
   "title": "AI Content Creator Card v2",
   "author": "D2 Studio",
   "description": "Glassmorphic AI content generator card with content type and tone pickers and a prompt field.",
+  "dependencies": [
+    "nucleo-glass"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "select",
+    "textarea"
+  ],
   "files": [
     {
       "path": "registry/default/ui/ai-content-creator-card-v2.tsx",

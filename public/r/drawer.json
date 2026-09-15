@@ -4,6 +4,9 @@
   "title": "Drawer",
   "author": "D2 Studio",
   "description": "A drawer component that slides in from the bottom or sides of the screen.",
+  "dependencies": [
+    "vaul"
+  ],
   "files": [
     {
       "path": "registry/default/ui/drawer.tsx",
