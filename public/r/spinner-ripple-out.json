@@ -1,12 +1,11 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner-ripple-out",
-  "type": "registry:component",
   "title": "Spinner Ripple Out",
   "author": "D2 Studio",
   "description": "A 3×3 pixel-grid loading spinner: 3 frames at 260ms (780ms loop).",
   "registryDependencies": [
-    "https://d2studio.dev/r/pixel-spinner.json"
+    "https://ui.d2studio.dev/r/pixel-spinner.json"
   ],
   "files": [
     {
@@ -17,5 +16,6 @@
   ],
   "categories": [
     "spinner"
-  ]
+  ],
+  "type": "registry:component"
 }

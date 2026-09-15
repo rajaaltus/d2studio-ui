@@ -1,10 +1,20 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dashboard-01",
-  "type": "registry:ui",
   "title": "Dashboard 01",
   "author": "D2 Studio",
-  "description": "Dashboard ",
+  "description": "Hotel booking dashboard with guest and vacancy stats, booking search and a check-in and check-out table.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "card",
+    "dropdown-menu",
+    "input",
+    "table"
+  ],
   "files": [
     {
       "path": "registry/default/ui/dashboard-01.tsx",
@@ -14,5 +24,6 @@
   ],
   "categories": [
     "dashboard"
-  ]
+  ],
+  "type": "registry:ui"
 }

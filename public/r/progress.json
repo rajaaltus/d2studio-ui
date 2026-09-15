@@ -1,10 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress",
-  "type": "registry:ui",
   "title": "Progress",
   "author": "D2 Studio",
   "description": "Displays an indicator showing the completion progress of a task.",
+  "dependencies": [
+    "@radix-ui/react-progress"
+  ],
   "files": [
     {
       "path": "registry/default/ui/progress.tsx",
@@ -14,5 +16,6 @@
   ],
   "categories": [
     "ui"
-  ]
+  ],
+  "type": "registry:ui"
 }

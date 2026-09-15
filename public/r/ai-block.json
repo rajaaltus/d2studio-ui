@@ -1,10 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-block",
-  "type": "registry:ui",
   "title": "AI Block",
   "author": "D2 Studio",
-  "description": "Advanced AI usage",
+  "description": "AI prompt template grid with creative prompts, summarizer, story, poetry and study presets.",
+  "dependencies": [
+    "nucleo-glass"
+  ],
   "files": [
     {
       "path": "registry/default/ui/ai-block.tsx",
@@ -15,5 +17,6 @@
   "categories": [
     "blocks",
     "ai-components"
-  ]
+  ],
+  "type": "registry:ui"
 }

@@ -1,15 +1,18 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "d2-studio",
-  "homepage": "https://d2studio.dev",
+  "homepage": "https://ui.d2studio.dev",
   "description": "Ultra modern monospace component library",
   "items": [
     {
       "name": "ai-block",
       "type": "registry:ui",
       "title": "AI Block",
-      "description": "Advanced AI usage",
+      "description": "AI prompt template grid with creative prompts, summarizer, story, poetry and study presets.",
       "author": "D2 Studio",
+      "dependencies": [
+        "nucleo-glass"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-block.tsx",
@@ -24,9 +27,19 @@
     {
       "name": "ai-content-creator-card-v2",
       "type": "registry:ui",
-      "title": "AI content creator card v.2",
-      "description": "AI content creator card v.2 Glass ",
+      "title": "AI Content Creator Card v2",
+      "description": "Glassmorphic AI content generator card with content type and tone pickers and a prompt field.",
       "author": "D2 Studio",
+      "dependencies": [
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "select",
+        "textarea"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-content-creator-card-v2.tsx",
@@ -43,6 +56,18 @@
       "title": "AI Content Creator Card",
       "description": "Pro version content creation card",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "input",
+        "label",
+        "select",
+        "textarea"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-content-creator-card.tsx",
@@ -58,8 +83,19 @@
       "name": "dashboard-01",
       "type": "registry:ui",
       "title": "Dashboard 01",
-      "description": "Dashboard ",
+      "description": "Hotel booking dashboard with guest and vacancy stats, booking search and a check-in and check-out table.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "input",
+        "table"
+      ],
       "files": [
         {
           "path": "registry/default/ui/dashboard-01.tsx",
@@ -74,8 +110,19 @@
       "name": "bento-01",
       "type": "registry:ui",
       "title": "Bento 01",
-      "description": "Bento gradsfbasd",
+      "description": "Bento grid for an education program platform with admin overview, faculty view and a program form.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "recharts"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "input",
+        "https://ui.aceternity.com/registry/dotted-glow-background.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/bento-01.tsx",
@@ -89,9 +136,17 @@
     {
       "name": "ai-v2",
       "type": "registry:ui",
-      "title": "AI tab",
-      "description": "Select field",
+      "title": "AI Tabs",
+      "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ai-v2.tsx",
@@ -106,8 +161,11 @@
       "name": "hero-01",
       "type": "registry:ui",
       "title": "Hero 01",
-      "description": "Hero section 01",
+      "description": "Startup mentorship landing hero with a headline, call to action and mentor avatar group.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -145,6 +203,10 @@
       "title": "Label",
       "description": "Renders an accessible label associated with controls.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-label",
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/default/ui/label.tsx",
@@ -177,6 +239,10 @@
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button"
       ],
@@ -196,6 +262,10 @@
       "title": "Checkbox",
       "description": "A control that allows the user to toggle between checked and not checked.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/checkbox.tsx",
@@ -212,6 +282,9 @@
       "title": "Progress",
       "description": "Displays an indicator showing the completion progress of a task.",
       "author": "D2 Studio",
+      "dependencies": [
+        "@radix-ui/react-progress"
+      ],
       "files": [
         {
           "path": "registry/default/ui/progress.tsx",
@@ -228,6 +301,9 @@
       "title": "Alert",
       "description": "Displays a callout for user attention.",
       "author": "D2 Studio",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "registry/default/ui/alert.tsx",
@@ -244,6 +320,9 @@
       "title": "Drawer",
       "description": "A drawer component that slides in from the bottom or sides of the screen.",
       "author": "D2 Studio",
+      "dependencies": [
+        "vaul"
+      ],
       "files": [
         {
           "path": "registry/default/ui/drawer.tsx",
@@ -260,10 +339,13 @@
       "title": "Pricing Cards",
       "description": "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
-        "https://d2studio.dev/r/d2-card.json"
+        "https://ui.d2studio.dev/r/d2-card.json"
       ],
       "files": [
         {
@@ -279,9 +361,12 @@
     {
       "name": "hero-section-01",
       "type": "registry:component",
-      "title": "Hero-01",
-      "description": "A premium landing page",
+      "title": "Hero Section 01",
+      "description": "Premium landing page hero with a serif accent headline, badge and mentor avatar group.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -300,9 +385,12 @@
     {
       "name": "hero-section-02",
       "type": "registry:component",
-      "title": "hero-section-02",
-      "description": "3D modern hero section",
+      "title": "Hero Section 02",
+      "description": "Modern landing page hero section with badge, headline and avatar social proof.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "button",
         "badge",
@@ -321,9 +409,17 @@
     {
       "name": "ai-writing-assistance",
       "type": "registry:component",
-      "title": "Ai writing assistant",
-      "description": "field assistance",
+      "title": "AI Writing Assistant",
+      "description": "AI writing assistant panel with assistant, blog and pro modes and a prompt field.",
       "author": "D2 Studio",
+      "dependencies": [
+        "lucide-react",
+        "nucleo-glass"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
       "files": [
         {
           "path": "registry/default/components/ai-writing-assistance.tsx",
@@ -338,8 +434,11 @@
       "name": "block-01",
       "type": "registry:component",
       "title": "Block 01",
-      "description": "Blocks for free",
+      "description": "AI feature showcase with smart summarizer, creative prompts, document analysis and engagement metrics cards.",
       "author": "D2 Studio",
+      "dependencies": [
+        "nucleo-glass"
+      ],
       "files": [
         {
           "path": "registry/default/components/block-01.tsx",
@@ -781,7 +880,7 @@
       "description": "A 5×5 pixel-grid loading spinner: 25 frames at 75ms (1875ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -800,7 +899,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 12 frames at 110ms (1320ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -819,7 +918,7 @@
       "description": "A 5×5 pixel-grid loading spinner: 16 frames at 110ms (1760ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -838,7 +937,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 16 frames at 90ms (1440ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -857,7 +956,7 @@
       "description": "A 5×5 pixel-grid loading spinner: 8 frames at 120ms (960ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -876,7 +975,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 4 frames at 160ms (640ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -895,7 +994,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 4 frames at 180ms (720ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -914,7 +1013,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 6 frames at 180ms (1080ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -933,7 +1032,7 @@
       "description": "A 4×4 pixel-grid loading spinner: 5 frames at 180ms (900ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {
@@ -952,7 +1051,7 @@
       "description": "A 3×3 pixel-grid loading spinner: 3 frames at 260ms (780ms loop).",
       "author": "D2 Studio",
       "registryDependencies": [
-        "https://d2studio.dev/r/pixel-spinner.json"
+        "https://ui.d2studio.dev/r/pixel-spinner.json"
       ],
       "files": [
         {

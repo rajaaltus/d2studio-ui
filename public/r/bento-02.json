@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "bento-02",
-  "type": "registry:component",
   "title": "Bento 02",
   "author": "D2 Studio",
   "description": "A five-card feature bento with metallic-gradient glyphs on lifting icon tiles, a dot-matrix texture and color-dodged glow revealed on hover, and a holographic brand ring tracing each card. Motion-driven, theme-aware, and reduced-motion aware.",
@@ -75,5 +74,6 @@
   "categories": [
     "bento",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

@@ -1,12 +1,11 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner-vortex-in",
-  "type": "registry:component",
   "title": "Spinner Vortex In",
   "author": "D2 Studio",
   "description": "A 4×4 pixel-grid loading spinner: 16 frames at 90ms (1440ms loop).",
   "registryDependencies": [
-    "https://d2studio.dev/r/pixel-spinner.json"
+    "https://ui.d2studio.dev/r/pixel-spinner.json"
   ],
   "files": [
     {
@@ -17,5 +16,6 @@
   ],
   "categories": [
     "spinner"
-  ]
+  ],
+  "type": "registry:component"
 }

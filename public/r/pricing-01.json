@@ -1,14 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pricing-01",
-  "type": "registry:component",
   "title": "Pricing Cards",
   "author": "D2 Studio",
   "description": "Responsive three-tier pricing cards with feature comparison and popular plan highlighting",
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "button",
     "badge",
-    "https://d2studio.dev/r/d2-card.json"
+    "https://ui.d2studio.dev/r/d2-card.json"
   ],
   "files": [
     {
@@ -20,5 +22,6 @@
   "categories": [
     "marketing",
     "pricing"
-  ]
+  ],
+  "type": "registry:component"
 }

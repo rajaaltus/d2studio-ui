@@ -1,10 +1,21 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-content-creator-card",
-  "type": "registry:ui",
   "title": "AI Content Creator Card",
   "author": "D2 Studio",
   "description": "Pro version content creation card",
+  "dependencies": [
+    "lucide-react",
+    "nucleo-glass"
+  ],
+  "registryDependencies": [
+    "button",
+    "dropdown-menu",
+    "input",
+    "label",
+    "select",
+    "textarea"
+  ],
   "files": [
     {
       "path": "registry/default/ui/ai-content-creator-card.tsx",
@@ -15,5 +26,6 @@
   "categories": [
     "card",
     "bento"
-  ]
+  ],
+  "type": "registry:ui"
 }

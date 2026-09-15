@@ -17,7 +17,7 @@ const UI_DIR = "registry/default/ui";
 const COMPONENT_DIR = "registry/default/components";
 const REGISTRY_PATH = path.join(ROOT, "registry.json");
 const AUTHOR = "D2 Studio";
-const SPINNER_BASE_URL = "https://d2studio.dev/r/pixel-spinner.json";
+const SPINNER_BASE_URL = "https://ui.d2studio.dev/r/pixel-spinner.json";
 
 /**
  * Both data files are pure data, so compiling just them is enough to import
