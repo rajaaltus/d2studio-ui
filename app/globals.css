@@ -4515,3 +4515,18 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     transition: none !important;
   }
 }
+
+/* Docs sidebar scroll-spy marker. Same curve and duration as the tabs pill: it
+   is the same gesture — one highlight moving to the thing now in focus. */
+.docs-nav-bar {
+  transition:
+    transform var(--tabs-dur) var(--tabs-ease),
+    height var(--tabs-dur) var(--tabs-ease);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .docs-nav-bar {
+    transition: none !important;
+  }
+}
