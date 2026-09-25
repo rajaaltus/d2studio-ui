@@ -106,7 +106,7 @@ function PreviewContent() {
                 type === "example"
                     // A demo is one control; centred on a muted, dotted stage it
                     // reads as a specimen lifted off the page, not more of the page.
-                    ? "luminous-spinners relative isolate flex min-h-screen items-center justify-center bg-muted/60 p-4 sm:p-8"
+                    ? "luminous-spinners relative isolate flex min-h-screen items-center justify-center bg-background p-4 sm:p-8"
                     : "luminous-spinners min-h-screen bg-background p-4 sm:p-8"
             }
         >
@@ -116,7 +116,7 @@ function PreviewContent() {
                 // dark-on-light in dark mode.
                 <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 -z-10 bg-foreground opacity-15"
+                    className="pointer-events-none absolute inset-0 -z-10 bg-background"
                     
                 />
             )}
