@@ -7,6 +7,17 @@ import { useTheme } from "@/components/theme-provider";
 import { Loader2 } from "lucide-react";
 import { TooltipProvider } from "@/registry/default/ui/tooltip";
 
+// 48px diagonal hatch: 1px lines 6px apart, running bottom-left to top-right.
+const HATCH_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><g stroke="#000">' +
+    // Ends on .5 so each 1px stroke sits on one pixel row; 17 lines cover the
+    // tile, and 48 being a multiple of 6 makes it repeat seamlessly.
+    Array.from({ length: 17 }, (_, i) => -49.5 + i * 6)
+        .map((x) => `<path d="M${x + 50} -1.5L${x} 48.5"/>`)
+        .join("") +
+    "</g></svg>";
+const HATCH = `url("data:image/svg+xml,${encodeURIComponent(HATCH_SVG)}")`;
+
 // Many registry items export a single named component instead of a default.
 function resolveComponent(mod: Record<string, unknown>) {
     if (mod.default) return { default: mod.default as React.ComponentType };
@@ -88,11 +99,22 @@ function PreviewContent() {
         <div
             className={
                 type === "example"
-                    // A demo is one control; centred it reads as a specimen, not a page.
-                    ? "luminous-spinners flex min-h-screen items-center justify-center bg-background p-4 sm:p-8"
+                    // A demo is one control; centred on a muted, hatched stage it
+                    // reads as a specimen lifted off the page, not more of the page.
+                    ? "luminous-spinners relative isolate flex min-h-screen items-center justify-center bg-muted/60 p-4 sm:p-8"
                     : "luminous-spinners min-h-screen bg-background p-4 sm:p-8"
             }
         >
+            {type === "example" && (
+                // The hatch is a mask over a foreground-coloured layer rather than
+                // a tinted image, so the lines follow the theme instead of staying
+                // dark-on-light in dark mode.
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 -z-10 bg-foreground opacity-15"
+                    style={{ maskImage: HATCH, WebkitMaskImage: HATCH, maskSize: "48px 48px", WebkitMaskSize: "48px 48px" }}
+                />
+            )}
             {/* shadcn's tooltip expects a provider at the app root; a demo gets the same. */}
             <TooltipProvider>
                 <Component />

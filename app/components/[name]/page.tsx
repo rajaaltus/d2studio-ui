@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
 const TALL = new Set([
   "calendar", "chart", "command", "context-menu", "drawer", "field", "form", "sheet",
   "sidebar", "table", "message-scroller", "dropdown-menu", "combobox", "select", "tabs",
+  "card", "carousel", "empty", "accordion",
 ]);
 
 type BuiltItem = {
