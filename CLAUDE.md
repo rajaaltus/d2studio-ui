@@ -150,8 +150,8 @@ filter with a `/` shortcut, the primitives in the groups from
 primitive (`app/components/[name]/page.tsx`: preview/code, CLI or manual
 install, usage, and the D2 blocks built on it). The frame deliberately matches
 the `/blocks` browser — same bordered `max-w-7xl` column, same 256px rail under
-the header, same `ShelfTypes` block at its top — so switching shelves shifts
-nothing. Group membership is a primitive's first category; a block appears
+the header — so switching shelves shifts nothing. The rail opens straight on
+the filter; `/blocks` keeps its Types block (`components/blocks/shelf-types.tsx`). Group membership is a primitive's first category; a block appears
 under a primitive's "Use cases" by listing its d2 URL in `registryDependencies`.
 Code is highlighted on the server (`lib/highlight.ts`); `/docs` and
 `/components` share `components/docs/` (prose, install command, nav).
