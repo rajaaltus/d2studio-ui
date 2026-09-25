@@ -7,16 +7,21 @@ import { useTheme } from "@/components/theme-provider";
 import { Loader2 } from "lucide-react";
 import { TooltipProvider } from "@/registry/default/ui/tooltip";
 
-// 48px diagonal hatch: 1px lines 6px apart, running bottom-left to top-right.
-const HATCH_SVG =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><g stroke="#000">' +
-    // Ends on .5 so each 1px stroke sits on one pixel row; 17 lines cover the
-    // tile, and 48 being a multiple of 6 makes it repeat seamlessly.
-    Array.from({ length: 17 }, (_, i) => -49.5 + i * 6)
-        .map((x) => `<path d="M${x + 50} -1.5L${x} 48.5"/>`)
+// 48px dot lattice: two 1px grids on a 6px pitch, offset by half a cell
+// ((2,2) and (5,5) in every 6px square), so the dots read on the diagonal.
+const STAGE_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><g fill="#000">' +
+    Array.from({ length: 8 }, (_, i) => i * 6)
+        .flatMap((x) =>
+            Array.from({ length: 8 }, (_, j) => j * 6).map(
+                (y) =>
+                    `<rect x="${x + 2}" y="${y + 2}" width="1" height="1"/>` +
+                    `<rect x="${x + 5}" y="${y + 5}" width="1" height="1"/>`,
+            ),
+        )
         .join("") +
     "</g></svg>";
-const HATCH = `url("data:image/svg+xml,${encodeURIComponent(HATCH_SVG)}")`;
+const STAGE_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(STAGE_SVG)}")`;
 
 // Many registry items export a single named component instead of a default.
 function resolveComponent(mod: Record<string, unknown>) {
@@ -99,20 +104,20 @@ function PreviewContent() {
         <div
             className={
                 type === "example"
-                    // A demo is one control; centred on a muted, hatched stage it
+                    // A demo is one control; centred on a muted, dotted stage it
                     // reads as a specimen lifted off the page, not more of the page.
                     ? "luminous-spinners relative isolate flex min-h-screen items-center justify-center bg-muted/60 p-4 sm:p-8"
                     : "luminous-spinners min-h-screen bg-background p-4 sm:p-8"
             }
         >
             {type === "example" && (
-                // The hatch is a mask over a foreground-coloured layer rather than
-                // a tinted image, so the lines follow the theme instead of staying
+                // The pattern is a mask over a foreground-coloured layer rather than
+                // a tinted image, so the dots follow the theme instead of staying
                 // dark-on-light in dark mode.
                 <div
                     aria-hidden
                     className="pointer-events-none absolute inset-0 -z-10 bg-foreground opacity-15"
-                    style={{ maskImage: HATCH, WebkitMaskImage: HATCH, maskSize: "48px 48px", WebkitMaskSize: "48px 48px" }}
+                    
                 />
             )}
             {/* shadcn's tooltip expects a provider at the app root; a demo gets the same. */}
