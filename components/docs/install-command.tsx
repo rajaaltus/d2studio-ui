@@ -5,10 +5,10 @@ import { SlidingTabs } from "@/components/ui/sliding-tabs";
 import { CopyIconButton } from "./copy-icon-button";
 
 const MANAGERS = [
-  { value: "pnpm", label: "pnpm", runner: "pnpm dlx" },
-  { value: "npm", label: "npm", runner: "npx" },
-  { value: "yarn", label: "yarn", runner: "yarn dlx" },
-  { value: "bun", label: "bun", runner: "bunx --bun" },
+  { value: "pnpm", label: "pnpm", runner: "pnpm dlx", add: "pnpm add" },
+  { value: "npm", label: "npm", runner: "npx", add: "npm install" },
+  { value: "yarn", label: "yarn", runner: "yarn dlx", add: "yarn add" },
+  { value: "bun", label: "bun", runner: "bunx --bun", add: "bun add" },
 ] as const;
 
 type Manager = (typeof MANAGERS)[number]["value"];
@@ -56,9 +56,21 @@ function useManager() {
 
 /** A `shadcn@latest <args>` command, rendered for the reader's package manager. */
 export function InstallCommand({ args }: { args: string }) {
-  const [manager, choose] = useManager();
+  const [manager] = useManager();
   const runner = MANAGERS.find((m) => m.value === manager)!.runner;
-  const command = `${runner} shadcn@latest ${args}`;
+  return <CommandFrame prefix={`${runner} shadcn@latest `} args={args} />;
+}
+
+/** `pnpm add <packages>` and its equivalents, on the same shared choice. */
+export function PackageInstall({ packages }: { packages: string[] }) {
+  const [manager] = useManager();
+  const add = MANAGERS.find((m) => m.value === manager)!.add;
+  return <CommandFrame prefix={`${add} `} args={packages.join(" ")} />;
+}
+
+function CommandFrame({ prefix, args }: { prefix: string; args: string }) {
+  const [manager, choose] = useManager();
+  const command = `${prefix}${args}`;
 
   return (
     <div className="overflow-hidden rounded-xl border bg-muted/30">
@@ -75,7 +87,7 @@ export function InstallCommand({ args }: { args: string }) {
       <pre className="overflow-x-auto px-4 py-3.5 font-mono text-[13px] leading-relaxed">
         <code>
           <span className="select-none text-muted-foreground/60">$ </span>
-          <span className="text-muted-foreground">{runner} shadcn@latest </span>
+          <span className="text-muted-foreground">{prefix}</span>
           <span className="text-foreground">{args}</span>
         </code>
       </pre>

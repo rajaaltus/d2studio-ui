@@ -25,8 +25,18 @@ const ORIGIN = process.env.UI_ORIGIN ?? "http://localhost:4500";
 // 16:9 to match the card's box. Most demos are one small control, and at a
 // desktop frame a lone button is a speck on the card, so they are shot in a
 // tight frame. The ones laid out like a page or a panel get the wide one.
-const VIEWPORT = { width: 640, height: 360 };
-const WIDE_VIEWPORT = { width: 960, height: 540 };
+const FRAMES = {
+  tight: { viewport: { width: 440, height: 248 }, scale: 3 },
+  default: { viewport: { width: 640, height: 360 }, scale: 2 },
+  wide: { viewport: { width: 960, height: 540 }, scale: 2 },
+};
+// One control and nothing around it: a button in a 640px frame is a speck on
+// a 220px card, so these are framed close.
+const TIGHT = new Set([
+  "avatar", "badge", "button", "input", "input-otp", "kbd", "label", "native-select",
+  "progress", "radio-group", "separator", "skeleton", "slider", "spinner", "switch",
+  "textarea", "toggle", "toggle-group", "tooltip",
+]);
 const WIDE = new Set([
   "accordion", "alert", "alert-dialog", "aspect-ratio", "calendar", "card", "carousel", "chart",
   "command", "context-menu", "dialog", "drawer", "dropdown-menu", "empty", "field", "form",
@@ -62,19 +72,23 @@ mkdirSync(OUT, { recursive: true });
 console.log(`capturing ${targets.length} previews from ${ORIGIN}`);
 
 const browser = await chromium.launch({ channel: "chrome" });
-const context = await browser.newContext({
-  viewport: VIEWPORT,
-  deviceScaleFactor: 2,
-  colorScheme: "dark",
-  reducedMotion: "reduce",
-});
-const page = await context.newPage();
+// A page per frame, since the scale factor is fixed per context. The tight
+// frame gets a higher factor so every card comes out about the same width.
+const pages = {};
+for (const [key, f] of Object.entries(FRAMES)) {
+  const context = await browser.newContext({
+    viewport: f.viewport,
+    deviceScaleFactor: f.scale,
+    colorScheme: "dark",
+    reducedMotion: "reduce",
+  });
+  pages[key] = await context.newPage();
+}
 
 const failed = [];
 for (const { name } of targets) {
   try {
-    const wide = WIDE.has(name);
-    await page.setViewportSize(wide ? WIDE_VIEWPORT : VIEWPORT);
+    const page = pages[WIDE.has(name) ? "wide" : TIGHT.has(name) ? "tight" : "default"];
     await page.goto(`${ORIGIN}/preview/${name}?type=example&theme=dark`, {
       waitUntil: "networkidle",
     });

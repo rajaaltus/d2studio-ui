@@ -88,10 +88,10 @@ lucide.
   `https://ui.d2studio.dev/r/<x>.json` URL, so `@d2/sidebar` installs D2's
   button, not shadcn's. The older blocks still name bare `button` etc., which
   resolve to shadcn's.
-- Primitives carry `shelf: "components"` and are drawn on `/components`
-  alongside the pro components. Their preview is the demo, not the bare
-  primitive: the detail page loads `/preview/<name>?type=example`, which
-  imports `registry/default/examples/<name>-demo`. `examples/` is site-only —
+- Primitives carry `shelf: "components"` and are documented under
+  `/components`, a docs layout rather than a gallery (see "The components docs"
+  below). Their preview is the demo, not the bare primitive:
+  `/preview/<name>?type=example` imports `registry/default/examples/<name>-demo`. `examples/` is site-only —
   the build never publishes it. Eight demos have no upstream counterpart and are
   D2's own (sidebar, resizable, direction and the chat set).
 - Card art is `public/ui/<name>.jpg`, shot by `scripts/capture-ui-previews.mjs`
@@ -143,12 +143,24 @@ A **Next.js 16 + React 19** static site.
 
 ### The three seams worth knowing
 
+**0. `/components` is docs, `/blocks` is a gallery — in one frame.**
+`app/components/layout.tsx` draws a persistent rail (`components/docs/components-nav.tsx`:
+filter with a `/` shortcut, the primitives in the groups from
+`lib/components-docs.ts`, pro links folded at the bottom) beside a page per
+primitive (`app/components/[name]/page.tsx`: preview/code, CLI or manual
+install, usage, and the D2 blocks built on it). The frame deliberately matches
+the `/blocks` browser — same bordered `max-w-7xl` column, same 256px rail under
+the header, same `ShelfTypes` block at its top — so switching shelves shifts
+nothing. Group membership is a primitive's first category; a block appears
+under a primitive's "Use cases" by listing its d2 URL in `registryDependencies`.
+Code is highlighted on the server (`lib/highlight.ts`); `/docs` and
+`/components` share `components/docs/` (prose, install command, nav).
+
 **1. `lib/catalog.ts` — where free and pro flatten into one shape.**
 `BlockDef` (free, this repo's own registry) and `ProItem` (a line in the
 generated pro mirror) share almost no fields, so both are mapped to one
 `CatalogItem` here rather than teaching every card and filter about both.
-`components/blocks/blocks-browser.tsx` is the single browser both `/blocks`
-(`scope="blocks"`) and `/components` (`scope="components"`) render. Where a name
+`components/blocks/blocks-browser.tsx` is the `/blocks` browser. Where a name
 exists in both catalogues (`bento-04`, `bento-05`, `notification-bento`) the
 free row wins — resolved at render time by `proItemsFor(group, source, owned)`,
 not baked into the mirror, so adding or removing a free block settles it without
@@ -163,15 +175,16 @@ class the spinner `.cell` / `.spinner-grid` rules in `app/globals.css` live
 under — spinner CSS will not apply outside it.
 
 **3. `/blocks/[name]` and `/components/[name]` read `public/r/<name>.json`, not the working tree.**
-Both routes render `components/blocks/item-page.tsx`, filtered by `shelf`.
+`/blocks/[name]` renders `components/blocks/item-page.tsx`; the components page
+also reads the built item for its Manual install tab.
 The Code tab shows the *built* item, so it is stale until `pnpm registry:build`
 runs, and the item's `type` there is what decides whether the preview loads from
 `ui/` or `components/`. `generateStaticParams` from `SHELVED` with
 `dynamicParams = false`, so an unshelved item has no detail page.
 
 ### Project Structure
-- `app/` — App Router pages. `/blocks` and `/components` are two shelves of one
-  browser; `/blocks/[name]` is the detail page; `/preview/[slug]` is the bare
+- `app/` — App Router pages. `/blocks` is the gallery browser and
+  `/blocks/[name]` its detail page; `/components` is the primitives' docs; `/preview/[slug]` is the bare
   component the detail iframe loads. `/illustration`, `/templates` and
   `/spinners` are pro-mirror shelves.
 - `app/` also holds scratch prototype routes (`bento-2`…`bento-5`, `cosmo`,

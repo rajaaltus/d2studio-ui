@@ -823,7 +823,7 @@
         }
       ],
       "categories": [
-        "avatars"
+        "data-display"
       ]
     },
     {
@@ -899,7 +899,7 @@
         }
       ],
       "categories": [
-        "buttons"
+        "actions"
       ]
     },
     {
@@ -919,7 +919,7 @@
         }
       ],
       "categories": [
-        "buttons"
+        "actions"
       ]
     },
     {
@@ -942,7 +942,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -958,7 +958,7 @@
         }
       ],
       "categories": [
-        "cards"
+        "data-display"
       ]
     },
     {
@@ -1022,7 +1022,7 @@
         }
       ],
       "categories": [
-        "toggles"
+        "forms"
       ]
     },
     {
@@ -1064,7 +1064,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1214,7 +1214,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1240,7 +1240,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1275,7 +1275,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1296,13 +1296,13 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
       "name": "input-otp",
       "type": "registry:ui",
-      "title": "Input Otp",
+      "title": "Input OTP",
       "description": "Accessible one-time password component with copy paste functionality.",
       "author": "D2 Studio",
       "dependencies": [
@@ -1315,7 +1315,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1337,7 +1337,7 @@
         }
       ],
       "categories": [
-        "cards"
+        "data-display"
       ]
     },
     {
@@ -1372,7 +1372,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1464,7 +1464,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1540,7 +1540,7 @@
         }
       ],
       "categories": [
-        "progress"
+        "feedback"
       ]
     },
     {
@@ -1559,7 +1559,7 @@
         }
       ],
       "categories": [
-        "toggles"
+        "forms"
       ]
     },
     {
@@ -1616,7 +1616,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1751,7 +1751,7 @@
         }
       ],
       "categories": [
-        "sliders"
+        "forms"
       ]
     },
     {
@@ -1809,7 +1809,7 @@
         }
       ],
       "categories": [
-        "toggles"
+        "forms"
       ]
     },
     {
@@ -1860,7 +1860,7 @@
         }
       ],
       "categories": [
-        "inputs"
+        "forms"
       ]
     },
     {
@@ -1879,7 +1879,7 @@
         }
       ],
       "categories": [
-        "toggles"
+        "actions"
       ]
     },
     {
@@ -1901,7 +1901,7 @@
         }
       ],
       "categories": [
-        "toggles"
+        "actions"
       ]
     },
     {

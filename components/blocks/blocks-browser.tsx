@@ -22,14 +22,11 @@ import {
   PanelLeftOpen,
   Columns2,
   Columns3,
-  Boxes,
-  Component,
-  FileText,
-  Image as ImageIcon,
 } from "lucide-react";
 import { BlockCard } from "./block-card";
 import { MoreSoonCard } from "./more-soon-card";
 import { SlidingTabs } from "@/components/ui/sliding-tabs";
+import { ShelfTypes } from "./shelf-types";
 import { freeItemsFor, proItemsFor, type CatalogItem } from "@/lib/catalog";
 import type { ProGroup } from "@/lib/pro-catalog";
 
@@ -37,11 +34,10 @@ type Density = "comfortable" | "compact";
 type View = "all" | "category";
 
 /**
- * Which shelf this browser draws. One component, two routes: the filters, the
- * grid, the pagination and the empty state are the same furniture either way,
- * and the only real difference is which half of the catalogue is on the shelf.
+ * Which shelf this browser draws. Only /blocks today: /components moved to a
+ * docs layout (app/components/layout.tsx) that shares this frame and rail.
  */
-export type BrowserScope = "blocks" | "components";
+export type BrowserScope = "blocks";
 
 const SCOPES: Record<
   BrowserScope,
@@ -50,20 +46,8 @@ const SCOPES: Record<
   // Page sections. Templates get their own route rather than crowding in here:
   // a whole page and a section of one are not the same unit of work.
   blocks: { proGroups: ["marketing"], includeFree: true, noun: "block", source: "blocks" },
-  components: {
-    proGroups: ["components"],
-    includeFree: true,
-    noun: "component",
-    source: "components",
-  },
 };
 
-const TYPES = [
-  { key: "blocks", label: "Blocks", icon: Boxes, href: "/blocks" },
-  { key: "components", label: "Components", icon: Component, href: "/components" },
-  { key: "illustrations", label: "Illustrations", icon: ImageIcon, href: "/illustration" },
-  { key: "templates", label: "Templates", icon: FileText, href: "/templates" },
-] as const;
 
 const PAGE_SIZES = [6, 12, 24];
 
@@ -198,30 +182,7 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
                 </div>
 
                 <div className="flex flex-1 flex-col gap-5 p-4">
-                  <FilterGroup label="Types">
-                    <div className="flex flex-wrap gap-1.5">
-                      {TYPES.map((t) => {
-                        const active = t.key === scope;
-                        const Icon = t.icon;
-                        return (
-                          <Link
-                            key={t.key}
-                            href={t.href}
-                            aria-current={active ? "page" : undefined}
-                            className={cn(
-                              "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm transition-colors duration-150",
-                              active
-                                ? "border-foreground/30 bg-muted font-medium text-foreground"
-                                : "border-border text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-                            )}
-                          >
-                            <Icon className="size-4" />
-                            {t.label}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </FilterGroup>
+                  <ShelfTypes active={scope} />
 
                   <Divider />
 

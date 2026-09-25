@@ -10,13 +10,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { SHELVED, findBlock } from "@/lib/blocks";
 
-type Shelf = "blocks" | "components";
+type Shelf = "blocks";
 
-const SHELF_LABEL: Record<Shelf, string> = { blocks: "Blocks", components: "Components" };
+const SHELF_LABEL: Record<Shelf, string> = { blocks: "Blocks" };
 
-// One detail page for both shelves: /blocks/<name> and /components/<name> are
-// the same furniture, and differ only in where Back goes and what the preview
-// frame loads.
+// The /blocks detail page. /components/<name> has its own docs page
+// (app/components/[name]/page.tsx); this stays keyed by shelf so another
+// gallery-style shelf can reuse it.
 
 export const shelfParams = (shelf: Shelf) =>
   SHELVED.filter((b) => b.shelf === shelf).map((b) => ({ name: b.name }));
@@ -58,9 +58,7 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
   if (!block || block.shelf !== shelf) notFound();
 
   const { kind, source } = await builtItem(block.name);
-  // A primitive rendered bare is an empty shell, so the components shelf
-  // previews its demo from registry/default/examples instead.
-  const previewType = shelf === "components" ? "example" : kind;
+  const previewType = kind;
   const comingSoon = block.status === "coming_soon";
 
   return (

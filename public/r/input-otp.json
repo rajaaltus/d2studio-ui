@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
-  "title": "Input Otp",
+  "title": "Input OTP",
   "author": "D2 Studio",
   "description": "Accessible one-time password component with copy paste functionality.",
   "dependencies": [
@@ -15,7 +15,7 @@
     }
   ],
   "categories": [
-    "inputs"
+    "forms"
   ],
   "type": "registry:ui"
 }

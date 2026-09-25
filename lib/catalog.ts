@@ -48,7 +48,7 @@ export const fromBlock = (b: BlockDef): CatalogItem => ({
 });
 
 /** The free items one shelf draws, in library order. */
-export const freeItemsFor = (shelf: "blocks" | "components"): CatalogItem[] =>
+export const freeItemsFor = (shelf: "blocks"): CatalogItem[] =>
   SHELVED.filter((b) => b.shelf === shelf).map(fromBlock);
 
 export const fromProItem = (item: ProItem, source: string): CatalogItem => ({
