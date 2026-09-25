@@ -14,8 +14,9 @@
       "type": "registry:ui"
     }
   ],
+  "docs": "The `tooltip` component has been added. Wrap your app in `TooltipProvider` (from `@/components/ui/tooltip`), usually in app/layout.tsx.",
   "categories": [
-    "ui"
+    "overlays"
   ],
   "type": "registry:ui"
 }

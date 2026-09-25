@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, Suspense } from "react";
 import { useTheme } from "@/components/theme-provider";
 import { Loader2 } from "lucide-react";
+import { TooltipProvider } from "@/registry/default/ui/tooltip";
 
 // Many registry items export a single named component instead of a default.
 function resolveComponent(mod: Record<string, unknown>) {
@@ -38,6 +39,21 @@ function PreviewContent() {
         const cleanType = type.split(":").pop() || "component";
         const folder = (cleanType === "ui" || cleanType === "registry:ui") ? "ui" : "components";
 
+        // A primitive's demo, drawn for the /components shelf.
+        if (cleanType === "example") {
+            return dynamic(() => import(`@/registry/default/examples/${slug}-demo`).then(resolveComponent).catch((err) => {
+                console.error(`Failed to load example: ${slug}`, err);
+                return function ExampleNotFound() {
+                    return (
+                        <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
+                            <p className="font-medium text-destructive">Example Not Found</p>
+                            <p className="text-sm">Could not find &quot;@registry/default/examples/${slug}-demo.tsx&quot;</p>
+                        </div>
+                    );
+                };
+            }), { ssr: false });
+        }
+
         if (folder === "ui") {
             return dynamic(() => import(`@/registry/default/ui/${slug}`).then(resolveComponent).catch((err) => {
                 console.error(`Failed to load UI component: ${slug}`, err);
@@ -69,8 +85,18 @@ function PreviewContent() {
 
     return (
         // .luminous-spinners scopes the .cell/.spinner-grid rules in globals.css
-        <div className="luminous-spinners min-h-screen bg-background p-4 sm:p-8">
-            <Component />
+        <div
+            className={
+                type === "example"
+                    // A demo is one control; centred it reads as a specimen, not a page.
+                    ? "luminous-spinners flex min-h-screen items-center justify-center bg-background p-4 sm:p-8"
+                    : "luminous-spinners min-h-screen bg-background p-4 sm:p-8"
+            }
+        >
+            {/* shadcn's tooltip expects a provider at the app root; a demo gets the same. */}
+            <TooltipProvider>
+                <Component />
+            </TooltipProvider>
         </div>
     );
 }

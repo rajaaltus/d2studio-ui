@@ -190,6 +190,7 @@ const blockItems = blocks.map((b) => {
     ...(b.registryDependencies?.length ? { registryDependencies: b.registryDependencies } : {}),
     ...(b.css ? { css: b.css } : {}),
     ...(b.cssVars ? { cssVars: b.cssVars } : {}),
+    ...(b.docs ? { docs: b.docs } : {}),
     files,
     categories: b.categories,
   };

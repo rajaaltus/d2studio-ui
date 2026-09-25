@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 // Pulls shadcn/ui's new-york-v4 primitives into registry/default, so @d2 ships
-// a full set of base components that D2's designed use cases are built on.
+// a full set of base components that D2's designed use cases are built on,
+// and each one's upstream demo into registry/default/examples for the shelf.
 //
 //   pnpm shadcn:sync                 # write only the items not on disk yet
 //   pnpm shadcn:sync button card     # write just these, overwriting
-//   pnpm shadcn:sync --all --force   # overwrite everything (loses D2 edits)
+//   pnpm shadcn:sync --force         # overwrite everything (loses D2 edits)
 //
 // A source on disk is D2's to change, so nothing is overwritten unless it is
 // named or --force is passed. The catalogue entry in lib/blocks.ts is not
@@ -25,6 +26,14 @@ const D2 = "https://ui.d2studio.dev/r";
  */
 const HELD = new Map([["resizable", "held on react-resizable-panels v3"]]);
 
+/**
+ * Each primitive's demo is what the /components shelf previews. Upstream names
+ * most of them `<name>-demo`; these are the ones it names otherwise. A demo is
+ * site-only — it lands in registry/default/examples, which the build does not
+ * publish — so it is written as `<name>-demo.tsx` whatever upstream calls it.
+ */
+const DEMO_NAMES = { chart: "chart-bar-demo", form: "form-rhf-demo" };
+
 const args = process.argv.slice(2);
 const force = args.includes("--force");
 const named = args.filter((a) => !a.startsWith("--"));
@@ -44,7 +53,12 @@ const get = async (url) => {
 const localise = (src) =>
   src
     .replace(/from "cn"/g, 'from "@/lib/utils"')
-    .replace(/@\/registry\/new-york-v4\//g, "@/registry/default/");
+    .replace(/@\/registry\/new-york-v4\//g, "@/registry/default/")
+    .replace(/from "@tabler\/icons-react"/g, 'from "lucide-react"')
+    .replace(/\bIcon(FolderCode|Check|InfoCircle|Plus)\b/g, (_, n) => `${TABLER[n]}Icon`);
+
+/** A couple of demos draw Tabler icons; D2 installs only lucide. */
+const TABLER = { FolderCode: "FolderCode", Check: "Check", InfoCircle: "Info", Plus: "Plus" };
 
 const index = await get(`${BASE}/registry.json`);
 const upstream = index.items
@@ -78,6 +92,16 @@ for (const name of targets) {
     written.push(rel);
   }
   if (!blocks.includes(`name: "${name}",`)) uncatalogued.push(item);
+
+  const demoName = DEMO_NAMES[name] ?? `${name}-demo`;
+  if (!index.items.some((i) => i.name === demoName)) continue;
+  const rel = `registry/default/examples/${name}-demo.tsx`;
+  const abs = path.join(ROOT, rel);
+  if (fs.existsSync(abs) && !force && !named.includes(name)) continue;
+  const demo = await get(`${BASE}/${demoName}.json`);
+  fs.mkdirSync(path.dirname(abs), { recursive: true });
+  fs.writeFileSync(abs, localise(demo.files[0].content));
+  written.push(rel);
 }
 
 console.log(`written: ${written.length}`);

@@ -30,7 +30,7 @@ import {
 import { BlockCard } from "./block-card";
 import { MoreSoonCard } from "./more-soon-card";
 import { SlidingTabs } from "@/components/ui/sliding-tabs";
-import { FREE_CATALOG, proItemsFor, type CatalogItem } from "@/lib/catalog";
+import { freeItemsFor, proItemsFor, type CatalogItem } from "@/lib/catalog";
 import type { ProGroup } from "@/lib/pro-catalog";
 
 type Density = "comfortable" | "compact";
@@ -52,7 +52,7 @@ const SCOPES: Record<
   blocks: { proGroups: ["marketing"], includeFree: true, noun: "block", source: "blocks" },
   components: {
     proGroups: ["components"],
-    includeFree: false,
+    includeFree: true,
     noun: "component",
     source: "components",
   },
@@ -108,9 +108,9 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
   // the grid is drawn on the first paint with nothing in flight — and the free
   // half is also what decides which pro items are dropped as already-free here.
   const items = React.useMemo<CatalogItem[]>(() => {
-    const free = includeFree ? FREE_CATALOG : [];
+    const free = includeFree ? freeItemsFor(scope) : [];
     return [...free, ...proItemsFor(proGroups, source, free.map((f) => f.name))];
-  }, [includeFree, proGroups, source]);
+  }, [includeFree, proGroups, source, scope]);
 
   // Folded out of the items themselves rather than declared beside them, so a
   // category exists exactly as long as something is in it, and its display name

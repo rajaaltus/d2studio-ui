@@ -42,13 +42,14 @@ export const fromBlock = (b: BlockDef): CatalogItem => ({
   status: b.status === "coming_soon" ? "coming_soon" : "available",
   image: b.image || "/placeholder.svg",
   fit: "cover",
-  href: `/blocks/${b.name}`,
+  href: `/${b.shelf ?? "blocks"}/${b.name}`,
   external: false,
   keywords: [b.title, b.description, ...b.categories].join(" "),
 });
 
-/** Every free block on the browse shelf, in library order. */
-export const FREE_CATALOG: CatalogItem[] = SHELVED.map(fromBlock);
+/** The free items one shelf draws, in library order. */
+export const freeItemsFor = (shelf: "blocks" | "components"): CatalogItem[] =>
+  SHELVED.filter((b) => b.shelf === shelf).map(fromBlock);
 
 export const fromProItem = (item: ProItem, source: string): CatalogItem => ({
   name: item.name,

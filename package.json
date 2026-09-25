@@ -11,6 +11,7 @@
     "registry:validate": "shadcn registry validate",
     "registry:clean": "rm -rf public/r/*.json",
     "pro:sync": "node scripts/sync-pro-catalog.mjs",
+    "ui:previews": "node --experimental-strip-types scripts/capture-ui-previews.mjs",
     "pro:previews": "node --experimental-strip-types scripts/capture-pro-previews.mjs",
     "start": "next start",
     "lint": "eslint ."
