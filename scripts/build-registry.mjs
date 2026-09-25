@@ -15,6 +15,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const UI_DIR = "registry/default/ui";
 const COMPONENT_DIR = "registry/default/components";
+const HOOK_DIR = "registry/default/hooks";
 const REGISTRY_PATH = path.join(ROOT, "registry.json");
 const AUTHOR = "D2 Studio";
 const SPINNER_BASE_URL = "https://ui.d2studio.dev/r/pixel-spinner.json";
@@ -67,12 +68,16 @@ const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
  * directory, because the entry imports those children relatively.
  */
 function filesOf(name) {
+  // A hook is a single .ts file with no children or stylesheet.
+  if (exists(`${HOOK_DIR}/${name}.ts`)) {
+    return { files: [{ path: `${HOOK_DIR}/${name}.ts`, type: "registry:hook" }], kind: "registry:hook" };
+  }
   const dir = exists(`${UI_DIR}/${name}.tsx`)
     ? UI_DIR
     : exists(`${COMPONENT_DIR}/${name}.tsx`)
       ? COMPONENT_DIR
       : null;
-  if (!dir) throw new Error(`"${name}" has no ${UI_DIR}/${name}.tsx or ${COMPONENT_DIR}/${name}.tsx`);
+  if (!dir) throw new Error(`"${name}" has no ${UI_DIR}/${name}.tsx, ${COMPONENT_DIR}/${name}.tsx or ${HOOK_DIR}/${name}.ts`);
 
   const kind = dir === UI_DIR ? "registry:ui" : "registry:component";
   const files = [{ path: `${dir}/${name}.tsx`, type: kind }];
@@ -196,7 +201,7 @@ for (const item of spinnerItems) referenced.add(item.files[0].path);
 // before it is published — but it is the one thing a disk walk cannot notice
 // on its own, so it is said out loud.
 const orphans = [];
-for (const dir of [UI_DIR, COMPONENT_DIR]) {
+for (const dir of [UI_DIR, COMPONENT_DIR, HOOK_DIR]) {
   for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
     if (!entry.isFile() || entry.name.startsWith(".")) continue;
     const rel = `${dir}/${entry.name}`;

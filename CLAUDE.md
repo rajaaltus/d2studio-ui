@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Start production**: `pnpm start`
 - **Rebuild the registry**: `pnpm registry:build` — clean + generate + `shadcn build`
 - **Validate the registry**: `pnpm registry:validate` — `shadcn validate`
+- **Pull shadcn primitives**: `pnpm shadcn:sync` — see "shadcn primitives" below
 
 There is no test suite and no test runner configured.
 
@@ -62,6 +63,30 @@ Two constraints the build imposes:
   `spinner-patterns.ts` has one `import type`.)
 - The build prints **orphans**: sources on disk that no item ships. That is a
   warning, not an error — a block can sit staged before it is published.
+
+### shadcn primitives
+
+`@d2` ships every shadcn/ui primitive (new-york-v4) under its own name, so
+`npx shadcn add @d2/card` works and D2's designed use cases have a base to
+build on. `scripts/sync-shadcn.mjs` fetches them from
+`ui.shadcn.com/r/styles/new-york-v4` into `registry/default/ui/` (and
+`registry/default/hooks/` for `use-mobile`), rewriting two things on the way:
+`import { cn } from "cn"` becomes `@/lib/utils`, and sibling imports become
+`@/registry/default/ui/<x>` — the CLI rewrites any `@/registry/<style>/ui`
+import to the consumer's ui alias on install.
+
+- Without arguments it writes only items not on disk yet, so D2's edits to a
+  primitive survive a re-sync. Name items to overwrite just those; `--force`
+  overwrites all. It prints a `lib/blocks.ts` entry to paste for each new item.
+- `resizable` is held on react-resizable-panels v3: upstream moved to v4, and
+  the site's preview frame (`components/preview/preview-wrapper.tsx`) still uses
+  the v3 imperative API. The sync skips it unless named.
+- A primitive's `registryDependencies` name siblings by full
+  `https://ui.d2studio.dev/r/<x>.json` URL, so `@d2/sidebar` installs D2's
+  button, not shadcn's. The older blocks still name bare `button` etc., which
+  resolve to shadcn's.
+- Primitives are unshelved. A designed use case (e.g. an e-commerce card) is its
+  own item that depends on the primitive by URL and carries a `shelf`.
 
 Spinner items are generated from `lib/spinner-patterns.ts`, one wrapper
 component per preset written into `registry/default/components/spinner-*.tsx`,
@@ -137,7 +162,7 @@ runs, and the item's `type` there is what decides whether the preview loads from
   `notification`, `demo`, `test`, `inspector`, `*-preview`) used while designing
   a block. They are not published surfaces; the shipped source is whatever lives
   under `registry/default/`.
-- `registry/default/{ui,components}/` — the published sources.
+- `registry/default/{ui,components,hooks}/` — the published sources.
 - `components/` — the site's own chrome, not published. `components/ui/` is
   local shadcn; a registry item's copy lives under `registry/default/`.
 - `lib/blocks.ts` — the free catalogue. `lib/pro-catalog.ts` and
