@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "metallic-shimmer",
-  "type": "registry:component",
   "title": "Metallic Shimmer",
   "author": "D2 Studio",
   "description": "Brushed-metal text: a bright band travels across the glyphs like a reflection, not a glow. Wraps any inline content, flips its stops per theme, and holds still under reduced motion.",
@@ -34,5 +33,6 @@
   "categories": [
     "text",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

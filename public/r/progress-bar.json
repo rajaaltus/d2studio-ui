@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress-bar",
-  "type": "registry:component",
   "title": "Progress Bar",
   "author": "D2 Studio",
   "description": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout. Three levels of chrome — full, bar, plain — and two fill styles: a 6px beam or a three-row dot matrix. Every surface property is themeable — fill (solid or gradient), stroke, backdrop blur, drop and inner shadow — with glass and opaque presets shipped for light and dark. All colours resolve to oklch(), and fillFilter dresses the gradient alone so a caller can animate the value without touching the type or the ticks.",
@@ -15,5 +14,6 @@
   "categories": [
     "progress",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

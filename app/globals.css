@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @plugin "@iconify/tailwind4";
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -47,8 +48,8 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.345 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -85,9 +86,9 @@
 }
 
 .dark {
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.995 0 0);
-  --card: oklch(0 0 0);
+  --background: oklch(0.19 0 0);
+  --foreground: oklch(0.895 0 0);
+  --card: oklch(0.21 0 0);
   --card-foreground: oklch(0.995 0 0);
   --popover: oklch(0 0 0);
   --popover-foreground: oklch(0.995 0 0);
@@ -4515,3 +4516,19 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
     transition: none !important;
   }
 }
+
+/* Docs sidebar scroll-spy marker. Same curve and duration as the tabs pill: it
+   is the same gesture — one highlight moving to the thing now in focus. */
+.docs-nav-bar {
+  transition:
+    transform var(--tabs-dur) var(--tabs-ease),
+    height var(--tabs-dur) var(--tabs-ease);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .docs-nav-bar {
+    transition: none !important;
+  }
+}
+

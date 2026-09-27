@@ -9,10 +9,14 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-./claude
-./cursor
-./playwright-mcp
-./trae
+# agent/tool dirs — the leading "./" form these used to carry matched nothing
+.claude/
+.cursor/
+.playwright-mcp/
+.trae/
+
+# design-iteration screenshots dropped at the repo root (card art lives in public/)
+/*.png
 /convex-backup
 /prod-backup
 /.convex-migration
@@ -51,3 +55,6 @@ next-env.d.ts
 /.clerk/
 
 certificates
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/

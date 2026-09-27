@@ -21,7 +21,7 @@ const structuredData = {
   name: "D2 Studio Component Library",
   description:
     "Premium collection of 50+ copy-and-paste React components built with shadcn/ui, Tailwind CSS, and TypeScript. Beautiful, accessible, and production-ready.",
-  url: "https://d2studio.dev",
+  url: "https://ui.d2studio.dev",
   author: {
     "@type": "Organization",
     name: "D2 Studio",
@@ -33,7 +33,7 @@ const structuredData = {
     price: "0",
     priceCurrency: "USD",
   },
-  screenshot: "https://d2studio.dev/og-image.jpg",
+  screenshot: "https://ui.d2studio.dev/og-ui.png",
 };
 
 export default function HomePage() {

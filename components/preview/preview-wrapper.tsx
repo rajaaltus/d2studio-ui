@@ -57,7 +57,7 @@ export function PreviewWrapper({
   const [currentSize, setCurrentSize] = React.useState(100);
   const [key, setKey] = React.useState(0);
 
-  const installCommand = `npx shadcn@latest add https://ui.d2studio.dev/r/${componentName.toLowerCase()}.json`;
+  const installCommand = `npx shadcn@latest add @d2/${componentName.toLowerCase()}`;
 
   const handleCopyInstall = React.useCallback(async () => {
     await copyText(installCommand);
@@ -206,7 +206,7 @@ export function PreviewWrapper({
               <Terminal className="h-3.5 w-3.5" />
             )}
             <span className="hidden lg:inline">
-              npx shadcn add {componentName}
+              npx shadcn add @d2/{componentName}
             </span>
           </Button>
         </div>

@@ -33,13 +33,13 @@ const HeroSection2 = () => {
                 New Blocks & Tools Every Weekend
               </span>
             </div>
-            <h1 className="text-3xl md:text-4xl tracking-tighter font-sans lg:text-5xl py-2 font-semibold text-center">
-              Modern Components For
+            <h1 className="text-3xl md:text-4xl tracking-tighter font-sans lg:text-6xl py-2 font-semibold text-center">
+              Interfaces made for 
             </h1>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold pb-4 text-center">
-              Designers & Developers
+            <h2 className="text-3xl md:text-4xl tracking-tighter font-sans lg:text-6xl py-2 font-semibold text-center">
+              Modern SaaS
             </h2>
-            <p className="max-w-lg text-center text-sm md:text-base px-4">
+            <p className="max-w-lg text-center text-sm md:text-lg px-4">
               A premium Collection of copy and paste components built with
               React, TailWind CSS, & Shadcn/UI. Beautiful, accessible, and ready
               for production.

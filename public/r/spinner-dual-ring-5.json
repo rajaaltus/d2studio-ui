@@ -1,12 +1,11 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner-dual-ring-5",
-  "type": "registry:component",
   "title": "Spinner Dual Ring 5",
   "author": "D2 Studio",
   "description": "A 5×5 pixel-grid loading spinner: 16 frames at 110ms (1760ms loop).",
   "registryDependencies": [
-    "https://d2studio.dev/r/pixel-spinner.json"
+    "https://ui.d2studio.dev/r/pixel-spinner.json"
   ],
   "files": [
     {
@@ -17,5 +16,6 @@
   ],
   "categories": [
     "spinner"
-  ]
+  ],
+  "type": "registry:component"
 }

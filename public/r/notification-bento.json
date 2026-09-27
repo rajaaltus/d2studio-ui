@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "notification-bento",
-  "type": "registry:component",
   "title": "Notification Bento",
   "author": "D2 Studio",
   "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, recent activity feed, unread counter and delivery-channel toggles, with drifting holographic smoke on hover.",
@@ -69,5 +68,6 @@
   "categories": [
     "bento",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

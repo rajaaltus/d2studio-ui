@@ -7,6 +7,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./logo";
 import { PRO_LINK_PROPS, proShelfHref } from "@/lib/pro";
+import { GITHUB_REPO_URL } from "@/lib/site";
+import { GitHubIcon } from "@/components/icons/github-icon";
 import {
   Drawer,
   DrawerClose,
@@ -136,6 +138,16 @@ export function Navigation() {
             >
               <Coffee size={14} />
               <span>Buy me a coffee</span>
+            </a>
+
+            <a
+              href={GITHUB_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="D2 Studio on GitHub"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground/80 transition-[color,background-color,transform] duration-150 ease-out hover:bg-muted hover:text-foreground active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <GitHubIcon className="h-[18px] w-[18px]" />
             </a>
 
             <ThemeToggle />

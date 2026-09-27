@@ -1,5 +1,5 @@
 export const INSTALL_CMD =
-  "npx shadcn@latest add https://d2studio.dev/r/button-matt.json";
+  "npx shadcn@latest add https://ui.d2studio.dev/r/button-matt.json";
 
 export type Config = {
   size: "sm" | "default" | "lg" | "xl";

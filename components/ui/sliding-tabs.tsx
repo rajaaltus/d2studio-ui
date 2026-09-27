@@ -68,10 +68,14 @@ export function SlidingTabs({
     placed.current = true;
   }, [value, tabs, move]);
 
+  // Observing the bar rather than the window also catches a bar that was laid
+  // out inside a hidden pane: it measures zero until revealed, then resizes.
   React.useEffect(() => {
-    const onResize = () => move(false);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const bar = barRef.current;
+    if (!bar) return;
+    const ro = new ResizeObserver(() => move(false));
+    ro.observe(bar);
+    return () => ro.disconnect();
   }, [move]);
 
   return (

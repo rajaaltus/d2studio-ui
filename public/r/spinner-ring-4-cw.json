@@ -1,12 +1,11 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner-ring-4-cw",
-  "type": "registry:component",
   "title": "Spinner Ring 4 Cw",
   "author": "D2 Studio",
   "description": "A 4×4 pixel-grid loading spinner: 12 frames at 110ms (1320ms loop).",
   "registryDependencies": [
-    "https://d2studio.dev/r/pixel-spinner.json"
+    "https://ui.d2studio.dev/r/pixel-spinner.json"
   ],
   "files": [
     {
@@ -17,5 +16,6 @@
   ],
   "categories": [
     "spinner"
-  ]
+  ],
+  "type": "registry:component"
 }

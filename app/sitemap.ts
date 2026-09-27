@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { SHELVED } from '@/lib/blocks'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://d2studio.dev'
+  const baseUrl = 'https://ui.d2studio.dev'
   const now = new Date()
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blockRoutes: MetadataRoute.Sitemap = SHELVED
     .map((block) => ({
-      url: `${baseUrl}/blocks/${block.name}`,
+      url: `${baseUrl}/${block.shelf}/${block.name}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.6,

@@ -1,10 +1,20 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "bento-01",
-  "type": "registry:ui",
   "title": "Bento 01",
   "author": "D2 Studio",
-  "description": "Bento gradsfbasd",
+  "description": "Bento grid for an education program platform with admin overview, faculty view and a program form.",
+  "dependencies": [
+    "lucide-react",
+    "recharts"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "card",
+    "input",
+    "https://ui.aceternity.com/registry/dotted-glow-background.json"
+  ],
   "files": [
     {
       "path": "registry/default/ui/bento-01.tsx",
@@ -14,5 +24,6 @@
   ],
   "categories": [
     "bento"
-  ]
+  ],
+  "type": "registry:ui"
 }

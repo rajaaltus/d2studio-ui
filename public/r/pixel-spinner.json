@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pixel-spinner",
-  "type": "registry:ui",
   "title": "Pixel Spinner",
   "author": "D2 Studio",
   "description": "The pixel-grid spinner engine every spinner preset builds on.",
@@ -20,5 +19,6 @@
   ],
   "categories": [
     "spinner"
-  ]
+  ],
+  "type": "registry:ui"
 }

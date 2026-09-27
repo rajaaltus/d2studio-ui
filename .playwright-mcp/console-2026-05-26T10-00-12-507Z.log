@@ -1,7 +1,0 @@
-[     826ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
-[     906ms] [LOG] [HMR] connected @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
-[    1142ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
-[    1963ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:4200/_next/static/chunks/node_modules__pnpm_04_9afb._.js:1471
-[    2487ms] [LOG] [Fast Refresh] done in 1496ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
-[    5396ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431
-[    5579ms] [LOG] [Fast Refresh] done in 331ms @ http://localhost:4200/_next/static/chunks/0aus_next_dist_0dxyg_i._.js:2431

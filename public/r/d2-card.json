@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "d2-card",
-  "type": "registry:ui",
   "title": "D2 Card",
   "author": "D2 Studio",
   "description": "The card surface pricing-01 is built on: header, content, footer and a title/description pair.",
@@ -14,5 +13,6 @@
   ],
   "categories": [
     "ui"
-  ]
+  ],
+  "type": "registry:ui"
 }

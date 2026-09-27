@@ -1,8 +1,0 @@
-- generic [active] [ref=f3e1]:
-  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
-    - /url: "#main-content"
-  - generic [ref=f3e4]:
-    - heading "Command palette" [level=2] [ref=f3e5]
-    - paragraph [ref=f3e6]: Search pages, categories, and actions
-  - region "Notifications alt+T"
-  - alert [ref=f3e7]

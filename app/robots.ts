@@ -44,7 +44,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       })),
     ],
-    sitemap: 'https://d2studio.dev/sitemap.xml',
-    host: 'https://d2studio.dev',
+    sitemap: 'https://ui.d2studio.dev/sitemap.xml',
+    host: 'https://ui.d2studio.dev',
   }
 }

@@ -2,7 +2,7 @@ import { MOTIONS } from "@/components/progress-inspector";
 import type { BarTheme } from "@/registry/default/components/progress-bar";
 
 export const INSTALL_CMD =
-  "npx shadcn@latest add https://d2studio.dev/r/progress-bar.json";
+  "npx shadcn@latest add https://ui.d2studio.dev/r/progress-bar.json";
 
 /** JSON → JS object literal. Safe here: no key or value in BarTheme contains a quote or comma. */
 const literal = (v: unknown) =>
