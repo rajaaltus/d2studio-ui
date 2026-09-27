@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   Boxes,
   Gem,
+  Github,
   Home,
   LayoutDashboard,
   LayoutGrid,
@@ -104,6 +105,12 @@ const CATEGORIES: CategoryEntry[] = [
     slug: "mini",
     icon: Boxes,
     description: "Small reusable pieces",
+  },
+  {
+    label: "GitHub",
+    slug: "github",
+    icon: Github,
+    description: "Curated repository lists",
   },
   {
     label: "Dashboard",
