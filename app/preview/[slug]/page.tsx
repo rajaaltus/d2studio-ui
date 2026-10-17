@@ -116,7 +116,7 @@ function PreviewContent() {
                 // dark-on-light in dark mode.
                 <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 -z-10 bg-background"
+                    className="pointer-events-none absolute inset-0 -z-10 bg-card"
                     
                 />
             )}

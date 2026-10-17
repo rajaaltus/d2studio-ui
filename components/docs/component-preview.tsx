@@ -71,7 +71,7 @@ export function ComponentPreview({
         </div>
       </div>
 
-      <div hidden={tab !== "preview"} className="relative overflow-hidden rounded-xl border" style={{ height }}>
+      <div hidden={tab !== "preview"} className="relative overflow-hidden  rounded-xl border" style={{ height }}>
         {/* Skeleton → content: the frame cross-fades in with a short blur once
             it has loaded, rather than flashing white then popping the demo. */}
         <div

@@ -104,7 +104,9 @@
   --accent-foreground: oklch(0.995 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(0.291 0 0);
-  --input: oklch(0.18 0 0);
+  /* Translucent, not a fixed grey: 0.18 sat below --background and --card,
+     so control outlines (radio, checkbox, input) vanished on either. */
+  --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.65 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
