@@ -8,6 +8,7 @@ import {
   Check,
   ChevronUp,
   Gem,
+  Github,
   MoonStar,
   Sun,
   Tag,
@@ -88,6 +89,12 @@ const blockCategories: BlockCategory[] = [
     slug: "blocks",
     description: "General-purpose UI blocks",
     icon: NavIcons.blocksicon,
+  },
+  {
+    name: "GitHub",
+    slug: "github",
+    description: "Curated repository lists",
+    icon: Github,
   },
   {
     name: "Bento",
