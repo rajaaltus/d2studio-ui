@@ -31,7 +31,8 @@
       "description": "Glassmorphic AI content generator card with content type and tone pickers and a prompt field.",
       "author": "D2 Studio",
       "dependencies": [
-        "nucleo-glass"
+        "border-beam",
+        "lucide-react"
       ],
       "registryDependencies": [
         "button",
@@ -140,6 +141,7 @@
       "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
       "author": "D2 Studio",
       "dependencies": [
+        "border-beam",
         "lucide-react",
         "nucleo-glass"
       ],
