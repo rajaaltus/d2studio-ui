@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ArrowUp, Command, Plus, Settings2, FileUp } from "lucide-react";
 import { IconSparkle, IconBadgeSparkle, IconBookOpen } from "nucleo-glass";
+import { BorderBeam } from "border-beam";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -187,7 +188,82 @@ const ChatGPTLogo = ({ className }: { className?: string }) => (
 
 // Glass Icons for Assistant/Pro
 
+// Reads a client-only condition and re-reads it when it changes. The server
+// snapshot assumes dark with motion, which is what the card renders first.
+function useClientFlag(
+  read: () => boolean,
+  subscribe: (onChange: () => void) => () => void,
+  server: boolean,
+) {
+  return React.useSyncExternalStore(subscribe, read, () => server);
+}
+
+const subscribeTheme = (onChange: () => void) => {
+  const mo = new MutationObserver(onChange);
+  mo.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => mo.disconnect();
+};
+const REDUCE = "(prefers-reduced-motion: reduce)";
+const subscribeMotion = (onChange: () => void) => {
+  const mq = window.matchMedia(REDUCE);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+};
+
+// The composer's beam has three phases:
+//   idle       slow ambient lap, soft glow
+//   typing     lap glides to a stop, glow breathes bright to dim beside the text
+//   generating after Enter or send: bright and fast until the reply lands
+type BeamPhase = "idle" | "typing" | "generating";
+
+const BEAM = {
+  idle: { rate: 1, strength: 0.7, lightStrength: 0.9 },
+  typing: { rate: 0, strength: 0.4, lightStrength: 0.4 },
+  generating: { rate: 3.5, strength: 1, lightStrength: 1 },
+} as const;
+
+// The package's light preset draws the stroke at 12% opacity, which all but
+// vanishes on white. These vars multiply each layer's preset opacity, so light
+// mode raises them past 1. !important because the package sets them inline.
+const BEAM_LIGHT_CSS = `
+[data-beam="{id}"] {
+  --beam-stroke-opacity: 3 !important;
+  --beam-inner-opacity: 1.8 !important;
+  --beam-bloom-opacity: 1.6 !important;
+}
+`;
+
+// One lap at rate 1. Generating runs ~2s a lap.
+const BEAM_LAP_SECONDS = 7;
+// Quick to wake on submit, slower to settle back or glide to a stop.
+const BEAM_WAKE_MS = 400;
+const BEAM_SETTLE_MS = 1200;
+// Stand-in for a real request in this demo.
+const DEMO_GENERATION_MS = 3500;
+
+// `strength` lands as an inline --beam-strength. Registering it as a number
+// lets it transition instead of snapping between phases.
+const BEAM_CSS = `
+@property --beam-strength { syntax: "<number>"; inherits: true; initial-value: 1; }
+[data-beam="{id}"] { transition: --beam-strength 500ms cubic-bezier(0.23, 1, 0.32, 1); }
+`;
+
 export default function AIWritingAssistanceV2() {
+  // The beam needs its theme passed in, so follow the `dark` class the card's own styles key off.
+  const isDark = useClientFlag(
+    () => document.documentElement.classList.contains("dark"),
+    subscribeTheme,
+    true,
+  );
+  // Rotating beams ignore reduced motion on their own.
+  const reducedMotion = useClientFlag(
+    () => window.matchMedia(REDUCE).matches,
+    subscribeMotion,
+    false,
+  );
   const [content, setContent] = React.useState("");
   const [selectedAI, setSelectedAI] = React.useState("AI Assistant");
   const [selectedModel, setSelectedModel] = React.useState(
@@ -212,6 +288,79 @@ export default function AIWritingAssistanceV2() {
     },
   ];
 
+  const [focused, setFocused] = React.useState(false);
+  const [generating, setGenerating] = React.useState(false);
+  const phase: BeamPhase = generating
+    ? "generating"
+    : focused
+      ? "typing"
+      : "idle";
+  const beamRef = React.useRef<HTMLDivElement>(null);
+  const promptRef = React.useRef<HTMLTextAreaElement>(null);
+
+  function submit() {
+    if (generating || !promptRef.current?.value.trim()) return;
+    setGenerating(true);
+  }
+
+  React.useEffect(() => {
+    if (!generating) return;
+    const id = setTimeout(() => setGenerating(false), DEMO_GENERATION_MS);
+    return () => clearTimeout(id);
+  }, [generating]);
+
+  // Ramp the beam's own CSS animations with updatePlaybackRate, which keeps
+  // each one's current position. Changing `duration` instead would restart
+  // the keyframes and make the light jump around the border.
+  React.useEffect(() => {
+    const el = beamRef.current;
+    if (!el || reducedMotion) return;
+    const anims = el
+      .getAnimations({ subtree: true })
+      .filter(
+        (a): a is CSSAnimation =>
+          a instanceof CSSAnimation &&
+          a.animationName.startsWith("beam-") &&
+          !a.animationName.startsWith("beam-fade"),
+      );
+    if (anims.length === 0) return;
+    const from = anims[0].playbackRate;
+    const to = BEAM[phase].rate;
+    if (from === to) return;
+    const ms = to > from ? BEAM_WAKE_MS : BEAM_SETTLE_MS;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / ms);
+      const eased = 1 - (1 - t) ** 3; // ease-out cubic
+      const rate = from + (to - from) * eased;
+      for (const a of anims) a.updatePlaybackRate(rate);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // isDark: a theme flip regenerates the beam's keyframes, so re-apply the rate.
+  }, [phase, isDark, reducedMotion]);
+
+  // While typing the beam holds still and breathes bright to dim. WAAPI rather
+  // than a CSS rule: an `animation` declaration on the wrapper would replace
+  // the package's own spin and fade-in running on that same element.
+  React.useEffect(() => {
+    const el = beamRef.current;
+    if (!el || reducedMotion || phase !== "typing") return;
+    const breathe = el.animate(
+      [{ "--beam-strength": 0.4 }, { "--beam-strength": 0.75 }],
+      {
+        duration: 2400,
+        delay: 500, // let the strength ease down from idle first
+        iterations: Infinity,
+        direction: "alternate",
+        easing: "cubic-bezier(0.37, 0, 0.63, 1)", // sine in-out, a breath has no hard edge
+      },
+    );
+    return () => breathe.cancel();
+  }, [phase, reducedMotion]);
+
   const aiOptions = [
     { name: "AI Assistant", icon: <CustomFeatherIcon className="size-4" /> },
     { name: "AI Pro", icon: <IconBadgeSparkle className="size-4" /> },
@@ -220,7 +369,7 @@ export default function AIWritingAssistanceV2() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-[#000000] p-4 sm:p-6 md:p-8 font-sans transition-colors duration-300 overflow-x-hidden"
+      className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-background p-4 sm:p-6 md:p-8 font-sans transition-colors duration-300 overflow-x-hidden"
       style={{ fontFamily: '"Inter", sans-serif' }}
     >
       <style
@@ -250,7 +399,7 @@ export default function AIWritingAssistanceV2() {
       />
 
       {/* Top Header Section */}
-      <div className="flex flex-col items-center text-center gap-2 w-full mb-8 sm:mb-12 group/header max-w-[726px]">
+      <div className="flex flex-col items-center text-center gap-2 w-full mb-8 sm:mb-12 group/header max-w-[600px]">
         <div className="flex items-center gap-3 cursor-default">
           <IconSparkle className="size-[24px] sm:size-[28px] text-black dark:text-white transition-all duration-300 opacity-80 group-hover/header:opacity-100 group-hover/header:scale-110" />
           <h1 className="text-[24px] sm:text-[32px] font-medium tracking-tight text-black dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#E3E3E3] dark:to-[#A3A3A3] transition-all duration-300 group-hover/header:text-foreground  group-hover/header:brightness-110">
@@ -264,166 +413,201 @@ export default function AIWritingAssistanceV2() {
       </div>
 
       {/* Main Container */}
-      <div className="w-full max-w-[727px] min-h-[250px] h-auto bg-[#F5F5F5] dark:bg-gradient-to-b dark:from-[#0F0E0E] dark:to-[#000000] rounded-[24px] border border-[#E5E5E5] dark:border-[#343434] p-2 flex flex-col relative overflow-hidden transition-all duration-300 shadow-sm dark:shadow-2xl">
-        {/* Content Box */}
-        <div
-          className="bg-white dark:bg-[#252323] rounded-[14px] sm:rounded-[16px] border border-[#E5E5E5] dark:border-[#343434] p-3 sm:p-4 flex flex-col relative overflow-hidden min-h-[160px] sm:h-[185px] transition-all duration-300 group/content"
-          style={{
-            boxShadow: "inset 0 0 6px rgba(215, 214, 255, 0.2)",
+      <div className="w-full max-w-[600px] h-auto shadow-sm dark:shadow-2xl bg-[#F5F5F5] dark:bg-gradient-to-b dark:from-card dark:to-background rounded-[24px] border border-[#E5E5E5] dark:border-border p-2 flex flex-col relative overflow-hidden">
+        {/* Content Box, with a Siri-style glow circling it */}
+        <BorderBeam
+          size="md"
+          colorVariant="colorful"
+          strength={isDark ? BEAM[phase].strength : BEAM[phase].lightStrength}
+          saturation={isDark ? undefined : 2}
+          theme={isDark ? "dark" : "light"}
+          duration={BEAM_LAP_SECONDS}
+          css={isDark ? BEAM_CSS : BEAM_CSS + BEAM_LIGHT_CSS}
+          active={!reducedMotion}
+          ref={beamRef}
+          onFocus={() => setFocused(true)}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
           }}
+          className="rounded-[14px] sm:rounded-[16px]"
         >
-          <textarea
-            placeholder="Describe the content you want to generate..."
-            className="bg-transparent border-none focus:ring-0 text-black dark:text-white placeholder:text-[#999999] dark:placeholder:text-[#595959] placeholder:font-normal resize-none w-full flex-grow text-[15px] sm:text-[16px] leading-[1.6] outline-none transition-colors duration-200 min-h-[80px]"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+          <div
+            className="bg-white dark:bg-input/30 rounded-[14px] sm:rounded-[16px] border border-[#E5E5E5] dark:border-border p-3 sm:p-4 flex flex-col relative overflow-hidden min-h-[128px] sm:h-[148px] transition-all duration-300 group/content"
+            style={{
+              boxShadow: "inset 0 0 6px rgba(215, 214, 255, 0.2)",
+            }}
+          >
+            <textarea
+              ref={promptRef}
+              aria-label="Content prompt"
+              aria-busy={generating}
+              onKeyDown={(e) => {
+                // Enter sends (with or without Cmd, as the hint shows), Shift+Enter keeps a newline. Skip while an IME is composing.
+                if (
+                  e.key !== "Enter" ||
+                  e.shiftKey ||
+                  e.nativeEvent.isComposing
+                )
+                  return;
+                e.preventDefault();
+                submit();
+              }}
+              placeholder="Describe the content you want to generate..."
+              className="bg-transparent border-none focus:ring-0 text-black dark:text-white placeholder:text-[#999999] dark:placeholder:text-[#595959] placeholder:font-normal resize-none w-full flex-grow text-[15px] sm:text-[16px] leading-[1.6] outline-none transition-colors duration-200 min-h-[56px]"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
 
-          {/* Action Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mt-2">
-            <div className="flex items-center gap-2 sm:gap-4">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="text-[#008A8A] dark:text-[#84FDFF] transition-all hover:scale-110 active:scale-95 p-1">
-                    <Plus className="size-[18px] sm:size-[20px]" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white dark:bg-[#1A1A1A] border-[#E5E5E5] dark:border-[#343434] text-black dark:text-white">
-                  <DropdownMenuItem className="gap-2 cursor-pointer focus:bg-gray-100 dark:focus:bg-[#2A2A2A]">
-                    <FileUp className="size-4 text-[#008A8A] dark:text-[#84FDFF]" />
-                    <span>Upload file</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 sm:gap-1.5 transition-all hover:bg-black/5 dark:hover:bg-white/5 rounded-md px-1 py-0.5 group/model-trigger">
-                    <div className="text-[#C97C15] dark:text-[#FFB260] transition-all group-hover/model-trigger:scale-110 active:scale-95 p-1">
-                      <Settings2 className="size-[18px] sm:size-[20px]" />
-                    </div>
-                    {/* Selected Model Display - Hidden on mobile text, keep logo */}
-                    <div className="flex items-center gap-2 transition-all duration-300">
-                      {selectedModel === "Gemini Pro 3.1 (New)" && (
-                        <>
-                          <GeminiLogo className="size-4" />
-                          <span className="hidden sm:inline text-[12px] sm:text-[13px] font-medium text-[#4E82EE]">
-                            Gemini Pro
-                          </span>
-                        </>
-                      )}
-                      {selectedModel === "Claude Opus (New)" && (
-                        <>
-                          <ClaudeLogo className="size-4" />
-                          <span className="hidden sm:inline text-[12px] sm:text-[13px] font-medium text-[#D97757]">
-                            Claude Opus
-                          </span>
-                        </>
-                      )}
-                      {selectedModel === "GPT-4" && (
-                        <>
-                          <ChatGPTLogo className="size-4" />
-                          <span className="hidden sm:inline text-[12px] sm:text-[13px] font-medium text-[#74AA9C]">
-                            ChatGPT 4.1
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white dark:bg-[#1A1A1A] border-[#E5E5E5] dark:border-[#343434] text-black dark:text-white w-72">
-                  {models.map((m) => (
-                    <DropdownMenuItem
-                      key={m.value}
-                      onClick={() => setSelectedModel(m.value)}
-                      className="gap-2.5 cursor-pointer focus:bg-gray-100 dark:focus:bg-[#2A2A2A]"
-                    >
-                      {m.icon}
-                      <span className="text-[13px]">{m.name}</span>
+            {/* Action Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mt-2">
+              <div className="flex items-center gap-2 sm:gap-4">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="text-[#008A8A] dark:text-[#84FDFF] transition-all hover:scale-110 active:scale-95 p-1">
+                      <Plus className="size-[18px] sm:size-[20px]" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white dark:bg-card border-[#E5E5E5] dark:border-border text-black dark:text-white">
+                    <DropdownMenuItem className="gap-2 cursor-pointer focus:bg-gray-100 dark:focus:bg-[#2A2A2A]">
+                      <FileUp className="size-4 text-[#008A8A] dark:text-[#84FDFF]" />
+                      <span>Upload file</span>
                     </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1.5 sm:gap-2 font-medium text-[13px] sm:text-[14px] transition-all duration-300 group/mode px-1.5 sm:px-2 py-1 rounded-md hover:bg-black/5 dark:hover:bg-white/5 whitespace-nowrap">
-                    {selectedAI === "AI Assistant" && (
-                      <CustomFeatherIcon className="size-[16px] sm:size-[18px]" />
-                    )}
-                    {selectedAI === "AI Pro" && (
-                      <IconBadgeSparkle
-                        className="size-[16px] sm:size-[18px]"
-                        style={{ color: "#FFB700" }}
-                      />
-                    )}
-                    {selectedAI === "AI Blog" && (
-                      <IconBookOpen
-                        className="size-[16px] sm:size-[18px]"
-                        style={{ color: "#00FF51" }}
-                      />
-                    )}
-                    <span
-                      style={{
-                        color:
-                          selectedAI === "AI Pro"
-                            ? "#FFB700"
-                            : selectedAI === "AI Blog"
-                              ? "#00FF51"
-                              : "#AFAFFF",
-                      }}
-                    >
-                      {selectedAI}
-                    </span>
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white dark:bg-[#1A1A1A] border-[#E5E5E5] dark:border-[#343434] text-black dark:text-white w-48">
-                  {aiOptions.map((opt) => (
-                    <DropdownMenuItem
-                      key={opt.name}
-                      onClick={() => setSelectedAI(opt.name)}
-                      className="gap-2.5 cursor-pointer focus:bg-gray-100 dark:focus:bg-[#2A2A2A]"
-                    >
-                      <div
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-1 sm:gap-1.5 transition-all hover:bg-black/5 dark:hover:bg-white/5 rounded-md px-1 py-0.5 group/model-trigger">
+                      <div className="text-[#C97C15] dark:text-[#FFB260] transition-all group-hover/model-trigger:scale-110 active:scale-95 p-1">
+                        <Settings2 className="size-[18px] sm:size-[20px]" />
+                      </div>
+                      {/* Selected Model Display - Hidden on mobile text, keep logo */}
+                      <div className="flex items-center gap-2 transition-all duration-300">
+                        {selectedModel === "Gemini Pro 3.1 (New)" && (
+                          <>
+                            <GeminiLogo className="size-4" />
+                            <span className="hidden sm:inline text-[12px] sm:text-[13px] font-medium text-[#4E82EE]">
+                              Gemini Pro
+                            </span>
+                          </>
+                        )}
+                        {selectedModel === "Claude Opus (New)" && (
+                          <>
+                            <ClaudeLogo className="size-4" />
+                            <span className="hidden sm:inline text-[12px] sm:text-[13px] font-medium text-[#D97757]">
+                              Claude Opus
+                            </span>
+                          </>
+                        )}
+                        {selectedModel === "GPT-4" && (
+                          <>
+                            <ChatGPTLogo className="size-4" />
+                            <span className="hidden sm:inline text-[12px] sm:text-[13px] font-medium text-[#74AA9C]">
+                              ChatGPT 4.1
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white dark:bg-card border-[#E5E5E5] dark:border-border text-black dark:text-white w-72">
+                    {models.map((m) => (
+                      <DropdownMenuItem
+                        key={m.value}
+                        onClick={() => setSelectedModel(m.value)}
+                        className="gap-2.5 cursor-pointer focus:bg-gray-100 dark:focus:bg-[#2A2A2A]"
+                      >
+                        {m.icon}
+                        <span className="text-[13px]">{m.name}</span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-1.5 sm:gap-2 font-medium text-[13px] sm:text-[14px] transition-all duration-300 group/mode px-1.5 sm:px-2 py-1 rounded-md hover:bg-black/5 dark:hover:bg-white/5 whitespace-nowrap">
+                      {selectedAI === "AI Assistant" && (
+                        <CustomFeatherIcon className="size-[16px] sm:size-[18px]" />
+                      )}
+                      {selectedAI === "AI Pro" && (
+                        <IconBadgeSparkle
+                          className="size-[16px] sm:size-[18px]"
+                          style={{ color: "#FFB700" }}
+                        />
+                      )}
+                      {selectedAI === "AI Blog" && (
+                        <IconBookOpen
+                          className="size-[16px] sm:size-[18px]"
+                          style={{ color: "#00FF51" }}
+                        />
+                      )}
+                      <span
                         style={{
                           color:
-                            opt.name === "AI Pro"
+                            selectedAI === "AI Pro"
                               ? "#FFB700"
-                              : opt.name === "AI Blog"
+                              : selectedAI === "AI Blog"
                                 ? "#00FF51"
                                 : "#AFAFFF",
-                          opacity: 0.5,
                         }}
                       >
-                        {opt.icon}
-                      </div>
-                      <span className="text-[13px]">{opt.name}</span>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-
-            <div className="flex items-center gap-2 sm:gap-3 ml-auto">
-              <div className="hidden xs:flex items-center gap-1.5 text-[#888888] dark:text-[#595959] text-[11px] sm:text-[12px] font-medium transition-all group-hover/content:text-black dark:group-hover/content:text-white opacity-0 sm:opacity-100">
-                <Command className="size-[12px] sm:size-[14px]" />
-                <span>+ Enter</span>
+                        {selectedAI}
+                      </span>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white dark:bg-card border-[#E5E5E5] dark:border-border text-black dark:text-white w-48">
+                    {aiOptions.map((opt) => (
+                      <DropdownMenuItem
+                        key={opt.name}
+                        onClick={() => setSelectedAI(opt.name)}
+                        className="gap-2.5 cursor-pointer focus:bg-gray-100 dark:focus:bg-[#2A2A2A]"
+                      >
+                        <div
+                          style={{
+                            color:
+                              opt.name === "AI Pro"
+                                ? "#FFB700"
+                                : opt.name === "AI Blog"
+                                  ? "#00FF51"
+                                  : "#AFAFFF",
+                            opacity: 0.5,
+                          }}
+                        >
+                          {opt.icon}
+                        </div>
+                        <span className="text-[13px]">{opt.name}</span>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
-              <Button
-                size="icon"
-                className="h-[28px] w-[28px] sm:h-[30px] sm:w-[30px] rounded-[6px] sm:rounded-[8px] bg-[#C94215] text-white hover:brightness-110 active:scale-95 transition-all border-none"
-                style={{
-                  boxShadow: "inset 0 -4px 4px rgba(255, 107, 39, 0.5)",
-                }}
-              >
-                <ArrowUp
-                  className="size-[16px] sm:size-[18px]"
-                  strokeWidth={2.5}
-                />
-              </Button>
+
+              <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+                <div className="hidden xs:flex items-center gap-1.5 text-[#888888] dark:text-[#595959] text-[11px] sm:text-[12px] font-medium transition-all group-hover/content:text-black dark:group-hover/content:text-white opacity-0 sm:opacity-100">
+                  <Command className="size-[12px] sm:size-[14px]" />
+                  <span>+ Enter</span>
+                </div>
+                <Button
+                  size="icon"
+                  aria-label="Generate"
+                  aria-keyshortcuts="Enter"
+                  title="Send (Enter). Shift+Enter for a new line"
+                  onClick={submit}
+                  className="h-[28px] w-[28px] sm:h-[30px] sm:w-[30px] rounded-[6px] sm:rounded-[8px] bg-[#C94215] text-white hover:brightness-110 active:scale-[0.97] transition-[transform,filter] duration-150 ease-out border-none"
+                  style={{
+                    boxShadow: "inset 0 -4px 4px rgba(255, 107, 39, 0.5)",
+                  }}
+                >
+                  <ArrowUp
+                    className="size-[16px] sm:size-[18px]"
+                    strokeWidth={2.5}
+                  />
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </BorderBeam>
 
         {/* Footer Section */}
         <div className="flex items-center justify-end gap-3 px-4 sm:px-6 py-2.5 sm:py-3 mt-auto cursor-default group/footer">

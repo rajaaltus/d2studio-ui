@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blockRoutes: MetadataRoute.Sitemap = SHELVED
     .map((block) => ({
-      url: `${baseUrl}/blocks/${block.name}`,
+      url: `${baseUrl}/${block.shelf}/${block.name}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.6,

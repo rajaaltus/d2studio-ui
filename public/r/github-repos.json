@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "github-repos",
-  "type": "registry:component",
   "title": "Top GitHub Repos",
   "author": "D2 Studio",
   "description": "A responsive grid of GitHub repositories with language, stars and forks — pass your own list or leave the sample rows in.",
@@ -21,5 +20,6 @@
   "categories": [
     "github",
     "blocks"
-  ]
+  ],
+  "type": "registry:component"
 }

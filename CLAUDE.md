@@ -10,6 +10,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Start production**: `pnpm start`
 - **Rebuild the registry**: `pnpm registry:build` — clean + generate + `shadcn build`
 - **Validate the registry**: `pnpm registry:validate` — `shadcn validate`
+- **Pull shadcn primitives**: `pnpm shadcn:sync` — see "shadcn primitives" below
+- **Capture component card art**: `pnpm ui:previews` — needs `pnpm dev` running
 
 There is no test suite and no test runner configured.
 
@@ -44,7 +46,7 @@ files, rewrites `registry.json`, and runs `shadcn build` to emit
    `dependencies` in `pkg@range` form, and `registryDependencies` if it installs
    other items alongside itself. `css`/`cssVars` inject global styles into the
    consumer's stylesheet.
-3. Give it `shelf: "blocks"` plus `image`, `status`, `author` and `version` if it
+3. Give it `shelf: "blocks"` (or `"components"` for a primitive) plus `image`, `status`, `author` and `version` if it
    should be drawn on `/blocks`. Without a shelf it is installable but unlisted —
    which is right for a ui primitive or a part another block pulls in. A
    `featured` rank puts it on the home page showcase (nothing carries one today).
@@ -62,6 +64,44 @@ Two constraints the build imposes:
   `spinner-patterns.ts` has one `import type`.)
 - The build prints **orphans**: sources on disk that no item ships. That is a
   warning, not an error — a block can sit staged before it is published.
+
+### shadcn primitives
+
+`@d2` ships every shadcn/ui primitive (new-york-v4) under its own name, so
+`npx shadcn add @d2/card` works and D2's designed use cases have a base to
+build on. `scripts/sync-shadcn.mjs` fetches them from
+`ui.shadcn.com/r/styles/new-york-v4` into `registry/default/ui/` (and
+`registry/default/hooks/` for `use-mobile`), plus each one's upstream demo into
+`registry/default/examples/<name>-demo.tsx`, rewriting a few things on the way:
+`import { cn } from "cn"` becomes `@/lib/utils`, and sibling imports become
+`@/registry/default/ui/<x>` — the CLI rewrites any `@/registry/<style>/ui`
+import to the consumer's ui alias on install. Tabler icons in demos become
+lucide.
+
+- Without arguments it writes only items not on disk yet, so D2's edits to a
+  primitive survive a re-sync. Name items to overwrite just those; `--force`
+  overwrites all. It prints a `lib/blocks.ts` entry to paste for each new item.
+- `resizable` is held on react-resizable-panels v3: upstream moved to v4, and
+  the site's preview frame (`components/preview/preview-wrapper.tsx`) still uses
+  the v3 imperative API. The sync skips it unless named.
+- A primitive's `registryDependencies` name siblings by full
+  `https://ui.d2studio.dev/r/<x>.json` URL, so `@d2/sidebar` installs D2's
+  button, not shadcn's. The older blocks still name bare `button` etc., which
+  resolve to shadcn's.
+- Primitives carry `shelf: "components"` and are documented under
+  `/components`, a docs layout rather than a gallery (see "The components docs"
+  below). Their preview is the demo, not the bare primitive:
+  `/preview/<name>?type=example` imports `registry/default/examples/<name>-demo`. `examples/` is site-only —
+  the build never publishes it. Eight demos have no upstream counterpart and are
+  D2's own (sidebar, resizable, direction and the chat set).
+- Card art is `public/ui/<name>.jpg`, shot by `scripts/capture-ui-previews.mjs`
+  off the local preview route (overlays are opened before the shot).
+- Upstream's newer primitives use utilities from `shadcn/tailwind.css`
+  (`shimmer`, `scroll-fade-*`, `data-open:` variants), imported in
+  `app/globals.css`. Previews are wrapped in `TooltipProvider`, as a
+  consumer's layout would be.
+- A designed use case (e.g. an e-commerce card) is its own item on `/blocks`
+  that depends on the primitive by URL.
 
 Spinner items are generated from `lib/spinner-patterns.ts`, one wrapper
 component per preset written into `registry/default/components/spinner-*.tsx`,
@@ -103,12 +143,24 @@ A **Next.js 16 + React 19** static site.
 
 ### The three seams worth knowing
 
+**0. `/components` is docs, `/blocks` is a gallery — in one frame.**
+`app/components/layout.tsx` draws a persistent rail (`components/docs/components-nav.tsx`:
+filter with a `/` shortcut, the primitives in the groups from
+`lib/components-docs.ts`, pro links folded at the bottom) beside a page per
+primitive (`app/components/[name]/page.tsx`: preview/code, CLI or manual
+install, usage, and the D2 blocks built on it). The frame deliberately matches
+the `/blocks` browser — same bordered `max-w-7xl` column, same 256px rail under
+the header — so switching shelves shifts nothing. The rail opens straight on
+the filter; `/blocks` keeps its Types block (`components/blocks/shelf-types.tsx`). Group membership is a primitive's first category; a block appears
+under a primitive's "Use cases" by listing its d2 URL in `registryDependencies`.
+Code is highlighted on the server (`lib/highlight.ts`); `/docs` and
+`/components` share `components/docs/` (prose, install command, nav).
+
 **1. `lib/catalog.ts` — where free and pro flatten into one shape.**
 `BlockDef` (free, this repo's own registry) and `ProItem` (a line in the
 generated pro mirror) share almost no fields, so both are mapped to one
 `CatalogItem` here rather than teaching every card and filter about both.
-`components/blocks/blocks-browser.tsx` is the single browser both `/blocks`
-(`scope="blocks"`) and `/components` (`scope="components"`) render. Where a name
+`components/blocks/blocks-browser.tsx` is the `/blocks` browser. Where a name
 exists in both catalogues (`bento-04`, `bento-05`, `notification-bento`) the
 free row wins — resolved at render time by `proItemsFor(group, source, owned)`,
 not baked into the mirror, so adding or removing a free block settles it without
@@ -122,22 +174,25 @@ light/dark. It wraps everything in `.luminous-spinners`, which is the scope
 class the spinner `.cell` / `.spinner-grid` rules in `app/globals.css` live
 under — spinner CSS will not apply outside it.
 
-**3. `/blocks/[name]` reads `public/r/<name>.json`, not the working tree.**
+**3. `/blocks/[name]` and `/components/[name]` read `public/r/<name>.json`, not the working tree.**
+`/blocks/[name]` renders `components/blocks/item-page.tsx`; the components page
+also reads the built item for its Manual install tab.
 The Code tab shows the *built* item, so it is stale until `pnpm registry:build`
 runs, and the item's `type` there is what decides whether the preview loads from
 `ui/` or `components/`. `generateStaticParams` from `SHELVED` with
 `dynamicParams = false`, so an unshelved item has no detail page.
 
 ### Project Structure
-- `app/` — App Router pages. `/blocks` and `/components` are two shelves of one
-  browser; `/blocks/[name]` is the detail page; `/preview/[slug]` is the bare
+- `app/` — App Router pages. `/blocks` is the gallery browser and
+  `/blocks/[name]` its detail page; `/components` is the primitives' docs; `/preview/[slug]` is the bare
   component the detail iframe loads. `/illustration`, `/templates` and
   `/spinners` are pro-mirror shelves.
 - `app/` also holds scratch prototype routes (`bento-2`…`bento-5`, `cosmo`,
   `notification`, `demo`, `test`, `inspector`, `*-preview`) used while designing
   a block. They are not published surfaces; the shipped source is whatever lives
   under `registry/default/`.
-- `registry/default/{ui,components}/` — the published sources.
+- `registry/default/{ui,components,hooks}/` — the published sources;
+  `registry/default/examples/` — the primitives' demos, site-only.
 - `components/` — the site's own chrome, not published. `components/ui/` is
   local shadcn; a registry item's copy lives under `registry/default/`.
 - `lib/blocks.ts` — the free catalogue. `lib/pro-catalog.ts` and

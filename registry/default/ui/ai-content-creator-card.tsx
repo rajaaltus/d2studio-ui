@@ -17,8 +17,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { BorderBeam } from "border-beam";
 import { ArrowUp, ChevronDown, Plus, Settings2 } from "lucide-react";
-import { IconSparkle } from "nucleo-glass";
 import * as React from "react";
 
 const AI_MODELS = [
@@ -125,18 +125,171 @@ const AI_MODELS = [
   },
 ];
 
+// Reads a client-only condition and re-reads it when it changes. The server
+// snapshot assumes dark with motion, which is what the card renders first.
+function useClientFlag(
+  read: () => boolean,
+  subscribe: (onChange: () => void) => () => void,
+  server: boolean,
+) {
+  return React.useSyncExternalStore(subscribe, read, () => server);
+}
+
+const subscribeTheme = (onChange: () => void) => {
+  const mo = new MutationObserver(onChange);
+  mo.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => mo.disconnect();
+};
+const REDUCE = "(prefers-reduced-motion: reduce)";
+const subscribeMotion = (onChange: () => void) => {
+  const mq = window.matchMedia(REDUCE);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+};
+
+// The composer's beam has three phases:
+//   idle       slow ambient lap, soft glow
+//   typing     lap glides to a stop, glow breathes bright to dim beside the text
+//   generating after Enter or send: bright and fast until the reply lands
+type BeamPhase = "idle" | "typing" | "generating";
+
+const BEAM = {
+  idle: { rate: 1, strength: 0.7, lightStrength: 0.9 },
+  typing: { rate: 0, strength: 0.4, lightStrength: 0.4 },
+  generating: { rate: 3.5, strength: 1, lightStrength: 1 },
+} as const;
+
+// The package's light preset draws the stroke at 12% opacity, which all but
+// vanishes on white. These vars multiply each layer's preset opacity, so light
+// mode raises them past 1. !important because the package sets them inline.
+const BEAM_LIGHT_CSS = `
+[data-beam="{id}"] {
+  --beam-stroke-opacity: 3 !important;
+  --beam-inner-opacity: 1.8 !important;
+  --beam-bloom-opacity: 1.6 !important;
+}
+`;
+
+// One lap at rate 1. Generating runs ~2s a lap.
+const BEAM_LAP_SECONDS = 7;
+// Quick to wake on submit, slower to settle back or glide to a stop.
+const BEAM_WAKE_MS = 400;
+const BEAM_SETTLE_MS = 1200;
+// Stand-in for a real request in this demo.
+const DEMO_GENERATION_MS = 3500;
+
+// `strength` lands as an inline --beam-strength. Registering it as a number
+// lets it transition instead of snapping between phases.
+const BEAM_CSS = `
+@property --beam-strength { syntax: "<number>"; inherits: true; initial-value: 1; }
+[data-beam="{id}"] { transition: --beam-strength 500ms cubic-bezier(0.23, 1, 0.32, 1); }
+`;
+
 export default function AIContentCreatorCard() {
+  // The beam needs its theme passed in, so follow the `dark` class the card's own styles key off.
+  const isDark = useClientFlag(
+    () => document.documentElement.classList.contains("dark"),
+    subscribeTheme,
+    true,
+  );
+  // Rotating beams ignore reduced motion on their own.
+  const reducedMotion = useClientFlag(
+    () => window.matchMedia(REDUCE).matches,
+    subscribeMotion,
+    false,
+  );
   const [selectedModel, setSelectedModel] = React.useState(AI_MODELS[0]);
+  // Structured inputs stay folded until asked for, so the card opens at prompt size.
+  const [expanded, setExpanded] = React.useState(false);
+  const panelId = React.useId();
+  const [fieldsKey, setFieldsKey] = React.useState(0);
+
+  const [focused, setFocused] = React.useState(false);
+  const [generating, setGenerating] = React.useState(false);
+  const phase: BeamPhase = generating
+    ? "generating"
+    : focused
+      ? "typing"
+      : "idle";
+  const beamRef = React.useRef<HTMLDivElement>(null);
+  const promptRef = React.useRef<HTMLTextAreaElement>(null);
+
+  function submit() {
+    if (generating || !promptRef.current?.value.trim()) return;
+    setGenerating(true);
+  }
+
+  React.useEffect(() => {
+    if (!generating) return;
+    const id = setTimeout(() => setGenerating(false), DEMO_GENERATION_MS);
+    return () => clearTimeout(id);
+  }, [generating]);
+
+  // Ramp the beam's own CSS animations with updatePlaybackRate, which keeps
+  // each one's current position. Changing `duration` instead would restart
+  // the keyframes and make the light jump around the border.
+  React.useEffect(() => {
+    const el = beamRef.current;
+    if (!el || reducedMotion) return;
+    const anims = el
+      .getAnimations({ subtree: true })
+      .filter(
+        (a): a is CSSAnimation =>
+          a instanceof CSSAnimation &&
+          a.animationName.startsWith("beam-") &&
+          !a.animationName.startsWith("beam-fade"),
+      );
+    if (anims.length === 0) return;
+    const from = anims[0].playbackRate;
+    const to = BEAM[phase].rate;
+    if (from === to) return;
+    const ms = to > from ? BEAM_WAKE_MS : BEAM_SETTLE_MS;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / ms);
+      const eased = 1 - (1 - t) ** 3; // ease-out cubic
+      const rate = from + (to - from) * eased;
+      for (const a of anims) a.updatePlaybackRate(rate);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // isDark: a theme flip regenerates the beam's keyframes, so re-apply the rate.
+  }, [phase, isDark, reducedMotion]);
+
+  // While typing the beam holds still and breathes bright to dim. WAAPI rather
+  // than a CSS rule: an `animation` declaration on the wrapper would replace
+  // the package's own spin and fade-in running on that same element.
+  React.useEffect(() => {
+    const el = beamRef.current;
+    if (!el || reducedMotion || phase !== "typing") return;
+    const breathe = el.animate(
+      [{ "--beam-strength": 0.4 }, { "--beam-strength": 0.75 }],
+      {
+        duration: 2400,
+        delay: 500, // let the strength ease down from idle first
+        iterations: Infinity,
+        direction: "alternate",
+        easing: "cubic-bezier(0.37, 0, 0.63, 1)", // sine in-out, a breath has no hard edge
+      },
+    );
+    return () => breathe.cancel();
+  }, [phase, reducedMotion]);
+
   return (
     <div className="flex items-center justify-center p-4">
       {/* Outer frame matching the designers #F9F9F9 rect with rx=32 */}
-      <div className="w-full max-w-[571px] rounded-[32px] border border-[#E3E3E6] bg-[#F9F9F9] p-[8px] dark:bg-[#09090B] dark:border-[#18181B]">
+      <div className="w-full max-w-[571px] rounded-[32px] border border-[#E3E3E6] bg-[#F9F9F9] p-[8px] dark:bg-background dark:border-border">
         {/* Inner white card matching the white rect with rx=24 */}
-        <div className="rounded-[24px] border border-[#D3D3D7] bg-white p-8 shadow-[0_2px_2px_0_rgba(0,0,0,0.12)] dark:bg-[#0A0A0A] dark:border-[#27272A] dark:shadow-none">
+        <div className="rounded-[24px] border border-[#D3D3D7] bg-white p-8 shadow-[0_2px_2px_0_rgba(0,0,0,0.12)] dark:bg-card dark:border-border dark:shadow-none">
           {/* Header */}
           <div className="mb-6 flex items-center justify-between">
             {/* Pro Badge */}
-            <div className="flex items-center gap-1 rounded-md border border-[#E4E4E4] bg-[#F5F5F5] pl-1 pr-2 py-0.5 dark:border-zinc-800 dark:bg-zinc-900/50">
+            <div className="flex items-center gap-1 rounded-md border border-[#E4E4E4] bg-[#F5F5F5] pl-1 pr-2 py-0.5 dark:border-border dark:bg-muted">
               <svg
                 width={20}
                 height={21}
@@ -291,292 +444,296 @@ export default function AIContentCreatorCard() {
           </div>
 
           {/* Prompt Textarea Section */}
-          <div className="mb-8 overflow-hidden rounded-2xl border border-[#E3E3E6] bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900/40">
-            <div className="p-4">
-              <textarea
-                placeholder="Describe the content you want to generate..."
-                className="min-h-[100px] w-full resize-none bg-transparent p-0 text-[14px] text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-zinc-100 placeholder:dark:text-zinc-600"
-              />
-            </div>
-            <div className="flex items-center justify-between border-t border-[#F4F4F5] bg-white px-4 py-3 dark:border-zinc-800/50 dark:bg-[#151518]">
-              <div className="flex items-center gap-3 text-zinc-400">
-                <Plus
-                  size={18}
-                  className="cursor-pointer hover:text-zinc-900 dark:hover:text-white"
+          {/* Siri-style glow circling the composer. md clips its wrapper, so spacing and shadow live here, not on the box */}
+          <BorderBeam
+            size="md"
+            colorVariant="colorful"
+            strength={isDark ? BEAM[phase].strength : BEAM[phase].lightStrength}
+            saturation={isDark ? undefined : 2}
+            theme={isDark ? "dark" : "light"}
+            duration={BEAM_LAP_SECONDS}
+            css={isDark ? BEAM_CSS : BEAM_CSS + BEAM_LIGHT_CSS}
+            active={!reducedMotion}
+            ref={beamRef}
+            onFocus={() => setFocused(true)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
+            }}
+            className="mb-8 rounded-2xl shadow-sm dark:shadow-none"
+          >
+            <div className="overflow-hidden rounded-2xl border border-[#E3E3E6] bg-white dark:border-border dark:bg-background">
+              <div className="p-4">
+                <textarea
+                  ref={promptRef}
+                  aria-label="Content prompt"
+                  aria-busy={generating}
+                  onKeyDown={(e) => {
+                    // Enter sends, Shift+Enter keeps a newline. Skip while an IME is composing.
+                    if (
+                      e.key !== "Enter" ||
+                      e.shiftKey ||
+                      e.nativeEvent.isComposing
+                    )
+                      return;
+                    e.preventDefault();
+                    submit();
+                  }}
+                  placeholder="Describe the content you want to generate..."
+                  className="min-h-[100px] w-full resize-none bg-transparent p-0 text-[14px] text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-zinc-100 placeholder:dark:text-zinc-600"
                 />
-                <Settings2
-                  size={18}
-                  className="cursor-pointer hover:text-zinc-900 dark:hover:text-white"
-                />
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <div className="flex cursor-pointer items-center gap-1 transition-colors hover:text-zinc-900 dark:hover:text-white">
-                      {selectedModel.logo}
-                      <ChevronDown size={12} strokeWidth={3} />
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="start"
-                    className="w-[160px] dark:bg-zinc-900 dark:border-zinc-800"
-                  >
-                    {AI_MODELS.map((model) => (
-                      <DropdownMenuItem
-                        key={model.id}
-                        className="flex items-center gap-2 cursor-pointer"
-                        onClick={() => setSelectedModel(model)}
-                      >
-                        {model.logo}
-                        <span className="text-sm font-medium">
-                          {model.name}
-                        </span>
-                        {selectedModel.id === model.id && (
-                          <div className="ml-auto h-1.5 w-1.5 rounded-full bg-[#00FFA1]" />
-                        )}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="hidden items-center gap-1.5 text-[11px] font-medium sm:flex">
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(90deg, #71717A 0%, #CFCFE0 50%, #71717A 100%)",
-                      backgroundSize: "200% auto",
-                      animation: "light-beam 3s linear infinite",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    Upgrade to Team to unlock
-                  </span>
-                  <style
-                    dangerouslySetInnerHTML={{
-                      __html: `
-                                        @keyframes light-beam {
-                                            from { background-position: 200% 0; }
-                                            to { background-position: -200% 0; }
-                                        }
-                                    `,
-                    }}
+              <div className="flex items-center justify-between border-t border-[#F4F4F5] bg-white px-4 py-3 dark:border-border dark:bg-muted">
+                <div className="flex items-center gap-3 text-zinc-400">
+                  <Plus
+                    size={18}
+                    className="cursor-pointer hover:text-zinc-900 dark:hover:text-white"
                   />
-                  <span className="cursor-pointer text-[#371CFF] hover:underline dark:text-[#85B4FF]">
-                    Upgrade Plan
-                  </span>
+                  <button
+                    type="button"
+                    aria-label="Structured inputs"
+                    aria-expanded={expanded}
+                    aria-controls={panelId}
+                    onClick={() => setExpanded((v) => !v)}
+                    className={`-m-1 rounded-md p-1 transition-[color,transform] duration-150 ease-out hover:text-zinc-900 active:scale-[0.97] dark:hover:text-white ${expanded ? "text-zinc-900 dark:text-[#00FFA1]" : ""}`}
+                  >
+                    <Settings2 size={18} />
+                  </button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <div className="flex cursor-pointer items-center gap-1 transition-colors hover:text-zinc-900 dark:hover:text-white">
+                        {selectedModel.logo}
+                        <ChevronDown size={12} strokeWidth={3} />
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="start"
+                      className="w-[160px] dark:bg-card dark:border-border"
+                    >
+                      {AI_MODELS.map((model) => (
+                        <DropdownMenuItem
+                          key={model.id}
+                          className="flex items-center gap-2 cursor-pointer"
+                          onClick={() => setSelectedModel(model)}
+                        >
+                          {model.logo}
+                          <span className="text-sm font-medium">
+                            {model.name}
+                          </span>
+                          {selectedModel.id === model.id && (
+                            <div className="ml-auto h-1.5 w-1.5 rounded-full bg-[#00FFA1]" />
+                          )}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white transition-opacity hover:opacity-90 dark:bg-zinc-800 dark:text-[#00FFA1]">
-                  <ArrowUp size={16} strokeWidth={3} />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="mb-10 flex items-center gap-4">
-            <div className="h-px flex-1 bg-[#E3E3E6] dark:bg-zinc-800" />
-            <span className="text-[10px] font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
-              Or use structured inputs
-            </span>
-            <div className="h-px flex-1 bg-[#E3E3E6] dark:bg-zinc-800" />
-          </div>
-
-          {/* Form */}
-          <div className="space-y-5">
-            <div className="space-y-2">
-              <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                Content Type
-              </Label>
-              <Select defaultValue="social-media">
-                <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-sm focus:ring-1 focus:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200">
-                  <SelectValue placeholder="Select content type" />
-                </SelectTrigger>
-                <SelectContent
-                  side="bottom"
-                  align="start"
-                  className="rounded-lg dark:bg-zinc-900 dark:border-zinc-800"
-                >
-                  <SelectItem value="social-media">
-                    Social Media Post
-                  </SelectItem>
-                  <SelectItem value="blog-post">Blog Post</SelectItem>
-                  <SelectItem value="article">Article</SelectItem>
-                  <SelectItem value="email">Email Campaign</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                Topic / Product
-              </Label>
-              <Input
-                defaultValue="Benefits of Remote Jobs"
-                className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                Key Points (oner per line)
-              </Label>
-              <Textarea
-                defaultValue={`Increased flexibility and work-life balance\nAccess to a global talent pool for companies\nReduced commuting time and costs`}
-                className="min-h-[120px] resize-none rounded-lg border-[#E3E3E6] py-3 text-[14px] leading-relaxed shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                Target Audience
-              </Label>
-              <Input
-                defaultValue="Benefits of Remote Jobs"
-                className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
-              />
-            </div>
-
-            <div className="flex gap-4">
-              <div className="flex-1 space-y-2">
-                <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                  Tone
-                </Label>
-                <Select defaultValue="informative">
-                  <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-sm focus:ring-1 focus:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200">
-                    <SelectValue placeholder="Select tone" />
-                  </SelectTrigger>
-                  <SelectContent
-                    side="bottom"
-                    align="start"
-                    className="rounded-lg dark:bg-zinc-900 dark:border-zinc-800"
-                  >
-                    <SelectItem value="informative">Informative</SelectItem>
-                    <SelectItem value="professional">Professional</SelectItem>
-                    <SelectItem value="casual">Casual</SelectItem>
-                    <SelectItem value="humorous">Humorous</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex-1 space-y-2">
-                <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                  Length
-                </Label>
-                <Input
-                  defaultValue="500 words"
-                  className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
-                Keywords (Optional)
-              </Label>
-              <Input
-                defaultValue="remote work, productivity"
-                className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-200"
-              />
-            </div>
-          </div>
-
-          <div className="mt-10 space-y-4">
-            {/* Light Mode Button */}
-            <button className="relative flex h-[52px] w-full transform items-center justify-center gap-3 rounded-[16px] border border-[#C4C4C4] bg-[#0A0A0A] text-white transition-all hover:opacity-90 active:scale-[0.98] shadow-sm dark:hidden">
-              <IconSparkle className="size-5 text-white" />
-              <span className="select-none text-[14px] font-normal">
-                Generate Content
-              </span>
-            </button>
-
-            {/* Dark Mode Button */}
-            <button className="relative hidden h-[52px] w-full transform items-center justify-center gap-3 rounded-[16px] border-2 border-[#9761F6] bg-gradient-to-b from-[#CDC2FF] to-[#100618] text-[#FFEBFE] transition-all hover:opacity-90 active:scale-[0.98] shadow-[inset_0_2px_4px_rgba(38,4,62,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] dark:flex">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0"
-              >
-                <g clipPath="url(#sparkle_clip)">
-                  <mask
-                    id="sparkle_mask"
-                    style={{ maskType: "luminance" }}
-                    maskUnits="userSpaceOnUse"
-                    x="0"
-                    y="0"
-                    width="24"
-                    height="24"
-                  >
-                    <path d="M24 0H0V24H24V0Z" fill="white" />
-                    <path
-                      d="M16.6562 9.21227L14.3939 3.51197C13.893 2.24988 12.1067 2.24972 11.6056 3.51173L9.34196 9.21227C9.31836 9.27154 9.27155 9.31835 9.21228 9.34195L3.51087 11.6059C2.24898 12.107 2.24898 13.893 3.51087 14.3941L9.21228 16.6581C9.27155 16.6817 9.31836 16.7285 9.34196 16.7877L11.6055 22.4883C12.1067 23.7503 13.8929 23.7501 14.3939 22.488L16.6562 16.7877C16.6799 16.7283 16.7273 16.6816 16.7868 16.6581L22.4888 14.3941C23.7507 13.8931 23.7507 12.1069 22.4888 11.6059L16.7868 9.34195C16.7273 9.31841 16.6799 9.27174 16.6562 9.21227Z"
-                      fill="black"
+                <div className="flex items-center gap-3">
+                  <div className="hidden items-center gap-1.5 text-[11px] font-medium sm:flex">
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(90deg, #71717A 0%, #CFCFE0 50%, #71717A 100%)",
+                        backgroundSize: "200% auto",
+                        animation: "light-beam 3s linear infinite",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      Upgrade to Team to unlock
+                    </span>
+                    <style
+                      dangerouslySetInnerHTML={{
+                        __html: `
+                                          @keyframes light-beam {
+                                              from { background-position: 200% 0; }
+                                              to { background-position: -200% 0; }
+                                          }
+                                      `,
+                      }}
                     />
-                  </mask>
-                  <g mask="url(#sparkle_mask)">
-                    <path
-                      d="M13.0001 9.00529C13.5523 9.00529 14 9.45306 14.0001 10.0053V12.0053H16.0001C16.5523 12.0053 17 12.4531 17.0001 13.0053C16.9999 13.5574 16.5522 14.0053 16.0001 14.0053H14.0001V16.0053C13.9999 16.5574 13.5522 17.0053 13.0001 17.0053C12.448 17.0053 12.0003 16.5574 12.0001 16.0053V14.0053H10.0001C9.448 14.0053 9.00034 13.5574 9.00009 13.0053C9.00016 12.4531 9.44789 12.0054 10.0001 12.0053H12.0001V10.0053C12.0002 9.45309 12.4479 9.00534 13.0001 9.00529ZM6.0704 1.34123C6.40449 0.499893 7.59584 0.499834 7.92978 1.34123L9.25009 4.66935C9.26462 4.70569 9.29382 4.73394 9.33017 4.74845L12.6593 6.07072C13.5006 6.40475 13.5006 7.59507 12.6593 7.92912L9.33017 9.25138C9.29383 9.26588 9.26463 9.29417 9.25009 9.33049L7.92978 12.6586C7.59584 13.5 6.40449 13.5 6.0704 12.6586L4.74911 9.33049C4.73455 9.29416 4.7054 9.26586 4.66904 9.25138L1.34091 7.92912C0.499646 7.59507 0.499646 6.40477 1.34091 6.07072L4.66904 4.74845C4.70542 4.73397 4.73456 4.7057 4.74911 4.66935L6.0704 1.34123Z"
-                      fill="url(#paint0_sparkle)"
-                    />
-                  </g>
-                  <path
-                    d="M16.6562 9.21227L14.3939 3.51197C13.893 2.24988 12.1067 2.24972 11.6056 3.51173L9.34196 9.21227C9.31836 9.27154 9.27155 9.31835 9.21228 9.34195L3.51087 11.6059C2.24898 12.107 2.24898 13.893 3.51087 14.3941L9.21228 16.6581C9.27155 16.6817 9.31836 16.7285 9.34196 16.7877L11.6055 22.4883C12.1067 23.7503 13.8929 23.7501 14.3939 22.488L16.6562 16.7877C16.6799 16.7283 16.7273 16.6816 16.7868 16.6581L22.4888 14.3941C23.7507 13.8931 23.7507 12.1069 22.4888 11.6059L16.7868 9.34195C16.7273 9.31841 16.6799 9.27174 16.6562 9.21227Z"
-                    fill="url(#paint1_sparkle)"
-                  />
-                  <path
-                    d="M11.6054 3.51174C12.1064 2.24985 13.8924 2.24997 14.3934 3.51174L16.6561 9.21194C16.6798 9.27141 16.7275 9.31828 16.787 9.34182L22.4882 11.6055C23.7501 12.1065 23.7501 13.8935 22.4882 14.3946L16.787 16.6582L16.745 16.6797C16.7052 16.7056 16.6739 16.7433 16.6561 16.7881L14.3934 22.4883L14.3427 22.6026C13.8 23.7118 12.1987 23.712 11.6561 22.6026L11.6054 22.4883L9.34168 16.7881C9.31809 16.7288 9.27106 16.6818 9.2118 16.6582L3.51063 14.3946C2.24874 13.8935 2.24874 12.1066 3.51063 11.6055L9.2118 9.34182C9.27106 9.31822 9.31809 9.2712 9.34168 9.21194L11.6054 3.51174ZM13.6972 3.78909C13.4468 3.15817 12.5534 3.15751 12.3026 3.78811L10.0389 9.48928C9.95156 9.70875 9.78837 9.88881 9.58094 9.99709L9.48914 10.0391L3.78797 12.3028C3.15702 12.5533 3.15703 13.4467 3.78797 13.6973L9.48914 15.961C9.70861 16.0483 9.88867 16.2115 9.99695 16.419L10.0389 16.5108L12.3026 22.2119C12.5534 22.8425 13.4458 22.8419 13.6962 22.211L15.9589 16.5108L16.0018 16.418C16.1117 16.2083 16.293 16.047 16.5097 15.961L22.2118 13.6973C22.8428 13.4468 22.8428 12.5533 22.2118 12.3028L16.5097 10.0391C16.2931 9.95306 16.1116 9.79167 16.0018 9.58205L15.9589 9.48928L13.6972 3.78909Z"
-                    fill="url(#paint2_sparkle)"
-                  />
-                </g>
-                <defs>
-                  <linearGradient
-                    id="paint0_sparkle"
-                    x1="8.85509"
-                    y1="0.709981"
-                    x2="8.85509"
-                    y2="13.5"
-                    gradientUnits="userSpaceOnUse"
+                    <span className="cursor-pointer text-[#371CFF] hover:underline dark:text-[#85B4FF]">
+                      Upgrade Plan
+                    </span>
+                  </div>
+                  {/* Decorative: the shortcut is announced on the button itself */}
+                  <kbd
+                    aria-hidden
+                    className="hidden h-5 min-w-5 items-center justify-center rounded-[5px] border border-[#E3E3E6] bg-[#F4F4F5] px-1 font-sans text-[11px] leading-none text-zinc-500 shadow-[0_1px_0_rgba(0,0,0,0.06)] sm:inline-flex dark:border-input dark:bg-input/30 dark:text-zinc-400 dark:shadow-none"
                   >
-                    <stop stopColor="#575757" />
-                    <stop offset="1" stopColor="#151515" />
-                  </linearGradient>
-                  <linearGradient
-                    id="paint1_sparkle"
-                    x1="13"
-                    y1="0.00000500753"
-                    x2="13"
-                    y2="26"
-                    gradientUnits="userSpaceOnUse"
+                    ↵
+                  </kbd>
+                  <button
+                    type="button"
+                    aria-label="Generate"
+                    aria-keyshortcuts="Enter"
+                    title="Send (Enter). Shift+Enter for a new line"
+                    onClick={submit}
+                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-[transform,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.97] dark:bg-zinc-800 dark:text-[#00FFA1]"
                   >
-                    <stop stopColor="#E3E3E5" stopOpacity={0.6} />
-                    <stop offset="1" stopColor="#BBBBC0" stopOpacity={0.6} />
-                  </linearGradient>
-                  <linearGradient
-                    id="paint2_sparkle"
-                    x1="12.999"
-                    y1="2.565"
-                    x2="12.999"
-                    y2="13.5"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="white" />
-                    <stop offset="1" stopColor="white" stopOpacity={0} />
-                  </linearGradient>
-                  <clipPath id="sparkle_clip">
-                    <rect width="24" height="24" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span className="text-[14px] font-medium">Generate Content</span>
-            </button>
-            <Button
-              variant="ghost"
-              className="h-auto w-full text-[14px] font-medium text-[#18181B] hover:bg-transparent hover:text-[#18181B]/70 dark:text-zinc-500 dark:hover:text-zinc-400"
+                    <ArrowUp size={16} strokeWidth={3} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </BorderBeam>
+
+          {/* Divider doubles as the disclosure for the structured form */}
+          <div className="flex items-center gap-4">
+            <div className="h-px flex-1 bg-[#E3E3E6] dark:bg-border" />
+            <button
+              type="button"
+              aria-expanded={expanded}
+              aria-controls={panelId}
+              onClick={() => setExpanded((v) => !v)}
+              className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-zinc-400 transition-[color,transform] duration-150 ease-out hover:text-zinc-900 active:scale-[0.97] dark:text-zinc-500 dark:hover:text-white"
             >
-              Reset
-            </Button>
+              {expanded ? "Hide structured inputs" : "Or use structured inputs"}
+              <ChevronDown
+                size={12}
+                strokeWidth={2.5}
+                className={`transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`}
+              />
+            </button>
+            <div className="h-px flex-1 bg-[#E3E3E6] dark:bg-border" />
+          </div>
+
+          {/* 0fr -> 1fr tweens to the form's natural height with no measuring; folding is quicker than unfolding */}
+          <div
+            id={panelId}
+            inert={!expanded}
+            className={`grid transition-[grid-template-rows] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${expanded ? "grid-rows-[1fr] duration-300" : "grid-rows-[0fr] duration-200"}`}
+          >
+            {/* Side padding keeps field focus rings clear of the clip */}
+            <div className="-mx-1 min-h-0 overflow-hidden px-1">
+              <div
+                className={`pt-8 pb-1 transition-[opacity,transform] ease-out motion-reduce:transform-none ${expanded ? "translate-y-0 opacity-100 duration-300" : "-translate-y-1 opacity-0 duration-150"}`}
+              >
+                {/* Form; Reset remounts it so every field, Radix selects included, returns to its default */}
+                <div key={fieldsKey} className="space-y-5">
+                  <div className="space-y-2">
+                    <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                      Content Type
+                    </Label>
+                    <Select defaultValue="social-media">
+                      <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-sm focus:ring-1 focus:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200">
+                        <SelectValue placeholder="Select content type" />
+                      </SelectTrigger>
+                      <SelectContent
+                        side="bottom"
+                        align="start"
+                        className="rounded-lg dark:bg-card dark:border-border"
+                      >
+                        <SelectItem value="social-media">
+                          Social Media Post
+                        </SelectItem>
+                        <SelectItem value="blog-post">Blog Post</SelectItem>
+                        <SelectItem value="article">Article</SelectItem>
+                        <SelectItem value="email">Email Campaign</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                      Topic / Product
+                    </Label>
+                    <Input
+                      defaultValue="Benefits of Remote Jobs"
+                      className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                      Key Points (oner per line)
+                    </Label>
+                    <Textarea
+                      defaultValue={`Increased flexibility and work-life balance\nAccess to a global talent pool for companies\nReduced commuting time and costs`}
+                      className="min-h-[120px] resize-none rounded-lg border-[#E3E3E6] py-3 text-[14px] leading-relaxed shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                      Target Audience
+                    </Label>
+                    <Input
+                      defaultValue="Benefits of Remote Jobs"
+                      className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200"
+                    />
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="flex-1 space-y-2">
+                      <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                        Tone
+                      </Label>
+                      <Select defaultValue="informative">
+                        <SelectTrigger className="h-[40px] rounded-lg border-[#E3E3E6] bg-white text-[14px] shadow-sm focus:ring-1 focus:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200">
+                          <SelectValue placeholder="Select tone" />
+                        </SelectTrigger>
+                        <SelectContent
+                          side="bottom"
+                          align="start"
+                          className="rounded-lg dark:bg-card dark:border-border"
+                        >
+                          <SelectItem value="informative">
+                            Informative
+                          </SelectItem>
+                          <SelectItem value="professional">
+                            Professional
+                          </SelectItem>
+                          <SelectItem value="casual">Casual</SelectItem>
+                          <SelectItem value="humorous">Humorous</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="flex-1 space-y-2">
+                      <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                        Length
+                      </Label>
+                      <Input
+                        defaultValue="500 words"
+                        className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-[12px] font-medium text-[#18181B] dark:text-zinc-500">
+                      Keywords (Optional)
+                    </Label>
+                    <Input
+                      defaultValue="remote work, productivity"
+                      className="h-[40px] rounded-lg border-[#E3E3E6] text-[14px] shadow-sm focus-visible:ring-1 focus-visible:ring-black/5 dark:border-input dark:bg-input/30 dark:text-zinc-200"
+                    />
+                  </div>
+                </div>
+
+                {/* Fields feed the prompt's send, so the panel only saves or resets them */}
+                <div className="mt-8 flex items-center justify-end gap-2">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setFieldsKey((k) => k + 1)}
+                    className="h-9 px-4 text-[13px] font-medium text-zinc-500 transition-[color,transform] duration-150 ease-out active:scale-[0.97] dark:text-zinc-400"
+                  >
+                    Reset
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setExpanded(false);
+                      promptRef.current?.focus();
+                    }}
+                    className="h-9 rounded-lg px-4 text-[13px] font-medium transition-[transform,opacity] duration-150 ease-out active:scale-[0.97]"
+                  >
+                    Save
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
