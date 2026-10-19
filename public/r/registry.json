@@ -57,8 +57,8 @@
       "description": "Pro version content creation card",
       "author": "D2 Studio",
       "dependencies": [
-        "lucide-react",
-        "nucleo-glass"
+        "border-beam",
+        "lucide-react"
       ],
       "registryDependencies": [
         "button",

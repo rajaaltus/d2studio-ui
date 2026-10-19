@@ -114,33 +114,6 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
         </PreviewWrapper>
       </section>
 
-      {/* Metadata Section */}
-      <section className="w-full max-w-7xl border-x mx-auto px-4 lg:px-8 py-8">
-        <div className="rounded-lg border bg-muted/50 p-6">
-          <h2 className="text-lg font-semibold mb-4">Details</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Author</p>
-              <p className="font-medium">{block.author ?? "D2 Studio"}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Version</p>
-              <p className="font-medium">{block.version ?? "1.0.0"}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Type</p>
-              <p className="font-medium capitalize">{kind}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Code Status</p>
-              <p className="font-medium">
-                {comingSoon ? "Coming Soon" : "Available"}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <SiteFooter />
     </div>
   );
