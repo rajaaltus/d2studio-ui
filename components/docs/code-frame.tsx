@@ -7,19 +7,22 @@ import { CopyIconButton } from "./copy-icon-button";
 /**
  * Server-highlighted code (lib/highlight.ts) in the docs' file frame. Long
  * files open clipped with a fade and expand in place; the fade is a gradient,
- * not a mask, so it stays cheap on a page with several of these.
+ * not a mask, so it stays cheap on a page with several of these. `scroll`
+ * caps the height instead and scrolls inside the frame.
  */
 export function CodeFrame({
   html,
   code,
   filename,
   collapsible = false,
+  scroll = false,
   className,
 }: {
   html: string;
   code: string;
   filename?: string;
   collapsible?: boolean;
+  scroll?: boolean;
   className?: string;
 }) {
   const long = collapsible && code.split("\n").length > 18;
@@ -43,6 +46,7 @@ export function CodeFrame({
             // theme picks one, so switching it needs no re-highlight.
             "[&_.shiki]:bg-transparent [&_.shiki_span]:text-(--shiki-light) dark:[&_.shiki_span]:text-(--shiki-dark)",
             !open && "max-h-72 overflow-y-hidden",
+            scroll && "max-h-80 overflow-y-auto overscroll-contain",
           )}
           dangerouslySetInnerHTML={{ __html: html }}
         />

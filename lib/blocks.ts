@@ -1112,6 +1112,27 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     description: "The RAW chip from Power Chip on its own: a static SVG illustration with no dependencies.",
     categories: ["illustration"],
   },
+  {
+    name: "moon-tile-01",
+    title: "Moon Tile",
+    description: "A night tile: a crescent moon rises over a bank of clouds, then the clouds sway in parallax while a sparkle twinkles and two stars blink. Plays twice once it scrolls into view, with a replay button. Light and dark, reduced-motion aware.",
+    categories: ["illustration"],
+    dependencies: ["lucide-react"],
+  },
+  {
+    name: "moon-tile-02",
+    title: "Moon Window",
+    description: "A night window: a pale moon rises from behind dark hills in a round pane of stars, then the hills roll like a swell, the stars twinkle in three sets and the halo and sky glow breathe. Plays twice once it scrolls into view, with a replay button. Light and dark, reduced-motion aware.",
+    categories: ["illustration"],
+    dependencies: ["lucide-react"],
+  },
+  {
+    name: "moon-tile-03",
+    title: "Moon Card",
+    description: "A tipped night card on dashed layout guides: a crescent moon rises from behind a bank of clouds, then a small cloud drifts across it while the banks sway in parallax, a sparkle twinkles and two stars blink. Plays twice once it scrolls into view, with a replay button. Light and dark, reduced-motion aware.",
+    categories: ["illustration"],
+    dependencies: ["lucide-react"],
+  },
 ];
 
 /**

@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
+import type React from "react";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { CodeFrame } from "@/components/docs/code-frame";
 import { InstallCommand } from "@/components/docs/install-command";
+import { IllustrationCodeSheet } from "@/components/illustration-code-sheet";
 import { highlight } from "@/lib/highlight";
 import { Navigation } from "@/components/navigation";
 import { SiteFooter } from "@/components/site-footer";
 import { IllustrationPlayer } from "@/components/illustration-player";
 import RawChip from "@/registry/default/components/raw-chip";
-import { ProGrid, ProCta } from "@/components/blocks/pro-grid";
-import { proItemsFor } from "@/lib/catalog";
+import MoonTile from "@/registry/default/components/moon-tile-01";
+import MoonWindow from "@/registry/default/components/moon-tile-02";
+import MoonCard from "@/registry/default/components/moon-tile-03";
+import { ProCta } from "@/components/blocks/pro-grid";
+import { IllustrationReel } from "@/components/illustration-reel";
 import { proShelfHref } from "@/lib/pro";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Illustrations — D2 Studio",
@@ -19,23 +25,50 @@ export const metadata: Metadata = {
 };
 
 export default async function IllustrationPage() {
-  const [source, chipSource] = await Promise.all(
-    ["power-chip", "raw-chip"].map((name) =>
+  const [
+    source,
+    chipSource,
+    moonSource,
+    moonCss,
+    windowSource,
+    windowCss,
+    cardSource,
+    cardCss,
+  ] = await Promise.all(
+    [
+      "power-chip.tsx",
+      "raw-chip.tsx",
+      "moon-tile-01.tsx",
+      "moon-tile-01/moon-tile-01.css",
+      "moon-tile-02.tsx",
+      "moon-tile-02/moon-tile-02.css",
+      "moon-tile-03.tsx",
+      "moon-tile-03/moon-tile-03.css",
+    ].map((file) =>
       readFile(
-        path.join(
-          process.cwd(),
-          "registry",
-          "default",
-          "components",
-          `${name}.tsx`,
-        ),
+        path.join(process.cwd(), "registry", "default", "components", file),
         "utf8",
       ),
     ),
   );
-  const [sourceHtml, chipSourceHtml] = await Promise.all([
+  const [
+    sourceHtml,
+    chipSourceHtml,
+    moonSourceHtml,
+    moonCssHtml,
+    windowSourceHtml,
+    windowCssHtml,
+    cardSourceHtml,
+    cardCssHtml,
+  ] = await Promise.all([
     highlight(source),
     highlight(chipSource),
+    highlight(moonSource),
+    highlight(moonCss, "css"),
+    highlight(windowSource),
+    highlight(windowCss, "css"),
+    highlight(cardSource),
+    highlight(cardCss, "css"),
   ]);
 
   return (
@@ -43,69 +76,94 @@ export default async function IllustrationPage() {
       <Navigation />
       <div id="main-content" tabIndex={-1} className="outline-none" />
 
-      <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
-        <div className="bg-background border rounded-xl m-0 px-6 md:px-10 lg:px-16 py-16 lg:py-24 flex flex-col items-center text-center gap-6">
-          <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-foreground/60" />
-            Custom illustration
-          </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight">
-            Power Chip
-          </h1>
-          <p className="text-sm md:text-base text-muted-foreground max-w-2xl">
-            A RAW chip wired to six tiles. Press Animate to watch it charge and
-            send power out to every tile.
-          </p>
-        </div>
-      </section>
+      <h1 className="sr-only">Illustrations</h1>
 
-      <section className="relative max-w-7xl w-full border-x mx-auto bg-background flex justify-center px-4 pt-12 pb-20 lg:py-16">
-        <IllustrationPlayer />
-      </section>
+      <section className="max-w-7xl w-full border-x mx-auto bg-background px-4 lg:px-8 py-8 lg:py-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <IllustrationRow
+          title="Power Chip"
+          featured
+          name="power-chip"
+          files={[
+            {
+              html: sourceHtml,
+              code: source,
+              filename: "components/power-chip.tsx",
+            },
+          ]}
+        >
+          <IllustrationPlayer />
+        </IllustrationRow>
 
-      <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
-        <div className="bg-background border rounded-xl m-0 px-4 md:px-10 lg:px-16 py-10 lg:py-12 flex flex-col gap-4">
-          <div>
-            <h2 className="text-lg font-medium">Install</h2>
-            <p className="text-xs text-muted-foreground mt-2">
-              One self-contained component with no dependencies. Add it with the
-              shadcn CLI, or copy the source below into{" "}
-              <code className="font-mono">components/power-chip.tsx</code>. It
-              scales to its container on any screen.
-            </p>
-          </div>
-          <InstallCommand args="add @d2/power-chip" />
-          <CodeFrame
-            html={sourceHtml}
-            code={source}
-            filename="components/power-chip.tsx"
-            collapsible
-            className="min-w-0"
-          />
-        </div>
-      </section>
+        <IllustrationRow
+          title="RAW Chip"
+          name="raw-chip"
+          files={[
+            {
+              html: chipSourceHtml,
+              code: chipSource,
+              filename: "components/raw-chip.tsx",
+            },
+          ]}
+        >
+          <RawChip aria-hidden="true" className="h-auto w-32 sm:w-40" />
+        </IllustrationRow>
 
-      <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border mt-px">
-        <div className="bg-background border rounded-xl m-0 px-4 md:px-10 lg:px-16 py-10 lg:py-12 flex flex-col gap-4">
-          <div>
-            <h2 className="text-lg font-medium">RAW Chip</h2>
-            <p className="text-xs text-muted-foreground mt-2">
-              The chip on its own, still. Same artwork as Power Chip, cropped to
-              the chip, for an icon, a card or an empty state.
-            </p>
-          </div>
-          <div className="flex justify-center py-10 lg:py-14">
-            <RawChip aria-hidden="true" className="h-auto w-32 sm:w-40" />
-          </div>
-          <InstallCommand args="add @d2/raw-chip" />
-          <CodeFrame
-            html={chipSourceHtml}
-            code={chipSource}
-            filename="components/raw-chip.tsx"
-            collapsible
-            className="min-w-0"
-          />
-        </div>
+        <IllustrationRow
+          title="Moon Tile"
+          name="moon-tile-01"
+          files={[
+            {
+              html: moonSourceHtml,
+              code: moonSource,
+              filename: "components/moon-tile-01.tsx",
+            },
+            {
+              html: moonCssHtml,
+              code: moonCss,
+              filename: "components/moon-tile-01/moon-tile-01.css",
+            },
+          ]}
+        >
+          <MoonTile />
+        </IllustrationRow>
+
+        <IllustrationRow
+          title="Moon Window"
+          name="moon-tile-02"
+          files={[
+            {
+              html: windowSourceHtml,
+              code: windowSource,
+              filename: "components/moon-tile-02.tsx",
+            },
+            {
+              html: windowCssHtml,
+              code: windowCss,
+              filename: "components/moon-tile-02/moon-tile-02.css",
+            },
+          ]}
+        >
+          <MoonWindow />
+        </IllustrationRow>
+
+        <IllustrationRow
+          title="Moon Card"
+          name="moon-tile-03"
+          files={[
+            {
+              html: cardSourceHtml,
+              code: cardSource,
+              filename: "components/moon-tile-03.tsx",
+            },
+            {
+              html: cardCssHtml,
+              code: cardCss,
+              filename: "components/moon-tile-03/moon-tile-03.css",
+            },
+          ]}
+        >
+          <MoonCard />
+        </IllustrationRow>
       </section>
 
       <ProIllustrationWall />
@@ -115,39 +173,88 @@ export default async function IllustrationPage() {
   );
 }
 
-// The rest of the library, which lives on pro.d2studio.dev.
-//
-// One flat wall rather than a heading per category: eighteen pieces spread over
-// ten categories left most rows holding a single card with two empty columns
-// beside it, and the category is already on every card. Grouping earns its keep
-// on /blocks, where the categories have ten items each.
-function ProIllustrationWall() {
-  const items = proItemsFor("illustrations", "illustration");
-  if (items.length === 0) return null;
+// One free illustration as a card: the drawing on top, then its title and
+// install, three across on lg with the featured one taking a 2x2 block. The
+// code opens in a side sheet.
+function IllustrationRow({
+  title,
+  name,
+  featured = false,
+  files,
+  children,
+}: {
+  title: string;
+  name: string;
+  featured?: boolean;
+  files: { html: string; code: string; filename: string }[];
+  children: React.ReactNode;
+}) {
+  return (
+    <article
+      className={cn(
+        "flex flex-col overflow-hidden rounded-2xl border bg-card",
+        featured && "md:col-span-2 lg:row-span-2",
+      )}
+    >
+      <div
+        className={cn(
+          "relative flex items-center justify-center border-b bg-muted/30 p-4",
+          featured ? "min-h-80 flex-1 md:p-8" : "aspect-[4/3]",
+        )}
+      >
+        {children}
+      </div>
+      <div className="flex min-w-0 flex-col gap-3 p-4">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-base font-medium">{title}</h2>
+          <IllustrationCodeSheet title={title} files={files} />
+        </div>
+        <InstallCommand args={`add @d2/${name}`} />
+      </div>
+    </article>
+  );
+}
 
+// The rest of the library, which lives on pro.d2studio.dev, shown as a screen
+// recording of it with the way in laid over the recording.
+//
+// The count is the pro source's own (`group: "illustrations"` in
+// ../pro-d2/lib/blocks.ts), not the mirror's: the mirror only carries what the
+// live site serves, which is a fraction of the library. Recount after a pro
+// release.
+const PRO_ILLUSTRATION_COUNT = 74;
+
+function ProIllustrationWall() {
   return (
     <section className="max-w-7xl w-full border-x mx-auto bg-background mt-px">
       <div className="px-4 md:px-10 lg:px-16 py-16 lg:py-24 flex flex-col gap-12">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-col gap-3">
-            <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              The full library
-            </span>
-            <h2 className="text-2xl md:text-3xl font-medium tracking-tight">
-              {items.length} illustrations
-            </h2>
-            <p className="text-sm text-muted-foreground max-w-xl">
-              Isometric scenes, particle portraits, logo systems and device
-              screens. Each one is a single React component with no page layout
-              of its own, so it drops into a card, a hero or an empty state.
-            </p>
-          </div>
-          <ProCta href={proShelfHref("/illustrations", "illustration")}>
-            Browse on D2 Pro
-          </ProCta>
+        <div className="flex flex-col gap-3">
+          <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            The full library
+          </span>
+          <h2 className="text-2xl md:text-3xl font-medium tracking-tight">
+            {PRO_ILLUSTRATION_COUNT} illustrations
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-xl">
+            Isometric scenes, particle portraits, logo systems and device
+            screens. Each one is a single React component with no page layout of
+            its own, so it drops into a card, a hero or an empty state.
+          </p>
         </div>
 
-        <ProGrid items={items} />
+        <div className="relative overflow-hidden rounded-2xl border bg-black">
+          <IllustrationReel className="block aspect-[1892/1080] w-full object-cover" />
+          {/* A scrim under the button, so it reads over any frame. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent"
+          />
+          <div className="absolute inset-x-0 bottom-6 flex justify-center md:bottom-10">
+            <ProCta href={proShelfHref("/illustrations", "illustration")}>
+              Browse all {PRO_ILLUSTRATION_COUNT} on D2 Pro
+            </ProCta>
+          </div>
+        </div>
       </div>
     </section>
   );
