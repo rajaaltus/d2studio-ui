@@ -76,11 +76,12 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
           componentName={block.name}
           code={comingSoon ? undefined : source}
           codeStatus={block.status}
-          minHeight="600px"
+          minHeight={`${block.previewHeight ?? 600}px`}
         >
           <AutoHeightFrame
             src={`/preview/${block.name}?type=${previewType}`}
             title={`Preview for ${block.name}`}
+            minHeight={block.previewHeight}
           />
         </PreviewWrapper>
       </section>

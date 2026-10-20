@@ -1,0 +1,34 @@
+/*
+ * Dock pixel icons: a still gray glyph at rest. Hovering the row, or opening
+ * its dropdown, drops these rules so the icon's own loop plays from frame 0
+ * in colour. Glyph cells index the grid row by row (3x3; stars-fall is 4x4).
+ */
+.dock-icons .group:not(:hover):not([data-state="open"]) .cell {
+  animation: none;
+  opacity: 0;
+  filter: grayscale(1);
+}
+.dock-icons .cell {
+  transition: filter 150ms ease-out;
+}
+
+/* Blocks "All": X */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner :is(.cell-0, .cell-2, .cell-4, .cell-6, .cell-8),
+/* Hero: banner over a centred line */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-hero :is(.cell-0, .cell-1, .cell-2, .cell-4),
+/* AI: diamond */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-ai :is(.cell-1, .cell-3, .cell-5, .cell-7),
+/* Blocks: full grid */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-blocks .cell,
+/* Bento: big tile with side and foot cells */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-bento :is(.cell-0, .cell-1, .cell-2, .cell-3, .cell-4, .cell-6, .cell-8),
+/* Dashboard: stair */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-dashboard :is(.cell-0, .cell-3, .cell-4, .cell-6, .cell-7, .cell-8),
+/* Tools: plus */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-tools :is(.cell-1, .cell-3, .cell-4, .cell-5, .cell-7),
+/* Spinners: ring */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-pattern-1 :is(.cell-0, .cell-1, .cell-2, .cell-3, .cell-5, .cell-6, .cell-7, .cell-8),
+/* Cosmo: scattered stars */
+.dock-icons .group:not(:hover):not([data-state="open"]) .pixel-spinner-stars-fall :is(.cell-1, .cell-6, .cell-8, .cell-11, .cell-13) {
+  opacity: 1;
+}

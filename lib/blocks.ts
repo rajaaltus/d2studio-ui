@@ -38,6 +38,8 @@ export type BlockDef = {
   featured?: number;
   author?: string;
   version?: string;
+  /** Floor for the /blocks/<name> preview frame in px; it still grows to fit. Defaults to 600. */
+  previewHeight?: number;
 };
 
 // Order is what /blocks draws. Shelved items lead, in the order they were
@@ -116,7 +118,8 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     dependencies: ["border-beam", "lucide-react", "nucleo-glass"],
     registryDependencies: ["button", "dropdown-menu"],
     shelf: "blocks",
-    image: "/blocks/ai-v2-d96729b5.png",
+    image: "/blocks/ai-v2-5372bd28.png",
+    previewHeight: 490,
     status: "available",
     author: "Admin",
     version: "1.0.0",
