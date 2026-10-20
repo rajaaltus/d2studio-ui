@@ -88,9 +88,9 @@ export function PreviewWrapper({
       {/* Toolbar */}
       <div className="flex items-center justify-between gap-2 px-2 py-1.5 screen-line-after screen-line-before">
         <div className="flex items-center justify-start gap-3">
-          {/* Component Name Badge */}
-          <div className="hidden items-center gap-2 font-sans text-sm font-medium px-1 capitalize sm:inline-flex">
-            <span>{componentName}</span>
+          {/* Tier and new badges. No name: the page heading above already
+              carries the title. */}
+          <div className="hidden items-center gap-2 px-1 sm:inline-flex">
             <AccessTierTag tier={accessTier} />
             {isNew && (
               <span className="relative inline-flex items-center overflow-hidden rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-[0_0_12px_oklch(0.7_0.2_50/0.5)]">

@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-v2",
-  "title": "AI Tabs",
+  "title": "Siri Composer",
   "author": "D2 Studio",
   "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
   "dependencies": [

@@ -141,7 +141,7 @@
     {
       "name": "ai-v2",
       "type": "registry:ui",
-      "title": "AI Tabs",
+      "title": "Siri Composer",
       "description": "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
       "author": "D2 Studio",
       "dependencies": [
