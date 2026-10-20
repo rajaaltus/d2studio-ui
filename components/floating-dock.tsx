@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion } from "motion/react";
 import {
+  ArrowLeft,
   Check,
   ChevronUp,
   Gem,
@@ -259,6 +260,7 @@ function DockInner() {
   }, []);
 
   const isOnBlocksPage = pathname.startsWith("/blocks");
+  const isOnBlockDetail = /^\/blocks\/[^/]+/.test(pathname);
   const activeCategorySlug = isOnBlocksPage
     ? (searchParams.get("type") ?? "all")
     : null;
@@ -298,6 +300,19 @@ function DockInner() {
         aria-label="Quick navigation"
         className="pointer-events-auto flex h-12 items-center gap-1 rounded-full border border-border/60 bg-background px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]"
       >
+        {isOnBlockDetail && (
+          <>
+            <Link
+              href="/blocks"
+              aria-label="Back to Blocks"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+            <Divider />
+          </>
+        )}
+
         {/* Blocks dropdown */}
         <Popover open={blocksOpen} onOpenChange={setBlocksOpen}>
           <PopoverTrigger asChild>

@@ -1,22 +1,18 @@
 import { notFound } from "next/navigation";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { SiteFooter } from "@/components/site-footer";
 import { PreviewWrapper } from "@/components/preview/preview-wrapper";
+import { AutoHeightFrame } from "@/components/preview/auto-height-frame";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 import { SHELVED, findBlock } from "@/lib/blocks";
 
 type Shelf = "blocks";
 
-const SHELF_LABEL: Record<Shelf, string> = { blocks: "Blocks" };
-
 // The /blocks detail page. /components/<name> has its own docs page
 // (app/components/[name]/page.tsx); this stays keyed by shelf so another
-// gallery-style shelf can reuse it.
+// gallery-style shelf can reuse it. Its back link lives in the floating dock.
 
 export const shelfParams = (shelf: Shelf) =>
   SHELVED.filter((b) => b.shelf === shelf).map((b) => ({ name: b.name }));
@@ -68,30 +64,9 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
 
       {/* Header Section */}
       <section className="w-full max-w-7xl border-x mx-auto px-4 lg:px-8">
-        <div className="py-8">
-          <Button asChild variant="ghost" size="sm" className="mb-6 -ml-3">
-            <Link href={`/${shelf}`}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to {SHELF_LABEL[shelf]}
-            </Link>
-          </Button>
-
-          <div className="mb-6">
-            <h1 className="text-3xl md:text-4xl font-semibold font-sans mb-2">
-              {block.title}
-            </h1>
-            <p className="text-lg text-muted-foreground mb-4">
-              {block.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {block.categories.map((category) => (
-                <Badge key={category} variant="outline">
-                  {category}
-                </Badge>
-              ))}
-              {comingSoon && <Badge variant="secondary">Code Coming Soon</Badge>}
-            </div>
-          </div>
+        <div className="flex items-center gap-2 py-6">
+          <h1 className="text-base font-medium font-sans">{block.title}</h1>
+          {comingSoon && <Badge variant="secondary">Code Coming Soon</Badge>}
         </div>
       </section>
 
@@ -101,16 +76,12 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
           componentName={block.name}
           code={comingSoon ? undefined : source}
           codeStatus={block.status}
-          minHeight="500px"
+          minHeight="600px"
         >
-          <div className="w-full h-full min-h-[600px] bg-background">
-            <iframe
-              src={`/preview/${block.name}?type=${previewType}`}
-              className="w-full h-full min-h-[600px] border-none"
-              title={`Preview for ${block.name}`}
-              sandbox="allow-scripts allow-same-origin"
-            />
-          </div>
+          <AutoHeightFrame
+            src={`/preview/${block.name}?type=${previewType}`}
+            title={`Preview for ${block.name}`}
+          />
         </PreviewWrapper>
       </section>
 

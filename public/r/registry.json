@@ -11,7 +11,11 @@
       "description": "AI prompt template grid with creative prompts, summarizer, story, poetry and study presets.",
       "author": "D2 Studio",
       "dependencies": [
-        "nucleo-glass"
+        "nucleo-glass",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://bklit.com/r/bar-chart.json"
       ],
       "files": [
         {
