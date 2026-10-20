@@ -70,11 +70,11 @@ export default function Block01() {
   }, [activeTab]);
 
   return (
-    <section className="w-full min-h-screen bg-white dark:bg-background py-16 px-4 md:px-6 flex flex-col items-center gap-4 font-sans overflow-x-hidden">
+    <section className="w-full min-h-screen bg-card dark:bg-background py-16 px-4 md:px-6 flex flex-col items-center gap-4 font-sans overflow-x-hidden">
       {/* Header section */}
       <div className="flex flex-col items-center text-center gap-3 group cursor-default max-w-[700px]">
         <div className="flex items-center gap-2">
-          <IconSparkle className="size-[28px] sm:size-[32px] text-zinc-900 dark:text-white group-hover:scale-105 group-hover:rotate-12 transition-[rotate,scale] duration-200 group-hover:duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:group-hover:rotate-0 motion-reduce:group-hover:scale-100" />
+          <IconSparkle className="size-[28px] sm:size-[32px] text-zinc-900 dark:text-zinc-50 group-hover:scale-105 group-hover:rotate-12 transition-[rotate,scale] duration-200 group-hover:duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:group-hover:rotate-0 motion-reduce:group-hover:scale-100" />
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#E3E3E3] dark:to-[#A3A3A3] leading-tight">
             AI writing Assistant
           </h1>
@@ -102,8 +102,8 @@ export default function Block01() {
                 className={cn(
                   "h-[34px] px-3.5 flex items-center gap-2 rounded-lg text-[13px] font-medium transition-[color,background-color,border-color] duration-150 ease-[ease] whitespace-nowrap outline-none",
                   isActive
-                    ? "bg-white dark:bg-[#202020] text-zinc-900 dark:text-white border border-[#D3D3D7] dark:border-[#38383C]"
-                    : "text-[#18181B]/50 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white",
+                    ? "bg-card dark:bg-[#202020] text-zinc-900 dark:text-zinc-50 border border-[#D3D3D7] dark:border-[#38383C]"
+                    : "text-[#18181B]/50 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50",
                 )}
                 style={
                   isActive
@@ -137,7 +137,7 @@ export default function Block01() {
           >
             {/* Large Featured Card (Left) */}
             <div className="md:col-span-5 bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2 transition-[border-color] duration-200 ease-[ease] group/big hover:border-zinc-300 dark:hover:border-[#333]">
-              <div className="wada wada-shell w-full aspect-[4/5] bg-white dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] shadow-sm flex flex-col p-6 overflow-hidden relative">
+              <div className="wada wada-shell w-full aspect-[4/5] bg-card dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] shadow-sm flex flex-col p-6 overflow-hidden relative">
                 <div className="flex-1 w-full bg-zinc-50 dark:bg-[#0C0B0B] rounded-xl border border-zinc-100 dark:border-[#1F1F1F] shadow-inner mb-5 flex flex-col p-5 gap-3 relative overflow-hidden group-hover/big:bg-zinc-100/30 dark:group-hover/big:bg-[#111] group-hover/big:-skew-y-[2deg] transition-[transform,background-color] duration-200 group-hover/big:duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:group-hover/big:skew-0">
                   <div className="flex items-center gap-2">
                     <div className="size-2.5 rounded-full bg-red-400/80" />
@@ -174,7 +174,7 @@ export default function Block01() {
                       {collaborators.map((person) => (
                         <div
                           key={person.handle}
-                          className="size-7 rounded-full border border-white dark:border-[#161616] bg-zinc-200 dark:bg-zinc-800 overflow-hidden"
+                          className="size-7 rounded-full border border-card dark:border-[#161616] bg-zinc-200 dark:bg-zinc-800 overflow-hidden"
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
@@ -188,7 +188,7 @@ export default function Block01() {
                         </div>
                       ))}
                     </div>
-                    <div className="px-3 py-1.5 bg-white dark:bg-zinc-800 rounded-lg shadow-sm border border-zinc-100 dark:border-zinc-700 text-[11px] font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide">
+                    <div className="px-3 py-1.5 bg-card dark:bg-zinc-800 rounded-lg shadow-sm border border-zinc-100 dark:border-zinc-700 text-[11px] font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide">
                       Status: Active
                     </div>
                   </div>
@@ -197,10 +197,10 @@ export default function Block01() {
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-md text-[10px] font-bold tracking-wider uppercase">
                     Structured
                   </div>
-                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
                     Long-form Articles
                   </h3>
-                  <p className="text-zinc-500 dark:text-white/60 text-sm leading-relaxed">
+                  <p className="text-zinc-500 dark:text-zinc-50/60 text-sm leading-relaxed">
                     Perfectly formatted articles with headers and section
                     metadata.
                   </p>
@@ -211,16 +211,16 @@ export default function Block01() {
             {/* Secondary Cards Column (Right) */}
             <div className="md:col-span-7 flex flex-col gap-4">
               <div className="flex-1 bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2 group/item hover:border-zinc-300 dark:hover:border-[#333] transition-[border-color] duration-200 ease-[ease]">
-                <div className="wada wada-lemon w-full h-full bg-white dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] shadow-sm p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div className="wada wada-lemon w-full h-full bg-card dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] shadow-sm p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                   <div className="size-16 bg-zinc-100/50 dark:bg-[#0C0B0B] rounded-xl border border-zinc-200/50 dark:border-[#1F1F1F] flex-shrink-0 flex items-center justify-center shadow-inner relative overflow-hidden">
                     {/* Optical nudge: the dark back sheet sits top-left, so the box centre reads high-left. */}
                     <IconFiles className="size-7 relative z-10 translate-x-[1.5px] translate-y-[1.5px] group-hover/item:-rotate-6 group-hover/item:scale-[1.06] transition-[rotate,scale] duration-200 group-hover/item:duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:group-hover/item:rotate-0 motion-reduce:group-hover/item:scale-100" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-base font-semibold text-zinc-900 dark:text-white">
+                    <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
                       Smart Summarizer
                     </h3>
-                    <p className="text-zinc-500 dark:text-white/60 text-sm leading-relaxed">
+                    <p className="text-zinc-500 dark:text-zinc-50/60 text-sm leading-relaxed">
                       Condense complex academic papers or long reports into key
                       digestible points.
                     </p>
@@ -228,15 +228,15 @@ export default function Block01() {
                 </div>
               </div>
               <div className="flex-1 bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2 group/item hover:border-zinc-300 dark:hover:border-[#333] transition-[border-color] duration-200 ease-[ease]">
-                <div className="wada wada-lilac w-full h-full bg-white dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] shadow-sm p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div className="wada wada-lilac w-full h-full bg-card dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] shadow-sm p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                   <div className="size-16 bg-zinc-100/50 dark:bg-[#0C0B0B] rounded-xl border border-zinc-200/50 dark:border-[#1F1F1F] flex-shrink-0 flex items-center justify-center shadow-inner relative overflow-hidden">
                     <IconMagicWandSparkle className="size-7 relative z-10 group-hover/item:rotate-12 group-hover/item:scale-[1.06] transition-[rotate,scale] duration-200 group-hover/item:duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:group-hover/item:rotate-0 motion-reduce:group-hover/item:scale-100" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-base font-semibold text-zinc-900 dark:text-white">
+                    <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
                       Creative Prompts
                     </h3>
-                    <p className="text-zinc-500 dark:text-white/60 text-sm leading-relaxed">
+                    <p className="text-zinc-500 dark:text-zinc-50/60 text-sm leading-relaxed">
                       Unlock creative potential with contextual prompt
                       suggestions tailored to your style.
                     </p>
@@ -254,7 +254,7 @@ export default function Block01() {
             className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-spring-in"
           >
             <div className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2 min-h-[320px]">
-              <div className="wada wada-turq h-full bg-white dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] p-6 flex flex-col gap-4 shadow-sm">
+              <div className="wada wada-turq h-full bg-card dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] p-6 flex flex-col gap-4 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div className="size-12 rounded-xl bg-zinc-50 dark:bg-[#0C0B0B] flex items-center justify-center border border-zinc-100 dark:border-zinc-800">
                     <IconFiles className="size-6 text-zinc-400" />
@@ -263,7 +263,7 @@ export default function Block01() {
                     Source
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
                   Document Analysis
                 </h3>
                 <div className="space-y-3 opacity-60">
@@ -275,7 +275,7 @@ export default function Block01() {
               </div>
             </div>
             <div className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2 min-h-[320px]">
-              <div className="wada wada-glaucous h-full bg-white dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] p-6 flex flex-col gap-4 shadow-sm">
+              <div className="wada wada-glaucous h-full bg-card dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] p-6 flex flex-col gap-4 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div className="size-12 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
                     <IconSparkle className="size-6 text-blue-500" />
@@ -284,7 +284,7 @@ export default function Block01() {
                     AI Summary
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
                   Insights Synthesized
                 </h3>
                 <ul className="space-y-4">
@@ -304,7 +304,7 @@ export default function Block01() {
                   <span className="text-xs text-blue-500/80 font-medium">
                     94% Synthesized
                   </span>
-                  <button className="px-3.5 py-1.5 bg-blue-500 text-white rounded-lg text-xs font-semibold hover:bg-blue-600 active:scale-[0.97] transition-[background-color,scale] duration-150 ease-out motion-reduce:active:scale-100">
+                  <button className="px-3.5 py-1.5 bg-blue-500 text-zinc-50 rounded-lg text-xs font-semibold hover:bg-blue-600 active:scale-[0.97] transition-[background-color,scale] duration-150 ease-out motion-reduce:active:scale-100">
                     Copy
                   </button>
                 </div>
@@ -321,7 +321,7 @@ export default function Block01() {
           >
             <div className="w-full max-w-[900px] bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-6 flex flex-col gap-4">
               <div className="text-center space-y-2">
-                <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">
+                <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
                   Creative Spark
                 </h3>
                 <p className="text-zinc-500 dark:text-zinc-400 text-sm">
@@ -337,7 +337,7 @@ export default function Block01() {
                 ].map((t) => (
                   <div
                     key={t.label}
-                    className={cn("wada", t.wada, "group/prompt aspect-square bg-white dark:bg-[#161616] rounded-[20px] border border-zinc-100 dark:border-[#222] flex flex-col items-center justify-center gap-4 hover:shadow-md hover:-translate-y-0.5 transition-[translate,box-shadow] duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:hover:translate-y-0 shadow-sm cursor-pointer")}
+                    className={cn("wada", t.wada, "group/prompt aspect-square bg-card dark:bg-[#161616] rounded-[20px] border border-zinc-100 dark:border-[#222] flex flex-col items-center justify-center gap-4 hover:shadow-md hover:-translate-y-0.5 transition-[translate,box-shadow] duration-[250ms] ease-[ease] motion-reduce:transition-none motion-reduce:hover:translate-y-0 shadow-sm cursor-pointer")}
                   >
                     <div className="size-12 rounded-xl bg-zinc-100/50 dark:bg-[#0C0B0B] border border-zinc-200/50 dark:border-[#1F1F1F] flex items-center justify-center shadow-inner">
                       <t.icon className="size-6" />
@@ -356,10 +356,10 @@ export default function Block01() {
         {activeTab === "data" && (
           <div key="data" className="mx-auto w-full max-w-[720px] animate-spring-in">
             <div className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2">
-              <div className="wada wada-shell bg-white dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] p-5 flex flex-col gap-4 shadow-sm">
+              <div className="wada wada-shell bg-card dark:bg-[#161616] rounded-[16px] border border-zinc-100 dark:border-[#222] p-5 flex flex-col gap-4 shadow-sm">
                 <div className="flex justify-between items-start">
                   <div className="space-y-1">
-                    <h3 className="text-base font-semibold text-zinc-900 dark:text-white">
+                    <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
                       Engagement Metrics
                     </h3>
                     <p className="text-xs font-medium text-blue-500">
@@ -370,7 +370,7 @@ export default function Block01() {
                     <div className="px-2.5 py-1 bg-zinc-50 dark:bg-zinc-800 rounded-md text-[10px] font-bold border border-zinc-200/50 dark:border-zinc-700">
                       WEEK
                     </div>
-                    <div className="px-2.5 py-1 bg-blue-500 text-white rounded-md text-[10px] font-bold">
+                    <div className="px-2.5 py-1 bg-blue-500 text-zinc-50 rounded-md text-[10px] font-bold">
                       PDF
                     </div>
                   </div>
@@ -416,17 +416,17 @@ export default function Block01() {
                 key={idx}
                 className="bg-[#F9F9F9] dark:bg-[#0F0E0E] rounded-[24px] border border-zinc-200 dark:border-[#1F1F1F] p-2 group/strat flex flex-col"
               >
-                <div className={cn("wada", item.wada, "bg-white dark:bg-[#161616] rounded-[16px] p-6 flex flex-col gap-5 flex-1 shadow-sm")}>
+                <div className={cn("wada", item.wada, "bg-card dark:bg-[#161616] rounded-[16px] p-6 flex flex-col gap-5 flex-1 shadow-sm")}>
                   <div className="size-12 rounded-xl bg-zinc-100/50 dark:bg-[#0C0B0B] border border-zinc-200/50 dark:border-[#1F1F1F] flex items-center justify-center shadow-inner">
                     <item.icon className="size-6" />
                   </div>
-                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-white tracking-tight">
+                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[14px] text-zinc-500 dark:text-white/60 leading-relaxed">
+                  <p className="text-[14px] text-zinc-500 dark:text-zinc-50/60 leading-relaxed">
                     {item.desc}
                   </p>
-                  <button className="group/explore mt-auto self-start pt-2 text-zinc-500 dark:text-zinc-400 font-semibold text-[11px] leading-none uppercase tracking-wider inline-flex items-center gap-1 hover:text-zinc-900 dark:hover:text-white transition-colors duration-150 ease-[ease]">
+                  <button className="group/explore mt-auto self-start pt-2 text-zinc-500 dark:text-zinc-400 font-semibold text-[11px] leading-none uppercase tracking-wider inline-flex items-center gap-1 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors duration-150 ease-[ease]">
                     Explore
                     <ArrowRight className="size-3.5 transition-[translate] duration-200 ease-[ease] group-hover/explore:translate-x-0.5 motion-reduce:transition-none" />
                   </button>

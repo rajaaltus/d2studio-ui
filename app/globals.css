@@ -71,9 +71,9 @@
   --radius: 0.5rem;
   --background: oklch(0.985 0 0);
   --foreground: oklch(0.345 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(0.995 0 0);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.995 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
@@ -104,7 +104,7 @@
   --pattern-fg: oklch(0 0 0 / 0.1);
   --d2-flash-gradient: radial-gradient(circle at center, oklch(0.748 0.238 144.1) 0%, oklch(0.596 0.23 284.9) 27%, oklch(0.701 0.194 37.1) 57%, oklch(0.616 0.244 341) 75%, oklch(0.447 0.105 246.8) 100%);
   --d2-blue-gradient: linear-gradient(135deg, oklch(0.596 0.23 284.9) 0%, oklch(0.616 0.244 341) 50%, oklch(0.701 0.194 37.1) 100%);
-  --chart-background: oklch(1 0 0);
+  --chart-background: oklch(0.995 0 0);
   --chart-foreground: oklch(0.145 0.004 285);
   --chart-foreground-muted: oklch(0.55 0.014 260);
   --chart-line-primary: var(--chart-1);
@@ -494,7 +494,7 @@
 }
 
 .dark .t-shimmer {
-  --shimmer-ink: oklch(1 0 0);
+  --shimmer-ink: oklch(0.985 0 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -799,7 +799,7 @@
   left: 0;
   width: 18px;
   height: 18px;
-  background: #fff;
+  background: #fafafa;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   transition: left 0.2s ease;
@@ -2788,7 +2788,7 @@
 .ls-color-picker .react-colorful__pointer {
   width: 16px;
   height: 16px;
-  border: 2px solid #ffffff;
+  border: 2px solid #fafafa;
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.55),
     0 1px 3px rgba(0, 0, 0, 0.45);
@@ -2803,7 +2803,7 @@
   --cell: 1px;
   --gap: 2px;
   --duration: 760ms;
-  --pixel-fill: linear-gradient(#ffffff, #ffffff);
+  --pixel-fill: linear-gradient(#fafafa, #fafafa);
   --pixel-glow: 194, 138, 255;
   --pixel-glow-alpha: 0;
   --pixel-base-opacity: 0.5;
@@ -4251,7 +4251,7 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
    Future Forward. Those read as devices — a lit display stays dark in both
    themes, and their gold/blue washes are tuned for it. */
 .b4-card {
-  --b4-surface: #ffffff;
+  --b4-surface: #fafafa;
   --b4-border: #e4e4e7;
   --b4-tile: #f4f4f5;
   --b4-title-from: #18181b;

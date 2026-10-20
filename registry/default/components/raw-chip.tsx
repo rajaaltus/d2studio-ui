@@ -1,0 +1,374 @@
+"use client";
+
+import * as React from "react";
+
+// The RAW chip from Power Chip, on its own. Drawn in Power Chip's
+// coordinates, so the viewBox crops to the chip and its shadow.
+//
+// The top glow is soft light through a fixed dot grid and always stays. On
+// hover a halftone circle fades in on top of it, under the pointer, widening
+// while the pointer stays: full squares inside, smaller toward the edge. Touch gets it on tap and reverts on its own.
+
+const CARD = { x: 244, y: 142.863, w: 71, h: 89 };
+
+const FILE_ICON = [
+  "M290.3 157.763V166.763H299.3L290.3 157.763Z",
+  "M288.5 166.763V157.763H266.9V176.663H293.9C294.89 176.663 295.7 177.473 295.7 178.463V194.663C295.7 195.653 294.89 196.463 293.9 196.463H266.9V200.963H299.3V168.563H290.3C289.31 168.563 288.5 167.753 288.5 166.763ZM279.5 165.863H270.5C270.005 165.863 269.6 165.458 269.6 164.963C269.6 164.468 270.005 164.063 270.5 164.063H279.5C279.995 164.063 280.4 164.468 280.4 164.963C280.4 165.458 279.995 165.863 279.5 165.863ZM279.5 162.263H270.5C270.005 162.263 269.6 161.858 269.6 161.363C269.6 160.868 270.005 160.463 270.5 160.463H279.5C279.995 160.463 280.4 160.868 280.4 161.363C280.4 161.858 279.995 162.263 279.5 162.263Z",
+  "M275 182.963C274.01 182.963 273.2 183.773 273.2 184.763V186.563H276.8V184.763C276.8 183.773 275.99 182.963 275 182.963Z",
+  "M266.45 182.963H264.2V185.663H266.45C267.197 185.663 267.8 185.06 267.8 184.313C267.8 183.566 267.197 182.963 266.45 182.963Z",
+  "M259.7 178.463V194.663H293.9V178.463H259.7ZM269.474 190.604C269.726 191.027 269.591 191.585 269.168 191.837C268.745 192.089 268.187 191.954 267.935 191.531L265.487 187.463H264.2V191.063C264.2 191.558 263.795 191.963 263.3 191.963C262.805 191.963 262.4 191.558 262.4 191.063V182.063C262.4 181.568 262.805 181.163 263.3 181.163H266.45C268.187 181.163 269.6 182.576 269.6 184.313C269.6 185.69 268.709 186.851 267.476 187.274L269.474 190.604ZM278.6 191.063C278.6 191.558 278.195 191.963 277.7 191.963C277.205 191.963 276.8 191.558 276.8 191.063V188.363H273.2V191.063C273.2 191.558 272.795 191.963 272.3 191.963C271.805 191.963 271.4 191.558 271.4 191.063V184.763C271.4 182.774 273.011 181.163 275 181.163C276.989 181.163 278.6 182.774 278.6 184.763V191.063ZM289.841 191.198C289.715 192.071 288.536 192.251 288.149 191.468L285.8 186.779L283.451 191.468C283.055 192.251 281.885 192.071 281.759 191.198L280.409 182.198C280.337 181.703 280.67 181.244 281.165 181.172C281.66 181.1 282.119 181.433 282.191 181.928L283.118 188.111L284.999 184.358C285.332 183.692 286.277 183.692 286.61 184.358L288.491 188.111L289.418 181.928C289.49 181.433 289.949 181.1 290.444 181.172C290.939 181.244 291.272 181.703 291.2 182.198L289.841 191.198Z",
+];
+
+const LABEL =
+  "M254.76 219.863V212.763H256.53C257.177 212.763 257.733 212.903 258.2 213.183C258.673 213.456 259.033 213.86 259.28 214.393C259.533 214.92 259.66 215.563 259.66 216.323C259.66 217.083 259.533 217.726 259.28 218.253C259.033 218.78 258.673 219.18 258.2 219.453C257.733 219.726 257.177 219.863 256.53 219.863H254.76ZM255.99 218.723H256.53C257.123 218.723 257.58 218.523 257.9 218.123C258.22 217.723 258.38 217.123 258.38 216.323C258.38 215.516 258.22 214.913 257.9 214.513C257.58 214.106 257.123 213.903 256.53 213.903H255.99V218.723ZM260.056 219.863C260.056 219.31 260.133 218.823 260.286 218.403C260.439 217.976 260.706 217.583 261.086 217.223C261.466 216.856 261.996 216.496 262.676 216.143C262.943 216.003 263.163 215.87 263.336 215.743C263.509 215.616 263.639 215.476 263.726 215.323C263.813 215.17 263.856 214.98 263.856 214.753C263.856 214.546 263.813 214.366 263.726 214.213C263.646 214.06 263.523 213.94 263.356 213.853C263.189 213.766 262.983 213.723 262.736 213.723C262.329 213.723 262.016 213.833 261.796 214.053C261.576 214.273 261.436 214.59 261.376 215.003L260.086 214.933C260.159 214.22 260.423 213.653 260.876 213.233C261.329 212.813 261.956 212.603 262.756 212.603C263.269 212.603 263.703 212.69 264.056 212.863C264.409 213.036 264.676 213.283 264.856 213.603C265.036 213.916 265.126 214.28 265.126 214.693C265.126 215.066 265.066 215.39 264.946 215.663C264.826 215.93 264.626 216.18 264.346 216.413C264.073 216.64 263.699 216.88 263.226 217.133C262.826 217.346 262.499 217.55 262.246 217.743C261.999 217.93 261.816 218.106 261.696 218.273C261.576 218.433 261.509 218.583 261.496 218.723H265.136V219.863H260.056ZM266.552 217.483V216.403H269.832V217.483H266.552ZM272.058 218.753L274.718 213.803L275.518 213.873L272.858 218.823L272.058 218.753ZM273.788 220.023C273.262 220.023 272.808 219.873 272.428 219.573C272.048 219.273 271.755 218.846 271.548 218.293C271.348 217.74 271.248 217.083 271.248 216.323C271.248 215.556 271.348 214.896 271.548 214.343C271.755 213.79 272.048 213.363 272.428 213.063C272.808 212.756 273.262 212.603 273.788 212.603C274.322 212.603 274.775 212.756 275.148 213.063C275.528 213.363 275.818 213.79 276.018 214.343C276.225 214.896 276.328 215.556 276.328 216.323C276.328 217.083 276.225 217.74 276.018 218.293C275.818 218.846 275.528 219.273 275.148 219.573C274.775 219.873 274.322 220.023 273.788 220.023ZM273.788 218.903C274.055 218.903 274.282 218.806 274.468 218.613C274.655 218.413 274.798 218.12 274.898 217.733C274.998 217.346 275.048 216.876 275.048 216.323C275.048 215.756 274.998 215.283 274.898 214.903C274.798 214.516 274.655 214.223 274.468 214.023C274.282 213.823 274.055 213.723 273.788 213.723C273.528 213.723 273.302 213.823 273.108 214.023C272.922 214.223 272.778 214.516 272.678 214.903C272.578 215.283 272.528 215.756 272.528 216.323C272.528 216.876 272.578 217.346 272.678 217.733C272.778 218.12 272.922 218.413 273.108 218.613C273.302 218.806 273.528 218.903 273.788 218.903ZM279.004 219.863V215.003H277.224V213.963H278.064C278.331 213.963 278.544 213.926 278.704 213.853C278.871 213.773 278.991 213.646 279.064 213.473C279.144 213.293 279.184 213.056 279.184 212.763H280.244V219.863H279.004ZM276.904 219.863V218.723H281.864V219.863H276.904ZM283.34 217.483V216.403H286.62V217.483H283.34ZM288.847 218.753L291.507 213.803L292.307 213.873L289.647 218.823L288.847 218.753ZM290.577 220.023C290.05 220.023 289.597 219.873 289.217 219.573C288.837 219.273 288.543 218.846 288.337 218.293C288.137 217.74 288.037 217.083 288.037 216.323C288.037 215.556 288.137 214.896 288.337 214.343C288.543 213.79 288.837 213.363 289.217 213.063C289.597 212.756 290.05 212.603 290.577 212.603C291.11 212.603 291.563 212.756 291.937 213.063C292.317 213.363 292.607 213.79 292.807 214.343C293.013 214.896 293.117 215.556 293.117 216.323C293.117 217.083 293.013 217.74 292.807 218.293C292.607 218.846 292.317 219.273 291.937 219.573C291.563 219.873 291.11 220.023 290.577 220.023ZM290.577 218.903C290.843 218.903 291.07 218.806 291.257 218.613C291.443 218.413 291.587 218.12 291.687 217.733C291.787 217.346 291.837 216.876 291.837 216.323C291.837 215.756 291.787 215.283 291.687 214.903C291.587 214.516 291.443 214.223 291.257 214.023C291.07 213.823 290.843 213.723 290.577 213.723C290.317 213.723 290.09 213.823 289.897 214.023C289.71 214.223 289.567 214.516 289.467 214.903C289.367 215.283 289.317 215.756 289.317 216.323C289.317 216.876 289.367 217.346 289.467 217.733C289.567 218.12 289.71 218.413 289.897 218.613C290.09 218.806 290.317 218.903 290.577 218.903ZM294.443 218.753L297.103 213.803L297.903 213.873L295.243 218.823L294.443 218.753ZM296.173 220.023C295.646 220.023 295.193 219.873 294.813 219.573C294.433 219.273 294.139 218.846 293.933 218.293C293.733 217.74 293.633 217.083 293.633 216.323C293.633 215.556 293.733 214.896 293.933 214.343C294.139 213.79 294.433 213.363 294.813 213.063C295.193 212.756 295.646 212.603 296.173 212.603C296.706 212.603 297.159 212.756 297.533 213.063C297.913 213.363 298.203 213.79 298.403 214.343C298.609 214.896 298.713 215.556 298.713 216.323C298.713 217.083 298.609 217.74 298.403 218.293C298.203 218.846 297.913 219.273 297.533 219.573C297.159 219.873 296.706 220.023 296.173 220.023ZM296.173 218.903C296.439 218.903 296.666 218.806 296.853 218.613C297.039 218.413 297.183 218.12 297.283 217.733C297.383 217.346 297.433 216.876 297.433 216.323C297.433 215.756 297.383 215.283 297.283 214.903C297.183 214.516 297.039 214.223 296.853 214.023C296.666 213.823 296.439 213.723 296.173 213.723C295.913 213.723 295.686 213.823 295.493 214.023C295.306 214.223 295.163 214.516 295.063 214.903C294.963 215.283 294.913 215.756 294.913 216.323C294.913 216.876 294.963 217.346 295.063 217.733C295.163 218.12 295.306 218.413 295.493 218.613C295.686 218.806 295.913 218.903 296.173 218.903ZM301.389 219.863V215.003H299.609V213.963H300.449C300.715 213.963 300.929 213.926 301.089 213.853C301.255 213.773 301.375 213.646 301.449 213.473C301.529 213.293 301.569 213.056 301.569 212.763H302.629V219.863H301.389ZM299.289 219.863V218.723H304.249V219.863H299.289Z";
+
+// Halftone glow: one square per 3px cell, each sized on its own by how far
+// its centre sits from the pointer. Within --d2rc-r of the pointer squares
+// keep their full size; across --edge beyond it they shrink to nothing. The
+// radius is a registered property so CSS can transition it; the pointer
+// position (--cx, --cy) is written straight to the svg, in viewBox units.
+const CENTER = { x: 275, y: 154.863 };
+const CELL = 3;
+const DOT = 1.5;
+const DOTS = (() => {
+  const out: { x: number; y: number }[] = [];
+  const x0 = Math.floor(CARD.x / CELL) * CELL;
+  const y0 = Math.floor(CARD.y / CELL) * CELL;
+  for (let y = y0; y < CARD.y + CARD.h; y += CELL)
+    for (let x = x0; x < CARD.x + CARD.w; x += CELL) out.push({ x, y });
+  return out;
+})();
+
+// "\3C" is "<": inside an SVG <style>, the HTML parser reads a literal "<number>"
+// as a tag and empties the syntax.
+const MOTION = `
+  @property --d2rc-r { syntax: "\\3C number>"; inherits: true; initial-value: 4; }
+  @property --cx { syntax: "\\3C number>"; inherits: true; initial-value: ${CENTER.x}; }
+  @property --cy { syntax: "\\3C number>"; inherits: true; initial-value: ${CENTER.y}; }
+  .d2rc-art {
+    --cx: ${CENTER.x};
+    --cy: ${CENTER.y};
+    --d2rc-r: 4;
+    /* The circle trails the pointer by a beat instead of snapping to it. */
+    transition:
+      --d2rc-r 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      --cx 140ms cubic-bezier(0.23, 1, 0.32, 1),
+      --cy 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  /* The circle widens for as long as the pointer stays, up to a fixed size;
+     leaving at any point eases it back from there. */
+  .d2rc-art[data-active] {
+    --d2rc-r: 14;
+    transition:
+      --d2rc-r 2s linear,
+      --cx 140ms cubic-bezier(0.23, 1, 0.32, 1),
+      --cy 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .d2rc-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    --edge: 8;
+    --d: hypot(calc(var(--x) + ${DOT / 2} - var(--cx)), calc(var(--y) + ${DOT / 2} - var(--cy)));
+    transform: scale(clamp(0, calc((var(--d2rc-r) - var(--d)) / var(--edge) + 1), 1));
+  }
+  .d2rc-halftone {
+    opacity: 0;
+    transition: opacity 250ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .d2rc-art[data-active] .d2rc-halftone { opacity: 0.5; transition-duration: 300ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .d2rc-art, .d2rc-halftone { transition: none; }
+  }
+`;
+
+// How long a tap keeps the effect on before it reverts by itself.
+const TAP_HOLD_MS = 1600;
+
+const RawChip = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => {
+  const [active, setActive] = React.useState(false);
+  const ref = React.useRef<SVGSVGElement>(null);
+  const timer = React.useRef<ReturnType<typeof setTimeout>>(undefined);
+  const frame = React.useRef(0);
+  React.useEffect(
+    () => () => {
+      clearTimeout(timer.current);
+      cancelAnimationFrame(frame.current);
+    },
+    [],
+  );
+
+  // Pointer to viewBox units, at most once a frame.
+  const follow = (e: React.PointerEvent) => {
+    const { clientX, clientY } = e;
+    cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(() => {
+      const svg = ref.current;
+      const ctm = svg?.getScreenCTM();
+      if (!svg || !ctm) return;
+      const p = new DOMPoint(clientX, clientY).matrixTransform(ctm.inverse());
+      svg.style.setProperty("--cx", p.x.toFixed(1));
+      svg.style.setProperty("--cy", p.y.toFixed(1));
+    });
+  };
+
+  const onPointerEnter = (e: React.PointerEvent) => {
+    if (e.pointerType !== "mouse") return;
+    follow(e);
+    setActive(true);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") follow(e);
+  };
+  const onPointerLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") setActive(false);
+  };
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") return;
+    follow(e);
+    setActive(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setActive(false), TAP_HOLD_MS);
+  };
+
+  return (
+    <svg
+      width={81}
+      height={97}
+      viewBox="239 138.863 81 97"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+      ref={ref}
+      className={["d2rc-art", className].filter(Boolean).join(" ")}
+      data-active={active || undefined}
+      onPointerEnter={onPointerEnter}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+      onPointerDown={onPointerDown}
+    >
+      <style>{MOTION}</style>
+      <g filter="url(#d2rc-card-shadow)">
+        <g clipPath="url(#d2rc-card-clip)">
+          <rect
+            x={CARD.x}
+            y={CARD.y}
+            width={CARD.w}
+            height={CARD.h}
+            fill="url(#d2rc-card-base)"
+          />
+          <rect
+            x={CARD.x}
+            y={CARD.y}
+            width={CARD.w}
+            height={CARD.h}
+            fill="url(#d2rc-card-left)"
+          />
+          <rect
+            x={CARD.x}
+            y={CARD.y}
+            width={CARD.w}
+            height={CARD.h}
+            fill="url(#d2rc-card-right)"
+          />
+          {/* At rest: soft glow through a fixed dot grid */}
+          <g opacity={0.5} style={{ mixBlendMode: "plus-lighter" }}>
+            <circle
+              cx={CENTER.x}
+              cy={CENTER.y}
+              r={24}
+              fill="#DFF6FF"
+              mask="url(#d2rc-dots)"
+              filter="url(#d2rc-soft)"
+            />
+          </g>
+          {/* On hover: halftone circle, full squares inside, smaller at the edge */}
+          <g
+            className="d2rc-halftone"
+            filter="url(#d2rc-halftone-blur)"
+            fill="#DFF6FF"
+            style={{ mixBlendMode: "plus-lighter" }}
+          >
+            {DOTS.map(({ x, y }) => (
+              <rect
+                key={`${x}-${y}`}
+                className="d2rc-dot"
+                x={x}
+                y={y}
+                width={DOT}
+                height={DOT}
+                style={{ "--x": x, "--y": y } as React.CSSProperties}
+              />
+            ))}
+          </g>
+          <g fill="url(#d2rc-file)" filter="url(#d2rc-file-inset)">
+            {FILE_ICON.map((d) => (
+              <path key={d} d={d} />
+            ))}
+          </g>
+          <path d={LABEL} fill="#ECECEC" />
+        </g>
+        <rect
+          x={CARD.x + 0.5}
+          y={CARD.y + 0.5}
+          width={CARD.w - 1}
+          height={CARD.h - 1}
+          rx={5.5}
+          stroke="#27272A"
+        />
+      </g>
+      <defs>
+        <radialGradient
+          id="d2rc-card-base"
+          cx={0}
+          cy={0}
+          r={1}
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(280.366 132.48) rotate(90) scale(84.55 58.1266)"
+        >
+          <stop stopColor="#15D8FF" />
+          <stop offset={1} stopColor="#080E49" />
+        </radialGradient>
+        <radialGradient
+          id="d2rc-card-left"
+          cx={0}
+          cy={0}
+          r={1}
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(246.5 187.863) scale(68.5 54.6461)"
+        >
+          <stop stopColor="#78F8FF" />
+          <stop offset={1} stopOpacity={0} />
+        </radialGradient>
+        <radialGradient
+          id="d2rc-card-right"
+          cx={0}
+          cy={0}
+          r={1}
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(315 187.863) rotate(-180) scale(71 56.6405)"
+        >
+          <stop stopColor="#61FFD5" />
+          <stop offset={1} stopOpacity={0} />
+        </radialGradient>
+        <linearGradient
+          id="d2rc-file"
+          x1={0}
+          y1={157.763}
+          x2={0}
+          y2={200.963}
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#F4FFFF" />
+          <stop offset={1} stopColor="#59DBFF" />
+        </linearGradient>
+        <clipPath id="d2rc-card-clip">
+          <rect x={CARD.x} y={CARD.y} width={CARD.w} height={CARD.h} rx={6} />
+        </clipPath>
+        <filter
+          id="d2rc-card-shadow"
+          x="-10%"
+          y="-10%"
+          width="120%"
+          height="120%"
+          colorInterpolationFilters="sRGB"
+        >
+          <feMorphology radius={1} operator="dilate" in="SourceAlpha" />
+          <feOffset dx={-1} />
+          <feGaussianBlur stdDeviation={1.5} />
+          <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0" />
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <InsetShadow
+          id="d2rc-file-inset"
+          dx={1}
+          dy={1}
+          blur={0.65}
+          alpha={0.25}
+        />
+        <pattern
+          id="d2rc-dot"
+          width={3}
+          height={3}
+          patternUnits="userSpaceOnUse"
+        >
+          <rect width={1.5} height={1.5} fill="#FAFAFA" />
+        </pattern>
+        <mask
+          id="d2rc-dots"
+          maskUnits="userSpaceOnUse"
+          x={CARD.x}
+          y={CARD.y}
+          width={CARD.w}
+          height={40}
+        >
+          <rect
+            x={CARD.x}
+            y={CARD.y}
+            width={CARD.w}
+            height={40}
+            fill="url(#d2rc-dot)"
+          />
+        </mask>
+        {/* A touch of softness on the halftone squares; kept small, blur is costly */}
+        <filter
+          id="d2rc-halftone-blur"
+          x="-10%"
+          y="-10%"
+          width="120%"
+          height="120%"
+        >
+          <feGaussianBlur stdDeviation={0.45} />
+        </filter>
+        <filter id="d2rc-soft" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation={6} />
+        </filter>
+      </defs>
+    </svg>
+  );
+};
+
+function InsetShadow({
+  id,
+  dx,
+  dy,
+  blur,
+  alpha,
+  color = "#0A0A0A",
+}: {
+  id: string;
+  dx: number;
+  dy: number;
+  blur: number;
+  alpha: number;
+  /** Any CSS colour, a var() included: it is set as a style, not an attribute. */
+  color?: string;
+}) {
+  return (
+    <filter
+      id={id}
+      x="-10%"
+      y="-10%"
+      width="120%"
+      height="120%"
+      colorInterpolationFilters="sRGB"
+    >
+      <feOffset in="SourceAlpha" dx={dx} dy={dy} />
+      <feGaussianBlur stdDeviation={blur} />
+      <feComposite
+        in2="SourceAlpha"
+        operator="arithmetic"
+        k2={-1}
+        k3={1}
+        result="edge"
+      />
+      <feFlood style={{ floodColor: color, floodOpacity: alpha }} />
+      <feComposite in2="edge" operator="in" />
+      <feBlend in2="SourceGraphic" />
+    </filter>
+  );
+}
+
+export default RawChip;

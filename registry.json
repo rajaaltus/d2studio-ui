@@ -2007,6 +2007,38 @@
       ]
     },
     {
+      "name": "power-chip",
+      "type": "registry:component",
+      "title": "Power Chip",
+      "description": "An animated SVG illustration: a RAW chip charges and sends power along six wires to the tiles around it. Plain SVG and CSS, light and dark.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/components/power-chip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "illustration"
+      ]
+    },
+    {
+      "name": "raw-chip",
+      "type": "registry:component",
+      "title": "RAW Chip",
+      "description": "The RAW chip from Power Chip on its own: a static SVG illustration with no dependencies.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/components/raw-chip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "illustration"
+      ]
+    },
+    {
       "name": "spinner-spiral-in-5",
       "type": "registry:component",
       "title": "Spinner Spiral In 5",

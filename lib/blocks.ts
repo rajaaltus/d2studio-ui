@@ -1097,6 +1097,18 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     description: "The pixel-grid spinner engine every spinner preset builds on.",
     categories: ["spinner"],
   },
+  {
+    name: "power-chip",
+    title: "Power Chip",
+    description: "An animated SVG illustration: a RAW chip charges and sends power along six wires to the tiles around it. Plain SVG and CSS, light and dark.",
+    categories: ["illustration"],
+  },
+  {
+    name: "raw-chip",
+    title: "RAW Chip",
+    description: "The RAW chip from Power Chip on its own: a static SVG illustration with no dependencies.",
+    categories: ["illustration"],
+  },
 ];
 
 /**

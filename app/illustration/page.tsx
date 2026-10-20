@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { CodeFrame } from "@/components/docs/code-frame";
+import { InstallCommand } from "@/components/docs/install-command";
+import { highlight } from "@/lib/highlight";
 import { Navigation } from "@/components/navigation";
 import { SiteFooter } from "@/components/site-footer";
-import { FooterIllustrationCard } from "@/components/footer-illustration-card";
+import { IllustrationPlayer } from "@/components/illustration-player";
+import RawChip from "@/registry/default/components/raw-chip";
 import { ProGrid, ProCta } from "@/components/blocks/pro-grid";
 import { proItemsFor } from "@/lib/catalog";
 import { proShelfHref } from "@/lib/pro";
@@ -9,24 +15,29 @@ import { proShelfHref } from "@/lib/pro";
 export const metadata: Metadata = {
   title: "Illustrations — D2 Studio",
   description:
-    "The D2 Studio wordmark with its chromatic spotlight reveal, and the full illustration library: isometric scenes, particle portraits, logos and screens.",
+    "Power Chip, an animated SVG of a RAW chip powering six tiles, ready to copy and paste. Plus the full illustration library: isometric scenes, particle portraits, logos and screens.",
 };
 
-const META = [
-  { label: "Type", value: "Wordmark" },
-  { label: "Format", value: "CSS / React" },
-  { label: "Theme", value: "Light + Dark" },
-  { label: "Last updated", value: "May 15, 2026" },
-];
+export default async function IllustrationPage() {
+  const [source, chipSource] = await Promise.all(
+    ["power-chip", "raw-chip"].map((name) =>
+      readFile(
+        path.join(
+          process.cwd(),
+          "registry",
+          "default",
+          "components",
+          `${name}.tsx`,
+        ),
+        "utf8",
+      ),
+    ),
+  );
+  const [sourceHtml, chipSourceHtml] = await Promise.all([
+    highlight(source),
+    highlight(chipSource),
+  ]);
 
-const NOTES = [
-  "Cursor reveals a chromatic spotlight that paints the holographic brand gradient over the dim base.",
-  "Leaving the wordmark triggers a one-shot sweep across the glyphs before settling back to gray.",
-  "Hover state composites a vertical stripe pattern, masked by the cursor, to add a subtle CRT shimmer.",
-  "Touch devices fall back to the static base wordmark — no interaction is required to render the brand.",
-];
-
-export default function IllustrationPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background">
       <Navigation />
@@ -39,53 +50,61 @@ export default function IllustrationPage() {
             Custom illustration
           </span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight">
-            D2 Studio Wordmark
+            Power Chip
           </h1>
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl">
-            A hover-reactive brand illustration built from layered CSS masks,
-            mix-blend modes, and a holographic gradient. Move your cursor across
-            the wordmark below to reveal it.
+            A RAW chip wired to six tiles. Press Animate to watch it charge and
+            send power out to every tile.
           </p>
         </div>
       </section>
 
-      <section className="max-w-7xl w-full border-x mx-auto bg-background">
-        <FooterIllustrationCard />
+      <section className="relative max-w-7xl w-full border-x mx-auto bg-background flex justify-center px-4 pt-12 pb-20 lg:py-16">
+        <IllustrationPlayer />
       </section>
 
       <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-xl border overflow-hidden m-0">
-          {META.map((item) => (
-            <div
-              key={item.label}
-              className="bg-background p-5 lg:p-6 flex flex-col gap-1"
-            >
-              <span className="text-[11px] uppercase tracking-wider text-muted-foreground">
-                {item.label}
-              </span>
-              <span className="text-sm font-medium">{item.value}</span>
-            </div>
-          ))}
+        <div className="bg-background border rounded-xl m-0 px-4 md:px-10 lg:px-16 py-10 lg:py-12 flex flex-col gap-4">
+          <div>
+            <h2 className="text-lg font-medium">Install</h2>
+            <p className="text-xs text-muted-foreground mt-2">
+              One self-contained component with no dependencies. Add it with the
+              shadcn CLI, or copy the source below into{" "}
+              <code className="font-mono">components/power-chip.tsx</code>. It
+              scales to its container on any screen.
+            </p>
+          </div>
+          <InstallCommand args="add @d2/power-chip" />
+          <CodeFrame
+            html={sourceHtml}
+            code={source}
+            filename="components/power-chip.tsx"
+            collapsible
+            className="min-w-0"
+          />
         </div>
       </section>
 
       <section className="max-w-7xl w-full border-x mx-auto px-4 lg:px-0 bg-border mt-px">
-        <div className="bg-background border rounded-xl m-0 px-6 md:px-10 lg:px-16 py-12 lg:py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-1">
-            <h2 className="text-lg font-medium">About this piece</h2>
+        <div className="bg-background border rounded-xl m-0 px-4 md:px-10 lg:px-16 py-10 lg:py-12 flex flex-col gap-4">
+          <div>
+            <h2 className="text-lg font-medium">RAW Chip</h2>
             <p className="text-xs text-muted-foreground mt-2">
-              Notes on how the wordmark is composed and how it responds to
-              input.
+              The chip on its own, still. Same artwork as Power Chip, cropped to
+              the chip, for an icon, a card or an empty state.
             </p>
           </div>
-          <ul className="md:col-span-2 flex flex-col gap-3 text-sm text-muted-foreground">
-            {NOTES.map((note, i) => (
-              <li key={i} className="flex gap-3">
-                <span className="shrink-0 mt-1 size-1.5 rounded-full bg-foreground/40" />
-                <span>{note}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="flex justify-center py-10 lg:py-14">
+            <RawChip aria-hidden="true" className="h-auto w-32 sm:w-40" />
+          </div>
+          <InstallCommand args="add @d2/raw-chip" />
+          <CodeFrame
+            html={chipSourceHtml}
+            code={chipSource}
+            filename="components/raw-chip.tsx"
+            collapsible
+            className="min-w-0"
+          />
         </div>
       </section>
 
