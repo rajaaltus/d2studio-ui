@@ -1,40 +1,12 @@
 /* The moon window, played twice. Prefixed `mt2-` and scoped to this block's
    own classes, so dropping the file into a project touches nothing else.
 
-   Dark is the source drawing's own values. Light is the same scene at dusk: a
-   periwinkle tile, a soft ridge, a mid blue pane deep enough that white stars
-   still read on it, indigo hills and a warmer moon with a weaker glow and a
-   blue shade where the night one is black. The dark test is Tailwind's own:
-   inside `.dark` unless a nearer `.theme-light` pins the subtree light. */
+   The scene keeps the source drawing's night colours in both themes; only the
+   rim follows the page, light grey in light and the source's dark rim in
+   dark. The dark test is Tailwind's own: inside `.dark` unless a nearer
+   `.theme-light` pins the subtree light. */
 
 .mt2-root {
-  --mt2-sky-top: #a9bcff;
-  --mt2-sky-bottom: #5560d8;
-  --mt2-ridge: #3b3f8f;
-  --mt2-pane: #4f86de;
-  --mt2-hills-top: #2b3487;
-  --mt2-hills-bottom: #4a5fd6;
-  --mt2-star: #fafafa;
-  --mt2-moon: #fff6d6;
-  --mt2-halo: #fffbe8;
-  --mt2-halo-strength: 0.35;
-  --mt2-glow: #9aa6ff;
-  --mt2-glow-strength: 0.2;
-  --mt2-glow-deep: #040b4d;
-  --mt2-lift: #1e2470;
-  --mt2-lift-strength: 0.45;
-  --mt2-rim-top: #f4f4f7;
-  --mt2-rim-bottom: #dcdce6;
-
-  /* One lap and how many a play runs. The component ends the play at the same
-     total, so change both together. */
-  --mt2-lap: 3000ms;
-  --mt2-laps: 2;
-  --mt2-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --mt2-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-.mt2-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
   --mt2-sky-top: #3d71ff;
   --mt2-sky-bottom: #070258;
   --mt2-ridge: #181921;
@@ -47,8 +19,21 @@
   --mt2-halo-strength: 0.23;
   --mt2-glow: #4f60f6;
   --mt2-glow-strength: 1;
+  --mt2-glow-deep: #040b4d;
   --mt2-lift: #000000;
   --mt2-lift-strength: 0.75;
+  --mt2-rim-top: #f4f4f7;
+  --mt2-rim-bottom: #dcdce6;
+
+  /* One lap and how many a play runs. The component ends the play at the same
+     total, so change both together. */
+  --mt2-lap: 3000ms;
+  --mt2-laps: 2;
+  --mt2-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --mt2-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.mt2-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
   --mt2-rim-top: #373535;
   --mt2-rim-bottom: #141313;
 }
