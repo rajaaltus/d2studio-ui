@@ -112,7 +112,7 @@ export const BLOCK_LIBRARY: BlockDef[] = [
   },
   {
     name: "ai-v2",
-    title: "AI Tabs",
+    title: "Siri Prompt Input",
     description: "Tabbed AI prompt input with assistant, blog and pro modes plus file upload.",
     categories: ["ai-components"],
     dependencies: ["border-beam", "lucide-react", "nucleo-glass"],

@@ -270,9 +270,7 @@ export default function AIWritingAssistanceV2() {
   );
   const [content, setContent] = React.useState("");
   const [selectedAI, setSelectedAI] = React.useState("AI Assistant");
-  const [selectedModel, setSelectedModel] = React.useState(
-    "Gemini Pro 3.1 (New)",
-  );
+  const [selectedModel, setSelectedModel] = React.useState("Claude Opus (New)");
 
   const models = [
     {
