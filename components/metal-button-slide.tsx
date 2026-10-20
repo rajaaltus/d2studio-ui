@@ -27,7 +27,7 @@ function PlainButton({ href, children, className }: PlainButtonProps) {
     <div className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto">
       <Button
         className={cn(
-          "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-black dark:text-white",
+          "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-background dark:text-white",
           className
         )}
         asChild
@@ -105,7 +105,7 @@ export function MetalButtonSlide({
         preset="chromatic"
         theme={isLight ? "light" : "dark"}
         strength={isHovered ? 1 : 0.70}
-        style={{ background: isLight ? "#fff" : "#000" }}
+        style={{ background: isLight ? "#fff" : "var(--background)" }}
         reflectionTargets={reflectionTargets}
       >
         <Button

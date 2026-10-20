@@ -89,7 +89,7 @@ export default function HomePage() {
         <CosmoMorph />
 
         <div className="flex flex-col gap-px bg-border lg:rounded-xl border overflow-hidden m-0">
-          <div className="flex items-center justify-center bg-[#ffffff] dark:bg-[#000000] min-h-[160px] sm:min-h-[224px] lg:min-h-[294px] overflow-hidden px-3 sm:px-6 gap-2 sm:gap-10 md:gap-16 lg:gap-24 md:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.6),black_10%,black_90%,rgba(0,0,0,0.6))] md:dark:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.3),black_10%,black_90%,rgba(0,0,0,0.3))]">
+          <div className="flex items-center justify-center bg-[#ffffff] dark:bg-background min-h-[160px] sm:min-h-[224px] lg:min-h-[294px] overflow-hidden px-3 sm:px-6 gap-2 sm:gap-10 md:gap-16 lg:gap-24 md:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.6),black_10%,black_90%,rgba(0,0,0,0.6))] md:dark:[mask-image:linear-gradient(to_right,rgba(0,0,0,0.6),black_10%,black_90%,rgba(0,0,0,0.6))]">
             <IsoCodeIcon />
             <IsoIcon src="/Heart Icon 2.svg" label="Heart Icon 2" mobileSide="left" />
             <CenterPixelIcon />

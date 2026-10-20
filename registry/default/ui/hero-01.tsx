@@ -22,7 +22,7 @@ export default function HeroSection() {
           <div className="space-y-4 @md:space-y-6 flex flex-col items-center">
             <Badge
               variant="secondary"
-              className="px-3 py-1 text-xs @md:text-sm font-normal bg-blue-200/50 rounded-full ring ring-blue-400"
+              className="px-3 py-1 text-xs @md:text-sm font-normal rounded-full ring ring-blue-400 bg-blue-100 text-blue-800 dark:bg-blue-500/15 dark:text-blue-200 dark:ring-blue-500/50"
             >
               🚀 Limited seats available - Register Now
             </Badge>
@@ -44,9 +44,9 @@ export default function HeroSection() {
           <div className="flex flex-col gap-3 @sm:flex-row w-full @sm:w-auto px-4 @sm:px-0">
             <Button
               size="lg"
-              className="h-[52px] text-sm @md:text-md font-semibold bg-[#1244E7] px-6 rounded-2xl border-[rgba(64,109,255,1)] border-2 hover:bg-[#1244E7]/90 w-full @sm:w-auto"
+              className="h-[52px] text-sm @md:text-base font-semibold gap-2.5 text-white bg-[#1244E7] px-7 has-[>svg]:px-7 rounded-2xl border-[rgba(64,109,255,1)] border-2 hover:bg-[#1244E7] hover:brightness-125 w-full @sm:w-auto"
             >
-              <FlameKindling className="mr-2" />
+              <FlameKindling className="size-5" />
               Register Bootcamp
             </Button>
           </div>
@@ -232,30 +232,12 @@ function Marquee({
 }
 
 const SLIDER_DATA = [
-  {
-    text: "500+ Partner Companies",
-    image: "/registry/assets/company.png",
-  },
-  {
-    text: "95% Success Rate",
-    image: "/registry/assets/trophy.png",
-  },
-  {
-    text: "100% Job placement",
-    image: "/registry/assets/bag.png",
-  },
-  {
-    text: "Universtity Certificates",
-    image: "/registry/assets/certificate.png",
-  },
-  {
-    text: "Live Project experience",
-    image: "/registry/assets/desktop.png",
-  },
-  {
-    text: "Industry expert Mentors",
-    image: "/registry/assets/consulting.png",
-  },
+  { text: "500+ Partner Companies", image: "/registry/assets/thiings-company.png" },
+  { text: "95% Success Rate", image: "/registry/assets/thiings-trophy.png" },
+  { text: "100% Job placement", image: "/registry/assets/thiings-bag.png" },
+  { text: "University Certificates", image: "/registry/assets/thiings-certificate.png" },
+  { text: "Live Project experience", image: "/registry/assets/thiings-desktop.png" },
+  { text: "Industry expert Mentors", image: "/registry/assets/thiings-consulting.png" },
 ];
 
 function InfiniteSlider() {
@@ -265,17 +247,18 @@ function InfiniteSlider() {
         {SLIDER_DATA.map((item, index) => (
           <div
             key={index}
-            className="w-44 @sm:w-52 @md:w-56 h-36 @sm:h-40 relative bg-background border-2 rounded-2xl @sm:rounded-3xl flex flex-col items-center justify-center text-white flex-shrink-0 p-3"
+            className="w-44 @sm:w-52 @md:w-56 h-36 @sm:h-40 relative bg-background border-2 rounded-2xl @sm:rounded-3xl flex flex-col items-center justify-center flex-shrink-0 p-3"
           >
             <div className="relative w-14 h-14 @sm:w-16 @sm:h-16 @md:w-20 @md:h-20">
               <Image
                 src={item.image}
                 alt={item.text}
                 fill
+                sizes="80px"
                 className="object-contain"
               />
             </div>
-            <p className="text-xs @sm:text-sm @md:text-md font-medium mt-2 text-accent-foreground text-center text-wrap px-2">
+            <p className="text-xs @sm:text-sm @md:text-base font-medium mt-2 text-accent-foreground text-center text-wrap px-2">
               {item.text}
             </p>
           </div>
