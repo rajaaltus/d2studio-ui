@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ArrowUp, Plus, Settings2, FileUp } from "lucide-react";
-import { IconSparkle, IconBadgeSparkle, IconBookOpen } from "nucleo-glass";
+import { IconBadgeSparkle, IconBookOpen } from "nucleo-glass";
 import { BorderBeam } from "border-beam";
 
 import { Button } from "@/components/ui/button";
@@ -387,7 +387,7 @@ export default function AIWritingAssistanceV2() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-background p-4 sm:p-6 md:p-8 font-sans transition-colors duration-300 overflow-x-hidden"
+      className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-background font-sans transition-colors duration-300 overflow-x-hidden"
       style={{ fontFamily: '"Inter", sans-serif' }}
     >
       <style
@@ -415,20 +415,6 @@ export default function AIWritingAssistanceV2() {
             `,
         }}
       />
-
-      {/* Top Header Section */}
-      <div className="flex flex-col items-center text-center gap-2 w-full mb-8 sm:mb-12 group/header max-w-[600px]">
-        <div className="flex items-center gap-3 cursor-default">
-          <IconSparkle className="size-[24px] sm:size-[28px] text-black dark:text-white transition-all duration-300 opacity-80 group-hover/header:opacity-100 group-hover/header:scale-110" />
-          <h1 className="text-[24px] sm:text-[32px] font-medium tracking-tight text-black dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#E3E3E3] dark:to-[#A3A3A3] transition-all duration-300 group-hover/header:text-foreground  group-hover/header:brightness-110">
-            AI writing Assistant
-          </h1>
-        </div>
-        <p className="text-[#595959] dark:text-[#848484] text-[14px] sm:text-[16px] font-normal leading-relaxed max-w-[90%] sm:max-w-[500px] transition-colors duration-300 group-hover/header:text-black dark:group-hover/header:text-white/80">
-          Transform your ideas into polished content with AI-powered writing
-          tools.
-        </p>
-      </div>
 
       {/* Main Container */}
       <div className="w-full max-w-[600px] h-auto shadow-sm dark:shadow-2xl bg-[#F5F5F5] dark:bg-gradient-to-b dark:from-card dark:to-background rounded-[24px] border border-[#E5E5E5] dark:border-border p-2 flex flex-col relative overflow-hidden">
@@ -641,7 +627,7 @@ export default function AIWritingAssistanceV2() {
         </BorderBeam>
 
         {/* Footer Section */}
-        <div className="flex items-center justify-end gap-3 px-4 sm:px-6 py-2.5 sm:py-3 mt-auto cursor-default group/footer">
+        <div className="flex items-center justify-center gap-3 px-4 sm:px-6 py-2.5 sm:py-3 mt-auto cursor-default group/footer">
           <span className="animate-shine-slow text-[10px] sm:text-[11px] tracking-wide font-normal text-black/60 dark:text-white/60 transition-colors group-hover/footer:text-black dark:group-hover/footer:text-white">
             Upgrade to unlock for Teams
           </span>

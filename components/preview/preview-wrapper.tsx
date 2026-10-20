@@ -86,10 +86,10 @@ export function PreviewWrapper({
       className={cn("relative w-full max-w-7xl border-x mx-auto", className)}
     >
       {/* Toolbar */}
-      <div className="flex items-center justify-between gap-2 p-1 screen-line-after screen-line-before">
-        <div className="flex items-center justify-start gap-4 ">
+      <div className="flex items-center justify-between gap-2 px-2 py-1.5 screen-line-after screen-line-before">
+        <div className="flex items-center justify-start gap-3">
           {/* Component Name Badge */}
-          <div className="hidden h-auto items-center gap-2 rounded-sm font-sans px-2 capitalize sm:inline-flex">
+          <div className="hidden items-center gap-2 font-sans text-sm font-medium px-1 capitalize sm:inline-flex">
             <span>{componentName}</span>
             <AccessTierTag tier={accessTier} />
             {isNew && (
@@ -107,21 +107,21 @@ export function PreviewWrapper({
           <Tabs
             value={view}
             onValueChange={(value) => setView(value as "preview" | "code")}
-            className="hidden sm:flex bg-muted  items-center justify-center rounded-md  py-2 px-1"
+            className="hidden sm:flex"
           >
-            <TabsList className="h-7 gap-1 rounded-md bg-muted p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)]">
+            <TabsList className="h-7 rounded-md p-0.5">
               <TabsTrigger
                 value="preview"
-                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                className="h-6 rounded-sm px-2.5 text-xs gap-1.5"
               >
-                <Eye />
+                <Eye className="size-3.5" />
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value="code"
-                className="h-[2rem] rounded-sm px-3 text-xs data-[state=active]:bg-background dark:data-[state=active]:bg-muted-foreground/50 data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                className="h-6 rounded-sm px-2.5 text-xs gap-1.5"
               >
-                <Code />
+                <Code className="size-3.5" />
                 Code
               </TabsTrigger>
             </TabsList>
@@ -139,24 +139,24 @@ export function PreviewWrapper({
               >
                 <ToggleGroupItem
                   value="100"
-                  className="h-[22px] w-[22px] rounded-sm p-0"
+                  className="size-7 rounded-md p-0 text-muted-foreground hover:text-foreground"
                   title="Desktop"
                 >
-                  <Monitor className="h-3.5 w-3.5" />
+                  <Monitor className="size-3.5" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
                   value="60"
-                  className="h-[22px] w-[22px] rounded-sm p-0"
+                  className="size-7 rounded-md p-0 text-muted-foreground hover:text-foreground"
                   title="Tablet"
                 >
-                  <Tablet className="h-3.5 w-3.5" />
+                  <Tablet className="size-3.5" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
                   value="30"
-                  className="h-[22px] w-[22px] rounded-sm p-0"
+                  className="size-7 rounded-md p-0 text-muted-foreground hover:text-foreground"
                   title="Mobile"
                 >
-                  <Smartphone className="h-3.5 w-3.5" />
+                  <Smartphone className="size-3.5" />
                 </ToggleGroupItem>
               </ToggleGroup>
             </>
@@ -170,11 +170,11 @@ export function PreviewWrapper({
             <Button
               variant="ghost"
               size="sm"
-              className="h-[22px] w-[22px] rounded-sm p-0"
+              className="size-7 rounded-md p-0 text-muted-foreground hover:text-foreground"
               onClick={handleRefresh}
               title="Refresh preview"
             >
-              <RefreshCw className="h-3.5 w-3.5" />
+              <RefreshCw className="size-3.5" />
             </Button>
           )}
 
@@ -183,11 +183,11 @@ export function PreviewWrapper({
             <Button
               variant="ghost"
               size="sm"
-              className="h-[22px] w-[22px] rounded-sm p-0"
+              className="size-7 rounded-md p-0 text-muted-foreground hover:text-foreground"
               onClick={handleMaximize}
               title="Maximize"
             >
-              <Maximize2 className="h-3.5 w-3.5" />
+              <Maximize2 className="size-3.5" />
             </Button>
           )}
 
@@ -196,17 +196,17 @@ export function PreviewWrapper({
           {/* Install Command */}
           <Button
             variant="ghost"
-            className="hidden h-[22px] w-auto gap-1.5 rounded-sm px-2 text-xs md:flex lg:w-auto"
+            className="hidden h-7 gap-1.5 rounded-md px-2 font-mono text-xs text-muted-foreground hover:text-foreground md:flex"
             size="sm"
             onClick={handleCopyInstall}
           >
             {copiedInstall ? (
-              <Check className="h-3.5 w-3.5 text-green-500" />
+              <Check className="size-3.5 text-green-500" />
             ) : (
-              <Terminal className="h-3.5 w-3.5" />
+              <Terminal className="size-3.5" />
             )}
             <span className="hidden lg:inline">
-              npx shadcn add @d2/{componentName}
+              {installCommand}
             </span>
           </Button>
         </div>
@@ -261,7 +261,7 @@ export function PreviewWrapper({
 
                 {/* Size Indicator */}
                 {currentSize < 100 && (
-                  <div className="absolute bottom-2 right-2 rounded bg-black/80 px-2 py-1 text-xs text-white dark:bg-white/80 dark:text-black">
+                  <div className="absolute bottom-2 right-2 rounded bg-foreground/90 px-2 py-1 text-xs text-background">
                     {Math.round((currentSize / 100) * 1400)}px
                   </div>
                 )}
@@ -327,7 +327,7 @@ function ComingSoonNotice({
         )}
         {isLocked && (
           <span className="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground">
-            <Lock className="h-3.5 w-3.5" />
+            <Lock className="size-3.5" />
             Pro
           </span>
         )}

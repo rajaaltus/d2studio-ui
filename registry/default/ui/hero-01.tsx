@@ -44,7 +44,7 @@ export default function HeroSection() {
           <div className="flex flex-col gap-3 @sm:flex-row w-full @sm:w-auto px-4 @sm:px-0">
             <Button
               size="lg"
-              className="h-[52px] text-sm @md:text-base font-semibold gap-2.5 text-white bg-[#1244E7] px-7 has-[>svg]:px-7 rounded-2xl border-[rgba(64,109,255,1)] border-2 hover:bg-[#1244E7] hover:brightness-125 w-full @sm:w-auto"
+              className="h-[52px] text-sm @md:text-base font-semibold gap-2.5 text-zinc-50 bg-[#1244E7] px-7 has-[>svg]:px-7 rounded-2xl border-[rgba(64,109,255,1)] border-2 hover:bg-[#1244E7] hover:brightness-125 w-full @sm:w-auto"
             >
               <FlameKindling className="size-5" />
               Register Bootcamp

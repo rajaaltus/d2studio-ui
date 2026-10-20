@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import { MetalFx } from "metal-fx";
 import { motion } from "motion/react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import Link from "next/link";
 import React from "react";
 
@@ -27,7 +27,7 @@ function PlainButton({ href, children, className }: PlainButtonProps) {
     <div className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto">
       <Button
         className={cn(
-          "h-11 w-full sm:w-auto px-5 bg-white text-black dark:bg-background dark:text-white",
+          "h-11 w-full sm:w-auto px-5 bg-card text-zinc-950 dark:bg-background dark:text-zinc-50",
           className
         )}
         asChild
@@ -105,13 +105,13 @@ export function MetalButtonSlide({
         preset="chromatic"
         theme={isLight ? "light" : "dark"}
         strength={isHovered ? 1 : 0.70}
-        style={{ background: isLight ? "#fff" : "var(--background)" }}
+        style={{ background: isLight ? "var(--card)" : "var(--background)" }}
         reflectionTargets={reflectionTargets}
       >
         <Button
           className={cn(
             "h-11 w-full sm:w-auto px-5",
-            isLight ? "text-black" : "text-white",
+            isLight ? "text-zinc-950" : "text-zinc-50",
             className
           )}
           asChild

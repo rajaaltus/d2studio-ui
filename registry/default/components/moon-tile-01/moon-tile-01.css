@@ -1,0 +1,231 @@
+/* The moon tile, played twice. Prefixed `mt-` and scoped to this block's own
+   classes, so dropping the file into a project touches nothing else.
+
+   Dark is the source drawing's own values. Light is the same scene by day: a
+   pale periwinkle sky, white clouds stepping down to lavender in the order the
+   night ones step down, a deeper gold so the moon holds against a light sky, a
+   weaker glow and a soft blue shade where the night one is black. The dark
+   test is Tailwind's own: inside `.dark` unless a nearer `.theme-light` pins
+   the subtree light. */
+
+.mt-root {
+  --mt-sky: #c3caf7;
+  --mt-gold: #ffd21f;
+  --mt-gold-shade: #f5b800;
+  --mt-violet: #7c80e0;
+  --mt-cloud-1: #fcfcfd;
+  --mt-cloud-2: #f4f5ff;
+  --mt-cloud-3: #e6e8fb;
+  --mt-cloud-4: #d8dbf3;
+  --mt-glow: #9aa6ff;
+  --mt-glow-strength: 0.35;
+  --mt-glow-deep: #040b4d;
+  --mt-lift: #3d4190;
+  --mt-lift-strength: 0.2;
+  --mt-rim-top: #f4f4f7;
+  --mt-rim-bottom: #dcdce6;
+
+  /* One lap and how many a play runs. The component ends the play at the same
+     total, so change both together. */
+  --mt-lap: 3000ms;
+  --mt-laps: 2;
+  --mt-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --mt-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.mt-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
+  --mt-sky: #2e314d;
+  --mt-gold: #ffe400;
+  --mt-gold-shade: #fdca00;
+  --mt-violet: #9292dd;
+  --mt-cloud-1: #8080c1;
+  --mt-cloud-2: #7070ab;
+  --mt-cloud-3: #616196;
+  --mt-cloud-4: #515181;
+  --mt-glow: #4f60f6;
+  --mt-glow-strength: 1;
+  --mt-lift: #000000;
+  --mt-lift-strength: 0.75;
+  --mt-rim-top: #373535;
+  --mt-rim-bottom: #141313;
+}
+
+.mt-blend {
+  mix-blend-mode: plus-lighter;
+}
+
+.mt-glow ellipse {
+  fill-opacity: var(--mt-glow-strength);
+}
+
+.mt-lift {
+  flood-color: var(--mt-lift);
+  flood-opacity: var(--mt-lift-strength);
+}
+
+/* Hidden until the first play, so the rise is the first time it is seen. */
+.mt-root[data-waiting] .mt-moon {
+  opacity: 0;
+}
+
+/* The moon rises from behind the clouds once, at the start of a play: a long
+   soft ease out, the iOS drawer curve, so it lifts without a jolt and settles
+   slowly into place, faded in over the first part of the climb so it never
+   shows a hard edge below the cloud line. */
+.mt-root[data-playing] .mt-moon {
+  animation: mt-rise 1600ms var(--mt-ease-rise) both;
+}
+
+/* fill-box puts each origin at the shape's own centre instead of the viewBox
+   corner, so the sparkle swells in place. */
+.mt-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Every animation hangs off `data-playing` and ends on its first frame, so
+   clearing the attribute after a play lands where the play left off. */
+
+/* The banks sway on one lap each, the back one less far and the other way, so
+   the nearer cloud reads as nearer. Each moves only outwards from rest; see the
+   component for why. */
+.mt-root[data-playing] .mt-bank-front {
+  animation: mt-sway-left var(--mt-lap) ease-in-out var(--mt-laps) both;
+}
+.mt-root[data-playing] .mt-bank-back {
+  animation: mt-sway-right var(--mt-lap) ease-in-out var(--mt-laps) both;
+}
+.mt-root[data-playing] .mt-bank-low {
+  animation: mt-settle var(--mt-lap) ease-in-out var(--mt-laps) both;
+}
+
+/* The small cloud waits a beat before it sets off, so it never moves in step
+   with the banks below it. */
+.mt-root[data-playing] .mt-puff {
+  animation: mt-drift var(--mt-lap) ease-in-out var(--mt-laps) both;
+}
+
+/* Two twinkles a lap: a quick dip, then a slower bloom back to full. */
+.mt-root[data-playing] .mt-sparkle {
+  animation: mt-twinkle calc(var(--mt-lap) / 2) ease-in-out
+    calc(var(--mt-laps) * 2) both;
+}
+
+/* The two stars blink half a beat apart, staggered inside their keyframes
+   rather than by a delay, so both rest at full when the play ends. */
+.mt-root[data-playing] .mt-star-violet {
+  animation: mt-blink-early calc(var(--mt-lap) / 2) ease-in-out
+    calc(var(--mt-laps) * 2) both;
+}
+.mt-root[data-playing] .mt-star-gold {
+  animation: mt-blink-late calc(var(--mt-lap) / 2) ease-in-out
+    calc(var(--mt-laps) * 2) both;
+}
+
+.mt-root[data-playing] .mt-glow {
+  animation: mt-breathe var(--mt-lap) ease-in-out var(--mt-laps) both;
+}
+
+.mt-turn {
+  animation: mt-turn 500ms var(--mt-ease-out);
+}
+
+@keyframes mt-rise {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt-sway-left {
+  50% {
+    transform: translateX(-1.2px);
+  }
+}
+
+@keyframes mt-sway-right {
+  50% {
+    transform: translateX(0.8px);
+  }
+}
+
+@keyframes mt-settle {
+  50% {
+    transform: translateY(0.8px);
+  }
+}
+
+@keyframes mt-drift {
+  0%,
+  15% {
+    transform: translateX(0);
+  }
+  60% {
+    transform: translateX(2.4px);
+  }
+}
+
+@keyframes mt-twinkle {
+  20% {
+    transform: scale(0.82);
+    opacity: 0.55;
+  }
+}
+
+@keyframes mt-blink-early {
+  25% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt-blink-late {
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes mt-breathe {
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes mt-turn {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mt-root[data-playing]
+    :is(
+      .mt-moon,
+      .mt-bank-front,
+      .mt-bank-back,
+      .mt-bank-low,
+      .mt-puff,
+      .mt-sparkle,
+      .mt-star,
+      .mt-glow
+    ),
+  .mt-turn {
+    animation: none;
+  }
+
+  /* No play ever starts, so the moon must not wait for one. */
+  .mt-root[data-waiting] .mt-moon {
+    opacity: 1;
+  }
+}

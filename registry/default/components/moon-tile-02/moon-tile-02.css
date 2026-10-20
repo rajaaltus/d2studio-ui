@@ -1,0 +1,220 @@
+/* The moon window, played twice. Prefixed `mt2-` and scoped to this block's
+   own classes, so dropping the file into a project touches nothing else.
+
+   Dark is the source drawing's own values. Light is the same scene at dusk: a
+   periwinkle tile, a soft ridge, a mid blue pane deep enough that white stars
+   still read on it, indigo hills and a warmer moon with a weaker glow and a
+   blue shade where the night one is black. The dark test is Tailwind's own:
+   inside `.dark` unless a nearer `.theme-light` pins the subtree light. */
+
+.mt2-root {
+  --mt2-sky-top: #a9bcff;
+  --mt2-sky-bottom: #5560d8;
+  --mt2-ridge: #3b3f8f;
+  --mt2-pane: #4f86de;
+  --mt2-hills-top: #2b3487;
+  --mt2-hills-bottom: #4a5fd6;
+  --mt2-star: #fafafa;
+  --mt2-moon: #fff6d6;
+  --mt2-halo: #fffbe8;
+  --mt2-halo-strength: 0.35;
+  --mt2-glow: #9aa6ff;
+  --mt2-glow-strength: 0.2;
+  --mt2-glow-deep: #040b4d;
+  --mt2-lift: #1e2470;
+  --mt2-lift-strength: 0.45;
+  --mt2-rim-top: #f4f4f7;
+  --mt2-rim-bottom: #dcdce6;
+
+  /* One lap and how many a play runs. The component ends the play at the same
+     total, so change both together. */
+  --mt2-lap: 3000ms;
+  --mt2-laps: 2;
+  --mt2-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --mt2-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.mt2-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
+  --mt2-sky-top: #3d71ff;
+  --mt2-sky-bottom: #070258;
+  --mt2-ridge: #181921;
+  --mt2-pane: #20599e;
+  --mt2-hills-top: #050a34;
+  --mt2-hills-bottom: #0f1d9a;
+  --mt2-star: #ffffff;
+  --mt2-moon: #e6e6d8;
+  --mt2-halo: #ffffff;
+  --mt2-halo-strength: 0.23;
+  --mt2-glow: #4f60f6;
+  --mt2-glow-strength: 1;
+  --mt2-lift: #000000;
+  --mt2-lift-strength: 0.75;
+  --mt2-rim-top: #373535;
+  --mt2-rim-bottom: #141313;
+}
+
+.mt2-blend {
+  mix-blend-mode: plus-lighter;
+}
+
+.mt2-glow ellipse {
+  fill-opacity: var(--mt2-glow-strength);
+}
+
+.mt2-halo {
+  opacity: var(--mt2-halo-strength);
+}
+
+.mt2-lift {
+  flood-color: var(--mt2-lift);
+  flood-opacity: var(--mt2-lift-strength);
+}
+
+/* Hidden until the first play, so the rise is the first time it is seen. */
+.mt2-root[data-waiting] .mt2-moon {
+  opacity: 0;
+}
+
+/* The moon rises from behind the hills once, at the start of a play, on the
+   iOS drawer curve so it lifts without a jolt and settles slowly, faded in
+   over the first part of the climb so no hard edge shows at the hill line. */
+.mt2-root[data-playing] .mt2-moon {
+  animation: mt2-rise 1600ms var(--mt2-ease-rise) both;
+}
+
+/* Every animation below hangs off `data-playing` and ends on its first frame,
+   so clearing the attribute after a play lands where the play left off. */
+
+/* The three star sets blink a third of a beat apart, staggered inside their
+   keyframes rather than by a delay, so every star rests at full when the play
+   ends. Two blinks a lap. */
+.mt2-root[data-playing] .mt2-stars-1 {
+  animation: mt2-blink-1 calc(var(--mt2-lap) / 2) ease-in-out
+    calc(var(--mt2-laps) * 2) both;
+}
+.mt2-root[data-playing] .mt2-stars-2 {
+  animation: mt2-blink-2 calc(var(--mt2-lap) / 2) ease-in-out
+    calc(var(--mt2-laps) * 2) both;
+}
+.mt2-root[data-playing] .mt2-stars-3 {
+  animation: mt2-blink-3 calc(var(--mt2-lap) / 2) ease-in-out
+    calc(var(--mt2-laps) * 2) both;
+}
+
+/* The halo swells off the moon's own centre once it has risen. fill-box puts
+   the origin at the shape's centre instead of the viewBox corner. */
+.mt2-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.mt2-root[data-playing] .mt2-halo {
+  animation: mt2-swell var(--mt2-lap) ease-in-out var(--mt2-laps) both;
+}
+
+/* The hills roll like a slow swell and the far ridge drifts the other way,
+   less far, so the nearer one reads as nearer. */
+.mt2-root[data-playing] .mt2-wave {
+  animation: mt2-swell-wave var(--mt2-lap) ease-in-out var(--mt2-laps) both;
+}
+.mt2-root[data-playing] .mt2-ridge {
+  animation: mt2-drift var(--mt2-lap) ease-in-out var(--mt2-laps) both;
+}
+
+.mt2-root[data-playing] .mt2-glow {
+  animation: mt2-breathe var(--mt2-lap) ease-in-out var(--mt2-laps) both;
+}
+
+.mt2-turn {
+  animation: mt2-turn 500ms var(--mt2-ease-out);
+}
+
+@keyframes mt2-rise {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt2-blink-1 {
+  20% {
+    opacity: 0.35;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt2-blink-2 {
+  30%,
+  100% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.35;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt2-blink-3 {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes mt2-swell {
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes mt2-swell-wave {
+  25% {
+    transform: translate(-1.6px, 0.6px);
+  }
+  75% {
+    transform: translate(1.6px, -0.4px);
+  }
+}
+
+@keyframes mt2-drift {
+  50% {
+    transform: translateX(0.8px);
+  }
+}
+
+@keyframes mt2-breathe {
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes mt2-turn {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mt2-root[data-playing]
+    :is(.mt2-moon, .mt2-stars, .mt2-halo, .mt2-wave, .mt2-ridge, .mt2-glow),
+  .mt2-turn {
+    animation: none;
+  }
+
+  /* No play ever starts, so the moon must not wait for one. */
+  .mt2-root[data-waiting] .mt2-moon {
+    opacity: 1;
+  }
+}

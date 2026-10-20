@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion } from "motion/react";
 import {
+  ArrowLeft,
   Check,
   ChevronUp,
   Gem,
@@ -25,6 +26,7 @@ import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { NavIcons } from "@/components/ui/nav-icons";
 import { PixelIconSpinnerPricing } from "@/components/pixel-icon-spinner/pricing";
+import "./floating-dock.css";
 
 type IconComponent = React.ComponentType<{ className?: string }>;
 
@@ -259,6 +261,7 @@ function DockInner() {
   }, []);
 
   const isOnBlocksPage = pathname.startsWith("/blocks");
+  const isOnBlockDetail = /^\/blocks\/[^/]+/.test(pathname);
   const activeCategorySlug = isOnBlocksPage
     ? (searchParams.get("type") ?? "all")
     : null;
@@ -296,8 +299,21 @@ function DockInner() {
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-40 flex justify-center px-4">
       <nav
         aria-label="Quick navigation"
-        className="pointer-events-auto flex h-12 items-center gap-1 rounded-full border border-border/60 bg-background px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]"
+        className={cn("dock-icons pointer-events-auto flex h-12 items-center gap-1 rounded-full border border-border/60 bg-background px-1.5 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35),0_4px_12px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.05)]")}
       >
+        {isOnBlockDetail && (
+          <>
+            <Link
+              href="/blocks"
+              aria-label="Back to Blocks"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+            <Divider />
+          </>
+        )}
+
         {/* Blocks dropdown */}
         <Popover open={blocksOpen} onOpenChange={setBlocksOpen}>
           <PopoverTrigger asChild>
@@ -326,7 +342,7 @@ function DockInner() {
             side="top"
             align="start"
             sideOffset={12}
-            className="w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
+            className={cn("dock-icons w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl")}
           >
             <div className="px-2 pb-1.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               Categories
@@ -397,7 +413,7 @@ function DockInner() {
             side="top"
             align="end"
             sideOffset={12}
-            className="w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl"
+            className={cn("dock-icons w-[min(18rem,calc(100vw-1.5rem))] rounded-2xl border-border/60 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl")}
           >
             <div className="px-2 pb-1.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               Tools

@@ -1,0 +1,265 @@
+/* The moon card, played twice. Prefixed `mt3-` and scoped to this block's own
+   classes, so dropping the file into a project touches nothing else.
+
+   Dark is the source drawing's night colours on a dark rim, with a black drop
+   shadow where the source's light grey one would glow on a dark page. Light is
+   the same scene by day: a periwinkle card and sky, white clouds stepping down
+   to lavender in the order the night ones step down, a deeper gold so the moon
+   holds against a light sky, weaker glows and a soft blue shade where the
+   night one is black, on the source's own light rim and grey shadow. The dark
+   test is Tailwind's own: inside `.dark` unless a nearer `.theme-light` pins
+   the subtree light. */
+
+.mt3-root {
+  --mt3-card-top: #dfe2ff;
+  --mt3-card-bottom: #aab0f2;
+  --mt3-sky: #c3caf7;
+  --mt3-line: #7c82ee;
+  --mt3-line-low: #6d73ea;
+  --mt3-gold: #ffd21f;
+  --mt3-gold-shade: #f5b800;
+  --mt3-violet: #7c80e0;
+  --mt3-puff: #fcfcfd;
+  --mt3-puff-shade: #e6e8fb;
+  --mt3-cloud-1: #fcfcfd;
+  --mt3-cloud-2: #f4f5ff;
+  --mt3-cloud-3: #e6e8fb;
+  --mt3-cloud-4: #d8dbf3;
+  --mt3-glow: #9aa6ff;
+  --mt3-glow-strength: 0.3;
+  --mt3-glow-plum: #4e045b;
+  --mt3-glow-deep: #040b4d;
+  --mt3-lift: #3d4190;
+  --mt3-lift-strength: 0.2;
+  --mt3-drop: #c1c1c1;
+  --mt3-drop-strength: 0.5;
+  --mt3-rim-top: #d8d8d8;
+  --mt3-rim-bottom: #c6c6c6;
+
+  /* One lap and how many a play runs. The component ends the play at the same
+     total, so change both together. */
+  --mt3-lap: 3000ms;
+  --mt3-laps: 2;
+  --mt3-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --mt3-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.mt3-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
+  --mt3-card-top: #6063af;
+  --mt3-card-bottom: #110615;
+  --mt3-sky: #2e314d;
+  --mt3-line: #8c91ff;
+  --mt3-line-low: #6d73ff;
+  --mt3-gold: #ffe400;
+  --mt3-gold-shade: #fdca00;
+  --mt3-violet: #9292dd;
+  --mt3-puff: #ded1d1;
+  --mt3-puff-shade: #c7c7d4;
+  --mt3-cloud-1: #8080c1;
+  --mt3-cloud-2: #7070ab;
+  --mt3-cloud-3: #616196;
+  --mt3-cloud-4: #515181;
+  --mt3-glow: #6b5dea;
+  --mt3-glow-strength: 1;
+  --mt3-lift: #000000;
+  --mt3-lift-strength: 0.75;
+  --mt3-drop: #000000;
+  --mt3-drop-strength: 0.5;
+  --mt3-rim-top: #373535;
+  --mt3-rim-bottom: #141313;
+}
+
+.mt3-blend {
+  mix-blend-mode: plus-lighter;
+}
+
+.mt3-glow ellipse {
+  fill-opacity: var(--mt3-glow-strength);
+}
+
+.mt3-lift {
+  flood-color: var(--mt3-lift);
+  flood-opacity: var(--mt3-lift-strength);
+}
+
+.mt3-drop {
+  flood-color: var(--mt3-drop);
+  flood-opacity: var(--mt3-drop-strength);
+}
+
+/* Hidden until the first play, so the rise is the first time it is seen. */
+.mt3-root[data-waiting] .mt3-moon {
+  opacity: 0;
+}
+
+/* The moon rises from behind the clouds once, at the start of a play, on the
+   iOS drawer curve so it lifts without a jolt and settles slowly, faded in
+   over the first part of the climb so no hard edge shows at the cloud line. */
+.mt3-root[data-playing] .mt3-moon {
+  animation: mt3-rise 1600ms var(--mt3-ease-rise) both;
+}
+
+/* fill-box puts each origin at the shape's own centre instead of the viewBox
+   corner, so the sparkle swells in place. */
+.mt3-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Every animation below hangs off `data-playing` and ends on its first frame,
+   so clearing the attribute after a play lands where the play left off. */
+
+/* The banks sway on one lap each, the back one less far and the other way, so
+   the nearer cloud reads as nearer. */
+.mt3-root[data-playing] .mt3-bank-front {
+  animation: mt3-sway-left var(--mt3-lap) ease-in-out var(--mt3-laps) both;
+}
+.mt3-root[data-playing] .mt3-bank-back {
+  animation: mt3-sway-right var(--mt3-lap) ease-in-out var(--mt3-laps) both;
+}
+.mt3-root[data-playing] .mt3-bank-low {
+  animation: mt3-settle var(--mt3-lap) ease-in-out var(--mt3-laps) both;
+}
+
+/* The cloud makes one crossing a play: it drifts left out past the card's
+   edge, then, out of sight behind the card's clip, jumps to beyond the right
+   edge and drifts back in to rest, so it reads as the next cloud arriving.
+   Leaving is on-screen movement, so a strong ease in out; arriving is an
+   entrance, so a strong ease out that settles it in place. */
+.mt3-root[data-playing] .mt3-puff {
+  animation: mt3-pass calc(var(--mt3-lap) * var(--mt3-laps)) linear both;
+}
+
+/* Two twinkles a lap: a quick dip, then a slower bloom back to full. */
+.mt3-root[data-playing] .mt3-sparkle {
+  animation: mt3-twinkle calc(var(--mt3-lap) / 2) ease-in-out
+    calc(var(--mt3-laps) * 2) both;
+}
+
+/* The two stars blink half a beat apart, staggered inside their keyframes
+   rather than by a delay, so both rest at full when the play ends. */
+.mt3-root[data-playing] .mt3-star-violet {
+  animation: mt3-blink-early calc(var(--mt3-lap) / 2) ease-in-out
+    calc(var(--mt3-laps) * 2) both;
+}
+.mt3-root[data-playing] .mt3-star-gold {
+  animation: mt3-blink-late calc(var(--mt3-lap) / 2) ease-in-out
+    calc(var(--mt3-laps) * 2) both;
+}
+
+.mt3-root[data-playing] .mt3-glow {
+  animation: mt3-breathe var(--mt3-lap) ease-in-out var(--mt3-laps) both;
+}
+
+.mt3-turn {
+  animation: mt3-turn 500ms var(--mt3-ease-out);
+}
+
+@keyframes mt3-rise {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt3-sway-left {
+  50% {
+    transform: translateX(-1.6px);
+  }
+}
+
+@keyframes mt3-sway-right {
+  50% {
+    transform: translateX(1px);
+  }
+}
+
+@keyframes mt3-settle {
+  50% {
+    transform: translateY(1px);
+  }
+}
+
+/* The cloud is about 35 wide at 1.25x; 58 clears the left edge and 70 starts
+   it clear of the right, rotation included. */
+@keyframes mt3-pass {
+  0% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  45% {
+    transform: translateX(-58px);
+  }
+  45.01% {
+    transform: translateX(70px);
+    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes mt3-twinkle {
+  20% {
+    transform: scale(0.82);
+    opacity: 0.55;
+  }
+}
+
+@keyframes mt3-blink-early {
+  25% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes mt3-blink-late {
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes mt3-breathe {
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes mt3-turn {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mt3-root[data-playing]
+    :is(
+      .mt3-moon,
+      .mt3-bank-front,
+      .mt3-bank-back,
+      .mt3-bank-low,
+      .mt3-puff,
+      .mt3-sparkle,
+      .mt3-star,
+      .mt3-glow
+    ),
+  .mt3-turn {
+    animation: none;
+  }
+
+  /* No play ever starts, so the moon must not wait for one. */
+  .mt3-root[data-waiting] .mt3-moon {
+    opacity: 1;
+  }
+}

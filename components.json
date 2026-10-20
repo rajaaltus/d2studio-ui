@@ -21,6 +21,7 @@
   "registries": {
     "@d2": "https://ui.d2studio.dev/r/{name}.json",
     "@magicui": "https://magicui.design/r/{name}.json",
-    "@dotmatrix": "https://dotmatrix.zzzzshawn.cloud/r/{name}.json"
+    "@dotmatrix": "https://dotmatrix.zzzzshawn.cloud/r/{name}.json",
+    "@bklit": "https://ui.bklit.com/r/{name}.json"
   }
 }
