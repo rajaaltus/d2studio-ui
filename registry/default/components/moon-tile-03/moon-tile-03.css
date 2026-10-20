@@ -1,50 +1,13 @@
 /* The moon card, played twice. Prefixed `mt3-` and scoped to this block's own
    classes, so dropping the file into a project touches nothing else.
 
-   Dark is the source drawing's night colours on a dark rim, with a black drop
-   shadow where the source's light grey one would glow on a dark page. Light is
-   the same scene by day: a periwinkle card and sky, white clouds stepping down
-   to lavender in the order the night ones step down, a deeper gold so the moon
-   holds against a light sky, weaker glows and a soft blue shade where the
-   night one is black, on the source's own light rim and grey shadow. The dark
-   test is Tailwind's own: inside `.dark` unless a nearer `.theme-light` pins
-   the subtree light. */
+   The scene keeps the source drawing's night colours in both themes; only the
+   rim and its drop shadow follow the page. Light is the source's own light rim
+   and grey shadow, dark a dark rim with a black shadow where the grey one
+   would glow on a dark page. The dark test is Tailwind's own: inside `.dark`
+   unless a nearer `.theme-light` pins the subtree light. */
 
 .mt3-root {
-  --mt3-card-top: #dfe2ff;
-  --mt3-card-bottom: #aab0f2;
-  --mt3-sky: #c3caf7;
-  --mt3-line: #7c82ee;
-  --mt3-line-low: #6d73ea;
-  --mt3-gold: #ffd21f;
-  --mt3-gold-shade: #f5b800;
-  --mt3-violet: #7c80e0;
-  --mt3-puff: #fcfcfd;
-  --mt3-puff-shade: #e6e8fb;
-  --mt3-cloud-1: #fcfcfd;
-  --mt3-cloud-2: #f4f5ff;
-  --mt3-cloud-3: #e6e8fb;
-  --mt3-cloud-4: #d8dbf3;
-  --mt3-glow: #9aa6ff;
-  --mt3-glow-strength: 0.3;
-  --mt3-glow-plum: #4e045b;
-  --mt3-glow-deep: #040b4d;
-  --mt3-lift: #3d4190;
-  --mt3-lift-strength: 0.2;
-  --mt3-drop: #c1c1c1;
-  --mt3-drop-strength: 0.5;
-  --mt3-rim-top: #d8d8d8;
-  --mt3-rim-bottom: #c6c6c6;
-
-  /* One lap and how many a play runs. The component ends the play at the same
-     total, so change both together. */
-  --mt3-lap: 3000ms;
-  --mt3-laps: 2;
-  --mt3-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --mt3-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-.mt3-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
   --mt3-card-top: #6063af;
   --mt3-card-bottom: #110615;
   --mt3-sky: #2e314d;
@@ -61,10 +24,25 @@
   --mt3-cloud-4: #515181;
   --mt3-glow: #6b5dea;
   --mt3-glow-strength: 1;
+  --mt3-glow-plum: #4e045b;
+  --mt3-glow-deep: #040b4d;
   --mt3-lift: #000000;
   --mt3-lift-strength: 0.75;
-  --mt3-drop: #000000;
+  --mt3-drop: #c1c1c1;
   --mt3-drop-strength: 0.5;
+  --mt3-rim-top: #d8d8d8;
+  --mt3-rim-bottom: #c6c6c6;
+
+  /* One lap and how many a play runs. The component ends the play at the same
+     total, so change both together. */
+  --mt3-lap: 3000ms;
+  --mt3-laps: 2;
+  --mt3-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --mt3-ease-rise: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.mt3-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
+  --mt3-drop: #000000;
   --mt3-rim-top: #373535;
   --mt3-rim-bottom: #141313;
 }

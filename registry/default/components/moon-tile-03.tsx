@@ -27,9 +27,11 @@ import "./moon-tile-03/moon-tile-03.css";
 const LAP_MS = 3000;
 const LAPS = 2;
 
-/** The card draws at 87 by 62, its own viewBox. */
-const WIDTH = 87;
-const HEIGHT = 62;
+/** The card draws at one and a half times its 87 by 62 viewBox, so it holds
+ *  its own beside the square tiles, rounded to whole pixels: a half pixel box
+ *  centres on a half pixel and every edge in the drawing smears. */
+const WIDTH = 131;
+const HEIGHT = 93;
 
 /** Every drop shadow in the source is the same one, 1 unit up with a 0.9 blur,
  *  on its own region: x, y, width, height. */

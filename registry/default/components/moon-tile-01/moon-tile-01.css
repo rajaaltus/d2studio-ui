@@ -1,27 +1,25 @@
 /* The moon tile, played twice. Prefixed `mt-` and scoped to this block's own
    classes, so dropping the file into a project touches nothing else.
 
-   Dark is the source drawing's own values. Light is the same scene by day: a
-   pale periwinkle sky, white clouds stepping down to lavender in the order the
-   night ones step down, a deeper gold so the moon holds against a light sky, a
-   weaker glow and a soft blue shade where the night one is black. The dark
-   test is Tailwind's own: inside `.dark` unless a nearer `.theme-light` pins
-   the subtree light. */
+   The scene keeps the source drawing's night colours in both themes; only the
+   rim follows the page, light grey in light and the source's dark rim in
+   dark. The dark test is Tailwind's own: inside `.dark` unless a nearer
+   `.theme-light` pins the subtree light. */
 
 .mt-root {
-  --mt-sky: #c3caf7;
-  --mt-gold: #ffd21f;
-  --mt-gold-shade: #f5b800;
-  --mt-violet: #7c80e0;
-  --mt-cloud-1: #fcfcfd;
-  --mt-cloud-2: #f4f5ff;
-  --mt-cloud-3: #e6e8fb;
-  --mt-cloud-4: #d8dbf3;
-  --mt-glow: #9aa6ff;
-  --mt-glow-strength: 0.35;
+  --mt-sky: #2e314d;
+  --mt-gold: #ffe400;
+  --mt-gold-shade: #fdca00;
+  --mt-violet: #9292dd;
+  --mt-cloud-1: #8080c1;
+  --mt-cloud-2: #7070ab;
+  --mt-cloud-3: #616196;
+  --mt-cloud-4: #515181;
+  --mt-glow: #4f60f6;
+  --mt-glow-strength: 1;
   --mt-glow-deep: #040b4d;
-  --mt-lift: #3d4190;
-  --mt-lift-strength: 0.2;
+  --mt-lift: #000000;
+  --mt-lift-strength: 0.75;
   --mt-rim-top: #f4f4f7;
   --mt-rim-bottom: #dcdce6;
 
@@ -34,18 +32,6 @@
 }
 
 .mt-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
-  --mt-sky: #2e314d;
-  --mt-gold: #ffe400;
-  --mt-gold-shade: #fdca00;
-  --mt-violet: #9292dd;
-  --mt-cloud-1: #8080c1;
-  --mt-cloud-2: #7070ab;
-  --mt-cloud-3: #616196;
-  --mt-cloud-4: #515181;
-  --mt-glow: #4f60f6;
-  --mt-glow-strength: 1;
-  --mt-lift: #000000;
-  --mt-lift-strength: 0.75;
   --mt-rim-top: #373535;
   --mt-rim-bottom: #141313;
 }
