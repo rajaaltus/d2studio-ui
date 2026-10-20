@@ -153,13 +153,14 @@ const subscribeMotion = (onChange: () => void) => {
 // The composer's beam has three phases:
 //   idle       slow ambient lap, soft glow
 //   typing     lap glides to a stop, glow breathes bright to dim beside the text
-//   generating after Enter or send: bright and fast until the reply lands
+//   generating after Cmd+Enter or send: bright and fast until the reply lands,
+//              then the whole border flashes bright and dims as the result arrives
 type BeamPhase = "idle" | "typing" | "generating";
 
 const BEAM = {
   idle: { rate: 1, strength: 0.7, lightStrength: 0.9 },
   typing: { rate: 0, strength: 0.4, lightStrength: 0.4 },
-  generating: { rate: 3.5, strength: 1, lightStrength: 1 },
+  generating: { rate: 7, strength: 1, lightStrength: 1 },
 } as const;
 
 // The package's light preset draws the stroke at 12% opacity, which all but
@@ -173,13 +174,16 @@ const BEAM_LIGHT_CSS = `
 }
 `;
 
-// One lap at rate 1. Generating runs ~2s a lap.
+// One lap at rate 1. Generating runs ~1s a lap.
 const BEAM_LAP_SECONDS = 7;
 // Quick to wake on submit, slower to settle back or glide to a stop.
 const BEAM_WAKE_MS = 400;
 const BEAM_SETTLE_MS = 1200;
 // Stand-in for a real request in this demo.
 const DEMO_GENERATION_MS = 3500;
+// Hues of the beam's colorful variant, for the finish flash ring.
+const FLASH_RING =
+  "conic-gradient(from 0deg, #ff6b9d, #c084fc, #60a5fa, #34d399, #fbbf24, #ff6b9d)";
 
 // `strength` lands as an inline --beam-strength. Registering it as a number
 // lets it transition instead of snapping between phases.
@@ -216,6 +220,7 @@ export default function AIContentCreatorCard() {
       : "idle";
   const beamRef = React.useRef<HTMLDivElement>(null);
   const promptRef = React.useRef<HTMLTextAreaElement>(null);
+  const flashRef = React.useRef<HTMLDivElement>(null);
 
   function submit() {
     if (generating || !promptRef.current?.value.trim()) return;
@@ -224,7 +229,20 @@ export default function AIContentCreatorCard() {
 
   React.useEffect(() => {
     if (!generating) return;
-    const id = setTimeout(() => setGenerating(false), DEMO_GENERATION_MS);
+    const id = setTimeout(() => {
+      setGenerating(false);
+      // Result landed: every side lights at once, then dims while the lap settles.
+      flashRef.current?.animate(
+        // Per-keyframe easing: an effect-level curve would warp the hold too.
+        [
+          { opacity: 0, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
+          { opacity: 1, offset: 0.12 },
+          { opacity: 1, offset: 0.3, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
+          { opacity: 0 },
+        ],
+        { duration: 1400 },
+      );
+    }, DEMO_GENERATION_MS);
     return () => clearTimeout(id);
   }, [generating]);
 
@@ -468,10 +486,10 @@ export default function AIContentCreatorCard() {
                   aria-label="Content prompt"
                   aria-busy={generating}
                   onKeyDown={(e) => {
-                    // Enter sends, Shift+Enter keeps a newline. Skip while an IME is composing.
+                    // Cmd+Enter sends (Ctrl+Enter off Mac), as the hint shows; plain Enter keeps a newline. Skip while an IME is composing.
                     if (
                       e.key !== "Enter" ||
-                      e.shiftKey ||
+                      !(e.metaKey || e.ctrlKey) ||
                       e.nativeEvent.isComposing
                     )
                       return;
@@ -559,22 +577,36 @@ export default function AIContentCreatorCard() {
                   {/* Decorative: the shortcut is announced on the button itself */}
                   <kbd
                     aria-hidden
-                    className="hidden h-5 min-w-5 items-center justify-center rounded-[5px] border border-[#E3E3E6] bg-[#F4F4F5] px-1 font-sans text-[11px] leading-none text-zinc-500 shadow-[0_1px_0_rgba(0,0,0,0.06)] sm:inline-flex dark:border-input dark:bg-input/30 dark:text-zinc-400 dark:shadow-none"
+                    className="hidden h-5 min-w-5 items-center justify-center gap-0.5 rounded-[5px] border border-[#E3E3E6] bg-[#F4F4F5] px-1.5 font-sans text-[11px] leading-none text-zinc-500 shadow-[0_1px_0_rgba(0,0,0,0.06)] sm:inline-flex dark:border-input dark:bg-input/30 dark:text-zinc-400 dark:shadow-none"
                   >
-                    ↵
+                    ⌘ ↵
                   </kbd>
                   <button
                     type="button"
                     aria-label="Generate"
-                    aria-keyshortcuts="Enter"
-                    title="Send (Enter). Shift+Enter for a new line"
+                    aria-keyshortcuts="Meta+Enter Control+Enter"
+                    title="Send (⌘ Enter)"
                     onClick={submit}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-[transform,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.97] dark:bg-zinc-800 dark:text-[#00FFA1]"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-800 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-[transform,background-color] duration-150 ease-out hover:bg-zinc-700 active:scale-[0.97] dark:bg-zinc-700 dark:hover:bg-zinc-600"
                   >
                     <ArrowUp size={16} strokeWidth={3} />
                   </button>
                 </div>
               </div>
+            </div>
+            <div
+              ref={flashRef}
+              data-flash
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 shadow-[inset_0_0_28px_rgba(192,132,252,0.6),inset_0_0_6px_rgba(96,165,250,0.5)]"
+            >
+              <div
+                className="absolute inset-0 rounded-[inherit] p-[2px]"
+                style={{
+                  background: FLASH_RING,
+                  mask: "linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)",
+                }}
+              />
             </div>
           </BorderBeam>
 
