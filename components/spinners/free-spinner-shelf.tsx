@@ -3,7 +3,8 @@
 import * as React from "react";
 import { CopyIconButton } from "@/components/docs/copy-icon-button";
 import { InstallCommand } from "@/components/docs/install-command";
-import { CssSpinner } from "@/components/spinners/css-spinner";
+import { CssSpinner, type CellShape } from "@/components/spinners/css-spinner";
+import { SlidingTabs } from "@/components/ui/sliding-tabs";
 import { SpinnerDocsSheet } from "@/components/spinners/spinner-docs";
 import { SIZE, snippetFor } from "@/components/spinners/spinner-snippet";
 import { FREE_SPINNERS, type FreeSpinner } from "@/lib/free-spinners";
@@ -31,8 +32,8 @@ const wordFor = (name: string) => WORDS[[...name].reduce((h, c) => h + c.charCod
 // in a button, a tall one in a list row.
 const rows = (s: FreeSpinner) => s.pattern.rows ?? s.pattern.size ?? 3;
 const cols = (s: FreeSpinner) => s.pattern.cols ?? s.pattern.size ?? 3;
-// Picked by hand out of the 4 by 4 set: the four that read as weather.
-const TEMPEST = new Set(["Mosaic", "Drizzle", "Tide", "Tumble"]);
+// Picked by hand out of the 4 by 4 set: the ones that read as weather.
+const TEMPEST = new Set(["Mosaic", "Drizzle", "Tide", "Tumble", "Strobe"]);
 const GROUPS = [
   { title: "Spire", caption: "taller than wide", test: (s: FreeSpinner) => rows(s) > cols(s) },
   { title: "Petite", caption: "3 by 3", test: (s: FreeSpinner) => rows(s) === 3 && cols(s) === 3 },
@@ -44,8 +45,8 @@ const GROUPS = [
 
 // This site's card, the one /blocks draws: a bordered card holding a bordered
 // preview well and a label row under it.
-function SpinnerCard({ spinner }: { spinner: FreeSpinner }) {
-  const code = React.useMemo(() => snippetFor(spinner), [spinner]);
+function SpinnerCard({ spinner, shape }: { spinner: FreeSpinner; shape: CellShape }) {
+  const code = React.useMemo(() => snippetFor(spinner, shape), [spinner, shape]);
 
   return (
     // content-visibility keeps a card scrolled out of view out of rendering,
@@ -53,7 +54,7 @@ function SpinnerCard({ spinner }: { spinner: FreeSpinner }) {
     <li className="group relative flex flex-col gap-1.5 rounded-xl border bg-card p-2 transition-colors duration-200 hover:border-foreground/20 [content-visibility:auto] [contain-intrinsic-size:auto_166px]">
       <div className="flex h-[132px] items-center justify-center gap-2 rounded-lg border bg-gradient-to-b from-muted/40 to-muted">
         <span className="inline-flex items-center justify-center" style={{ padding: SIZE / 4 }}>
-          <CssSpinner pattern={spinner.pattern} size={SIZE} />
+          <CssSpinner pattern={spinner.pattern} size={SIZE} shape={shape} />
         </span>
         <span className="text-[14px] text-foreground/50">{wordFor(spinner.name)}</span>
       </div>
@@ -71,6 +72,9 @@ function SpinnerCard({ spinner }: { spinner: FreeSpinner }) {
 }
 
 export function FreeSpinnerShelf() {
+  // One cell shape for the whole wall, and the copied code follows it.
+  const [shape, setShape] = React.useState<CellShape>("square");
+
   return (
     <section className="w-full max-w-7xl border-x border-[var(--ls-border)] mx-auto px-4 lg:px-8">
       <div className="flex flex-col gap-8 border-t border-[var(--ls-border)] py-12 lg:py-16">
@@ -80,8 +84,31 @@ export function FreeSpinnerShelf() {
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {FREE_SPINNERS.length} ready-made spinners
             </h2>
-            <div>
+            <div className="flex flex-wrap items-center gap-3">
               <SpinnerDocsSheet />
+              <SlidingTabs
+                value={shape}
+                onValueChange={(v) => setShape(v as CellShape)}
+                tabs={(["square", "circle"] as const).map((value) => ({
+                  value,
+                  label: value === "square" ? "Square cells" : "Circle cells",
+                  hideLabel: true,
+                  // The filled shape, and a tiny green dot on the one in use:
+                  // the sliding pill alone is too faint to read at this size.
+                  icon: (
+                    <span aria-hidden className="relative block">
+                      <span className={`block size-3 bg-current ${value === "circle" ? "rounded-full" : "rounded-[2px]"}`} />
+                      {shape === value && (
+                        <span className="absolute -top-1 -right-1 size-1.5 rounded-full bg-emerald-500" />
+                      )}
+                    </span>
+                  ),
+                }))}
+                aria-label="Cell shape"
+                className="[&_.t-tab]:flex [&_.t-tab]:size-8 [&_.t-tab]:items-center [&_.t-tab]:justify-center [&_.t-tab]:p-0"
+              />
+              {/* The size every spinner here is drawn and copied at. */}
+              <span className="font-mono text-xs text-[var(--ls-muted-foreground)]">{SIZE}px</span>
             </div>
           </div>
           <div className="w-full md:w-auto md:min-w-[22rem]">
@@ -103,7 +130,7 @@ export function FreeSpinnerShelf() {
               </div>
               <ul className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {group.spinners.map((spinner) => (
-                  <SpinnerCard key={spinner.name} spinner={spinner} />
+                  <SpinnerCard key={spinner.name} spinner={spinner} shape={shape} />
                 ))}
               </ul>
             </div>

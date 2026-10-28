@@ -44,7 +44,18 @@ export function metrics(size: number, cols = 4) {
 // the only thing that animates. Flat, as pro draws them: one solid colour per
 // layer, no stroke, no glow, no growth. The caller sets --cell-color (lit) and
 // --cell-off (unlit).
-export function CssSpinner({ pattern, size = 16 }: { pattern: SpinnerPattern; size?: number }) {
+export type CellShape = "square" | "circle";
+
+export function CssSpinner({
+  pattern,
+  size = 16,
+  shape = "square",
+}: {
+  pattern: SpinnerPattern;
+  size?: number;
+  shape?: CellShape;
+}) {
+  const round = shape === "circle" ? " rounded-full" : "";
   const rows = pattern.rows ?? pattern.size ?? 3;
   const cols = pattern.cols ?? pattern.size ?? 3;
   const { cellSize, gap } = metrics(size);
@@ -64,10 +75,10 @@ export function CssSpinner({ pattern, size = 16 }: { pattern: SpinnerPattern; si
       {/* display:none by UA rule, so it is not a grid item. */}
       <style>{rules}</style>
       {tracks.map((track, i) => (
-        <div key={i} className="relative bg-[var(--cell-off)]" style={{ width: cellSize, height: cellSize }}>
+        <div key={i} className={`relative bg-[var(--cell-off)]${round}`} style={{ width: cellSize, height: cellSize }}>
           {track.some(Boolean) && (
             <div
-              className="absolute inset-0 bg-[var(--cell-color)] opacity-0"
+              className={`absolute inset-0 bg-[var(--cell-color)] opacity-0${round}`}
               style={{ animation: `${trackName(track)} ${duration}ms linear infinite` }}
             />
           )}

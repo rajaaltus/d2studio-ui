@@ -1,4 +1,4 @@
-import { metrics } from "@/components/spinners/css-spinner";
+import { metrics, type CellShape } from "@/components/spinners/css-spinner";
 import type { FreeSpinner } from "@/lib/free-spinners";
 
 // The size the free spinners are drawn at, and copied at.
@@ -9,7 +9,7 @@ export const componentName = (s: FreeSpinner) => `Spinner${s.label.replace(/[^A-
 
 // The copied code: a small component over the @d2/pixel-spinner engine, at the
 // size drawn here, lit in the text colour around it so it suits either theme.
-export function snippetFor(s: FreeSpinner) {
+export function snippetFor(s: FreeSpinner, shape: CellShape = "square") {
   const name = componentName(s);
   return `// npx shadcn@latest add @d2/pixel-spinner
 import * as React from "react";
@@ -26,7 +26,7 @@ export function ${name}(
       color="blue"
       customColor="currentColor"
       effect="none"
-      cellSize={${cellSize}}
+${shape === "circle" ? '      shape="circle"\n' : ""}      cellSize={${cellSize}}
       gap={${gap}}
       {...props}
     />
