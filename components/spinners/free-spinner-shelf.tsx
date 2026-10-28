@@ -1,67 +1,71 @@
 "use client";
 
 import * as React from "react";
-import { PixelSpinner } from "@/components/pixel-spinner";
 import { CopyIconButton } from "@/components/docs/copy-icon-button";
 import { InstallCommand } from "@/components/docs/install-command";
+import { CssSpinner } from "@/components/spinners/css-spinner";
+import { SpinnerDocsSheet } from "@/components/spinners/spinner-docs";
+import { SIZE, snippetFor } from "@/components/spinners/spinner-snippet";
 import { FREE_SPINNERS, type FreeSpinner } from "@/lib/free-spinners";
 
-// The spinners D2 Pro gives away, running, each with its code a click away.
-// The copied code is a small component over the @d2/pixel-spinner engine,
-// written the way the published spinner-* presets are.
-function snippetFor(s: FreeSpinner) {
-  const name = `Spinner${s.label.replace(/[^A-Za-z0-9]/g, "")}`;
-  const animation = s.animation ? ` animation="${s.animation}"` : "";
-  return `// npx shadcn@latest add @d2/pixel-spinner
-import * as React from "react";
-import { PixelSpinner, type SpinnerPattern } from "@/components/ui/pixel-spinner";
+// The spinners D2 Pro gives away, drawn the way pro's own wall draws them: a
+// small spinner beside the word an agent CLI would print, in one muted paint.
 
-const pattern: SpinnerPattern = ${JSON.stringify(s.pattern)};
+// The word beside each spinner, from pro's gallery. Hashed off the name, so a
+// pattern always draws the same word there and here.
+const WORDS = [
+  "Billowing..", "Accomplishing..", "Channelling...", "Tinkering.", "Boogieing..", "Levitating.",
+  "Elucidating..", "Forging...", "Architecting...", "Ebbing...", "Deciphering...", "Zesting...",
+  "Swooping...", "Frolicking...", "Spelunking...", "Moseying...", "Perambulating...", "Stewing..",
+  "Transmuting...", "Nebulizing...", "Scampering...", "Cascading...", "Noodling...", "Topsy-turvying...",
+  "Honking...", "Bunning...", "Flummoxing...", "Fluttering...", "Whirring...", "Sublimating...",
+  "Gusting...", "Improvising...", "Orbiting...", "Effecting...", "Dilly-dallying...", "Ping-ponging...",
+  "Waddling...", "Forming...", "Cultivating...", "Gitifying...", "Pontificating...", "Hullaballooing...",
+  "Ebbing...", "Zesting...", "Swooping...", "Moseying...", "Transmuting...", "Improvising...",
+  "Tinkering...", "Boogieing...",
+];
+const wordFor = (name: string) => WORDS[[...name].reduce((h, c) => h + c.charCodeAt(0), 0) % WORDS.length];
 
-export function ${name}(
-  props: Omit<React.ComponentProps<typeof PixelSpinner>, "pattern" | "color">,
-) {
-  return <PixelSpinner pattern={pattern} color="${s.color}"${animation} {...props} />;
-}
-`;
-}
+// The wall in groups by the shape of the grid each pattern is drawn on, which
+// is what decides where a spinner fits: a square beside a word, a wide strip
+// in a button, a tall one in a list row.
+const rows = (s: FreeSpinner) => s.pattern.rows ?? s.pattern.size ?? 3;
+const cols = (s: FreeSpinner) => s.pattern.cols ?? s.pattern.size ?? 3;
+// Picked by hand out of the 4 by 4 set: the four that read as weather.
+const TEMPEST = new Set(["Mosaic", "Drizzle", "Tide", "Tumble"]);
+const GROUPS = [
+  { title: "Spire", caption: "taller than wide", test: (s: FreeSpinner) => rows(s) > cols(s) },
+  { title: "Petite", caption: "3 by 3", test: (s: FreeSpinner) => rows(s) === 3 && cols(s) === 3 },
+  { title: "Quartet", caption: "4 by 4", test: (s: FreeSpinner) => rows(s) === 4 && cols(s) === 4 && !TEMPEST.has(s.label) },
+  { title: "Tempest", caption: "4 by 4, weather in motion", test: (s: FreeSpinner) => TEMPEST.has(s.label) },
+  { title: "Grand", caption: "5 by 5", test: (s: FreeSpinner) => rows(s) === 5 && cols(s) === 5 },
+  { title: "Panorama", caption: "wider than tall", test: (s: FreeSpinner) => cols(s) > rows(s) },
+].map(({ test, ...g }) => ({ ...g, spinners: FREE_SPINNERS.filter(test) }));
 
-// Every spinner is its own interval re-rendering a grid, so forty at once is
-// real work. A card mounts its spinner only while it is near the screen; off
-// screen it is an empty square of the same size, so nothing shifts.
-function useNearScreen<T extends Element>() {
-  const ref = React.useRef<T>(null);
-  const [near, setNear] = React.useState(false);
-  React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => setNear(e.isIntersecting), { rootMargin: "120px 0px" });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return [ref, near] as const;
-}
-
+// This site's card, the one /blocks draws: a bordered card holding a bordered
+// preview well and a label row under it.
 function SpinnerCard({ spinner }: { spinner: FreeSpinner }) {
-  const [ref, near] = useNearScreen<HTMLLIElement>();
   const code = React.useMemo(() => snippetFor(spinner), [spinner]);
 
   return (
-    <li
-      ref={ref}
-      className="relative flex aspect-square flex-col items-center justify-center gap-3 rounded-xl border border-[var(--ls-border)] bg-[var(--ls-card,transparent)]"
-    >
-      {near && (
-        <PixelSpinner
-          pattern={spinner.pattern}
-          color={spinner.color}
-          animation={spinner.animation}
-          cellSize={10}
-          gap={2}
+    // content-visibility keeps a card scrolled out of view out of rendering,
+    // its keyframes included; the intrinsic size is the card's real height.
+    <li className="group relative flex flex-col gap-1.5 rounded-xl border bg-card p-2 transition-colors duration-200 hover:border-foreground/20 [content-visibility:auto] [contain-intrinsic-size:auto_166px]">
+      <div className="flex h-[132px] items-center justify-center gap-2 rounded-lg border bg-gradient-to-b from-muted/40 to-muted">
+        <span className="inline-flex items-center justify-center" style={{ padding: SIZE / 4 }}>
+          <CssSpinner pattern={spinner.pattern} size={SIZE} />
+        </span>
+        <span className="text-[14px] text-foreground/50">{wordFor(spinner.name)}</span>
+      </div>
+      <div className="flex items-center gap-2 pl-1">
+        <p className="truncate text-[12px] text-foreground/50">{spinner.label}</p>
+        {/* Shown on hover where there is hover; always there on touch. */}
+        <CopyIconButton
+          value={code}
+          label={`Copy ${spinner.label} spinner code`}
+          className="ml-auto transition-[opacity,color,background-color,transform] focus-visible:opacity-100 group-hover:opacity-100 [@media(hover:hover)]:opacity-0"
         />
-      )}
-      <span className="text-[11px] text-[var(--ls-muted-foreground)]">{spinner.label}</span>
-      <CopyIconButton value={code} label={`Copy ${spinner.label} spinner code`} className="absolute top-1.5 right-1.5" />
+      </div>
     </li>
   );
 }
@@ -76,20 +80,35 @@ export function FreeSpinnerShelf() {
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {FREE_SPINNERS.length} ready-made spinners
             </h2>
-            <p className="max-w-xl text-sm text-[var(--ls-muted-foreground)]">
-              Install the engine once, then copy any spinner below into your project.
-            </p>
+            <div>
+              <SpinnerDocsSheet />
+            </div>
           </div>
           <div className="w-full md:w-auto md:min-w-[22rem]">
             <InstallCommand args="add @d2/pixel-spinner" />
           </div>
         </div>
 
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {FREE_SPINNERS.map((spinner) => (
-            <SpinnerCard key={spinner.name} spinner={spinner} />
+        {/* One paint for the whole wall: a soft white, never pure, that turns
+            to the ink in light mode where white would vanish. Unlit cells are
+            pro's faint tint of the same. */}
+        <div className="flex flex-col gap-10 [--cell-color:var(--foreground)] [--cell-off:oklch(0_0_0/0.05)] dark:[--cell-color:var(--ls-paint-white)] dark:[--cell-off:oklch(1_0_0/0.08)]">
+          {GROUPS.map((group) => (
+            <div key={group.title} className="flex flex-col gap-4">
+              <div className="flex items-baseline gap-3">
+                <h3 className="text-base font-medium text-foreground">{group.title}</h3>
+                <span className="text-xs text-[var(--ls-muted-foreground)]">
+                  {group.caption} · {group.spinners.length}
+                </span>
+              </div>
+              <ul className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {group.spinners.map((spinner) => (
+                  <SpinnerCard key={spinner.name} spinner={spinner} />
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
