@@ -151,6 +151,17 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     version: "1.0.0",
   },
   {
+    name: "hero-container",
+    title: "Container Hero",
+    description: "A one-screen hero on a plain background: a 20ft shipping container built as a real box in CSS 3D, three quarters on, hangs from a crane hook on four slings over its soft shadow. It swings on its cable with a little wind and takes a shove from a passing pointer; the loop runs only while the hero is on screen, and under reduced motion the crate hangs still. No dependencies; it scales to the stage, so it fits a phone, a short landscape screen or a desktop alike. Theme-aware.",
+    categories: ["hero"],
+    shelf: "blocks",
+    image: "/blocks/hero-container-79531d0c.png",
+    status: "available",
+    author: "@uxgodwin",
+    version: "1.0.0",
+  },
+  {
     name: "card-ecommerce-01",
     title: "Product Card",
     description: "E-commerce product card on the D2 card primitive: colour swatches that cross-fade the photo, a wishlist heart that swaps with a blur, a derived sale badge and an add-to-bag button whose icon and label swap in place. Reduced-motion aware.",

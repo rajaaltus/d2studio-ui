@@ -1,0 +1,453 @@
+/* A 20ft shipping container built as a real box in CSS 3D, doors shut.
+   Its proportions are ISO's (6.06 by
+   2.44 by 2.59 m), hung off one length so the rig scales with the stage.
+   Steel tones carry a lift per face for the light, baked into each face's
+   colours since a filter would flatten the 3D. This shading models the steel;
+   it is not decoration. */
+.hc-hero {
+  /* Sized off the stage (a size container, .hc-pin), not the viewport, so
+     the box fits a phone, a short landscape screen or a preview frame alike. */
+  --L: min(540px, 78cqw, 80cqh);
+  --H: calc(var(--L) * 0.427);
+  --D: calc(var(--L) * 0.4);
+  --hs: calc(var(--L) * 0.3);
+  /* Cable below the stage's top edge: whatever puts the box's middle at 52%
+     of the stage, under the hook block (63px) and the slings (--hs). */
+  --hang: calc(52cqh - 63px - var(--hs) - var(--H) / 2);
+  --lift: 0;
+  /* Where the crate hangs across the stage. The rig and its shadow read it. */
+  --cx: 50%;
+  --eye: 50%;
+  /* The stage's background. */
+  --hc-paper: oklch(0.985 0 0);
+}
+.dark .hc-hero {
+  --hc-paper: oklch(0.16 0 0);
+}
+/* The stage clips and carries the camera; the 3D scene is inside it. */
+.hc-pin {
+  container-type: size;
+  perspective: 1800px;
+  perspective-origin: var(--eye) 32%;
+}
+@media (min-width: 768px) {
+  .hc-hero {
+    --L: min(560px, 60cqw, 80cqh);
+  }
+}
+.hc-stage,
+.hc-rig,
+.hc-yaw,
+.hc-squash,
+.hc-box,
+.hc-f-doors,
+.hc-opening,
+.hc-leaf,
+.hc-leaf-face,
+.hc-rod {
+  transform-style: preserve-3d;
+}
+.hc-rig {
+  left: var(--cx);
+  top: -100vh;
+  width: 0;
+  transform-origin: 0 0;
+}
+.hc-cables {
+  position: absolute;
+  top: 0;
+  left: -11px;
+  width: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Steel wire rope, dark as it is in use: a graphite core, a thin bright
+   line where the light runs along it, and the strands' lay. */
+.hc-ropes {
+  display: flex;
+  gap: 4px;
+  height: calc(100vh + var(--hang));
+}
+.hc-rope,
+.hc-sling {
+  background:
+    repeating-linear-gradient(155deg, transparent 0 1.5px, oklch(0 0 0 / 0.3) 1.5px 2.5px),
+    linear-gradient(90deg, oklch(0.2 0.004 250), oklch(0.62 0.004 250) 35%, oklch(0.36 0.004 250) 60%, oklch(0.16 0.004 250));
+}
+.hc-rope {
+  width: 2.5px;
+  height: 100%;
+  border-radius: 2px;
+}
+/* The hook block: an octagonal casting in black and white hazard
+   stripes under a gloss coat. The outer span is the dark rim and casts the
+   shadow; the face is cut a pixel inside it, since a clip-path would take a
+   border with it. */
+.hc-hook-block {
+  position: relative;
+  width: 26px;
+  height: 34px;
+  clip-path: polygon(28% 0, 72% 0, 100% 20%, 100% 80%, 72% 100%, 28% 100%, 0 80%, 0 20%);
+  background: oklch(0.16 0 0);
+}
+.hc-block-face {
+  position: absolute;
+  inset: 1.25px;
+  clip-path: polygon(28% 0, 72% 0, 100% 20%, 100% 80%, 72% 100%, 28% 100%, 0 80%, 0 20%);
+  background:
+    linear-gradient(90deg, oklch(0 0 0 / 0.3), oklch(1 0 0 / 0.38) 24%, oklch(1 0 0 / 0.04) 46%, transparent 62%, oklch(0 0 0 / 0.42)),
+    repeating-linear-gradient(-42deg, oklch(0.14 0 0) 0 5px, oklch(0.96 0 0) 5px 10px);
+}
+.hc-bolt {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, oklch(0.97 0 0), oklch(0.5 0.004 250) 70%);
+  box-shadow: 0 0 0 0.75px oklch(0 0 0 / 0.5);
+}
+.hc-axle {
+  width: 7px;
+  height: 7px;
+  background: radial-gradient(circle, oklch(0.4 0.004 250) 0 1.2px, oklch(0.96 0 0) 1.6px, oklch(0.6 0.004 250) 70%);
+  box-shadow: 0 0 0 1px oklch(0 0 0 / 0.45), 0 0 0 2.5px oklch(0.75 0.003 250 / 0.6);
+}
+.hc-bolt:not(.hc-axle) {
+  width: 3px;
+  height: 3px;
+}
+.hc-hook {
+  width: 20px;
+  height: 34px;
+  margin-top: -2px;
+  overflow: visible;
+  filter: drop-shadow(1px 1.5px 1px oklch(0 0 0 / 0.35));
+}
+.hc-yaw {
+  position: absolute;
+  left: 0;
+  top: calc(100vh + var(--hang) + 63px + var(--hs));
+  /* Three quarters on, so a long side and the door end both show. */
+  transform: rotateY(-32deg);
+}
+.hc-squash {
+  width: 0;
+  transform-origin: 0 var(--H);
+}
+.hc-box {
+  position: relative;
+  width: var(--L);
+  height: var(--H);
+  margin-left: calc(var(--L) / -2);
+}
+
+/* Faces: each centred on the box, turned out and pushed to its wall. */
+.hc-face {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.hc-side { width: var(--L); height: var(--H); }
+.hc-end { width: var(--D); height: var(--H); }
+.hc-roof { width: var(--L); height: var(--D); }
+.hc-f-front { transform: translate(-50%, -50%) translateZ(calc(var(--D) / 2)); }
+.hc-f-back { transform: translate(-50%, -50%) rotateY(180deg) translateZ(calc(var(--D) / 2)); --lift: -0.04; }
+.hc-f-doors { transform: translate(-50%, -50%) rotateY(90deg) translateZ(calc(var(--L) / 2)); --lift: -0.025; }
+.hc-f-blank { transform: translate(-50%, -50%) rotateY(-90deg) translateZ(calc(var(--L) / 2)); --lift: -0.03; }
+.hc-f-top { transform: translate(-50%, -50%) rotateX(90deg) translateZ(calc(var(--H) / 2)); }
+.hc-f-bottom { transform: translate(-50%, -50%) rotateX(-90deg) translateZ(calc(var(--H) / 2)); }
+
+/* Corrugated steel: trapezoid ribs, each a recess, a lit slope, a ridge and
+   a slope in shadow, under top and bottom rails and corner posts. */
+.hc-side,
+.hc-f-blank {
+  --steel: oklch(calc(0.19 + var(--lift)) 0.004 270);
+  --steel-hi: oklch(calc(0.3 + var(--lift)) 0.004 270);
+  --steel-lo: oklch(calc(0.12 + var(--lift)) 0.004 270);
+  --ridge: oklch(calc(0.23 + var(--lift)) 0.004 270);
+  --edge: oklch(calc(0.46 + var(--lift)) 0.004 250);
+  --seam: oklch(0.05 0 0);
+  background:
+    /* Rails and posts are square steel section: a bright chamfer where the
+       light catches the near edge, the flat, and a black seam where they
+       meet the panel. */
+    linear-gradient(var(--edge) 0 1px, var(--steel-hi) 1px, var(--steel) 45%, var(--steel-lo) calc(100% - 1.5px), var(--seam) calc(100% - 1.5px)) top / 100% 7% no-repeat,
+    linear-gradient(var(--seam) 0 1.5px, var(--edge) 1.5px 2.5px, var(--steel-hi) 2.5px, var(--steel) 45%, var(--steel-lo)) bottom / 100% 8% no-repeat,
+    linear-gradient(90deg, var(--edge) 0 1px, var(--steel-hi) 1px, var(--steel) 50%, var(--steel-lo) calc(100% - 1.5px), var(--seam) calc(100% - 1.5px)) left / 2.6% 100% no-repeat,
+    linear-gradient(90deg, var(--seam) 0 1.5px, var(--steel-hi) 1.5px, var(--steel) 50%, var(--steel-lo) calc(100% - 1px), var(--edge) calc(100% - 1px)) right / 2.6% 100% no-repeat,
+    /* The rail throws a soft shadow onto the panel under it. */
+    linear-gradient(oklch(0 0 0 / 0.35), transparent) 0 8.5% / 100% 4% no-repeat,
+    linear-gradient(oklch(1 0 0 / 0.05), transparent 40%, oklch(0 0 0 / 0.3)),
+    repeating-linear-gradient(
+      90deg,
+      var(--steel) 0 3px,
+      var(--steel-hi) 3px 5px,
+      var(--ridge) 5px 11px,
+      var(--steel-lo) 11px 13px,
+      var(--steel) 13px 16px
+    );
+  box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.5), inset 0 1px 0 oklch(1 0 0 / 0.1);
+}
+/* The roof is corrugated too, its ribs running across the box, each a
+   lit crown and a shaded valley. */
+.hc-roof {
+  background:
+    linear-gradient(90deg, oklch(1 0 0 / 0.04), oklch(0 0 0 / 0.12)),
+    repeating-linear-gradient(90deg, oklch(0.24 0.004 270) 0 3px, oklch(0.34 0.004 270) 3px 5px, oklch(0.28 0.004 270) 5px 9px, oklch(0.2 0.004 270) 9px 11px);
+  /* The roof's rim catches the light along every edge. */
+  box-shadow: inset 0 0 0 1px oklch(0.42 0.004 250), inset 0 0 0 2px oklch(0 0 0 / 0.45);
+}
+.hc-f-bottom { background: oklch(0.08 0 0); }
+
+/* Corner castings: cast steel blocks with chamfered edges, lit along the
+   top and left, and an oval aperture with depth. The hole is near black
+   with a soft rim, and the light reaches the inside of its lower lip, so a
+   pale crescent shows under it. */
+.hc-casting {
+  position: absolute;
+  z-index: 1;
+  width: calc(var(--L) * 0.036);
+  aspect-ratio: 1.18;
+  border-radius: 3px;
+  background:
+    radial-gradient(ellipse 33% 25% at 50% 50%, oklch(0.03 0 0) 0 68%, oklch(0.1 0 0) 84%, transparent 96%),
+    radial-gradient(ellipse 36% 29% at 50% 57%, oklch(0.44 0.004 250) 0 74%, transparent 94%),
+    radial-gradient(120% 90% at 22% 12%, oklch(0.4 0.004 250 / 0.6), transparent 60%),
+    linear-gradient(165deg, oklch(0.32 0.004 250), oklch(0.19 0.004 250) 48%, oklch(0.11 0.004 250));
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.22),
+    inset 1px 0 0 oklch(1 0 0 / 0.1),
+    inset 0 -1.5px 0 oklch(0 0 0 / 0.65),
+    inset -1px 0 0 oklch(0 0 0 / 0.45),
+    0 0 0 0.5px oklch(0 0 0 / 0.7);
+}
+
+/* Forklift pockets in the bottom rail: open slots, so the floor shows
+   through, with a lit lip along their top. */
+.hc-pocket {
+  position: absolute;
+  bottom: 1.2%;
+  width: 7%;
+  height: 4.5%;
+  border-radius: 1px;
+  background: linear-gradient(oklch(0 0 0 / 0.45), transparent 40%), var(--hc-paper);
+  box-shadow: 0 -1px 0 oklch(0.45 0.004 250), inset 0 0 0 1px oklch(0 0 0 / 0.5);
+}
+
+/* Marks: the name stencilled big on the side, the owner code small. */
+.hc-print {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28em;
+  color: oklch(0.93 0.008 85);
+  font-size: calc(var(--L) * 0.11);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+/* The paint follows the corrugation: the same ribs as the steel, in paint
+   tones, laid over the band the letters sit in. Darken keeps the darker of
+   the two, and every steel tone is darker than any of these, so only the
+   paint takes the shading. Full width so the ribs line up with the face's. */
+.hc-print::after {
+  content: "";
+  position: absolute;
+  inset: 32% 0;
+  mix-blend-mode: darken;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    oklch(0.76 0.008 85) 0 3px,
+    oklch(0.96 0.008 85) 3px 5px,
+    oklch(0.88 0.008 85) 5px 11px,
+    oklch(0.6 0.008 85) 11px 13px,
+    oklch(0.76 0.008 85) 13px 16px
+  );
+}
+.hc-print-box {
+  font-size: 0.62em;
+  letter-spacing: 0;
+  padding: 0.16em 0.22em;
+  border: 0.09em solid currentColor;
+  border-radius: 0.28em;
+}
+.hc-code {
+  position: absolute;
+  top: 14%;
+  left: 18%;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: max(7px, calc(var(--L) * 0.016));
+  font-weight: 600;
+  line-height: 1.35;
+  color: oklch(0.92 0 0 / 0.85);
+}
+.hc-code-side {
+  top: 13%;
+  left: auto;
+  right: 5%;
+  text-align: right;
+}
+
+/* Door end: posts, header and sill around an opening, painted as edge bands
+   so the doorway itself stays open once the leaves swing. */
+.hc-f-doors {
+  --post: oklch(calc(0.2 + var(--lift)) 0.004 270);
+  --post-hi: oklch(calc(0.3 + var(--lift)) 0.004 270);
+  --edge: oklch(calc(0.46 + var(--lift)) 0.004 250);
+  --seam: oklch(0.05 0 0);
+  background:
+    linear-gradient(var(--edge) 0 1px, var(--post-hi) 1px, var(--post) 60%, var(--seam) calc(100% - 1.5px)) top / 100% 9% no-repeat,
+    linear-gradient(var(--seam) 0 1.5px, var(--edge) 1.5px 2.5px, var(--post) 2.5px, oklch(0.1 0 0)) bottom / 100% 9% no-repeat,
+    linear-gradient(90deg, var(--edge) 0 1px, var(--post-hi) 1px, var(--post) 60%, var(--seam) calc(100% - 1.5px)) left / 6% 100% no-repeat,
+    linear-gradient(90deg, var(--seam) 0 1.5px, var(--post) 1.5px, oklch(0.12 0 0) calc(100% - 1px), var(--edge) calc(100% - 1px)) right / 6% 100% no-repeat;
+}
+.hc-opening {
+  position: absolute;
+  inset: 9% 6%;
+}
+.hc-leaf {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+.hc-leaf-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.hc-leaf-face {
+  --s: oklch(calc(0.19 + var(--lift)) 0.004 270);
+  background:
+    /* Four pressed panels a leaf, each stiffener a lit top edge over a
+       shadow, as on real container doors. */
+    repeating-linear-gradient(
+      transparent 0 calc(25% - 3px),
+      oklch(1 0 0 / 0.14) calc(25% - 3px) calc(25% - 2px),
+      oklch(0 0 0 / 0.45) calc(25% - 2px) 25%
+    ),
+    linear-gradient(oklch(1 0 0 / 0.04), transparent 50%, oklch(0 0 0 / 0.28)),
+    repeating-linear-gradient(
+      90deg,
+      var(--s) 0 4px,
+      oklch(calc(0.27 + var(--lift)) 0.004 270) 4px 6px,
+      oklch(calc(0.22 + var(--lift)) 0.004 270) 6px 12px,
+      oklch(calc(0.13 + var(--lift)) 0.004 270) 12px 14px,
+      var(--s) 14px 18px
+    );
+  box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.65);
+}
+/* Locking bars: galvanised rods with cam keepers and a handle each. */
+.hc-rod {
+  position: absolute;
+  top: 1%;
+  bottom: 1%;
+  width: 3px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, oklch(0.42 0 0), oklch(0.7 0 0), oklch(0.4 0 0));
+  transform: translateZ(2px);
+}
+.hc-keeper {
+  position: absolute;
+  left: -3px;
+  width: 9px;
+  height: 7px;
+  border-radius: 1px;
+  background: linear-gradient(oklch(0.5 0 0), oklch(0.3 0 0));
+}
+.hc-handle {
+  position: absolute;
+  top: 74%;
+  width: calc(var(--D) * 0.13);
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(oklch(0.72 0 0), oklch(0.42 0 0));
+  box-shadow: 0 1px 1px oklch(0 0 0 / 0.5);
+}
+.hc-hinge {
+  position: absolute;
+  width: 6px;
+  height: 9%;
+  margin-top: -4.5%;
+  border-radius: 1px;
+  background: linear-gradient(90deg, oklch(0.32 0 0), oklch(0.14 0 0));
+}
+.hc-plate {
+  position: absolute;
+  top: 26%;
+  left: 40%;
+  width: 26%;
+  height: 12%;
+  border-radius: 1px;
+  background: linear-gradient(oklch(0.62 0 0), oklch(0.45 0 0));
+  box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.4);
+}
+
+/* Four slings from the hook to the top corners, each a cable turned in 3D
+   from the hook point toward its corner. */
+.hc-sling {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--hs) * -1);
+  width: 2px;
+  margin-left: -1px;
+  height: hypot(calc(var(--L) / 2), calc(var(--D) / 2), var(--hs));
+  transform-origin: 50% 0;
+  transform: rotateY(atan2(calc(var(--sz) * var(--D) / -2), calc(var(--sx) * var(--L) / 2)))
+    rotateZ(calc(-1 * atan2(hypot(calc(var(--L) / 2), calc(var(--D) / 2)), var(--hs))));
+  border-radius: 2px;
+}
+
+/* Pressed ferrules where each eye is spliced, and a bow shackle into the
+   casting at the foot. */
+.hc-ferrule {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, oklch(0.5 0.004 250), oklch(0.95 0.002 250) 40%, oklch(0.58 0.004 250));
+  box-shadow: 0 0 0 0.5px oklch(0 0 0 / 0.4);
+}
+.hc-shackle {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50% 50% 45% 45%;
+  border: 1.5px solid oklch(0.85 0.002 250);
+  box-shadow: 0 0 0 0.5px oklch(0 0 0 / 0.4), inset 0 0 0 0.5px oklch(0 0 0 / 0.4);
+}
+
+/* The box's footprint, laid flat on the floor and turned with the box. --f is
+   the feather on every edge: the box hangs well clear of the floor, so the
+   shadow is spread and soft. The floor sits at 86% of the stage, or half a
+   box length under the box's underside (52% plus half its height) when that
+   is higher, so on a tall phone the shadow still reads as the box's. */
+.hc-crate-shadow {
+  opacity: 0.4;
+  --f: calc(var(--L) * 0.16);
+  transform: translate3d(0, min(86cqh, calc(52cqh + var(--H) / 2 + var(--L) / 2)), 0) rotateX(90deg) rotateZ(32deg) scale(1.58, 2.45);
+  top: 0;
+  left: var(--cx);
+  width: var(--L);
+  height: var(--D);
+  margin: calc(var(--D) / -2) 0 0 calc(var(--L) / -2);
+  background: oklch(0 0 0 / 0.4);
+  mask-image:
+    linear-gradient(90deg, transparent, #000 var(--f), #000 calc(100% - var(--f)), transparent),
+    linear-gradient(transparent, #000 var(--f), #000 calc(100% - var(--f)), transparent);
+  mask-composite: intersect;
+}

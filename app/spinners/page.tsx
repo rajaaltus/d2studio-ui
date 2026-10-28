@@ -4,6 +4,7 @@ import { SpinnerPlayground } from "@/components/spinners/playground";
 import { SiteFooter } from "@/components/site-footer";
 import { CoffeeSupportCard } from "@/components/coffee-support-card";
 import { ProSpinnerShelf } from "@/components/spinners/pro-spinner-shelf";
+import { FreeSpinnerShelf } from "@/components/spinners/free-spinner-shelf";
 
 export const metadata: Metadata = {
   title: "Pixel Glow Spinners",
@@ -36,6 +37,8 @@ export default function SpinnersPage() {
             <SpinnerPlayground />
           </div>
         </section>
+
+        <FreeSpinnerShelf />
 
         <ProSpinnerShelf />
 

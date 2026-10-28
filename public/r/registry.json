@@ -211,6 +211,32 @@
       ]
     },
     {
+      "name": "hero-container",
+      "type": "registry:component",
+      "title": "Container Hero",
+      "description": "A one-screen hero on a plain background: a 20ft shipping container built as a real box in CSS 3D, three quarters on, hangs from a crane hook on four slings over its soft shadow. It swings on its cable with a little wind and takes a shove from a passing pointer; the loop runs only while the hero is on screen, and under reduced motion the crate hangs still. No dependencies; it scales to the stage, so it fits a phone, a short landscape screen or a desktop alike. Theme-aware.",
+      "author": "D2 Studio",
+      "files": [
+        {
+          "path": "registry/default/components/hero-container.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/hero-container/crate.css",
+          "type": "registry:file",
+          "target": "components/hero-container/crate.css"
+        },
+        {
+          "path": "registry/default/components/hero-container/crate.tsx",
+          "type": "registry:component",
+          "target": "components/hero-container/crate.tsx"
+        }
+      ],
+      "categories": [
+        "hero"
+      ]
+    },
+    {
       "name": "card-ecommerce-01",
       "type": "registry:component",
       "title": "Product Card",
