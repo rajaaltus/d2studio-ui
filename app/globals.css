@@ -215,6 +215,13 @@
     @apply motion-safe:scroll-smooth bg-background overscroll-y-none;
   }
 
+  /* The preview iframe hands the wheel back to the page around it: with
+     overscroll none, a demo that does not scroll swallows the scroll. */
+  html:has([data-preview]),
+  html:has([data-preview]) body {
+    overscroll-behavior-y: auto;
+  }
+
   body {
     @apply bg-background text-foreground font-mono overscroll-y-none antialiased;
     font-feature-settings: "liga" 0, "calt" 0;
@@ -4561,13 +4568,32 @@ html:not(.dark) .b4-card.b4-on [stroke="#41A4D2"] {
   width: 0;
   background: var(--background);
   border-radius: 6px;
-  box-shadow: 0 1px 2px oklch(0 0 0 / 0.08);
+  /* A hairline ring as well as the drop, so the pill reads on a track only a
+     step off the page. */
+  box-shadow:
+    0 0 0 1px oklch(0 0 0 / 0.06),
+    0 1px 2px oklch(0 0 0 / 0.08);
   transform: translateX(0);
   transition:
     transform var(--tabs-dur) var(--tabs-ease),
     width var(--tabs-dur) var(--tabs-ease);
   will-change: transform, width;
   pointer-events: none;
+}
+
+/* In dark the muted and background tokens sit within 0.01 of the page, so
+   the track and the pill both vanish. Lift them off the page with white at
+   low alpha instead: the track a faint well, the pill a clear plate. */
+.dark .t-tabs {
+  background: oklch(1 0 0 / 0.05);
+  box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.06);
+}
+
+.dark .t-tabs-pill {
+  background: oklch(1 0 0 / 0.12);
+  box-shadow:
+    inset 0 0 0 1px oklch(1 0 0 / 0.08),
+    0 1px 2px oklch(0 0 0 / 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {

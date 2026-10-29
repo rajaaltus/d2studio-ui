@@ -1,0 +1,13 @@
+/* The lead segment's paint. Prefixed `vz-` and scoped to this block's own class,
+   so dropping the file into a project touches nothing else.
+
+   Only the lead is painted here. The other two segments stay on the host's own
+   token at two depths, because the picture is one budget split three ways and a
+   second hue would read as a second measurement. */
+
+.vz-lead {
+  /* blue-500 to sky-500. Hex rather than tokens: this is the one lit thing in
+     the picture, and a token that reskins with the page would take the highlight
+     with it. */
+  background-image: linear-gradient(90deg, #3b82f6, #0ea5e9);
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "visualization-01",
+  "title": "Usage Split",
+  "author": "D2 Studio",
+  "description": "Token usage split three ways across one shared track. The segments sit in a single rail rather than three of their own, because the point of the picture is that they add up to a budget. The largest share carries a blue to sky gradient, held in hex rather than tokens because it is the one lit thing in the picture and a token that reskins with the page would take the highlight with it; the other two are the host's own token at two depths, so the chart stays legible in whatever palette the host is running and a second hue never reads as a second measurement. One component and one stylesheet, no dependencies and no client hooks.",
+  "files": [
+    {
+      "path": "registry/default/components/visualization-01.tsx",
+      "content": "import \"./visualization-01/visualization-01.css\";\n\n// Usage split three ways. The bars share one track rather than sitting in three\n// of their own: the point of the picture is that they add up to a budget, and\n// three separate rails would only show three unrelated numbers.\n//\n// The largest share carries a blue to sky gradient; the other two are the host's\n// own token at two depths, so the picture reads as one budget with a lit lead\n// rather than three unrelated colours.\nconst ROWS = [\n  { label: \"User prompt tokens\", percent: 43 },\n  { label: \"Tool results\", percent: 31 },\n  { label: \"System context\", percent: 14 },\n] as const;\n\nconst used = ROWS.reduce((n, r) => n + r.percent, 0);\n\nexport default function Visualization01() {\n  return (\n    <div className=\"w-full max-w-sm rounded-xl border border-border bg-muted p-4 shadow-sm\">\n      <div className=\"mb-3 flex items-baseline justify-between\">\n        <p className=\"text-sm font-medium text-foreground\">Usage</p>\n        <p className=\"font-mono text-xs tabular-nums text-muted-foreground\">\n          {used}%\n        </p>\n      </div>\n\n      <div className=\"flex h-2 w-full gap-0.5 overflow-hidden rounded-full bg-background\">\n        {ROWS.map(({ label, percent }, i) => (\n          <span\n            key={label}\n            // Opacity rather than three hues for the rest: they are parts of one\n            // budget, so they read as one colour at two depths — and it stays\n            // correct in whatever palette the host is running.\n            style={\n              i === 0\n                ? { width: `${percent}%` }\n                : { width: `${percent}%`, opacity: 1 - i * 0.3 }\n            }\n            className={\n              i === 0 ? \"vz-lead block h-full\" : \"block h-full bg-primary\"\n            }\n          />\n        ))}\n      </div>\n\n      <ul className=\"mt-4 space-y-2\">\n        {ROWS.map(({ label, percent }, i) => (\n          <li key={label} className=\"flex items-center gap-2 text-xs\">\n            <span\n              aria-hidden\n              style={i === 0 ? undefined : { opacity: 1 - i * 0.3 }}\n              className={\n                i === 0\n                  ? \"vz-lead size-2 shrink-0 rounded-sm\"\n                  : \"size-2 shrink-0 rounded-sm bg-primary\"\n              }\n            />\n            <span className=\"min-w-0 flex-1 truncate text-muted-foreground\">\n              {label}\n            </span>\n            <span className=\"font-mono tabular-nums text-foreground\">\n              {percent}%\n            </span>\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/components/visualization-01/visualization-01.css",
+      "content": "/* The lead segment's paint. Prefixed `vz-` and scoped to this block's own class,\n   so dropping the file into a project touches nothing else.\n\n   Only the lead is painted here. The other two segments stay on the host's own\n   token at two depths, because the picture is one budget split three ways and a\n   second hue would read as a second measurement. */\n\n.vz-lead {\n  /* blue-500 to sky-500. Hex rather than tokens: this is the one lit thing in\n     the picture, and a token that reskins with the page would take the highlight\n     with it. */\n  background-image: linear-gradient(90deg, #3b82f6, #0ea5e9);\n}\n",
+      "type": "registry:file",
+      "target": "components/visualization-01/visualization-01.css"
+    }
+  ],
+  "categories": [
+    "illustration",
+    "blocks"
+  ],
+  "type": "registry:component"
+}

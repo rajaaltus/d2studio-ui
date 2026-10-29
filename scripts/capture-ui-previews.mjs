@@ -40,7 +40,7 @@ const TIGHT = new Set([
 const WIDE = new Set([
   "accordion", "alert", "alert-dialog", "aspect-ratio", "calendar", "card", "carousel", "chart",
   "command", "context-menu", "dialog", "drawer", "dropdown-menu", "empty", "field", "form",
-  "message-scroller", "resizable", "sheet", "sidebar", "table", "tabs",
+  "message-scroller", "resizable", "sheet", "sidebar", "table", "tabs", "id-card",
   // Small triggers whose open surface drops below them.
   "combobox", "popover", "select",
 ]);

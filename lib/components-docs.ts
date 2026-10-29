@@ -19,12 +19,22 @@ export type ComponentGroup = { slug: string; label: string; items: ComponentLink
 
 const PRIMITIVES = SHELVED.filter((b) => b.shelf === "components");
 
-export const COMPONENT_GROUPS: ComponentGroup[] = GROUP_ORDER.map((g) => ({
-  ...g,
-  items: PRIMITIVES.filter((b) => b.categories[0] === g.slug)
-    .map((b) => ({ name: b.name, title: b.title }))
-    .sort((a, b) => a.title.localeCompare(b.title)),
-})).filter((g) => g.items.length > 0);
+// Items published in the last 30 days lead the rail in a New group, newest
+// first (SHELVED is already in that order), and leave their category group
+// until they age out on a later build.
+const NEW_FOR_MS = 30 * 24 * 60 * 60 * 1000;
+const isNew = (b: BlockDef) => !!b.added && Date.now() - Date.parse(b.added) < NEW_FOR_MS;
+const link = (b: BlockDef): ComponentLink => ({ name: b.name, title: b.title });
+
+export const COMPONENT_GROUPS: ComponentGroup[] = [
+  { slug: "new", label: "New", items: PRIMITIVES.filter(isNew).map(link) },
+  ...GROUP_ORDER.map((g) => ({
+    ...g,
+    items: PRIMITIVES.filter((b) => !isNew(b) && b.categories[0] === g.slug)
+      .map(link)
+      .sort((a, b) => a.title.localeCompare(b.title)),
+  })),
+].filter((g) => g.items.length > 0);
 
 /** Every primitive in reading order. */
 export const COMPONENT_ORDER: ComponentLink[] = COMPONENT_GROUPS.flatMap((g) => g.items);
