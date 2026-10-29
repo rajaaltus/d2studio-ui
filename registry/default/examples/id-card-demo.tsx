@@ -10,19 +10,23 @@ const X =
 
 export default function IdCardDemo() {
   return (
-    <div className="-my-4 h-svh w-full max-w-md sm:-my-8">
-      <IdCard
-        name="Godwin Janarthan"
-        role="Product Designer"
-        bio="Six years shipping web, mobile and AI products. Founder of D2 Studio, from first requirements to production."
-        photo="/avatars/godwin.jpg"
-        contacts={[
-          { label: "Email", href: "mailto:hello@d2studio.dev", path: null },
-          { label: "GitHub", href: "https://github.com/", path: GITHUB },
-          { label: "LinkedIn", href: "https://www.linkedin.com/", path: LINKEDIN, color: "oklch(0.52 0.15 250)" },
-          { label: "X", href: "https://x.com/", path: X },
-        ]}
-      />
+    // Pinned to the frame and clipped there: the card's canvas runs past its
+    // box to let the strap swing, which would otherwise scroll the preview.
+    <div className="fixed inset-0 flex justify-center overflow-hidden">
+      <div className="h-full w-full max-w-md">
+        <IdCard
+          name="Godwin Janarthan"
+          role="Product Designer"
+          bio="Six years shipping web, mobile and AI products. Founder of D2 Studio, from first requirements to production."
+          photo="https://unavatar.io/x/uxgodwin"
+          contacts={[
+            { label: "Email", href: "mailto:hello@d2studio.dev", path: null },
+            { label: "GitHub", href: "https://github.com/", path: GITHUB },
+            { label: "LinkedIn", href: "https://www.linkedin.com/", path: LINKEDIN, color: "oklch(0.52 0.15 250)" },
+            { label: "X", href: "https://x.com/", path: X },
+          ]}
+        />
+      </div>
     </div>
   )
 }

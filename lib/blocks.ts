@@ -556,7 +556,7 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     categories: ["data-display"],
     dependencies: ["lucide-react"],
     shelf: "components",
-    image: "/ui/id-card-fc2a78f7.jpg",
+    image: "/ui/id-card-db9740e1.jpg",
     status: "available",
     added: "2026-10-28",
   },

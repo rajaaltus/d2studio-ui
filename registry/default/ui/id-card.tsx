@@ -857,6 +857,8 @@ const TOKENS =
 function load(src: string) {
   return new Promise<HTMLImageElement | null>((done) => {
     const img = new Image();
+    // Lets a photo from another origin be painted without tainting the canvas.
+    img.crossOrigin = "anonymous";
     img.onload = () => done(img);
     img.onerror = () => done(null);
     img.src = src;
@@ -952,10 +954,23 @@ export function IdCard({
       const [front, f] = sheet();
       if (mark) f.drawImage(mark, pad, 52, 26, 26);
       const py = 98;
-      const ps = 92;
+      // The portrait is as tall as the name and role beside it, measured from
+      // the name's cap height to the role's last baseline, which is what the
+      // eye reads as the block's edges. The text wraps at the width a 92px
+      // portrait leaves, so a smaller portrait cannot unwrap the name and
+      // shrink itself again.
+      const tw = W - pad * 2 - 92 - 16;
+      const NAME = `650 22px ${FONT}`;
+      const ROLE = `400 15px ${FONT}`;
+      f.font = NAME;
+      const nameLines = lineCount(f, name, tw, 2);
+      f.font = ROLE;
+      const roleLines = lineCount(f, role, tw, 3);
+      const cap = 22 * 0.72;
+      const ps = Math.round(cap + (nameLines - 1) * 26 + 24 + (roleLines - 1) * 19);
       f.save();
       f.beginPath();
-      f.roundRect(pad, py, ps, ps, 16);
+      f.roundRect(pad, py, ps, ps, 14);
       f.clip();
       f.fillStyle = well;
       f.fillRect(pad, py, ps, ps);
@@ -967,19 +982,7 @@ export function IdCard({
       }
       f.restore();
       const tx = pad + ps + 16;
-      const tw = W - pad - tx;
-      // Name and role centred as one block on the portrait, measured from the
-      // name's cap height to the role's last baseline, which is what the eye
-      // reads as the block's edges.
-      const NAME = `650 22px ${FONT}`;
-      const ROLE = `400 15px ${FONT}`;
-      f.font = NAME;
-      const nameLines = lineCount(f, name, tw, 2);
-      f.font = ROLE;
-      const roleLines = lineCount(f, role, tw, 3);
-      const cap = 22 * 0.72;
-      const block = cap + (nameLines - 1) * 26 + 24 + (roleLines - 1) * 19;
-      const first = py + (ps - block) / 2 + cap;
+      const first = py + cap;
       f.fillStyle = ink;
       f.font = NAME;
       wrap(f, name, tx, first, tw, 26, 2);
