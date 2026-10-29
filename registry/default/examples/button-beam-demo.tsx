@@ -53,7 +53,7 @@ const Prop = ({ name, value }: { name: string; value: string }) => (
 )
 
 export default function ButtonBeamDemo() {
-  const [effect, setEffect] = React.useState<Effect>("reflection")
+  const [effect, setEffect] = React.useState<Effect>("shadow")
   const [motion, setMotion] = React.useState<BeamMotion>("rotate")
   const reflect = effect !== "plain"
   const smoke = effect === "smoke"

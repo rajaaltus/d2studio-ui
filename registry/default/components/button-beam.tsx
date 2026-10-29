@@ -260,14 +260,16 @@ function useProximity(
 // At the base height; scaled with the pill (see scaleOf).
 const MIRROR_REACH = 120;
 // Coarse steps on purpose: each one is a cursor image, built once and cached.
-const MIRROR_LEVELS = 48;
+// Coarse enough that a still pointer keeps landing on images it has already
+// worn, which macOS draws sharp, wherever it is round the pill.
+const MIRROR_LEVELS = 24;
 // Steps along the pill the beam's reflection can sit at, each a cursor image.
 const MIRROR_FRAMES = 48;
 // How finely the reflection follows the beam's brightness: each step is a
 // cursor image, so a handful is enough to read as a fade.
 const GLOW_STEPS = 10;
 // Directions the light can come from, round the arrow, each a cursor image.
-const MIRROR_TURNS = 64;
+const MIRROR_TURNS = 32;
 
 // The beam's line colours per palette, from border-beam's own border stops.
 const MIRROR_TONES: Record<BorderBeamColorVariant, number[][]> = {
@@ -471,6 +473,9 @@ const isLight = (c: number[]) => (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2])
  *  runs across it in the direction of the pill: full on the side facing it,
  *  fading toward the far side, all of it stronger the nearer the pill is.
  *  `turn` is that direction, in MIRROR_TURNS steps clockwise from +x. */
+// Blur on the cursor's light as it fades in or out, in arrow units.
+const LIGHT_FADE_BLUR = 1.5;
+
 function arrowCursor(
   arrow: Arrow,
   level: number,
@@ -503,16 +508,24 @@ function arrowCursor(
   // leaves a light rim as it is; multiply tints a light body and leaves a
   // dark rim as it is.
   const blend = isLight(arrow.bodyColor) ? "multiply" : "screen";
+  // Coming and going, the light blurs as it thins: sharp at full strength,
+  // up to LIGHT_FADE_BLUR at nothing. Read off the level and glow the image
+  // is already keyed on, so it costs no extra images.
+  const soft = (LIGHT_FADE_BLUR * (1 - strength * glow)).toFixed(2);
   const art =
     `viewBox="0 0 28 28"><defs>${defs}` +
     `<linearGradient id="c" gradientUnits="userSpaceOnUse" x1="${(cx + ux).toFixed(2)}" y1="${(cy + uy).toFixed(2)}" x2="${(cx - ux).toFixed(2)}" y2="${(cy - uy).toFixed(2)}">` +
     `<stop offset="0" stop-color="${rgb(RIM)}" stop-opacity="${strength.toFixed(2)}"/>` +
     `<stop offset="1" stop-color="${rgb(RIM)}" stop-opacity="${far}"/></linearGradient>` +
-    `<mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="28" height="28"><rect width="28" height="28" fill="url(#c)"/></mask></defs>` +
-    (place === "halo" ? `<g mask="url(#m)" opacity="${glow}">${light}</g>` : "") +
+    `<mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="28" height="28"><rect width="28" height="28" fill="url(#c)"/></mask>` +
+    `<filter id="f" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="${soft}"/></filter>` +
+    // A body sheen stays inside the body, so its blur never spills past the
+    // arrow's shape; a halo is meant to sit outside it.
+    `<clipPath id="k">${arrow.body}</clipPath></defs>` +
+    (place === "halo" ? `<g mask="url(#m)" opacity="${glow}"><g filter="url(#f)">${light}</g></g>` : "") +
     `<g ${rimPaint}>${arrow.rim}</g>` +
     `<g fill="${rgb(arrow.bodyColor)}">${arrow.body}</g>` +
-    (place === "body" ? `<g mask="url(#m)" opacity="${glow}" style="mix-blend-mode:${blend}">${light}</g>` : "") +
+    (place === "body" ? `<g mask="url(#m)" clip-path="url(#k)" opacity="${glow}" style="mix-blend-mode:${blend}"><g filter="url(#f)">${light}</g></g>` : "") +
     `</svg>`;
   return cursorValue(art, arrow.hot);
 }
@@ -663,8 +676,8 @@ const SHADOW_BLUR = 2;
 const SHADOW_BANDS = 5;
 const SHADOW_RADIUS = 32;
 const SHADOW_ALPHA = { dark: 0.8, light: 0.75 };
-// Extra blur over the whole shadow as it fades on the way out, so it melts
-// away rather than only thinning.
+// Extra blur over the whole shadow as it fades in or out, so it melts in and
+// away rather than only thickening and thinning.
 const SHADOW_FADE_BLUR = 3;
 // Browser zoom scales the page but not a cursor image, so the shadow, drawn in
 // page px, is sized back to the cursor by the zoom. No API gives it; the
@@ -916,6 +929,10 @@ function startMirror() {
   let near = 0;
   let angle = Math.PI / 2;
   let shown = "";
+  // Only an image already decoded is shown; one still decoding waits for a
+  // later frame that asks for it again. Applying fresh images as they finish
+  // decoding, with the pointer still, left macOS drawing the arrow soft until
+  // the pointer moved; images the cursor has already worn stay sharp.
   const show = (css: string) => {
     if (css === shown || !decoded(css)) return;
     shown = css;
@@ -1024,11 +1041,12 @@ function startMirror() {
       shadeY += (((y - lightY) / away) * length - shadeY) * k;
       // A shadow is only as dark as its light is bright.
       shadeA += (SHADOW_ALPHA[theme] * near * (0.15 + 0.85 * lit.edge) - shadeA) * k;
-      // Leaving, it blurs as it fades: none at the darkness it had when the
-      // pointer left, the full amount by the time it is gone.
+      // Coming and going, it blurs as it thins: none at the darkness it is
+      // heading for (or had when the pointer left), the full amount at nothing.
       if (target) leftAt = 0;
       else leftAt ||= shadeA;
-      const softGoal = leftAt ? SHADOW_FADE_BLUR * (1 - Math.min(1, shadeA / leftAt)) : 0;
+      const peak = target ? SHADOW_ALPHA[theme] * near * (0.15 + 0.85 * lit.edge) : leftAt;
+      const softGoal = peak > 0.001 ? SHADOW_FADE_BLUR * (1 - Math.min(1, shadeA / peak)) : SHADOW_FADE_BLUR;
       shadeSoft += (softGoal - shadeSoft) * k;
       const shade: Shade | null = source.shadow
         ? {
