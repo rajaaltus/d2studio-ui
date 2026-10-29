@@ -57,9 +57,20 @@ export const BEAM_SIZES = {
 
 export type BeamSize = keyof typeof BEAM_SIZES;
 
+// How the light moves, by border-beam's preset for it: a beam along the lower
+// edge, one running round the whole border, or a glow breathing inside it.
+const MOTIONS = {
+  line: "line",
+  rotate: "md",
+  breathe: "pulse-inner",
+} as const;
+
+export type BeamMotion = keyof typeof MOTIONS;
+
 export function BeamButton({
   size = "default",
   color = "ocean",
+  motion = "line",
   beam = true,
   strength = 0.73,
   className,
@@ -73,6 +84,9 @@ export function BeamButton({
   size?: BeamSize;
   /** Which palette the beam travels in. */
   color?: BorderBeamColorVariant;
+  /** How the light moves: along the lower edge, round the border, or a
+   *  breath inside the pill. */
+  motion?: BeamMotion;
   /** Off leaves the pill and its plate, which is the rest state of the look. */
   beam?: boolean;
   /** How much of the beam and its bloom land, 0 to 1. */
@@ -95,13 +109,13 @@ export function BeamButton({
   const frame = React.useRef<HTMLDivElement>(null);
   usePauseOffscreen(frame);
   useProximity(frame, proximity, strength);
-  useMirror(frame, mirror, color, smoke, shadow);
+  useMirror(frame, mirror, color, smoke, shadow, motion);
   return (
     // The plate is a token and follows the host's theme, so the beam over it
     // has to as well. Resolved here rather than with the package's "auto".
     <BorderBeam
       ref={frame}
-      size="line"
+      size={MOTIONS[motion]}
       colorVariant={color}
       strength={strength}
       active={beam}
@@ -274,12 +288,67 @@ const rgb = (c: number[]) => `rgb(${c.join(" ")})`;
 /** The palette for the host's theme. border-beam deepens its colours on a
  *  light page, where the dark-tuned ones wash out; the mirror does the same,
  *  most of all for the halo, which sits on the page itself. */
-function tonesFor(color: BorderBeamColorVariant, theme: "dark" | "light") {
-  const tones = MIRROR_TONES[color] ?? MIRROR_TONES.ocean;
+function tonesFor(color: BorderBeamColorVariant, theme: "dark" | "light", hue = 0) {
+  const tones = (MIRROR_TONES[color] ?? MIRROR_TONES.ocean).map((c) => hueRotate(c, hue));
   return theme === "dark" ? tones : tones.map((c) => c.map((v) => Math.round(v * 0.72)));
 }
 
+/** A colour turned round the wheel the way CSS hue-rotate() turns it, so the
+ *  mirror's tones drift with the beam's own hue shift. */
+function hueRotate([r, g, b]: number[], deg: number) {
+  if (!deg) return [r, g, b];
+  const a = Math.cos((deg * Math.PI) / 180);
+  const s = Math.sin((deg * Math.PI) / 180);
+  const m = [
+    [0.213 + 0.787 * a - 0.213 * s, 0.715 - 0.715 * a - 0.715 * s, 0.072 - 0.072 * a + 0.928 * s],
+    [0.213 - 0.213 * a + 0.143 * s, 0.715 + 0.285 * a + 0.14 * s, 0.072 - 0.072 * a - 0.283 * s],
+    [0.213 - 0.213 * a - 0.787 * s, 0.715 - 0.715 * a + 0.715 * s, 0.072 + 0.928 * a + 0.072 * s],
+  ];
+  return m.map(([x, y, z]) => Math.round(Math.min(255, Math.max(0, x * r + y * g + z * b))));
+}
+
+// The mirror follows the beam's hue in steps this wide, each step a set of
+// cursor images; the beam swings 30deg either way.
+const HUE_STEP = 10;
+
+/** Where border-beam's hue shift has turned the beam right now, read off the
+ *  layer it animates, in HUE_STEP steps. */
+function hueNow(el: HTMLElement) {
+  for (const a of el.getAnimations({ subtree: true })) {
+    if (!(a instanceof CSSAnimation) || !a.animationName.startsWith("beam-hue-shift-") || a.animationName.includes("bloom")) continue;
+    const fx = a.effect as KeyframeEffect | null;
+    if (!fx?.target) continue;
+    const m = getComputedStyle(fx.target, fx.pseudoElement).filter.match(/hue-rotate\((-?[\d.]+)deg\)/);
+    return m ? Math.round(parseFloat(m[1]) / HUE_STEP) * HUE_STEP : 0;
+  }
+  return 0;
+}
+
 const cursorCache = new Map<string, string>();
+
+// Cursor images the browser has decoded. A cursor swapped to an image still
+// decoding shows its fallback, the plain arrow, until it is ready; with the
+// light moving, nearly every frame wants a new image, so the reflection
+// flickered or never showed. Each image is decoded off to the side first and
+// the cursor keeps the last ready one until then.
+const ready = new Set<string>();
+const decoding = new Set<string>();
+function decoded(css: string) {
+  if (!css || ready.has(css)) return true;
+  if (!decoding.has(css)) {
+    decoding.add(css);
+    const img = new Image();
+    img.src = css.slice(css.indexOf('url("') + 5, css.indexOf('")'));
+    const done = () => {
+      decoding.delete(css);
+      // Bounded like the cache, oldest first.
+      if (ready.size >= CURSOR_CACHE_MAX) ready.delete(ready.values().next().value!);
+      ready.add(css);
+    };
+    img.decode().then(done, done);
+  }
+  return false;
+}
 // Enough for a pass round one pill; the oldest image goes first past that.
 const CURSOR_CACHE_MAX = 300;
 function remember(key: string, css: string) {
@@ -288,16 +357,52 @@ function remember(key: string, css: string) {
   return css;
 }
 
-/** The pill's beam as it is right now: where it sits along the pill (0 to 1,
- *  left to right) and how lit it is (0 to 1). Read straight off the custom
- *  properties border-beam animates, so the reflection is the beam's own
- *  state rather than a model of it that could drift. */
-function beamNow(el: HTMLElement) {
+// How lit the border is at a share of the turn past --beam-angle: border-beam's
+// own mask on the rotating beam, dark to 30%, full from 52% to 80%, out by 97%.
+const rotateLight = (f: number) =>
+  f < 0.3 ? 0 : f < 0.52 ? (f - 0.3) / 0.22 : f < 0.8 ? 1 : f < 0.97 ? (0.97 - f) / 0.17 : 0;
+const ROTATE_SAMPLES = 64;
+
+type Light = { x: number; y: number; edge: number };
+
+/** The pill's light as it is right now: where it sits on the pill (x and y,
+ *  0 to 1 across and down) and how lit it is (0 to 1). Read straight off the
+ *  custom properties border-beam animates, so the reflection and the shadow
+ *  follow the beam's own state rather than a model of it that could drift.
+ *  The line runs along the lower edge; the rotating beam is a point on the
+ *  border at its angle; a breath lights the whole pill, so its light is the
+ *  middle. */
+function beamNow(el: HTMLElement, motion: BeamMotion): Light {
   const id = el.dataset.beam;
   const css = getComputedStyle(el);
+  if (motion === "rotate") {
+    // The lit stretch of border is wide, and on a long pill most of it is in
+    // the round ends, so the light is the centre of that stretch: points
+    // spaced evenly round the border, each weighted by how lit it is.
+    const deg = parseFloat(css.getPropertyValue(`--beam-angle-${id}`));
+    const start = (Number.isFinite(deg) ? deg : 0) / 360;
+    const { width: w, height: h } = el.getBoundingClientRect();
+    const round = 2 * (w + h);
+    let sx = 0;
+    let sy = 0;
+    let sum = 0;
+    for (let i = 0; i < ROTATE_SAMPLES; i++) {
+      let d = ((i + 0.5) / ROTATE_SAMPLES) * round;
+      // Clockwise from the top left: top, right, bottom, left.
+      const [px, py] = d < w ? [d, 0] : (d -= w) < h ? [w, d] : (d -= h) < w ? [w - d, h] : [0, h - (d - w)];
+      // CSS angles run clockwise from straight up, from the middle.
+      const at = Math.atan2(px - w / 2, h / 2 - py) / (Math.PI * 2);
+      const lit = rotateLight((((at - start) % 1) + 1) % 1);
+      sx += px * lit;
+      sy += py * lit;
+      sum += lit;
+    }
+    return sum ? { x: sx / sum / w, y: sy / sum / h, edge: 1 } : { x: 0.5, y: 0.5, edge: 0 };
+  }
+  if (motion !== "line") return { x: 0.5, y: 0.5, edge: 1 };
   const x = parseFloat(css.getPropertyValue(`--beam-x-${id}`));
   const edge = parseFloat(css.getPropertyValue(`--beam-edge-${id}`));
-  return { x: Number.isFinite(x) ? x : 0.5, edge: Number.isFinite(edge) ? edge : 1 };
+  return { x: Number.isFinite(x) ? x : 0.5, y: 1, edge: Number.isFinite(edge) ? edge : 1 };
 }
 
 /** A platform's default arrow, drawn in a 28-unit box: its rim and body as
@@ -423,8 +528,8 @@ function cursorValue(art: string, hot: [number, number]) {
 /** The palette for a sheen inside the arrow's body. A dark body screens it,
  *  so it wants the bright colours whatever the page; a light body
  *  multiplies it, so it wants the deep ones. */
-function sheenTones(color: BorderBeamColorVariant, arrow: Arrow) {
-  return tonesFor(color, isLight(arrow.bodyColor) ? "light" : "dark");
+function sheenTones(color: BorderBeamColorVariant, arrow: Arrow, hue: number) {
+  return tonesFor(color, isLight(arrow.bodyColor) ? "light" : "dark", hue);
 }
 
 /** The platform arrow with no light on it, for while the beam is out. */
@@ -446,12 +551,13 @@ function beamCursor(
   turn: number,
   frame: number,
   glow: number,
+  hue: number,
 ) {
-  const key = `beam:${color}:${level}:${turn}:${frame}:${glow}`;
+  const key = `beam:${color}:${level}:${turn}:${frame}:${glow}:${hue}`;
   let css = cursorCache.get(key);
   if (css) return css;
   const arrow = arrowFor();
-  const tones = sheenTones(color, arrow);
+  const tones = sheenTones(color, arrow, hue);
   const x = frame / MIRROR_FRAMES;
   const at = Math.min(tones.length - 1, Math.floor(x * tones.length));
   const near = rgb(tones[at]);
@@ -480,8 +586,9 @@ function stillCursor(
   level: number,
   turn: number,
   glow: number,
+  hue: number,
 ) {
-  const key = `${style}:${color}:${theme}:${level}:${turn}:${glow}`;
+  const key = `${style}:${color}:${theme}:${level}:${turn}:${glow}:${hue}`;
   let css = cursorCache.get(key);
   if (css) return css;
   const arrow = arrowFor();
@@ -493,7 +600,7 @@ function stillCursor(
   const halo = style === "edge" && isLight(arrow.rimColor) === (theme === "dark");
   // A halo sits on the page, so it takes the page's palette; a sheen sits in
   // the body, so it takes the body's.
-  const tones = halo ? tonesFor(color, theme) : sheenTones(color, arrow);
+  const tones = halo ? tonesFor(color, theme, hue) : sheenTones(color, arrow, hue);
   const stops = tones.map((c, i) => `<stop offset="${i / (tones.length - 1)}" stop-color="${rgb(c)}"/>`).join("");
   const defs =
     `<linearGradient id="p" gradientUnits="userSpaceOnUse" x1="${arrow.left}" y1="0" x2="${arrow.right}" y2="0">${stops}</linearGradient>` +
@@ -509,7 +616,7 @@ function stillCursor(
 }
 
 export type MirrorStyle = "beam" | "edge" | "water";
-type MirrorSpec = { color: BorderBeamColorVariant; style: MirrorStyle; smoke: boolean; shadow: boolean };
+type MirrorSpec = { color: BorderBeamColorVariant; style: MirrorStyle; smoke: boolean; shadow: boolean; motion: BeamMotion };
 
 // Every pill with a mirror, read by one shared listener: only the nearest one
 // may set the cursor, and a page of buttons still costs a single pointermove.
@@ -556,6 +663,9 @@ const SHADOW_BLUR = 2;
 const SHADOW_BANDS = 5;
 const SHADOW_RADIUS = 32;
 const SHADOW_ALPHA = { dark: 0.8, light: 0.75 };
+// Extra blur over the whole shadow as it fades on the way out, so it melts
+// away rather than only thinning.
+const SHADOW_FADE_BLUR = 3;
 // Browser zoom scales the page but not a cursor image, so the shadow, drawn in
 // page px, is sized back to the cursor by the zoom. No API gives it; the
 // window's outer width over its inner one does, snapped to a zoom step.
@@ -575,7 +685,7 @@ function pageZoom() {
 
 /** `dx, dy`: how far the tail's shadow falls from the tail; `tones`: the
  *  beam's colours, as rgb(r g b). */
-type Shade = { x: number; y: number; dx: number; dy: number; alpha: number; arrow: Arrow; tones: string[] };
+type Shade = { x: number; y: number; dx: number; dy: number; alpha: number; soften: number; arrow: Arrow; tones: string[] };
 
 // The arrow's outline as a canvas path, from the same polygons the cursor
 // image is drawn with, so the shadow is exactly the arrow's shape.
@@ -680,7 +790,7 @@ function createOverlay() {
       const oy = shade.y + shade.dy * fit;
       // Room for the whole arrow and its shadow either way from the tip,
       // plus the blur.
-      const half = Math.ceil((reach * SHADOW_GROW + len + 3 * SHADOW_BLUR) * fit);
+      const half = Math.ceil((reach * SHADOW_GROW + len + 3 * (SHADOW_BLUR + shade.soften)) * fit);
       const side = Math.ceil(half * 2 * dpr);
       if (band.width < side) band.width = band.height = side;
       const b = band.getContext("2d");
@@ -707,7 +817,7 @@ function createOverlay() {
           cast(b);
           b.globalCompositeOperation = "source-over";
           // Canvas blur lengths are in bitmap px, not the transformed ones.
-          b.filter = `blur(${(far * at * dpr).toFixed(2)}px)`;
+          b.filter = `blur(${((far * at + shade.soften * fit) * dpr).toFixed(2)}px)`;
           // The beam's tones across the arrow, side to side.
           const tint = b.createLinearGradient(arrow.left, arrow.bottom, arrow.right, arrow.top);
           shade.tones.forEach((c, j) =>
@@ -807,7 +917,7 @@ function startMirror() {
   let angle = Math.PI / 2;
   let shown = "";
   const show = (css: string) => {
-    if (css === shown) return;
+    if (css === shown || !decoded(css)) return;
     shown = css;
     const root = document.documentElement.style;
     // The pills read --beam-cursor; set on them rather than on <html>, where a
@@ -831,6 +941,10 @@ function startMirror() {
   let shadeX = 0;
   let shadeY = 0;
   let shadeA = 0;
+  // How dark the shadow was when the pointer left reach, and the fade-out
+  // blur easing toward its share of SHADOW_FADE_BLUR.
+  let leftAt = 0;
+  let shadeSoft = 0;
   const frame = (now: number) => {
     raf = 0;
     // Reduced motion snaps straight to the target; otherwise each value
@@ -838,17 +952,19 @@ function startMirror() {
     const k = still.matches || !last ? 1 : 1 - Math.exp(-(now - last) / MIRROR_EASE_MS);
     last = now;
     // Reduced motion holds the beam still, mid-pill and fully lit.
-    const beam = (el: HTMLElement) => (still.matches ? { x: 0.5, edge: 1 } : beamNow(el));
+    const beam = (spec: { el: HTMLElement; motion: BeamMotion }): Light =>
+      still.matches ? { x: 0.5, y: spec.motion === "line" ? 1 : 0.5, edge: 1 } : beamNow(spec.el, spec.motion);
     let goal = 0;
     // Read once a frame: each read of the beam forces a style recalc.
-    let b: { x: number; edge: number } | null = null;
+    let b: Light | null = null;
     if (target) {
       source = target;
-      // The light source: the beam's own point on the pill's bottom edge.
+      // The light source: the beam's own point on the pill, kept a pixel
+      // inside its box.
       const r = target.el.getBoundingClientRect();
-      b = beam(target.el);
-      const sx = r.left + r.width * b.x;
-      const sy = r.bottom - 1;
+      b = beam(target);
+      const sx = Math.min(r.right - 1, Math.max(r.left + 1, r.left + r.width * b.x));
+      const sy = Math.min(r.bottom - 1, Math.max(r.top + 1, r.top + r.height * b.y));
       // While the beam is out there is no light to move the shadow: it holds
       // where the light last was, instead of swinging with the beam's jump
       // back to the start of its run.
@@ -862,7 +978,10 @@ function startMirror() {
       const falloff = 1 / (1 + (Math.hypot(sx - x, sy - y) / (MIRROR_FALLOFF * target.scale)) ** 2);
       // Tapered to nothing at the edge of reach, so it never pops on or off.
       const taper = Math.min(1, (1 - target.d / (MIRROR_REACH * target.scale)) * 3);
-      goal = falloff * taper * (y < r.top ? MIRROR_THROUGH_GLASS : 1);
+      // Seen from the far side of the pill from its light, the light comes
+      // through the glass.
+      const across = (y < r.top && b.y > 0.5) || (y > r.bottom && b.y < 0.5);
+      goal = falloff * taper * (across ? MIRROR_THROUGH_GLASS : 1);
     }
     near += (goal - near) * k;
     // Out of reach and faded: hand back the system cursor, and stop once any
@@ -881,19 +1000,22 @@ function startMirror() {
     // reach still shows the right direction instead of the plain arrow.
     const level = near > 0.004 ? Math.max(1, Math.round(near * MIRROR_LEVELS)) : 0;
     const turn = ((Math.round((angle / (Math.PI * 2)) * MIRROR_TURNS) % MIRROR_TURNS) + MIRROR_TURNS) % MIRROR_TURNS;
-    const lit = b ?? beam(source.el);
+    const lit = b ?? beam(source);
     const glow = Math.round(lit.edge * GLOW_STEPS);
+    // The beam's hue as it drifts, so the reflection, the smoke and the
+    // shadow are always the colour the beam is now.
+    const hue = still.matches ? 0 : hueNow(source.el);
     // While the beam is out, so is the light on the cursor. The drawn arrow
     // stays, unlit, rather than handing back to the system one each lap:
     // the two are never pixel-identical, so the swap reads as a flicker.
     if (!glow || !level) show(plainCursor());
-    else if (source.style !== "beam") show(stillCursor(source.style, source.color, theme, level, turn, glow));
-    else show(beamCursor(source.color, level, turn, Math.round(lit.x * MIRROR_FRAMES), glow));
+    else if (source.style !== "beam") show(stillCursor(source.style, source.color, theme, level, turn, glow, hue));
+    else show(beamCursor(source.color, level, turn, Math.round(lit.x * MIRROR_FRAMES), glow, hue));
     // Smoke rises off the arrow's body, as lit as the arrow is; the shadow
     // falls away from the light, as dark as the light is bright.
     {
       const arrow = arrowFor();
-      const tones = tonesFor(source.color, theme);
+      const tones = tonesFor(source.color, theme, hue);
       const scale = target?.scale ?? 1;
       const away = Math.hypot(x - lightX, y - lightY) || 1;
       // d * h / (H - h), with the sun and the stick both scaled to the pill.
@@ -902,6 +1024,12 @@ function startMirror() {
       shadeY += (((y - lightY) / away) * length - shadeY) * k;
       // A shadow is only as dark as its light is bright.
       shadeA += (SHADOW_ALPHA[theme] * near * (0.15 + 0.85 * lit.edge) - shadeA) * k;
+      // Leaving, it blurs as it fades: none at the darkness it had when the
+      // pointer left, the full amount by the time it is gone.
+      if (target) leftAt = 0;
+      else leftAt ||= shadeA;
+      const softGoal = leftAt ? SHADOW_FADE_BLUR * (1 - Math.min(1, shadeA / leftAt)) : 0;
+      shadeSoft += (softGoal - shadeSoft) * k;
       const shade: Shade | null = source.shadow
         ? {
             x,
@@ -909,6 +1037,7 @@ function startMirror() {
             dx: shadeX,
             dy: shadeY,
             alpha: shadeA,
+            soften: shadeSoft,
             arrow,
             tones: tones.map(rgb),
           }
@@ -946,7 +1075,7 @@ function startMirror() {
       const r = best.el.getBoundingClientRect();
       angle = Math.atan2(r.bottom - y, r.left + r.width / 2 - x);
     }
-    target = best && { el: best.el, color: best.color, style: best.style, smoke: best.smoke, shadow: best.shadow, d: best.d, scale: best.scale };
+    target = best && { el: best.el, color: best.color, style: best.style, smoke: best.smoke, shadow: best.shadow, motion: best.motion, d: best.d, scale: best.scale };
     if (!raf) raf = requestAnimationFrame(frame);
   };
   const off = onPointerOrLayout((e) => {
@@ -973,11 +1102,12 @@ function useMirror(
   color: BorderBeamColorVariant,
   smoke: boolean,
   shadow: boolean,
+  motion: BeamMotion,
 ) {
   React.useEffect(() => {
     const el = ref.current;
     if (!el || !style || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    mirrors.set(el, { color, style, smoke, shadow });
+    mirrors.set(el, { color, style, smoke, shadow, motion });
     stopMirror ??= startMirror();
     return () => {
       mirrors.delete(el);
@@ -986,7 +1116,7 @@ function useMirror(
         stopMirror = null;
       }
     };
-  }, [ref, style, color, smoke, shadow]);
+  }, [ref, style, color, smoke, shadow, motion]);
 }
 
 /** The host's theme, for the beam. border-beam's own "auto" reads the OS
