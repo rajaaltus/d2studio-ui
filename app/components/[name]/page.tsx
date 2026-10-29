@@ -9,7 +9,7 @@ import { ComponentPreview } from "@/components/docs/component-preview";
 import { DocsNav } from "@/components/docs/docs-nav";
 import { InstallCommand, PackageInstall } from "@/components/docs/install-command";
 import { InstallTabs } from "@/components/docs/install-tabs";
-import { Code, H2, Lead, P, Section, Step } from "@/components/docs/prose";
+import { Code, H2, P, Section, Step } from "@/components/docs/prose";
 import {
   COMPONENT_ORDER,
   designedWith,
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
 const TALL = new Set([
   "calendar", "chart", "command", "context-menu", "drawer", "field", "form", "sheet",
   "sidebar", "table", "message-scroller", "dropdown-menu", "combobox", "select", "tabs",
-  "card", "carousel", "empty", "accordion",
+  "card", "carousel", "empty", "accordion", "id-card",
 ]);
 
 type BuiltItem = {
@@ -127,8 +127,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ name
               </PagerIcon>
             </div>
           </div>
-          <h1 className="mb-3 text-3xl font-semibold tracking-tight text-balance md:text-4xl">{item.title}</h1>
-          <Lead>{item.description}</Lead>
+          <h1 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">{item.title}</h1>
           {(pkg.dependencies?.length || siblings.length) ? (
             <div className="mt-5 flex flex-wrap gap-1.5">
               {[...(pkg.dependencies ?? []), ...siblings.map((s) => `@d2/${s}`)].map((d) => (

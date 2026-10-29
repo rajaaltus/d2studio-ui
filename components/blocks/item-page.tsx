@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { Navigation } from "@/components/navigation";
@@ -54,7 +55,12 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
   if (!block || block.shelf !== shelf) notFound();
 
   const { kind, source } = await builtItem(block.name);
-  const previewType = kind;
+  // A block that draws nothing without props (button-beam) gets a site-only demo,
+  // the same examples/ route the primitives' docs use.
+  const hasDemo = existsSync(
+    path.join(process.cwd(), "registry", "default", "examples", `${block.name}-demo.tsx`),
+  );
+  const previewType = hasDemo ? "example" : kind;
   const comingSoon = block.status === "coming_soon";
 
   return (

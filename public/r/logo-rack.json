@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-rack",
+  "title": "Logo Rack",
+  "author": "D2 Studio",
+  "description": "The logo row with nothing moving in it: marks sitting still in ruled cells, which is the same shape a rack of machines comes in. A rail that travels says there are many of us; a rack that sits says these are the ones we run, so it is the right row under a fold about infrastructure rather than under one about reach. Every rule is the gap showing through a filled parent rather than a border on a cell, so a cell that wraps to a new line cannot double a rule up with its neighbour's and the hairline stays exactly one pixel at any column count. Two columns on a phone, four on a tablet, eight on a desktop, and the label sits over the rack rather than beside it because a rack has a top edge to hang from where a moving track does not. The marks are brand-showcase's, painted in currentColor through muted-foreground, so they follow the host's theme instead of being inverted into it, and a cell lifts to full ink on hover. Lifted out of hero-04 as a copy rather than an import: a section that had to pull in a whole hero to draw eight logos would install the plane, the nav and the copy with it. No dependencies and no client boundary.",
+  "registryDependencies": [
+    "https://ui.d2studio.dev/r/brand-showcase.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/logo-rack.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\nimport { BrandIcons } from \"./brand-showcase/brand-icons\";\n\n// The rack out of hero-04, standing on its own: a label over marks sitting\n// still in ruled cells. A copy rather than an import, for the same reason\n// logo-dock is one — a section that had to pull in a whole hero to draw eight\n// logos would install the plane, the nav and the copy with it.\n//\n// The point of a rack over a rail is that nothing moves: the cells are the\n// same shape a rack of machines comes in, and a row that travels says \"there\n// are many of us\" where a row that sits says \"these are the ones we run\".\n//\n// Every rule is the gap showing through rather than a border on a cell: one\n// `gap-px` over a filled parent, so a cell that wraps to a new line cannot\n// double a rule up with its neighbour's, and the hairline stays exactly one\n// pixel at any column count.\nconst LOGOS = [\n  BrandIcons.vercel,\n  BrandIcons.nextjs,\n  BrandIcons.react,\n  BrandIcons.supabase,\n  BrandIcons.convex,\n  BrandIcons.tailwind,\n  BrandIcons.shadcn,\n  BrandIcons.threejs,\n];\n\nexport default function LogoRack({\n  label = \"Deploys straight from the stack you already run\",\n  className = \"\",\n}: {\n  /** The line over the rack. Omitted draws none. */\n  label?: string;\n  className?: string;\n}) {\n  return (\n    <section className={cn(\"bg-background w-full px-6 py-16\", className)}>\n      <div className=\"mx-auto w-full max-w-6xl\">\n        {label ? (\n          <p className=\"text-muted-foreground font-mono text-[11px] tracking-[0.18em] uppercase\">\n            {label}\n          </p>\n        ) : null}\n\n        <div className=\"bg-border/60 border-border/60 mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border sm:grid-cols-4 lg:grid-cols-8\">\n          {LOGOS.map((Logo, i) => (\n            <div\n              key={i}\n              className=\"bg-background text-muted-foreground flex h-16 items-center justify-center transition-[color,background-color] duration-200 [transition-timing-function:var(--ease-out)] [@media(hover:hover)]:hover:bg-muted/40 [@media(hover:hover)]:hover:text-foreground [&_svg]:max-h-6 [&_svg]:w-auto\"\n            >\n              <Logo />\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "logos",
+    "blocks"
+  ],
+  "type": "registry:component"
+}

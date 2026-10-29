@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-04",
+  "title": "Panel CTA",
+  "author": "D2 Studio",
+  "description": "One inverted panel, centred copy and two actions, the plain one. Two blurred lobes bleed in from opposite corners and are clipped by the panel, so what shows is the falloff rather than a circle with an edge. Built entirely on theme tokens with no dark: twin, and no dependencies at all.",
+  "files": [
+    {
+      "path": "registry/default/components/cta-04.tsx",
+      "content": "// Panel CTA — one inverted card, centred copy, two actions. The plainest of\n// the four, and the one that drops into a page without an opinion about it.\n\nexport default function Cta04({\n  heading = \"Ready to build a thriving community?\",\n  note = \"Join hundreds of forward-thinking teams already transforming how they work.\",\n  action = \"Get Started Now\",\n  href = \"#\",\n  secondaryAction = \"Schedule a Demo\",\n  secondaryHref = \"#\",\n  className = \"\",\n}: {\n  heading?: string;\n  note?: string;\n  action?: string;\n  href?: string;\n  secondaryAction?: string;\n  secondaryHref?: string;\n  className?: string;\n}) {\n  return (\n    <section className={`w-full px-4 py-20 ${className}`}>\n      {/* Inverted against the page — foreground as the plate — so the panel\n          reads as a block of colour in either theme with no dark: twin. */}\n      <div\n        /* Inverted on purpose: dark ink on the page in light, a light panel in dark. Dark takes neutral-50 rather than --foreground, which is a tinted 0.90 that reads as dull grey; same call as the Card Fan band. */\n        className=\"relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-foreground dark:bg-neutral-50 px-6 py-20 text-center text-background md:px-20 md:py-24\">\n        {/* Two blurred lobes bleeding in from opposite corners. Sized past the\n            panel and clipped by it, so what shows is the falloff rather than a\n            circle with an edge. */}\n        <div aria-hidden className=\"pointer-events-none absolute inset-0 overflow-hidden\">\n          <div className=\"absolute -top-24 -left-24 size-96 rounded-full bg-blue-500/20 blur-3xl\" />\n          <div className=\"absolute -right-24 -bottom-24 size-96 rounded-full bg-purple-500/20 blur-3xl\" />\n        </div>\n\n        <div className=\"relative z-10 mx-auto max-w-3xl\">\n          <h2 className=\"mb-6 text-3xl font-bold tracking-tight md:text-5xl\">{heading}</h2>\n          <p className=\"mb-10 text-lg text-background/70 md:text-xl\">{note}</p>\n          <div className=\"flex flex-col items-center justify-center gap-4 sm:flex-row\">\n            <a\n              href={href}\n              className=\"rounded-full bg-background px-8 py-4 text-base font-medium text-foreground transition-[opacity,scale] duration-200 hover:opacity-90 active:scale-[0.97] motion-reduce:active:scale-100\"\n            >\n              {action}\n            </a>\n            <a\n              href={secondaryHref}\n              className=\"group inline-flex items-center gap-2 px-4 py-4 text-base font-medium underline-offset-4 transition-[text-decoration-color] hover:underline\"\n            >\n              {secondaryAction}\n              <span className=\"transition-transform group-hover:translate-x-1 motion-reduce:transition-none\">\n                →\n              </span>\n            </a>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "landing"
+  ],
+  "type": "registry:component"
+}

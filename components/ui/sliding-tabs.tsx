@@ -7,6 +7,8 @@ export type SlidingTab = {
   value: string;
   label: string;
   icon?: React.ReactNode;
+  /** Show the icon alone; the label stays for screen readers. */
+  hideLabel?: boolean;
 };
 
 /**
@@ -91,7 +93,7 @@ export function SlidingTabs({
           className="t-tab"
         >
           {tab.icon}
-          {tab.label}
+          {tab.hideLabel ? <span className="sr-only">{tab.label}</span> : tab.label}
         </button>
       ))}
     </div>

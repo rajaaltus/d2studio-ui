@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flow-01",
+  "title": "Agent Workflow",
+  "author": "D2 Studio",
+  "description": "A three-step agent workflow, caught mid-run: one step done, one spinning, one still pending. Each row dims as a whole rather than muting its label, icon and badge separately: a pending step is one thing that has not happened yet, not three greyed pieces. Every surface is a theme token, the spinner drops out under prefers-reduced-motion, and the only dependency is lucide-react.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/flow-01.tsx",
+      "content": "import { CircleCheck, Database, LoaderCircle, Search, Send } from \"lucide-react\";\n\n// An illustration, not a section: it draws one idea at whatever size the card\n// gives it, so there is no page layout here and no breakpoint — the wall it\n// lives on is what decides how wide it gets.\nconst STEPS = [\n  {\n    Icon: Search,\n    title: \"Query Analysis\",\n    detail: \"Extract intent and entities\",\n    state: \"done\",\n  },\n  {\n    Icon: Database,\n    title: \"Context Retrieval\",\n    detail: \"Searching vector database\",\n    state: \"running\",\n  },\n  {\n    Icon: Send,\n    title: \"Response Generation\",\n    detail: \"Run inference with context\",\n    state: \"pending\",\n  },\n] as const;\n\nexport default function Flow01() {\n  return (\n    <div className=\"w-full max-w-sm rounded-xl border border-border bg-muted p-4 shadow-sm\">\n      <p className=\"mb-4 text-sm font-medium text-foreground\">Workflow</p>\n\n      <ul className=\"space-y-3\">\n        {STEPS.map(({ Icon, title, detail, state }) => (\n          <li\n            key={title}\n            // The whole row dims together rather than each part carrying its own\n            // muted variant — a pending step is one thing that has not happened,\n            // not three greyed labels.\n            data-state={state}\n            className=\"flex items-center gap-3 data-[state=pending]:opacity-40\"\n          >\n            <span className=\"flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-muted\">\n              <Icon className=\"size-4 text-muted-foreground\" />\n            </span>\n\n            <span className=\"min-w-0 flex-1\">\n              <span className=\"block truncate text-sm text-foreground\">\n                {title}\n              </span>\n              <span className=\"block truncate text-xs text-muted-foreground\">\n                {detail}\n              </span>\n            </span>\n\n            {state === \"done\" && (\n              <CircleCheck className=\"size-4 shrink-0 text-emerald-500\" />\n            )}\n            {state === \"running\" && (\n              <LoaderCircle className=\"size-4 shrink-0 animate-spin text-primary motion-reduce:animate-none\" />\n            )}\n            {state === \"pending\" && (\n              <span className=\"shrink-0 rounded border border-border px-1.5 py-0.5 text-[10px] text-muted-foreground\">\n                Pending\n              </span>\n            )}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "illustration",
+    "blocks"
+  ],
+  "type": "registry:component"
+}

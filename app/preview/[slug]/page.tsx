@@ -100,8 +100,10 @@ function PreviewContent() {
     if (!Component) return null;
 
     return (
-        // .luminous-spinners scopes the .cell/.spinner-grid rules in globals.css
+        // .luminous-spinners scopes the .cell/.spinner-grid rules in globals.css;
+        // data-preview lets the wheel chain out to the page that frames this.
         <div
+            data-preview
             className={
                 type === "example"
                     // A demo is one control; centred on a muted, dotted stage it
