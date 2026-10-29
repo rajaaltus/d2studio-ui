@@ -93,6 +93,7 @@ export function BeamButton({
   const El = href ? "a" : "button";
   const theme = useHostTheme();
   const frame = React.useRef<HTMLDivElement>(null);
+  usePauseOffscreen(frame);
   useProximity(frame, proximity, strength);
   useMirror(frame, mirror, color, smoke, shadow);
   return (
@@ -113,7 +114,7 @@ export function BeamButton({
         className={cn(
           PILL,
           BEAM_SIZES[size],
-          // The mirror sets its cursor on <html> and in --beam-cursor; the pill
+          // The mirror sets its cursor on <html> and --beam-cursor here; the pill
           // takes it from there, and the plain arrow when there is none.
           // Inheriting instead would give "auto": a text cursor over the label.
           mirror && "cursor-[var(--beam-cursor,default)]",
@@ -191,6 +192,30 @@ function startProximity() {
     off();
     cancelAnimationFrame(raf);
   };
+}
+
+/** Holds the beam's animations while the pill is off screen. border-beam
+ *  animates inherited custom properties, which the browser restyles every
+ *  frame even where nothing is visible. Only running animations are held and
+ *  resumed, so a finished fade-in is never replayed, and the beam carries on
+ *  from where it stopped. */
+function usePauseOffscreen(ref: React.RefObject<HTMLDivElement | null>) {
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let held: Animation[] = [];
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        for (const a of held) a.play();
+        held = [];
+      } else {
+        held = el.getAnimations({ subtree: true }).filter((a) => a.playState === "running");
+        for (const a of held) a.pause();
+      }
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref]);
 }
 
 /** Brightens the beam as the pointer nears. A fine-pointer thing: on touch
@@ -785,12 +810,14 @@ function startMirror() {
     if (css === shown) return;
     shown = css;
     const root = document.documentElement.style;
+    // The pills read --beam-cursor; set on them rather than on <html>, where a
+    // custom property would restyle the whole document on every change.
     if (css) {
       root.cursor = css;
-      root.setProperty("--beam-cursor", css);
+      for (const el of mirrors.keys()) el.style.setProperty("--beam-cursor", css);
     } else {
       root.removeProperty("cursor");
-      root.removeProperty("--beam-cursor");
+      for (const el of mirrors.keys()) el.style.removeProperty("--beam-cursor");
     }
   };
   const overlay = createOverlay();
@@ -813,16 +840,19 @@ function startMirror() {
     // Reduced motion holds the beam still, mid-pill and fully lit.
     const beam = (el: HTMLElement) => (still.matches ? { x: 0.5, edge: 1 } : beamNow(el));
     let goal = 0;
+    // Read once a frame: each read of the beam forces a style recalc.
+    let b: { x: number; edge: number } | null = null;
     if (target) {
       source = target;
       // The light source: the beam's own point on the pill's bottom edge.
       const r = target.el.getBoundingClientRect();
-      const sx = r.left + r.width * beam(target.el).x;
+      b = beam(target.el);
+      const sx = r.left + r.width * b.x;
       const sy = r.bottom - 1;
       // While the beam is out there is no light to move the shadow: it holds
       // where the light last was, instead of swinging with the beam's jump
       // back to the start of its run.
-      if (beam(target.el).edge > 0.1) {
+      if (b.edge > 0.1) {
         lightX = sx;
         lightY = sy;
       }
@@ -851,7 +881,7 @@ function startMirror() {
     // reach still shows the right direction instead of the plain arrow.
     const level = near > 0.004 ? Math.max(1, Math.round(near * MIRROR_LEVELS)) : 0;
     const turn = ((Math.round((angle / (Math.PI * 2)) * MIRROR_TURNS) % MIRROR_TURNS) + MIRROR_TURNS) % MIRROR_TURNS;
-    const lit = beam(source.el);
+    const lit = b ?? beam(source.el);
     const glow = Math.round(lit.edge * GLOW_STEPS);
     // While the beam is out, so is the light on the cursor. The drawn arrow
     // stays, unlit, rather than handing back to the system one each lap:
