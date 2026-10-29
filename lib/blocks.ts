@@ -20,6 +20,9 @@ export type BlockDef = {
   dependencies?: string[];
   /** Other registry items this one installs alongside itself. */
   registryDependencies?: string[];
+  /** Primitives whose "Use cases" list this item without installing them, for
+   *  a block that is that kind of thing but not built on it. Site only. */
+  useCaseOf?: string[];
   /** Global CSS the item needs; shadcn merges it into the consumer's stylesheet. */
   css?: Record<string, unknown>;
   cssVars?: Record<string, unknown>;
@@ -111,8 +114,9 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     name: "button-beam",
     title: "Beam Button",
     description: "A glass pill with a beam travelling along its lower edge. The chip under it is deliberately quiet, one tinted plate and a hairline border with the ink coming up to full under the cursor, because a louder face would compete with the light rather than carry it. The plate, the border and the top sheen are tokens, and the beam is told to follow the host theme with them, so the pill reads on a white page and on a black one without a second set of colours. Four palettes, the shadcn size scale with the padding opened a step for the round corners, and the beam takes a switch so the still version is the same chip with the light off. Renders an anchor when handed an href, a button otherwise.",
-    categories: ["actions"],
+    categories: ["button", "blocks"],
     dependencies: ["border-beam", "lucide-react"],
+    useCaseOf: ["button"],
     shelf: "blocks",
     image: "/blocks/button-beam-1efd186a.jpg",
     status: "available",
@@ -556,7 +560,7 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     categories: ["data-display"],
     dependencies: ["lucide-react"],
     shelf: "components",
-    image: "/ui/id-card-db9740e1.jpg",
+    image: "/ui/id-card-b4f26b28.jpg",
     status: "available",
     added: "2026-10-28",
   },

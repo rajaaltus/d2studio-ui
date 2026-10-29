@@ -192,6 +192,9 @@ export function BlocksBrowser({ scope = "blocks" }: { scope?: BrowserScope }) {
                       onValueChange={(v) => setView(v as View)}
                       tabs={VIEW_TABS}
                       aria-label="Group results"
+                      // The rail stretches the track; the two tabs share it
+                      // evenly rather than leaving a gap after the last one.
+                      className="flex [&_.t-tab]:flex-1 [&_.t-tab]:justify-center"
                     />
                   </FilterGroup>
 

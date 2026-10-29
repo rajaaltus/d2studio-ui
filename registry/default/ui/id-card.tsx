@@ -580,9 +580,12 @@ function Lanyard({ frontImage, backImage, strapImage, front, back, className }: 
         node.style.transform = `translate(${c.x - cw / 2}px, ${c.y - ch / 2}px) rotate(${ang}rad) perspective(900px) rotateY(${yaw}deg)`;
         // A laminate catches the light in a band that slides as it turns,
         // and the face darkens as it turns edge on. Held inside the band's
-        // own travel, so its far side never wraps back onto the card.
-        node.style.setProperty("--glint", `${Math.min(100, Math.max(0, 50 + Math.sin(twist) * 60 + ang * 60))}%`);
-        node.style.setProperty("--shade", `${Math.abs(Math.sin(twist)) * 0.35}`);
+        // own travel, so its far side never wraps back onto the card. Set as
+        // transform and opacity on their own layers: a value the faces
+        // inherit would repaint both faces, art and mask, every frame.
+        const glint = Math.min(100, Math.max(0, 50 + Math.sin(twist) * 60 + ang * 60));
+        for (const el of glints) el.style.transform = `translateX(${(-glint * 2) / 3}%)`;
+        for (const el of shades) el.style.opacity = `${Math.abs(Math.sin(twist)) * 0.35}`;
       }
 
       // Cut the canvas away where the card is, so the card covers the strap
@@ -657,6 +660,8 @@ function Lanyard({ frontImage, backImage, strapImage, front, back, className }: 
     // Dragging takes the card, and a throw keeps the pointer's speed.
     let press: { x: number; y: number; at: number } | null = null;
     const node = card.current!;
+    const glints = node.querySelectorAll<HTMLElement>("[data-glint]");
+    const shades = node.querySelectorAll<HTMLElement>("[data-shade]");
     const local = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();
       return { x: e.clientX - r.left, y: e.clientY - r.top };
@@ -771,18 +776,17 @@ function Lanyard({ frontImage, backImage, strapImage, front, back, className }: 
         </div>
       )}
       <div
-        className="pointer-events-none absolute inset-0"
+        data-glint
+        className="pointer-events-none absolute inset-y-0 left-0 w-[300%] will-change-transform"
         style={{
           // One broad sheen with a bell's falloff, eased in stops so it has
           // no edge to read as a stripe: a lamp's reflection on a laminate,
           // not a streak painted on it.
           background:
-            "linear-gradient(105deg, transparent 22%, rgb(255 255 255 / 0.02) 30%, rgb(255 255 255 / 0.06) 37%, rgb(255 255 255 / 0.11) 44%, rgb(255 255 255 / 0.13) 48%, rgb(255 255 255 / 0.11) 52%, rgb(255 255 255 / 0.06) 59%, rgb(255 255 255 / 0.02) 66%, transparent 74%) no-repeat",
-          backgroundSize: "300% 100%",
-          backgroundPosition: "var(--glint) 0",
+            "linear-gradient(105deg, transparent 22%, rgb(255 255 255 / 0.02) 30%, rgb(255 255 255 / 0.06) 37%, rgb(255 255 255 / 0.11) 44%, rgb(255 255 255 / 0.13) 48%, rgb(255 255 255 / 0.11) 52%, rgb(255 255 255 / 0.06) 59%, rgb(255 255 255 / 0.02) 66%, transparent 74%)",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-[oklch(0.13_0_0)]" style={{ opacity: "var(--shade)" }} />
+      <div data-shade className="pointer-events-none absolute inset-0 bg-[oklch(0.13_0_0)] opacity-0 will-change-[opacity]" />
     </div>
   );
 
@@ -791,7 +795,7 @@ function Lanyard({ frontImage, backImage, strapImage, front, back, className }: 
       <div
         ref={shade}
         aria-hidden
-        className="pointer-events-none absolute top-0 left-0 rounded-[8%/6%] bg-[oklch(0.13_0_0/0.3)] blur-[12px]"
+        className="pointer-events-none absolute top-0 left-0 rounded-[8%/6%] bg-[oklch(0.13_0_0/0.3)] blur-[12px] will-change-transform"
         // The card's footprint, turned about its centre, so it still swings
         // with the card.
         style={
@@ -808,7 +812,7 @@ function Lanyard({ frontImage, backImage, strapImage, front, back, className }: 
       <div
         ref={card}
         aria-hidden
-        className="absolute top-0 left-0 cursor-grab touch-none [transform-style:preserve-3d]"
+        className="absolute top-0 left-0 cursor-grab touch-none will-change-transform [transform-style:preserve-3d]"
         style={{
           width: size?.cw,
           height: size?.ch,
@@ -954,20 +958,21 @@ export function IdCard({
       const [front, f] = sheet();
       if (mark) f.drawImage(mark, pad, 52, 26, 26);
       const py = 98;
-      // The portrait is as tall as the name and role beside it, measured from
-      // the name's cap height to the role's last baseline, which is what the
-      // eye reads as the block's edges. The text wraps at the width a 92px
-      // portrait leaves, so a smaller portrait cannot unwrap the name and
-      // shrink itself again.
+      // The portrait is as tall as the name and role beside it, measured on
+      // the ink itself: from the name's tallest glyph to the role's lowest
+      // descender, so it matches whatever font the platform draws. The text
+      // wraps at the width a 92px portrait leaves, so a smaller portrait
+      // cannot unwrap the name and shrink itself again.
       const tw = W - pad * 2 - 92 - 16;
       const NAME = `650 22px ${FONT}`;
       const ROLE = `400 15px ${FONT}`;
       f.font = NAME;
       const nameLines = lineCount(f, name, tw, 2);
+      const cap = f.measureText(name).actualBoundingBoxAscent;
       f.font = ROLE;
       const roleLines = lineCount(f, role, tw, 3);
-      const cap = 22 * 0.72;
-      const ps = Math.round(cap + (nameLines - 1) * 26 + 24 + (roleLines - 1) * 19);
+      const tail = f.measureText(role).actualBoundingBoxDescent;
+      const ps = Math.round(cap + (nameLines - 1) * 26 + 24 + (roleLines - 1) * 19 + tail);
       f.save();
       f.beginPath();
       f.roundRect(pad, py, ps, ps, 14);

@@ -14,7 +14,7 @@ const GROUP_ORDER = [
   { slug: "chat", label: "Chat" },
 ] as const;
 
-export type ComponentLink = { name: string; title: string };
+export type ComponentLink = { name: string; title: string; image: string };
 export type ComponentGroup = { slug: string; label: string; items: ComponentLink[] };
 
 const PRIMITIVES = SHELVED.filter((b) => b.shelf === "components");
@@ -24,7 +24,7 @@ const PRIMITIVES = SHELVED.filter((b) => b.shelf === "components");
 // until they age out on a later build.
 const NEW_FOR_MS = 30 * 24 * 60 * 60 * 1000;
 const isNew = (b: BlockDef) => !!b.added && Date.now() - Date.parse(b.added) < NEW_FOR_MS;
-const link = (b: BlockDef): ComponentLink => ({ name: b.name, title: b.title });
+const link = (b: BlockDef): ComponentLink => ({ name: b.name, title: b.title, image: b.image ?? `/ui/${b.name}.jpg` });
 
 export const COMPONENT_GROUPS: ComponentGroup[] = [
   { slug: "new", label: "New", items: PRIMITIVES.filter(isNew).map(link) },
@@ -57,10 +57,11 @@ export function neighbours(name: string) {
  * The designed items built on a primitive: anything in the library that names
  * it as a registry dependency. This is the hook D2's use cases hang off — add a
  * block that depends on @d2/card and it shows up under Card with no wiring.
+ * A block can also list the primitive in `useCaseOf` without installing it.
  */
 export function designedWith(name: string): BlockDef[] {
   const url = `https://ui.d2studio.dev/r/${name}.json`;
   return BLOCK_LIBRARY.filter(
-    (b) => b.shelf === "blocks" && b.registryDependencies?.includes(url),
+    (b) => b.shelf === "blocks" && (b.registryDependencies?.includes(url) || b.useCaseOf?.includes(name)),
   );
 }

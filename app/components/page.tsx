@@ -54,7 +54,7 @@ export default function ComponentsPage() {
                 >
                   <div className="relative aspect-video overflow-hidden border-b bg-muted">
                     <Image
-                      src={`/ui/${c.name}.jpg`}
+                      src={c.image}
                       alt=""
                       fill
                       sizes="(min-width: 1024px) 220px, (min-width: 640px) 30vw, 45vw"

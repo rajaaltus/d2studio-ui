@@ -103,7 +103,8 @@
         }
       ],
       "categories": [
-        "actions"
+        "button",
+        "blocks"
       ]
     },
     {

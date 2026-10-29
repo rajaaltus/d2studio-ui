@@ -26,11 +26,13 @@ const STAGE_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(STAGE_SVG)}"
 // Many registry items export a single named component instead of a default.
 function resolveComponent(mod: Record<string, unknown>) {
     if (mod.default) return { default: mod.default as React.ComponentType };
-    const found = Object.values(mod).find(
-        (v) => typeof v === "function" && /^[A-Z]/.test(v.name)
+    // By export name, not function name: a production build minifies the
+    // function's own name, so `ContainerHero` would read as `e` there.
+    const found = Object.entries(mod).find(
+        ([key, v]) => typeof v === "function" && /^[A-Z]/.test(key)
     );
     if (!found) throw new Error("no component export");
-    return { default: found as React.ComponentType };
+    return { default: found[1] as React.ComponentType };
 }
 
 function PreviewContent() {
@@ -63,7 +65,7 @@ function PreviewContent() {
                     return (
                         <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
                             <p className="font-medium text-destructive">Example Not Found</p>
-                            <p className="text-sm">Could not find &quot;@registry/default/examples/${slug}-demo.tsx&quot;</p>
+                            <p className="text-sm">Could not find &quot;@registry/default/examples/{slug}-demo.tsx&quot;</p>
                         </div>
                     );
                 };
@@ -77,7 +79,7 @@ function PreviewContent() {
                     return (
                         <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
                             <p className="font-medium text-destructive">UI Component Not Found</p>
-                            <p className="text-sm">Could not find &quot;@registry/default/ui/${slug}.tsx&quot;</p>
+                            <p className="text-sm">Could not find &quot;@registry/default/ui/{slug}.tsx&quot;</p>
                         </div>
                     );
                 };
@@ -89,7 +91,7 @@ function PreviewContent() {
                     return (
                         <div className="flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed rounded-lg text-muted-foreground gap-2">
                             <p className="font-medium text-destructive">Component Not Found</p>
-                            <p className="text-sm">Could not find &quot;@registry/default/components/${slug}.tsx&quot;</p>
+                            <p className="text-sm">Could not find &quot;@registry/default/components/{slug}.tsx&quot;</p>
                         </div>
                     );
                 };
