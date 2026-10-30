@@ -43,10 +43,12 @@ export function ContainerHero() {
     // restyles the box's hundred-odd children. The shadow keeps its floor
     // pose from crate.css and only slides with the swing (`translate` applies
     // before `transform`, so it moves along the stage, not the floor plane).
+    // A clockwise turn about the pivot above swings the box's underside left,
+    // by -sin(th) * arm, and a shadow from any light overhead goes with it.
     const draw = () => {
       rig.style.transform = `translateY(${p.bob}px) rotate(${p.th}rad)`;
       yaw.style.transform = `rotateY(${YAW + p.yaw}deg)`;
-      shadow.style.translate = `${Math.sin(p.th) * arm}px 0`;
+      shadow.style.translate = `${-Math.sin(p.th) * arm}px 0`;
     };
 
     // A pointer moving across the crate shoves it along with the pointer's

@@ -315,15 +315,23 @@ const HUE_STEP = 10;
 
 /** Where border-beam's hue shift has turned the beam right now, read off the
  *  layer it animates, in HUE_STEP steps. */
+// Each pill's hue-shift animation, found once rather than by walking all of
+// its animations every frame; found again once border-beam replaces it.
+const hueShift = new WeakMap<HTMLElement, CSSAnimation>();
 function hueNow(el: HTMLElement) {
-  for (const a of el.getAnimations({ subtree: true })) {
-    if (!(a instanceof CSSAnimation) || !a.animationName.startsWith("beam-hue-shift-") || a.animationName.includes("bloom")) continue;
-    const fx = a.effect as KeyframeEffect | null;
-    if (!fx?.target) continue;
-    const m = getComputedStyle(fx.target, fx.pseudoElement).filter.match(/hue-rotate\((-?[\d.]+)deg\)/);
-    return m ? Math.round(parseFloat(m[1]) / HUE_STEP) * HUE_STEP : 0;
+  let a = hueShift.get(el);
+  if (!a || a.playState === "idle") {
+    a = el.getAnimations({ subtree: true }).find(
+      (x): x is CSSAnimation =>
+        x instanceof CSSAnimation && x.animationName.startsWith("beam-hue-shift-") && !x.animationName.includes("bloom"),
+    );
+    if (!a) return 0;
+    hueShift.set(el, a);
   }
-  return 0;
+  const fx = a.effect as KeyframeEffect | null;
+  if (!fx?.target) return 0;
+  const m = getComputedStyle(fx.target, fx.pseudoElement).filter.match(/hue-rotate\((-?[\d.]+)deg\)/);
+  return m ? Math.round(parseFloat(m[1]) / HUE_STEP) * HUE_STEP : 0;
 }
 
 const cursorCache = new Map<string, string>();
@@ -500,8 +508,10 @@ function arrowCursor(
   // reach, so the hand-back to the system arrow there is seamless.
   // Eased out, so mid-range reads clearly rather than fading in late.
   const strength = 1 - (1 - level / MIRROR_LEVELS) ** 2;
-  // The far side keeps a little of the light, so the whole arrow reflects.
-  const far = (strength * 0.15).toFixed(2);
+  // The far side keeps a good share of the light, so the whole arrow reflects
+  // wherever the light is: lit from above, the side facing it is only the
+  // tip, and at 15% the rest read as no reflection at all.
+  const far = (strength * 0.45).toFixed(2);
   const rimPaint = `fill="${rgb(arrow.rimColor)}"` +
     (arrow.rimStroke ? ` stroke="${rgb(arrow.rimColor)}" stroke-width="${arrow.rimStroke}" stroke-linejoin="round"` : "");
   // Blends that keep the arrow's own colours: screen lifts a dark body and
@@ -913,6 +923,14 @@ const MIRROR_FALLOFF = 100;
 // Above the pill, the pill itself stands between the cursor and the beam on
 // its bottom edge; it is glass, so some of the light still comes through.
 const MIRROR_THROUGH_GLASS = 0.75;
+// How long after its last move the pointer still counts as moving, and the
+// least time between cursor images while it is still (see show in
+// startMirror). A first load, its images slow to decode, ran at about this
+// rate and drew sharp.
+const MOVING_MS = 120;
+// Least time between frames run straight from pointer moves.
+const SYNC_MS = 8;
+const STILL_SWAP_MS = 250;
 
 function startMirror() {
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -929,12 +947,28 @@ function startMirror() {
   let near = 0;
   let angle = Math.PI / 2;
   let shown = "";
-  // Only an image already decoded is shown; one still decoding waits for a
-  // later frame that asks for it again. Applying fresh images as they finish
-  // decoding, with the pointer still, left macOS drawing the arrow soft until
-  // the pointer moved; images the cursor has already worn stay sharp.
+  // With the pointer still, macOS drew the arrow soft until the next move
+  // when its image changed every frame, and sharp at a few changes a second.
+  // So a still pointer changes image at most every STILL_SWAP_MS; a moving
+  // one, every frame. Leaving the rate to decode timing worked on a first
+  // load, where decoding is slow, and not after a refresh, where the images
+  // are cached and decode at once.
+  let movedAt = 0;
+  let swappedAt = 0;
+  let syncedAt = 0;
+  // The unlit drawn arrow, decoded up front: the stand-in while the image a
+  // move wants is still decoding, so the system arrow never shows in reach.
+  const plain = plainCursor();
+  decoded(plain);
   const show = (css: string) => {
-    if (css === shown || !decoded(css)) return;
+    if (css === shown) return;
+    if (!decoded(css)) {
+      if (!css || shown || !decoded(plain)) return;
+      css = plain;
+    }
+    const now = performance.now();
+    if (css && now - movedAt > MOVING_MS && now - swappedAt < STILL_SWAP_MS) return;
+    swappedAt = now;
     shown = css;
     const root = document.documentElement.style;
     // The pills read --beam-cursor; set on them rather than on <html>, where a
@@ -966,8 +1000,10 @@ function startMirror() {
     raf = 0;
     // Reduced motion snaps straight to the target; otherwise each value
     // closes the same share of its gap per ms, whatever the frame rate.
-    const k = still.matches || !last ? 1 : 1 - Math.exp(-(now - last) / MIRROR_EASE_MS);
-    last = now;
+    // A frame run from a move can be timed after the next animation frame's
+    // own timestamp, so time only ever counts forward.
+    const k = still.matches || !last ? 1 : 1 - Math.exp(-Math.max(0, now - last) / MIRROR_EASE_MS);
+    last = Math.max(last, now);
     // Reduced motion holds the beam still, mid-pill and fully lit.
     const beam = (spec: { el: HTMLElement; motion: BeamMotion }): Light =>
       still.matches ? { x: 0.5, y: spec.motion === "line" ? 1 : 0.5, edge: 1 } : beamNow(spec.el, spec.motion);
@@ -1099,7 +1135,20 @@ function startMirror() {
   const off = onPointerOrLayout((e) => {
     x = e.clientX;
     y = e.clientY;
+    movedAt = performance.now();
     measure();
+    // The cursor for this move, set now rather than a frame later: the
+    // browser picks the cursor while it handles the move, so a frame-late
+    // image was always one move behind, and a browser that only redraws the
+    // cursor on a move (Safari) kept that stale one while the pointer rested.
+    // Coming into reach, the stale one was the system arrow.
+    // At most once per SYNC_MS: a 1000 Hz mouse would otherwise run the whole
+    // frame a thousand times a second.
+    if (movedAt - syncedAt < SYNC_MS) return;
+    syncedAt = movedAt;
+    cancelAnimationFrame(raf);
+    raf = 0;
+    frame(movedAt);
   }, measure);
   return () => {
     off();
