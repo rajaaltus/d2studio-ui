@@ -270,12 +270,11 @@
     oklch(0.76 0.008 85) 13px 16px
   );
 }
-.hc-print-box {
-  font-size: 0.62em;
-  letter-spacing: 0;
-  padding: 0.16em 0.22em;
-  border: 0.09em solid currentColor;
-  border-radius: 0.28em;
+/* The route between the two airport codes: a plane heading for the doors. */
+.hc-print-plane {
+  width: 0.8em;
+  height: 0.8em;
+  flex: none;
 }
 .hc-code {
   position: absolute;
