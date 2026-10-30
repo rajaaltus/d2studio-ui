@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { Check, Copy, Play, Sparkles } from "reicon-react"
+import { Check, Copy, Sparkles } from "reicon-react"
 
-import { BeamButton } from "@/registry/default/components/button-beam"
+import { BeamButton, type BeamMotion } from "@/registry/default/components/button-beam"
 import {
   Select,
   SelectContent,
@@ -12,16 +12,17 @@ import {
   SelectValue,
 } from "@/registry/default/ui/select"
 
-// One button on the stage, so the beam and its cursor mirror read on their
-// own. The controls sit at the foot: a palette, the reflection on or off, and
-// the usage line for exactly that choice, ready to copy. Bring the pointer
-// near the button to see the reflection.
-const VARIANTS = {
-  ocean: { color: "ocean", mirror: "edge", label: "Get started", Icon: Sparkles, icon: "Sparkles" },
-  mono: { color: "mono", mirror: "water", label: "Watch demo", Icon: Play, icon: "Play" },
-} as const
+// One button on the stage in its default palette, so the beam and its cursor
+// mirror read on their own. The panel beside it picks the motion and the
+// cursor effect, and shows the usage line for exactly that choice, ready to
+// copy. Bring the pointer near the button to see the reflection.
+const BUTTON = { color: "ocean", mirror: "edge", label: "Get started", Icon: Sparkles, icon: "Sparkles" } as const
 
-type Variant = keyof typeof VARIANTS
+const MOTION_NAMES: Record<BeamMotion, string> = {
+  line: "Line",
+  rotate: "Rotate",
+  breathe: "Breathe",
+}
 
 // Smoke rides on the reflection, so the cursor effect is one choice of three
 // rather than two switches with a combination that cannot exist.
@@ -52,15 +53,15 @@ const Prop = ({ name, value }: { name: string; value: string }) => (
 )
 
 export default function ButtonBeamDemo() {
-  const [variant, setVariant] = React.useState<Variant>("ocean")
-  const [effect, setEffect] = React.useState<Effect>("reflection")
+  const [effect, setEffect] = React.useState<Effect>("shadow")
+  const [motion, setMotion] = React.useState<BeamMotion>("rotate")
   const reflect = effect !== "plain"
   const smoke = effect === "smoke"
   const shadow = effect === "shadow"
   const [copied, setCopied] = React.useState(false)
-  const { color, mirror, label, Icon, icon } = VARIANTS[variant]
+  const { color, mirror, label, Icon, icon } = BUTTON
 
-  const usage = `<BeamButton color="${color}"${reflect ? ` mirror="${mirror}"` : ""}${smoke ? " smoke" : ""}${shadow ? " shadow" : ""}>
+  const usage = `<BeamButton size="lg" color="${color}"${motion !== "line" ? ` motion="${motion}"` : ""}${reflect ? ` mirror="${mirror}"` : ""}${smoke ? " smoke" : ""}${shadow ? " shadow" : ""}>
   <${icon} weight="Filled" />
   ${label}
 </BeamButton>`
@@ -72,44 +73,68 @@ export default function ButtonBeamDemo() {
   }
 
   return (
-    <div className="flex min-h-[300px] w-full flex-col items-center justify-between gap-8 py-2">
-      <div className="flex flex-1 items-center">
-        <BeamButton color={color} mirror={reflect ? mirror : false} smoke={smoke} shadow={shadow}>
+    // One bento card filling the frame (its height less the stage's padding):
+    // the button's stage, and its options in a panel beside it, or under it
+    // when the card is narrow. A hairline ring 2px out from the card, radii
+    // concentric (14 = 12 + 2).
+    <div className="@container flex min-h-[calc(100svh-2rem)] w-full rounded-[14px] border border-border/60 p-0.5 sm:min-h-[calc(100svh-4rem)]">
+      <div className="grid flex-1 grid-cols-1 grid-rows-[1fr_auto] overflow-hidden rounded-xl border bg-muted/30 @3xl:grid-cols-[minmax(0,1fr)_26rem] @3xl:grid-rows-1">
+      <div className="flex min-h-28 items-center justify-center">
+        <BeamButton size="lg" color={color} motion={motion} mirror={reflect ? mirror : false} smoke={smoke} shadow={shadow}>
           <Icon weight="Filled" />
           {label}
         </BeamButton>
       </div>
 
-      <div className="flex flex-col items-center gap-3">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <Select value={variant} onValueChange={(v) => setVariant(v as Variant)}>
-            <SelectTrigger size="sm" aria-label="Palette" className="w-28">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="ocean">Ocean</SelectItem>
-              <SelectItem value="mono">Mono</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select value={effect} onValueChange={(v) => setEffect(v as Effect)}>
-            <SelectTrigger size="sm" aria-label="Cursor effect" className="w-44">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="plain">Plain cursor</SelectItem>
-              <SelectItem value="reflection">Reflection</SelectItem>
-              <SelectItem value="smoke">Reflection + smoke</SelectItem>
-              <SelectItem value="shadow">Reflection + shadow</SelectItem>
-            </SelectContent>
-          </Select>
+      <div className="flex flex-col justify-center gap-3 border-t p-4 @3xl:border-t-0 @3xl:border-l">
+        <div className="flex flex-col gap-3">
+          <div className="flex gap-2">
+            <Select value={motion} onValueChange={(v) => setMotion(v as BeamMotion)}>
+              <SelectTrigger size="sm" aria-label="Animation" className="min-w-0 flex-[2]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {(Object.keys(MOTION_NAMES) as BeamMotion[]).map((m) => (
+                  <SelectItem key={m} value={m}>
+                    {MOTION_NAMES[m]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={effect} onValueChange={(v) => setEffect(v as Effect)}>
+              <SelectTrigger size="sm" aria-label="Cursor effect" className="min-w-0 flex-[3]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="plain">Plain cursor</SelectItem>
+                <SelectItem value="reflection">Reflection</SelectItem>
+                <SelectItem value="smoke">Reflection + smoke</SelectItem>
+                <SelectItem value="shadow">Reflection + shadow</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
-        <div className="relative w-[min(100%,26rem)] rounded-lg border bg-muted/50">
-          <pre className="overflow-x-auto px-3 py-2.5 pr-10 font-mono text-xs leading-relaxed">
+        <div className="overflow-hidden rounded-lg border bg-background/60">
+          {/* Copy sits in its own bar, so it never covers a long line. */}
+          <div className="flex h-8 items-center justify-between border-b pr-0.5 pl-3">
+            <span className="text-xs text-muted-foreground">Usage</span>
+            <button
+              type="button"
+              onClick={copy}
+              aria-label={copied ? "Copied" : "Copy usage"}
+              className="grid size-7 place-items-center rounded-md text-muted-foreground transition-[color,background-color,scale] duration-150 ease-out hover:bg-muted hover:text-foreground active:scale-[0.97]"
+            >
+              {copied ? <Check size={14} weight="Filled" /> : <Copy size={14} weight="Filled" />}
+            </button>
+          </div>
+          <pre className="overflow-x-auto px-3 py-2.5 font-mono text-xs leading-relaxed">
             <code>
               <T k="text">{"<"}</T>
               <T k="tag">BeamButton</T>
+              <Prop name="size" value="lg" />
               <Prop name="color" value={color} />
+              {motion !== "line" && <Prop name="motion" value={motion} />}
               {reflect && <Prop name="mirror" value={mirror} />}
               {(smoke || shadow) && (
                 <>
@@ -131,15 +156,8 @@ export default function ButtonBeamDemo() {
               <T k="text">{">"}</T>
             </code>
           </pre>
-          <button
-            type="button"
-            onClick={copy}
-            aria-label={copied ? "Copied" : "Copy usage"}
-            className="absolute top-1.5 right-1.5 grid size-7 place-items-center rounded-md text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
-          >
-            {copied ? <Check size={14} weight="Filled" /> : <Copy size={14} weight="Filled" />}
-          </button>
         </div>
+      </div>
       </div>
     </div>
   )
