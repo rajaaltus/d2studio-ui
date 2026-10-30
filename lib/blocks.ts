@@ -303,7 +303,7 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     description: "A one-screen hero on a plain background: a 20ft shipping container built as a real box in CSS 3D, three quarters on, hangs from a crane hook on four slings over its soft shadow. It swings on its cable with a little wind and takes a shove from a passing pointer; the loop runs only while the hero is on screen, and under reduced motion the crate hangs still. No dependencies; it scales to the stage, so it fits a phone, a short landscape screen or a desktop alike. Theme-aware.",
     categories: ["hero"],
     shelf: "blocks",
-    image: "/blocks/hero-container-79531d0c.png",
+    image: "/blocks/hero-container-9dc88677.png",
     status: "available",
     author: "@uxgodwin",
     version: "1.0.0",
