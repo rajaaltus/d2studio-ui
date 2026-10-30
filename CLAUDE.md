@@ -219,3 +219,23 @@ runs, and the item's `type` there is what decides whether the preview loads from
 - The repo root is littered with design-iteration PNGs and one-off planning
   markdown (`PRODUCTION_LAUNCH_PLAN.md`, `REGISTRY_SETUP_PLAN.md`, `ref.md`) —
   scratch, not documentation
+
+## Physical motion: check it against the real world
+
+Shadows, reflections and light in a block are read as physics, and a wrong
+one is caught by eye and costs trust. In October 2026 the Container Hero's
+floor shadow (and pro's `freight-01` and `portfolio-01`, which share the rig)
+slid opposite to the swinging crate, because of one flipped sign. It shipped
+and was called out publicly.
+
+- A shadow under a fixed light moves **with** its object. Moving the light
+  only changes the shadow's offset and how far it travels, never its
+  direction. Opposite motion is only right when the light moves and the
+  object does not.
+- A reflection in a floor also moves with its object.
+- Before shipping anything that ties a shadow, reflection or light to a moving
+  part, measure it: track both centres over a few seconds in the preview and
+  check they correlate positively (about +1). A negative correlation is a bug.
+- When the geometry is a rotation about a pivot, write the sign out in a
+  comment (a clockwise `rotate(θ)` about a pivot above swings the bottom left,
+  by `-sin(θ) * arm`), so the next reader can check it at a glance.
