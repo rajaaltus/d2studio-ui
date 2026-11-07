@@ -1,6 +1,6 @@
 import type { RainPerson } from "@/components/community-rain";
 
-export type Platform = "x" | "threads";
+export type Platform = "x" | "threads" | "contra";
 
 export type Testimonial = {
   name: string;
@@ -27,7 +27,144 @@ export function threadsAvatar(slug: string): string {
   return `/community-avatars/threads/${slug}.jpg`;
 }
 
+/** Local cached Contra avatar — no runtime API calls */
+export function contraAvatar(username: string): string {
+  return `/community-avatars/contra/${username}.jpg`;
+}
+
 export const testimonials: Testimonial[] = [
+  {
+    name: "Vineet Jaydeo",
+    handle: "@vineetjaydeo",
+    platform: "contra",
+    href: "https://contra.com/community/J5OAtkwF-ai-prompt-input-ui-with-a?replyId=WyJTb2NpYWxQb3N0IiwxNTc1MDEyXQ%3D%3D",
+    avatar: "VJ",
+    avatarSrc: contraAvatar("vineetjaydeo"),
+    quote: "the siri style glow around the prompt input looks so smooth, nice work",
+  },
+  {
+    name: "Abdullah Eroğlu",
+    handle: "@eroglustudios",
+    platform: "contra",
+    href: "https://contra.com/community/RYmnMpeT-financial-timeline-a-modern-financial-activity?replyId=WyJTb2NpYWxQb3N0IiwxMzEwMDAzXQ%3D%3D",
+    avatar: "AE",
+    avatarSrc: contraAvatar("eroglustudios"),
+    quote: "Clean smooth and understandable. Good work!",
+  },
+  {
+    name: "Roman Robert",
+    handle: "@romanrobert",
+    platform: "contra",
+    href: "https://contra.com/community/jGwmlWCs-a-floating-navbar-interaction-focused-on?replyId=WyJTb2NpYWxQb3N0IiwxMTg1ODQ5XQ%3D%3D",
+    avatar: "RR",
+    avatarSrc: contraAvatar("romanrobert"),
+    quote: "Love the Get Pro CTA animation",
+    about: "pro.d2studio.dev",
+  },
+  {
+    name: "Nirooz Vp",
+    handle: "@nirooz_vp_zlc7d5jg",
+    platform: "contra",
+    href: "https://contra.com/community/jGwmlWCs-a-floating-navbar-interaction-focused-on?replyId=WyJTb2NpYWxQb3N0IiwxMTgwMzYyXQ%3D%3D",
+    avatar: "NV",
+    avatarSrc: contraAvatar("nirooz_vp_zlc7d5jg"),
+    quote: "Nice component",
+    about: "pro.d2studio.dev",
+  },
+  {
+    name: "Mehran",
+    handle: "@AetherMaker",
+    platform: "x",
+    href: "https://x.com/AetherMaker/status/2094733125205041591",
+    avatar: "ME",
+    avatarSrc: xAvatar("AetherMaker"),
+    verified: true,
+    quote: "looking good",
+  },
+  {
+    name: "Kumuj",
+    handle: "@KumujJain",
+    platform: "x",
+    href: "https://x.com/KumujJain/status/2093027053360820433",
+    avatar: "KU",
+    avatarSrc: xAvatar("KumujJain"),
+    verified: true,
+    quote:
+      "Love the idea of turning a boring loading state into part of the product experience",
+  },
+  {
+    name: "TheDesignInspo",
+    handle: "@thedesigninspo",
+    platform: "x",
+    href: "https://x.com/thedesigninspo/status/2086860305586676047",
+    avatar: "TD",
+    avatarSrc: xAvatar("thedesigninspo"),
+    quote:
+      "Proper star struck, mate. Bagging this much loot is an absolute blindler!",
+  },
+  {
+    name: "Vlady",
+    handle: "@itsvlady",
+    platform: "x",
+    href: "https://x.com/itsvlady/status/2086862642245697984",
+    avatar: "VL",
+    avatarSrc: xAvatar("itsvlady"),
+    verified: true,
+    quote:
+      "99% Lighthouse on a live site is rare enough on its own, most people let animations wreck that score first",
+  },
+  {
+    name: "Trexa Lab",
+    handle: "@trexalab_agency",
+    platform: "x",
+    href: "https://x.com/trexalab_agency/status/2097189308168044961",
+    avatar: "TL",
+    avatarSrc: xAvatar("trexalab_agency"),
+    verified: true,
+    quote: "Really enjoyed seeing this.",
+    about: "pro.d2studio.dev",
+  },
+  {
+    name: "Dure Design",
+    handle: "@duredesign",
+    platform: "x",
+    href: "https://x.com/duredesign/status/2095485664703709334",
+    avatar: "DD",
+    avatarSrc: xAvatar("duredesign"),
+    verified: true,
+    quote:
+      "the placeholder naming sections and accounts tells you what is searchable before you type",
+    about: "pro.d2studio.dev",
+  },
+  {
+    name: "UIX.Ifti",
+    handle: "@UIXIfti0428",
+    platform: "x",
+    href: "https://x.com/UIXIfti0428/status/2116706070295183828",
+    avatar: "UI",
+    avatarSrc: xAvatar("UIXIfti0428"),
+    quote: "Such a fresh approach!",
+  },
+  {
+    name: "Darec",
+    handle: "@DrockStowe",
+    platform: "x",
+    href: "https://x.com/DrockStowe/status/2093312908356681880",
+    avatar: "DA",
+    avatarSrc: xAvatar("DrockStowe"),
+    quote:
+      "omg!! a lot of these fit my current app's design. might have to steal one 😉 thank you for your OSS generosity!",
+  },
+  {
+    name: "yax_buzz",
+    handle: "@yax_buzz",
+    platform: "threads",
+    href: "https://www.threads.com/@yax_buzz/post/DfZEpETG-VI",
+    avatar: "YB",
+    avatarSrc: threadsAvatar("yax_buzz"),
+    quote:
+      "A CTA with light reaching past the edge is such a clever detail, it turns a boring button into a moment. As a product designer, I love free components like this, they raise the bar for everyone. The Beam Button looks great!",
+  },
   {
     name: "kim3wc",
     handle: "@kim3wc",
@@ -40,14 +177,14 @@ export const testimonials: Testimonial[] = [
     about: "pro.d2studio.dev",
   },
   {
-    name: "ant.mancini",
-    handle: "@ant.mancini",
+    name: "chat_with_niwa",
+    handle: "@chat_with_niwa",
     platform: "threads",
-    href: "https://www.threads.com/@ant.mancini",
-    avatar: "AM",
-    avatarSrc: threadsAvatar("ant.mancini"),
+    href: "https://www.threads.com/@chat_with_niwa/post/DceSitvguDH",
+    avatar: "CN",
+    avatarSrc: threadsAvatar("chat_with_niwa"),
     quote:
-      "Dude, these are legitimately amazing resources, and I'm blown away by some of the visuals on here and I will absolutely be recommending and using some of this",
+      "Overall, it looks very nice, and I may even start another project using something like this because I just like how it looks. It's so aesthetic and would be great inside some custom coding agent that I can develop for myself, or maybe even a custom GUI for a Pi agent or something like that. It just moves me toward making something, so I'm glad that I saw something like this.",
     about: "pro.d2studio.dev",
   },
   {
@@ -71,28 +208,29 @@ export const testimonials: Testimonial[] = [
     about: "pro.d2studio.dev",
   },
   {
-    name: "chat_with_niwa",
-    handle: "@chat_with_niwa",
+    name: "ant.mancini",
+    handle: "@ant.mancini",
     platform: "threads",
-    href: "https://www.threads.com/@chat_with_niwa/post/DceSitvguDH",
-    avatar: "CN",
-    avatarSrc: threadsAvatar("chat_with_niwa"),
+    href: "https://www.threads.com/@ant.mancini",
+    avatar: "AM",
+    avatarSrc: threadsAvatar("ant.mancini"),
     quote:
-      "Overall, it looks very nice, and I may even start another project using something like this because I just like how it looks. It's so aesthetic and would be great inside some custom coding agent that I can develop for myself, or maybe even a custom GUI for a Pi agent or something like that. It just moves me toward making something, so I'm glad that I saw something like this.",
+      "Dude, these are legitimately amazing resources, and I'm blown away by some of the visuals on here and I will absolutely be recommending and using some of this",
     about: "pro.d2studio.dev",
   },
-  {
-    name: "TheDesignInspo",
-    handle: "@thedesigninspo",
-    platform: "x",
-    href: "https://x.com/thedesigninspo/status/2092301650732208435?s=20",
-    avatar: "TD",
-    avatarSrc: xAvatar("thedesigninspo"),
-    verified: true,
-    quote:
-      "Right, mate! Knew it the moment I laid eyes on that proper polished video of yours. You've clearly got some serious graft in you for filmmaking & building gear. What other secret talents are you keeping under your hat, eh? Absolute belter of a job, smashing it all round. Good luck!",
-    about: "pro.d2studio.dev",
-  },
+  // hidden
+  // {
+  //   name: "TheDesignInspo",
+  //   handle: "@thedesigninspo",
+  //   platform: "x",
+  //   href: "https://x.com/thedesigninspo/status/2092301650732208435?s=20",
+  //   avatar: "TD",
+  //   avatarSrc: xAvatar("thedesigninspo"),
+  //   verified: true,
+  //   quote:
+  //     "Right, mate! Knew it the moment I laid eyes on that proper polished video of yours. You've clearly got some serious graft in you for filmmaking & building gear. What other secret talents are you keeping under your hat, eh? Absolute belter of a job, smashing it all round. Good luck!",
+  //   about: "pro.d2studio.dev",
+  // },
   {
     name: "The Founder",
     handle: "@ElyrianForge_HQ",
