@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { CommunityRain } from "@/components/community-rain";
+import { CommunityRain, ContraIcon } from "@/components/community-rain";
 import {
   rainPeople,
   testimonials,
@@ -31,8 +31,7 @@ export function CommunitySection() {
             What Community Say
           </h2>
           <p className="text-sm text-muted-foreground max-w-xl">
-            Real reactions from creators on X and
-            Threads.
+            Real reactions from creators on X, Threads and Contra.
           </p>
         </div>
 
@@ -73,7 +72,12 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     fullWidth,
     half,
   } = testimonial;
-  const PlatformIcon = platform === "x" ? XIcon : ThreadsIcon;
+  const PlatformIcon =
+    platform === "x"
+      ? XIcon
+      : platform === "contra"
+        ? ContraIcon
+        : ThreadsIcon;
 
   // Cards no longer link out — `href` stays in community-data.ts. To restore,
   // pull `href` back off the testimonial and swap the <div> for:
