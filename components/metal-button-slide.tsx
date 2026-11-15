@@ -14,15 +14,23 @@ type MetalButtonSlideProps = {
   children: React.ReactNode;
   reflectionTargets?: ReadonlyArray<React.RefObject<HTMLElement | null>>;
   className?: string;
+  /** Extra anchor attributes, e.g. `target`/`rel` for an outbound link. */
+  linkProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
 };
 
 type PlainButtonProps = {
   href: string;
   children: React.ReactNode;
   className?: string;
+  linkProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
 };
 
-function PlainButton({ href, children, className }: PlainButtonProps) {
+function PlainButton({
+  href,
+  children,
+  className,
+  linkProps,
+}: PlainButtonProps) {
   return (
     <div className="inline-flex w-full sm:w-auto [&_.metal-fx-root]:w-full sm:[&_.metal-fx-root]:w-auto [&_.metal-fx-content]:w-full sm:[&_.metal-fx-content]:w-auto">
       <Button
@@ -32,7 +40,7 @@ function PlainButton({ href, children, className }: PlainButtonProps) {
         )}
         asChild
       >
-        <Link href={href}>
+        <Link href={href} {...linkProps}>
           {children}
           <span className="relative inline-flex size-4 overflow-hidden">
             <ArrowUpRight size={16} />
@@ -66,6 +74,7 @@ export function MetalButtonSlide({
   children,
   reflectionTargets,
   className,
+  linkProps,
 }: MetalButtonSlideProps) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
@@ -77,7 +86,7 @@ export function MetalButtonSlide({
 
   const isLight = resolvedTheme === "light";
   const fallback = (
-    <PlainButton href={href} className={className}>
+    <PlainButton href={href} className={className} linkProps={linkProps}>
       {children}
     </PlainButton>
   );
@@ -94,29 +103,41 @@ export function MetalButtonSlide({
       onHoverEnd={() => setIsHovered(false)}
       animate={isHovered ? "hover" : "rest"}
       whileTap={{ scale: 0.97 }}
-      variants={{
-        rest: { scale: 1, filter: "brightness(1) saturate(1)" },
-        hover: { scale: 1.04, filter: "brightness(1.3) saturate(1.2)" },
-      }}
+      // Light theme: brightening a near-white surface only blows out the
+      // chromatic ring, so the hover leans on saturation and a smaller lift.
+      variants={
+        isLight
+          ? {
+              rest: { scale: 1, filter: "brightness(1) saturate(1)" },
+              hover: { scale: 1.02, filter: "brightness(1) saturate(1.15)" },
+            }
+          : {
+              rest: { scale: 1, filter: "brightness(1) saturate(1)" },
+              hover: { scale: 1.04, filter: "brightness(1.3) saturate(1.2)" },
+            }
+      }
       transition={{ type: "spring", stiffness: 320, damping: 20, mass: 0.6 }}
     >
       <MetalFx
         variant="button"
         preset="chromatic"
         theme={isLight ? "light" : "dark"}
-        strength={isHovered ? 1 : 0.70}
+        strength={isLight ? (isHovered ? 0.85 : 0.5) : isHovered ? 1 : 0.7}
+        // The wandering halo reads as a smudge under the button on a light
+        // page; the ring alone carries the effect there.
+        disableGlow={isLight}
         style={{ background: isLight ? "var(--card)" : "var(--background)" }}
         reflectionTargets={reflectionTargets}
       >
         <Button
           className={cn(
             "h-11 w-full sm:w-auto px-5",
-            isLight ? "text-zinc-950" : "text-zinc-50",
+            isLight ? "text-zinc-950 shadow-xs" : "text-zinc-50",
             className
           )}
           asChild
         >
-          <Link href={href}>
+          <Link href={href} {...linkProps}>
             {children}
             <span className="relative inline-flex size-4 overflow-hidden">
               <motion.span

@@ -1303,6 +1303,36 @@ export const BLOCK_LIBRARY: BlockDef[] = [
     categories: ["illustration"],
     dependencies: ["lucide-react"],
   },
+  {
+    name: "particle-portrait",
+    title: "Particle Portrait",
+    description: "A canvas particle-morph illustration: 12,000 dots spawn at random, spring onto pixel positions sampled from an image's opaque mask, and each keeps the colour of the pixel it landed on, so the portrait paints itself out of noise. The pointer attracts the field with quadratic falloff inside a 79px radius, and settled particles drift. The source image travels with the block as an inlined data URI, so `npx shadcn add` copies the artwork as well as the code. Reduced-motion aware: it renders the settled frame and stops.",
+    categories: ["illustration"],
+  },
+  {
+    name: "particle-owl",
+    title: "Particle Owl",
+    description: "The same canvas particle-morph engine at a coarser grain: 7,100 dots at 2.8px spring onto pixel positions sampled from a neon owl's mask, each keeping the colour of the pixel it landed on, and each twinkling on its own phase at 2.35Hz. The pointer attracts the field with quadratic falloff inside a 109px radius. The source image travels with the block as an inlined data URI, so `npx shadcn add` copies the artwork as well as the code. Reduced-motion aware: it renders the settled frame and stops.",
+    categories: ["illustration"],
+  },
+  {
+    name: "particle-lion",
+    title: "Particle Lion",
+    description: "The same canvas particle-morph engine over edge-to-edge artwork: 7,000 dots at 2.8px spring onto pixel positions sampled from a psychedelic lion, each keeping the colour of the pixel it landed on and twinkling on its own phase at 1Hz. Nothing is masked out: the whole square is the subject, so the field reads as a pointillist print of it. The pointer attracts the field with quadratic falloff inside a 171px radius. The source image travels with the block as an inlined data URI, so `npx shadcn add` copies the artwork as well as the code. Reduced-motion aware: it renders the settled frame and stops.",
+    categories: ["illustration"],
+  },
+  {
+    name: "github-tv",
+    title: "GitHub TV",
+    description: "A bolted metal chip around a tiny CRT playing the Octocat as a 16x16 pixel grid, mounted in the same thick token frame the particle illustrations wear. On hover a four-frame rainbow ripple washes across the mark and the chip lifts. No JavaScript and no canvas: opacity is the only animated property, and the whole icon is one grid of empty spans. Theme-aware and reduced-motion aware.",
+    categories: ["illustration"],
+  },
+  {
+    name: "coffee-tv",
+    title: "Coffee TV",
+    description: "A bolted metal chip around a tiny CRT playing a Buy Me a Coffee cup as a 16x16 pixel grid, mounted in the same thick token frame the particle illustrations wear. The steam drifts on a per-cell keyframe loop, with a plus-lighter pass over the same grid for the amber bloom, and the chip lifts on hover. No JavaScript and no canvas: opacity is the only animated property. Theme-aware and reduced-motion aware.",
+    categories: ["illustration"],
+  },
 ];
 
 /**

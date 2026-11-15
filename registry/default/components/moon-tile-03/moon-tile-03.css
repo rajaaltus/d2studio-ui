@@ -2,7 +2,7 @@
    classes, so dropping the file into a project touches nothing else.
 
    The scene keeps the source drawing's night colours in both themes; only the
-   rim and its drop shadow follow the page. Light is the source's own light rim
+   rim and its drop shadow follow the page. Light is a neutral-300 rim
    and grey shadow, dark a dark rim with a black shadow where the grey one
    would glow on a dark page. The dark test is Tailwind's own: inside `.dark`
    unless a nearer `.theme-light` pins the subtree light. */
@@ -29,9 +29,11 @@
   --mt3-lift: #000000;
   --mt3-lift-strength: 0.75;
   --mt3-drop: #c1c1c1;
-  --mt3-drop-strength: 0.5;
-  --mt3-rim-top: #d8d8d8;
-  --mt3-rim-bottom: #c6c6c6;
+  --mt3-drop-strength: 0; /* light uses the close frame shadow instead */
+  --mt3-rim-top: #d4d4d4; /* neutral-300 */
+  --mt3-rim-bottom: #d4d4d4;
+  /* Light: a close, subtle contact shadow that sets the rim off the page. */
+  --mt3-frame-shadow: drop-shadow(0 0.5px 0.75px rgb(23 23 23 / 0.18)) drop-shadow(0 1px 2px rgb(23 23 23 / 0.06));
 
   /* One lap and how many a play runs. The component ends the play at the same
      total, so change both together. */
@@ -42,10 +44,17 @@
 }
 
 .mt3-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
+  --mt3-frame-shadow: none;
+  --mt3-drop-strength: 0.5;
   --mt3-drop: #000000;
   --mt3-rim-top: #373535;
   --mt3-rim-bottom: #141313;
 }
+
+.mt3-root > svg {
+  filter: var(--mt3-frame-shadow);
+}
+
 
 .mt3-blend {
   mix-blend-mode: plus-lighter;

@@ -44,9 +44,14 @@ async function builtItem(name: string) {
       item.files.length === 1
         ? item.files[0].content
         : item.files.map((f) => `// ${f.path}\n\n${f.content}`).join("\n\n");
-    return { kind: item.type === "registry:ui" ? "ui" : "component", source };
+    // Paths as they land in a project, for the Code tab's zip download.
+    const files = item.files.map((f) => ({
+      path: f.path.replace(/^registry\/default\//, ""),
+      content: f.content,
+    }));
+    return { kind: item.type === "registry:ui" ? "ui" : "component", source, files };
   } catch {
-    return { kind: "component", source: undefined };
+    return { kind: "component", source: undefined, files: undefined };
   }
 }
 
@@ -54,7 +59,7 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
   const block = findBlock(name);
   if (!block || block.shelf !== shelf) notFound();
 
-  const { kind, source } = await builtItem(block.name);
+  const { kind, source, files } = await builtItem(block.name);
   // A block that draws nothing without props (button-beam) gets a site-only demo,
   // the same examples/ route the primitives' docs use.
   const hasDemo = existsSync(
@@ -81,6 +86,7 @@ export async function ItemPage({ name, shelf }: { name: string; shelf: Shelf }) 
         <PreviewWrapper
           componentName={block.name}
           code={comingSoon ? undefined : source}
+          files={comingSoon ? undefined : files}
           codeStatus={block.status}
           minHeight={`${block.previewHeight ?? 600}px`}
         >

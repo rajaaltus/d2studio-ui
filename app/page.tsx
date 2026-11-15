@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MetalButtonSlide } from "@/components/metal-button-slide";
+import { PRO_LINK_PROPS, proShelfHref } from "@/lib/pro";
 import { FeaturedComponents } from "@/components/showcase/featured-components";
 import { Navigation } from "@/components/navigation";
 import HeroSection2 from "@/components/hero-section";
@@ -200,15 +201,18 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col items-center md:items-start text-center md:text-left px-6 md:pl-16 lg:pl-20 md:pr-6 gap-3 max-w-xl">
             <h2 className="font-sans text-lg font-medium tracking-tight md:text-xl lg:text-2xl">
-              Start Building Today
+              Get D2 Pro
             </h2>
             <p className="text-sm text-muted-foreground">
-              Join thousands of developers using D2 Studio components to build
-              amazing products faster.
+              Premium blocks, templates and animations, ready to drop into your
+              project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
-              <MetalButtonSlide href="/blocks">
-                View All Components
+              <MetalButtonSlide
+                href={proShelfHref("/", "home-cta")}
+                linkProps={PRO_LINK_PROPS}
+              >
+                Visit Pro
               </MetalButtonSlide>
             </div>
           </div>

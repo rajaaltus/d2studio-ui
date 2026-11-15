@@ -3,6 +3,7 @@
 import * as React from "react"
 import { codeToHtml } from "shiki"
 import { CopyButton } from "@/components/ui/copy-button"
+import { DownloadIconButton } from "@/components/docs/download-icon-button"
 import { cn } from "@/lib/utils"
 
 interface SyntaxHighlighterProps {
@@ -10,6 +11,9 @@ interface SyntaxHighlighterProps {
   language?: string
   filename?: string
   withMeta?: boolean
+  /** Every file of the item; more than one saves as a zip. Defaults to `code` as `filename`. */
+  files?: { path: string; content: string }[]
+  downloadable?: boolean
   className?: string
 }
 
@@ -18,6 +22,8 @@ export function SyntaxHighlighter({
   language = "tsx",
   filename,
   withMeta = false,
+  files,
+  downloadable = true,
   className
 }: SyntaxHighlighterProps) {
   const [highlightedCode, setHighlightedCode] = React.useState<string>("")
@@ -103,6 +109,19 @@ export function SyntaxHighlighter({
         )}
         dangerouslySetInnerHTML={{ __html: highlightedCode }}
       />
+
+      {/* Download button, left of copy. Only where there is a name to save under. */}
+      {downloadable && filename && (
+        <DownloadIconButton
+          value={code}
+          files={files}
+          filename={filename}
+          className={cn(
+            "absolute right-11 top-4 z-10 size-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50",
+            withMeta && "top-16"
+          )}
+        />
+      )}
 
       {/* Copy button */}
       <CopyButton

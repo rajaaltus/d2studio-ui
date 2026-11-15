@@ -282,10 +282,10 @@ export function SpinnerMorph() {
 
         {/* Spinner stage — right. A polka-dot texture and converging guide
             lines sit behind a single centered placeholder. Light mode uses a
-            soft #f0f0f0 stage; dark mode keeps the site background. */}
+            soft #e6e6e6 stage; dark mode keeps the site background. */}
         <div
           ref={stageRef}
-          className="relative order-1 min-h-[300px] overflow-hidden bg-[#f0f0f0] lg:order-2 lg:min-h-[440px] dark:bg-background"
+          className="relative order-1 min-h-[300px] overflow-hidden bg-[#e6e6e6] [--pattern-fg:oklch(0_0_0/0.08)] lg:order-2 lg:min-h-[440px] dark:bg-background dark:[--pattern-fg:oklch(1_0_0/0.1)]"
         >
           {/* Polka-dot background texture. The layer is oversized vertically
               so the parallax translate never reveals the stage edges. */}
@@ -308,7 +308,7 @@ export function SpinnerMorph() {
               <line
                 key={`halo-${i}`}
                 {...l}
-                className="text-[#f0f0f0] dark:text-background"
+                className="text-[#e6e6e6] dark:text-background"
                 stroke="currentColor"
                 strokeWidth="6"
               />
@@ -317,7 +317,7 @@ export function SpinnerMorph() {
               <line
                 key={`trace-${i}`}
                 {...l}
-                className="text-black/20 dark:text-white/15"
+                className="text-black/25 dark:text-white/15"
                 stroke="currentColor"
                 strokeWidth="1.25"
               />
@@ -331,7 +331,7 @@ export function SpinnerMorph() {
               drop shadow. It carries `dark` so the spinner's own canvas stays
               dark in both themes, even when the stage around it is light. */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="rounded-[48px] bg-[#f0f0f0] p-1 dark:bg-background">
+            <div className="rounded-[48px] bg-[#e6e6e6] p-1 dark:bg-background">
               {/* Outer chip body — the IC package. Light theme renders a
                   brushed-silver chip; dark theme stays as the dark IC. */}
               <div
@@ -462,14 +462,14 @@ function TryYoursLink() {
           </motion.div>
         )}
       </AnimatePresence>
-      <span>100% Free</span>
+      <span>Up to 40 free spinners</span>
       <Link
         href="/spinners"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className="inline-flex items-center gap-1 underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--ls-foreground)]"
       >
-        Get yours
+        Get pre-made
         <ArrowUpRight size={12} />
       </Link>
     </div>

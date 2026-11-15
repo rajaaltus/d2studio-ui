@@ -18,18 +18,1082 @@ export type ProItem = {
 
 export const PRO_CATALOG: ProItem[] = [
   {
-    "name": "bento-05",
-    "title": "Studio Bento",
-    "summary": "A four-card studio bento on a masked dot field.",
-    "description": "A four-card studio bento on a masked dot field. Each card is a Figma gradient export carrying its own glass fill and 16px border; an ambilight sampled from the artwork blooms behind the grid as the section scrolls through, and the cards rise and brighten on the same switch. Below lg it settles into a still picture — no ambilight, no ripple, no sphere — and the globe card swaps its sphere for the stat deck it was carrying. Theme-aware and reduced-motion aware throughout.",
+    "name": "ship-at-sea-01",
+    "title": "Ship at Sea",
+    "summary": "A ship under way, drawn as an icon at any size.",
+    "description": "A ship under way, drawn as an icon at any size. A line of swell runs beneath the hull and the hull rides it, rocking four degrees about a point low in it and rising at each roll, while smoke leaves the funnel in round puffs. The swell is a sine line slid exactly one wavelength a loop, so it never jumps, and it fades out at both ends so it reads as water rather than a stroke. The ship rolls on 2.4 seconds against the swell's 1.8, so the two never fall into step. The smoke is three round puffs on one clock, a third of it apart, so it comes in beats with clear air between them: each leaves the funnel small and dark, rises, drifts off downwind, swells and fades, and negative delays start it already puffing. Every length is tuned once at 16px and held in em, so the drawing keeps its proportions at the size prop's value. The ink is the host's foreground eased toward the page, so it sits in either theme, and the swell is blue. A paused prop holds every loop where it stands. All of it is CSS keyframes on translate, rotate, scale and opacity, and under reduced motion the ship sits level on a still line with the smoke gone.",
+    "group": "illustrations",
+    "category": "icons",
+    "categoryLabel": "Icons",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "cube-spinner",
+    "title": "Cube Spinner",
+    "summary": "A 2 by 2 by 2 pocket cube that scrambles itself, as a loading spinner.",
+    "description": "A 2 by 2 by 2 pocket cube that scrambles itself, as a loading spinner. It is real CSS 3D rather than a drawing: eight boxes under one preserve-3d scene, placed with translate3d, their opaque faces doing the hidden line removal a wireframe version has to compute per frame. That is what buys the three axes. The usual trick for this picture projects isometric coordinates in a frame loop, and a turn about the upright axis does have a flat equivalent, but a turn about the other two does not, so the flat version can only ever spin one way. Processing is a move engine rather than a keyframe, and it has to be: a quarter turn leaves the boxes in new places, so which four move next depends on every move before it. Each move picks an axis, a layer and a direction, never the same layer twice running, since repeating one reads as a single slow turn and reversing it reads as a rock. There is a beat between moves, which is what makes it a hand rather than a motor. The engine is eight positions, a permutation per move and one Web Animations call, with no frame loop of its own: the browser runs the turn and says when it lands. The pose a turn ends on and the pose the new coordinates describe are the same picture, so committing one for the other has nothing to show. Axis chooses the move set. All is the Rubik one, right, left, up and down in no order; pinning X, Y or Z keeps the layer and the direction random and the axis fixed. Five states cover an agent's turn, and every one but the scramble stays in the stylesheet, since none of them moves a box for good: thinking rocks one layer a sixth of a turn and back without ever completing a face, waiting lifts the top layer clear and lets it hover with the edges dimmed, organising steps each box out and back in turn, and complete is square and still with the edges coming up and one corner answering once. A paused prop holds every one of them where it stands, the scramble included. That corner carries the bright edge in every state and travels with the scramble, because eight identical boxes give the eye nowhere to start and a symmetric layer turning is invisible until something marks it. Only a transform is ever animated, so a page of them stays on the compositor. Colours resolve through the component's own prefixed variables with host token fallbacks, so a surface with its own palette dresses it by declaring four values, and nothing turns under prefers reduced motion.",
+    "group": "components",
+    "category": "progress",
+    "categoryLabel": "Progress",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "report-folders-01",
+    "title": "Report Folders",
+    "summary": "Three AI research documents, a dataset card, eval results and a research paper, standing over three folders, the back one blue and the others amber and fuchsia, each sheet taking its folder's colour on its icon, its first rule and its chip.",
+    "description": "Three AI research documents, a dataset card, eval results and a research paper, standing over three folders, the back one blue and the others amber and fuchsia, each sheet taking its folder's colour on its icon, its first rule and its chip. Under the pointer the folders swing out behind, the back one furthest, and the documents fan up off them, the front one lifting 12px and growing 4%, every sheet pivoting on its bottom left corner so the stack opens like a hand of cards. Each layer keeps its own stagger in both directions, so the stack closes back up in the order it opened. The folders ride a spring that passes its pose by 20% and settles at 790ms, the sheets a looser one that passes by 28% and settles at 850ms, so the documents arrive with a little more life than what they sit on; both are sampled into CSS `linear()` curves and run as transitions, so leaving mid swing retargets from wherever each sheet got to, with no motion library and no client boundary. There is no panel behind the stack, so it takes whatever surface it is dropped on. The folders hold their colours in both themes, and the sheets are white on a light page and neutral on a dark one, where each accent steps up to its 400. The hover is gated to a real pointer, nothing moves under reduced motion, and the documents, the chips and the reference are props.",
+    "group": "illustrations",
+    "category": "document",
+    "categoryLabel": "Document",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "profit-bars-01",
+    "title": "Profit Bars",
+    "summary": "Seven months of revenue as stacked bars, expense solid at the base and profit hatched above it, with a legend and a month on month badge over the row.",
+    "description": "Seven months of revenue as stacked bars, expense solid at the base and profit hatched above it, with a legend and a month on month badge over the row. The first and last months' tooltips align to the bar's outer edge rather than centring, so they never hang past the chart, and the chart keeps headroom above the legend for the tallest bar's tooltip. There is no panel behind it, so the chart takes whatever surface it is dropped on, and every fill is blue 500, with text in the accent stepped to blue 600 on light and blue 400 on dark so small type still reads. The bars grow in once the chart scrolls into view, 700ms each on a strong ease out, 60ms apart, and only once, since a chart that regrows every time it passes is a chart nobody gets to read. They grow in height rather than scale, so the hatch and the rounded corners never stretch and both segments keep their share of the bar as it rises. Hovering a month lifts its bar by 4% on a sampled spring, brightens it a touch, turns its label blue and opens a tooltip with the profit, expense and revenue: transitions.dev's tooltip timing, in over 150ms from 0.98, out in 50ms, with no open delay, since the bars sit 10px apart and a delay would blank the tooltip on every step along the row. Every hover state is a CSS transition gated to a real pointer, so moving along the row retargets rather than re-rendering the chart, and the in-view flag is the only client code. The months, the badge and the currency are props, every colour is held in block variables for both themes, and under reduced motion the bars appear grown and the tooltip still opens, without the travel.",
+    "group": "illustrations",
+    "category": "visualization",
+    "categoryLabel": "Visualization",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "fx-exchange-01",
+    "title": "Logistics Route",
+    "summary": "Three white chips standing straight on the stage, warehouse, transit and delivered, each with a filled glyph beside its label in its own colour, amber stored, blue moving and green delivered, and a treadmill of blue arrows between each pair, one row running right and the row under it running left, so goods read as moving both ways along the route.",
+    "description": "Three white chips standing straight on the stage, warehouse, transit and delivered, each with a filled glyph beside its label in its own colour, amber stored, blue moving and green delivered, and a treadmill of blue arrows between each pair, one row running right and the row under it running left, so goods read as moving both ways along the route. The chips carry a drop shadow to sit on the page and two inner shadows to press their faces in a touch, and there is no panel behind them, so the picture takes whatever surface it is dropped on. The arrows only run while the card is under the pointer: a loop that never stops is the one animation nobody stops seeing. Each row is two copies of one arrow on a track as wide as a single arrow, slid by exactly that width on a 900ms linear lap, so the loop has no seam, and the rest pose is where a lap ends, so leaving mid lap settles into a picture that already looks like the loop. The hover is a CSS `:hover` on the root rather than an active prop, gated to a real pointer, so the component renders on the server with no client boundary. The steps, their icons and their colours are a prop, every other colour is held in block variables and pinned in both themes, and nothing moves under reduced motion.",
+    "group": "illustrations",
+    "category": "flow",
+    "categoryLabel": "Flow",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "month-end-bars-01",
+    "title": "Month End",
+    "summary": "Five rising bars in one blue to sky gradient, the close shrinking to nothing, with no panel behind them, so the drawing takes whatever surface it is dropped on and its box is exactly the bars plus 10px of headroom for the lift.",
+    "description": "Five rising bars in one blue to sky gradient, the close shrinking to nothing, with no panel behind them, so the drawing takes whatever surface it is dropped on and its box is exactly the bars plus 10px of headroom for the lift. The bars share one gradient, blue 500 at the base to sky 400 at the tallest bar's height, painted at that fixed size from each bar's own bottom edge, so a short bar only reaches the blue and the tallest reaches full sky and the colour rises with the bars; both shades read on either theme, so the gradient is the same in both. Every value is held in block variables. Each bar lifts ten pixels on its own hover and falls back when the pointer moves on, so running the pointer along the row plays the bars like keys. The lift is a spring, stiffness 260 and damping 18, sampled into a CSS `linear()` curve: it settles in 360ms with a 4% overshoot, with no motion library and no client boundary. It is a transition rather than keyframes, so a bar left mid lift retargets from wherever it got to. The hover is gated to a real pointer, and under reduced motion the bars stay put.",
+    "group": "illustrations",
+    "category": "visualization",
+    "categoryLabel": "Visualization",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "fancy-folder-01",
+    "title": "Fancy Folder",
+    "summary": "A folder of three reports that fans open under the pointer, and nothing else.",
+    "description": "A folder of three reports that fans open under the pointer, and nothing else. The sheets rise out of the folder's mouth and fan, each further out and further turned the further it sits from the middle, the back one higher so the fan has depth, growing a little from its bottom edge, while the front drops back and foreshortens the way a real flap does as it tips away. The motion is a short spring with one small overshoot, the sheets 30ms apart from back to front, and it is all transitions, so leaving mid fan retargets from wherever the sheets got to. The folder sits at the centre of its stage with the headroom the fan rises into split evenly around it. The hover is gated to a real pointer so a tap cannot leave the fan open, and under reduced motion it snaps rather than travels. A user glyph is pressed into the front panel, a shade darker than it with an inner shadow along its top edges and the panel's lip highlight under it, and it tips open with the flap. No client boundary of its own: the component renders on the server and the stylesheet does the rest. The folder is neutral in both themes so the only colour is each report's accent, and every value is held in block variables.",
+    "group": "illustrations",
+    "category": "flow",
+    "categoryLabel": "Flow",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "generate-reports-02",
+    "title": "Folder Reports",
+    "summary": "A folder of reports that sends them when pressed.",
+    "description": "A folder of reports that sends them when pressed. The stage opens on the folder alone, three reports standing in it, and nothing plays until it is pressed: a demo that runs itself is watched once, while one that waits for a press is the visitor doing the thing the picture describes. The folder is a real button and answers in three steps along one motion. Hover tips its front open a crack and lifts the sheets, which is the whole affordance, gated to a real pointer so a tap cannot leave it ajar; a press scales it to 0.96; and the play opens the flap fully while four AI reports rise out of its mouth from behind the front panel, clear the tab, and arc down into their slots with a squash and stretch bounce, the sheets inside fading as they go so the folder is left empty. The slots and their labels are not there until the reports leave, then rise in 40ms apart on a texts reveal, settled before the first report lands. An empty folder has nothing to send, so it is inert once the reports land, and a reset button under the stage puts the sheets back and clears the slots with a single quiet fade; both controls are inert while a play runs, since restarting mid flight would snap documents out of the air. Hover and press are interruptible transitions on one ease out curve, the play is keyframes because it runs once per press, and under reduced motion a press fills every slot in place. The stage has no container and no grid, the folder is neutral in both themes so the only colour is each report's accent, every value is held in block variables, and the slot names are a prop.",
+    "group": "illustrations",
+    "category": "flow",
+    "categoryLabel": "Flow",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "fingerprint-scan-01",
+    "title": "Fingerprint Scan",
+    "summary": "Heroicons' fingerprint inside four corner brackets at 128px, a step under the size a sensor prompt sits at in a sign in sheet, the brackets a dulled blue 500 eased halfway toward the page while it scans so they guide rather than compete with the bar, read the way a sensor reads one.",
+    "description": "Heroicons' fingerprint inside four corner brackets at 128px, a step under the size a sensor prompt sits at in a sign in sheet, the brackets a dulled blue 500 eased halfway toward the page while it scans so they guide rather than compete with the bar, read the way a sensor reads one. A bar sweeps it down and back up between the brackets' own edges, each leg eased in and out so it glides through the turn, its glow trailing behind it and folding flat as it turns, and the ridges it is crossing light blue through a band that rides with it. The bar is what finds the pattern: on the way down every minutia it passes, the core and seven ridge endings, lights as a solid dot in a brightened blue 500 at the moment the bar crosses it, then blinks slowly like a server's status light until the verdict, the times solved from the sweep's own curve rather than staggered; on the way back up the print steps back and each one is tied to the core by a hairline as the bar passes it again. A beat after the bar leaves, the frame closes in and turns green, the marks clear and a green disc lands with its check drawing itself in, a fade, a turn upright, a clearing blur and one small overshoot, while the label underneath has moved from Scanning to Analyzing pattern to Identity verified in place, the two working labels each crossed by one shimmer timed to their leg of the sweep and the verdict left still. It plays once when the card scrolls into view, and a replay button under it plays it again, inert while a play runs. Every motion is a CSS animation or transition keyed off one data attribute. The ink is the host's foreground eased toward the page, a soft charcoal rather than black, blue and green are block variables, the gradient id is per instance, and under reduced motion it rests in the scanning pose with the replay button hidden.",
+    "group": "illustrations",
+    "category": "icons",
+    "categoryLabel": "Icons",
+    "tier": "pro",
+    "dependencies": [
+      "@iconify-react/heroicons@gitlab:iconify-icons/react#heroicons",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "file-card-txt",
+    "title": "TXT File",
+    "summary": "A txt file card for building interfaces with the AI chat: a blank sheet sketching lines of plain text in the host's foreground, with a txt tag hanging off its right edge in Apricot Yellow, from Sanzo Wada's A Dictionary of Color Combinations.",
+    "description": "A txt file card for building interfaces with the AI chat: a blank sheet sketching lines of plain text in the host's foreground, with a txt tag hanging off its right edge in Apricot Yellow, from Sanzo Wada's A Dictionary of Color Combinations. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft white inner shadow gathers along the bottom of each letter, and a white drop under the word cuts it out of the face. The tag is drawn for each theme: the light fill shown here on a white page, and in dark the deeper swatch of the same hue, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-doc",
+    "title": "DOC File",
+    "summary": "A doc file card for building interfaces with the AI chat: a blank sheet sketching lines of a written document in the host's foreground and signed at its foot, a pen stroke over a short rule on the left where the tag cannot cover it, with a doc tag hanging off its right edge in blue 500.",
+    "description": "A doc file card for building interfaces with the AI chat: a blank sheet sketching lines of a written document in the host's foreground and signed at its foot, a pen stroke over a short rule on the left where the tag cannot cover it, with a doc tag hanging off its right edge in blue 500. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a 1.5px dark drop under the word seats it on the plate. The tag is drawn for each theme: the light fill shown here on a white page, and in dark the deeper swatch of the same hue, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-pdf",
+    "title": "PDF File",
+    "summary": "A pdf file card for building interfaces with the AI chat: a blank sheet sketching lines of a printed page in the host's foreground and signed at its foot, one tall looped pen stroke running out in a short wave on the left where the tag cannot cover it, with a pdf tag hanging off its right edge in rose 500, outlined in rose 600.",
+    "description": "A pdf file card for building interfaces with the AI chat: a blank sheet sketching lines of a printed page in the host's foreground and signed at its foot, one tall looped pen stroke running out in a short wave on the left where the tag cannot cover it, with a pdf tag hanging off its right edge in rose 500, outlined in rose 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: rose 500 on a white page, and in dark rose 600 outlined in rose 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-md",
+    "title": "MD File",
+    "summary": "A md file card for building interfaces with the AI chat: a blank sheet sketching a heading mark over short paragraphs in the host's foreground, with a md tag hanging off its right edge in neutral 700.",
+    "description": "A md file card for building interfaces with the AI chat: a blank sheet sketching a heading mark over short paragraphs in the host's foreground, with a md tag hanging off its right edge in neutral 700. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: White ink on neutral 700 outlined in neutral 800 on a white page, and on neutral 800 outlined in neutral 600 on a dark one, which is what keeps its edge there. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-mdx",
+    "title": "MDX File",
+    "summary": "A mdx file card for building interfaces with the AI chat: a blank sheet sketching a heading mark over short paragraphs in the host's foreground, with a mdx tag hanging off its right edge in cyan 500.",
+    "description": "A mdx file card for building interfaces with the AI chat: a blank sheet sketching a heading mark over short paragraphs in the host's foreground, with a mdx tag hanging off its right edge in cyan 500. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft inner shadow gathers along the bottom of each letter, with a drop under the word in the theme's own lift. The tag is drawn for each theme: cyan 500 with Black ink and a white lift, outlined in cyan 600, on a white page, and cyan 600 with White ink and a dark drop, outlined in cyan 400, on a dark one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-xls",
+    "title": "XLS File",
+    "summary": "A xls file card for building interfaces with the AI chat: a blank sheet sketching a header row over a grid of short rounded cells in the host's foreground, with a xls tag hanging off its right edge in green 500, outlined in green 600.",
+    "description": "A xls file card for building interfaces with the AI chat: a blank sheet sketching a header row over a grid of short rounded cells in the host's foreground, with a xls tag hanging off its right edge in green 500, outlined in green 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: green 500 on a white page, and in dark green 600 outlined in green 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-csv",
+    "title": "CSV File",
+    "summary": "A csv file card for building interfaces with the AI chat: a blank sheet sketching a header row over rows of values in the host's foreground, with a csv tag hanging off its right edge in emerald 500, outlined in emerald 600.",
+    "description": "A csv file card for building interfaces with the AI chat: a blank sheet sketching a header row over rows of values in the host's foreground, with a csv tag hanging off its right edge in emerald 500, outlined in emerald 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: emerald 500 on a white page, and in dark emerald 600 outlined in emerald 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-zip",
+    "title": "ZIP File",
+    "summary": "A zip file card for building interfaces with the AI chat: a blank sheet sketching the zipper teeth of an archive in the host's foreground, with a zip tag hanging off its right edge in violet 500, outlined in violet 600.",
+    "description": "A zip file card for building interfaces with the AI chat: a blank sheet sketching the zipper teeth of an archive in the host's foreground, with a zip tag hanging off its right edge in violet 500, outlined in violet 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: violet 500 on a white page, and in dark violet 600 outlined in violet 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-tar",
+    "title": "TAR File",
+    "summary": "A tar file card for building interfaces with the AI chat: a blank sheet sketching the zipper teeth of an archive in the host's foreground, with a tar tag hanging off its right edge in teal 500, outlined in teal 600.",
+    "description": "A tar file card for building interfaces with the AI chat: a blank sheet sketching the zipper teeth of an archive in the host's foreground, with a tar tag hanging off its right edge in teal 500, outlined in teal 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: teal 500 on a white page, and in dark teal 600 outlined in teal 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-ppt",
+    "title": "PPT File",
+    "summary": "A ppt file card for building interfaces with the AI chat: a blank sheet sketching a slide of a square in Coral Red, a circle in Cream Yellow and a triangle in Calamine Blue, three light Sanzo Wada swatches, over its notes in the host's foreground, with a ppt tag hanging off its right edge in orange 500, outlined in orange 600.",
+    "description": "A ppt file card for building interfaces with the AI chat: a blank sheet sketching a slide of a square in Coral Red, a circle in Cream Yellow and a triangle in Calamine Blue, three light Sanzo Wada swatches, over its notes in the host's foreground, with a ppt tag hanging off its right edge in orange 500, outlined in orange 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: orange 500 on a white page, and in dark orange 600 outlined in orange 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-pptx",
+    "title": "PPTX File",
+    "summary": "A pptx file card for building interfaces with the AI chat: a blank sheet headed by PowerPoint's P on a tile in its own orange beside the title, drawn rather than the trademarked artwork, over a slide of a square in Coral Red, a circle in Cream Yellow and a triangle in Calamine Blue, three light Sanzo Wada swatches, over its notes in the host's foreground, with a pptx tag hanging off its right edge in orange 700, Tailwind's nearest to PowerPoint's orange, outlined in orange 800.",
+    "description": "A pptx file card for building interfaces with the AI chat: a blank sheet headed by PowerPoint's P on a tile in its own orange beside the title, drawn rather than the trademarked artwork, over a slide of a square in Coral Red, a circle in Cream Yellow and a triangle in Calamine Blue, three light Sanzo Wada swatches, over its notes in the host's foreground, with a pptx tag hanging off its right edge in orange 700, Tailwind's nearest to PowerPoint's orange, outlined in orange 800. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: orange 700 on a white page, and in dark orange 600 outlined in orange 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-json",
+    "title": "JSON File",
+    "summary": "A json file card for building interfaces with the AI chat: a blank sheet sketching keys and values inside braces in the host's foreground, with a json tag hanging off its right edge in amber 400, outlined in amber 500.",
+    "description": "A json file card for building interfaces with the AI chat: a blank sheet sketching keys and values inside braces in the host's foreground, with a json tag hanging off its right edge in amber 400, outlined in amber 500. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft white inner shadow gathers along the bottom of each letter, and a white drop under the word cuts it out of the face. The tag is drawn for each theme: amber 400 on a white page, and in dark amber 500 outlined in amber 300, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-css",
+    "title": "CSS File",
+    "summary": "A css file card for building interfaces with the AI chat: a blank sheet headed by a pair of braces in cyan over a CSS rule, its selector, properties, values and braces in VS Code's syntax colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, in the host's foreground, with a css tag hanging off its right edge in cyan 500, outlined in cyan 600.",
+    "description": "A css file card for building interfaces with the AI chat: a blank sheet headed by a pair of braces in cyan over a CSS rule, its selector, properties, values and braces in VS Code's syntax colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, in the host's foreground, with a css tag hanging off its right edge in cyan 500, outlined in cyan 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft inner shadow gathers along the bottom of each letter, with a drop under the word in the theme's own lift. The tag is drawn for each theme: cyan 500 on a white page with Black ink, and in dark cyan 600 outlined in cyan 400 with White ink, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-code",
+    "title": "CODE File",
+    "summary": "A code file card for building interfaces with the AI chat: a blank sheet headed by a code mark in indigo over four lines of a function, each token in VS Code's syntax colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, in the host's foreground, with a code tag hanging off its right edge in indigo 500, outlined in indigo 600.",
+    "description": "A code file card for building interfaces with the AI chat: a blank sheet headed by a code mark in indigo over four lines of a function, each token in VS Code's syntax colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, in the host's foreground, with a code tag hanging off its right edge in indigo 500, outlined in indigo 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: indigo 500 on a white page, and in dark indigo 600 outlined in indigo 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "file-card-png",
+    "title": "PNG File",
+    "summary": "A png file card for building interfaces with the AI chat: a blank sheet sketching a landscape, a sun in the top corner over a tall range of two pointed peaks in translucent green with a stand of pines in front, on a ground line raised clear of the tag in the host's foreground, with a png tag hanging off its right edge in fuchsia 500, outlined in fuchsia 600.",
+    "description": "A png file card for building interfaces with the AI chat: a blank sheet sketching a landscape, a sun in the top corner over a tall range of two pointed peaks in translucent green with a stand of pines in front, on a ground line raised clear of the tag in the host's foreground, with a png tag hanging off its right edge in fuchsia 500, outlined in fuchsia 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: fuchsia 500 on a white page, and in dark fuchsia 600 outlined in fuchsia 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-jpg",
+    "title": "JPG File",
+    "summary": "A jpg file card for building interfaces with the AI chat: a blank sheet sketching a landscape, a sun in the top corner over a tall range of two pointed peaks in translucent green with a stand of pines in front, on a ground line raised clear of the tag in the host's foreground, with a jpg tag hanging off its right edge in pink 500, outlined in pink 600.",
+    "description": "A jpg file card for building interfaces with the AI chat: a blank sheet sketching a landscape, a sun in the top corner over a tall range of two pointed peaks in translucent green with a stand of pines in front, on a ground line raised clear of the tag in the host's foreground, with a jpg tag hanging off its right edge in pink 500, outlined in pink 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: pink 500 on a white page, and in dark pink 600 outlined in pink 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-img",
+    "title": "IMG File",
+    "summary": "A img file card for building interfaces with the AI chat: a blank sheet sketching a landscape, a sun in the top corner over a tall range of two pointed peaks in translucent green with a stand of pines in front, on a ground line raised clear of the tag in the host's foreground, with a img tag hanging off its right edge in rose 500, outlined in rose 600.",
+    "description": "A img file card for building interfaces with the AI chat: a blank sheet sketching a landscape, a sun in the top corner over a tall range of two pointed peaks in translucent green with a stand of pines in front, on a ground line raised clear of the tag in the host's foreground, with a img tag hanging off its right edge in rose 500, outlined in rose 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft grey inner shadow gathers along the bottom of each letter, and a dark drop under the word seats it on the plate. The tag is drawn for each theme: rose 500 on a white page, and in dark rose 600 outlined in rose 400, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-mp4",
+    "title": "MP4 File",
+    "summary": "An mp4 file card for building interfaces with the AI chat: a blank sheet sketching a play mark over a single caption line in the host's foreground, with an mp4 tag hanging off its right edge in sky 500, outlined in sky 600.",
+    "description": "An mp4 file card for building interfaces with the AI chat: a blank sheet sketching a play mark over a single caption line in the host's foreground, with an mp4 tag hanging off its right edge in sky 500, outlined in sky 600. The tag carries the Chalk Button's lit edge, a light line just over half a pixel inside its top side, so it reads as a small plate catching a light above it rather than a flat sticker, and a small two layer drop lifts it off the sheet. The label is Be Vietnam Pro at semibold weight, pressed in: a soft inner shadow gathers along the bottom of each letter, with a drop under the word in the theme's own lift. The tag is drawn for each theme: sky 500 on a white page with White ink, and in dark sky 600 outlined in sky 400 with White ink, with the ink and its lift switched to suit it, a white drop under Black ink on a pale plate and a dark drop under White ink on a deep one. Its hairline follows the fill, a step darker in light and a step lighter in dark. The sheet carries a soft drop under it. It takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-docx",
+    "title": "DOCX File",
+    "summary": "A docx file card for building interfaces with the AI chat: a blank sheet sketching a Word document, Word's W on a tile in its own blue beside the title and lines of text under it, with a docx tag hanging off its right edge in blue 700, Tailwind's nearest to Word's blue.",
+    "description": "A docx file card for building interfaces with the AI chat: a blank sheet sketching a Word document, Word's W on a tile in its own blue beside the title and lines of text under it, with a docx tag hanging off its right edge in blue 700, Tailwind's nearest to Word's blue. The mark is drawn, a letter on a tile the way a file browser shows the file, rather than the trademarked artwork. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-xlsx",
+    "title": "XLSX File",
+    "summary": "An xlsx file card for building interfaces with the AI chat: a blank sheet sketching an Excel workbook, Excel's X on a tile in its own green beside the title over a grid of short rounded cells with its header row in that green, with an xlsx tag hanging off its right edge in green 700, Tailwind's nearest to Excel's green.",
+    "description": "An xlsx file card for building interfaces with the AI chat: a blank sheet sketching an Excel workbook, Excel's X on a tile in its own green beside the title over a grid of short rounded cells with its header row in that green, with an xlsx tag hanging off its right edge in green 700, Tailwind's nearest to Excel's green. The mark is drawn, a letter on a tile the way a file browser shows the file, rather than the trademarked artwork. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-mp3",
+    "title": "MP3 File",
+    "summary": "An mp3 file card for building interfaces with the AI chat: a waveform of fifteen bars across a blank sheet, in Sanzo Wada's Grayish Lavender, a light purple beside the tag's, with an mp3 tag hanging off its right edge in purple 500.",
+    "description": "An mp3 file card for building interfaces with the AI chat: a waveform of fifteen bars across a blank sheet, in Sanzo Wada's Grayish Lavender, a light purple beside the tag's, with an mp3 tag hanging off its right edge in purple 500. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-svg",
+    "title": "SVG File",
+    "summary": "An svg file card for building interfaces with the AI chat: a blank sheet showing a vector path being edited, one curve in an editor's selection blue with its three anchors as small squares, the middle anchor's handles drawn out, with an svg tag hanging off its right edge in indigo 500.",
+    "description": "An svg file card for building interfaces with the AI chat: a blank sheet showing a vector path being edited, one curve in an editor's selection blue with its three anchors as small squares, the middle anchor's handles drawn out, with an svg tag hanging off its right edge in indigo 500. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-gif",
+    "title": "GIF File",
+    "summary": "A gif file card for building interfaces with the AI chat: a landscape on a blank sheet, a sun over two pointed peaks with tall pines in front, the scene the other picture cards draw, with a gif tag hanging off its right edge in slate 600.",
+    "description": "A gif file card for building interfaces with the AI chat: a landscape on a blank sheet, a sun over two pointed peaks with tall pines in front, the scene the other picture cards draw, with a gif tag hanging off its right edge in slate 600. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-fig",
+    "title": "FIG File",
+    "summary": "A fig file card for building interfaces with the AI chat: a blank sheet with Figma's mark alone at its centre in the five brand colours, the way the app's own file icon shows it, with a fig tag hanging off its right edge in purple 500, Tailwind's nearest to Figma's purple.",
+    "description": "A fig file card for building interfaces with the AI chat: a blank sheet with Figma's mark alone at its centre in the five brand colours, the way the app's own file icon shows it, with a fig tag hanging off its right edge in purple 500, Tailwind's nearest to Figma's purple. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-js",
+    "title": "JS File",
+    "summary": "A js file card for building interfaces with the AI chat: a blank sheet of four lines of code with each token in VS Code's colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, with a js tag hanging off its right edge in yellow 400 and dark ink.",
+    "description": "A js file card for building interfaces with the AI chat: a blank sheet of four lines of code with each token in VS Code's colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, with a js tag hanging off its right edge in yellow 400 and dark ink. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-ts",
+    "title": "TS File",
+    "summary": "A ts file card for building interfaces with the AI chat: a blank sheet holding a type declaration whose types are drawn in teal, each token in VS Code's colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, with a ts tag hanging off its right edge in blue 600.",
+    "description": "A ts file card for building interfaces with the AI chat: a blank sheet holding a type declaration whose types are drawn in teal, each token in VS Code's colours, Light+ at about half strength on a white sheet and Dark+ on a dark one, with a ts tag hanging off its right edge in blue 600. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-html",
+    "title": "HTML File",
+    "summary": "An html file card for building interfaces with the AI chat: a blank sheet headed by a tag badge, white on HTML5's orange, beside the title, over three lines of nested tags whose names and attributes are in VS Code's HTML colours, with an html tag hanging off its right edge in orange 600, Tailwind's nearest to HTML5's orange.",
+    "description": "An html file card for building interfaces with the AI chat: a blank sheet headed by a tag badge, white on HTML5's orange, beside the title, over three lines of nested tags whose names and attributes are in VS Code's HTML colours, with an html tag hanging off its right edge in orange 600, Tailwind's nearest to HTML5's orange. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-ics",
+    "title": "ICS File",
+    "summary": "An ics file card for building interfaces with the AI chat: a calendar page on a blank sheet, a pink header with its two binding rings over a month of days drawn as dots, one marked in pink for the day the invite is for, with an ics tag hanging off its right edge in pink 500.",
+    "description": "An ics file card for building interfaces with the AI chat: a calendar page on a blank sheet, a pink header with its two binding rings over a month of days drawn as dots, one marked in pink for the day the invite is for, with an ics tag hanging off its right edge in pink 500. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-eml",
+    "title": "EML File",
+    "summary": "An eml file card for building interfaces with the AI chat: a saved email on a blank sheet, an envelope in translucent blue with its flap drawn across the top, over its from, to and subject lines, with an eml tag hanging off its right edge in blue 500.",
+    "description": "An eml file card for building interfaces with the AI chat: a saved email on a blank sheet, an envelope in translucent blue with its flap drawn across the top, over its from, to and subject lines, with an eml tag hanging off its right edge in blue 500. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "file-card-mov",
+    "title": "MOV File",
+    "summary": "A mov file card for building interfaces with the AI chat: a blank sheet sketching a play mark in a frame over a single caption line, the same picture as the mp4 card, drawn in greyscale, the play mark in the foreground at low strength, with a mov tag hanging off its right edge in neutral 500.",
+    "description": "A mov file card for building interfaces with the AI chat: a blank sheet sketching a play mark in a frame over a single caption line, the same picture as the mp4 card, drawn in greyscale, the play mark in the foreground at low strength, with a mov tag hanging off its right edge in neutral 500. The tag carries the Chalk Button's lit edge and a small two layer drop, its label in Be Vietnam Pro at semibold weight, and it is drawn for each theme, a step deeper in dark with its outline a step lighter. The sheet carries a soft drop under it, takes the secondary surface in dark and a hairline ring in the border token, and nothing moves.",
+    "group": "illustrations",
+    "category": "files",
+    "categoryLabel": "Files",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "cloud-tile-01",
+    "title": "Cloud Tile",
+    "summary": "The cloud status tile from a product hero, on its own and centred on its stage, sitting in a clear mat inside a band of diagonal hatching the way the lightning tile does, with nothing filled behind either so the stage shows through, the band one path with a rounded hole concentric with the tile: a rounded plate with a soft layered drop shadow and a half pixel rim, and a cloud in a blue 500 to indigo 400 gradient pressed into the plate by a 1px inner shadow.",
+    "description": "The cloud status tile from a product hero, on its own and centred on its stage, sitting in a clear mat inside a band of diagonal hatching the way the lightning tile does, with nothing filled behind either so the stage shows through, the band one path with a rounded hole concentric with the tile: a rounded plate with a soft layered drop shadow and a half pixel rim, and a cloud in a blue 500 to indigo 400 gradient pressed into the plate by a 1px inner shadow. The shadow is drawn as geometry rather than an SVG filter, the cloud minus a copy of itself shifted down 1px, so its edge stays crisp at any size where a filter's raster pass would step it. Hovering the tile turns the light on: the cloud brightens and one soft, wide diagonal band sweeps across it at a subtle strength, clipped to its outline so it never shows past the edge. The hover runs on Motion: the sweep takes 900ms and letting go 250ms, both on one strong ease out, and because every animate call retargets from where the band is, leaving mid sweep fades it out in place and only puts it back behind the left edge once it is invisible. Motion's hover gesture ignores touch, so a tap cannot leave it on, and under reduced motion only the brightening plays. Light draws the source's own greys as literals and dark runs the tile from neutral 900 down to the muted plate. Filter, clip and gradient ids are per instance.",
+    "group": "illustrations",
+    "category": "icons",
+    "categoryLabel": "Icons",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
+    ]
+  },
+  {
+    "name": "lightning-tile-01",
+    "title": "Lightning Tile",
+    "summary": "A dark tilted tile with a lightning bolt on it, drawn and timed as the icon it comes from.",
+    "description": "A dark tilted tile with a lightning bolt on it, drawn and timed as the icon it comes from. Three cursors blink random cells of the grid behind the bolt, each on its own beat, while a glint runs round the bolt's outline and the glow at its centre swells and settles. It plays twice and only once it scrolls into view, so a tile further down a page does not spend both laps where nobody is looking. The two laps are one eased animation, so the glint gathers speed from rest and settles back into it, and the dash pattern is exactly one lap long so it rests where it started. A cell lights almost at once and lets go over 400ms, so each cursor leaves a short afterglow, and the bolt answers the start of a play with a small press from 0.97. A replay button under the tile turns once as it is pressed and is inert while a play runs, since restarting mid lap would jump the glint. Every animation hangs off one data attribute, so replay restarts them without remounting the drawing. The colours are the source's own values held in block variables, so the tile stays dark in both themes, gradient and filter ids are per instance, and nothing moves under prefers-reduced-motion.",
+    "group": "illustrations",
+    "category": "icons",
+    "categoryLabel": "Icons",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "orbit-rings-01",
+    "title": "Orbit Rings",
+    "summary": "Concentric rings around a single mark: one thing at the centre, and the field it pulls from ringed around it.",
+    "description": "Concentric rings around a single mark: one thing at the centre, and the field it pulls from ringed around it. It is the picture the Cadence journey draws on its welcome card and again filling the plan step's whole right column, standing on its own. Rings rather than a drawing, and percentages rather than pixels, for exactly that reason: the ring count sets how many there are and every width falls out of it, so the same component is a small decoration and a full panel with one prop between them, where a drawing tuned for one of those is wrong at the other. The first ring keeps its full step and only the ones after it close up, because the gap the mark sits in is the one distance the tightening must not touch: that gap is what gives the mark its own room, and a ring pulled in on top of it is a ring drawn around nothing. They are laid outermost first, so the innermost paints last and its edge is never cut by a sibling drawn over it, and each one steps down in opacity so the set reads as depth rather than as a target. The disc at the centre is filled with the muted plate rather than the page's own ground, since the rings around it are hairlines on the background and a disc painted in that same background is only its border, where a step up in tone is the mark reading as a solid object the rings are drawn around. Still, on purpose: these used to breathe on a loop, and a loop is the one animation nobody stops seeing, so on a screen somebody sits and reads the brightest thing in the frame was the decoration rather than the mark it was drawn around. The field is masked off top and bottom rather than scrimmed, so it gives way to whatever it is standing on instead of fading into one assumed colour, and a mask reads the alpha channel and ignores the hue, which is right on a light page and a dark one with nothing to keep in sync. Every colour is a host token. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "orbits",
+    "categoryLabel": "Orbits",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "empty-sieves-01",
+    "title": "Empty Sieves",
+    "summary": "An empty state for a page of tests nobody has run, drawn as an isometric line figure that answers the pointer, with the page's name and one line under it.",
+    "description": "An empty state for a page of tests nobody has run, drawn as an isometric line figure that answers the pointer, with the page's name and one line under it. Three test sieves in a stack, coarse mesh on top and fine at the bottom, with a few grains caught on the first and bare mesh under it. Moving across opens the stack on one spring and moving down picks a sieve, which lifts clear and carries the ones above it a beat later. It is the picture the AgentOS console stands in its Experiments section, drawn on its own so any empty page can use it. One stroke in four weights mixed from the host's own foreground and background, so it reads in both themes with no palette of its own, and the bright weight is the only highlight. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The heading and the note are props. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice because the package exports finished figures and not the core a new one is built on.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "empty-breakers-01",
+    "title": "Empty Breakers",
+    "summary": "An empty state for a page of settings nobody has changed, drawn as an isometric line figure that answers the pointer, with the page's name and one line under it.",
+    "description": "An empty state for a page of settings nobody has changed, drawn as an isometric line figure that answers the pointer, with the page's name and one line under it. A breaker panel with its lid stood open, every lever seated back and one pilot lamp lit. The breaker under the pointer trips and takes the lamp, and its neighbours come part of the way after it, staggered outwards. It is the picture the AgentOS console stands in its Settings section, drawn on its own so any empty page can use it. One stroke in four weights mixed from the host's own foreground and background, so it reads in both themes with no palette of its own, and the bright weight is the only highlight. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The heading and the note are props. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice because the package exports finished figures and not the core a new one is built on.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "pipette-plate-01",
+    "title": "Pipette Plate",
+    "summary": "A multichannel pipette head with six tips stands over a ten by six well plate with a cut corner, and the pointer picks a column so the head lifts, travels there and dips its tips into those wells, which take the bright edge, all drawn in one stroke in four weights from host tokens.",
+    "description": "A multichannel pipette head with six tips stands over a ten by six well plate with a cut corner, and the pointer picks a column so the head lifts, travels there and dips its tips into those wells, which take the bright edge, all drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "wafer-01",
+    "title": "Wafer",
+    "summary": "A silicon wafer with a flat edge sits on a round chuck, diced into a grid of rectangular dies that rise near the pointer and fall off with distance to a clamped floor, all drawn in one stroke in four weights from host tokens.",
+    "description": "A silicon wafer with a flat edge sits on a round chuck, diced into a grid of rectangular dies that rise near the pointer and fall off with distance to a clamped floor, all drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "satellite-01",
+    "title": "Satellite",
+    "summary": "A small satellite with a box bus, two wings of three hinged solar panels and a tilted dish stands on a turntable platter.",
+    "description": "A small satellite with a box bus, two wings of three hinged solar panels and a tilted dish stands on a turntable platter. The pointer pushes the platter round, friction slows it and a detent catches it every 40 degrees. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "solar-tracker-01",
+    "title": "Solar Tracker",
+    "summary": "Three rows of solar panels with cell grid lines sit on single axis tracker posts.",
+    "description": "Three rows of solar panels with cell grid lines sit on single axis tracker posts. Each panel tilts on its own spring to face the pointer as if it were the sun, nearest panel first. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "cartridge-slot-01",
+    "title": "Cartridge Slot",
+    "summary": "A retro game console, its slider, reset button and power lamp on top and vents down its side, with a cartridge standing in its slot, still until touched: under the pointer the cartridge lifts out on a spring to show the contacts at its foot and takes the bright edge, then drops back in and seats when the pointer leaves, drawn in one stroke in four weights from host tokens.",
+    "description": "A retro game console, its slider, reset button and power lamp on top and vents down its side, with a cartridge standing in its slot, still until touched: under the pointer the cartridge lifts out on a spring to show the contacts at its foot and takes the bright edge, then drops back in and seats when the pointer leaves, drawn in one stroke in four weights from host tokens. The hit test reads the cartridge's resting outline and never the pose on screen, so nothing flickers as it rises out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "jog-console-01",
+    "title": "Jog Console",
+    "summary": "A video editor's desk controller, a jog wheel with grip ridges and a finger dimple inside a spring loaded shuttle ring, a block of mode keys and a row of transport keys, still until touched: the wheel turns its dimple to face the pointer, the shuttle ring twists toward it and springs back, and the key under it presses, whichever answers taking the bright edge, drawn in one stroke in four weights from host tokens.",
+    "description": "A video editor's desk controller, a jog wheel with grip ridges and a finger dimple inside a spring loaded shuttle ring, a block of mode keys and a row of transport keys, still until touched: the wheel turns its dimple to face the pointer, the shuttle ring twists toward it and springs back, and the key under it presses, whichever answers taking the bright edge, drawn in one stroke in four weights from host tokens. The hit test reads the console's fixed top plane and never the pose on screen, so nothing flickers when a key goes down. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "gear-train-01",
+    "title": "Gear Train",
+    "summary": "Four meshed spur gears on a base plate, each on its own axle and turning at the ratio of its teeth, always moving slowly; hovering a gear makes it the driver, the train spins up on a spring and that gear takes the bright edge, drawn in one stroke in four weights from host tokens.",
+    "description": "Four meshed spur gears on a base plate, each on its own axle and turning at the ratio of its teeth, always moving slowly; hovering a gear makes it the driver, the train spins up on a spring and that gear takes the bright edge, drawn in one stroke in four weights from host tokens. The hit test reads the gears' fixed top plane and never the pose on screen, so nothing flickers as the teeth turn under the pointer. One frame loop serves every figure on the page and sleeps when nothing is on screen, and reduced motion holds the train still. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "type-case-01",
+    "title": "Type Case",
+    "summary": "A printer's wooden type case seen from above, its compartments of different sizes each holding a ready cast block, a long rule or a round ornament, where the pieces near the pointer lift out of their wells, less the farther they sit, and the nearest takes the bright edge, drawn in one stroke in four weights from host tokens.",
+    "description": "A printer's wooden type case seen from above, its compartments of different sizes each holding a ready cast block, a long rule or a round ornament, where the pieces near the pointer lift out of their wells, less the farther they sit, and the nearest takes the bright edge, drawn in one stroke in four weights from host tokens. The pointer is read off the drawer's fixed floor and never the pose on screen, so nothing flickers when a piece rises out from under it. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "vending-coil-01",
+    "title": "Vending Coil",
+    "summary": "A vending machine shelf of three wire coils holding boxed products, where the row under the pointer turns its coil and walks its products forward until the front one edges out over the lip, drawn in one stroke in four weights from host tokens.",
+    "description": "A vending machine shelf of three wire coils holding boxed products, where the row under the pointer turns its coil and walks its products forward until the front one edges out over the lip, drawn in one stroke in four weights from host tokens. The hit test reads each coil's resting axis and never the pose on screen, so nothing flickers when a product moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "swatch-fan-01",
+    "title": "Swatch Fan",
+    "summary": "A designer's fan deck held upright, eight rounded blades pinned by a rivet at the foot and each carrying its own set of finished chips, where the deck fans open around the blade under the pointer and that blade lights, drawn in one stroke in four weights from host tokens.",
+    "description": "A designer's fan deck held upright, eight rounded blades pinned by a rivet at the foot and each carrying its own set of finished chips, where the deck fans open around the blade under the pointer and that blade lights, drawn in one stroke in four weights from host tokens. The hit test reads the pointer's bearing against each blade's resting tip and never the pose on screen, so nothing flickers when a blade swings out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "exploded-page-01",
+    "title": "Exploded Page",
+    "summary": "A web page taken apart into its finished sections, footer, pricing, bento, hero and nav floating in layers above the window frame with dashed drops between them, where the layer under the pointer lights and the stack opens above it, drawn in one stroke in four weights from host tokens.",
+    "description": "A web page taken apart into its finished sections, footer, pricing, bento, hero and nav floating in layers above the window frame with dashed drops between them, where the layer under the pointer lights and the stack opens above it, drawn in one stroke in four weights from host tokens. The hit test reads each layer's resting centre and never the pose on screen, so nothing flickers when a layer moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "toggle-board-01",
+    "title": "Toggle Board",
+    "summary": "A small control plate of four switches, two sliders and a push key, where knobs near the pointer slide on, slider thumbs glide toward it and the key presses down, each less the farther it sits, drawn in one stroke in four weights from host tokens.",
+    "description": "A small control plate of four switches, two sliders and a push key, where knobs near the pointer slide on, slider thumbs glide toward it and the key presses down, each less the farther it sits, drawn in one stroke in four weights from host tokens. The pointer is read off the plate's fixed top and never the pose on screen, so nothing flickers when a knob moves out from under it. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "crate-bay-01",
+    "title": "Crate Bay",
+    "summary": "A low tray holding nine lidded crates in a three by three grid, each numbered by dots on its lid, where the crate under the pointer lifts out of its slot and its neighbours rise a little in turn, drawn in one stroke in four weights from host tokens.",
+    "description": "A low tray holding nine lidded crates in a three by three grid, each numbered by dots on its lid, where the crate under the pointer lifts out of its slot and its neighbours rise a little in turn, drawn in one stroke in four weights from host tokens. The hit test reads each crate's seated lid and never the pose on screen, so nothing flickers when a crate moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "expanding-file-01",
+    "title": "Expanding File",
+    "summary": "An accordion folder with pleated side gussets and a closure tab, holding six index sheets each tabbed at its own place, where the sheet under the pointer lifts out of the pocket and its neighbours lean apart in turn, drawn in one stroke in four weights from host tokens.",
+    "description": "An accordion folder with pleated side gussets and a closure tab, holding six index sheets each tabbed at its own place, where the sheet under the pointer lifts out of the pocket and its neighbours lean apart in turn, drawn in one stroke in four weights from host tokens. The hit test reads each sheet's resting edge and never the pose on screen, so nothing flickers when a sheet moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "page-tray-01",
+    "title": "Page Tray",
+    "summary": "A shallow tray of seven finished page proofs standing on edge, each a browser window with its own layout, a hero, a bento grid, pricing columns or a call to action, where the page under the pointer stands up and lifts clear and its neighbours lean apart in turn, drawn in one stroke in four weights from host tokens.",
+    "description": "A shallow tray of seven finished page proofs standing on edge, each a browser window with its own layout, a hero, a bento grid, pricing columns or a call to action, where the page under the pointer stands up and lifts clear and its neighbours lean apart in turn, drawn in one stroke in four weights from host tokens. The hit test reads each page's resting edge and never the pose on screen, so nothing flickers when a page moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "folder-stand-01",
+    "title": "Folder Stand",
+    "summary": "A stepped wire desk rack of five file folders, each with its own tab, where the folder under the pointer lifts out of its slot and its neighbours lean apart in turn, drawn in one stroke in four weights from host tokens.",
+    "description": "A stepped wire desk rack of five file folders, each with its own tab, where the folder under the pointer lifts out of its slot and its neighbours lean apart in turn, drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "laptop-stand-01",
+    "title": "Laptop Stand",
+    "summary": "An aluminium laptop riser with two side legs and a front lip, carrying an open laptop, whose deck tilts on a spring as the pointer moves left to right, drawn in one stroke in four weights from host tokens.",
+    "description": "An aluminium laptop riser with two side legs and a front lip, carrying an open laptop, whose deck tilts on a spring as the pointer moves left to right, drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "desk-lamp-01",
+    "title": "Desk Lamp",
+    "summary": "An architect lamp with a weighted base, jointed arms and a conical shade on a dotted desk, whose head swings over the pointer on a spring while the dots in its pool of light brighten, drawn in one stroke in four weights from host tokens.",
+    "description": "An architect lamp with a weighted base, jointed arms and a conical shade on a dotted desk, whose head swings over the pointer on a spring while the dots in its pool of light brighten, drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "touch-keyboard-01",
+    "title": "Touch Keyboard",
+    "summary": "A slim chiclet keyboard with a touch strip along the back, where the keys near the pointer press down, the nearest deepest, drawn in one stroke in four weights from host tokens.",
+    "description": "A slim chiclet keyboard with a touch strip along the back, where the keys near the pointer press down, the nearest deepest, drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "arithmometer-01",
+    "title": "Arithmometer",
+    "summary": "A pinwheel arithmometer with setting levers in slots, a carriage of result wheels and a side crank.",
+    "description": "A pinwheel arithmometer with setting levers in slots, a carriage of result wheels and a side crank. The pointer pushes the crank round, friction slows it until a stop catches it at the next whole turn, and each turn adds the levers' number into the result wheels. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "keycap-board-01",
+    "title": "Keycap Board",
+    "summary": "A tall profile mechanical keyboard with a thick case and sculpted keycaps, where the keycap under the pointer lifts off to show its cross shaped switch stem and its neighbours lift less, staggered by distance.",
+    "description": "A tall profile mechanical keyboard with a thick case and sculpted keycaps, where the keycap under the pointer lifts off to show its cross shaped switch stem and its neighbours lift less, staggered by distance. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "cryostat-01",
+    "title": "Cryostat",
+    "summary": "A dilution refrigerator's chandelier of five round plates hung on rods, where the plate under the pointer holds while the plates above rise and the plates below drop, drawn in one stroke in four weights from host tokens.",
+    "description": "A dilution refrigerator's chandelier of five round plates hung on rods, where the plate under the pointer holds while the plates above rise and the plates below drop, drawn in one stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "gpu-rack-01",
+    "title": "GPU Rack",
+    "summary": "A server cabinet of twelve GPU blades with vent holes and status dots.",
+    "description": "A server cabinet of twelve GPU blades with vent holes and status dots. The pointer's height sets where the update runs, the blades near it slide out, the farther the less, and the one level with it turns bright. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "cell-pack-01",
+    "title": "Cell Pack",
+    "summary": "An EV battery module, a tray of upright cylinder cells with a bus bar across their tops.",
+    "description": "An EV battery module, a tray of upright cylinder cells with a bus bar across their tops. The pointer's x sets the charge and the cells fill column by column from one end, their caps rising and turning bright. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "npu-chip-01",
+    "title": "NPU Chip",
+    "summary": "An AI chip on its package, a substrate with edge pads, a raised die with a grid of compute cores and an HBM memory stack.",
+    "description": "An AI chip on its package, a substrate with edge pads, a raised die with a grid of compute cores and an HBM memory stack. The cores the pointer passes over light up and fade back, and an idle loop paints them when untouched. A paused prop holds the motion that runs on its own, and the figure still answers the pointer while paused. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "robot-arm-01",
+    "title": "Robot Arm",
+    "summary": "An industrial pick and place arm with a round base, a turning waist, an upper arm, a forearm and a two finger gripper beside a tray of five parts.",
+    "description": "An industrial pick and place arm with a round base, a turning waist, an upper arm, a forearm and a two finger gripper beside a tray of five parts. The pointer picks a part and the arm swings over it on a long ease out. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "quadcopter-01",
+    "title": "Quadcopter",
+    "summary": "An X frame quadcopter hovering over its landing pad, its two blade props always turning, where hovering over it slows the spin until each blade can be read.",
+    "description": "An X frame quadcopter hovering over its landing pad, its two blade props always turning, where hovering over it slows the spin until each blade can be read. A paused prop holds the motion that runs on its own, and the figure still answers the pointer while paused. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "spatial-headset-01",
+    "title": "Spatial Headset",
+    "summary": "A mixed reality headset seen over its shoulder with three windows floating in front of it, where the window under the pointer comes forward and its neighbours step back in turn.",
+    "description": "A mixed reality headset seen over its shoulder with three windows floating in front of it, where the window under the pointer comes forward and its neighbours step back in turn. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "gantry-printer-01",
+    "title": "Gantry Printer",
+    "summary": "A gantry 3D printer with a vase half printed on its bed in stacked layers, where the pointer's position scrubs how far the print has got while the gantry and head ride the top layer.",
+    "description": "A gantry 3D printer with a vase half printed on its bed in stacked layers, where the pointer's position scrubs how far the print has got while the gantry and head ride the top layer. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "tech",
+    "categoryLabel": "Tech",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "conveyor-01",
+    "title": "Conveyor",
+    "summary": "Two boxy machines with vents, status lamps and a hatch, joined by a belt conveyor on legs with rollers at its ends, and cardboard boxes always riding it from one machine into the other.",
+    "description": "Two boxy machines with vents, status lamps and a hatch, joined by a belt conveyor on legs with rollers at its ends, and cardboard boxes always riding it from one machine into the other. Hovering slows the belt so the box nearest the pointer can be followed in the bright edge, and a paused prop holds the belt. One stroke in four weights from host tokens. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice.",
+    "group": "illustrations",
+    "category": "office",
+    "categoryLabel": "Office",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "empty-shelf-01",
+    "title": "Empty Shelf",
+    "summary": "An empty state as an isometric line figure that answers the pointer, with the page's name and one line under it.",
+    "description": "An empty state as an isometric line figure that answers the pointer, with the page's name and one line under it. It is the picture the AgentOS console stands in its Traces section, drawn on its own so any empty page can use it. The figure is a shelf with one volume missing, an object with nothing in it rather than a glyph on a plate, so the drawing says what is missing instead of naming it. The book under the pointer slides out and its neighbours step aside in turn. One of three in the set: the sieves are Empty Sieves and the breaker panel is Empty Breakers. One stroke in four weights mixed from the host's own foreground and background, so it reads in both themes with no palette of its own, and the bright weight is the only highlight. The hit test reads each part's resting outline and never the pose on screen, so nothing flickers when a part moves out from under the pointer. One frame loop serves every figure on the page and sleeps when nothing moves or nothing is on screen, and reduced motion lands every move at once. The heading and the note are props. The engine is the core of @lucasmarkes/hairline, carried in the item under its MIT notice because the package exports finished figures and not the core a new one is built on.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "empty-fan-02",
+    "title": "Empty Outline",
+    "summary": "The empty fan wearing a builder's copy: the same three plates, the section's own glyph on the front one, and a line that says the shell is the thing being shown rather than the page that is missing.",
+    "description": "The empty fan wearing a builder's copy: the same three plates, the section's own glyph on the front one, and a line that says the shell is the thing being shown rather than the page that is missing. It is the picture the Manuscript builder stands on every route it has not filled in, drawn on its own so any shell can use it. A sibling of the empty fan rather than a setting on it, because the drawing is the same and the sentence is not: one names the section standing empty, this one says what the demo is actually for, which is what a builder needs where a workspace does not. The back two plates are turned about their own bottom corner rather than their centre, since the corner is what makes it a stack, the way cards sit when they are put down, where turning about the middle throws a corner out above the front plate too and the three read as a star. They carry the same fill as the front rather than an outline, so they overlap as plates instead of crossing as rings, and that fill is opaque because a translucent plate shows the one behind it through itself and three of them read as one glassy shape with lines drawn across it. The glyph is a prop rather than one mark for every page, since an empty state has to say which page is empty and the same picture on every route is the one thing an empty state must not be. The heading sits at 15px rather than on a heading scale, because an empty state shouting over the screen it stands in for is the wrong emphasis. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "empty-fan-01",
+    "title": "Empty Fan",
+    "summary": "An empty state as a fan of plates: three the same size, the back two pinned at the foot and splayed at the head, with the section's own glyph on the front one.",
+    "description": "An empty state as a fan of plates: three the same size, the back two pinned at the foot and splayed at the head, with the section's own glyph on the front one. It is the picture the Throughline workspace and the Manuscript builder both stand where a page has not been built yet, drawn on its own so any shell can put it on a route it has not filled in. The back two are turned about their own bottom corner rather than their centre, because the corner is what makes it a stack, the way cards sit when they are put down, where turning about the middle throws a corner out above the front plate too and the three read as a star. They carry the same fill as the front rather than an outline, so they overlap as plates instead of crossing as rings, and that fill is opaque because a translucent plate shows the one behind it through itself and three of them read as one glassy shape with lines drawn across it. The glyph is a prop rather than one mark for every page, since an empty state has to say which page is empty and the same picture on every route is the one thing an empty state must not be. The heading sits at 15px rather than on a heading scale, because an empty state shouting over the screen it stands in for is the wrong emphasis, and the plate carries a top highlight inset by the border width so it reads as a face catching light rather than as a line drawn across the corner. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "empty-frame-01",
+    "title": "Empty Frame",
+    "summary": "An empty state as a dashed frame with an isometric drawing standing in it and the one thing to do from here underneath.",
+    "description": "An empty state as a dashed frame with an isometric drawing standing in it and the one thing to do from here underneath. It is the picture the Service dashboard puts on every nav item without a screen behind it, drawn on its own for any shell whose rails resolve to more places than it has built. The frame is dashed rather than solid, because a solid border reads as a card that happens to be empty where a dashed one reads as a space waiting for something, which is what the state actually is. Nothing sits behind the drawing: a tile exists to give a small glyph a footprint, and a drawing at this size already has one, so a plate would only fight the border around it. The strokes are marked non scaling and set at a quarter pixel over one, since the box is centred and its edges land on fractional device pixels, where an exactly single pixel line antialiases into two half alpha ones and reads as a dotted line rather than a drawn one on a dark ground. The drawing takes currentColor at the muted tone rather than a fixed ink, so it reads in both themes and sits back from the heading it stands over, and a host can hand its own art in instead. The button is the same pill a surface would use for its primary action, so the one thing to do from an empty screen looks like the one thing to do from a full one, and omitting the label draws no button at all rather than a greyed one. Inert here, like everything else in a drawing. Every colour is a host token. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "empty-tray-01",
+    "title": "Empty Tray",
+    "summary": "An empty state as a tray with a raised plate on it and a tick on the plate, with two small sparkles around it.",
+    "description": "An empty state as a tray with a raised plate on it and a tick on the plate, with two small sparkles around it. It is the picture the Relay dashboard stands in its case queue when nothing is open, drawn on its own so any queue can use it. A tick rather than a blank box, because an empty queue is the state a queue is meant to get back to, and it should read as work finished rather than as a list that failed to load. The heading and the note are props, so each view of a queue can say what is missing from it. It keeps the Relay palette in its own prefixed variables for both themes, so it looks the same as it does in the dashboard. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "empty-states",
+    "categoryLabel": "Empty States",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "workspace-01",
+    "title": "Throughline",
+    "summary": "A project hub over the tools the work already lives in.",
+    "description": "A project hub over the tools the work already lives in. Nine projects held in Linear, Jira, Asana and Notion, with the calls in a calendar, drawn as one portfolio where every row still names the tool it came from and the reference that tool knows it by, because a unified list whose rows cannot say where they came from is a list nobody will trust enough to act on. The source strip above it is the honest half of that claim: a merge is only as current as its slowest source, so each one states its own age and a failed pull says so in the one colour this template reserves for something that needs doing. Progress is a fraction throughout, never a percentage, so the bar and the number beside it are drawn off the same two integers and cannot tell different stories, and the bars scale rather than growing their width, so a column of nine cannot reflow while they fill. The source filter is one pill travelling between five labels rather than five backgrounds fading under them, since the filter is a single selection moving and the motion should say that; it is measured rather than sized in CSS, because the labels are names of different lengths and a pill that only translated would be the wrong width for four of the five, and the first placement and every resize are written with the transition off, or it would slide in from the left edge at zero width on first paint. The meetings screen is two halves of one idea: the left is how a call gets booked, event types with their length, their link and a switch that takes one off the booking page without deleting the history behind it, and the right is what the last call produced. That is the reason meetings are in a project tracker at all, and the seam is that an action item is one press from being a row on the followup list, where it arrives naming the call it came from. The copy link button holds both glyphs in one grid cell and swaps them with blur and scale, so a second press retargets from wherever the fade got to rather than snapping back, and the tick appears only when the clipboard write actually succeeded, since a control that ticks on a refused write has told the reader their link is somewhere it is not. Off is not gone on that list: a disabled event type keeps its row, its link and its booking count and is only dimmed, because hiding it would lose the history that makes turning it off a decision rather than a guess. The team screen is the people half, three panels each answering a different question about the same five: who is carrying what, what they are saying to each other, and what goes out on Friday. Load over ninety percent is drawn in the same colour the at risk chip uses and nowhere else, because it is the same claim about a person that the chip makes about a project. The report is composed rather than announced, four things it can carry and the whole team on it, and sent is the disabled state, so the only time the button is pressable is the only time pressing it does something. Its tick draws on a path whose length is declared as one, so the dash values are a fraction of the stroke rather than a number measured in JavaScript, and the draw stays exact if the tick is ever redrawn. Delight is affordable exactly there, on the one control in the template pressed once a week, where the nav row hit fifty times a day gets colour and nothing else. In the thread only the messages the reader sent animate in, because the four already there are history and history that flies in every time the tab opens is history nobody reads. Every clock is passed in and none is read during render: nine due dates, a fortnight of chart labels and three notification ages taken off Date.now would be fifteen hydration mismatches, and day counts round off local midnights rather than subtracting milliseconds, since the raw span is an hour short across a daylight saving boundary and turns due in one day into due today. The rail collapse is the one layout-triggering transition here and it is gated on interaction rather than on mount, so a restored collapsed preference never animates on load; below md the rail is out of the layout entirely rather than collapsed and the menu button opens the same list inside a sheet, and the command palette is mounted once by the shell rather than inside either trigger, since the rail and the sheet are both in the tree at every width and a self-contained palette would install two shortcut listeners and toggle itself back shut on every press. Nothing here declares a palette of its own and nothing here rides the host's tokens either: every colour is the pinned three step ramp the tonal frame ships, so the chrome and the work share one ground, each tray is recessed below it and each plate raised back above, which is what separates a panel from its tray with no border in between. That ramp is why the date picker, the account cluster and the command palette are all handed the frame's root class across their portals, since a portal lands under the body element where none of those values resolve, and the template maps its ink and its accent onto each of those items' own variables rather than forking any of them. The stagger is keyed to the screen rather than to mount, so switching sections restages and filtering inside one never does. At the foot of the rail is the one thing in the template that is true of the minute rather than of the week: what is live now, who is on it and how long ago it started, or the next thing on the calendar where nothing is running. A live event wins over every scheduled one however soon the next is, because a meeting you are missing is more urgent than one you are early for, and with neither it says the day is clear rather than disappearing, since a card that vanishes leaves the reader wondering whether it broke. Its dot is the only infinite animation here, which is normally the wrong call because an animation that never stops is the single thing on a screen that is never not being seen, but a still dot cannot claim that something is happening right now; it costs a composite and no layout, and under reduced motion it holds still and the words beside it carry the claim alone. That card and the pro card in Settings are one component rather than two that match, because two cards eyeballed to match is how two cards stop matching, and an upsell wearing its own shape is an advertisement sitting inside the product. The price sits with the button rather than in the heading, since the heading has to say what the thing is before it says what it costs. The unbuilt sections draw the section's own glyph on a fan of three plates, read off the nav rather than fixed, so the empty state says which page is empty; a single icon on both would be the same picture twice, which is the one thing an empty state must not be. Faces are portraits with initials underneath rather than instead of them, so no frame ever shows an empty circle while an image is in flight and a failed load simply reveals what was already there, and a changed source resets the failure flag or one broken image would leave every later one on initials. Every motion block keeps its reduced motion guard, and reduced motion still fades the panels in and keeps the bars at their measured length rather than having nothing arrive at all.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "onboarding-01",
+    "title": "Cadence",
+    "summary": "A four step onboarding journey: welcome, plan, sources, details.",
+    "description": "A four step onboarding journey: welcome, plan, sources, details. The journey is the item and the project tracker is one demo of it, and what makes it a journey rather than four screens is that one footer, one progress row and one forward rule serve all four. Rules and copy sit on opposite sides of that line on purpose. The step table holds no copy at all, only which step can be skipped, which one ends the run and what its forward button says, so the file the footer reads is the file a test can assert without mounting a form; each panel writes its own heading, because the welcome card centres one and the two column steps do not, and a title held centrally would have to travel back down beside an alignment prop to be drawn either way. Whether the forward button is live is one function over the whole draft rather than a condition written into each panel, since the footer is drawn once by the shell and a rule kept beside a panel is a rule the footer cannot read. The step transition is transitions.dev's page side by side generalised past the two pages it ships with: a fixed offset per page id puts both inactive panels on the same side, so the one you left slides back in the direction it came from, and instead each panel carries the sign of its own index against the active one. Before is negative, after is positive, and forward and back travel opposite ways with nothing to flip. The two halves are not the same length: the panel you left leaves in 140ms and the one arriving takes 200ms and waits 60ms before starting, because a crossfade with no offset holds two readable panels over each other in the middle of it and reads as two documents rather than one replacing the other, which the blur alone cannot hide at full opacity. The footer and the dots do not wait for any of that. They answer the click immediately, which is the split worth keeping: slow where somebody is reading, instant where the interface is only confirming it heard. Under it the tray tweens its height, which is the one property here that is not transform or opacity and is the point of the transition, since no transform moves the footer up without also squashing what is above it. The number is measured in a layout effect rather than an effect after paint, and that is the whole trick: the write lands in the same commit as the step change, so the browser still holds the previous frame's height as the start value and interpolates from it, where one frame later the tray has already snapped. It is undefined until the first measurement, which leaves the box at auto, so the server renders the tray at its content height and there is no frame where the card is collapsed to nothing, and a ResizeObserver keeps it true as a line wraps or the source grid reflows. Each panel is laid out at its own final width from the first frame rather than at whatever the tray is passing through, which is what keeps the layout still while the card resizes. A panel filling a box whose width is mid tween reflows on every frame, so the height read off it is a different number each time and the tray travels towards a target that keeps moving: the footer drops below where it settles and comes back up, which is a bounce rather than a resize. The widths are held against the column the tray sits in rather than against the tray itself, through a container query, since that column is the one box in the picture that is not moving, and a panel wider than the tray currently is gets clipped while the card catches up, which is what a card resize looks like. Every step stays mounted so the slide has something to slide, which is also what makes a half filled form survive a Back and a Continue, and the offscreen ones are inert rather than merely hidden, so tabbing out of the visible form does not land in a form nobody can see. The second step asks how you run projects rather than selling you a tier, so the chip beside each option is how far it reaches rather than what it costs, since the heading asked who the work is for and a price answers a different question. Its options are real radios, hidden but focusable, so arrow key movement, the roving tab stop and the group semantics are the platform's rather than three things to get right by hand, and the selected dot is a ring with a filled core rather than a scale from nothing, so the ring is present in both states and only what is inside it changes. The sources step is the concept: Google Calendar, Linear, Jira and Notion are where the dates already live, and Connect and Connected are one icon swap in a single grid cell, so pressing twice retargets from wherever the fade got to instead of snapping back to full scale. Source marks come from the brand marks this registry already ships rather than being inlined a second time, and they keep the brands' own ink, since a mark repainted in the host's colour is not that company's logo any more; a source with no mark there draws its initial, so a tile is never blank. Beside it the week is a picture rather than a second calendar, and a deadline in it is solid and short where a meeting is a soft block, because a deadline is a moment rather than an hour and that contrast is the only claim the panel is making; a line under the grid names the tools those dates came from, since a full week cannot show that it was assembled. The details step's preview answers while you type: the workspace name, the url, the line about what it tracks and a picked logo all read straight off the draft, and the url follows the name until somebody types one of their own and then stops, held as an empty string while it is derived rather than behind a touched flag, so clearing the field hands it back to the name instead of leaving a stale slug behind. The projects under it each name the tool they came from, which is the whole claim: three projects in three systems read as one list, with progress held as a fraction so the bar and the number cannot disagree. Those bars fill on arrival rather than being already drawn, keyed on the panel's own data-active and not on mount, since every step stays mounted and a mount animation would have run and finished while this panel was still three steps away; each one waits out the panel's entrance first, or the first bar is half full before there is anything to watch it in. They scale rather than growing their width, so the resting length stays the data and a row of three never reflows while they fill. The rings behind the welcome and plan steps hold still. The one exception is the last screen, where they swell once on arrival, each a moment after the ring inside it so the pulse travels outward from the mark rather than the whole field flashing at once. It is keyed on that panel's own data-active rather than on mount, since every step stays mounted and a mount animation would have run and finished four steps earlier, and it ends where each ring already was, because the opacity is set per ring in the markup and the keyframes leave it alone. Delight is affordable exactly there: once, on the one screen in the run that is a moment rather than a step. The plan step's pane keeps its inset at the top and the bottom and loses it on the right, so it runs off the card rather than sitting in it, and the rings inside are wider than the pane on purpose: a ring cropped by an edge says the field carries on past it, where a ring that fits inside says the field stops there. The week beside the sources step runs off the same edge, since a column cut by it says the calendar carries on into the following week where a column that stops inside says the calendar is this wide, and so does the workspace window. One axis for all three rather than a different escape per step, since the shared direction is what makes them read as the same kind of surface. They were breathing on a six second loop, and an infinite animation is the one thing on a screen that is never not being seen, so on a panel somebody sits and reads it was the decoration pulling the eye and the mark it is drawn around losing it. The at risk chip is the one thing in the block that is not monochrome, because a project slipping is the single item on that screen somebody has to act on, and a row that says so in the same grey as the two above it is not saying it. On a phone the preview is the half that goes: it is a picture of the outcome, and a form squeezed under one is a form nobody can fill in. Finish setup lands on a fifth panel rather than doing nothing visible or wrapping silently back to the first, and it is the smallest one in the set, since a completion screen that gives you six more things to read is another step wearing a tick. Its footer keeps the shape every other step has: the quiet button on the left and the primary on the right, so left is backwards for the whole run rather than for four fifths of it. Start over is that left one and it empties the draft, because keeping the answers would make the second run a different journey from the first. The primary beside it leaves the journey rather than continuing it, which makes it the host's to wire: in a real app it is a route change into the workspace that was just made, and the demo deliberately does not restart on it, since two buttons with the same behaviour under two different labels is worse than one that waits to be given somewhere to go. Motion is the transitions.dev set scoped d2ob rather than installed at root, because a registry item cannot edit anyone's globals.css and a page or stagger variable landing in a host's root is this item redefining names that host may already use. Every block keeps its reduced motion guard, and reduced motion still fades the welcome list in rather than having it already be there.",
+    "group": "templates",
+    "category": "onboarding",
+    "categoryLabel": "Onboarding",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "onboarding-02",
+    "title": "Relay Setup",
+    "summary": "The five screens between a new social account and a working one: open an account or sign back into one, verify the address, say whether this is one person or a team, connect the channels, invite anybody else.",
+    "description": "The five screens between a new social account and a working one: open an account or sign back into one, verify the address, say whether this is one person or a team, connect the channels, invite anybody else. Then a sixth that is a moment rather than a step. It is the run up to @d2/dashboard-03 and it is built on the same machined surface, a mid neutral page with plates lifted out of it and fields pressed into it, so nothing changes material at the door. What makes it a journey rather than five screens is that one footer, one progress row and one forward rule serve all of them. The step table holds no copy at all, only which step can be skipped and what its forward button says, so the file the footer reads is the file a test can assert without mounting a form, and each panel writes its own heading because the centred steps and the two column ones do not align the same way. Whether the forward button is live is one function over the whole draft rather than a condition written into each panel, since the footer is drawn once by the shell and a rule kept beside a panel is a rule the footer cannot read. The run reshapes itself once the second question is answered. A solo account never sees the invite step, because a run that asks one person to invite their colleagues is asking a question it already has the answer to; the step table stays whole and the filter sits over it, so nothing downstream has to know that a step can disappear, and the active index is clamped because choosing Solo removes a step a later index could be pointing past. Create account and Log in are one segmented control over real radios rather than two pages behind a link, because the two forms differ by one field and a route change to swap a label loses whatever was already typed. The mode changes copy and nothing else: a returning account that arrived here arrived to finish something, so both walk the same run. The address is typed on that first screen and stated on the next, which is what gives Use another address somewhere to go. The password reveal is a button inside the field and swaps its glyph in place, so the icon shows what the next press does rather than the state it is in, and the length rule is written under the field from the start rather than appearing in red on the first keystroke, since a rule that only exists once it is broken is a rule nobody could have followed. The code field is one input and not six boxes: six inputs have to reimplement paste, backspace across a boundary and the mobile keypad, and a browser will hand a one time code to a single field by itself through autocomplete. The account type is real radios, hidden but focusable, so arrow key movement, the roving tab stop and the group semantics are the platform's rather than three things to get right by hand, and the selected mark is a ring with a filled core rather than a dot scaled up from nothing, so the ring is present in both states and only what is inside it changes. Each option carries what it actually switches on rather than a price, because the question asked who the work is for and a price answers a different one. Connect and Connected are one icon swap in a single grid cell, so pressing twice retargets from wherever the fade got to instead of snapping back to full scale, and the brand marks are the networks' own, inlined and drawn in currentColor because the tile behind them carries the colour and two of these four brands are black. The step transition is the transitions.dev page slide generalised past the two pages it ships with: every panel stays mounted and carries the sign of its own index against the active one, so before is negative, after is positive, and forward and back travel opposite ways with nothing to flip. The two halves are deliberately not the same length, 140ms out against 200ms in after a 60ms wait, because a crossfade with no offset holds two readable panels over each other in the middle and reads as two documents rather than one replacing the other. The footer and the progress row do not wait for any of it. Under them the card tweens its height, which is the one property here that is not transform or opacity and is the point of the transition, since no transform moves the footer up without also squashing what is above it. The number is measured in a layout effect rather than in an effect after paint, so the write lands in the same commit as the step change and the browser still holds the previous frame's height to interpolate from; it is undefined until the first measurement, which leaves the box at auto so the server renders the card at its content height, and a ResizeObserver keeps it true as a line wraps or an invite is added. Panels that are not active are inert rather than merely transparent, so tabbing out of the visible form does not land in a form nobody can see, and every answer survives a Back and a Continue because nothing is unmounted. Left is backwards for the whole run rather than for four fifths of it, so the last screen puts Start over on that side rather than dropping the quiet button and shifting the primary, and Start over empties the draft, because keeping the answers would make the second run a different journey from the first. The primary beside it leaves the journey rather than continuing it, which makes it the host's to wire. Motion is scoped o2 rather than installed at the host's root, since a registry item cannot edit anybody's globals and a page or stagger variable landing in a host's root is this item redefining names that host may already use. Every block keeps its reduced motion guard, and reduced motion still fades each panel in rather than cutting between them.",
+    "group": "templates",
+    "category": "onboarding",
+    "categoryLabel": "Onboarding",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "notify-stack-01",
+    "title": "Notify Stack",
+    "summary": "A phone's notification stack: the two newest arrivals in front, the rest of the pile showing as edges behind them.",
+    "description": "A phone's notification stack: the two newest arrivals in front, the rest of the pile showing as edges behind them. It is the left half of the screens report drawn on its own, for the pages that want the arrivals without the number they add up to: the pair belongs together when the point is the count, and this one is for when the point is that something keeps landing. Each notification gets its own plate rather than being a row in one panel, because separate cards with a gap between them are what make the stack read as separate events, where a list reads as a table of them, which is a record you go and read rather than the machine telling you. The deck behind steps in by sixteen and down by six and its sheets are solid rather than translucent, since a see through sheet shows the card face and the sheet under it through itself, so the two behind read as one tinted panel with a line drawn across it, where the border is what separates them and it can only do that against an opaque plate. Each notification's mark is its own glyph rather than one for the set, because each of these is a different screen and a notification's leading icon is what says which app is talking, drawn filled with no tinted tile behind it since these glyphs are already app tile shapes and a square inside a square reads as a rendering fault. The foot is a mask rather than a scrim, so the stack gives way to whatever it is standing on instead of fading into one assumed colour: a scrim has to be painted in the ground's own colour and there is no one colour to paint, since this is dropped on a light page as often as a dark one, where a mask takes pixels away and is right on every surface with nothing to keep in sync. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "screens-report-01",
+    "title": "Screens Report",
+    "summary": "What the builder shipped, said twice: the arrivals on the left as a notification stack and the count they add up to on the right.",
+    "description": "What the builder shipped, said twice: the arrivals on the left as a notification stack and the count they add up to on the right. It is the illustration off the Foundry Bento's first card standing on its own. One component and not two, because the two halves are one sentence: the notifications are the events and the plate beside them is what those events come to, where split apart the stack is a phone screenshot and the number is a stat with nothing behind it. The grid is split 0.9 to 1.1 rather than in half, so the metric plate has the room its number and bar need while the notifications keep theirs, and the proportions are fixed rather than reflowing, because a plate with readable content cannot be narrowed the way a bar drawing can. Each notification gets its own plate rather than being a row in one panel: separate cards with a gap are what make the stack read as separate events, where a list reads as a table of them, which is a record you go and read rather than the machine telling you. The deck behind steps in by sixteen and down by six and its sheets are solid rather than translucent, because a see through sheet shows the card face and the sheet under it through itself, so the two behind read as one tinted panel with a line drawn across it, where the border is what separates them and it can only do that against an opaque plate. Each notification's mark is its own glyph rather than one for the set, since each of these is a different screen and a notification's leading icon is what says which app is talking, drawn filled with no tinted tile behind it because these glyphs are already app tile shapes and a square inside a square reads as a rendering fault. The bar is labelled with the span rather than the year, because the claim is the pace and a year is a caption that goes stale on the first of January, and its label is a fixed light ink rather than a token since the gradient under it holds one lightness in both themes. The older reading beneath is dimmed rather than given a second hue: two lit bars are two claims, and it is there to be the thing the newer one is bigger than. The foot is a mask rather than a scrim, so the pair gives way to whatever it is standing on instead of fading into one assumed colour: a scrim has to be painted in the ground's own colour and there is no one colour to paint, since this is dropped on a light page as often as a dark one, where a mask takes pixels away and is right on every surface with nothing to keep in sync. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "stat-scatter-01",
+    "title": "Stat Scatter",
+    "summary": "Two year in review cards dealt onto a surface: the record behind, the claim it supports in front.",
+    "description": "Two year in review cards dealt onto a surface: the record behind, the claim it supports in front. It is the illustration off the Foundry Bento's sections card standing on its own. The card in front is a stat and the one behind is the data it came from, because two full cards would be two things to read and neither would get read, where a claim resting on its own record is one idea seen twice. The heatmap's tracks are whole pixels rather than a fraction of the plate: dividing a width evenly by twelve gives a cell on a subpixel, and a cell on a subpixel is rounded up on one axis and down on the other by the compositor, so a grid of squares paints as a grid of slightly different rectangles. Its middle step is hatched rather than filled and stays neutral, because five weights of one ink is a ramp the eye reads from the ends inward and the middle is the step nobody can place, where at an eight pixel cell two adjacent weights read as the same square and a texture is a difference the eye catches where a little more ink is not; both of the hatch's stops are painted rather than one stop and a hole, since a hatch over nothing loses the square and a cell that is stripes without a silhouette stops being a day in a grid of days. The hatch carries fixed neutrals with a dark twin rather than an alpha of the host ink, because those are light theme values and left alone in dark they would make the hatched day the brightest cell on a plate whose whole job is to sit back. The line in front takes the only colour, and its ramp is an SVG gradient because it paints a stroke, where the fill under it fades to nothing rather than to a colour, since the plate is one value in light and another in dark and a solid foot would show the seam on whichever theme it was not painted for. Its coordinates are exact on a fixed box so nothing is stretched, since a non uniform aspect ratio on a responsive box would thin the stroke on one axis and pull the end dot into an ellipse. The record behind is scaled rather than narrowed, because the heatmap's tracks are whole pixels on purpose and taking width off the plate would have to come out of the grid a column at a time, where scaling keeps the drawing and only changes how far away it reads, and its padding is pushed in on the left rather than the card being moved, since a name losing its first letters reads as a bug where a plate losing its corner reads as depth. The foot is a mask rather than a scrim, so the pair gives way to whatever it is standing on instead of fading into one assumed colour. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "flow-canvas-01",
+    "title": "Flow Canvas",
+    "summary": "Two steps of an agent workflow as the canvas draws them: a node, a wire, and the node it feeds.",
+    "description": "Two steps of an agent workflow as the canvas draws them: a node, a wire, and the node it feeds. It is the illustration off the Foundry Bento's agent card standing on its own. The two nodes are offset, one to each side, rather than stacked on one column: a straight column of two is a list with a line drawn down it, where the step across is what makes the wire a route and what says this is a canvas somebody laid out rather than a sequence that could only ever go one way. The elbow is drawn orthogonally, down then across then down, never as a diagonal, because every canvas worth copying routes on right angles: a diagonal between two boxes reads as a pointer to one of them where a bend reads as a wire going somewhere. A node is two plates in one box rather than one plate with two lines, since the header is the step and the body is its output and the rule between them is what says the second is a result of the first, where run together they read as a title and a subtitle, which is a label rather than a node. The chip is the kind of step and never its state, because a canvas is read to find out what a node does and whether it has run is what a run log is for. The glyph plates are opaque rather than tinted glass, since glass takes its colour from what is behind it and behind it is the node's own face, so the two kinds of step came out as two washes of the card and stopped telling each other apart at the size they are drawn. The outlines drop to a tenth of the foreground in dark and the wire deliberately does not follow them down: the border set for chrome on the page ground reads as a wireframe of boxes once a node, a rule, a chip and a second node are stacked at this size, where the wire is the subject of the drawing rather than chrome and keeps the brighter tone, which leaves it the one line in the picture that leads. The node width is fixed rather than a share of the box, because the offset between the two nodes is the whole point of the layout and a percentage would shrink it to nothing on a narrow drop. The wire runs off the top and continues past the bottom node, since what is on screen is the middle of a workflow and not the whole of one, and a graph that begins at its first node and stops at its last is a list drawn with lines. The foot is a mask rather than a scrim, so the canvas gives way to whatever it is standing on instead of fading into one assumed colour: a scrim has to be painted in the ground's own colour and there is no one colour to paint, since this is dropped on a light page as often as a dark one, where a mask takes pixels away and is right on every surface with nothing to keep in sync. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "flow",
+    "categoryLabel": "Flow",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "link-unfurl-01",
+    "title": "Link Unfurl",
+    "summary": "Two shared links as a chat client unfurls them: a mark, the host, the title and a line of the page.",
+    "description": "Two shared links as a chat client unfurls them: a mark, the host, the title and a line of the page. It is the illustration off the Foundry Bento's preview link card standing on its own, and a sibling of the bundle card and the code deck. Laid out across rather than down, because a proper open graph card is an image at 1.91 to 1 with the text under it, which at this width is a picture taller than the whole illustration before the first word is read, where turned on its side the same four parts fit in seventy pixels and two cards fit where one would have. Two of them rather than one: one card is a link and a pair is a habit, which is the thing worth drawing, and the second runs into the fade, which is the third and the fourth without the room to show them. The thumbnail is the page's own mark on a solid plate, which is what a site actually sends as its card image at this size: bars standing in for a screenshot would be legible as a wireframe and nothing else, where a mark says which page without pretending to be a picture of it. That plate is opaque rather than tinted glass, because glass takes its colour from what is behind it and what is behind it here is the tray, so the mark meant to carry the page's own identity came out as two shades of the surface it sits on and read as a placeholder. An opaque plate also lets the glyph go white on currentColor, which is what retired the gradient this used to declare: a glyph filled with currentColor has nothing to inherit from a CSS background, and a solid plate gives it something. The outlines drop to a tenth of the foreground in dark, since the border set for chrome on the page ground reads as a wireframe of boxes once four of them are stacked on a raised tray. The line under each title is the page's own description and never the copy printed beside the illustration, since an unfurl repeating that sentence reads as a caption rather than as a link somebody actually shared. The foot is a mask rather than a scrim, so the tray gives way to whatever it is standing on instead of fading into one assumed colour: a scrim has to be painted in the ground's own colour and there is no one colour to paint, since this is dropped on a light page as often as a dark one, where a mask takes pixels away and is right on every surface with nothing to keep in sync. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "code-deck-01",
+    "title": "Code Deck",
+    "summary": "A source file as the card in front of a deck: two sheets seen edge on and the sheet on top carrying real JSX.",
+    "description": "A source file as the card in front of a deck: two sheets seen edge on and the sheet on top carrying real JSX. It is the illustration off the Foundry Bento's export card standing on its own, and a sibling of the bundle card, which is the same deck with a build summary on its face. The deck steps by the same amount twice, each sheet sitting sixteen pixels in and six down from the one in front of it, because uneven steps read as three plates at three distances where an even one reads as a single thing seen edge on. The sheets are solid rather than see through: a translucent sheet shows the card face and the sheet beneath it through itself, so the two behind read as one tinted panel with a line drawn across it, where the border is what separates them and it can only do that against an opaque plate. The file's mark is the launch button's own tile rather than a flat glyph, so the material matches the buttons a page already has on it, dressed through a class rather than rebuilt because the lift, the bounce and the face colours belong to that component and a copy of them at a second size is the thing that drifts; it is taken as a shape and not as a control, with the hover, the tab stop and the accessible name stripped, since a decoration that answers the pointer promises a click with nowhere to send it. The glyph inside it is filled from an SVG gradient rather than a background, because the paths carry a currentColor fill and a CSS gradient gives them no colour to inherit. The foot is a mask rather than a scrim, so the card gives way to whatever it is standing on instead of fading into one assumed colour: a scrim has to be painted in the ground's own colour and there is no one colour to paint, since this is dropped on a light page as often as a dark one, where a mask takes pixels away and is right on every surface with nothing to keep in sync. The code is real markup on purpose and only the keywords take the paint, because a line where every token is coloured reads as a palette rather than as code, and bars standing in for it would make this a picture of a placeholder. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "bundle-card-01",
+    "title": "Bundle Card",
+    "summary": "A build summary as a card in a deck: two sheets seen edge on and the sheet in front carrying real numbers.",
+    "description": "A build summary as a card in a deck: two sheets seen edge on and the sheet in front carrying real numbers. The deck steps by the same amount twice, each sheet sitting sixteen pixels in and eight down from the one in front of it, because uneven steps read as three plates at three distances where an even one reads as a single thing seen edge on, and the top sheet starts at the frame's own top inset so the gap above the deck matches the gap either side of it. The foot is a mask rather than a scrim, so the card gives way to whatever it is standing on instead of fading into one assumed colour: a scrim has to be painted in the ground's own colour and there is no one colour to paint, since this is dropped on a light page as often as a dark one, where a mask takes pixels away and is right on every surface with nothing to keep in sync. What has been spent on the meter is drawn in ink and blue and what is left is hatched rather than filled, so an empty run never reads as a third value. The numbers are readable on purpose: bars standing in for copy would make it a picture of a placeholder, and the thing being drawn is a screen with content in it. Every colour is a host token, so it follows a retheme rather than carrying a palette of its own. No dependencies, no client hooks and nothing animated.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "testimonial-carousel",
+    "title": "Testimonial Carousel",
+    "summary": "A customer-story rail where only one story is open at a time: the active card carries the quote, the numbers and the byline, and its neighbours are collapsed to the logo alone.",
+    "description": "A customer-story rail where only one story is open at a time: the active card carries the quote, the numbers and the byline, and its neighbours are collapsed to the logo alone. A wall of full cards asks the visitor to choose which one to read and they read none; one open card is the page choosing for them, with the rest of the shelf still in view so it reads as a selection rather than as a single testimonial. The travel is the browser's own scroller rather than a transform on a track. The rail is not the visitor's to scroll: it takes no wheel, no swipe and no drag, and a story is reached by the two arrows under it or by clicking the card itself, because a rail that also panned would leave the open card sitting off centre with no control saying how to put it back. Moving it is still the browser's own scroller rather than a transform on a track, which buys the centring and the smooth travel for nothing where a transform-driven track has to measure every card to know where its centre is, and it is the rail itself that is scrolled rather than the card asked to bring itself into view: scrollIntoView is a request to every scrollable ancestor including the document, so on any viewport where the rail is not wholly on screen the page scrolls vertically to fit the open card in and the heading above it and the arrows below it jump on every click, with no flag to turn off half of it. The scroll target is read off the card's layout position rather than off a measured rectangle, so it is the same number whether or not a smooth scroll is already in flight, where two rectangles taken mid travel would aim at wherever the rail happened to be that frame and the second pass would fight the first; the overflow is hidden rather than clipped, since hidden is still scrollable in script and that is what the centring rides on, and the card widths stay plain responsive CSS since nothing computes an offset from them. Snapping stays because it costs nothing and a resize re-snaps the open card back to the middle for free, and the rail is no longer a tab stop, since a keyboard cannot scroll it and a stop that does nothing is one more press between the visitor and the buttons that do. The rail's height is pinned rather than left to the tallest card in it, which is the difference between a shelf that turns and a page that jumps: switching stories shrinks one card from thirty rem to twenty two while it grows another from twenty two to thirty, so halfway through both are twenty six and a row sized off its contents collapses by four rem and springs back on every click, carrying the heading above it and the arrows below it with it. Runway is a spacer at each end measuring exactly half an open card, because a scroller cannot scroll past its own content and without it the first and last stories can only ever settle against an edge instead of the middle. The open card's mark is flexed to its own start rather than left to stretch: a stretched svg in a flex column takes the whole column width and then centres its artwork inside that box, which draws every wordmark indented from the copy by half the slack rather than standing on the same left edge. Both faces of a card stay mounted and the hidden one fades rather than unmounting, since a card that swapped its contents at the moment it changed width would be laying out its quote while it travelled. The collapsed face carries a real button over it rather than a click handler on the card, because a carousel a keyboard cannot drive is not one, and since the rail takes no wheel and no drag, that overlay and the two arrows are the whole navigation, so both carry a pointer cursor and a visible focus ring: a button is given the default arrow cursor by most resets, which on a card whose only other cue is a hover tint reads as decoration, and a control with no ring is one a keyboard can reach but not see. Each card is drawn on the D2 Frame surface: a tinted well with four pixels of padding and the story standing on a raised plate inside it, radius sixteen minus that four so the corners stay concentric, and the plate carries the frame's own inset highlight, a light line along the top in dark and along the bottom in light, so it reads as a plate catching the light rather than as a second fill. That surface is copied rather than imported: the frame ships six parts for a tray, a panel, a header, a footer and two pieces of text, where this card needs one plate standing in one well, so an import would pull the whole set in to use two class strings of it and hand the installer a second component to keep in step with this one. The story's own link is the chalk chip, the plainest plate in the button set, with the arrow riding in the label rather than in the component's leading icon slot so it reads as read story and then go rather than the other way round. The numbers sit on a tinted plate of their own, because three figures and three captions stacked beside a paragraph read as a second column of copy where on a plate they read as one object the card is offering as evidence, which is what they are; it is tinted rather than outlined, since the plate they stand on is already inside a tray and a third rule at that depth is a diagram rather than a card. The gradient hairline beside the quote is the only saturated thing on the card, so it marks the pull quote without a second surface behind it. One phrase of each quote catches the light: the chromatic glint runs a band across the words the story is actually about and lets them settle back into the ink of the sentence around them, so the card marks its own point without a highlighter behind it or a second colour in the type. The phrase is found inside the sentence rather than stored as three pieces, so a story is written the way it is read and a phrase that does not appear verbatim falls back to plain text instead of throwing. It is mounted with the open card rather than left in place, which is the whole reason it is drawn by a component of its own: the glint fires when its phrase scrolls into view, and every card's open face is in the document at all times behind an opacity of nought, so four phrases left mounted would spend their one pass while three of them were invisible and a story would be opened to find its glint already over. It also starts later than the effect's own default, because the copy is still rising out of its blur for the first six hundred milliseconds and a band travelling over words that have not landed yet is two animations sharing one phrase. Portraits are plain img tags: the component installs into whatever app takes it, and next/image would make a remote host a config edit there before the byline rendered at all. Reduced motion drops the width transition and the smooth scroll, leaving the same selection as a cut.",
+    "group": "marketing",
+    "category": "testimonials",
+    "categoryLabel": "Testimonials",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "logo-cloud",
+    "title": "Logo Cloud",
+    "summary": "The logo row with the pitch standing in it: three ruled columns of marks and a fourth cell that says who they are and what to do about it.",
+    "description": "The logo row with the pitch standing in it: three ruled columns of marks and a fourth cell that says who they are and what to do about it. A rack states the names and stops, which is the right row deep in a page; this one spends the same band telling the visitor why the names are there, so it holds above the fold where a bare row of logos would be decoration. It is full bleed and ruled rather than boxed, so the verticals read as the page's own structure instead of a card sitting on it. Those rules are a left border per cell rather than the gap showing through a filled parent, which is how logo-rack draws its grid: the two techniques answer different shapes, and gap-px rules every edge evenly, which is right for eight equal cells and wrong here, where the copy panel is twice the width of a logo column and the row wants no rule at all on its outer right edge, where the section simply ends. One border per cell draws exactly the verticals the row wants and no more, with a closing rule on the grid itself below the desktop breakpoint, where the last column would otherwise sit open and read as a band the page had cut off. Every mark is its own cell, which is what lets the row reflow rather than shrink: on a phone the pitch stands on top at full width with the marks two up beneath it, three up on a tablet, and at the desktop breakpoint the same cells refill two rows column first, so each column of two comes back together with the pitch beside it. The marks are brand-showcase's shared logo list rather than its wordmarks, which is what lets the row carry no per-mark sizing at all: every one of these is a single path on the same 24 box, where wordmarks drawn to different optical weights need a height class each or one of them reads as a banner beside another's footnote. Each mark is drawn with its name beside it, because a bare glyph is a shape the visitor has to recognise and half of any real customer list is a company they have never seen. They paint in currentColor through muted-foreground so they follow the host's theme rather than being inverted into it, and a mark lifts to full ink on hover, gated behind a hover-capable pointer so a tap on a phone cannot leave one stuck lit. Every surface is a theme token and the section carries no client boundary. The call to action is the fancy two plate chip rather than a bordered link, because this cell is the one thing in the row that asks for a click and a flat outline sitting beside six marks in muted ink reads as another label rather than as a button.",
+    "group": "marketing",
+    "category": "logos",
+    "categoryLabel": "Logos",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "bento-08",
+    "title": "Research Bento",
+    "summary": "Four cards about doing AI research, literature review, a research assistant that cites its sources, experiment tracking and a pair of dataset and eval panels, laid out seven and five over four and eight and stacking to two columns then one, at the bento shelf's own scale: a 5xl column, a 3xl to 4xl heading, 48px to the grid, 12px between cards and 24px inside each.",
+    "description": "Four cards about doing AI research, literature review, a research assistant that cites its sources, experiment tracking and a pair of dataset and eval panels, laid out seven and five over four and eight and stacking to two columns then one, at the bento shelf's own scale: a 5xl column, a 3xl to 4xl heading, 48px to the grid, 12px between cards and 24px inside each. Every picture is still: there is no entrance, no running demo and nothing to click open, so the section reads at once and costs nothing to sit on screen. What it keeps is the hover. Under a real pointer a card lifts 5px up and to the left and uncovers an indigo striped tile behind it, takes a soft shadow and a firmer border, and its corner tile fills with a blue 400 to blue 500 gradient while its filled icon turns white. The lift is a sampled spring, about 460ms and settling without a visible overshoot, and the shadow, border and fill run 300ms on a strong ease out; all of them are transitions, so a pointer that leaves mid lift settles back from wherever the card got to. The hover lives on the tile rather than the card, since the card moves out from under the pointer as it rises. Each card carries a faint still glow in its top right corner, or a still mesh on the first, and a masked diagonal pattern. Surfaces and type are host tokens, the stripes, glows, gradient and accents are block variables restated for dark, reduced motion keeps the shadow and the fill without the lift, and it is a server component with no client code.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
     "tier": "pro",
     "dependencies": [
-      "cobe@^0.6.4",
-      "motion",
-      "lucide-react"
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "bento-07",
+    "title": "Foundry Bento",
+    "summary": "Five things an AI builder does, each card carrying a picture of the thing rather than a glyph standing in for it.",
+    "description": "Five things an AI builder does, each card carrying a picture of the thing rather than a glyph standing in for it. Every card is a D2 frame rather than a card with a border: the tray is the tinted well a raised plate needs to sit in, and the panel brings the top highlight no border can draw. That nesting is what the artwork rides on, since a drawing that runs off the plate and stops against the tray reads as a window on the product where the same drawing fitted inside a box reads as clip art pasted into it. The five illustrations are built from two shapes and nothing else, a miniature screen and a bar standing in for a line of content, because five separately drawn pictures read as five stock illustrations sharing a grid while five arrangements of one vocabulary read as one product photographed from five angles. They are token drawings rather than images for the same reason the hero blocks inline their mark: a registry item cannot ship a file into the installer’s public folder, and a screenshot of a UI baked at one theme is wrong in the other one the moment it lands. The two wide cards hold their copy to its own measure, since their artwork comes in from the right and a full width paragraph would run under it; the three narrow ones let the copy span, because theirs rises from the bottom edge instead. The icon tile is that same frame in miniature, a tray and a plate one size down rather than a bordered swatch, which is the only recipe that can lift it: the card face is already the background colour, so no fill separates a tile from it and a border would only draw a box around one. Its glyphs are solid, all five of them, because a row of tiles is one kind of thing and an outline among solids reads as a different kind. The card itself never lifts, since none of the five is a control and a card that rises under the pointer promises a click it has nowhere to send; one drawing moves instead, the section scatter, whose two cards spread apart under the pointer the way a dealt hand fans out, while every word in the export card's code scrambles and resolves in reading order with the punctuation left standing, so the file keeps its shape as it is written, the same GSAP scramble the clean code card runs, and a single band of light crosses the screens card's lit bar once, never looping, since a looping shimmer on a finished number reads as data still loading, and the preview card takes a third link, which drops in on top and pushes the two below it into the fade the way a fresh share lands in a chat, and the workflow card runs: a blue signal travels its wire at one steady speed, lighting each dot as it passes and outlining each node as it arrives, then clears in one fade rather than running back. Every surface is a theme token, and the block ships no stylesheet; the scramble is its one client boundary, a leaf around the code block, so everything else stays server drawn.",
+    "group": "marketing",
+    "category": "bento",
+    "categoryLabel": "Bento",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react",
+      "gsap",
+      "@gsap/react"
     ]
   },
   {
@@ -47,10 +1111,25 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
+    "name": "bento-05",
+    "title": "Studio Bento",
+    "summary": "A four-card studio bento on a masked dot field.",
+    "description": "A four-card studio bento on a masked dot field. Each card is a Figma gradient export carrying its own glass fill and 16px border; an ambilight sampled from the artwork blooms behind the grid as the section scrolls through, and the cards rise and brighten on the same switch. Below lg it settles into a still picture with no ambilight, no ripple and no sphere, and the globe card swaps its sphere for the stat deck it was carrying. Theme-aware and reduced-motion aware throughout.",
+    "group": "marketing",
+    "category": "bento",
+    "categoryLabel": "Bento",
+    "tier": "pro",
+    "dependencies": [
+      "cobe@^0.6.4",
+      "motion",
+      "lucide-react"
+    ]
+  },
+  {
     "name": "notification-bento-01",
-    "title": "Notification Bento — Power Up",
+    "title": "Notification Bento: Power Up",
     "summary": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles.",
-    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles. On hover the lit dots surge — the colored glows jump to full and, on dark, gain brightness and saturation. Theme-aware, and the hover comes from Motion's gesture so it never latches on touch.",
+    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles. On hover the lit dots surge: the colored glows jump to full and, on dark, gain brightness and saturation. Theme-aware, and the hover comes from Motion's gesture so it never latches on touch.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
@@ -62,9 +1141,9 @@ export const PRO_CATALOG: ProItem[] = [
   },
   {
     "name": "notification-bento-02",
-    "title": "Notification Bento — Aurora",
+    "title": "Notification Bento: Aurora",
     "summary": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles.",
-    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles. On hover a holographic fog — fractal noise blurred into wisps — drifts across the card on an undirected 20s loop while the dots hold still. Theme-aware and reduced-motion aware.",
+    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles. On hover a holographic fog of fractal noise blurred into wisps drifts across the card on an undirected 20s loop while the dots hold still. Theme-aware and reduced-motion aware.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
@@ -76,9 +1155,9 @@ export const PRO_CATALOG: ProItem[] = [
   },
   {
     "name": "notification-bento-03",
-    "title": "Notification Bento — Combo",
+    "title": "Notification Bento: Combo",
     "summary": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles.",
-    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles. On hover it runs both effects at once — the holographic fog drifts and the lit dots surge underneath it. Theme-aware and reduced-motion aware.",
+    "description": "A four-panel notification bento: a pure-CSS metallic bell on a lit dot-matrix field, a recent-activity feed, an unread counter and delivery-channel toggles. On hover it runs both effects at once: the holographic fog drifts and the lit dots surge underneath it. Theme-aware and reduced-motion aware.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
@@ -87,6 +1166,17 @@ export const PRO_CATALOG: ProItem[] = [
       "motion",
       "lucide-react"
     ]
+  },
+  {
+    "name": "diagram-grid",
+    "title": "Diagram Grid",
+    "summary": "A bento scaffold rather than a finished bento: nine slots in the scattered arrangement an integration diagram wants, with one emphasised centre, and a `slots` prop keyed 1 to 9 for what goes in them.",
+    "description": "A bento scaffold rather than a finished bento: nine slots in the scattered arrangement an integration diagram wants, with one emphasised centre, and a `slots` prop keyed 1 to 9 for what goes in them. Anything left out draws itself as a dashed placeholder over a dots or hatch texture, so the layout is legible before there is any content, which is the point of shipping the frame apart from what fills it. A filled slot is a card and an empty one is the outline of where a card will go, so only the empty state is dashed and translucent. The grid flows dense, so a slot spanning two columns does not leave the hole before it empty, since the scatter is the layout rather than a side effect of it. Both textures are painted in `--border` rather than a fixed grey, so they track the same token as the dashed edge around them and invert with the host instead of smearing light grey across a dark card. The grid itself is headless, with no section, no heading and no background, so it drops straight into a hero. No dependencies and no client hooks.",
+    "group": "marketing",
+    "category": "bento",
+    "categoryLabel": "Bento",
+    "tier": "free",
+    "dependencies": []
   },
   {
     "name": "bento-02",
@@ -104,8 +1194,8 @@ export const PRO_CATALOG: ProItem[] = [
   {
     "name": "bento-03",
     "title": "Keycap Bento",
-    "summary": "A flat 3x2 feature grid on thin edge-masked rules — no cards, no fills.",
-    "description": "A flat 3x2 feature grid on thin edge-masked rules — no cards, no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
+    "summary": "A flat 3x2 feature grid on thin edge-masked rules, with no cards and no fills.",
+    "description": "A flat 3x2 feature grid on thin edge-masked rules, with no cards and no fills. Each cell pairs a recessed keycap icon tile with a sans-serif title and monospace description; on hover the tile's inner shadow flips inward and the icon cross-fades from grey to the D2 holographic gradient. Motion-driven, reduced-motion aware.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
@@ -119,7 +1209,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "bento-04",
     "title": "Blueprint Bento",
     "summary": "A four-card services bento on marching dashed blueprint frames.",
-    "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. Responsive down to mobile — the grid restacks and the card illustrations shift rather than shrink — and below lg, where there is no pointer, a tap plays the hover state for a few seconds instead. GSAP-driven, theme-aware and reduced-motion aware.",
+    "description": "A four-card services bento on marching dashed blueprint frames. Hover blooms each card's icon from blue to the D2 holographic gradient, scrambles the Clean Code snippet from grey to syntax colour, brightens the Web Design screen wash and speeds up the Future Forward brand marquees. Responsive down to mobile, where the grid restacks and the card illustrations shift rather than shrink, and below lg, where there is no pointer, a tap plays the hover state for a few seconds instead. GSAP-driven, theme-aware and reduced-motion aware.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
@@ -130,81 +1220,10 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "bento-04-v1",
-    "title": "Blueprint Bento v1",
-    "summary": "The first cut of the services bento, kept as its own block: the same dashed blueprint frames and holographic icon bloom, but the Clean Code snippet types itself out line by line rather than scrambling, and a dithered avatar trails the pointer across each card.",
-    "description": "The first cut of the services bento, kept as its own block: the same dashed blueprint frames and holographic icon bloom, but the Clean Code snippet types itself out line by line rather than scrambling, and a dithered avatar trails the pointer across each card. Five cards to Blueprint's four. GSAP-driven, theme-aware and reduced-motion aware; hover only, so it stays still on touch.",
-    "group": "marketing",
-    "category": "bento",
-    "categoryLabel": "Bento",
-    "tier": "pro",
-    "dependencies": [
-      "gsap",
-      "@gsap/react",
-      "motion",
-      "dither-avatar"
-    ]
-  },
-  {
-    "name": "coffee-tv",
-    "title": "Coffee TV",
-    "summary": "A bolted metal chip around a tiny CRT playing a Buy Me a Coffee cup as a 16x16 pixel grid, mounted in the same thick token frame the particle illustrations wear.",
-    "description": "A bolted metal chip around a tiny CRT playing a Buy Me a Coffee cup as a 16x16 pixel grid, mounted in the same thick token frame the particle illustrations wear. The steam drifts on a per-cell keyframe loop, with a plus-lighter pass over the same grid for the amber bloom, and the chip lifts on hover. No JavaScript and no canvas — opacity is the only animated property. Theme-aware and reduced-motion aware.",
-    "group": "illustrations",
-    "category": "tv",
-    "categoryLabel": "TV",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "particle-portrait",
-    "title": "Particle Portrait",
-    "summary": "A canvas particle-morph illustration: 12,000 dots spawn at random, spring onto pixel positions sampled from an image's opaque mask, and each keeps the colour of the pixel it landed on — so the portrait paints itself out of noise.",
-    "description": "A canvas particle-morph illustration: 12,000 dots spawn at random, spring onto pixel positions sampled from an image's opaque mask, and each keeps the colour of the pixel it landed on — so the portrait paints itself out of noise. The pointer attracts the field with quadratic falloff inside a 79px radius, and settled particles drift. The source image travels with the block as an inlined data URI, so `npx shadcn add` copies the artwork as well as the code. Reduced-motion aware: it renders the settled frame and stops.",
-    "group": "illustrations",
-    "category": "particle",
-    "categoryLabel": "Particle",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "particle-owl",
-    "title": "Particle Owl",
-    "summary": "The same canvas particle-morph engine at a coarser grain: 7,100 dots at 2.8px spring onto pixel positions sampled from a neon owl's mask, each keeping the colour of the pixel it landed on, and each twinkling on its own phase at 2.35Hz.",
-    "description": "The same canvas particle-morph engine at a coarser grain: 7,100 dots at 2.8px spring onto pixel positions sampled from a neon owl's mask, each keeping the colour of the pixel it landed on, and each twinkling on its own phase at 2.35Hz. The pointer attracts the field with quadratic falloff inside a 109px radius. The source image travels with the block as an inlined data URI, so `npx shadcn add` copies the artwork as well as the code. Reduced-motion aware: it renders the settled frame and stops.",
-    "group": "illustrations",
-    "category": "particle",
-    "categoryLabel": "Particle",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "particle-lion",
-    "title": "Particle Lion",
-    "summary": "The same canvas particle-morph engine over edge-to-edge artwork: 7,000 dots at 2.8px spring onto pixel positions sampled from a psychedelic lion, each keeping the colour of the pixel it landed on and twinkling on its own phase at 1Hz.",
-    "description": "The same canvas particle-morph engine over edge-to-edge artwork: 7,000 dots at 2.8px spring onto pixel positions sampled from a psychedelic lion, each keeping the colour of the pixel it landed on and twinkling on its own phase at 1Hz. Nothing is masked out — the whole square is the subject, so the field reads as a pointillist print of it. The pointer attracts the field with quadratic falloff inside a 171px radius. The source image travels with the block as an inlined data URI, so `npx shadcn add` copies the artwork as well as the code. Reduced-motion aware: it renders the settled frame and stops.",
-    "group": "illustrations",
-    "category": "particle",
-    "categoryLabel": "Particle",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "github-tv",
-    "title": "GitHub TV",
-    "summary": "A bolted metal chip around a tiny CRT playing the Octocat as a 16x16 pixel grid, mounted in the same thick token frame the particle illustrations wear.",
-    "description": "A bolted metal chip around a tiny CRT playing the Octocat as a 16x16 pixel grid, mounted in the same thick token frame the particle illustrations wear. On hover a four-frame rainbow ripple washes across the mark and the chip lifts. No JavaScript and no canvas — opacity is the only animated property, and the whole icon is one grid of empty spans. Theme-aware and reduced-motion aware.",
-    "group": "illustrations",
-    "category": "tv",
-    "categoryLabel": "TV",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
     "name": "orb-chip-01",
     "title": "Orb Chip",
     "summary": "An IC package with an orb glowing in its window, drawn entirely in CSS.",
-    "description": "An IC package with an orb glowing in its window, drawn entirely in CSS. The orb is four coloured blobs orbiting a common centre under a frosted lens, and each blob places itself with a trigonometric calc off one shared angle, so the arrangement is one expression rather than four hand placed positions and the whole thing scales from a single size property. The lens is a sibling of the blobs rather than a parent, which is what lets its backdrop blur see them, and it carries a fixed 1px scan line so the sphere reads as something on a screen. The package and its four studs are gradients mixed out of the host's own tokens, so they follow a retheme rather than carrying a palette, and light and dark are a genuine second material rather than one ramp inverted: the light body is brushed silver and the dark one anodised black, lit from the same place by opposite ramps. A bolt sits in the middle of the face in mix-blend-mode overlay, so it works on the light already under it and etches into the surface instead of sitting on top of it. The orbit angle, bloom and fade are registered custom properties, because an unregistered one is a string to the animation engine and would step rather than tween, and their initial values are the resting pose that reduced motion falls back to. One component and one stylesheet, and nothing re-renders per frame.",
+    "description": "An IC package with an orb glowing in its window, drawn entirely in CSS. The orb is six coloured blobs orbiting a common centre under a frosted lens, and each blob places itself with a trigonometric calc off one shared angle, so the arrangement is one expression rather than six hand placed positions and the whole thing scales from a single size property. The lens is a sibling of the blobs rather than a parent, which is what lets its backdrop blur see them, and it carries a fixed 1px scan line so the sphere reads as something on a screen. The package and its four studs are gradients mixed out of the host's own tokens, so they follow a retheme rather than carrying a palette, and light and dark are a genuine second material rather than one ramp inverted: the light body is brushed silver and the dark one anodised black, lit from the same place by opposite ramps. A bolt sits in the middle of the face in mix-blend-mode overlay, so it works on the light already under it and etches into the surface instead of sitting on top of it. The orbit angle, bloom and fade are registered custom properties, because an unregistered one is a string to the animation engine and would step rather than tween, and their initial values are the resting pose that reduced motion falls back to. One component and one stylesheet, and nothing re-renders per frame.",
     "group": "illustrations",
     "category": "chips",
     "categoryLabel": "Chips",
@@ -214,71 +1233,10 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "smart-chip-01",
-    "title": "Smart Chip CTA",
-    "summary": "A two column call to action: the ask on one side, an orb glowing in the window of an IC package on the other.",
-    "description": "A two column call to action: the ask on one side, an orb glowing in the window of an IC package on the other. The orb is four coloured blobs orbiting a common centre under a frosted lens, drawn entirely in CSS, and each blob places itself with a trigonometric calc off one shared angle, so the arrangement is one expression rather than four hand-placed positions and the whole thing scales from a single size property. The lens is a sibling of the blobs rather than a parent, which is what lets its backdrop blur see them, and it carries a fixed 1px scan line so the sphere reads as something on a screen. The package sits on a dot field crossed by two chip-pin traces, each drawn as a fat channel in the stage colour with a hairline riding down its middle; the field is fixed to the viewport, so it parallaxes against the page with no scroll listener. A bolt sits in the middle of the face in mix-blend-mode overlay, so it works on the light already under it and etches into the surface rather than sitting on top of it. Hovering the link springs an icon up over it that never settles, a key melting into a lock and on into a bolt: each glyph blurs as it leaves and unblurs as it arrives, and a steep alpha ramp over the pair thresholds the softened shapes back into solid mass, so one collapses into a droplet and the droplet hardens into the next. Nothing fades, since a fade under that ramp would only blink out, and the whole cycle is one keyframe run three times a third apart, so exactly one glyph is at rest at any moment. Reduced motion parks the orbit in a resting pose and holds the first glyph still rather than hiding either.",
-    "group": "marketing",
-    "category": "cta",
-    "categoryLabel": "CTA",
-    "tier": "pro",
-    "dependencies": [
-      "reicon-react"
-    ]
-  },
-  {
-    "name": "cta-01",
-    "title": "Line CTA",
-    "summary": "A hard-ruled two-column call to action.",
-    "description": "A hard-ruled two-column call to action. The pitch sits left over a strip of plus signs that light and spin under the pointer, each cell keeping its own hue, tilt and resting opacity; the right column is the same field at full height, or a slot for whatever the host would rather show there. No pointer means no effect, so on touch and below lg the field walks three cells at a time by itself. Theme-aware and reduced-motion aware.",
-    "group": "marketing",
-    "category": "cta",
-    "categoryLabel": "CTA",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "cta-02",
-    "title": "Booking CTA",
-    "summary": "A booking call to action beside a draggable card stream.",
-    "description": "A booking call to action beside a draggable card stream. The cards drift past a fixed vertical light bar that cuts each one from artwork to generated code at exactly the beam — two faces clipped against the same edge, over a WebGL starfield and eight hundred additive sparks. Throw it and it carries the flick and decays back; ignore it for ten seconds and a pixel hand walks over and drags it for you. Card art is a prop, so an unconfigured install draws gradient plates rather than shipping a megabyte of photographs. Reduced motion keeps the picture and stops every engine.",
-    "group": "marketing",
-    "category": "cta",
-    "categoryLabel": "CTA",
-    "tier": "pro",
-    "dependencies": [
-      "three",
-      "@types/three",
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "cta-03",
-    "title": "Contact CTA",
-    "summary": "A contact section built from a pair of holographic ID cards.",
-    "description": "A contact section built from a pair of holographic ID cards. Each tilts toward the pointer on an interruptible exponential ease, under a foil sheen of two gradient ramps crossing at opposite angles, broken up by a grain tile and dodged over the portrait. The sheen is parked on the pointer rather than on a timer, so the ramps slide across each other as the card turns and nothing loops while nobody is looking, and the glare and the glow behind the card track the same vector. All of it is driven by custom properties written on the wrapper, so the frame loop never re-renders React. The cards ease in from a tilt on mount, park themselves once settled in an unfocused tab, and hold still under reduced motion.",
-    "group": "marketing",
-    "category": "cards",
-    "categoryLabel": "Cards",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "cta-04",
-    "title": "Panel CTA",
-    "summary": "One inverted panel, centred copy and two actions — the plain one.",
-    "description": "One inverted panel, centred copy and two actions — the plain one. Two blurred lobes bleed in from opposite corners and are clipped by the panel, so what shows is the falloff rather than a circle with an edge. Built entirely on theme tokens with no dark: twin, and no dependencies at all.",
-    "group": "marketing",
-    "category": "cta",
-    "categoryLabel": "CTA",
-    "tier": "free",
-    "dependencies": []
-  },
-  {
-    "name": "cta-05",
-    "title": "Launch CTA",
-    "summary": "Three isometric marks beside the ask, split by a dashed rule.",
-    "description": "Three isometric marks beside the ask, split by a dashed rule. The middle one is a live pixel rocket — a 32×32 grid of 1px cells on a shared four-step keyframe, so opacity is the only animated property and there is no JS tick; the two flanking it are still line drawings at a 0.32px stroke, muted so the eye lands on the one thing that moves. The action's arrow leaves up-right while its twin arrives from down-left, so the glyph travels through the button rather than fading. Both line drawings ship as inlined path data and take the section's text colour, so the block installs with no assets and no dependencies at all.",
+    "name": "cta-14",
+    "title": "Apogee CTA",
+    "summary": "The Launch CTA turned around and given the Liftoff Card's drawings: the ask and its action on the left, the three isometric marks on the right, split by the same dashed rule.",
+    "description": "The Launch CTA turned around and given the Liftoff Card's drawings: the ask and its action on the left, the three isometric marks on the right, split by the same dashed rule. The rocket is the isometric one rather than the pixel grid, so all three drawings share a 0.32px stroke and read as one family, and all three take the edge token so they are structure the copy sits beside rather than a second thing to read. A blurred circle centred on the rocket tints it: the circle blends on multiply, so it darkens the lines it crosses instead of covering them, and the card behind them barely moves. Dark inverts the whole trick rather than only the colours, because multiply on a dark card has nothing left to darken: the blend becomes screen and the pale stops go to their deep twins. The row is taller than the Launch CTA because it is sized off the rocket rather than off the three lines of copy. Stacked on a phone the drawings come first and the copy sits under them, which is an order swap rather than a second markup block, so the DOM order stays one list and the keyboard still reaches the action before the art. The action's arrow leaves up-right while its twin arrives from down-left, so the glyph travels through the button rather than fading. All three line drawings ship as inlined path data, so the block installs with no assets and no dependencies at all.",
     "group": "marketing",
     "category": "cta",
     "categoryLabel": "CTA",
@@ -308,6 +1266,20 @@ export const PRO_CATALOG: ProItem[] = [
     "categoryLabel": "CTA",
     "tier": "pro",
     "dependencies": []
+  },
+  {
+    "name": "code-card-01",
+    "title": "Clean Code Card",
+    "summary": "The Blueprint bento's code card on its own: a rounded surface with a code-window icon tile, a faint import snippet and the copy under them.",
+    "description": "The Blueprint bento's code card on its own: a rounded surface with a code-window icon tile, a faint import snippet and the copy under them. Hover drives two things off one state. The snippet scrambles in place from grey to syntax colour, token by token in DOM order so it reads line by line, and the icon's gradient blooms from its resting blue out to the holographic palette, stop by stop. Both run as one paused timeline played forwards on enter and reversed on leave, so an interrupted hover rewinds from wherever it got to instead of snapping. The snippet box is frozen at its resting size after the fonts settle, so scrambling text cannot reflow the card. Below lg, where there is no pointer to hover with, a tap plays the state for four seconds and falls back on its own. Theme-aware and reduced-motion aware, and the gradient is private to each instance so two cards on a page never recolour each other.",
+    "group": "illustrations",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": [
+      "gsap",
+      "@gsap/react"
+    ]
   },
   {
     "name": "cta-08",
@@ -343,10 +1315,23 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "cta-11",
-    "title": "Team CTA",
-    "summary": "The holographic ID cards of the contact card section, under a heading and a line of copy: the cards answer who you would be working with, the copy answers why to write.",
-    "description": "The holographic ID cards of the contact card section, under a heading and a line of copy: the cards answer who you would be working with, the copy answers why to write. Each card tilts toward the pointer on an interruptible exponential ease, under a foil sheen of two gradient ramps crossing at opposite angles, broken up by a grain tile and dodged over the portrait. The sheen is parked on the pointer rather than on a timer, so the ramps slide across each other as the card turns and nothing loops while nobody is looking. All of it is driven by custom properties written on the wrapper, so the frame loop never re-renders React. Under the pair is the contact line, and hovering its link springs a plate up over it naming one channel at a time: each name is spelled out from noise a letter per frame, holds, then the next shuffles in over it, with the blue showing only behind the letters that have locked in so the colour lands along with the churn. The plate is sized off the longest name in monospace characters, so nothing resizes as the channels come and go. The heading and the pair are both props, so a team of two is the shape rather than the limit.",
+    "name": "smart-chip-01",
+    "title": "Smart Chip CTA",
+    "summary": "A two column call to action: the ask on one side, an orb glowing in the window of an IC package on the other.",
+    "description": "A two column call to action: the ask on one side, an orb glowing in the window of an IC package on the other. The chip is Orb Chip itself, imported rather than copied, so the block and the illustration cannot drift apart: six coloured blobs orbiting a common centre under a frosted lens, drawn entirely in CSS, each placing itself with a trigonometric calc off one shared angle, so the arrangement is one expression rather than six hand placed positions and the whole part scales from a single size property the block sets to 240. The lens is a sibling of the blobs rather than a parent, which is what lets its backdrop blur see them, and it carries a fixed 1px scan line so the sphere reads as something on a screen. The package sits on a dot field crossed by two chip-pin traces, each drawn as a fat channel in the stage colour with a hairline riding down its middle; the field is fixed to the viewport, so it parallaxes against the page with no scroll listener. A bolt sits in the middle of the face in mix-blend-mode overlay, so it works on the light already under it and etches into the surface rather than sitting on top of it. Hovering the link springs an icon up over it that never settles, a key melting into a lock and on into a bolt: each glyph blurs as it leaves and unblurs as it arrives, and a steep alpha ramp over the pair thresholds the softened shapes back into solid mass, so one collapses into a droplet and the droplet hardens into the next. Nothing fades, since a fade under that ramp would only blink out, and the whole cycle is one keyframe run three times a third apart, so exactly one glyph is at rest at any moment. Reduced motion parks the orbit in a resting pose and holds the first glyph still rather than hiding either.",
+    "group": "marketing",
+    "category": "cta",
+    "categoryLabel": "CTA",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "cta-05",
+    "title": "Launch CTA",
+    "summary": "Three isometric marks beside the ask, split by a dashed rule.",
+    "description": "Three isometric marks beside the ask, split by a dashed rule. The middle one is a live pixel rocket, a 32×32 grid of 1px cells on a shared four-step keyframe, so opacity is the only animated property and there is no JS tick; the two flanking it are still line drawings at a 0.32px stroke, muted so the eye lands on the one thing that moves. The action's arrow leaves up-right while its twin arrives from down-left, so the glyph travels through the button rather than fading. Both line drawings ship as inlined path data and take the section's text colour, so the block installs with no assets and no dependencies at all.",
     "group": "marketing",
     "category": "cta",
     "categoryLabel": "CTA",
@@ -354,10 +1339,47 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
+    "name": "cta-01",
+    "title": "Line CTA",
+    "summary": "A hard-ruled two-column call to action.",
+    "description": "A hard-ruled two-column call to action. The pitch sits left over a strip of plus signs that light and spin under the pointer, each cell keeping its own hue, tilt and resting opacity; the right column is the same field at full height, or a slot for whatever the host would rather show there. No pointer means no effect, so on touch and below lg the field walks three cells at a time by itself. Theme-aware and reduced-motion aware.",
+    "group": "marketing",
+    "category": "cta",
+    "categoryLabel": "CTA",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "cta-02",
+    "title": "Booking CTA",
+    "summary": "A booking call to action beside a draggable card stream.",
+    "description": "A booking call to action beside a draggable card stream. The cards drift past a fixed vertical light bar that cuts each one from artwork to generated code at exactly the beam, two faces clipped against the same edge, over a WebGL starfield and eight hundred additive sparks. Throw it and it carries the flick and decays back; ignore it for ten seconds and a pixel hand walks over and drags it for you. Card art is a prop, so an unconfigured install draws gradient plates rather than shipping a megabyte of photographs. Reduced motion keeps the picture and stops every engine.",
+    "group": "marketing",
+    "category": "cta",
+    "categoryLabel": "CTA",
+    "tier": "pro",
+    "dependencies": [
+      "three",
+      "@types/three",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "cta-04",
+    "title": "Panel CTA",
+    "summary": "One inverted panel, centred copy and two actions, the plain one.",
+    "description": "One inverted panel, centred copy and two actions, the plain one. Two blurred lobes bleed in from opposite corners and are clipped by the panel, so what shows is the falloff rather than a circle with an edge. Built entirely on theme tokens with no dark: twin, and no dependencies at all.",
+    "group": "marketing",
+    "category": "cta",
+    "categoryLabel": "CTA",
+    "tier": "free",
+    "dependencies": []
+  },
+  {
     "name": "cta-12",
     "title": "Launch Card",
-    "summary": "The launch CTA folded into one column: the rocket centred on a plate at the top with the two isometric marks hung half off each edge, the ask underneath, and the dashed rule that split the two columns now running across between them.",
-    "description": "The launch CTA folded into one column: the rocket centred on a plate at the top with the two isometric marks hung half off each edge, the ask underneath, and the dashed rule that split the two columns now running across between them. The marks are cut by the card's own overflow rather than sized to fit, so the drawing reads as carrying on past the frame. The rocket is the live one, a 32×32 grid of 1.25px cells on a shared four-step keyframe, so opacity is the only animated property and there is no JS tick, and it is scaled rather than re-sized because the gaps between the cells are what read as the pixels. The action's arrow leaves up-right while its twin arrives from down-left, so the glyph travels through the button rather than fading, and the button runs the full width of the card rather than leaving a gutter on both sides. The rocket is cells and CSS and both line drawings ship as inlined path data, so the block installs with no assets and no dependencies at all.",
+    "summary": "The launch CTA folded into one column: the rocket centred on a dotted plate at the top, the ask underneath, and the dashed rule that split the two columns now running across between them.",
+    "description": "The launch CTA folded into one column: the rocket centred on a dotted plate at the top, the ask underneath, and the dashed rule that split the two columns now running across between them. The dot field is foreground ink cut through a 3px mask, so it follows the theme. The rocket is the live one, a 20×20 grid of 3px dots on a green to blue ramp from exhaust to nose, lit by a nine-frame ripple out from its middle that rests before the next wave so the pulse has a start the eye can find. Every cell runs one shared keyframe shifted by its own delay, so opacity is the only animated property and there is no JS tick. Size, gap, colours and timing are custom properties on its root. The action's arrow leaves up-right while its twin arrives from down-left, so the glyph travels through the button rather than fading, and the button runs the full width of the card rather than leaving a gutter on both sides. The rocket is cells and CSS and the dot field is an inlined mask, so the block installs with no assets and no dependencies at all.",
     "group": "marketing",
     "category": "cards",
     "categoryLabel": "Cards",
@@ -376,10 +1398,10 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "cta-14",
-    "title": "Apogee CTA",
-    "summary": "The Launch CTA turned around and given the Liftoff Card's drawings: the ask and its action on the left, the three isometric marks on the right, split by the same dashed rule.",
-    "description": "The Launch CTA turned around and given the Liftoff Card's drawings: the ask and its action on the left, the three isometric marks on the right, split by the same dashed rule. The rocket is the isometric one rather than the pixel grid, so all three drawings share a 0.32px stroke and read as one family, and all three take the edge token so they are structure the copy sits beside rather than a second thing to read. A blurred circle centred on the rocket tints it: the circle blends on multiply, so it darkens the lines it crosses instead of covering them, and the card behind them barely moves. Dark inverts the whole trick rather than only the colours, because multiply on a dark card has nothing left to darken: the blend becomes screen and the pale stops go to their deep twins. The row is taller than the Launch CTA because it is sized off the rocket rather than off the three lines of copy. The action's arrow leaves up-right while its twin arrives from down-left, so the glyph travels through the button rather than fading. All three line drawings ship as inlined path data, so the block installs with no assets and no dependencies at all.",
+    "name": "cta-11",
+    "title": "Team CTA",
+    "summary": "The holographic ID cards of the contact card section, under a heading and a line of copy: the cards answer who you would be working with, the copy answers why to write.",
+    "description": "The holographic ID cards of the contact card section, under a heading and a line of copy: the cards answer who you would be working with, the copy answers why to write. Each card tilts toward the pointer on an interruptible exponential ease, under a foil sheen of two gradient ramps crossing at opposite angles, broken up by a grain tile and dodged over the portrait. The sheen is parked on the pointer rather than on a timer, so the ramps slide across each other as the card turns and nothing loops while nobody is looking. All of it is driven by custom properties written on the wrapper, so the frame loop never re-renders React. Under the pair is the contact line, and hovering its link springs a plate up over it naming one channel at a time: each name is spelled out from noise a letter per frame, holds, then the next shuffles in over it, with the blue showing only behind the letters that have locked in so the colour lands along with the churn. The plate is sized off the longest name in monospace characters, so nothing resizes as the channels come and go. The heading and the pair are both props, so a team of two is the shape rather than the limit.",
     "group": "marketing",
     "category": "cta",
     "categoryLabel": "CTA",
@@ -390,7 +1412,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "support-01",
     "title": "Support Section",
     "summary": "The ask, and the two chips that answer it: body copy over a perforated rule on the left, the GitHub and Buy Me a Coffee chips standing on a dot field to the right.",
-    "description": "The ask, and the two chips that answer it: body copy over a perforated rule on the left, the GitHub and Buy Me a Coffee chips standing on a dot field to the right. Each chip is a bolted metal plate around a tiny CRT playing its mark as a 16×16 pixel grid — the Octocat washes through a four-frame rainbow ripple on hover, the coffee steam drifts on a per-cell loop with a plus-lighter pass for the amber bloom. Drop the GitHub link and the layout re-flows to two columns rather than leaving a hole. No JavaScript and no canvas; theme-aware and reduced-motion aware.",
+    "description": "The ask, and the two chips that answer it: body copy over a perforated rule on the left, the GitHub and Buy Me a Coffee chips standing on a dot field to the right. Each chip is a bolted metal plate around a tiny CRT playing its mark as a 16×16 pixel grid: the Octocat washes through a four-frame rainbow ripple on hover, the coffee steam drifts on a per-cell loop with a plus-lighter pass for the amber bloom. Drop the GitHub link and the layout re-flows to two columns rather than leaving a hole. No JavaScript and no canvas; theme-aware and reduced-motion aware.",
     "group": "marketing",
     "category": "support",
     "categoryLabel": "Support",
@@ -401,7 +1423,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "community-01",
     "title": "Community Wall",
     "summary": "A testimonial wall with a heart rain drifting over its head.",
-    "description": "A testimonial wall with a heart rain drifting over its head. The grid is six columns of hairline gaps over a filled sheet, so every divider is the sheet showing through between cards rather than a border on each one — no doubled seams, and a card claims two, four or all six columns, which is what lets a mixed set of quote lengths still fill each row flush. Cards carry a holographic sweep on hover, animated as a mask position rather than a background pan so the paint never repaints, and gated on real hover so a tap on a phone can't park the band mid-card. The rain draws its faces from a shuffled queue instead of picking at random each tick, so a twelve-name list shows all twelve before repeating and no face appears twice in a row; each pill rises linearly while its fade, shrink and blur run on their own eased curves, and the travel distance is measured off the band's own height, so the rain clears the top of whatever box it is dropped into. Missing avatars fall back to initials on a hash-picked gradient, so a name keeps its colours across spawns. X and Threads each get their own verified check and mark.",
+    "description": "A testimonial wall with a heart rain drifting over its head. The grid is six columns of hairline gaps over a filled sheet, so every divider is the sheet showing through between cards rather than a border on each one, no doubled seams, and a card claims two, four or all six columns, which is what lets a mixed set of quote lengths still fill each row flush. Cards carry a holographic sweep on hover, animated as a mask position rather than a background pan so the paint never repaints, and gated on real hover so a tap on a phone can't park the band mid-card. The rain draws its faces from a shuffled queue instead of picking at random each tick, so a twelve-name list shows all twelve before repeating and no face appears twice in a row; each pill rises linearly while its fade, shrink and blur run on their own eased curves, and the travel distance is measured off the band's own height, so the rain clears the top of whatever box it is dropped into. Missing avatars fall back to initials on a hash-picked gradient, so a name keeps its colours across spawns. X and Threads each get their own verified check and mark.",
     "group": "marketing",
     "category": "testimonials",
     "categoryLabel": "Testimonials",
@@ -414,7 +1436,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "community-02",
     "title": "Community Wall Even",
     "summary": "The community wall without the spans: a flat three-across at desktop, two at tablet, one on a phone.",
-    "description": "The community wall without the spans: a flat three-across at desktop, two at tablet, one on a phone. Grid rows stretch to the tallest quote in them rather than each card sizing to its own text, so the hairline gaps run continuously across the wall — the same filled-sheet trick as its sibling, where every divider is the sheet showing through a 1px gap rather than a border on each card, so neighbours never double up and the rounded corners come off the wrapper. Cards carry the holographic hover sweep, animated as a mask position rather than a background pan so the paint never repaints, and gated on real hover so a tap on a phone can't park the band mid-card. Overhead, the heart rain draws faces from a shuffled queue instead of picking at random each tick, so a twelve-name list shows all twelve before repeating and no face appears twice in a row; the pills rise linearly while fade, shrink and blur run on their own eased curves, and travel is measured off the band's own height. Missing avatars fall back to initials on a hash-picked gradient, so a name keeps its colours across spawns.",
+    "description": "The community wall without the spans: a flat three-across at desktop, two at tablet, one on a phone. Grid rows stretch to the tallest quote in them rather than each card sizing to its own text, so the hairline gaps run continuously across the wall, the same filled-sheet trick as its sibling, where every divider is the sheet showing through a 1px gap rather than a border on each card, so neighbours never double up and the rounded corners come off the wrapper. Cards carry the holographic hover sweep, animated as a mask position rather than a background pan so the paint never repaints, and gated on real hover so a tap on a phone can't park the band mid-card. Overhead, the heart rain draws faces from a shuffled queue instead of picking at random each tick, so a twelve-name list shows all twelve before repeating and no face appears twice in a row; the pills rise linearly while fade, shrink and blur run on their own eased curves, and travel is measured off the band's own height. Missing avatars fall back to initials on a hash-picked gradient, so a name keeps its colours across spawns.",
     "group": "marketing",
     "category": "testimonials",
     "categoryLabel": "Testimonials",
@@ -426,8 +1448,8 @@ export const PRO_CATALOG: ProItem[] = [
   {
     "name": "community-03",
     "title": "Community Wall Still",
-    "summary": "Nine quotes, three across, and the only motion is the sweep under the pointer — no rain overhead, so nothing in this one runs on a timer and it installs with no dependencies at all.",
-    "description": "Nine quotes, three across, and the only motion is the sweep under the pointer — no rain overhead, so nothing in this one runs on a timer and it installs with no dependencies at all. The wall is one filled sheet with 1px gaps and a card in every slot, so every divider is the sheet showing through rather than a border on each card: neighbours never double up, and the rounded corners come off the wrapper. Grid rows stretch to the tallest quote in them instead of each card sizing to its own text, so the hairlines run continuously across the wall rather than breaking into masonry. The hover sweep is a fixed holographic gradient behind a moving mask — mask-position animates on the compositor where a background pan would repaint the whole card — gated on real hover so a tap on a phone can't park the band mid-card, and dropped under prefers-reduced-motion. Avatars fall back to initials when an image 404s, and X and Threads each get their own verified check and mark.",
+    "summary": "Nine quotes, three across, and the only motion is the sweep under the pointer, no rain overhead, so nothing in this one runs on a timer and it installs with no dependencies at all.",
+    "description": "Nine quotes, three across, and the only motion is the sweep under the pointer, no rain overhead, so nothing in this one runs on a timer and it installs with no dependencies at all. The wall is one filled sheet with 1px gaps and a card in every slot, so every divider is the sheet showing through rather than a border on each card: neighbours never double up, and the rounded corners come off the wrapper. Grid rows stretch to the tallest quote in them instead of each card sizing to its own text, so the hairlines run continuously across the wall rather than breaking into masonry. The hover sweep is a fixed holographic gradient behind a moving mask, mask-position animates on the compositor where a background pan would repaint the whole card, gated on real hover so a tap on a phone can't park the band mid-card, and dropped under prefers-reduced-motion. Avatars fall back to initials when an image 404s, and X and Threads each get their own verified check and mark.",
     "group": "marketing",
     "category": "testimonials",
     "categoryLabel": "Testimonials",
@@ -438,7 +1460,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "pattern-01",
     "title": "Slipstream",
     "summary": "A dot field pinned to the viewport, seen through a square window: the card slides over a stationary grid as the page scrolls, so the dots travel at scroll speed and the field reads as depth behind the window rather than wallpaper glued to the front of it.",
-    "description": "A dot field pinned to the viewport, seen through a square window: the card slides over a stationary grid as the page scrolls, so the dots travel at scroll speed and the field reads as depth behind the window rather than wallpaper glued to the front of it. One background-image and no JavaScript — the motion is the scroll itself. Theme-aware; iOS Safari ignores fixed attachment and simply paints it still.",
+    "description": "A dot field pinned to the viewport, seen through a square window: the card slides over a stationary grid as the page scrolls, so the dots travel at scroll speed and the field reads as depth behind the window rather than wallpaper glued to the front of it. One background-image and no JavaScript: the motion is the scroll itself. Theme-aware; iOS Safari ignores fixed attachment and simply paints it still.",
     "group": "marketing",
     "category": "patterns",
     "categoryLabel": "Patterns",
@@ -446,10 +1468,21 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
+    "name": "glass-icon",
+    "title": "Glass Icon",
+    "summary": "An app icon under glass: a frosted squircle with a glyph pressed into its face.",
+    "description": "An app icon under glass: a frosted squircle with a glyph pressed into its face. One component and a whole set at once, because the only layer carrying hue is the base radial gradient and every layer over it is white, grey or black. So two colour props repaint the tile and the light stays where it was, which is what lets a dozen of them sit in a row and read as one family. The glass is six layers and each is a separate decision: the colour, a neutral radial on overlay that gives it a lit corner and a shaded one, a frosted plate on soft light, the engraving, a blurred sweep down the face, and a four stop shadow under the whole tile rather than one, since a single shadow at this size reads as a sticker. The glyph is an alpha mask, so anything opaque works, and the wrapper sets both fill and colour so a bare path and an icon set painting with currentColor are handled the same way. It is pressed in rather than printed on by twin inner shadows, dark at the top left and white at the bottom right, over a shadow it casts inside the glass. Those inner shadows keep the mask's anti aliased edge instead of thresholding it, which is what stops the rim stair stepping at small sizes. The two drop shadows under the engraving are eroded before they are offset, so a thin glyph casts a shadow the size of its stroke rather than a blurred copy of its box. Sheen, frost, depth and shadow are each a number with a sane default, and the engrave filter's region grows with depth because a fixed one clips the shadow the moment the offset passes its padding. Drawn as real SVG gradients and filters rather than exported art, so it renders the same everywhere and scales to any size, and every id is per instance so a page can hold the whole set. No dependencies.",
+    "group": "components",
+    "category": "glass-icons",
+    "categoryLabel": "Glass Icons",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "slider-01",
     "title": "Tick Slider",
     "summary": "A range input drawn as a comb of 36 hairlines that bows around the handle.",
-    "description": "A range input drawn as a comb of 36 hairlines that bows around the handle. The stretch is driven by the velocity of the value rather than its position, through a spring — so a slow drag barely disturbs the comb and a fast one throws a wide bow-wave through it, something a CSS transition cannot express because it has no notion of how fast the input arrived. The readout is click-to-type, and `warnAbove` turns the handle amber past a soft ceiling without refusing to go there. A native range input sits transparent on top, so keyboard, touch and screen readers work with no extra code.",
+    "description": "A range input drawn as a comb of 36 hairlines that bows around the handle. The stretch is driven by the velocity of the value rather than its position, through a spring, so a slow drag barely disturbs the comb and a fast one throws a wide bow-wave through it, something a CSS transition cannot express because it has no notion of how fast the input arrived. The readout is click-to-type, and `warnAbove` turns the handle amber past a soft ceiling without refusing to go there. A native range input sits transparent on top, so keyboard, touch and screen readers work with no extra code.",
     "group": "components",
     "category": "sliders",
     "categoryLabel": "Sliders",
@@ -462,7 +1495,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "slider-02",
     "title": "Filmstrip Slider",
     "summary": "A slider built the other way round: the needle is fixed at centre and you drag the strip of ticks under it, like a camera dial.",
-    "description": "A slider built the other way round: the needle is fixed at centre and you drag the strip of ticks under it, like a camera dial. Throw it and it carries the flick, decays, and lands snapped to a step rather than wherever the momentum stopped. The value lives in React state and in a MotionValue at once, and the component's real work is keeping the two agreed without them driving each other in a loop — two ref guards, because a frame callback has to read them without re-rendering to see them. The strip re-measures on resize, fades into the pill at both ends, and takes arrow keys since there is no native input beneath it.",
+    "description": "A slider built the other way round: the needle is fixed at centre and you drag the strip of ticks under it, like a camera dial. Throw it and it carries the flick, decays, and lands snapped to a step rather than wherever the momentum stopped. The value lives in React state and in a MotionValue at once, and the component's real work is keeping the two agreed without them driving each other in a loop, two ref guards, because a frame callback has to read them without re-rendering to see them. The strip re-measures on resize, fades into the pill at both ends, and takes arrow keys since there is no native input beneath it.",
     "group": "components",
     "category": "sliders",
     "categoryLabel": "Sliders",
@@ -475,7 +1508,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "slider-03",
     "title": "Level Slider",
     "summary": "A level meter you can drag.",
-    "description": "A level meter you can drag. The fill springs after the value instead of snapping to it, and the faster it travels the more it behaves like liquid — a halo blooms behind the bar and the leading edge stretches into a meniscus, both read off the same velocity spring through different curves so they never move as one. The fill tints green through amber to red by percentage, which can be switched off for a value where high is not worse. Everything animated is a MotionValue, so the frame loop never re-renders React; the native range input on top is what actually takes the input.",
+    "description": "A level meter you can drag. The fill springs after the value instead of snapping to it, and the faster it travels the more it behaves like liquid: a halo blooms behind the bar and the leading edge stretches into a meniscus, both read off the same velocity spring through different curves so they never move as one. The fill tints green through amber to red by percentage, which can be switched off for a value where high is not worse. Everything animated is a MotionValue, so the frame loop never re-renders React; the native range input on top is what actually takes the input.",
     "group": "components",
     "category": "sliders",
     "categoryLabel": "Sliders",
@@ -485,10 +1518,80 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
+    "name": "video-player-01",
+    "title": "Video Player",
+    "summary": "A video with its transport over a bottom scrim: play and pause, a seek bar, then sound and full screen.",
+    "description": "A video with its transport over a bottom scrim: play and pause, a seek bar, then sound and full screen. The seek bar is one pill with the elapsed time on the left, the length on the right and a diamond on the playhead; the fill follows the playhead every frame rather than stepping on timeupdate, and a drag pauses the clip and resumes it on release, parking any seek issued mid seek so the frame never lags the pointer. Volume is a slim upright pill that pops up over the sound button under the pointer or on keyboard focus, with padding under it so moving up onto it keeps it open; touch screens get the mute button only, since iOS ignores volume and the device buttons do that job. Volume at zero reads as muted, and unmuting from there brings it back up. The sound glyph is five bars drawn inline that bob like a level meter while the clip plays with sound and stand still when it does not. Play and pause, mute and full screen each swap their glyph through a short blur rather than a hard cut. The controls show while paused, under the pointer and on keyboard focus, and always on touch screens, which have no hover to ask with. Full screen takes the whole frame so the controls come with it, and falls back to the video's own player on iPhone Safari. Autoplay tries sound first and falls back to muted when the browser refuses. The picture is always dark, so the chrome on it is white on black glass in both themes, and every motion keeps its reduced motion guard. A title sits bottom left inside the picture like a streaming preview: above the seek bar with its description while the controls show, then settling a little smaller into the space they leave, the description folding away under it. A round glass play button sits in the middle while paused, and the same slot swaps to a spinner while the clip loads or stalls, held back 300ms so a quick seek never flashes it; a click anywhere on the picture plays or pauses.",
+    "group": "components",
+    "category": "media",
+    "categoryLabel": "Media",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "slider-04",
+    "title": "Scrub Slider",
+    "summary": "A number as one pill: the label on the left, the reading on the right and the fill behind both, so a row of them reads as a panel of settings rather than labels floating over tracks.",
+    "description": "A number as one pill: the label on the left, the reading on the right and the fill behind both, so a row of them reads as a panel of settings rather than labels floating over tracks. Under a pointer the bar follows the raw position with no tween, since anything behind a finger reads as lag, while the value handed up stays snapped to the step, so a coarse step never shows as a staircase and a settings object never carries a 0.3471. A click on the track glides there, and the release settles onto the snapped value on the same curve. The fill and its handle are both transforms, so nothing relayouts while it moves. The outline stays put; the bar brightens instead on hover, while dragged and under keyboard focus. The reading prints as a percent by default and takes a format function for anything else, which is how the demo's layer panel reads in pixels and degrees. A native range input sits transparent on top, so keyboard, touch and screen readers work with no extra code, and arrow keys still move one real step.",
+    "group": "components",
+    "category": "sliders",
+    "categoryLabel": "Sliders",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "slider-08",
+    "title": "Span Slider",
+    "summary": "The facet slider with a second handle, for the filter that asks for a floor and a ceiling rather than one number: the label on the left, both ends of the reading on the right, and the band drawn between the handles instead of out of the left edge.",
+    "description": "The facet slider with a second handle, for the filter that asks for a floor and a ceiling rather than one number: the label on the left, both ends of the reading on the right, and the band drawn between the handles instead of out of the left edge. What changes is what the fill means, since here it is what is being kept rather than everything below the value. The two native range inputs underneath carry keyboard and screen reader support, one per end, and take no pointer events at all: two full width inputs stacked can only hand a press to whichever is on top, so the pill routes a drag itself, to whichever handle is nearer the press, with the ends clamping against each other rather than swapping, so the reading never runs backwards mid drag. Under a pointer the band follows the raw position with no tween while the value handed up stays snapped to the step, and a click on the track glides there on the same curve. The band is one element translated to the low end and scaled to the span, so neither end relayouts. Each end prints through a format function, which is what a price, a size, a rating and a lead time each need.",
+    "group": "components",
+    "category": "sliders",
+    "categoryLabel": "Sliders",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "slider-07",
+    "title": "Glass Slider",
+    "summary": "The facet slider cast in glass: a frosted pane with a lit top edge and a shaded bottom one, a band travelling behind the specular sweep and a round mark sitting on the band's edge, a solid disc at rest that crossfades to a dashed ring while the value is being slid.",
+    "description": "The facet slider cast in glass: a frosted pane with a lit top edge and a shaded bottom one, a band travelling behind the specular sweep and a round mark sitting on the band's edge, a solid disc at rest that crossfades to a dashed ring while the value is being slid. The material is the whole of the difference, and it is the one skin that cannot be written in the host's own tokens, since a rim light is lighter than whatever is behind it and a floor is darker in both themes while the foreground colour flips between them. So the lit and shaded faces are a prefixed block on the item's own root class, flipped by the theme, and the values differ per theme rather than being one set at two alphas: on a light page glass reads by its shadow and its edge, on a dark page by its lip. The blur is declared once, so hover and focus only ever repaint colour. The mark is a stroked glyph rather than a filled box, so it takes its colour through the text colour and its lift through a drop shadow: a box shadow would be cast by the icon's square box, and a ring with gaps in it would show that square through the gaps. The demo floats the panel over a wash of three soft lights, since a blur needs something behind it to distort and a single linear ramp reads the same through glass as beside it. A native range input sits transparent on top, so keyboard, touch and screen readers work with no extra code.",
+    "group": "components",
+    "category": "sliders",
+    "categoryLabel": "Sliders",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "slider-06",
+    "title": "Facet Slider",
+    "summary": "The scrub slider with a diamond where the bar handle was: the label on the left, the reading on the right and the fill behind both, marked by a point rather than a wall.",
+    "description": "The scrub slider with a diamond where the bar handle was: the label on the left, the reading on the right and the fill behind both, marked by a point rather than a wall. A bar reads as an edge and takes the eye with the fill, while a diamond reads as a position, so a row of these scans as six readings on their tracks instead of six part filled bars. The marker rides a carrier inset by its own half diagonal and is centred on the value, so it is a point on the track at every setting and its tips are never clipped by the pill's rounding. Under a pointer the bar follows the raw position with no tween, since anything behind a finger reads as lag, while the value handed up stays snapped to the step, so a coarse step never shows as a staircase. A click on the track glides there and the release settles onto the snapped value on the same curve. The fill and the diamond are both transforms, so nothing relayouts while it moves. The outline stays put; the bar brightens instead on hover, while dragged and under keyboard focus. The reading prints as a percent by default and takes a format function for anything else. A native range input sits transparent on top, so keyboard, touch and screen readers work with no extra code, and arrow keys still move one real step.",
+    "group": "components",
+    "category": "sliders",
+    "categoryLabel": "Sliders",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "slider-05",
+    "title": "Pivot Slider",
+    "summary": "A signed number as one pill: the label on the left, the reading on the right, and the fill running out of a pivot instead of out of the left edge.",
+    "description": "A signed number as one pill: the label on the left, the reading on the right, and the fill running out of a pivot instead of out of the left edge. A setting with a neutral point in the middle of its range reads wrong on a left anchored bar, where zero is an empty track and minus 180 looks as full as plus 180, so here the bar says which side of the pivot the value is on and how far. Both ends of that band are one transform, translated to the near end and scaled to the span, so a bar growing leftwards costs exactly what one growing right does and neither end relayouts. The pivot is a hollow diamond and the handle a solid one, measured off the same inset track, which is the difference between where a value counts from and where it is. The pivot is a prop rather than the midpoint, since a range like 25 to 400 is neutral at 100. Under a pointer the bar follows the raw position with no tween while the value handed up stays snapped to the step, and a double click returns the row to its pivot. A native range input sits transparent on top, so keyboard, touch and screen readers work with no extra code.",
+    "group": "components",
+    "category": "sliders",
+    "categoryLabel": "Sliders",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "color-picker-01",
     "title": "Hex Picker",
     "summary": "A hex colour picker in a popover: saturation/value square, hue rail, hex field that accepts 3- or 6-digit input with or without the hash, and a swatch grid.",
-    "description": "A hex colour picker in a popover: saturation/value square, hue rail, hex field that accepts 3- or 6-digit input with or without the hash, and a swatch grid. Hue is held alongside the derived value because it is not recoverable from the hex once saturation or brightness hits zero — drag into the black corner and a purely derived hue would snap the rail back to red. The square is two gradients over a flat hue rather than a canvas, so there is nothing to redraw on resize, and pointer capture keeps a drag steering after it leaves the box. No picker package and no popover primitive: a registry item's dependencies become its installer's.",
+    "description": "A hex colour picker in a popover: saturation/value square, hue rail, hex field that accepts 3- or 6-digit input with or without the hash, and a swatch grid. Hue is held alongside the derived value because it is not recoverable from the hex once saturation or brightness hits zero: drag into the black corner and a purely derived hue would snap the rail back to red. The square is two gradients over a flat hue rather than a canvas, so there is nothing to redraw on resize, and pointer capture keeps a drag steering after it leaves the box. No picker package and no popover primitive: a registry item's dependencies become its installer's.",
     "group": "components",
     "category": "color-pickers",
     "categoryLabel": "Color Pickers",
@@ -498,8 +1601,8 @@ export const PRO_CATALOG: ProItem[] = [
   {
     "name": "color-picker-02",
     "title": "Gradient Picker",
-    "summary": "A whole linear-gradient, editable: twelve presets to start from, a rotary dial to aim it, and a list of stops you can retint, reorder by dragging one row onto another, add to and remove down to a floor of two — over a live preview and the CSS it produces.",
-    "description": "A whole linear-gradient, editable: twelve presets to start from, a rotary dial to aim it, and a list of stops you can retint, reorder by dragging one row onto another, add to and remove down to a floor of two — over a live preview and the CSS it produces. A preset names two ends rather than a whole ramp, so picking one repaints the first and last stops and leaves any middles in place instead of discarding them, and the preset swatches carry the live angle so the grid previews what picking one actually makes. The reorder is HTML5 drag-and-drop: the gesture is a whole-row swap with no animation to own and dataTransfer already carries the source index, so no drag state lives above the row — though a drop and a click land on the same element in the same tick, so the row swallows one frame of click in the capture phase to stop the picker reopening on the row you just dropped onto. Ships its own colour picker, popover and dial; no dependencies.",
+    "summary": "A whole linear-gradient, editable: twelve presets to start from, a rotary dial to aim it, and a list of stops you can retint, reorder by dragging one row onto another, add to and remove down to a floor of two, over a live preview and the CSS it produces.",
+    "description": "A whole linear-gradient, editable: twelve presets to start from, a rotary dial to aim it, and a list of stops you can retint, reorder by dragging one row onto another, add to and remove down to a floor of two, over a live preview and the CSS it produces. A preset names two ends rather than a whole ramp, so picking one repaints the first and last stops and leaves any middles in place instead of discarding them, and the preset swatches carry the live angle so the grid previews what picking one actually makes. The reorder is HTML5 drag-and-drop: the gesture is a whole-row swap with no animation to own and dataTransfer already carries the source index, so no drag state lives above the row, though a drop and a click land on the same element in the same tick, so the row swallows one frame of click in the capture phase to stop the picker reopening on the row you just dropped onto. Ships its own colour picker, popover and dial; no dependencies.",
     "group": "components",
     "category": "color-pickers",
     "categoryLabel": "Color Pickers",
@@ -510,7 +1613,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "color-picker-03",
     "title": "Angle Dial",
     "summary": "A rotary dial for an angle, over the gradient it aims.",
-    "description": "A rotary dial for an angle, over the gradient it aims. Grab anywhere in the circle and the needle points at the pointer, with a readout following the drag and Shift snapping to 15°; arrow keys nudge, because a pointer-only control that claims role=\"slider\" is a promise it cannot keep. The angle comes from atan2(dx, -dy) rather than the usual argument order, which measures clockwise from twelve o'clock — what a gradient angle actually means. Drawn in a -1..1 viewBox so it renders identically at any size, with the needle bead lit by its own gradient, and useId keeps two dials on one page from sharing a paint. No dependencies.",
+    "description": "A rotary dial for an angle, over the gradient it aims. Grab anywhere in the circle and the needle points at the pointer, with a readout following the drag and Shift snapping to 15°; arrow keys nudge, because a pointer-only control that claims role=\"slider\" is a promise it cannot keep. The angle comes from atan2(dx, -dy) rather than the usual argument order, which measures clockwise from twelve o'clock: what a gradient angle actually means. Drawn in a -1..1 viewBox so it renders identically at any size, with the needle bead lit by its own gradient, and useId keeps two dials on one page from sharing a paint. No dependencies.",
     "group": "components",
     "category": "color-pickers",
     "categoryLabel": "Color Pickers",
@@ -518,10 +1621,49 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
+    "name": "spine-timeline",
+    "title": "Spine Timeline",
+    "summary": "A career rail: years in a narrow column, one hairline running the whole height beside them, and each role's body in the reading column, with the work shipped inside a role hanging off it as sub rows so the page keeps one spine instead of growing a second list.",
+    "description": "A career rail: years in a narrow column, one hairline running the whole height beside them, and each role's body in the reading column, with the work shipped inside a role hanging off it as sub rows so the page keeps one spine instead of growing a second list. An accent line draws down that hairline as the page scrolls, and it eases after the scroll rather than tracking it: a line pinned to the scroll position is a progress bar, while a line catching up reads as something travelling down the page. The catch up is exponential with its own time constant, so it settles about three times that after the scroll stops, and a lit head as long as the distance still to close rides the tip, which makes the head exist only while the line is moving and shrink away as it lands. Body and head are one two stop gradient rather than two elements, since a second element would need its own clip kept in step with the first one. Each node the tip crosses reacts once and stays tinted while the line is past it: a role's ship mark turns a full revolution and sends out a radar ping, a project's hollow ring fills and pings from inside itself, and both echoes run twice with the second a beat behind, the way a return lands on a scope. The wheel pings from the echo beside it rather than the one inside it, because an echo starting at the wheel's own size would be invisible for the first third of its swell. The tint clears again on the way back up, since a node the line has retreated past is not one the reader has got to. Everything is queried from the component's own element rather than from the document, so two timelines on a page drive their own nodes instead of each other's, and progress is measured against that element rather than the document height, so the line answers to where the timeline sits rather than to how long the page happens to be. The frame loop stops the moment it lands and is woken by the next scroll, so a parked page costs nothing, and the state is seeded from the current scroll without animating, so a reload halfway down does not replay the line or set off every node above the fold. Reduced motion gets the finished state rather than an empty rule, because the tint is what says how far the story has been read and dropping it with the motion leaves a grey line and no answer. Marks sit in @d2/d2-tile, each node disc takes the page's own ground so it masks the rule behind it rather than letting a line show through the spokes, and every colour resolves through the item's own prefixed variables with host token fallbacks. Web Animations throughout, no dependencies.",
+    "group": "components",
+    "category": "timeline",
+    "categoryLabel": "Timeline",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "ledger-timeline",
+    "title": "Ledger Timeline",
+    "summary": "The books, one day at a time.",
+    "description": "The books, one day at a time. Two plates on the D2 frame, what is owed to the business and what the business owes, and under them the dial from the revision timeline scrubbing the pair through the days the books cover. That pairing is the whole idea: a receivables figure on its own is a fact, and the same figure beside what it looked like a fortnight ago is a direction, which is what dragging asks for. So the plates are a snapshot of whatever day sits under the dial's centre rather than a running total, and a day with no closing is a day nobody reconciled rather than a day worth nothing. Each plate carries the split as a strip of forty eight ticks, current against overdue, because a proportion drawn as a row of separate things reads as a count where one bar cut in two reads as a fill; at forty eight a tick is two per cent, so the smallest split the strip can show is the smallest split worth showing, and a business a pound overdue never reads as a clean sweep. The ticks carry a steady jitter in opacity, worked out from the index rather than at random so the strip the server draws is the strip the browser hydrates, and they arrive in a stagger ten milliseconds apart that replays on every day. The figure above them swaps in place, whole rather than per digit, since the dial is scrubbed and eleven digits each running an entrance is a slot machine. Current paints in the primary token and overdue in destructive, so the warning half is the warning colour in either theme rather than a hardcoded orange. Both plates take a slot in their title row for the action a host wants there.",
+    "group": "components",
+    "category": "timeline",
+    "categoryLabel": "Timeline",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "revision-timeline",
+    "title": "Revision Timeline",
+    "summary": "A changelog read one day at a time, built on the D2 frame rather than on a card: the entry stands on a raised plate because it is the thing being read, and the dial rides on the well below it because it is chrome for reaching it.",
+    "description": "A changelog read one day at a time, built on the D2 frame rather than on a card: the entry stands on a raised plate because it is the thing being read, and the dial rides on the well below it because it is chrome for reaching it. The dial is every day between the first entry and the last, drawn as a row of dashes that swells toward the centre on a gaussian falloff rather than a linear ramp, so the row bends instead of forming a tent. The row is grabbable, and the swell is read off its live offset rather than off the selected index, which is what makes a drag a wave: under a finger the centre is a fraction, so the hill flows through the row instead of hopping a dash at a time, and a click rides the same spring the row travels on rather than running a second animation kept in step with it. Motion writes all seventy eight scales straight to the DOM, so a drag moves the whole dial without a React render. A throw carries past the point of release and settles on the nearest entry, because the release point alone makes a fast short swipe land one dash away and read as a failed gesture; the ends give a little and pull back rather than meeting a wall that gives no sign of being there. Every day in the range gets a dash whether or not anything shipped that day, because the gaps are half the reading: a list of releases tells you what landed, a dial also tells you the shape of the work, and a quiet week only reads as one if it takes up space. Empty days are dim and cannot be opened. The dial slides under a fixed centre instead of the selection travelling along it, so the thing that moves is the timeline and not the eye. A day is one dash, so two entries written on the same date collapse to the later of the two, and the padding either side is derived from the range instead of written down, which is what lets the first and last entries sit in the middle of the dial rather than against its edge. The body takes a small slice of markdown, enough for a release note: headings, quotes, bullets, bold, code, links and images. It scrolls on its own and the fade at its foot is only drawn when there is something below it.",
+    "group": "components",
+    "category": "timeline",
+    "categoryLabel": "Timeline",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react"
+    ]
+  },
+  {
     "name": "progress-bar",
     "title": "Progress Bar",
     "summary": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout.",
-    "description": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout. Three levels of chrome — full, bar, plain — and two fill styles: a 6px beam or a three-row dot matrix. Every surface property is themeable — fill (solid or gradient), stroke, backdrop blur, drop and inner shadow — with glass and opaque presets shipped for light and dark. Both reserved readout boxes are sized in mono chars for their longest reading, so nothing re-measures while the value animates, and the matrix width snaps to whole cells so the leading column is always a full dot. All colours resolve to oklch; no dependencies and no client hooks, so it renders on the server.",
+    "description": "A frosted-glass progress pill with technical-drawing leader lines bracketing a monospace readout. Three levels of chrome (full, bar, plain) and two fill styles: a 6px beam or a three-row dot matrix. Every surface property is themeable: fill (solid or gradient), stroke, backdrop blur, drop and inner shadow, with glass and opaque presets shipped for light and dark. Both reserved readout boxes are sized in mono chars for their longest reading, so nothing re-measures while the value animates, and the matrix width snaps to whole cells so the leading column is always a full dot. All colours resolve to oklch; no dependencies and no client hooks, so it renders on the server.",
     "group": "components",
     "category": "progress",
     "categoryLabel": "Progress",
@@ -532,7 +1674,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "avatar-stack",
     "title": "Avatar Stack",
     "summary": "A row of overlapping faces with the logo dock's falloff on it: the avatar under the pointer lifts and scales, its neighbours follow at three quarters of the travel and the pair beyond them at half, so the row bends rather than one face popping out of a still line.",
-    "description": "A row of overlapping faces with the logo dock's falloff on it: the avatar under the pointer lifts and scales, its neighbours follow at three quarters of the travel and the pair beyond them at half, so the row bends rather than one face popping out of a still line. The damping is selectors rather than a hook — `:hover + &` reaches the avatar after the pointer and `&:has(+ :hover)` the one before — so it stays a server component with no client boundary, and reduced motion drops the whole curve rather than shortening it. One `size` prop drives the diameter and the overlap together, since an overlap written in a fixed px would come apart the moment the faces grew. Portraits are plain `img` tags: the component installs into whatever app takes it, and next/image would make a remote host a config edit there before it rendered at all. The label beside the row is optional.",
+    "description": "A row of overlapping faces with the logo dock's falloff on it: the avatar under the pointer lifts and scales, its neighbours follow at three quarters of the travel and the pair beyond them at half, so the row bends rather than one face popping out of a still line. The damping is selectors rather than a hook, `:hover + &` reaches the avatar after the pointer and `&:has(+ :hover)` the one before, so it stays a server component with no client boundary, and reduced motion drops the whole curve rather than shortening it. One `size` prop drives the diameter and the overlap together, since an overlap written in a fixed px would come apart the moment the faces grew. Portraits are plain `img` tags: the component installs into whatever app takes it, and next/image would make a remote host a config edit there before it rendered at all. The label beside the row is optional. A person marked `online` carries a presence dot on the portrait, ringed in the page so it sits on the face rather than punched through it, and it rides the same lift as the face it belongs to. The flag is opt in, so a row with no presence to report draws exactly as it did before, and the dot's colour resolves through `--d2as-online`, which is the seam a template dresses it with instead of forking the component.",
     "group": "components",
     "category": "avatars",
     "categoryLabel": "Avatars",
@@ -543,7 +1685,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "avatar-cascade",
     "title": "Slipstream",
     "summary": "A stack that opens.",
-    "description": "A stack that opens. At rest the faces overlap; hover anywhere on the row and each one slides further right than the last, so the group unpacks itself rather than a single face stepping out of it. One gesture on the wrapper does the whole row — Motion propagates the variant to every child, so nothing tracks an index in state — and the travel is x rather than a margin, because a margin would relayout the row and the label beside it would jump on every hover. Springs, not durations: the faces arrive settling instead of stopping. Reduced motion drops the gesture rather than shortening it, and the count, the diameter and the spacing are all props.",
+    "description": "A stack that opens. At rest the faces overlap; hover anywhere on the row and each one slides further right than the last, so the group unpacks itself rather than a single face stepping out of it. One gesture on the wrapper does the whole row, Motion propagates the variant to every child, so nothing tracks an index in state, and the travel is x rather than a margin, because a margin would relayout the row and the label beside it would jump on every hover. Springs, not durations: the faces arrive settling instead of stopping. Reduced motion drops the gesture rather than shortening it, and the count, the diameter and the spacing are all props.",
     "group": "components",
     "category": "avatars",
     "categoryLabel": "Avatars",
@@ -556,7 +1698,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "avatar-fan",
     "title": "Fan Deck",
     "summary": "The faces held like a hand of cards.",
-    "description": "The faces held like a hand of cards. The arc is one rotation about a shared pivot well below the row rather than each face placed on a curve, so a few degrees between neighbours reads as a sweep across the whole hand and the lift at the ends comes free. Hovering squares them up and spaces them out — the pack laid on the table — on a soft spring that lets the fan overshoot a degree before it settles. The pivot depth, the angle between faces and the diameter are props, and the three move together: a wider fan wants a deeper pivot or the ends swing past each other. Reduced motion holds the fan still.",
+    "description": "The faces held like a hand of cards. The arc is one rotation about a shared pivot well below the row rather than each face placed on a curve, so a few degrees between neighbours reads as a sweep across the whole hand and the lift at the ends comes free. Hovering squares them up and spaces them out, the pack laid on the table, on a soft spring that lets the fan overshoot a degree before it settles. The pivot depth, the angle between faces and the diameter are props, and the three move together: a wider fan wants a deeper pivot or the ends swing past each other. Reduced motion holds the fan still.",
     "group": "components",
     "category": "avatars",
     "categoryLabel": "Avatars",
@@ -569,7 +1711,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "avatar-nameplate",
     "title": "Placard",
     "summary": "Faces that say who they are: the one under the pointer lifts out of the row and its name springs in above it.",
-    "description": "Faces that say who they are: the one under the pointer lifts out of the row and its name springs in above it. The plate is part of the component rather than a tooltip bolted on — it has to know which face it belongs to, and the row has to leave it headroom — and it is a single element moved between anchors, so at most one is ever mounted and an exit can never be cut short by a second plate arriving. The row clears the active face on its own leave rather than each face clearing itself, since moving between two overlapping faces fires leave after enter and the neighbour would blank the plate it had just claimed. Focus drives it as well as hover, so the row is readable from the keyboard.",
+    "description": "Faces that say who they are: the one under the pointer lifts out of the row and its name springs in above it. The plate is part of the component rather than a tooltip bolted on: it has to know which face it belongs to, and the row has to leave it headroom, and it is a single element moved between anchors, so at most one is ever mounted and an exit can never be cut short by a second plate arriving. The row clears the active face on its own leave rather than each face clearing itself, since moving between two overlapping faces fires leave after enter and the neighbour would blank the plate it had just claimed. Focus drives it as well as hover, so the row is readable from the keyboard.",
     "group": "components",
     "category": "avatars",
     "categoryLabel": "Avatars",
@@ -595,7 +1737,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "avatar-halo",
     "title": "Halo Ring",
     "summary": "Faces wearing a status ring.",
-    "description": "Faces wearing a status ring. At rest the halo is a still conic sweep sitting a hair outside the border; on hover it spins and the face lifts, so a row of teammates reads as live rather than as a photograph of a team. The ring is a plate behind the face, not a border on it — a conic gradient cannot be a border-image, and rotating the face itself would spin the portrait — and the gap between the two is simply the plate being 4px wider, so the ring shows as a 2px band per side, thin enough to read as a status edge on the face rather than as a second plate behind it. The sweep is a prop: any conic gradient drops in, and the default is painted in `--primary` so the ring inverts with the host. The spin stops when the pointer leaves, and never starts under reduced motion.",
+    "description": "Faces wearing a status ring. At rest the halo is a still conic sweep sitting a hair outside the border; on hover it spins and the face lifts, so a row of teammates reads as live rather than as a photograph of a team. The ring is a plate behind the face, not a border on it: a conic gradient cannot be a border-image, and rotating the face itself would spin the portrait, and the gap between the two is simply the plate being 4px wider, so the ring shows as a 2px band per side, thin enough to read as a status edge on the face rather than as a second plate behind it. The sweep is a prop: any conic gradient drops in, and the default is painted in `--primary` so the ring inverts with the host. The spin stops when the pointer leaves, and never starts under reduced motion.",
     "group": "components",
     "category": "avatars",
     "categoryLabel": "Avatars",
@@ -605,10 +1747,21 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "button-matt",
-    "title": "Matte Button",
-    "summary": "A matte chip with a holographic rim.",
-    "description": "A matte chip with a holographic rim. The face is a flat fill inside a 1px gradient border with two insets, and three blurred ellipses sit just under the top edge — white→violet→magenta, the reverse, then a haze — so the rim reads as light caught on an edge rather than as a colour laid over the button. Label and icon are painted with one gradient sweep, the icon through a CSS mask, so path data, an SVG src or a lucide glyph all arrive at the same size and take the same ink. Light and dark are the same layers with swapped custom properties and swapped blend modes: plus-lighter is holographic on a dark face and adds nothing on a pale one, which multiplies the same two hues into the surface instead. Every colour is defined on the button itself, so it looks the same in any project. Four sizes on the shadcn scale, hover on one expo-out curve, and no dependencies.",
+    "name": "avatar-live-01",
+    "title": "Live Stack",
+    "summary": "Three overlapping faces in white rings beside a Live pill with a green dot, the proof that a team is working in the same place at once.",
+    "description": "Three overlapping faces in white rings beside a Live pill with a green dot, the proof that a team is working in the same place at once. The face under the pointer tips out on its own, lifting 5px, growing to 1.22 and turning twelve degrees, and its neighbours stay where they are: avatar-stack already covers the damped row, and this one is a single face answering. The spring is a loose one, stiffness 280 and damping 8, sampled into a CSS `linear()` curve, so it swings past the pose and back twice before settling at 940ms, and it is a transition, so a pointer sweeping across the row retargets each face from wherever it got to. The hover is gated to a real pointer, so a tap cannot leave a face tipped, and reduced motion drops the travel. No client boundary and no dependencies. Portraits are plain `img` tags, so a remote host is not a config edit in the app that installs it, and the people and the label are props.",
+    "group": "components",
+    "category": "avatars",
+    "categoryLabel": "Avatars",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "button-fancy-02",
+    "title": "Fancy Button 02",
+    "summary": "Two plates cut from the same board.",
+    "description": "Two plates cut from the same board. The outer one is the button's real box, a flat near black fill inside a half pixel rim that runs light at the top and dies into the fill at the bottom; the inner one is that plate again, inset by 2px, dropped onto the first and lit from four sides at once. The whole look is in the second plate's shadows. It casts a small one down and to the right, so it reads as a tile lying on the board rather than a second border drawn on it, and it carries four inner shadows: a dark one in from each side, a darker one down from the top edge, and one grey lifting up from the bottom. That last is the trick, the light bouncing back off the board into the underside of the tile, and the only shadow here lighter than what it sits on. Hover raises every layer together with one brightness step rather than swapping a fill, which keeps the rim and the bounce in step with the face instead of flattening against it. This is a fixed dark finish drawn to one spec, since the bounce and the two side shadows are not a mirror pair and a pale twin would need its own values rather than an inversion of these. Sizes and the leading icon come from the matte button, so it sits on the same scale and takes path data, an image src or a lucide glyph alike.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
@@ -616,26 +1769,93 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "button-slab",
-    "title": "Slab Button",
-    "summary": "The matte button's twin, stripped to two surfaces: a flat face inside a hard 2px rim.",
-    "description": "The matte button's twin, stripped to two surfaces: a flat face inside a hard 2px rim. There is no rim glow and no gradient ink, because the rim itself is the whole look, and a face with a highlight on it would compete. The rim is a real outline rather than a border, so it thickens outside the box and leaves the padding the size scale sets alone. The two themes are drawn rather than derived: light is the host's own surface with a grey rim, dark a grey plate with a white one, since one pair of tokens seen from both ends would put a near-black rim on a grey face. A chevron sits after the label and slides on hover, and it takes a prop, so a button that goes nowhere can drop it. Sizes and the leading icon come from the matte button, which means both sit on the same scale and take path data, an image src or a lucide glyph alike.",
+    "name": "button-beam",
+    "title": "Beam Button",
+    "summary": "A glass pill with a beam travelling along its lower edge.",
+    "description": "A glass pill with a beam travelling along its lower edge. The chip under it is deliberately quiet, one tinted plate and a hairline border with the ink coming up to full under the cursor, because a louder face would compete with the light rather than carry it. The plate, the border and the top sheen are tokens, and the beam is told to follow the host theme with them, so the pill reads on a white page and on a black one without a second set of colours. Four palettes, the shadcn size scale with the padding opened a step for the round corners, and the beam takes a switch so the still version is the same chip with the light off. Renders an anchor when handed an href, a button otherwise.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "free",
+    "dependencies": [
+      "border-beam",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "tube-button",
+    "title": "Tube Button",
+    "summary": "The shadcn button copied under its own name, so its finish can be taken somewhere else without touching the one an app already has installed.",
+    "description": "The shadcn button copied under its own name, so its finish can be taken somewhere else without touching the one an app already has installed. Same six variants, same four sizes, same asChild escape hatch, so it drops into an existing call site unchanged and only the look moves.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": [
+      "@radix-ui/react-slot",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "button-gloss",
+    "title": "Gloss Button",
+    "summary": "A glossy blue action button that stands off the page like wet paint.",
+    "description": "A glossy blue action button that stands off the page like wet paint. A radial fill lit from the top, a 1px edge a step darker than the fill, and a wide soft glow inside the rim in a light tint of the same blue, blurred well past its offset so it lights the edge without drawing a band. A band of sky across the top half reads as light caught on the surface rather than a second fill. Under it sits a drop shadow tinted with the fill's own blue, tight at the contact and wide below, so the button stands off the page instead of leaving a grey smudge. Hover lifts it a pixel and lets the shadow fall further, gated on a real pointer so a tap on a phone cannot leave it stuck in the air; the press sets it back down and tucks the shadow in, faster than the lift. Both themes are drawn rather than derived, since on a dark ground the button has to stay a colour and not turn into a light. Sizes are the matte button's scale, so it sits in the set. Pass `href` and it renders a link rather than a button.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
     "tier": "pro",
     "dependencies": []
+  },
+  {
+    "name": "button-pebble",
+    "title": "Pebble Button",
+    "summary": "The softest chip in the set, and the only one whose hover takes something away rather than adding it.",
+    "description": "The softest chip in the set, and the only one whose hover takes something away rather than adding it. One plate, no second surface and no rim: at rest it is a pale face a step off the page with the label at full ink, sitting there the way a key sits on a keyboard. Under the pointer the fill empties out toward the page and the label steps back to a mid grey, so the chip reads as lifting off the surface rather than lighting up, and because a fill that leaves takes the shape with it, a hairline rim arrives at the same moment to hold the outline the fill has just given up. That rim is the one thing hover adds, and it is there only because something left. It is a real outline rather than a border, drawn outside the box and transparent at rest, so it arrives as a colour changing rather than a line switching on and the label never shifts a pixel to make room for it. The face that comes back is a layer inset 2px on every side rather than a second background on the button, since two fills that cross fade need two boxes, so what hover draws around the edge is a gutter of the emptied box at the same 2px the rest of the set insets its inner plate by. Both themes are drawn rather than derived, since the whole trick is a face a step off the page and a hover that travels toward it: that is a lighter face in light and a darker one in dark, and one pair of tokens read from both ends would send the dark hover the wrong way, away from its own background. Sizes and the leading icon come from the matte button, so it sits on the same scale and takes path data, an image src or an icon node alike. It opens on a filled sparkle over a Get now, and filled rather than outlined because the face is flat and carries nothing else: a stroked mark on it reads as a drawing of a mark where a solid one reads as the mark.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "button-chalk",
+    "title": "Chalk Button",
+    "summary": "The plainest button in the set: one plate, a grey fill, a single light line along its top edge, and nothing else on the face.",
+    "description": "The plainest button in the set: one plate, a grey fill, a single light line along its top edge, and nothing else on the face. No second plate, no field, no fade, no glow. A 4px radius, a neutral-400 fill, and a 1.5px neutral-50 line set inside on the top side alone. That one line is the whole illusion: three steps of neutral between the fill and the line is enough contrast to read as a lit edge rather than as a border, and an edge lit along its top alone is an edge tilted towards a light above the page, so a plate with no gradient, no shadow and no second layer still comes off the page. One element rather than the two plates the rest of the set is built from, because there is no gutter to draw here: the stroke is inside the rect, so the rim sits on the plate itself and a second plate would be a shape with nothing to carry. The line is an inset shadow rather than a border, a ring or an outline: a border would take a pixel of the box on that side and shift the label off centre, a ring and an outline cannot be one sided at all, and an outline on this element is what focus draws, so the two would take turns. Inset is what inside means, which at that weight is the difference between the line following the 4px corner and sitting outside it. One fill serves both themes, and a mid grey with dark ink is legible on either page where the rest of the set has to draw a twin because its plates run opposite the page. Sizes are the matte button's, the same shadcn scale the whole set runs on, so a row of these and a row of those line up. Only the corner comes off that scale: it grows its radius with its height, since a 44px plate with a 9px corner reads square, and the artwork gives one flat 4 instead. Hover brightens the fill and lifts the plate a pixel, on the set's own curve. The leading icon comes from the matte button too, so it takes path data, an image src or a lucide glyph alike, but it is off by default: the artwork is a plain rect and the plainest button in the set should stay one. Handed an href it renders an anchor rather than a button, with the same plate either way, because a chip that navigates has to be a link: wrapping the button in one instead nests two interactive elements, which is neither for the keyboard nor for a screen reader.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "button-quartz-animated",
+    "title": "Quartz Animated Button",
+    "summary": "The quartz button with its bead field in motion: the same two plates, one inside the other, the same solid rim on the inner one's edge, close-packed dots under a fade running in from the top edge and in from the bottom, and under the pointer that field crawls to the right.",
+    "description": "The quartz button with its bead field in motion: the same two plates, one inside the other, the same solid rim on the inner one's edge, close-packed dots under a fade running in from the top edge and in from the bottom, and under the pointer that field crawls to the right. At rest it is the quartz button, still. The beads are a 6px pitch rather than the quartz button's 4px, half again as coarse, and inked at twice the weight. That field is a finish, meant to be felt rather than looked at; this one has to be legible as a pattern, because a pattern nobody can resolve is a pattern nobody can watch travel either. Sideways rather than down, because the label runs that way: a field crossing with the words reads as light travelling over the plate, where a field falling through them reads as the plate itself sliding out of the chip. The travel is four beads of pitch, so the loop's last frame is its first frame again and the crawl has no seam, and the layer is held a whole stride proud of each side so the travel never drags a bare strip in behind it on the left. The stride is what governs how fast the crawl reads, not the duration: a field that moves one bead per pass tops out at a few pixels a second however far the duration is cut, and a lattice offset by one period gives the eye nothing to track anyway, since it maps onto itself and comes off as still. Any whole number of pitches lands on the same picture, so four of them is the same seam-free loop at four times the speed. The plate's own overflow clip cuts that overhang back to the rim. It is the layer's transform that moves rather than the gradient's background position, which keeps a forever loop on the compositor, and a keyframe rather than a transition, since a transition has an end and this does not. It runs declared and paused rather than switched on at hover, because an animation that starts on hover starts at phase zero and would jolt the beads every time the pointer arrived. Paused, the field holds wherever it stopped and picks up from there, which is also why the reduced-motion opt-out is a media query in the component's own sheet rather than a utility class. That class would only unset the play state and leave the animation declared. The sheet is hoisted and deduped by React, so a page of these buttons still ships one copy of it. Everything else is the quartz button's: the beads sit well back of the prism checker's weight, since touching circles fill most of a tile where that checker fills a half. One prop is new. Speed is seconds for the field to travel one stride.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
   },
   {
     "name": "button-stitch",
     "title": "Stitch Button",
     "summary": "Two plates, one inside the other.",
-    "description": "Two plates, one inside the other. The outer plate is the button's real box and carries only a fill; the inner one is the same shape inset by 2px on every side, with a dashed rim stroked on its own edge. Nothing here is a border: the inset is the outer plate's padding, so the chip keeps the size scale's outside dimensions and the label sits exactly where the matte button's label sits. The rim is an SVG rect rather than a dashed CSS border, because the dash length is the whole look and CSS picks that number itself; 6 on and 6 off is drawable one way only. Both themes are drawn rather than derived: light is a white plate around a neutral face with a white dash, dark swaps the outer plate for the page and runs a grey dash on a darker face, so the dash is always a step lighter than the fill it cuts and reads as a cut rather than a line laid on top. Sizes and the leading icon come from the matte button, which means all three sit on the same scale and take path data, an image src or a lucide glyph alike.",
+    "description": "Two plates, one inside the other. The outer plate is the button's real box and carries only a fill; the inner one is the same shape inset by 2px on every side, with a dashed rim stroked on its own edge. Nothing here is a border: the inset is the outer plate's padding, so the chip keeps the size scale's outside dimensions and the label sits exactly where the matte button's label sits. The rim is an SVG rect rather than a dashed CSS border, because the dash length is the whole look and CSS picks that number itself; 6 on and 6 off is drawable one way only. Both themes are drawn, one the mirror of the other: a pale face in a mid grey plate in light, a deep face in a mid grey plate in dark. The dash is a round capped thread with a lift under it, so it reads as stitching laid on the fabric rather than a line cut into it. Sizes come from the matte button, which means all three sit on the same scale, and the leading mark takes path data, an image src or any icon node; the default is the filled download glyph.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
     "tier": "pro",
-    "dependencies": []
+    "dependencies": [
+      "reicon-react"
+    ]
   },
   {
     "name": "button-inlay",
@@ -660,6 +1880,17 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
+    "name": "button-launch",
+    "title": "Launch Button",
+    "summary": "The cameo button sent somewhere: the same two plates, one inside the other, nothing drawn on the seam between them, and a trailing arrow that turns from diagonal to straight on hover.",
+    "description": "The cameo button sent somewhere: the same two plates, one inside the other, nothing drawn on the seam between them, and a trailing arrow that turns from diagonal to straight on hover. The outer plate is the button's real box and carries only a fill; the inner one is that shape inset by 2px on every side, so the chip keeps the size scale's outside dimensions and the inset is the outer's padding rather than a border. This is the hero call to action of the set, which is why the arrow trails and the leading mark defaults off: a glyph in front of the label and an arrow behind it are two things pointing, and the one that carries the meaning here is the one that leaves. The turn is one path whose d is animated rather than two arrows crossfaded, because a crossfade shows both at once through the middle of it and reads as a smudge rather than a turn. d is an SVG2 geometry property, so CSS transitions it directly, the same trick a morphing theme toggle plays on r and cx. Both arrows are written with explicit line commands rather than the shorter axis ones they could use, because two paths interpolate only when their command lists match one for one. Both themes are drawn rather than derived, and this one is dressed against the page rather than with it: a near black plate around a mid grey face in light, a pale plate around a light grey one in dark. Without a rim the two fills are the only edge there is, so they carry several steps of contrast rather than one, since a hairline of difference reads as a mistake when there is no line to explain it. Dressing it the other way, on the trade the fancy button 03 makes, is the wrong instinct for this one chip: a hero call to action has to be the single loud thing on the screen, and at a pale fill its face sits inside a few percent of the white panel behind it and the whole button reads as a hollow ring. The fancy button 03 can afford to sit with the page because it is the quiet one of a pair, and this is the other half of that pair. Sizes and the optional leading icon come from the matte button, so it sits on the same scale and takes path data, an image src or a lucide glyph alike. Reduced motion keeps the colour and drops the lift, the press and the turn.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "button-cameo",
     "title": "Cameo Button",
     "summary": "The inlay button with the rim taken off, and slimmer for it: two plates, one inside the other, and nothing drawn on the seam between them.",
@@ -671,10 +1902,21 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "button-pebble",
-    "title": "Pebble Button",
-    "summary": "The softest chip in the set, and the only one whose hover takes something away rather than adding it.",
-    "description": "The softest chip in the set, and the only one whose hover takes something away rather than adding it. One plate, no second surface and no rim: at rest it is a pale face a step off the page with the label at full ink, sitting there the way a key sits on a keyboard. Under the pointer the fill empties out toward the page and the label steps back to a mid grey, so the chip reads as lifting off the surface rather than lighting up, and because a fill that leaves takes the shape with it, a hairline rim arrives at the same moment to hold the outline the fill has just given up. That rim is the one thing hover adds, and it is there only because something left. It is a real outline rather than a border, drawn outside the box and transparent at rest, so it arrives as a colour changing rather than a line switching on and the label never shifts a pixel to make room for it. The face that comes back is a layer inset 2px on every side rather than a second background on the button, since two fills that cross fade need two boxes, so what hover draws around the edge is a gutter of the emptied box at the same 2px the rest of the set insets its inner plate by. Both themes are drawn rather than derived, since the whole trick is a face a step off the page and a hover that travels toward it: that is a lighter face in light and a darker one in dark, and one pair of tokens read from both ends would send the dark hover the wrong way, away from its own background. Sizes and the leading icon come from the matte button, so it sits on the same scale and takes path data, an image src or an icon node alike. It opens on a filled sparkle over a Get now, and filled rather than outlined because the face is flat and carries nothing else: a stroked mark on it reads as a drawing of a mark where a solid one reads as the mark.",
+    "name": "button-fancy-03",
+    "title": "Fancy Button 03",
+    "summary": "The cameo button with its two themes traded, so the chip sits with the page rather than against it.",
+    "description": "The cameo button with its two themes traded, so the chip sits with the page rather than against it. Same construction: two plates, one inside the other, and nothing drawn on the seam between them. The outer plate is the button's real box and carries only a fill; the inner one is that shape inset by 2px on every side, so the chip keeps the size scale's outside dimensions while the label sits a step tighter than the matte button's. Nothing here is a border, the inset is the outer's padding. Without a rim the two fills are the only edge there is, so they carry more contrast than the inlay's pair, a face several steps off its plate rather than one, since a hairline of difference reads as a mistake when there is no line to explain it. Where the cameo draws a dark plate in light and a pale one in dark, this draws the inverse, which is what makes it the quiet one of the pair on a page that is already the same value. Sizes and the leading icon come from the matte button, so it sits on the same scale and takes path data, an image src or a lucide glyph alike.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "button-relay",
+    "title": "Relay Button",
+    "summary": "A machined pill for the two halves of one idea: something going out, and the same thing coming back.",
+    "description": "A machined pill for the two halves of one idea: something going out, and the same thing coming back. Both directions are one component rather than two, because a pair drawn by two files is a pair that drifts, and these two are only ever read beside each other. The surface is the set's flat plate turned the other way up, a face with one hairline and a light along its top edge, and that light is not a colour but a glint: near white against a mid face and blown out on a dark one, so it drops to a tenth of its strength rather than being dropped altogether. The resting mark carries both directions at once, two lanes with the upper one running left and the lower one running right, so there is nothing to rotate and nothing to mirror. At rest the direction prop only decides which lane is at full strength and which is held back, held back rather than hidden because the quiet lane is what says this is one half of a two way action and it is the only thing that makes the circle form readable with no label beside it. Under the pointer that mark resolves into the one way this button actually goes, and it is a morph rather than a move: both glyphs stay mounted in a single grid cell and cross under blur and scale, so a pointer passing twice retargets the transition instead of restarting it, and the hidden state is opacity nothing with a blur and a scale rather than opacity alone. The blur is what makes it read as one mark becoming another rather than two marks stacked: without it the eye resolves both glyphs through the middle of the crossfade and sees a double exposure, and three pixels is enough to bridge them while staying far under the twenty where the filter starts costing something. The scale starts at half rather than nothing, because nothing in the world appears from nothing, and the curve is an ease in out rather than an ease out since neither glyph is entering or leaving the screen, they are trading places in a box that never moves. The swap mark is the question and the arrow is the answer, which is the one thing hovering a button like this is asking, and the answer lands heavier: the resting mark is stroked and the resolved arrow is solid, so the weight change is part of the claim rather than an inconsistency. Receive takes the set's own mirror of that arrow rather than a rotation of it, since these glyphs are inset from their box by different amounts on each axis and a rotated copy sits a pixel off the centre the stroked mark is aligned to. Nothing travels. An earlier cut slid the two lanes past each other and it was a small animation charged on a control somebody presses all day; the surface answers with brightness instead, which is a state rather than a performance, and brightness moves the face, the hairline and the ink together where a tint moved only the fill. It is the one rule here that cannot go the same way in both themes: a light face darkens under the pointer because it is already near white and has nowhere up to go, and a dark face lightens for the same reason in the other direction, the same gesture with opposite signs. The quiet lane is addressed by nth child rather than by a class on each path, because the icon set renders its shapes from a string and there is nothing to hang a class on. Line weight, not filled: an arrow is a direction rather than an object, and the stroked weight is what reads as a path being travelled at this size. Left without a label the chip becomes a circle carrying only the mark, which is the shape a pair of these takes beside a field rather than under one, and the label is what decides it rather than a second prop that could disagree with it. Under reduced motion the resolved arrow is not rendered at all rather than animated to nowhere, since a cross fade with no scale and no blur is two glyphs stacked on each other. Colours are the host's own tokens throughout, so it wears a retheme rather than carrying a palette of its own.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
@@ -699,17 +1941,6 @@ export const PRO_CATALOG: ProItem[] = [
     "title": "Etch Button",
     "summary": "The bezel button with its inner plate hatched: two plates, one inside the other, a solid rim on the inner one's edge, and a rule of 45 degree lines ruled across the face inside it.",
     "description": "The bezel button with its inner plate hatched: two plates, one inside the other, a solid rim on the inner one's edge, and a rule of 45 degree lines ruled across the face inside it. The outer plate is the button's real box and carries only a fill; the inner one is the same shape inset by 2px on every side, so the chip keeps the size scale's outside dimensions and the label sits exactly where the matte button's label sits. The hatch is one repeating gradient rather than an SVG or a tile, so there is no asset to load, and it is drawn in the label's own ink, which is what keeps it reading as a ruled surface rather than as a second colour on the button. How far back it is held is an opacity on the element it sits on, 10 percent at rest and half of that under the pointer, so the rule drops back as the rim and the label come forward. Rim and label brighten together, and neither can go one direction in both themes: light draws a mid grey face, where bright is white, and dark draws a pale one, where white would vanish and bright is ink instead. The plate itself holds still under all of it, because a fill that moves competes with the two thinner signals doing the work. Sizes and the leading icon come from the matte button, which means they all sit on the same scale and take path data, an image src or a lucide glyph alike.",
-    "group": "components",
-    "category": "buttons",
-    "categoryLabel": "Buttons",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
-    "name": "button-fancy-02",
-    "title": "Fancy Button 02",
-    "summary": "Two plates cut from the same board.",
-    "description": "Two plates cut from the same board. The outer one is the button's real box, a flat near black fill inside a half pixel rim that runs light at the top and dies into the fill at the bottom; the inner one is that plate again, inset by 2px, dropped onto the first and lit from four sides at once. The whole look is in the second plate's shadows. It casts a small one down and to the right, so it reads as a tile lying on the board rather than a second border drawn on it, and it carries four inner shadows: a dark one in from each side, a darker one down from the top edge, and one grey lifting up from the bottom. That last is the trick, the light bouncing back off the board into the underside of the tile, and the only shadow here lighter than what it sits on. Hover raises every layer together with one brightness step rather than swapping a fill, which keeps the rim and the bounce in step with the face instead of flattening against it. This is a fixed dark finish drawn to one spec, since the bounce and the two side shadows are not a mirror pair and a pale twin would need its own values rather than an inversion of these. Sizes and the leading icon come from the matte button, so it sits on the same scale and takes path data, an image src or a lucide glyph alike.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
@@ -763,17 +1994,6 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "button-chalk",
-    "title": "Chalk Button",
-    "summary": "The plainest button in the set: one plate, a grey fill, a single light line along its top edge, and nothing else on the face.",
-    "description": "The plainest button in the set: one plate, a grey fill, a single light line along its top edge, and nothing else on the face. No second plate, no field, no fade, no glow. A 4px radius, a neutral-400 fill, and a 1.5px neutral-50 line set inside on the top side alone. That one line is the whole illusion: three steps of neutral between the fill and the line is enough contrast to read as a lit edge rather than as a border, and an edge lit along its top alone is an edge tilted towards a light above the page, so a plate with no gradient, no shadow and no second layer still comes off the page. One element rather than the two plates the rest of the set is built from, because there is no gutter to draw here: the stroke is inside the rect, so the rim sits on the plate itself and a second plate would be a shape with nothing to carry. The line is an inset shadow rather than a border, a ring or an outline: a border would take a pixel of the box on that side and shift the label off centre, a ring and an outline cannot be one sided at all, and an outline on this element is what focus draws, so the two would take turns. Inset is what inside means, which at that weight is the difference between the line following the 4px corner and sitting outside it. One fill serves both themes, and a mid grey with dark ink is legible on either page where the rest of the set has to draw a twin because its plates run opposite the page. Sizes are the matte button's, the same shadcn scale the whole set runs on, so a row of these and a row of those line up. Only the corner comes off that scale: it grows its radius with its height, since a 44px plate with a 9px corner reads square, and the artwork gives one flat 4 instead. Hover brightens the fill and lifts the plate a pixel, on the set's own curve. The leading icon comes from the matte button too, so it takes path data, an image src or a lucide glyph alike, but it is off by default: the artwork is a plain rect and the plainest button in the set should stay one.",
-    "group": "components",
-    "category": "buttons",
-    "categoryLabel": "Buttons",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
     "name": "button-prism",
     "title": "Prism Button",
     "summary": "The mosaic button with its field stood on its corner: the same two plates, the same solid rim on the inner one's edge, the same fade running in from the top edge and in from the bottom, and that checker on a 5px pitch, turned 45 degrees.",
@@ -789,21 +2009,8 @@ export const PRO_CATALOG: ProItem[] = [
   {
     "name": "button-quartz",
     "title": "Quartz Button",
-    "summary": "The prism button's chassis carrying a grain instead of a checker: two plates, one inside the other, a solid rim on the inner one's edge, a lattice of single pixels across the face, and a fade running in from the top edge and in from the bottom over the top of it.",
-    "description": "The prism button's chassis carrying a grain instead of a checker: two plates, one inside the other, a solid rim on the inner one's edge, a lattice of single pixels across the face, and a fade running in from the top edge and in from the bottom over the top of it. The lattice is one dot on a 4px tile with the same lattice laid again half a tile across, which is what staggers the rows: a single dot per tile lines its rows up and reads as a rule rather than as a grain, so the offset copy is the pattern rather than a second one. It is drawn in the label's own ink, so the source artwork's two fixed greys are gone and the plate, the rim and the grain all read out of the theme. It is held three times further forward than the prism's checker, because a 1px dot on a 4px tile inks an eighth of the face where that checker inks a half, and matched opacities would leave this one invisible. The layer carrying it is turned 45 degrees, which is the prism's own mechanism: a background image cannot be rotated, so a square 200 percent of the plate's width is centred on it and spun, its inscribed circle reaching every corner of anything wider than it is tall, with the plate's overflow clip cutting the overhang back to the rim. Everything else is the prism's: the outer plate is the real box and carries only a fill, the inner one is the same shape inset by 2px so the label sits where the matte button's label sits, hover brightens the plate and screens a blurred sheet onto the lower half, and the pitch holds through every size so the chip grows around the field rather than scaling it. What is its own is what it says. This is the set's face for the work a developer does to a project, so it opens on a filled box glyph and an Add package label, and the sizes carry a verified build, a published artifact and a terminal.",
-    "group": "components",
-    "category": "buttons",
-    "categoryLabel": "Buttons",
-    "tier": "pro",
-    "dependencies": [
-      "reicon-react"
-    ]
-  },
-  {
-    "name": "button-quartz-animated",
-    "title": "Quartz Animated Button",
-    "summary": "The quartz button with its bead field in motion: the same two plates, one inside the other, the same solid rim on the inner one's edge, close-packed dots under a fade running in from the top edge and in from the bottom, and under the pointer that field crawls to the right.",
-    "description": "The quartz button with its bead field in motion: the same two plates, one inside the other, the same solid rim on the inner one's edge, close-packed dots under a fade running in from the top edge and in from the bottom, and under the pointer that field crawls to the right. At rest it is the quartz button, still. The beads are a 6px pitch rather than the quartz button's 4px, half again as coarse, and inked at twice the weight. That field is a finish, meant to be felt rather than looked at; this one has to be legible as a pattern, because a pattern nobody can resolve is a pattern nobody can watch travel either. Sideways rather than down, because the label runs that way: a field crossing with the words reads as light travelling over the plate, where a field falling through them reads as the plate itself sliding out of the chip. The travel is four beads of pitch, so the loop's last frame is its first frame again and the crawl has no seam, and the layer is held a whole stride proud of each side so the travel never drags a bare strip in behind it on the left. The stride is what governs how fast the crawl reads, not the duration: a field that moves one bead per pass tops out at a few pixels a second however far the duration is cut, and a lattice offset by one period gives the eye nothing to track anyway, since it maps onto itself and comes off as still. Any whole number of pitches lands on the same picture, so four of them is the same seam-free loop at four times the speed. The plate's own overflow clip cuts that overhang back to the rim. It is the layer's transform that moves rather than the gradient's background position, which keeps a forever loop on the compositor, and a keyframe rather than a transition, since a transition has an end and this does not. It runs declared and paused rather than switched on at hover, because an animation that starts on hover starts at phase zero and would jolt the beads every time the pointer arrived. Paused, the field holds wherever it stopped and picks up from there, which is also why the reduced-motion opt-out is a media query in the component's own sheet rather than a utility class. That class would only unset the play state and leave the animation declared. The sheet is hoisted and deduped by React, so a page of these buttons still ships one copy of it. Everything else is the quartz button's: the beads sit well back of the prism checker's weight, since touching circles fill most of a tile where that checker fills a half. One prop is new. Speed is seconds for the field to travel one stride.",
+    "summary": "The prism button's chassis with a bead field instead of a checker: two plates, one inside the other, a solid rim on the inner one's edge, close-packed dots laid square to the plate, and a fade running in from the top edge and in from the bottom over the top of them.",
+    "description": "The prism button's chassis with a bead field instead of a checker: two plates, one inside the other, a solid rim on the inner one's edge, close-packed dots laid square to the plate, and a fade running in from the top edge and in from the bottom over the top of them. Each bead is a 4px circle on a 4px pitch, so it meets its four neighbours and only the pinch between them is left clear; the face reads as beaten metal where the prism's checker reads as a weave. One radial gradient draws the whole field in the label's own ink, so there is no asset to load and the plate, the rim and the beads all read out of the theme. It sits at the prism's own weight, since held any further back the pinch drops under what a 1x screen resolves and the face goes flat. Everything else is the prism's: the outer plate is the real box and carries only a fill, the inner one is the same shape inset by 2px so the label sits where the matte button's label sits, hover brightens the plate and screens a blurred sheet onto the lower half, and the pitch holds through every size so the chip grows around the field rather than scaling it. What is its own is what it says. This is the set's face for the work a developer does to a project, so it opens on a filled box glyph and an Add package label.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
@@ -839,38 +2046,32 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "button-beam",
-    "title": "Beam Button",
-    "summary": "A glass pill with a beam travelling along its lower edge.",
-    "description": "A glass pill with a beam travelling along its lower edge. The chip under it is deliberately quiet, one tinted plate and a hairline border with the ink coming up to full under the cursor, because a louder face would compete with the light rather than carry it. The plate, the border and the top sheen are tokens, and the beam is told to follow the host theme with them, so the pill reads on a white page and on a black one without a second set of colours. Four palettes, the shadcn size scale with the padding opened a step for the round corners, and the beam takes a switch so the still version is the same chip with the light off. Renders an anchor when handed an href, a button otherwise.",
-    "group": "components",
-    "category": "buttons",
-    "categoryLabel": "Buttons",
-    "tier": "free",
-    "dependencies": [
-      "border-beam",
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "tube-button",
-    "title": "Tube Button",
-    "summary": "The shadcn button copied under its own name, so its finish can be taken somewhere else without touching the one an app already has installed.",
-    "description": "The shadcn button copied under its own name, so its finish can be taken somewhere else without touching the one an app already has installed. Same six variants, same four sizes, same asChild escape hatch, so it drops into an existing call site unchanged and only the look moves.",
+    "name": "button-slab",
+    "title": "Slab Button",
+    "summary": "The matte button's twin, stripped to two surfaces: a flat face inside a hard 2px rim.",
+    "description": "The matte button's twin, stripped to two surfaces: a flat face inside a hard 2px rim. There is no rim glow and no gradient ink, because the rim itself is the whole look, and a face with a highlight on it would compete. The rim is a real outline rather than a border, so it thickens outside the box and leaves the padding the size scale sets alone. The two themes are drawn rather than derived: light is the host's own surface with a grey rim, dark a grey plate with a white one, since one pair of tokens seen from both ends would put a near-black rim on a grey face. A chevron sits after the label and slides on hover, and it takes a prop, so a button that goes nowhere can drop it. Sizes and the leading icon come from the matte button, which means both sit on the same scale and take path data, an image src or a lucide glyph alike.",
     "group": "components",
     "category": "buttons",
     "categoryLabel": "Buttons",
     "tier": "pro",
-    "dependencies": [
-      "@radix-ui/react-slot",
-      "class-variance-authority"
-    ]
+    "dependencies": []
+  },
+  {
+    "name": "button-matt",
+    "title": "Matte Button",
+    "summary": "A matte chip with a holographic rim.",
+    "description": "A matte chip with a holographic rim. The face is a flat fill inside a 1px gradient border with two insets, and three blurred ellipses sit just under the top edge, white→violet→magenta, the reverse, then a haze, so the rim reads as light caught on an edge rather than as a colour laid over the button. Label and icon are painted with one gradient sweep, the icon through a CSS mask, so path data, an SVG src or a lucide glyph all arrive at the same size and take the same ink. Light and dark are the same layers with swapped custom properties and swapped blend modes: plus-lighter is holographic on a dark face and adds nothing on a pale one, which multiplies the same two hues into the surface instead. Every colour is defined on the button itself, so it looks the same in any project. Four sizes on the shadcn scale, hover on one expo-out curve, and no dependencies.",
+    "group": "components",
+    "category": "buttons",
+    "categoryLabel": "Buttons",
+    "tier": "pro",
+    "dependencies": []
   },
   {
     "name": "reveal-card",
     "title": "Reveal Card",
     "summary": "A before/after compare card drawn on a single canvas.",
-    "description": "A before/after compare card drawn on a single canvas. The seam is a per-block threshold rather than a CSS clip, so it can cut on a diagonal and break into pixels instead of a hard edge, and every just-revealed cell emits a wisp that drifts and fades — a smoke frontier that follows the handle. The wisps are rendered once to an offscreen buffer and blurred a single time, since per-cell blur at this grid size is what would cost the frame; the base composite is one per-pixel pass over two pre-rasterised buffers, with the unrevealed half converted to luminance up front rather than per draw. The gradient recolouring the smoke interpolates in oklch by laying down color-mix stops a canvas gradient would otherwise blend in sRGB. Rows derive from the frame's aspect so cells stay square at any ratio, square and 16:9 frames in three widths, nine composite modes, and no dependencies.",
+    "description": "A before/after compare card drawn on a single canvas. The seam is a per-block threshold rather than a CSS clip, so it can cut on a diagonal and break into pixels instead of a hard edge, and every just-revealed cell emits a wisp that drifts and fades, a smoke frontier that follows the handle. The wisps are rendered once to an offscreen buffer and blurred a single time, since per-cell blur at this grid size is what would cost the frame; the base composite is one per-pixel pass over two pre-rasterised buffers, with the unrevealed half converted to luminance up front rather than per draw. The gradient recolouring the smoke interpolates in oklch by laying down color-mix stops a canvas gradient would otherwise blend in sRGB. Rows derive from the frame's aspect so cells stay square at any ratio, square and 16:9 frames in three widths, nine composite modes, and no dependencies.",
     "group": "components",
     "category": "compare",
     "categoryLabel": "Compare",
@@ -881,7 +2082,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "pixel-reveal",
     "title": "Pixel Reveal",
     "summary": "The compare card without the smoke.",
-    "description": "The compare card without the smoke. The seam is a per-block threshold on one canvas rather than a CSS clip, so it can cut on a diagonal and break into pixels instead of a hard edge, and each cell eases from before to after over two and a half cell-widths as the sweep passes it — squares blend, circles bloom their radius out from the centre. Blocks are sized in CSS px rather than as a count across the frame, so the same card at any width keeps the same pixel, and a third mode drops the grid entirely for a hard divider that still slants. The composite is one per-pixel pass over two pre-rasterised buffers with 32-bit views for whole-pixel copies and 8-bit ones only for the blend band, repainted just when the reveal moves, so an idle card costs nothing. Flip swaps which image sits underneath, square and 16:9 frames in three widths, and no dependencies.",
+    "description": "The compare card without the smoke. The seam is a per-block threshold on one canvas rather than a CSS clip, so it can cut on a diagonal and break into pixels instead of a hard edge, and each cell eases from before to after over two and a half cell-widths as the sweep passes it: squares blend, circles bloom their radius out from the centre. Blocks are sized in CSS px rather than as a count across the frame, so the same card at any width keeps the same pixel, and a third mode drops the grid entirely for a hard divider that still slants. The composite is one per-pixel pass over two pre-rasterised buffers with 32-bit views for whole-pixel copies and 8-bit ones only for the blend band, repainted just when the reveal moves, so an idle card costs nothing. Flip swaps which image sits underneath, square and 16:9 frames in three widths, and no dependencies.",
     "group": "components",
     "category": "compare",
     "categoryLabel": "Compare",
@@ -889,17 +2090,48 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "metallic-shimmer",
-    "title": "Metallic Shimmer",
-    "summary": "Brushed-metal type: a highlight panning across the letters rather than the letters lighting up.",
-    "description": "Brushed-metal type: a highlight panning across the letters rather than the letters lighting up. The two dimmed stops either side of the bright one are what sell it as a reflection travelling over the glyphs, a 200%-wide gradient panned under bg-clip-text so the paint lands on the letterforms and not the box. The band comes to a point at each side rather than tapering away, so it reads as a highlight with an edge instead of one half of the word simply being brighter than the other. The colour is the caller's own: both stops are derived from currentColor, so bare it inherits the page's foreground and under text-primary it is a primary-coloured sweep, with no second prop to keep in sync. The dim ends are that colour mixed toward the background rather than a fixed grey, which is what makes it invert itself: mixing toward a pale page darkens and toward a dark one lightens, so the band stays the bright part either way. Motion floats the band out and back on an eased repeat rather than looping it one way, so there is no snap home at the end of a cycle to read as a stutter, and the pan stops short of both extremes so the band is still on the letterforms when it eases to a halt at each end. will-change keeps the glyph paint off the inline repaint path, and useReducedMotion holds the highlight still mid-word for anyone who asked for that.",
+    "name": "image-loader-02",
+    "title": "Tidal Iris",
+    "summary": "An image loader where rings of light run outward from the middle of the frame while the picture loads, and when it lands the tiles covering it clear from the middle out, an iris opening on the photo.",
+    "description": "An image loader where rings of light run outward from the middle of the frame while the picture loads, and when it lands the tiles covering it clear from the middle out, an iris opening on the photo. Both motions read off one number per tile, its distance from the centre, so the wait and the reveal are visibly the same gesture. The tiles are opaque pieces of the plate sitting over the picture, so the reveal is the cover lifting rather than the photo fading up, and each tile shrinks a little as it goes so it reads as a piece coming away rather than a hole opening. The pulse is a negative animation delay, so every tile is mid cycle on the first frame instead of waiting its turn, and opacity is the only property animated while loading. Distances are rounded before they reach a style so the server and the browser print the same value. A cached image shows without a reveal, a failed load stops the rings, and reduced motion holds the tiles still and fades. Cells across, gap and aspect are props, and it has no dependencies. It draws the image with next/image, and a static import brings its blur preview along with no wiring: the blur sits under the rings and the tiles go translucent over it, so the cover is a veil on the picture's colours rather than a wall in front of them.",
     "group": "components",
-    "category": "text",
-    "categoryLabel": "Text",
+    "category": "image-loaders",
+    "categoryLabel": "Image Loaders",
     "tier": "pro",
-    "dependencies": [
-      "motion"
-    ]
+    "dependencies": []
+  },
+  {
+    "name": "skeleton-01",
+    "title": "Draw Skeleton",
+    "summary": "A loading skeleton drawn the way a designer draws one.",
+    "description": "A loading skeleton drawn the way a designer draws one. A cursor drags each placeholder out from its top left corner, wearing a design tool's selection: a blue outline, four corner handles and a size pill that counts up in px as the frame grows. Four variants share the drawing and differ in the fill. In `pixels`, behind the cursor each frame fills with a tight grid of pixels, bright and dim in turn, loading in from left to right, and once placed a wave of lit pixels sweeps across the whole canvas with its tail fading out behind it. In `shimmer`, frames are rounded and grey with the text lines as pills, the handles stand off the corners in the frame's own shape, squares on a rectangle and circles on a pill, and once placed a highlight band sweeps across them on a transform, so it never repaints. In `cipher`, a placed frame fills with masked words, runs of x, and while the data loads a band travels across the canvas, left to right or top to bottom as `flow` says, shuffling the glyphs it crosses between x and *, or with `glyphs` set to `random` through lowercase letters, digits and a few symbols so it reads as decrypting, and stepping the gaps between words one place so one word grows as its neighbour shrinks, with everything behind it settling back to x and every line staying exactly as wide as its frame, written straight to the page by one timer rather than rendered through React on every beat; a tall frame holds rows of small dim glyphs instead of one giant line. In `dissolve`, a placed frame fills with fine tiles that travel in from its left edge and twinkle in a fixed scattered order, an integer hash so the server and the browser agree, drawn on one canvas since there are thousands, with the shimmer's highlight sweeping over them. On the reveal the content arrives sharp behind the frames, the tiles blend over it and drop away in that same order, each shrinking to a quarter as it fades, so the content comes through the pixels. Then it moves on to the next. It draws once, in a fixed time however many shapes there are, then holds the frames with only the wave running, since the frames are the preview of the layout and wiping them would take it away mid wait. Nothing shows for the first 200ms, so data that lands fast never flashes a skeleton, and once it shows it stays up for at least 600ms, so data landing just past that never flashes one either, and off screen the timers and the wave stop. In a list, `instant` places the frames with no cursor, so one card draws and the rest hold. With `cursors` above one, several cursors draw at once, the shapes dealt out in order so the layout still fills top to bottom, each cursor a beat behind the last, and the pass finishes in about the duration over the cursor count. `color` set to `muted` turns the whole skeleton from blue to the host's muted greys, outlines, handles, size pill, dots, tiles and sweeps alike, for a page where blue chrome would compete with the brand. The corner handles are three props, `handleShape` (circle or square), `handleAttached` (on the corner or standing off it) and `handleFill` (plain or blue), each defaulting to the variant's own look. When loading turns false the frames lift off with a short blur and the real content fades in beneath them. Shapes are a list in percent of the canvas width for both axes, drawn in container query units, so a square avatar stays square at any width and the content can sit on the same grid. The pill counts with a registered integer property rather than a timer, the cursor travels on a transform, and only one frame is ever growing. Reduced motion shows every frame already drawn with no cursor. No dependencies.",
+    "group": "components",
+    "category": "skeletons",
+    "categoryLabel": "Skeletons",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "image-loader-03",
+    "title": "Dissolve Loader",
+    "summary": "An image loader where the tiles twinkle in a scattered order like a screen of static while the picture loads, and when it lands they drop away in that same order, so the photo comes through in pieces rather than behind a fade.",
+    "description": "An image loader where the tiles twinkle in a scattered order like a screen of static while the picture loads, and when it lands they drop away in that same order, so the photo comes through in pieces rather than behind a fade. The order is a fixed integer hash per tile, fully mixed so neighbours never line up into a pattern, rather than a random draw, because the server and the browser have to agree on it or every tile is a hydration mismatch, and a reload should dissolve the same way twice. The tiles are opaque pieces of the plate over the picture and each shrinks a little as it leaves, never to nothing. Opacity is the only property animated while loading, the reveal is a transition so a src changed midway sends the tiles back from wherever they got to, a cached image shows without a reveal, a failed load stops the twinkle, and reduced motion holds the tiles still and fades. Cells across, gap and aspect are props, and it has no dependencies. It draws the image with next/image, and a static import brings its blur preview along with no wiring: the blur sits under the static and the tiles go translucent over it, so the picture's colours show through the twinkle before a single tile has dropped.",
+    "group": "components",
+    "category": "image-loaders",
+    "categoryLabel": "Image Loaders",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "image-loader",
+    "title": "Image Loader",
+    "summary": "An image that holds its frame with a pixel wave until it has loaded, then crosses into the picture through a blur.",
+    "description": "An image that holds its frame with a pixel wave until it has loaded, then crosses into the picture through a blur. The wave is a grid of square cells filling the whole frame in the host's ink on its muted plate, rows following the aspect so the cells stay square, each pulsing on one period with a delay set by its column plus its row, so a single light front runs across the grid on the diagonal instead of a field of cells blinking at random. Opacity is the only animated property and the whole thing is CSS driven off one data-state attribute, so a page of loading images costs no JavaScript per frame. On load the grid leaves fast and the picture arrives slower from a blur and a slight overscale, so the two cross in the blur rather than one layer being swapped for another. An image already in the cache on mount is shown without a reveal, a failed load stops the wave rather than promising a picture that is not coming, and reduced motion holds the cells still and fades. Cells across, gap and aspect are props, and it has no dependencies. It draws the image with next/image, and a static import brings its blur preview along with no wiring: the blur is painted under the wave and the cells go lighter over it, so the wait shows the picture's colours rather than an empty plate.",
+    "group": "components",
+    "category": "image-loaders",
+    "categoryLabel": "Image Loaders",
+    "tier": "pro",
+    "dependencies": []
   },
   {
     "name": "chromatic-glint",
@@ -924,10 +2156,32 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
+    "name": "text-scramble",
+    "title": "Text Scramble",
+    "summary": "A heading that assembles itself.",
+    "description": "A heading that assembles itself. Every glyph churns through a character set and settles into its real letter, left to right with a ragged edge rather than all at once, so the phrase reads as text being found instead of text being typed. The run is driven by elapsed time rather than a frame counter, which is what makes the duration mean the same thing on a 30fps frame budget and on a 120Hz panel; each glyph is given its own settle moment inside the run once, up front, and every frame asks the clock which glyphs are past it. The churn is throttled apart from the frame loop, because a fresh random letter on every frame reads as noise rather than as a word developing, and on a fast panel it is noise the browser is compositing for nobody. Spaces are never scrambled: they are what keeps the phrase reading as words while it resolves, and filling them turns a settling headline into one moving block of characters. The default set is dots and spaces, which develops the word the way a photograph comes up; a set of letters instead reads as a machine guessing at it. The first render is the real text and the scramble starts in an effect, since the server shares neither a clock nor a random seed with the browser, so anything else is a hydration mismatch on every glyph and the words are still correct for a visitor whose JavaScript never arrives. Reduced motion is checked rather than written into a stylesheet, because the animation is JavaScript and a media query has nothing there to switch off: the text is simply already in place. Renders as whatever element is asked for, so a headline is still an h1 and a label is still a span. No dependencies.",
+    "group": "components",
+    "category": "text",
+    "categoryLabel": "Text",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "metallic-shimmer",
+    "title": "Metallic Shimmer",
+    "summary": "Brushed-metal type: a highlight panning across the letters rather than the letters lighting up.",
+    "description": "Brushed-metal type: a highlight panning across the letters rather than the letters lighting up. The two dimmed stops either side of the bright one are what sell it as a reflection travelling over the glyphs, a 200%-wide gradient panned under bg-clip-text so the paint lands on the letterforms and not the box. The band comes to a point at each side rather than tapering away, so it reads as a highlight with an edge instead of one half of the word simply being brighter than the other. The colour is the caller's own: both stops are derived from currentColor, so bare it inherits the page's foreground and under text-primary it is a primary-coloured sweep, with no second prop to keep in sync. The dim ends are that colour mixed toward the background rather than a fixed grey, which is what makes it invert itself: mixing toward a pale page darkens and toward a dark one lightens, so the band stays the bright part either way. The band floats out and back on an eased repeat rather than looping one way, so there is no snap home at the end of a cycle to read as a stutter, and the pan stops short of both extremes so the band is still on the letterforms when it eases to a halt at each end. The pan is a stylesheet rather than a JavaScript animation, which is what leaves this a server component with no dependencies at all: reduced motion is a media query instead of a hook, and it holds the highlight still mid-word rather than taking it away. will-change keeps the glyph paint off the inline repaint path.",
+    "group": "components",
+    "category": "text",
+    "categoryLabel": "Text",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "template-01",
     "title": "Panel Landing",
     "summary": "A whole landing page drawn as panels on a seam, and the one item in the registry made mostly of the rest of it.",
-    "description": "A whole landing page drawn as panels on a seam, and the one item in the registry made mostly of the rest of it. The page is one grid with a 1px gap and a filled cell in every slot, so the only place the field colour is ever seen is that gap — the wrapper is the seam between panels rather than a background behind them, and the outer columns are gutters carrying the rounded corners that cut each row out of the page. A row is a component rather than three hand-written cells, so the seam invariant and the corner rounding live in one place and a section is added by a call rather than by keeping a hand-count of row indices in step with a row template; the middle column is measured once on the grid, so every vertical seam runs straight down the page however tall a row grows. Eight rows carry the whole conversion path: nav with its own action, hero, borrowed credibility, what you get, quantified proof, social proof, the close and a real footer. The proof rail is the logo rack, the three feature cards are the upload, workflow and usage illustrations, the wall is the still community wall, and both wow moments are the radar-ripple plane with one prop flipped — light receding into the horizon under the hero, arriving out of it under the closing ask, because a departing streak reads as the page settling and an arriving one reads as something on its way to you. The plane is painted in the page's own ink rather than a hue: the rain layer multiplies on light and adds on dark, and a single foreground gradient darkens a white page and brightens a black one with nothing to switch. The hero's lines rise 40ms apart on transitions.dev's texts-reveal timing with the trigger swapped for @starting-style, so the copy plays on first paint with no client boundary and a browser without it paints the finished hero. The accent word is a brushed-metal highlight travelling over the letters rather than a second hue, which keeps the palette at one colour: the gloss button, the only saturated thing on the page because it is the only thing the page is asking for, with its ink staying dark because it sits on yellow in either theme. The page is branded as Agentz, whose mark is a Z knocked out of a rounded plate — the page's own panel construction at glyph scale, filled in the foreground token and cut in the background one, so it is the far end of whatever theme the host is running and the letter is the page showing through. The Z is a filled outline rather than a stroked path, its eight points exactly point-symmetric about the centre of the box so its two notches are the same triangle, and the plate's radius is a percentage so the header's mark and the footer's smaller one are the same shape. The brand name is one constant the header, footer and copyright all read. Everything else is a theme token, so the page inverts with the host, and the template itself carries no client boundary — the parts that need one bring their own.",
+    "description": "A whole landing page drawn as panels on a seam, and the one item in the registry made mostly of the rest of it. The page is one grid with a 1px gap and a filled cell in every slot, so the only place the field colour is ever seen is that gap: the wrapper is the seam between panels rather than a background behind them, and the outer columns are gutters carrying the rounded corners that cut each row out of the page. A row is a component rather than three hand-written cells, so the seam invariant and the corner rounding live in one place and a section is added by a call rather than by keeping a hand-count of row indices in step with a row template; the middle column is measured once on the grid, so every vertical seam runs straight down the page however tall a row grows. Eight rows carry the whole conversion path: nav with its own action, hero, borrowed credibility, what you get, quantified proof, social proof, the close and a real footer. The proof rail is the logo rack, the three feature cards are the upload, workflow and usage illustrations, the wall is the still community wall, and both wow moments are the radar-ripple plane with one prop flipped, light receding into the horizon under the hero, arriving out of it under the closing ask, because a departing streak reads as the page settling and an arriving one reads as something on its way to you. The plane is painted in the page's own ink rather than a hue: the rain layer multiplies on light and adds on dark, and a single foreground gradient darkens a white page and brightens a black one with nothing to switch. The hero's lines rise 40ms apart on transitions.dev's texts-reveal timing with the trigger swapped for @starting-style, so the copy plays on first paint with no client boundary and a browser without it paints the finished hero. The accent word is a brushed-metal highlight travelling over the letters rather than a second hue, which keeps the palette at one colour: the gloss button, the only saturated thing on the page because it is the only thing the page is asking for, with its ink staying dark because it sits on yellow in either theme. The page is branded as Agentz, whose mark is a Z knocked out of a rounded plate, the page's own panel construction at glyph scale, filled in the foreground token and cut in the background one, so it is the far end of whatever theme the host is running and the letter is the page showing through. The Z is a filled outline rather than a stroked path, its eight points exactly point-symmetric about the centre of the box so its two notches are the same triangle, and the plate's radius is a percentage so the header's mark and the footer's smaller one are the same shape. The brand name is one constant the header, footer and copyright all read. Everything else is a theme token, so the page inverts with the host, and the template itself carries no client boundary: the parts that need one bring their own.",
     "group": "templates",
     "category": "landing",
     "categoryLabel": "Landing",
@@ -938,17 +2192,30 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "floating-dock",
-    "title": "Floating Dock",
-    "summary": "A bottom-docked nav bar: two menus that open upward and a theme toggle.",
-    "description": "A bottom-docked nav bar: two menus that open upward and a theme toggle. Each trigger reads out whatever is currently selected, so it is a 1×1 grid holding the live label stacked on an invisible copy of the longest label the menu can produce — the dock is centred, and a trigger that resized on selection would shift every control beside it. The menus are the shadcn dropdown-menu rather than hand-rolled popovers, so opening upward is a prop and outside-click, Escape and arrow keys come with it instead of being three effects to get wrong. The toggle's sun and moon both stay mounted and trade scale, the incoming glyph delayed past the outgoing one so they never overlap mid-swap; below xl that becomes a plain crossfade, since a 360° rotate on a 16px glyph reads as a flicker on a phone. Every surface is a theme token, so the dock inverts with the host.",
-    "group": "components",
-    "category": "navigation",
-    "categoryLabel": "Navigation",
+    "name": "freight-01",
+    "title": "D2 Ships",
+    "summary": "A landing page for a sea freight forwarder whose one signature moment is the hero: the 20ft shipping container from Bento Folio's intro, built as a real box in CSS 3D, hangs from a crane, swings on its cable and takes a shove from a passing pointer, and the scroll itself lowers it onto the floor before the hook lets go and rises out of frame.",
+    "description": "A landing page for a sea freight forwarder whose one signature moment is the hero: the 20ft shipping container from Bento Folio's intro, built as a real box in CSS 3D, hangs from a crane, swings on its cable and takes a shove from a passing pointer, and the scroll itself lowers it onto the floor before the hook lets go and rises out of frame. Behind it a tower crane stands on the floor line, drawn as a hand sketched engineering drawing in the page's greys, its lattice jib reaching over the yard. The landing is a pure function of scroll progress rather than a timed tween, so scrolling back up re-hooks the crate by the same path and a flick past the hero cannot strand it mid motion. The pendulum's one animation loop runs only while the hero is on screen, so the page under it is as light as a static page. Under the hero sits a bento of four cells, how a box travels, what a shipper stops doing, what a 20ft box costs on three sample lanes and where a vessel is now, each drawn as an isometric line figure that stays still until the pointer reaches it; the price figure stacks the boxes one air shipment's budget would move each way, since at true scale the two sea rates are the same short stump beside the air one. Then three plans on the same plates, a shared box, a full box marked as the most booked and a contract that goes to support. Reviews, a quote form that shakes an empty field and checks off a sent one beside two portal cranes over a train of wagons drawn the same way, where the crane under the pointer luffs its jib down to reach out, and a footer close the page. Mono throughout in the block's own palette, set in one font in plain sentence case; the only colours are a faint dawn over blue mist behind the crane and a light Sanzo Wada wash on the most booked plan's card. Every word lives in one data file and every price is sample data.",
+    "group": "templates",
+    "category": "landing",
+    "categoryLabel": "Landing",
     "tier": "pro",
     "dependencies": [
       "motion",
-      "lucide-react"
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "portfolio-01",
+    "title": "Bento Folio",
+    "summary": "A one screen portfolio laid out as a desktop of widgets in the shape and material Apple gives its own: three sizes on one square grid, small, medium two wide and large two by two, each a translucent plate over a soft wallpaper with a small tinted caption and large type under it.",
+    "description": "A one screen portfolio laid out as a desktop of widgets in the shape and material Apple gives its own: three sizes on one square grid, small, medium two wide and large two by two, each a translucent plate over a soft wallpaper with a small tinted caption and large type under it. Widgets never scroll, as on the home screen; a list shows what fits and says how many more there are. Edit Widgets puts the page in edit mode: every widget trembles and any of them can be dragged anywhere on the grid, or moved with the arrow keys, the others sliding out of its way on a critically damped spring, and dense flow packs any order without holes. The time widget is an Apple style clock face reading the person's own city, drawn only after mount so the server and browser never disagree on the second. Experience and education rows carry their marks on small D2 tiles, projects are client work for real brands on D2 chips, the CV is the pdf file card, the contact widget pairs a round portrait with a “+ You” slot that pings on hover, and the contact links are D2 chips with brand marks from the shared set. The theme switch hangs from the top edge like a tab. A stack of four toasts at the bottom centre arrives one by one to say the history is sample data, the front one inviting the visitor to add their own. The palette is the block's own, so it inverts with the host and never touches a host token. The edge glow from the original card frame lights the rim nearest the pointer and catches on the neighbouring widgets. Set in the system font.",
+    "group": "templates",
+    "category": "portfolio",
+    "categoryLabel": "Portfolio",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
     ]
   },
   {
@@ -965,45 +2232,42 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "hero-01",
-    "title": "Agentic Hero",
-    "summary": "A hero for an agentic-AI product, standing on the radar-ripple plane: the grid is the section's ground rather than a card face, so it takes a wider pitch and a longer run — a card's grid read across a full section is noise, and a streak now has a screen to cross rather than a tile.",
-    "description": "A hero for an agentic-AI product, standing on the radar-ripple plane: the grid is the section's ground rather than a card face, so it takes a wider pitch and a longer run — a card's grid read across a full section is noise, and a streak now has a screen to cross rather than a tile. The grid is painted in `--border` and every surface is a theme token, so the whole section inverts with the host; only the streaks keep a colour of their own, and the star row keeps gold, because a rating drawn in `--foreground` reads as five bullets rather than a score. Google's mark keeps its four brand colours for the same reason — a brand asset is not a surface. The plane's own near-edge fade is what lets the copy sit directly on it without a scrim behind it. Below the fold line the logo rail is logo-marquee's slider rather than a second one: same seamless loop, same hover slow-down, cut back into the page at both edges by gradients of the background. Two actions, an eyebrow marked with a filled reicon glyph in the same gold as the stars, and no client boundary of its own — the client parts it renders bring their own.",
+    "name": "floating-dock",
+    "title": "Floating Dock",
+    "summary": "A bottom-docked nav bar: two menus that open upward and a theme toggle.",
+    "description": "A bottom-docked nav bar: two menus that open upward and a theme toggle. Each trigger reads out whatever is currently selected, so it is a 1×1 grid holding the live label stacked on an invisible copy of the longest label the menu can produce: the dock is centred, and a trigger that resized on selection would shift every control beside it. The menus are the shadcn dropdown-menu rather than hand-rolled popovers, so opening upward is a prop and outside-click, Escape and arrow keys come with it instead of being three effects to get wrong. The toggle's sun and moon both stay mounted and trade scale, the incoming glyph delayed past the outgoing one so they never overlap mid-swap; below xl that becomes a plain crossfade, since a 360° rotate on a 16px glyph reads as a flicker on a phone. Every surface is a theme token, so the dock inverts with the host.",
+    "group": "components",
+    "category": "navigation",
+    "categoryLabel": "Navigation",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "hero-06",
+    "title": "Isobar",
+    "summary": "A weather product's fold with the product as the picture: the world and its wind drawn straight onto the page with no frame round it, leading the section under the nav, with only a live mark and the time in UTC in its corner, like a feed off a real display.",
+    "description": "A weather product's fold with the product as the picture: the world and its wind drawn straight onto the page with no frame round it, leading the section under the nav, with only a live mark and the time in UTC in its corner, like a feed off a real display. The air is a particle field advected through six pressure systems and drawn in WebGL as long, slow trails that fade into the page at 60fps, and the canvas shares the land's own coordinates, so a trail and a coastline are registered by construction. The land is solid grey with a grey coast, on the Miller projection, so the continents keep the shapes a reader knows instead of the squashed, stretched look of a plain latitude and longitude grid. There are no controls. The map walks itself through six seasonal patterns, from trade winds to storm season, one every twenty two seconds, and the systems drift to their new places rather than jumping. The pointer opens a low of its own wherever it rests, marked by two hairline rings, and the air spirals in and fills back when it leaves. It follows the site theme: pale sky blues on paper in light, and in dark the ramp turns over so strong air lifts to a soft light blue, with the quickening air passing through a soft green and only the fastest turning a soft red for a heat wave. Antarctica is left off the chart. After Paul Noble's daylight map, the night side is shaded from the real sun position at the reader's own time, refreshed each minute, and the lights of every city over 200,000 people show through it, dimming across a soft twilight edge. Set in Be Vietnam Pro, one family for the whole fold, under the D2 mark. The loop stops off screen, and under reduced motion the map is one settled picture on one pattern.",
     "group": "marketing",
     "category": "hero",
     "categoryLabel": "Hero",
     "tier": "pro",
     "dependencies": [
-      "motion",
       "reicon-react"
     ]
   },
   {
-    "name": "hero-02",
-    "title": "Solar Hero, Inbound",
-    "summary": "A rooftop-solar hero on the radar-ripple plane, with the light running in from the horizon rather than away into it — a departing streak reads as the page settling, one arriving reads as something on its way to you.",
-    "description": "A rooftop-solar hero on the radar-ripple plane, with the light running in from the horizon rather than away into it — a departing streak reads as the page settling, one arriving reads as something on its way to you. Both axes light here, not just the columns: a solar field is read across as much as along, and a plane where only the verticals ever move is a road rather than an array. The row streaks are the same rain on the other axis, so they cost a count and a gradient rather than a second effect. Six lines are in flight at a time — columns take turns, handed out in hash order so consecutive lights land columns apart instead of marching across — and the run is short, because a sparse plane on a long run leaves the section dark between passes. Blue is the light and only the light: the grid stays `--border`, so the field is the host's own ink and the streaks are the one thing carrying a colour — a grid painted in the accent as well leaves nothing for the light to stand out against, and the plane reads as tinted rather than as lit. Every surface and every piece of type is a token, so the hero still inverts with the host. A few of the row streaks are paired to a column streak so the two meet on an intersection: a pair is one column and one row placed at the same percentage of the plane and started on the same clock, so at the moment the column's light is that far down, the row's is that far across — which is the same box. Nothing computes the meeting point; it falls out of the two sharing a number. Every column pass is paired with a row pass, so a crossing is the normal event rather than a coincidence: the pair share a percentage and a clock, and meet on a grid intersection partway through the run. The logo rail is a dock rather than a plain marquee: it keeps travelling, and the mark under the pointer lifts with its neighbours following on a power falloff, then the row springs back with an overshoot when the pointer leaves — transitions.dev's avatar-group-hover on a moving row, which composes because the slider owns x on the track and the dock owns y on each item. Under the buttons the proof is a stack of faces rather than a review score: the avatars overlap, and the one under the pointer lifts while its neighbours follow at a third and a sixth of the travel — the dock's damping done in sibling selectors, so it costs no client boundary. The faces are the avatar-stack item rather than a second copy of it, so the hero and the standalone component cannot drift apart. The rest is hero-01's: the nav standing on the same plane as the copy, and the viewport-tall column that pins the nav to the top edge and pushes the rail to the bottom.",
+    "name": "hero-05",
+    "title": "Northbound",
+    "summary": "A launch hero standing on the gradient-drift plane, with the plane masked down to a bloom behind the copy and a macOS window running the product underneath it.",
+    "description": "A launch hero standing on the gradient-drift plane, with the plane masked down to a bloom behind the copy and a macOS window running the product underneath it. The mask is what turns a wallpaper into a hero: drift is an opaque picture edge to edge, and full bleed it takes the whole section with it, the nav on colour, the proof on colour and nowhere quiet for a headline to land. Masked from the centre it reads as a light source, brightest under the words and falling to a fifth of its strength by the corners rather than to nothing, because a bloom that vanishes leaves the corners flat and a trace of the field still moving out there is what says the section is alive. The mask alpha has a flat core, so the heading sits over full-strength colour rather than over the falloff, and the ellipse widens below `sm`, where a share of a 390px viewport would otherwise be narrower than the headline. The scrim is that same radial run as a fill in `--background` over the middle only: the brightest part of the picture is also the only part carrying type, so the one place the art needs holding back is the one place the mask does not touch, and it is a token rather than a black plate because holding a picture back means pulling it towards the page. Nothing is pinned to a theme. The plane paints its ground in `--background`, so the same discs sit on the host's own paper, hot colour on near-black in the dark and the same colour washed over white in the light, and the section inverts with the page instead of being a dark hole in a light one. Type that stands on the picture comes off `--foreground` with alpha rather than `--muted-foreground`, since the muted token is mixed towards the page and on saturated colour that is a step towards what is underneath rather than away from it. The field runs at two thirds speed here, because a background is looked at and a hero is read, and copy is read once. The deploy window is what fills the bottom third that a hero with nothing under its buttons spends on air: the product doing the one thing the headline claims. It is deliberately taller than the room left for it and runs off the bottom of the section, because a product shot that ends inside the fold is a picture of the product where one that leaves the frame is the page carrying on past it, and a linear mask from the window's own middle down to its foot is what makes that read as depth rather than as a crop. The log is written as state rather than as glyphs, so a line that is still running cannot end up carrying a tick, and the marks are lucide icons picked from that state. The traffic lights are the one place in the block with a colour of their own: painted in a token they stop reading as a title bar, which is the whole point of drawing one. The title is centred over the whole bar rather than placed after the lights, so it does not drift as the lights and the badge change width. Its lines rise in sequence sixty milliseconds apart, the only motion here that is not decoration, since a log prints in order and one that arrives all at once is the one lie in the picture. `@starting-style` plays it on first paint with no client boundary, no mount flag and no observer, and a browser without it shows the finished card. The proof is one sentence from one named person rather than three round numbers, because a number nobody can check is decoration while a name and a job are the part a reader can go and verify. Nav, copy, both calls to action, the log and the quote are props.",
     "group": "marketing",
     "category": "hero",
     "categoryLabel": "Hero",
     "tier": "pro",
     "dependencies": [
-      "motion",
-      "reicon-react"
-    ]
-  },
-  {
-    "name": "hero-03",
-    "title": "Event Horizon",
-    "summary": "hero-01's plane, run the other way and laid out flat rather than centred.",
-    "description": "hero-01's plane, run the other way and laid out flat rather than centred. The ground is unchanged on purpose, same pitch, same tilt, same run, the grid still painted in `--border` so the field is the host's own ink, and the one thing that moved is the light: the streaks come in off the horizon instead of away into it, because a departing streak reads as the page settling and an arriving one reads as something on its way to you. The light changes colour along its own length: violet into fuchsia into rose and out through a pale amber, four steps of one arc rather than a spectrum, since a ramp that also visits green and cyan is a rainbow and a rainbow on a grid reads as a test card. Each stop is a Tailwind palette variable rather than a hex, so the streak is authored in the same tokens as the rest of the page and a host that retunes its palette retunes the light with it. radar-ripple takes a whole gradient for a pass, so all of that costs the same single prop the teal default does, no second layer and no per-line state. Both ends land on transparent black rather than an opaque colour, because the light layer is additive on dark, where black already contributes nothing, but multiplied on light, where an opaque black end would draw a dark bar down the grid instead of a light leaving it. The fold is a split rather than a centred stack: all the copy sits in the left half, heading at display size, then the prose, the two actions and the rating, one block of reading, and the right half holds the product shot, the two centred against each other so neither hangs off the other's edge. At rest that shot leans back on the same axis the plane behind it is drawn on, bottom edge nearest, top edge receding, so it reads as sitting above the grid rather than pasted flat over it, and hovering lays it square to the viewer over 700ms on the page's own ease. The plane's own numbers cannot be borrowed for it: a 62° tilt about the top edge at 700px of perspective puts the window's bottom some 460px in front of the camera, which is a ~2.9× magnification, and the shot swallows the fold. A card is an object of a size in the scene where the grid is the scene, so the angle is shallow, the camera sits further back and the pivot is the window's own middle, which halves the throw in each direction and holds the scale inside 0.92–1.10. Nothing reflows on the way up: a transform does not touch layout, so the column already reserves the upright height and the tilt only spends it. The tilt is desktop-only and off under reduced motion, hover is the only way back up, and a touch device would otherwise be stuck reading a window folded away from it. That shot is a frosted call window, and the only plate in the fold: a titlebar with three dots and one tab whose label is a prop, four connected callers in a 2×2 with the speaker ringed, a clip of waveform in the corner of that speaker's tile, drawn and left alone, since the uneven heights around a centre line already read as sound and a badge that small competing with the light crossing the plane behind it would take the one thing on the page that should be moving, and only the speaker carries one because four at once is a pattern rather than a signal, and a control bar of camera, microphone, reactions, present and a red leave. The tiles ask the placeholder host for the same faces at ten times the area avatar-stack needs, because a 96px portrait blown up to tile size arrives visibly soft, the size is a path segment, so it is a swap rather than a second list, and a src that doesn't match the pattern is passed through untouched. The proof under the buttons is Placard rather than a review score: the room is already full of faces, and a row that names them on hover is the same proof said in the product's own vocabulary. It is 12% fill behind a blur rather than a solid surface, because the plane is the point of this hero and an opaque window would be a screenshot pasted over the grid; the 4px rule is load-bearing for the same reason, since a hairline border over a moving grid disappears into the grid's own lines. The copy carries no plate of its own, two frosted surfaces side by side would be a layout of cards rather than a hero with a product shot in it. The tab is chrome rather than a control: a second tab that switched nothing would be a lie, and one that did switch would need a second panel the fold has no room for. The eyebrow is a rule and a label instead of a pill, a centred hero needs its eyebrow boxed to keep it from floating, a left-aligned one already has an edge to hang from, and the second action drops its border to a plain arrow link, so the two read as a primary and its footnote rather than a pair. Below md the split collapses to one column, because a half-width column of prose on a phone is a gutter. At the bottom the logo rail's label sits beside the track rather than above it, and only the right edge is cut back into the page: the track starts at the label, so a fade on the left would eat the first mark rather than hide a hard entry. Every surface and every piece of type is a theme token, the stars and the eyebrow glyph keep their gold, Google's mark keeps its four brand colours, and the hero ships no client boundary of its own.",
-    "group": "marketing",
-    "category": "hero",
-    "categoryLabel": "Hero",
-    "tier": "pro",
-    "dependencies": [
-      "motion",
-      "reicon-react",
       "lucide-react"
     ]
   },
@@ -1022,10 +2286,64 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
+    "name": "hero-01",
+    "title": "Agentic Hero",
+    "summary": "A hero for an agentic-AI product, standing on the radar-ripple plane: the grid is the section's ground rather than a card face, so it takes a wider pitch and a longer run: a card's grid read across a full section is noise, and a streak now has a screen to cross rather than a tile.",
+    "description": "A hero for an agentic-AI product, standing on the radar-ripple plane: the grid is the section's ground rather than a card face, so it takes a wider pitch and a longer run: a card's grid read across a full section is noise, and a streak now has a screen to cross rather than a tile. The grid is painted in `--border` and every surface is a theme token, so the whole section inverts with the host; only the streaks keep a colour of their own, and the star row keeps gold, because a rating drawn in `--foreground` reads as five bullets rather than a score. Google's mark keeps its four brand colours for the same reason: a brand asset is not a surface. The plane's own near-edge fade is what lets the copy sit directly on it without a scrim behind it. Below the fold line the logo rail is logo-marquee's slider rather than a second one: same seamless loop, same hover slow-down, cut back into the page at both edges by gradients of the background. Two actions, an eyebrow marked with a filled reicon glyph in the same gold as the stars, and no client boundary of its own: the client parts it renders bring their own.",
+    "group": "marketing",
+    "category": "hero",
+    "categoryLabel": "Hero",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "hero-02",
+    "title": "Solar Hero, Inbound",
+    "summary": "A rooftop-solar hero on the radar-ripple plane, with the light running in from the horizon rather than away into it, a departing streak reads as the page settling, one arriving reads as something on its way to you.",
+    "description": "A rooftop-solar hero on the radar-ripple plane, with the light running in from the horizon rather than away into it, a departing streak reads as the page settling, one arriving reads as something on its way to you. Both axes light here, not just the columns: a solar field is read across as much as along, and a plane where only the verticals ever move is a road rather than an array. The row streaks are the same rain on the other axis, so they cost a count and a gradient rather than a second effect. Six lines are in flight at a time: columns take turns, handed out in hash order so consecutive lights land columns apart instead of marching across, and the run is short, because a sparse plane on a long run leaves the section dark between passes. Blue is the light and only the light: the grid stays `--border`, so the field is the host's own ink and the streaks are the one thing carrying a colour: a grid painted in the accent as well leaves nothing for the light to stand out against, and the plane reads as tinted rather than as lit. Every surface and every piece of type is a token, so the hero still inverts with the host. A few of the row streaks are paired to a column streak so the two meet on an intersection: a pair is one column and one row placed at the same percentage of the plane and started on the same clock, so at the moment the column's light is that far down, the row's is that far across, which is the same box. Nothing computes the meeting point; it falls out of the two sharing a number. Every column pass is paired with a row pass, so a crossing is the normal event rather than a coincidence: the pair share a percentage and a clock, and meet on a grid intersection partway through the run. The logo rail is a dock rather than a plain marquee: it keeps travelling, and the mark under the pointer lifts with its neighbours following on a power falloff, then the row springs back with an overshoot when the pointer leaves, transitions.dev's avatar-group-hover on a moving row, which composes because the slider owns x on the track and the dock owns y on each item. Under the buttons the proof is a stack of faces rather than a review score: the avatars overlap, and the one under the pointer lifts while its neighbours follow at a third and a sixth of the travel, the dock's damping done in sibling selectors, so it costs no client boundary. The faces are the avatar-stack item rather than a second copy of it, so the hero and the standalone component cannot drift apart. The rest is hero-01's: the nav standing on the same plane as the copy, and the viewport-tall column that pins the nav to the top edge and pushes the rail to the bottom.",
+    "group": "marketing",
+    "category": "hero",
+    "categoryLabel": "Hero",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "hero-03",
+    "title": "Event Horizon",
+    "summary": "hero-01's plane, run the other way and laid out flat rather than centred.",
+    "description": "hero-01's plane, run the other way and laid out flat rather than centred. The ground is unchanged on purpose, same pitch, same tilt, same run, the grid still painted in `--border` so the field is the host's own ink, and the one thing that moved is the light: the streaks come in off the horizon instead of away into it, because a departing streak reads as the page settling and an arriving one reads as something on its way to you. The light changes colour along its own length: violet into fuchsia into rose and out through a pale amber, four steps of one arc rather than a spectrum, since a ramp that also visits green and cyan is a rainbow and a rainbow on a grid reads as a test card. Each stop is a Tailwind palette variable rather than a hex, so the streak is authored in the same tokens as the rest of the page and a host that retunes its palette retunes the light with it. radar-ripple takes a whole gradient for a pass, so all of that costs the same single prop the teal default does, no second layer and no per-line state. Both ends land on transparent black rather than an opaque colour, because the light layer is additive on dark, where black already contributes nothing, but multiplied on light, where an opaque black end would draw a dark bar down the grid instead of a light leaving it. The fold is a split rather than a centred stack: all the copy sits in the left half, heading at display size, then the prose, the two actions and the rating, one block of reading, and the right half holds the product shot, the two centred against each other so neither hangs off the other's edge. At rest that shot leans back on the same axis the plane behind it is drawn on, bottom edge nearest, top edge receding, so it reads as sitting above the grid rather than pasted flat over it, and hovering lays it square to the viewer over 700ms on the page's own ease. The plane's own numbers cannot be borrowed for it: a 62° tilt about the top edge at 700px of perspective puts the window's bottom some 460px in front of the camera, which is a ~2.9× magnification, and the shot swallows the fold. A card is an object of a size in the scene where the grid is the scene, so the angle is shallow, the camera sits further back and the pivot is the window's own middle, which halves the throw in each direction and holds the scale inside 0.92 to 1.10. Nothing reflows on the way up: a transform does not touch layout, so the column already reserves the upright height and the tilt only spends it. The tilt is desktop-only and off under reduced motion, hover is the only way back up, and a touch device would otherwise be stuck reading a window folded away from it. That shot is a frosted call window, and the only plate in the fold: a titlebar with three dots and one tab whose label is a prop, four connected callers in a 2×2 with the speaker ringed, a clip of waveform in the corner of that speaker's tile, drawn and left alone, since the uneven heights around a centre line already read as sound and a badge that small competing with the light crossing the plane behind it would take the one thing on the page that should be moving, and only the speaker carries one because four at once is a pattern rather than a signal, and a control bar of camera, microphone, reactions, present and a red leave. The tiles ask the placeholder host for the same faces at ten times the area avatar-stack needs, because a 96px portrait blown up to tile size arrives visibly soft, the size is a path segment, so it is a swap rather than a second list, and a src that doesn't match the pattern is passed through untouched. The proof under the buttons is Placard rather than a review score: the room is already full of faces, and a row that names them on hover is the same proof said in the product's own vocabulary. It is 12% fill behind a blur rather than a solid surface, because the plane is the point of this hero and an opaque window would be a screenshot pasted over the grid; the 4px rule is load-bearing for the same reason, since a hairline border over a moving grid disappears into the grid's own lines. The copy carries no plate of its own, two frosted surfaces side by side would be a layout of cards rather than a hero with a product shot in it. The tab is chrome rather than a control: a second tab that switched nothing would be a lie, and one that did switch would need a second panel the fold has no room for. The eyebrow is a rule and a label instead of a pill, a centred hero needs its eyebrow boxed to keep it from floating, a left-aligned one already has an edge to hang from, and the second action drops its border to a plain arrow link, so the two read as a primary and its footnote rather than a pair. Below md the split collapses to one column, because a half-width column of prose on a phone is a gutter. At the bottom the logo rail's label sits beside the track rather than above it, and only the right edge is cut back into the page: the track starts at the label, so a fade on the left would eat the first mark rather than hide a hard entry. Every surface and every piece of type is a theme token, the stars and the eyebrow glyph keep their gold, Google's mark keeps its four brand colours, and the hero ships no client boundary of its own.",
+    "group": "marketing",
+    "category": "hero",
+    "categoryLabel": "Hero",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "gradient-drift",
+    "title": "Gradient Drift",
+    "summary": "A ground of slow coloured blobs seen through reeded glass, drawn on the GPU in three fragment passes.",
+    "description": "A ground of slow coloured blobs seen through reeded glass, drawn on the GPU in three fragment passes. Six soft discs drift over an opaque background, each on two incommensurate sines per axis so no path ever visibly repeats and the field never settles into a loop. A separable gaussian melts them into one another, folding every pair of adjacent taps into one linearly filtered fetch, which is half the samples for the same kernel. Then a pane of fluted glass: each rib is a curved cross-section whose surface normal refracts a straight-on view ray at a crown-glass index, and the bent ray is projected over the glass-to-background distance to find where to sample. The same normal drives the specular and the groove darkening, so the highlights ride the ribs rather than sitting on top of them. The wave bends the glass, not the picture: the plane is foliated by shifted copies of a guide curve and a pixel's rib coordinate is which copy it lies on, slope-corrected so rib width stays constant across the bend, which is fold-free everywhere on screen where a closest-point solve is not. A second pane is wired up and switched off, since the shader sums both offsets into one background sample and turning it on costs a flag rather than a pass. The blur and the field run at half device resolution because a blur is bandwidth bound and its output is smooth by definition; only the glass is drawn at full size, where the rib edges need the pixels. Half-float targets where the GPU can render them, bytes plus an ordered dither where it cannot, which is what keeps a wide gradient from banding at 8 bits. The layout is seeded, so it is the same on every load, and under reduced motion it draws one frame and holds it. The ground defaults to `--background` rather than a baked colour, resolved by painting one pixel of it and reading the pixel back, since the tokens are authored in oklch and a hex parser would only cover the props a host writes by hand: the field re-reads it every frame, so it follows a theme flip with nothing watching for one. `speed` scales the clock rather than any one setting, because drift, wave and the pattern's travel are one motion and slowing only the discs would leave the glass sliding over a field that had stopped under it. It stops painting when it is scrolled off screen as well as when the tab is hidden, which matters most where it is used first: a hero sits at the top of the page, and without it the GPU keeps running a full-screen shader while the reader is at the footer. Palette, background and speed are props, and it needs no dependencies at all.",
+    "group": "marketing",
+    "category": "backgrounds",
+    "categoryLabel": "Backgrounds",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "light-grid",
     "title": "Light Grid",
     "summary": "The radar-ripple plane used the other way round: not a card face but a whole section's ground, with the copy standing on it.",
-    "description": "The radar-ripple plane used the other way round: not a card face but a whole section's ground, with the copy standing on it. A grid lies back from the viewer and light runs up its columns into the horizon — the grid's verticals are the light layer's alpha mask, so a streak only ever exists on a line, and because the mask stays put while the gradient behind it travels it reads as the grid itself lighting up rather than a shape sliding past it. The settings suit the larger canvas: a wider pitch, because a section is much bigger than a card and a card's grid would read as noise across one; more drops, because there is more width to fill; and a longer run, because a streak now has a screen to cross rather than a tile. The grid is green rather than the page's own ink — a background is allowed to be a colour where a card face in a row of cards is not — which is one prop, since the grid is drawn from repeating gradients that take any colour. Everything else is radar-ripple's: the CSS round() that snaps each streak to a real column, the two planes that let the light blend with what is under it while the grid does not, additive on dark and multiplied on light, and the intersecting mask gradients that clear the near edge for copy and fade the horizon. Under reduced motion the grid alone is the texture.",
+    "description": "The radar-ripple plane used the other way round: not a card face but a whole section's ground, with the copy standing on it. A grid lies back from the viewer and light runs up its columns into the horizon: the grid's verticals are the light layer's alpha mask, so a streak only ever exists on a line, and because the mask stays put while the gradient behind it travels it reads as the grid itself lighting up rather than a shape sliding past it. The settings suit the larger canvas: a wider pitch, because a section is much bigger than a card and a card's grid would read as noise across one; more drops, because there is more width to fill; and a longer run, because a streak now has a screen to cross rather than a tile. The grid is green rather than the page's own ink: a background is allowed to be a colour where a card face in a row of cards is not, which is one prop, since the grid is drawn from repeating gradients that take any colour. Everything else is radar-ripple's: the CSS round() that snaps each streak to a real column, the two planes that let the light blend with what is under it while the grid does not, additive on dark and multiplied on light, and the intersecting mask gradients that clear the near edge for copy and fade the horizon. Under reduced motion the grid alone is the texture.",
     "group": "marketing",
     "category": "backgrounds",
     "categoryLabel": "Backgrounds",
@@ -1074,34 +2392,10 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "hero-05",
-    "title": "Northbound",
-    "summary": "A launch hero standing on the gradient-drift plane, with the plane masked down to a bloom behind the copy and a macOS window running the product underneath it.",
-    "description": "A launch hero standing on the gradient-drift plane, with the plane masked down to a bloom behind the copy and a macOS window running the product underneath it. The mask is what turns a wallpaper into a hero: drift is an opaque picture edge to edge, and full bleed it takes the whole section with it, the nav on colour, the proof on colour and nowhere quiet for a headline to land. Masked from the centre it reads as a light source, brightest under the words and falling to a fifth of its strength by the corners rather than to nothing, because a bloom that vanishes leaves the corners flat and a trace of the field still moving out there is what says the section is alive. The mask alpha has a flat core, so the heading sits over full-strength colour rather than over the falloff, and the ellipse widens below `sm`, where a share of a 390px viewport would otherwise be narrower than the headline. The scrim is that same radial run as a fill in `--background` over the middle only: the brightest part of the picture is also the only part carrying type, so the one place the art needs holding back is the one place the mask does not touch, and it is a token rather than a black plate because holding a picture back means pulling it towards the page. Nothing is pinned to a theme. The plane paints its ground in `--background`, so the same discs sit on the host's own paper, hot colour on near-black in the dark and the same colour washed over white in the light, and the section inverts with the page instead of being a dark hole in a light one. Type that stands on the picture comes off `--foreground` with alpha rather than `--muted-foreground`, since the muted token is mixed towards the page and on saturated colour that is a step towards what is underneath rather than away from it. The field runs at two thirds speed here, because a background is looked at and a hero is read, and copy is read once. The deploy window is what fills the bottom third that a hero with nothing under its buttons spends on air: the product doing the one thing the headline claims. It is deliberately taller than the room left for it and runs off the bottom of the section, because a product shot that ends inside the fold is a picture of the product where one that leaves the frame is the page carrying on past it, and a linear mask from the window's own middle down to its foot is what makes that read as depth rather than as a crop. The log is written as state rather than as glyphs, so a line that is still running cannot end up carrying a tick, and the marks are lucide icons picked from that state. The traffic lights are the one place in the block with a colour of their own: painted in a token they stop reading as a title bar, which is the whole point of drawing one. The title is centred over the whole bar rather than placed after the lights, so it does not drift as the lights and the badge change width. Its lines rise in sequence sixty milliseconds apart, the only motion here that is not decoration, since a log prints in order and one that arrives all at once is the one lie in the picture. `@starting-style` plays it on first paint with no client boundary, no mount flag and no observer, and a browser without it shows the finished card. The proof is one sentence from one named person rather than three round numbers, because a number nobody can check is decoration while a name and a job are the part a reader can go and verify. Nav, copy, both calls to action, the log and the quote are props.",
-    "group": "marketing",
-    "category": "hero",
-    "categoryLabel": "Hero",
-    "tier": "pro",
-    "dependencies": [
-      "lucide-react"
-    ]
-  },
-  {
-    "name": "gradient-drift",
-    "title": "Gradient Drift",
-    "summary": "A ground of slow coloured blobs seen through reeded glass, drawn on the GPU in three fragment passes.",
-    "description": "A ground of slow coloured blobs seen through reeded glass, drawn on the GPU in three fragment passes. Six soft discs drift over an opaque background, each on two incommensurate sines per axis so no path ever visibly repeats and the field never settles into a loop. A separable gaussian melts them into one another, folding every pair of adjacent taps into one linearly filtered fetch, which is half the samples for the same kernel. Then a pane of fluted glass: each rib is a curved cross-section whose surface normal refracts a straight-on view ray at a crown-glass index, and the bent ray is projected over the glass-to-background distance to find where to sample. The same normal drives the specular and the groove darkening, so the highlights ride the ribs rather than sitting on top of them. The wave bends the glass, not the picture: the plane is foliated by shifted copies of a guide curve and a pixel's rib coordinate is which copy it lies on, slope-corrected so rib width stays constant across the bend, which is fold-free everywhere on screen where a closest-point solve is not. A second pane is wired up and switched off, since the shader sums both offsets into one background sample and turning it on costs a flag rather than a pass. The blur and the field run at half device resolution because a blur is bandwidth bound and its output is smooth by definition; only the glass is drawn at full size, where the rib edges need the pixels. Half-float targets where the GPU can render them, bytes plus an ordered dither where it cannot, which is what keeps a wide gradient from banding at 8 bits. The layout is seeded, so it is the same on every load, and under reduced motion it draws one frame and holds it. The ground defaults to `--background` rather than a baked colour, resolved by painting one pixel of it and reading the pixel back, since the tokens are authored in oklch and a hex parser would only cover the props a host writes by hand: the field re-reads it every frame, so it follows a theme flip with nothing watching for one. `speed` scales the clock rather than any one setting, because drift, wave and the pattern's travel are one motion and slowing only the discs would leave the glass sliding over a field that had stopped under it. It stops painting when it is scrolled off screen as well as when the tab is hidden, which matters most where it is used first: a hero sits at the top of the page, and without it the GPU keeps running a full-screen shader while the reader is at the footer. Palette, background and speed are props, and it needs no dependencies at all.",
-    "group": "marketing",
-    "category": "backgrounds",
-    "categoryLabel": "Backgrounds",
-    "tier": "pro",
-    "dependencies": []
-  },
-  {
     "name": "radar-ripple",
     "title": "Radar Ripple",
     "summary": "A card whose face is a grid lying back from the viewer, with light running up its columns and away into the horizon.",
-    "description": "A card whose face is a grid lying back from the viewer, with light running up its columns and away into the horizon. The light is not drawn over the grid — the grid's verticals are the light layer's alpha mask, so a streak only ever exists on a line, and because the mask stays put while the gradient behind it travels, it reads as the grid itself lighting up rather than a shape sliding past it. The grid is two repeating gradients rather than a tiled SVG: a hard-stop gradient is a line, repeating it is a grid, and unlike a data URI it takes currentColor, so the grid is painted in a theme token instead of a baked hex. That also puts the pitch in px, which is what lets each streak snap to a real column with a CSS round() rather than landing near one. The depth is one rotateX on a plane, hinged at its top edge: the cells foreshorten towards the horizon and a streak, a plain vertical patch in the plane's own flat space, is drawn already in perspective. The grid and the light get one plane each with the same numbers, because the light has to blend with what is under it and the grid must not, and a blend on a shared parent cannot tell them apart — additive on dark, multiplied on light, so it neither bleaches a white page nor vanishes into a black one. Every column is its own drop, with its own speed and start derived from its index by a hash rather than Math.random so server and client agree, easing away from the near edge and slowing into the horizon. Two mask gradients composited to intersect leave the near edge clear for copy and give the horizon a long falloff. Pitch, stroke, tilt, perspective, run length, speed, drop count, the gradient and the fades are all props. Under reduced motion the grid alone is the texture. Fills its parent, which wants to be relative and overflow-hidden. Motion is the only dependency.",
+    "description": "A card whose face is a grid lying back from the viewer, with light running up its columns and away into the horizon. The light is not drawn over the grid: the grid's verticals are the light layer's alpha mask, so a streak only ever exists on a line, and because the mask stays put while the gradient behind it travels, it reads as the grid itself lighting up rather than a shape sliding past it. The grid is two repeating gradients rather than a tiled SVG: a hard-stop gradient is a line, repeating it is a grid, and unlike a data URI it takes currentColor, so the grid is painted in a theme token instead of a baked hex. That also puts the pitch in px, which is what lets each streak snap to a real column with a CSS round() rather than landing near one. The depth is one rotateX on a plane, hinged at its top edge: the cells foreshorten towards the horizon and a streak, a plain vertical patch in the plane's own flat space, is drawn already in perspective. The grid and the light get one plane each with the same numbers, because the light has to blend with what is under it and the grid must not, and a blend on a shared parent cannot tell them apart: additive on dark, multiplied on light, so it neither bleaches a white page nor vanishes into a black one. Every column is its own drop, with its own speed and start derived from its index by a hash rather than Math.random so server and client agree, easing away from the near edge and slowing into the horizon. Two mask gradients composited to intersect leave the near edge clear for copy and give the horizon a long falloff. Pitch, stroke, tilt, perspective, run length, speed, drop count, the gradient and the fades are all props. Under reduced motion the grid alone is the texture. Fills its parent, which wants to be relative and overflow-hidden. Motion is the only dependency.",
     "group": "marketing",
     "category": "cards",
     "categoryLabel": "Cards",
@@ -1111,64 +2405,25 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
-    "name": "logo-marquee",
-    "title": "Logo Marquee",
-    "summary": "A logo rail that never stops, and one the main thread never touches.",
-    "description": "A logo rail that never stops, and one the main thread never touches. The travel is a Web Animations API transform rather than a per-frame write from JavaScript, so the browser owns the interpolation on the compositor and a busy page cannot make the rail stutter — which matters most on a landing page, where the frame the visitor is scrolling is the busiest one there is. The children are rendered twice, each copy carrying the gap as trailing padding, so the track is exactly two copies wide and a translate of half of it lands the second copy where the first one started: the seam is the reset, and it is invisible because the two halves are identical there. Hovering slows it rather than stopping it, through playbackRate rather than a new duration, so the pace changes from wherever the rail currently is instead of jumping to wherever new timing says it should have been; it is off on touch, where a tap would fire the enter and never the leave. The rail pauses itself while it is off screen and retimes without moving when a web font settles its width. Both edges are cut back into the page by gradients of the page's own background, so logos arrive and leave instead of being clipped, and the marks paint in currentColor through muted-foreground so they follow the host's theme rather than being inverted into it. Stops under prefers-reduced-motion.",
+    "name": "integration-grid",
+    "title": "Integration Grid",
+    "summary": "The integrations section drawn as a field rather than a list.",
+    "description": "The integrations section drawn as a field rather than a list. A seven by five matrix of service tiles dims outward from the middle, and the product's own mark sits on the centre cell: a logo wall says these are the ones we run, this says we are the middle of all of them, and it is the geometry making that argument rather than the copy. Distance is measured ring by ring in Chebyshev rather than straight line, because the rings the eye reads off a square grid are square ones, and a diagonal neighbour scored further out than a side one lights the ring unevenly at its own corners. Two ramps hang off that number, one for the plate and one for the ink, and the plate runs out entirely by the third ring, so the outskirts are bare glyphs on the section's own ground and the lit block reads as a block rather than as the middle of a uniform sheet. The edge falloff is a radial mask rather than a fourth step on the ramp: a ramp keyed to the ring index steps, and the step shows exactly where the corners are, while a mask is continuous, survives a narrow viewport cropping into the field, and needs no re-tuning when a column is added. Marks are handed out nearest first, so the ring anyone actually reads gets the front of the list and the repeats fall where the mask has already taken them. The swell is one keyframe for the whole wall: each tile brightens by the same proportion from wherever its ramp put it, delayed by its ring, so the pulse travels outward from the mark instead of the wall blinking at once, and the bloom under the centre runs on a longer cycle so the two never line up. The panel clips rather than reflows, since a grid that dropped to four columns on a phone would put the centre mark off centre, which is the one thing the composition rests on. Thirty four brand marks ship inlined rather than fetched, one path each, so the item pulls in no dependency at all and no cell waits on a round trip to appear. Colour is spent where the eye is: the ring around the mark carries the brands in their own ink, converted to oklch like the rest of the palette, and everything past it is drained to the page's grey by one filter rather than by a second set of neutral paths, which is also the only way a wall of thirty four brand colours is not louder than the product standing in the middle of it. Marks that are black or white by brand carry no colour at all and take the page's own ink, the one value that reads on a light page and a dark one. The centre tile's two gradient stops are the other colour here that does not answer to the theme, and both are custom properties to override. Reduced motion keeps the field and drops the swell.",
+    "group": "marketing",
+    "category": "logos",
+    "categoryLabel": "Logos",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "logo-cascade",
+    "title": "Cascade Wall",
+    "summary": "brand-showcase's rolling wall with the blur put back.",
+    "description": "brand-showcase's rolling wall with the blur put back. The frame never moves and only the marks do: each cell is a window over a column holding every mark that cell will ever show, and a page change translates that column by exactly one cell height, which is transitions.dev's text-states-swap geometry, old mark leaving upward and new mark arriving from below, written as one transform on one element. The difference is where the blur sits. On the sharp version there is none, because two marks physically travelling do not need bridging the way a crossfade does; here it is per mark rather than per page, so the arriving mark sharpens as it lands and the leaving one dissolves as it goes, and two wordmarks passing through one window read as a single thing changing rather than as two objects. It costs no state and no keyframe: every mark already knows whether it is the active one, so the blur is a plain A-to-B transition riding the same curve and the same per-cell delay as the roll, interruptible, with nothing to keep in sync with the transform. The stagger is what makes it read as a wall repainting rather than a slide changing: 45ms per cell, so the change crosses the row as a wave, since six cells turning at once is a cut. Every mark is exactly one cell tall by grid row sizing rather than a measured pixel offset, so nothing has to be recomputed on resize. Pages are always full, wrapping back to the start rather than leaving a short last row, so any number of logos fills a six-column grid. No rules between the cells: the marks sit on the page's own ground, so the only thing bounding a logo is the space around it, and the window each column rolls through is still there, just no longer drawn. The marks are brand-showcase's, inlined and painted in currentColor, because a logo cloud that waits on a dozen network round trips shows twelve empty cells first. Reduced motion stops the rotation outright, read in JS rather than guarded in CSS, because a stopped transition on a running timer would still change the logo and only make it a hard cut.",
     "group": "marketing",
     "category": "logos",
     "categoryLabel": "Logos",
     "tier": "free",
-    "dependencies": []
-  },
-  {
-    "name": "logo-dock",
-    "title": "Logo Dock",
-    "summary": "The logo rail as a dock: it never stops travelling, and the mark under the pointer lifts with its neighbours following on a power falloff, then the row springs back with an overshoot when the pointer leaves — transitions.dev's avatar-group-hover on a moving row rather than a still one.",
-    "description": "The logo rail as a dock: it never stops travelling, and the mark under the pointer lifts with its neighbours following on a power falloff, then the row springs back with an overshoot when the pointer leaves — transitions.dev's avatar-group-hover on a moving row rather than a still one. The two compose because the slider owns x on the track and the dock owns y on each item, so neither is fighting the other for a transform. Direction-aware easing is the whole trick: both directions animate transform, and the timing function is written immediately before the variable writes, so the browser uses one curve going up and a bouncy one coming back without a second class. The lift, falloff, scale and both curves are custom properties read off the group rather than the document, so an installer's own transitions.dev block and this rail can hold different tunings without one silently winning. The active index is read from the DOM rather than from the map that rendered the marks, because the slider draws the list twice and a rendered index would name two of them. The rail is one client component rather than a client item inside a server row, for the same reason: the group has to be the element containing both copies, or a mark at the seam would lift with a neighbour on one side and nothing on the other. Both edges are cut back into the page with the page's own background so marks arrive and leave instead of being clipped, and the slider's box carries vertical padding because it clips — the headroom is what keeps a lifted, scaled mark from being cut off by the very thing that keeps the loop tidy. The marks are brand-showcase's, painted in currentColor through muted-foreground, so the wall follows the host's theme.",
-    "group": "marketing",
-    "category": "logos",
-    "categoryLabel": "Logos",
-    "tier": "pro",
-    "dependencies": [
-      "motion"
-    ]
-  },
-  {
-    "name": "logo-aurora",
-    "title": "Aurora Sweep",
-    "summary": "transitions.dev's shimmer-text, moved off text and onto a logo row: a band of highlight sweeps across muted marks on a loop.",
-    "description": "transitions.dev's shimmer-text, moved off text and onto a logo row: a band of highlight sweeps across muted marks on a loop. The snippet does it with background-clip: text, which only exists for glyphs — an SVG has no text box to clip a gradient to — so the same idea is built the other way round. The row is drawn twice, the top copy lit, and a travelling window is cut out of it with clip-path; two identical rows means the lit copy is always in register with the muted one, which no mask over a single row can promise. Because both edges of the inset interpolate together, the band opens as it enters and closes as it leaves rather than arriving at full width — a crest rather than a shutter, which is what makes it read as light instead of a wipe. The window is three clip-path frames rather than two, and every inset is non-negative: a straight A-to-B between clipped-from-the-right and clipped-from-the-left is degenerate, because both edges land on the same percentage at every moment and the window is zero-wide the whole way across. The middle frame is what gives the band a width to open into. It is a Motion animation rather than a keyframe because the crest is a list of frames rather than a fixed A-to-B — written as @keyframes the same sweep is a second stylesheet to keep in sync with the timings, and it could not be switched off for reduced motion without a media query duplicating both. The sweep is slower than the snippet's 2000ms and rests between passes, because a row is a much longer distance for the same crest and a loop with no rest lands the band back on its own tail. The lit copy is aria-hidden — it is the same marks a second time, and a screen reader should hear the row once. Under reduced motion the row rests fully lit rather than dim: less motion should not mean a fainter section. The marks come from brand-showcase and paint in currentColor.",
-    "group": "marketing",
-    "category": "logos",
-    "categoryLabel": "Logos",
-    "tier": "pro",
-    "dependencies": [
-      "motion"
-    ]
-  },
-  {
-    "name": "logo-orbit",
-    "title": "Orbit Ring",
-    "summary": "The logo wall as a ring.",
-    "description": "The logo wall as a ring. Each mark is placed by the rotate-translate-rotate any radial layout uses — turn to the angle, push out by the radius, turn back so the mark itself stays level — and the ring is then spun by one animation on the track, with every mark running that rotation in reverse so it stays upright while its slot travels. The spin is Motion rather than a keyframe because it is interruptible — a ring driven by @keyframes restarts from zero the moment anything else touches the transform, where a motion value retargets from wherever it currently is, which is what lets the hover coexist with the travel. The spin and the counter-spin share one transition object, because the counter is only correct while it runs on exactly the same clock as the spin, and the hover names its own: a spring on scale and the loop on rotate, so a lift never retimes the rotation it interrupts. Hover is transitions.dev's avatar-group-hover reduced to a single mark, and it is a spring rather than a duration because the lift is decorative and a spring keeps its velocity if the pointer leaves mid-rise; the spring is written in Apple's terms, duration and bounce, rather than stiffness and damping. The centring translate is written into the same transform as the placement rather than left to a utility, because Tailwind sets the standalone translate property and it would apply on top of the placement instead of composing with it. The radius is in px rather than a percentage — the marks are a fixed size, so a ring that scaled with its box would crowd them at small widths and strand them at large ones; the box is sized off the radius instead. The eyebrow is a sibling of the track rather than a child: anything inside the ring travels with it, and a caption slowly turning upside down is not the effect. Under reduced motion the arrangement stays and only the travel stops.",
-    "group": "marketing",
-    "category": "logos",
-    "categoryLabel": "Logos",
-    "tier": "pro",
-    "dependencies": [
-      "motion"
-    ]
-  },
-  {
-    "name": "logo-roll",
-    "title": "Roll Call",
-    "summary": "One slot, one mark at a time: a sentence with a hole in it, and the logos swap through the hole.",
-    "description": "One slot, one mark at a time: a sentence with a hole in it, and the logos swap through the hole. The row reads as a line of copy rather than a wall, which is what you want when the point is “and yours next” rather than “look how many”. The swap is transitions.dev's text-states-swap verbatim — old exits up with blur, new enters from below — run as the snippet's three phases: add .is-exit, wait --text-swap-dur, swap the content and jump to .is-enter-start with no transition, force a reflow, remove it so the mark travels back to rest. The reflow is the whole sequence; without it the two class changes coalesce into one style recalculation and the enter never plays. It is one element changing what is inside it rather than two elements crossing in a slot, which is what lets a CSS transition do this at all — a transition cannot animate an element that is being replaced — and it is why the content swap is committed synchronously: batched, React would paint the new mark after .is-enter-start had already been removed, and the enter would animate the logo it was supposed to have dropped. The arrival carries a shallow damped curve that passes its resting place by a hair and settles back, so a mark reads as landing in the slot rather than stopping in it; the departure keeps a plain ease-out, because an exit that overshot would push the leaving mark back into view while the next one arrives. That is direction-aware easing, the same trick the dock uses on hover — the browser applies whichever timing function is current when the property changes — and only transform carries it, since a blur or an opacity that overshot would have to un-blur past clear. The tuning sits on the slot rather than :root, so an installer who has already pasted the transitions.dev block keeps their own values, and the sequence reads --text-swap-dur back off the element so the timer and the transition cannot drift apart. Reduced motion is read in JS rather than guarded in CSS, because the roll is a timer as much as a transition: a stopped transition on a running timer would still swap the logo, just as a hard cut. The marks carry their own brand colour rather than the host's ink — the slot shows one logo at a time with nothing beside it to compare against, which is exactly where brand colour earns its place, since a lone grey mark reads as a placeholder and there is no wall of siblings for a coloured one to clash with. The colour rides on the wrapper because every icon paints in currentColor, and the brands whose marks are black or white by definition are left out of the map on purpose: they fall through to the host's foreground, which is the one colour a hardcoded hex could never get right on both themes. No dependencies.",
-    "group": "marketing",
-    "category": "logos",
-    "categoryLabel": "Logos",
-    "tier": "pro",
     "dependencies": []
   },
   {
@@ -1183,17 +2438,42 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "card-fan",
-    "title": "Card Fan",
-    "summary": "Three glass cards that start stacked flat and fan into perspective as the section scrolls through.",
-    "description": "Three glass cards that start stacked flat and fan into perspective as the section scrolls through. The section is its own timeline, 260vh tall with its contents stuck to the top, so the fan has somewhere to happen without the page appearing to stall, which is why the height is written into the component rather than left to the host. Every card reads the same scroll progress and derives its own transform from it rather than one animation driving three children: the outer two are mirror images through a single direction term and the centre is the same expression with that term at zero, so the arrangement is one formula instead of three hand-placed positions. Perspective sits on the stage and preserve-3d on the track, so the cards rotate through one shared space instead of each flattening into its own, and the fan completes over the first 55% of the travel and holds, since an arrangement that only arrived as the section left would never be read. Every surface is the host's own tokens: the card is `--card` on `--border` and both halos are `--foreground` at single digit percentages, so the section carries no palette of its own. The drop shadow is the one place a dark twin earns its keep, since a shadow mixed from `--foreground` is near black on a light page but near white on a dark one, which would light the card from below rather than shade it; dark mixes from `--background` instead and spreads further, because a dark card needs more to lift off a dark page. Every card carries a `media` well for artwork, at a written height rather than whatever flex leaves over: the art inside is cropped to fill, and a well that changed height with the length of the title beside it would crop each of the three to a different piece of the same drawing. Left empty a well draws itself as a placeholder, so the card is the right shape before there is anything to put in it. What fills them by default is a set of three dither scenes, ridges, a sundown and rails, with a padlock shipped as a fourth to swap in, drawn the way a 1 bit screen would have to draw them: three dot densities standing in for the shades between lit and unlit, and two inks that never mix, a light and a cool, so every edge stays hard. Which two is each scene's own business, named once beside the drawing, so the drawings only ever ask for the light or the cool and a palette change cannot leave half a picture behind. Each scene moves in the way its own subject would. Water runs in bands at three speeds, the near one fastest, which is the parallax that makes a flat field of dots read as a surface going away from you; the land holds still and only the haze drifts along it, while the padlock's field blinks instead, bands of the next step of the ramp cutting in and out on their own clocks, since a 1 bit screen cannot dim a dot and can only decide whether it is there; the rails carry a mark whose trail is the ramp itself, a step of the ladder dropped behind it twice over, because on a screen with no half tones that is what speed has to look like. Every band is drawn wider than the frame and shifts by exactly one tile, so no loop has a seam. Constant motion stays linear, the light is a slow breath on opacity alone, and all of it stops under reduced motion. Under reduced motion the cards are simply already fanned.",
+    "name": "logo-dock",
+    "title": "Logo Dock",
+    "summary": "The logo rail as a dock: it never stops travelling, and the mark under the pointer lifts with its neighbours following on a power falloff, then the row springs back with an overshoot when the pointer leaves, transitions.dev's avatar-group-hover on a moving row rather than a still one.",
+    "description": "The logo rail as a dock: it never stops travelling, and the mark under the pointer lifts with its neighbours following on a power falloff, then the row springs back with an overshoot when the pointer leaves, transitions.dev's avatar-group-hover on a moving row rather than a still one. The two compose because the slider owns x on the track and the dock owns y on each item, so neither is fighting the other for a transform. Direction-aware easing is the whole trick: both directions animate transform, and the timing function is written immediately before the variable writes, so the browser uses one curve going up and a bouncy one coming back without a second class. The lift, falloff, scale and both curves are custom properties read off the group rather than the document, so an installer's own transitions.dev block and this rail can hold different tunings without one silently winning. The active index is read from the DOM rather than from the map that rendered the marks, because the slider draws the list twice and a rendered index would name two of them. The rail is one client component rather than a client item inside a server row, for the same reason: the group has to be the element containing both copies, or a mark at the seam would lift with a neighbour on one side and nothing on the other. Both edges are cut back into the page with the page's own background so marks arrive and leave instead of being clipped, and the slider's box carries vertical padding because it clips: the headroom is what keeps a lifted, scaled mark from being cut off by the very thing that keeps the loop tidy. The marks are brand-showcase's, painted in currentColor through muted-foreground, so the wall follows the host's theme.",
     "group": "marketing",
-    "category": "cards",
-    "categoryLabel": "Cards",
+    "category": "logos",
+    "categoryLabel": "Logos",
     "tier": "pro",
     "dependencies": [
-      "motion",
-      "lucide-react"
+      "motion"
+    ]
+  },
+  {
+    "name": "logo-aurora",
+    "title": "Aurora Sweep",
+    "summary": "transitions.dev's shimmer-text, moved off text and onto a logo row: a band of highlight sweeps across muted marks on a loop.",
+    "description": "transitions.dev's shimmer-text, moved off text and onto a logo row: a band of highlight sweeps across muted marks on a loop. The snippet does it with background-clip: text, which only exists for glyphs, and an SVG has no text box to clip a gradient to, so the same idea is built the other way round. The row is drawn twice, the top copy lit, and a travelling window is cut out of it with clip-path; two identical rows means the lit copy is always in register with the muted one, which no mask over a single row can promise. Because both edges of the inset interpolate together, the band opens as it enters and closes as it leaves rather than arriving at full width, a crest rather than a shutter, which is what makes it read as light instead of a wipe. The window is three clip-path frames rather than two, and every inset is non-negative: a straight A-to-B between clipped-from-the-right and clipped-from-the-left is degenerate, because both edges land on the same percentage at every moment and the window is zero-wide the whole way across. The middle frame is what gives the band a width to open into. It is a Motion animation rather than a keyframe because the crest is a list of frames rather than a fixed A-to-B: written as @keyframes the same sweep is a second stylesheet to keep in sync with the timings, and it could not be switched off for reduced motion without a media query duplicating both. The sweep is slower than the snippet's 2000ms and rests between passes, because a row is a much longer distance for the same crest and a loop with no rest lands the band back on its own tail. The lit copy is aria-hidden: it is the same marks a second time, and a screen reader should hear the row once. Under reduced motion the row rests fully lit rather than dim: less motion should not mean a fainter section. The marks come from brand-showcase and paint in currentColor.",
+    "group": "marketing",
+    "category": "logos",
+    "categoryLabel": "Logos",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
+    ]
+  },
+  {
+    "name": "logo-orbit",
+    "title": "Orbit Ring",
+    "summary": "The logo wall as a ring.",
+    "description": "The logo wall as a ring. Each mark is placed by the rotate-translate-rotate any radial layout uses: turn to the angle, push out by the radius, turn back so the mark itself stays level, and the ring is then spun by one animation on the track, with every mark running that rotation in reverse so it stays upright while its slot travels. The spin is Motion rather than a keyframe because it is interruptible: a ring driven by @keyframes restarts from zero the moment anything else touches the transform, where a motion value retargets from wherever it currently is, which is what lets the hover coexist with the travel. The spin and the counter-spin share one transition object, because the counter is only correct while it runs on exactly the same clock as the spin, and the hover names its own: a spring on scale and the loop on rotate, so a lift never retimes the rotation it interrupts. Hover is transitions.dev's avatar-group-hover reduced to a single mark, and it is a spring rather than a duration because the lift is decorative and a spring keeps its velocity if the pointer leaves mid-rise; the spring is written in Apple's terms, duration and bounce, rather than stiffness and damping. The centring translate is written into the same transform as the placement rather than left to a utility, because Tailwind sets the standalone translate property and it would apply on top of the placement instead of composing with it. The radius is in px rather than a percentage: the marks are a fixed size, so a ring that scaled with its box would crowd them at small widths and strand them at large ones; the box is sized off the radius instead. The eyebrow is a sibling of the track rather than a child: anything inside the ring travels with it, and a caption slowly turning upside down is not the effect. Under reduced motion the arrangement stays and only the travel stops.",
+    "group": "marketing",
+    "category": "logos",
+    "categoryLabel": "Logos",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
     ]
   },
   {
@@ -1201,6 +2481,17 @@ export const PRO_CATALOG: ProItem[] = [
     "title": "Sweep Card",
     "summary": "A copy of the community wall's hover sweep, put on a card of its own: a title, a subtitle, and the holographic band crossing them under the pointer.",
     "description": "A copy of the community wall's hover sweep, put on a card of its own: a title, a subtitle, and the holographic band crossing them under the pointer. The band is a fixed gradient behind a moving mask rather than a background pan, so mask-position animates on the compositor and the card never repaints, and it is gated on real hover so a tap on a phone cannot park the band mid-card. The gradient stays a fixed set of stops rather than a theme token, since a reflection painted in the palette's own hues reads as the card flashing instead. The edge is the 4px rim the Launch and Liftoff cards wear, so the band ends against a rim rather than fading off a hairline, and the card's overflow is what cuts it to the corners. Title and subtitle are props, the sweep is pure CSS, and the block ships with no dependencies and no client boundary. Dropped under prefers-reduced-motion.",
+    "group": "marketing",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "poster-card-01",
+    "title": "Poster Card",
+    "summary": "A film poster in sheets of glass: the ground, the type, and up to three PNGs floating in front of it, one sheet each, back to front.",
+    "description": "A film poster in sheets of glass: the ground, the type, and up to three PNGs floating in front of it, one sheet each, back to front. The ink is Wada Sanzo's classic combination 339, ochraceous salmon, English red, light glaucous blue and violet blue, in oklch, since a poster is printed and a print is the same in both themes. Each sheet sits at its own depth under preserve-3d, and the perspective is stated in card widths so a sheet's projected growth is the same at every size, and the card turns toward the pointer, up to twenty degrees across and five up and down, so the gap between the sheets is what the hover shows. The pointer is read on the perspective wrapper rather than the card, because a rotated element's bounding box is the box of its projection and the pointer's own position would drift under it. The transform is written straight onto the card rather than through a custom property, since a variable set on the card recalculates every sheet inside it, and a four hundred millisecond ease-out retargets on every move, which is what keeps the follow smooth and settles the card flat on leave. There is no overflow clip on the card, because a clip flattens preserve-3d, so each sheet keeps its own corners. Every length is a share of the card's own width, so the card reads the same at a third of a column as it does in a preview frame. Title, cast, byline, tagline, an optional backdrop image and the subject PNGs are props. Touch is ignored, since a tap has no leave to settle the card afterwards, and reduced motion keeps the poster and drops the turn.",
     "group": "marketing",
     "category": "cards",
     "categoryLabel": "Cards",
@@ -1254,13 +2545,54 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "diagram-grid",
-    "title": "Diagram Grid",
-    "summary": "A bento scaffold rather than a finished bento: nine slots in the scattered arrangement an integration diagram wants, with one emphasised centre, and a `slots` prop keyed 1–9 for what goes in them.",
-    "description": "A bento scaffold rather than a finished bento: nine slots in the scattered arrangement an integration diagram wants, with one emphasised centre, and a `slots` prop keyed 1–9 for what goes in them. Anything left out draws itself as a dashed placeholder over a dots or hatch texture, so the layout is legible before there is any content — which is the point of shipping the frame apart from what fills it. A filled slot is a card and an empty one is the outline of where a card will go, so only the empty state is dashed and translucent. The grid flows dense, so a slot spanning two columns does not leave the hole before it empty — the scatter is the layout rather than a side effect of it. Both textures are painted in `--border` rather than a fixed grey, so they track the same token as the dashed edge around them and invert with the host instead of smearing light grey across a dark card. The grid itself is headless — no section, no heading, no background — so it drops straight into a hero. No dependencies and no client hooks.",
+    "name": "card-fan",
+    "title": "Card Fan",
+    "summary": "Three glass cards that start stacked flat and fan into perspective as the section scrolls through.",
+    "description": "Three glass cards that start stacked flat and fan into perspective as the section scrolls through. The section is its own timeline, 260vh tall with its contents stuck to the top, so the fan has somewhere to happen without the page appearing to stall, which is why the height is written into the component rather than left to the host. Every card reads the same scroll progress and derives its own transform from it rather than one animation driving three children: the outer two are mirror images through a single direction term and the centre is the same expression with that term at zero, so the arrangement is one formula instead of three hand-placed positions. Perspective sits on the stage and preserve-3d on the track, so the cards rotate through one shared space instead of each flattening into its own, and the fan completes over the first 55% of the travel and holds, since an arrangement that only arrived as the section left would never be read. Every surface is the host's own tokens: the card is `--card` on `--border` and both halos are `--foreground` at single digit percentages, so the section carries no palette of its own. The drop shadow is the one place a dark twin earns its keep, since a shadow mixed from `--foreground` is near black on a light page but near white on a dark one, which would light the card from below rather than shade it; dark mixes from `--background` instead and spreads further, because a dark card needs more to lift off a dark page. Every card carries a `media` well for artwork, at a written height rather than whatever flex leaves over: the art inside is cropped to fill, and a well that changed height with the length of the title beside it would crop each of the three to a different piece of the same drawing. Left empty a well draws itself as a placeholder, so the card is the right shape before there is anything to put in it. What fills them by default is a set of three dither scenes, ridges, a sundown and rails, with a padlock shipped as a fourth to swap in, drawn the way a 1 bit screen would have to draw them: three dot densities standing in for the shades between lit and unlit, and two inks that never mix, a light and a cool, so every edge stays hard. Which two is each scene's own business, named once beside the drawing, so the drawings only ever ask for the light or the cool and a palette change cannot leave half a picture behind. Each scene moves in the way its own subject would. Water runs in bands at three speeds, the near one fastest, which is the parallax that makes a flat field of dots read as a surface going away from you; the land holds still and only the haze drifts along it, while the padlock's field blinks instead, bands of the next step of the ramp cutting in and out on their own clocks, since a 1 bit screen cannot dim a dot and can only decide whether it is there; the rails carry a mark whose trail is the ramp itself, a step of the ladder dropped behind it twice over, because on a screen with no half tones that is what speed has to look like. Every band is drawn wider than the frame and shifts by exactly one tile, so no loop has a seam. Constant motion stays linear, the light is a slow breath on opacity alone, and all of it stops under reduced motion. Under reduced motion the cards are simply already fanned.",
+    "group": "marketing",
+    "category": "cards",
+    "categoryLabel": "Cards",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "bento-04-v1",
+    "title": "Blueprint Bento v1",
+    "summary": "The first cut of the services bento, kept as its own block: the same dashed blueprint frames and holographic icon bloom, but the Clean Code snippet types itself out line by line rather than scrambling, and a dithered avatar trails the pointer across each card.",
+    "description": "The first cut of the services bento, kept as its own block: the same dashed blueprint frames and holographic icon bloom, but the Clean Code snippet types itself out line by line rather than scrambling, and a dithered avatar trails the pointer across each card. Five cards to Blueprint's four. GSAP-driven, theme-aware and reduced-motion aware; hover only, so it stays still on touch.",
     "group": "marketing",
     "category": "bento",
     "categoryLabel": "Bento",
+    "tier": "pro",
+    "dependencies": [
+      "gsap",
+      "@gsap/react",
+      "motion",
+      "dither-avatar"
+    ]
+  },
+  {
+    "name": "logo-roll",
+    "title": "Roll Call",
+    "summary": "One slot, one mark at a time: a sentence with a hole in it, and the logos swap through the hole.",
+    "description": "One slot, one mark at a time: a sentence with a hole in it, and the logos swap through the hole. The row reads as a line of copy rather than a wall, which is what you want when the point is “and yours next” rather than “look how many”. The swap is transitions.dev's text-states-swap verbatim (old exits up with blur, new enters from below) run as the snippet's three phases: add .is-exit, wait --text-swap-dur, swap the content and jump to .is-enter-start with no transition, force a reflow, remove it so the mark travels back to rest. The reflow is the whole sequence; without it the two class changes coalesce into one style recalculation and the enter never plays. It is one element changing what is inside it rather than two elements crossing in a slot, which is what lets a CSS transition do this at all, because a transition cannot animate an element that is being replaced, and it is why the content swap is committed synchronously: batched, React would paint the new mark after .is-enter-start had already been removed, and the enter would animate the logo it was supposed to have dropped. The arrival carries a shallow damped curve that passes its resting place by a hair and settles back, so a mark reads as landing in the slot rather than stopping in it; the departure keeps a plain ease-out, because an exit that overshot would push the leaving mark back into view while the next one arrives. That is direction-aware easing, the same trick the dock uses on hover: the browser applies whichever timing function is current when the property changes, and only transform carries it, since a blur or an opacity that overshot would have to un-blur past clear. The tuning sits on the slot rather than :root, so an installer who has already pasted the transitions.dev block keeps their own values, and the sequence reads --text-swap-dur back off the element so the timer and the transition cannot drift apart. Reduced motion is read in JS rather than guarded in CSS, because the roll is a timer as much as a transition: a stopped transition on a running timer would still swap the logo, just as a hard cut. The marks carry their own brand colour rather than the host's ink: the slot shows one logo at a time with nothing beside it to compare against, which is exactly where brand colour earns its place, since a lone grey mark reads as a placeholder and there is no wall of siblings for a coloured one to clash with. The colour rides on the wrapper because every icon paints in currentColor, and the brands whose marks are black or white by definition are left out of the map on purpose: they fall through to the host's foreground, which is the one colour a hardcoded hex could never get right on both themes. No dependencies.",
+    "group": "marketing",
+    "category": "logos",
+    "categoryLabel": "Logos",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "logo-marquee",
+    "title": "Logo Marquee",
+    "summary": "A logo rail that never stops, and one the main thread never touches.",
+    "description": "A logo rail that never stops, and one the main thread never touches. The travel is a Web Animations API transform rather than a per-frame write from JavaScript, so the browser owns the interpolation on the compositor and a busy page cannot make the rail stutter, which matters most on a landing page, where the frame the visitor is scrolling is the busiest one there is. The children are rendered twice, each copy carrying the gap as trailing padding, so the track is exactly two copies wide and a translate of half of it lands the second copy where the first one started: the seam is the reset, and it is invisible because the two halves are identical there. Hovering slows it rather than stopping it, through playbackRate rather than a new duration, so the pace changes from wherever the rail currently is instead of jumping to wherever new timing says it should have been; it is off on touch, where a tap would fire the enter and never the leave. The rail pauses itself while it is off screen and retimes without moving when a web font settles its width. Both edges are cut back into the page by gradients of the page's own background, so logos arrive and leave instead of being clipped, and the marks paint in currentColor through muted-foreground so they follow the host's theme rather than being inverted into it. Stops under prefers-reduced-motion.",
+    "group": "marketing",
+    "category": "logos",
+    "categoryLabel": "Logos",
     "tier": "free",
     "dependencies": []
   },
@@ -1268,7 +2600,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "brand-showcase",
     "title": "Brand Showcase",
     "summary": "A logo wall that rotates instead of scrolling.",
-    "description": "A logo wall that rotates instead of scrolling. A marquee asks the eye to track a moving target; this holds a page of six still long enough to read, then crossfades the next one in behind a hair of blur and scale — so every logo gets the same three seconds rather than the same two inches of travel. Every page stays mounted and stacked, which is what lets the incoming one be laid out before it fades and what makes the section as tall as its tallest page rather than a number written into it. Pages are always full, wrapping back to the start rather than leaving a short last row, so any number of logos fills a six-column grid. No rules between the cells: the marks sit on the page's own ground, so the only thing bounding a logo is the space around it. Twelve wordmarks ship inlined and painted in currentColor, because a logo cloud that waits on a dozen network round trips shows twelve empty cells first. Reduced motion stops the rotation outright. No dependencies.",
+    "description": "A logo wall that rotates instead of scrolling. A marquee asks the eye to track a moving target; this holds a page of six still long enough to read, then crossfades the next one in behind a hair of blur and scale, so every logo gets the same three seconds rather than the same two inches of travel. Every page stays mounted and stacked, which is what lets the incoming one be laid out before it fades and what makes the section as tall as its tallest page rather than a number written into it. Pages are always full, wrapping back to the start rather than leaving a short last row, so any number of logos fills a six-column grid. No rules between the cells: the marks sit on the page's own ground, so the only thing bounding a logo is the space around it. Twelve wordmarks ship inlined and painted in currentColor, because a logo cloud that waits on a dozen network round trips shows twelve empty cells first. Reduced motion stops the rotation outright. No dependencies.",
     "group": "marketing",
     "category": "logos",
     "categoryLabel": "Logos",
@@ -1276,47 +2608,34 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "logo-cascade",
-    "title": "Cascade Wall",
-    "summary": "brand-showcase's rolling wall with the blur put back.",
-    "description": "brand-showcase's rolling wall with the blur put back. The frame never moves and only the marks do: each cell is a window over a column holding every mark that cell will ever show, and a page change translates that column by exactly one cell height, which is transitions.dev's text-states-swap geometry, old mark leaving upward and new mark arriving from below, written as one transform on one element. The difference is where the blur sits. On the sharp version there is none, because two marks physically travelling do not need bridging the way a crossfade does; here it is per mark rather than per page, so the arriving mark sharpens as it lands and the leaving one dissolves as it goes, and two wordmarks passing through one window read as a single thing changing rather than as two objects. It costs no state and no keyframe: every mark already knows whether it is the active one, so the blur is a plain A-to-B transition riding the same curve and the same per-cell delay as the roll, interruptible, with nothing to keep in sync with the transform. The stagger is what makes it read as a wall repainting rather than a slide changing: 45ms per cell, so the change crosses the row as a wave, since six cells turning at once is a cut. Every mark is exactly one cell tall by grid row sizing rather than a measured pixel offset, so nothing has to be recomputed on resize. Pages are always full, wrapping back to the start rather than leaving a short last row, so any number of logos fills a six-column grid. No rules between the cells: the marks sit on the page's own ground, so the only thing bounding a logo is the space around it, and the window each column rolls through is still there, just no longer drawn. The marks are brand-showcase's, inlined and painted in currentColor, because a logo cloud that waits on a dozen network round trips shows twelve empty cells first. Reduced motion stops the rotation outright, read in JS rather than guarded in CSS, because a stopped transition on a running timer would still change the logo and only make it a hard cut.",
-    "group": "marketing",
-    "category": "logos",
-    "categoryLabel": "Logos",
-    "tier": "free",
+    "name": "machined-switch",
+    "title": "Machined Switch",
+    "summary": "The switch from @d2/machined-fields on its own, for a project that wants the surface on its toggles and nothing else.",
+    "description": "The switch from @d2/machined-fields on its own, for a project that wants the surface on its toggles and nothing else. The track is a well pressed into a mid neutral page, lit along its bottom edge, and only the thumb stands on it, so the on state is the well filling with the accent rather than a second shape appearing. It is a native checkbox with role switch rather than a div with a click handler: the keyboard, the form semantics and the spoken on and off are the platform's, and the thumb is the input's own pseudo element moving on translate alone. Put ms-root on any ancestor and every switch under it reads the same tokens; a retheme is one rule overriding them. Restated from the field set rather than imported, so installing a switch does not also install four other controls. Under reduced motion the thumb jumps rather than slides. It also ships as a light and dark control, a sun on the off end and a moon on the on end, so the track reads as a scale between two modes rather than an unlabelled on and off; the end that is not current is dimmed rather than hidden, since the far glyph is what says where the next press goes, and both glyphs sit inside the label so pressing either end flips it too. That one is controlled, so a project running next-themes hands it its own theme and setter, and the demo flips the dark class on the html element by hand. No dependencies.",
+    "group": "components",
+    "category": "toggles",
+    "categoryLabel": "Toggles",
+    "tier": "pro",
     "dependencies": []
-  },
-  {
-    "name": "theme-toggle",
-    "title": "Day/Night Toggle",
-    "summary": "A day/night switch drawn as one SVG.",
-    "description": "A day/night switch drawn as one SVG. Both suns and both moons are always there — one pair engraved into the track, one pair riding the thumb — so the sliding thumb reveals the glyph it is travelling towards rather than swapping an icon in place. Inside the thumb the two glyphs trade scale with the incoming one delayed past the outgoing one, so they never overlap mid-swap, and in dark the whole track takes a night bloom in two passes: one tints, one lifts, because a single plus-lighter pass would wash the hue out. The track is `--input` and `--border`, so it sits in any palette; the thumb keeps its own gradients, which is what makes it the same object in every project. Every filter and gradient id is namespaced with useId, so two switches on one page do not share a paint. Ships controlled as `ThemeSwitch` for a project already running next-themes, with a default export that wires the `dark` class for one that is not.",
-    "group": "components",
-    "category": "toggles",
-    "categoryLabel": "Toggles",
-    "tier": "pro",
-    "dependencies": [
-      "motion"
-    ]
-  },
-  {
-    "name": "theme-toggle-02",
-    "title": "Morph Toggle",
-    "summary": "A theme toggle drawn as one glyph that reshapes, not two icons crossfading.",
-    "description": "A theme toggle drawn as one glyph that reshapes, not two icons crossfading. The moon and the sun are the same two circles at different geometry: a body, and a second circle that subtracts a bite from it through a mask. Sliding that bite off the body's edge is what opens the crescent into a disc, so the eye follows a change of state rather than watching one mark get replaced by another. The rays are lucide's own, sitting behind the body and growing out from under it on a delay, because a sun whose rays are already out while its core is still a crescent reads as two things moving at once. Everything is currentColor and the button is theme tokens, so it inherits whatever palette it lands in and needs no colours of its own. The mask id is namespaced with useId, so two toggles on one page do not share a paint. Ships controlled as ThemeMorph for a project already running next-themes, with a default export that wires the dark class for one that is not. Reduced motion keeps the geometry and drops only the travel.",
-    "group": "components",
-    "category": "toggles",
-    "categoryLabel": "Toggles",
-    "tier": "pro",
-    "dependencies": [
-      "motion"
-    ]
   },
   {
     "name": "theme-toggle-03",
     "title": "Knob Toggle",
     "summary": "The morph toggle set into a moulded housing: one glyph that reshapes rather than two icons crossfading, sitting in a recessed knob rather than on a flat button.",
     "description": "The morph toggle set into a moulded housing: one glyph that reshapes rather than two icons crossfading, sitting in a recessed knob rather than on a flat button. Four circles' worth of edge come out of two pseudo elements and one span, because a button only offers two boxes to a caller and the knob needs three; the collar is a plain disc sitting two pixels proud of the face and behind it, so all that shows of it is a ring, and the hairline inside the face is an inset shadow rather than a border, since a border would move the box. Only the knob answers the pointer: the button drops out of hit testing and the face opts back in, which is why hovering the housing does nothing while hovering the face dims the mark. Flipping the theme sends a bead of light once round that hairline, keyed on the state changing rather than on the click so a keyboard activation gets it too, and mounted only for the lap so there is nothing to restart. The mark is painted by a gradient rather than currentColor, every id is namespaced with useId, and the whole thing is theme tokens apart from the two emeralds in the bead. Ships controlled as ThemeKnob for a project already running next-themes, with a default export that wires the dark class for one that is not.",
+    "group": "components",
+    "category": "toggles",
+    "categoryLabel": "Toggles",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
+    ]
+  },
+  {
+    "name": "theme-toggle-05",
+    "title": "Floating Knob Toggle",
+    "summary": "The plain knob toggle set loose on the page: drag it anywhere and it settles in the nearest corner, the way a picture in picture window does.",
+    "description": "The plain knob toggle set loose on the page: drag it anywhere and it settles in the nearest corner, the way a picture in picture window does. Free placement is deliberately not offered, because four resting spots can be remembered, survive a resize and never strand the knob half off screen, so the corner is the whole feature. A release is projected a fifth of a second ahead on its own velocity before the corner is chosen, so a flick carries across the box on intent while a slow drag lands where it was let go, and the knob springs the rest of the way. The drag starts only after the pointer has travelled a few pixels, and the click that follows a drag is swallowed, so moving the knob never also flips the theme; a keyboard press still flips it as before. The corner is stored by name rather than as pixels, in localStorage behind a try so a private window simply forgets it, and a resize of the parent re seats the knob in that corner instead of keeping stale coordinates. It positions itself against its offset parent, so the same component floats inside a card or, placed in a fixed full screen layer, over a whole page. Reduced motion keeps the snap and drops the spring. Ships controlled as ThemeFloatKnob, built on ThemePlainKnob, with a default export that wires the dark class inside a demo box.",
     "group": "components",
     "category": "toggles",
     "categoryLabel": "Toggles",
@@ -1339,6 +2658,76 @@ export const PRO_CATALOG: ProItem[] = [
     ]
   },
   {
+    "name": "theme-toggle-02",
+    "title": "Morph Toggle",
+    "summary": "A theme toggle drawn as one glyph that reshapes, not two icons crossfading.",
+    "description": "A theme toggle drawn as one glyph that reshapes, not two icons crossfading. The moon and the sun are the same two circles at different geometry: a body, and a second circle that subtracts a bite from it through a mask. Sliding that bite off the body's edge is what opens the crescent into a disc, so the eye follows a change of state rather than watching one mark get replaced by another. The rays are lucide's own, sitting behind the body and growing out from under it on a delay, because a sun whose rays are already out while its core is still a crescent reads as two things moving at once. Everything is currentColor and the button is theme tokens, so it inherits whatever palette it lands in and needs no colours of its own. The mask id is namespaced with useId, so two toggles on one page do not share a paint. Ships controlled as ThemeMorph for a project already running next-themes, with a default export that wires the dark class for one that is not. Reduced motion keeps the geometry and drops only the travel.",
+    "group": "components",
+    "category": "toggles",
+    "categoryLabel": "Toggles",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
+    ]
+  },
+  {
+    "name": "theme-toggle",
+    "title": "Day/Night Toggle",
+    "summary": "A day/night switch drawn as one SVG.",
+    "description": "A day/night switch drawn as one SVG. Both suns and both moons are always there, one pair engraved into the track, one pair riding the thumb, so the sliding thumb reveals the glyph it is travelling towards rather than swapping an icon in place. Inside the thumb the two glyphs trade scale with the incoming one delayed past the outgoing one, so they never overlap mid-swap, and in dark the whole track takes a night bloom in two passes: one tints, one lifts, because a single plus-lighter pass would wash the hue out. The track is `--input` and `--border`, so it sits in any palette; the thumb keeps its own gradients, which is what makes it the same object in every project. Every filter and gradient id is namespaced with useId, so two switches on one page do not share a paint. Ships controlled as `ThemeSwitch` for a project already running next-themes, with a default export that wires the `dark` class for one that is not.",
+    "group": "components",
+    "category": "toggles",
+    "categoryLabel": "Toggles",
+    "tier": "pro",
+    "dependencies": [
+      "motion"
+    ]
+  },
+  {
+    "name": "d2-halo-tile",
+    "title": "D2 Halo Tile",
+    "summary": "A plate with a ring set off it, for the mark that heads a card, a list row or a profile block where the tile is read first and everything else hangs under it.",
+    "description": "A plate with a ring set off it, for the mark that heads a card, a list row or a profile block where the tile is read first and everything else hangs under it. The halo is the whole idea: a hairline drawn a couple of pixels clear of the edge rather than on it, so the tile carries its own breathing room instead of borrowing it from whatever is next in the layout, which is what lets one sit at the head of a dense row with no wrapper, no divider and no margin nobody can see. The gap grows with the tile, since a 2px ring around a 56px plate reads as a rim that failed to land on the edge while the same gap around a 32px plate is the whole effect, and each size states its radius beside that offset because a ring drawn outside the plate takes the plate's radius plus the gap and only looks concentric if the two were chosen together. The fill is the card token on a light page, the one value a step lighter than the ground, so the plate reads as lifted wherever it lands; dark drops to the muted token instead, since the card token is a mid grey there and a grey plate under a mark drawn in near white ink flattens both, leaving the rim and the shadow to carry the edge. The light is a sink, highlight on the bottom edge and shadow pressing in from the top, which is the direction that reads as machined rather than pasted on, and the rim is a half pixel shadow ring instead of a border because an outline rounds up to a whole device pixel on a 1x screen and a shadow does not. Content is nudged a pixel down against that light, since a mathematically centred glyph reads high. Three sizes, theme tokens throughout, no dependencies and no client hooks.",
+    "group": "components",
+    "category": "tiles",
+    "categoryLabel": "Tiles",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "d2-muted-tile",
+    "title": "D2 Muted Tile",
+    "summary": "A plate with a ring set off it, for the mark that heads a card, a list row or a profile block where the tile is read first and everything else hangs under it.",
+    "description": "A plate with a ring set off it, for the mark that heads a card, a list row or a profile block where the tile is read first and everything else hangs under it. The halo is the whole idea: a hairline drawn a couple of pixels clear of the edge rather than on it, so the tile carries its own breathing room instead of borrowing it from whatever is next in the layout, which is what lets one sit at the head of a dense row with no wrapper, no divider and no margin nobody can see. The gap grows with the tile, since a 2px ring around a 56px plate reads as a rim that failed to land on the edge while the same gap around a 32px plate is the whole effect, and each size states its radius beside that offset because a ring drawn outside the plate takes the plate's radius plus the gap and only looks concentric if the two were chosen together. The fill is the muted token in both themes, a step below the page rather than above it, so the plate reads as a recessed well and the rim and the shadow carry the edge on a light page as they already do on a dark one. The light is a sink, highlight on the bottom edge and shadow pressing in from the top, which is the direction that reads as machined rather than pasted on, and the rim is a half pixel shadow ring instead of a border because an outline rounds up to a whole device pixel on a 1x screen and a shadow does not. Content is nudged a pixel down against that light, since a mathematically centred glyph reads high. Three sizes, theme tokens throughout, no dependencies and no client hooks.",
+    "group": "components",
+    "category": "tiles",
+    "categoryLabel": "Tiles",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "d2-chip",
+    "title": "D2 Chip",
+    "summary": "A mark sized in em, so it rides the type it is set in rather than the grid it is placed on.",
+    "description": "A mark sized in em, so it rides the type it is set in rather than the grid it is placed on. That is the whole difference from a tile: a tile is a fixed square you build a row or a wall out of, and a chip is a glyph that happens to have a surface under it, dropped into a sentence, a list item or a label beside the words it belongs to. Set the font size and the chip follows, with nothing measured and nothing kept in step by hand. One plate rather than two: a tile's well needs a ground to be cut into and goes quiet on a busy one, and at text size the face inside it is a couple of pixels of fill nobody can read, so the chip spends that second surface on a hairline set off the edge instead. That is separation the chip carries with it rather than borrowing from the page, which is what lets it hold up over art or inside a busy paragraph. The light is a sink, highlight on the bottom edge and shadow pressing in from the top, because reversing the pair reads as raised and a raised chip at this size reads as a sticker. The tilt is the default rather than an option, since the angle is what tells the eye this is an object sitting on the line and not a boxed letter; a column of them in a list stands upright instead, where one angle repeated down a rail reads as a mistake. A second part pairs the mark with the name on one line, centred against the text rather than sitting on the baseline, since a square aligned to a baseline hangs low next to lowercase letters. Theme tokens throughout, no dependencies and no client hooks.",
+    "group": "components",
+    "category": "tiles",
+    "categoryLabel": "Tiles",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "d2-tile",
+    "title": "D2 Tile",
+    "summary": "A square well with a face resting in it, for the mark a row of logos, apps or icons is built from.",
+    "description": "A square well with a face resting in it, for the mark a row of logos, apps or icons is built from. Two surfaces rather than one filled box: the well is cut into the page and the face sits inset inside it, so the tile reads as a key on a keyboard rather than a sticker laid on top. The rim is a half pixel shadow ring, not a border, because an outline rounds up to a whole device pixel on a 1x screen and a shadow does not, so a wall of these holds one weight on every display. The light sits on the bottom edge with the shadow pressing in from the top, which is the direction the eye reads as sunken; reversing the pair is what makes a surface read as raised instead, and the two are the whole difference. Dark keeps the well and drops the face fill, since a second lit plate on a dark ground only greys the shadow doing the work. Four sizes, each carrying its own face radius rather than deriving it, because the face is inset by the padding and its radius has to be the tile's less that padding or the corners stop running parallel. The full size takes the cell it is in, for a grid where the column sets the width. State colour goes on the face through its own prop, so the well keeps the edge and the light it was drawn with. Theme tokens throughout, no dependencies and no client hooks.",
+    "group": "components",
+    "category": "tiles",
+    "categoryLabel": "Tiles",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "d2-frame",
     "title": "D2 Frame",
     "summary": "A container that groups related content as plates in a tray: a tinted well holds one or more raised panels, with a header and footer that sit on the tray itself rather than on a plate, so the hierarchy is read from the surface a thing is standing on.",
@@ -1346,14 +2735,149 @@ export const PRO_CATALOG: ProItem[] = [
     "group": "components",
     "category": "frames",
     "categoryLabel": "Frames",
-    "tier": "free",
+    "tier": "pro",
     "dependencies": []
+  },
+  {
+    "name": "d2-frame-tonal",
+    "title": "D2 Frame Tonal",
+    "summary": "The same tray and plates @d2/d2-frame draws, repainted on a pinned three step ramp instead of the host's own tokens.",
+    "description": "The same tray and plates @d2/d2-frame draws, repainted on a pinned three step ramp instead of the host's own tokens. Page, tray, panel: the page is the lightest of the three, the tray is cut darker into it and the plate is raised back out lighter than both, so a frame reads as a well with its content lifted out rather than a stack of cards piled on a surface. That is what lets a panel sit inside a tray with no border between them, because the step in the surface is already doing the separating. Text runs down its own ramp beside the surfaces: a title is the high contrast ink, a description the middle one, and a footer note the quietest, since the note on the tray is the one piece of type on the frame nobody came to read. The values are read off a reference app in both themes rather than derived, which is the point of the variant: a derivation from whatever host it lands on stops being these exact colours the moment the host has a brand of its own, and the accent lifts in dark mode rather than reusing the light value, which sits under WCAG AA on the dark plate. The palette is declared on the frame itself as well as on the root class, so a frame dropped anywhere carries its own colours and a shell that wraps its tree in the root class also gets the page ground and the ink for free. Both declarations sit at zero specificity, so a host overriding one value still wins. Slots are prefixed apart from the plain frame's, so a page drawing both keeps their seam rules from matching each other. Six parts, every one taking className, no dependencies and no client hooks.",
+    "group": "components",
+    "category": "frames",
+    "categoryLabel": "Frames",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "machined-fields",
+    "title": "Machined Fields",
+    "summary": "The form set from @d2/dashboard-03 on its own, so any project can wear that surface: a text field, a textarea, a select and a switch.",
+    "description": "The form set from @d2/dashboard-03 on its own, so any project can wear that surface: a text field, a textarea, a select and a switch. Put mf-root on any ancestor and every control under it reads the same tokens. The whole style is one flip of a light. Anything you press is lifted out of a mid neutral page with a highlight along its top edge, and anything you type into is pressed into it with the same highlight moved to the bottom. That is why the select stands up and the field sinks, and why the switch track is a well with only its thumb raised. The page is a mid neutral rather than white because a white highlight on white has nothing to be lighter than. In dark the highlight survives at a fraction of its strength, since dropping it is what makes a dark machined plate read as a flat rectangle with a border. Every control is the platform's own. The select is a native select with only the arrow replaced, so the keyboard, the option list and the phone picker are the browser's. The switch is a native checkbox with role switch, and its thumb is the input's own pseudo element moving on translate alone. Colours are pinned in one small stylesheet under mf prefixed names, so a retheme is one rule overriding them rather than a fork. No dependencies.",
+    "group": "components",
+    "category": "inputs",
+    "categoryLabel": "Inputs",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
+    "name": "d2-input",
+    "title": "D2 Input",
+    "summary": "A field set built on one chassis: the plate, the focus ring, the two affix rails and the progress rail are a single object that the text field, the password field, the money field and the upload field all wear.",
+    "description": "A field set built on one chassis: the plate, the focus ring, the two affix rails and the progress rail are a single object that the text field, the password field, the money field and the upload field all wear. Three variants: outline, filled and a rule-only underline that drops the ring, because a three pixel halo around a shape with no sides reads as a stray rectangle, across three sizes, with the affix side losing two pixels of padding so an icon does not look pushed against the edge. Every icon a slot can show stays mounted in one grid cell and cross-fades on opacity, scale and blur, so mashing a toggle retargets the transition from wherever it got to instead of restarting; the clear button fades out as well as in for the same reason, and leaves the tab order while it is gone. The money field asks Intl for the symbol, the grouping and the minor unit rather than writing any of them down, so kip and yen come out with no decimal point and dollars with two, and it groups on blur and strips bare on focus because formatting under the caret moves the separators out from under the cursor. The upload field opens downwards into its own drop target rather than into a dialog, on a grid-template-rows transition anyone can reverse half-way, and dragging a file over the collapsed row opens it on approach so the target is already large when the pointer lands. Progress rides a two pixel rail clipped to the plate's own radius, driven by scale rather than width so a tick does not relayout the form behind it, and the spinner gives way to a tick that draws itself once. Every animated state also has a static cue and a spoken one, and every block carries its reduced-motion guard: the tick still arrives drawn, since it is what says the upload finished. One dependency, for the icons.",
+    "group": "components",
+    "category": "inputs",
+    "categoryLabel": "Inputs",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "d2-account-nav",
+    "title": "D2 Account Nav",
+    "summary": "The right end of an app bar on the frame rather than on a card: a notification bell with its panel, and an avatar menu.",
+    "description": "The right end of an app bar on the frame rather than on a card: a notification bell with its panel, and an avatar menu. Two exports and not one cluster, because a host decides what sits between them (this registry's own sidebar template puts its primary action there) and a component owning that gap would be deciding the bar's layout for it. Both surfaces read their hierarchy off the frame: the notification list and the menu items stand on the raised plate because they are what is being read, while the panel's title, its footer and the signed-in-as block ride on the tray because they are chrome for reaching it, and that block is on the tray for a second reason, since an identity sitting on the plate beside the actions would look like a fourth action. Radix drives both popups, which is what makes the menu one highlight rather than :hover and :focus racing each other, so a pointer resting on the list while the arrows move through it cannot leave two rows looking active. The avatar takes no library at all: @d2/avatar-stack ships zero dependencies for the same reason, and the only thing a primitive would add is the load handling, which is fifteen lines: initials sit *under* the portrait rather than being swapped for it, so there is no frame where the circle is empty, and a changed src gets its own chance to load rather than one broken image leaving every later one on initials. The badge is a count and not a bare dot, capped at 9+, ringed in the bar's own colour so it reads as sitting on the bell rather than merging with it; it pops in on a spring because it arrives while the page is already on screen and a number that changes without motion reads as a rendering glitch, and it is the badge that animates, never the button, since scaling that would move the icon under the pointer on its way to press it. Notifications sort unread-first and then newest, because the panel is opened to find what is new before it is opened to find what is recent. Ages are short forms (`now`, `4m`, `3h`, `2d`, then a date) rather than Intl.RelativeTimeFormat's \"3 hours ago\", which is three times the width and wraps every row it lands on; `now` is passed in rather than read, because Date.now() differs across hydration and a list of a dozen timestamps is a dozen mismatches. Bodies clamp at two lines, since a row is a pointer at something and not the thing itself. \"Mark all read\" is only drawn when there is something to mark, and a rule sits above \"Log out\" so it is never what a finger lands on by momentum. Every colour resolves through a --d2an-* variable with a host-token fallback and both popups take a contentClassName, so a template with a pinned palette dresses it across the portal instead of forking it.",
+    "group": "components",
+    "category": "navigation",
+    "categoryLabel": "Navigation",
+    "tier": "pro",
+    "dependencies": [
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-popover",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "d2-date-range",
+    "title": "D2 Date Range",
+    "summary": "A date range picker on the frame rather than on a card: the calendar stands on the raised plate because it is the thing being used, and the presets and the footer ride on the tray because they are chrome for reaching it, the same reading of the surfaces d2-command makes with its list and its search field.",
+    "description": "A date range picker on the frame rather than on a card: the calendar stands on the raised plate because it is the thing being used, and the presets and the footer ride on the tray because they are chrome for reaching it, the same reading of the surfaces d2-command makes with its list and its search field. It is react-day-picker with every class replaced rather than its stylesheet imported, because `react-day-picker/style.css` is a global sheet of `.rdp-*` rules and an item that dropped one into a host would be the only file in this registry that restyles anything outside itself; the keys are v10's, so the v8 names a search result will offer you (table, nav_button, day_selected) silently do nothing. It commits on Apply and not on the second click, because a range picker wired to a dashboard is a filter and a filter that fires the moment a second date is touched refetches on every half-formed range somebody scrubs through: the popup owns a draft, the footer states exactly what Apply will do, and Apply is disabled until the range has both ends. The selected run is drawn as one band with two solid caps rather than a row of chips, which is why the rounding sits on the cell and not on the button inside it: a band drawn on the buttons breaks at every gap between them. Two months where there is room and one on a phone, read off a media query rather than declared in a class, since numberOfMonths is a prop no `sm:` can reach; it starts at one so the server and the first client render agree. Nothing reads the clock during render: `new Date()` differs across hydration, so today is taken once on mount and the presets fall back to the committed range's own start until it lands, and every label is formatted in a fixed locale for the same reason. Presets are five, not a dozen: a preset list long enough to need reading is a list you may as well have picked the dates from. Reopening on a range that came from one of them shows that row selected rather than five rows none of which look active. Day counts are computed off local midnights instead of subtracting milliseconds, which is an hour short across a DST boundary and rounds a 31 day range down to 30. The popup scales from the anchor's own corner through Radix's transform-origin variable so it reads as coming out of the chip it belongs to, exit shorter than enter, and reduced motion keeps the fade and drops the travel. Every colour falls back to the host's own tokens and can be overridden through one --d2dr-* set, so it wears a pinned palette without being forked.",
+    "group": "components",
+    "category": "date-picker",
+    "categoryLabel": "Date Picker",
+    "tier": "pro",
+    "dependencies": [
+      "@radix-ui/react-popover",
+      "react-day-picker",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "d2-command",
+    "title": "D2 Command",
+    "summary": "A command palette built on the frame rather than on a card: a tinted tray holds the raised plate the results sit on, with the search field riding on the tray above it and the footer on the tray below, so the hierarchy is read off the surface each part is standing on.",
+    "description": "A command palette built on the frame rather than on a card: a tinted tray holds the raised plate the results sit on, with the search field riding on the tray above it and the footer on the tray below, so the hierarchy is read off the surface each part is standing on. Items do not register themselves in DOM order: the caller hands in the same ordered id array it renders, so the highlight and the list cannot disagree about what next is, and a row that filters out cannot leave the selection pointing at something no longer on screen. Pointer and keyboard drive one highlight rather than two, arrows wrap, Home and End jump the ends, and the moving row is scrolled into view by nearest so a keypress never pages the list. The popup pins near the top of the window instead of centring, because a card whose height changes with every keystroke walks up and down the screen when it is centred, and it carries the theme of the subtree it was opened from across the portal, since a portal lands under body where a pinned dark route cannot reach it. The entrance ships as its own hoisted stylesheet, @starting-style rather than a keyframe, since the popup mounts already open and a keyframe cannot be interrupted by a reopen, and runs 150ms over a sixth of a rem, enter only, because at the frequency a shortcut is pressed the animation is the part you feel. Backdrop keeps its fade under reduced motion and only the travel goes. Combobox roles throughout, and a trigger that reads the platform after mount so the advertised shortcut is not a hydration mismatch.",
+    "group": "components",
+    "category": "command",
+    "categoryLabel": "Command",
+    "tier": "pro",
+    "dependencies": [
+      "@radix-ui/react-dialog",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "d2-badge",
+    "title": "D2 Badge",
+    "summary": "A badge for a state that is still resolving, with two lines scanning a globe in it.",
+    "description": "A badge for a state that is still resolving, with two lines scanning a globe in it. One leaves the left edge, flattens to a stroke straight down the middle and carries on to the right, where it turns away and comes back round the other side; the other does the same from the top down. The circle itself never moves. Each line is half the limb and the animation is that half squashed, because a meridian seen flat on projects to the same semicircle at every width from plus the radius through zero to minus it, which is one scale and nothing else: the ends of a sweep land exactly on the limb, so the loop restarts inside a stroke that is already there and the reset cannot be seen. The two run half a cycle apart, since a line is invisible at both ends of its own sweep and in step they would leave the badge holding a bare ring twice a turn; out of step, one is always crossing the middle while the other is away. Halves rather than whole ellipses, which is both simpler and truer, since a globe is opaque and the far side of a ring drawn on it is behind the globe. It is sized to the label and not to the leading, drawn to the edge of that box so the limb comes to within half a pixel of what the glyphs beside it ink from cap to descender, and it paints in the badge's own ink, so it reads correctly on all six variants including the white on red one. The mark takes either side of the label, and the pill sizes itself off its content rather than a fixed width. Reduced motion parks both lines part way across rather than at their ends, where they would be hidden in the limb and the badge would have a plain ring in it. It draws on a canvas rather than in SVG, which is what keeps it cheap at any count: the stroke has to hold one width while the arc it drew squashes to nothing, and the only way to say that in SVG takes the mark off the compositor and turns every sweep into a repaint of the whole page. Three arcs into a twenty four pixel buffer costs nothing the page can feel, and the clock only runs when it is worth running: the mark stops itself offscreen, on a hidden tab, on reduced motion, and whenever a caller pauses it.",
+    "group": "components",
+    "category": "badges",
+    "categoryLabel": "Badges",
+    "tier": "pro",
+    "dependencies": [
+      "@radix-ui/react-slot",
+      "class-variance-authority"
+    ]
+  },
+  {
+    "name": "data-table-01",
+    "title": "Roster",
+    "summary": "A people table built on @d2/d2-data-table: a name cell that pairs initials with the address under it, status as a chip rather than a word, faceted filters on team and status, row selection with a bulk bar, and every header sorting on a single click.",
+    "description": "A people table built on @d2/d2-data-table: a name cell that pairs initials with the address under it, status as a chip rather than a word, faceted filters on team and status, row selection with a bulk bar, and every header sorting on a single click. Initials rather than portraits, and no avatar library: a roster that reached for an image service would make every install depend on one, and the only thing a portrait adds here is load handling. Both faceted columns carry an explicit filterFn, because the filter sets an array of values and TanStack's default string matcher does not match one: the chip ticks and nothing moves, which is the quietest way for a filter to be broken. Dates are formatted in a fixed locale rather than the visitor's, since the server and the client have to agree or every row in the table is a hydration mismatch. The fixture rows live in their own module with no JSX in it, the same split sidebar-01's notes and sidebar-02's search entries make, so the data can be read without pulling a floating surface into the module graph behind it. Everything it does not need to decide (the frame, the dividers, the sort cycle, the empty states, the pager) comes from the core item, so a second variant is a different set of columns rather than a second table.",
+    "group": "components",
+    "category": "tables",
+    "categoryLabel": "Tables",
+    "tier": "pro",
+    "dependencies": [
+      "@tanstack/react-table@^8"
+    ]
+  },
+  {
+    "name": "d2-data-table",
+    "title": "D2 Data Table",
+    "summary": "A data table on the frame rather than on a card: the rows stand on the raised plate because they are the thing being read, and the search field, the filters and the pager ride on the tray because they are chrome for reaching them, the same reading of the surfaces d2-command makes with its list and its search field.",
+    "description": "A data table on the frame rather than on a card: the rows stand on the raised plate because they are the thing being read, and the search field, the filters and the pager ride on the tray because they are chrome for reaching them, the same reading of the surfaces d2-command makes with its list and its search field. The whole header is one button and there is no sort dropdown: a menu that exists to offer Asc and Desc charges a second click for the thing wanted almost every time, so the header cycles ascending, descending, cleared, and the Hide item that was the menu's only other reason to exist moved to the view options. Cleared is kept as a third state rather than flipping forever, because the order rows arrive in is itself meaningful and without it there is no way back. All three sort glyphs stay mounted in one grid cell and cross-fade, so a fast second click retargets the transition instead of restarting it, and the resting header still carries a dimmed arrow: a column that says nothing about sorting is one nobody clicks. Rows deliberately do not move when the sort changes: a FLIP reorder demos beautifully and is exactly the animation that becomes a tax, since sorting is a tens-of-times-a-day action and the motion is charged on every click. Dividers are a real border and not a shadow, because this one communicates structure (where a column ends, and on the header where the click target ends), and they ride on the table as a data attribute rather than as a prop on every cell, so a variant rendering its own row markup keeps the treatment instead of quietly losing it. Two empty states rather than one: nothing at all takes the caller's copy, while nothing matched names the filters as the cause and offers the way out, because No results beside three lit filter chips is the state people read as a broken table. Column widths are fixed off a colgroup, since a table whose columns resize as you page through it is unreadable and the jump lands exactly when two pages are being compared. Both floating surfaces scale from the control they belong to through Radix's own transform-origin variable, cap their width against the space actually available rather than trusting collision padding to shrink them, and take a class through contentClassName: a portal lands under body where a pinned palette cannot reach it. Every colour falls back to the host's own tokens and can be overridden through one --d2dt-* set, so it wears a palette without being forked.",
+    "group": "components",
+    "category": "tables",
+    "categoryLabel": "Tables",
+    "tier": "pro",
+    "dependencies": [
+      "@tanstack/react-table@^8",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-dropdown-menu",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "morph-01",
+    "title": "Spinner Morph",
+    "summary": "A task row that finishes.",
+    "description": "A task row that finishes. The orb turning beside the label gives way to a check, in place, on the same twenty four pixels it was drawn on: both marks are mounted in one grid cell for the whole of it, which is what makes this a morph rather than a swap. The check grows out of where the orb was instead of arriving after it has gone, and nothing in the row reflows, because the cell is already the size of the larger of the two. The orb leaves on a transition and the check arrives on a keyframe, and the split is deliberate: an exit can be caught half way and retargeted, while an arrival that overshoots has to pass its own target, which is the one thing a transition cannot do. It comes in from a little over half size rather than from nothing, since a mark that grows out of zero reads as appearing from nowhere, and both sides blur through the middle of the handoff, which is what bridges the moment they are each half there into one shape changing rather than two overlapping. The mark itself is the badge's orb rather than a second spinner written for this, so a product using both does not end up with two things that mean working and do not look alike. It finishes on its own timer by default, because a component whose subject is a transition and which has to be driven to show it is a control rather than a demo, and takes a `done` prop for real use where the host knows when the work ended. Reduced motion keeps the arrival and drops the travel, since a row that never resolves is telling the reader the work is still going.",
+    "group": "components",
+    "category": "morphs",
+    "categoryLabel": "Morphs",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
   },
   {
     "name": "flow-01",
     "title": "Agent Workflow",
     "summary": "A three-step agent workflow, caught mid-run: one step done, one spinning, one still pending.",
-    "description": "A three-step agent workflow, caught mid-run: one step done, one spinning, one still pending. Each row dims as a whole rather than muting its label, icon and badge separately — a pending step is one thing that has not happened yet, not three greyed pieces. Every surface is a theme token, the spinner drops out under prefers-reduced-motion, and the only dependency is lucide-react.",
+    "description": "A three-step agent workflow, caught mid-run: one step done, one spinning, one still pending. Each row dims as a whole rather than muting its label, icon and badge separately: a pending step is one thing that has not happened yet, not three greyed pieces. Every surface is a theme token, the spinner drops out under prefers-reduced-motion, and the only dependency is lucide-react.",
     "group": "illustrations",
     "category": "flow",
     "categoryLabel": "Flow",
@@ -1366,7 +2890,7 @@ export const PRO_CATALOG: ProItem[] = [
     "name": "document-01",
     "title": "File Upload",
     "summary": "A single upload row mid-flight: a PDF badge, the filename, a thin progress rail and the byte count under it.",
-    "description": "A single upload row mid-flight: a PDF badge, the filename, a thin progress rail and the byte count under it. The bar is a plain width rather than an animated one — an illustration is a still of a moment, and a bar that replayed to 24% every time the card scrolled into view would be telling a story it does not have. The rail carries real progressbar semantics so a screen reader gets the number. Theme tokens throughout, lucide-react only.",
+    "description": "A single upload row mid-flight: a PDF badge, the filename, a thin progress rail and the byte count under it. The bar is a plain width rather than an animated one: an illustration is a still of a moment, and a bar that replayed to 24% every time the card scrolled into view would be telling a story it does not have. The rail carries real progressbar semantics so a screen reader gets the number. Theme tokens throughout.",
     "group": "illustrations",
     "category": "document",
     "categoryLabel": "Document",
@@ -1420,6 +2944,17 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
+    "name": "cube-thinking-01",
+    "title": "Thinking Cube",
+    "summary": "A 2 by 2 by 2 pocket cube holding a move, its top layer rocking a sixth of a turn about the upright axis and back without ever completing a face, but only under the pointer: on leave the rock pauses where it stands rather than snapping square, and the next hover carries on from there.",
+    "description": "A 2 by 2 by 2 pocket cube holding a move, its top layer rocking a sixth of a turn about the upright axis and back without ever completing a face, but only under the pointer: on leave the rock pauses where it stands rather than snapping square, and the next hover carries on from there. The hover is a CSS `:hover` on the root, gated to a real pointer. It is the Cube Spinner fixed on one answer, thinking, at 108px and 0.8 seconds a quarter turn, and it is a copy rather than a wrapper: the spinner's move engine stays out, the classes are prefixed on their own so both can share a page, and with no box ever changing place the eight positions are fixed and the whole drawing renders on the server with no client code. It is real CSS 3D, eight boxes under one preserve-3d scene, their opaque faces doing the hidden line removal, and one corner carries the bright edge so the rock has somewhere for the eye to start. Only a transform is animated, colours resolve through the component's own prefixed variables with host token fallbacks, size and speed are props, and nothing moves under reduced motion.",
+    "group": "illustrations",
+    "category": "isometric",
+    "categoryLabel": "Isometric",
+    "tier": "pro",
+    "dependencies": []
+  },
+  {
     "name": "meridian-arrows-01",
     "title": "Meridian Arrows",
     "summary": "Two arrows closing on each other, drawn in theme tokens over whatever surface it is dropped onto.",
@@ -1464,18 +2999,15 @@ export const PRO_CATALOG: ProItem[] = [
     "dependencies": []
   },
   {
-    "name": "code-card-01",
-    "title": "Clean Code Card",
-    "summary": "The Blueprint bento's code card on its own: a rounded surface with a code-window icon tile, a faint import snippet and the copy under them.",
-    "description": "The Blueprint bento's code card on its own: a rounded surface with a code-window icon tile, a faint import snippet and the copy under them. Hover drives two things off one state. The snippet scrambles in place from grey to syntax colour, token by token in DOM order so it reads line by line, and the icon's gradient blooms from its resting blue out to the holographic palette, stop by stop. Both run as one paused timeline played forwards on enter and reversed on leave, so an interrupted hover rewinds from wherever it got to instead of snapping. The snippet box is frozen at its resting size after the fonts settle, so scrambling text cannot reflow the card. Below lg, where there is no pointer to hover with, a tap plays the state for four seconds and falls back on its own. Theme-aware and reduced-motion aware, and the gradient is private to each instance so two cards on a page never recolour each other.",
-    "group": "illustrations",
+    "name": "cta-03",
+    "title": "Contact CTA",
+    "summary": "A contact section built from a pair of holographic ID cards.",
+    "description": "A contact section built from a pair of holographic ID cards. Each tilts toward the pointer on an interruptible exponential ease, under a foil sheen of two gradient ramps crossing at opposite angles, broken up by a grain tile and dodged over the portrait. The sheen is parked on the pointer rather than on a timer, so the ramps slide across each other as the card turns and nothing loops while nobody is looking, and the glare and the glow behind the card track the same vector. All of it is driven by custom properties written on the wrapper, so the frame loop never re-renders React. The cards ease in from a tilt on mount, park themselves once settled in an unfocused tab, and hold still under reduced motion.",
+    "group": "marketing",
     "category": "cards",
     "categoryLabel": "Cards",
     "tier": "pro",
-    "dependencies": [
-      "gsap",
-      "@gsap/react"
-    ]
+    "dependencies": []
   },
   {
     "name": "visualization-01",
@@ -1487,5 +3019,170 @@ export const PRO_CATALOG: ProItem[] = [
     "categoryLabel": "Visualization",
     "tier": "free",
     "dependencies": []
+  },
+  {
+    "name": "workflow-01",
+    "title": "Agent Workflow",
+    "summary": "An automation builder on a real canvas: seven steps of an agentic support flow, laid out top to bottom with one branch at the end, and a Run that walks it.",
+    "description": "An automation builder on a real canvas: seven steps of an agentic support flow, laid out top to bottom with one branch at the end, and a Run that walks it. Each step is a D2 Frame rather than a card, so the header and the description stand on two plates with the tray showing through between them, and the seam is the surface rather than a rule drawn across a box. The tile beside the title stays neutral and the family is carried by the chip beside it, because colour here means state: a hue per kind of step would spend seven of them saying what one word already says, and seven hues are a palette the installer then has to keep in step with their own. The marker at the middle of every link is the thing that makes this a builder instead of a diagram. It rests as a dot and becomes a plus under the pointer, both mounted in one grid cell so a pointer crossing it quickly retargets the fade rather than restarting a mount, and clicking it inserts a step between the two it joins, rewires the link into two and pushes everything below the split down so the new card lands in a gap. The run follows the true side of a branch and dims the other as the decision is made rather than at the end, since a run takes one path and the moment that becomes true is the moment the step it hangs off finishes. It carries a token that a second Run, a Reset or the component going away bumps, and the walk checks it after every wait, so an interrupted run stops writing over the one that replaced it instead of finishing into a component that is gone. The trace guards against a cycle with a seen set rather than trusting the graph to be a line, because anything on this canvas can be connected to anything and a loop is one drag away from hanging the run. The wheel zooms, the way it does in every builder this is modelled on, and the canvas keeps the event rather than handing it up. That is the one behaviour to reconsider before dropping this into a column of prose, since a visitor scrolling the page with the pointer over a canvas zooms instead of scrolling past it; here the canvas takes the viewport, which is the shape that earns it, because there is no page behind it to scroll. Trackpad pinch is the same gesture and arrives either way, and the buttons carry the zoom for a pointer that has no wheel. Only the library's base stylesheet is imported and never its theme, since base is the positioning and transform machinery React Flow cannot run without where the theme is a global sheet of colour rules, and an item that shipped one would be restyling its host; what base leaves open is answered through the library's own variables. Node types are declared at module scope, because a fresh object each render remounts every node and would restart the entry stagger on all seven of them every time the run changed a status. Nodes rise in on a forty millisecond cascade, the running link marches a dash at a constant speed so it reads as travel rather than as a pulse, the status glyph cross-fades in one cell and the tick strokes itself. Every colour resolves through one --d2wf-* set with host token fallbacks, so it wears a palette without being forked, and reduced motion keeps the colour and the fades and drops everything that moves.",
+    "group": "templates",
+    "category": "workflows",
+    "categoryLabel": "Workflows",
+    "tier": "pro",
+    "dependencies": [
+      "@xyflow/react@^12",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "dashboard-01",
+    "title": "Rail Dashboard",
+    "summary": "A two-rail inset dashboard shell, demonstrated as a restaurant service back-office.",
+    "description": "A two-rail inset dashboard shell, demonstrated as a restaurant service back-office. An 80px rail carries the product areas and a 232px rail the pages inside the current one, both floating on a ground a step away from the panel they sit beside, three grounds in a ramp, derived from your own --background and --foreground with color-mix rather than hardcoded, so the shell takes on any palette and the ramp still reads in both themes with one number changing between them. The section rail collapses to nothing and remembers it, and the width transition is gated on interaction rather than on mount, so restoring a stored collapse never animates while every toggle after it does: a mount flag cannot do that job, because the restore spawns work that flushes the very effect a mount flag would be set in, landing both in one pre-paint commit and sliding the rail shut on load under SSR; its content is held at a fixed width inside an overflow-hidden box, so labels clip as it closes instead of reflowing on every frame. Which row is current is resolved once for the whole rail by longest match, so a detail route lights the item it sits under and never two at once, and the current row is painted in the panel's own colour with an inset emboss so it reads as pressed into the rail rather than highlighted on top of it. The rails carry colour-only transitions on purpose: they are hit tens of times a day, and at that frequency motion is latency rather than polish, while the list swap is keyed on the section, so moving between pages inside one area is perfectly still and only changing area animates. Page actions portal into the 44px breadcrumb bar from anywhere below it, so a screen pushes its own buttons up without the shell knowing what they are. Nav state is local and uncontrolled by default, controlled the moment you pass activeUrl, so it runs with no router at all or reads your pathname with nothing else to change, and it imports nothing from Next, so it works outside it. Below md both rails fold into a sheet that reuses them rather than a third nav, where the area rail previews a section instead of navigating so you can browse without losing your place, and the bar carries the current area so a phone never shows a brand name over content with nothing saying where you are. Every surface is a theme token, and every motion block keeps its reduced-motion guard.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react",
+      "motion"
+    ]
+  },
+  {
+    "name": "dashboard-02",
+    "title": "Manuscript",
+    "summary": "A builder shell, demonstrated as a book outliner: a grouped rail on the left, the thing being assembled floating in the middle, and the catalogue you assemble it from pinned on the right.",
+    "description": "A builder shell, demonstrated as a book outliner: a grouped rail on the left, the thing being assembled floating in the middle, and the catalogue you assemble it from pinned on the right. That arrangement is what separates a builder from a dashboard, and it is why both sides collapse and remember it independently, on two storage keys rather than one, since closing the catalogue to read the outline should not also shut the nav for the next visit. Two grounds, not three: the rail and the top bar sit on one tinted field and the canvas and the panel float on the page colour above it, so chrome reads as behind and work as in front, and a third step would only blur which of the two a surface belongs to. Both are derived from your own --background and --foreground with color-mix rather than pinned to the reference's neutrals, because a registry item cannot edit anyone's globals.css and a fixed grey ignores their palette. One rule serves both themes, since --foreground is dark on a light theme and light on a dark one and the same mix travels the right way on its own; only the step changes, because the same ratio reads as less separation against a dark ground. The rail is two levels deep and draws its guide on the group's own left edge rather than on each row, so it stays one unbroken line whatever the row states are and a selected chip sits across it instead of beside it. Collapsed, it keeps one icon per group and a click opens that group's first page rather than expanding the rail, because the collapsed state was asked for and a click that undoes it is a click that has to be repeated. Its content is held at the open width inside an overflow-hidden box, so labels clip as it closes instead of reflowing on every frame, and the width transition is gated on interaction rather than on mount, so restoring a stored collapse never animates while every toggle after it does. A mount flag cannot do that job: the restore spawns work that flushes the very effect the flag would be set in, landing both in one pre-paint commit and sliding the rail shut on load under SSR. Below md the rail is out of the layout entirely rather than collapsed, since a 52px icon strip on a phone is a fifth of the screen spent on chrome, and the menu button opens the same rail inside a sheet rather than a second copy of it. Every control in the top bar is one recipe at three fills, written once in the stylesheet: a 4px corner, a hairline, and a shadow that is two things at once, an inset bottom edge that reads as the face catching light and a short drop under it. The save pill is that recipe in two states rather than a label beside a button, because a control that says Saved and does nothing is a control you learn to ignore, so saved is the disabled state and the only time it is pressable is the only time pressing it does something. Every edit routes through one function so nothing can change the outline without that pill noticing, and the reorder helpers return the same array for a move that cannot happen, which is what keeps a refused drag from marking the book unsaved and what makes the greyed chevron and the ignored drop obey one rule instead of two. The outline reorders by drag and by chevron both, on native HTML5 drag events and no dependency, armed from the handle so a pointer put down anywhere else on the card moves nothing. The title page carries no controls at all rather than four disabled ones, since a row of greyed buttons on the one card that never has any is noise the reader re-reads every time. Cards stage in on mount and never again, keyed to nothing that changes, because a list that restaged every time a chapter moved would be unreadable at exactly the moment it is being used. Every preview in the panel is a page of type drawn as bars rather than a screenshot, which is both what a registry item can ship and the honest picture, since what tells a dialogue scene from a prologue at thumbnail size is the shape of the type on the page. The panel is not merely collapsed on a page that has nothing to insert into, it is gone. Nav rows carry colour-only transitions on purpose, because a row hit tens of times a day wants latency and not polish, while the width, hit once, gets the travel; every motion block keeps its reduced-motion guard, and reduced motion still fades the cards in rather than not arriving at all.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "sidebar-01",
+    "title": "Sticky Notes",
+    "summary": "An extendable-sidebar template, demonstrated as a personal sticky-note manager.",
+    "description": "An extendable-sidebar template, demonstrated as a personal sticky-note manager. The palette, the gloss overlay every elevated surface gets, and the selected-row shadow recipe are read off nucleoapp.com/app's own computed styles in both themes rather than eyeballed. Unlike dashboard-01's ramp, they are the reference's exact hex values, not derived from your --background and --foreground, because the brief asked for exact and a derivation stops being that the moment it sits on a different brand colour; the file says so, the same way CodeBlock says why it stays pinned dark. The one deliberate exception is the note card itself, built on @d2/d2-frame rather than restated: the tinted tray and its raised plate answer to your own --background/--foreground like every other D2Frame usage on the site, and the category sits in a sleeked-down D2FrameFooter with tighter padding than command's, since one short word isn't a toolbar. The category tree is a single-open accordion over a flat leaf list, each row's chevron only ever toggling the disclosure and its label only ever selecting, so browsing into a category to see what's in it never requires also picking it, and picking it never requires it stay open. The note grid is one filter composed of four inputs (category, search, colour, style) rather than four independent passes, which is what keeps every empty state explaining the same truth the grid is showing; it's sorted pinned-first then newest throughout, including on \"All notes\", and restages with a short stagger only when the category itself changes, never when a search or the picker below narrows the same one. That picker is the reference's own bottom-of-sidebar Style/Size list, reused verbatim as one generic component for both groups: a colour swatch for note colour, a paper-pattern preview for note style, on rows sharing one selected-chip recipe with the tree above it. The aside collapses to nothing with the same mount-vs-interaction gate dashboard-01's rail uses, and below md it isn't merely collapsed but out of the layout entirely, so a menu button opens the same tree and picker inside a sheet rather than a second copy of either. Every motion block keeps its reduced-motion guard. The header's right end carries @d2/d2-account-nav, a notification bell and an account menu, behind a hairline rule, because those act on the person looking at the notes where everything to their left acts on the notes themselves, and the rule is what says so without a label. Both popups portal under <body>, outside .s1-root, so the palette crosses through that item's own contentClassName seam and this stylesheet declares a --d2an-* block beside its own tokens; the badge's ring is the one value that is not a choice, since it has to be the colour actually behind the bell or the count reads as a sticker stuck on it.",
+    "group": "templates",
+    "category": "sidebar",
+    "categoryLabel": "Sidebar",
+    "tier": "pro",
+    "dependencies": [
+      "lucide-react"
+    ]
+  },
+  {
+    "name": "sidebar-02",
+    "title": "Tally",
+    "summary": "A personal finance tracker on sidebar-01's exact palette: the same tokens, value for value, in both themes, copied rather than imported because a customer installs one of these two and a shared .s1-root would make this one silently depend on an item nobody asked for.",
+    "description": "A personal finance tracker on sidebar-01's exact palette: the same tokens, value for value, in both themes, copied rather than imported because a customer installs one of these two and a shared .s1-root would make this one silently depend on an item nobody asked for. What differs is the shape around them. The rail is flat where the sticky-notes tree is nested: six leaves, so no chevron and no split hit target, though the selected chip is the same recipe stroke for stroke, with gloss over background-light, a hairline in light, an inset ring in dark. It also draws a real edge, the one token that palette doesn't carry, derived from the selected row's own hairline rather than picked and pulled a touch lower because a divider running the full height of a page reads heavier than the same value on a 32px chip; the top bar takes the same value so the two meet at a corner, and the colour goes transparent at width zero so a collapsed rail doesn't leave a line standing where it used to be. The four stat plates sit in ONE D2Frame rather than four cards in a grid, which is the whole reason to reach for the tray: separate cards say four things, one tray cut into four says one figure read four ways. That row wraps (four across, then 2x2, then stacked), so the frame's own vertical seam rule is neutralised and replaced with gap, since a margin on one axis cannot seam a grid that reflows onto two. Under it the month is read two ways at once: @d2/ledger-timeline on the wider track, because its dial needs real width before the swell reads as a wave rather than a twitch, and the @bklit pie on the narrower one, where a donut gains nothing from more. The ledger is the shipped item under its own vocabulary, through a labels prop added to it for this: partial, defaulting to the books' own strings, so nothing already installed moves. The pie is assets only and liabilities are deliberately not a slice: a pie's parts have to sum to its whole, and debt is subtracted from that total rather than being part of it, so the footer states the subtraction as the one place the two figures can be read as the sum they are. Its five slices are one hue stepped down in strength rather than five hues, because the holdings are an ordered series and a sequential ramp encodes that ordering in the colour itself; they're defined off this block's own accent rather than the host's --chart-1..5, which a project installing this need not have. Every figure is internally consistent (the slices sum to total assets, assets less liabilities is the Net Worth stat, and the savings rate is computed from the two figures beside it), because a dashboard whose panels disagree is a dashboard nobody trusts. The expense card knows that a fall in spending is a good month, so the direction that paints green answers to the metric rather than to the sign. The rail collapses with the same mount-vs-interaction gate the other two templates use, and below md it isn't merely collapsed but out of the layout entirely, so a menu button opens the same list inside a sheet rather than a second copy of it. Motion is the transitions.dev set scoped s2- rather than installed at :root: an icon-swap on the toggle, colour-only row transitions because a row hit tens of times a session wants latency and not polish, and one 40ms stagger that plays on mount and never on a day change. A figure that restaged every time the dial moved would make scrubbing unreadable. Every block keeps its reduced-motion guard, and reduced motion means the plates still fade rather than not arriving at all. Global search is @d2/d2-command, its trigger sitting directly under the rail's header rule and above the sections it searches. The dialog is mounted once by the shell rather than inside either trigger, because the rail and the phone sheet both draw one and both are in the tree at every width. A self-contained palette would install two ⌘K listeners and toggle itself back shut on every press, which is what that item's own hook note warns about. It searches the same NAV the rail draws and the same account list the Bank Accounts row counts, so there is no second copy of either to fall out of step, and every row lands on a real section rather than being a stub. Matches rank rather than filter: a name outscores a hint three to one, so typing an account's name walks it up the list instead of below every row whose balance happens to contain the digits. The popup is portaled under body where no --s2-* token resolves, so the palette is handed the token set through the item's own themeClass seam. The top bar's period chip is @d2/d2-date-range wearing a Tally control passed through that item's children, and its right end carries @d2/d2-account-nav (a notification bell and an account menu) behind a hairline, since everything left of the rule acts on the figures on screen and those two act on the person reading them. Both of those portal under body as well, so this stylesheet declares a --d2dr-* and a --d2an-* block beside its own tokens and hands `s2-root` across through each item's contentClassName. The notifications are written off the dashboard's own figures: the overdue total is the ledger's latest and the account name and mask are read from the same list the rail counts, and the whole template runs on ONE pinned clock, so the period presets and the notification ages cannot land on two different days.",
+    "group": "templates",
+    "category": "sidebar",
+    "categoryLabel": "Sidebar",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "dashboard-03",
+    "title": "Relay",
+    "summary": "A social command centre for one person or a team, with four channels under one roof: what went out, what is going out, what came back, and who owns each of those.",
+    "description": "A social command centre for one person or a team, with four channels under one roof: what went out, what is going out, what came back, and who owns each of those. Where the other two templates here are flat and white, this one is machined. The page is a mid neutral rather than white, every plate is lifted out of it with a top lit inset highlight and one hairline, and every field is pressed into it with the same highlight moved to the bottom edge. That single flip is the whole visual vocabulary, which is why the two shadows are named tokens rather than a recipe copied into the dozen controls that need them: a surface lit from above is standing up, a surface lit from below is a hole. The rail is channel first, because a tool that manages four accounts should say which four before it says anything else. Under the six sections sit the accounts themselves, each with its handle, its follower count and how many posts are waiting on it, and pressing one filters every screen rather than navigating anywhere. The filter is held by the shell and not by a screen, since a filter owned by the dashboard would clear itself the moment somebody opened the inbox, and the top bar restates it as a chip that also clears it, because the rail can be collapsed or off the layout entirely and a filtered dashboard whose filter is out of sight reads as a broken one. Colour is the one place this block refuses to follow the brands. Two of the four networks are monochrome, so a palette that took each network's own colour would draw two identical black lines on one chart and leave the reader hovering every trace to learn which was which; the four hues are assigned for separability and for clearing contrast on both grounds, and the brand is carried by its own official mark, inlined at a 24 viewBox in currentColor. Everywhere a channel is named, its mark sits on a small plate tinted with that channel's series colour, the same colour its line wears in the chart, so the rail tile, the legend chip and the trace read as one thing and Threads and X never become one grey line. A channel switched off is its plate drained rather than swapped, so a row of choices keeps one shape and only its state moves. The top bar carries the team as faces with a presence dot on whoever was active inside the last hour, derived from the same lastActive the team screen reports rather than a second field that could disagree with it, and the row's lift is cut to a third of the component's own, since eight pixels of travel inside a forty eight pixel bar reads as the strip jumping rather than as a face answering. The same mark is the rail's tile, the chart's legend, the queue card's chip and the access column on the team screen, so one glyph means one channel everywhere. The dashboard is four figures in one D2Frame tray rather than four cards in a grid, then reach over the window drawn as one line per channel beside the queue. The legend above the chart is the control and not a caption: four lines is exactly the count where a reader wants to take one away, and hiding a series rescales the rest, which is the point on a chart where one channel reaches four times another. Every figure in the stat row is computed from the same series the chart draws, so editing the data cannot leave a card claiming something the lines no longer show, and the one card whose delta is zero drops the comparison instead of painting a flat arrow in one of the two directional colours, because no change is a fact about the queue rather than a gain or a loss. The schedule is a board of days, not a grid of hours. Both are real calendars and this is the honest read for social: a post is a moment somebody chose rather than an appointment with a length, so an hour grid spends nine tenths of its height drawing empty time between two posts. Seven fixed tracks inside a scroller rather than seven fractions of whatever width there is, because a day column under about 132px cannot hold a time and a channel mark on one line and a week that reflows to two rows of four is not a week. Composing is a screen rather than a dialog, since a post goes out at a time and the week it lands in is the context for choosing one, and a modal over the dashboard would ask somebody to pick Thursday with Thursday hidden behind it. The composer sends one post to as many channels as are lit and writes one row per channel rather than one row carrying a list, because three channels is three things that go out, can be approved separately and can fail separately. Its character count states the ceiling as well as the number, and the ceiling is the tightest limit among the channels that are on, since a composer that allowed 400 characters for X and Instagram together would be offering a post that can only half send. Date and time are native inputs: the platform already ships a picker, a keyboard path and a locale, and a hand rolled one here would be three of those done worse. Beside the media controls is the caption helper, which sits there rather than under the box because it is the same kind of thing: something you add to the post before it goes out. It reaches a model through one suggest prop, defaulted to a local stand in so the template runs with nothing wired, and it is handed the chosen channels and the limit they imply rather than just the text, so a suggestion cannot come back longer than the composer will accept. The label says what it will do to what is already there, Write or Rewrite, since those are two different promises and one word for both is how somebody loses a line they had typed, and a rewrite keeps the draft rather than discarding it. Both words live in one grid cell with the pending label, so the row does not jump by the width of the text when a request starts. That pending label is the one infinite animation in the block, which is normally the wrong call because an animation that never stops is the single thing on a screen that is never not being seen; it earns it by existing only while a request is in flight, since a still label cannot claim that something is happening right now, and under reduced motion the sweep comes off and the word stays readable on its own. The inbox puts the thread, the reply box and the assignment on one screen, because the whole argument for a tool like this is that the reply happens where the work is tracked. What came in sits in the page and what went out stands on it, which is the same two lights doing the reading. Unassigned is drawn as a real chip rather than left as an empty cell, since it is the state the inbox exists to resolve, and pressing the person who already owns a conversation clears it, which is the only way back to unassigned without a menu holding one extra row. The team screen is roles and per channel access, with the role as a native select and the Owner row locked rather than hidden, so the rule is visible: an account with no owner is the state this list must never reach. Moving somebody to Analyst clears their channels with it, because leaving the marks standing would show a row that reads as read only and is not. Analytics reads the same 28 days by channel: four figures computed from one table of rates and post counts, reach per channel summed off the very series the dashboard draws, a best time heatmap in one hue getting deeper rather than a two colour ramp, and the top five posts. The rail's filter narrows the table and the list but not the figures, since a rate taken off one channel's handful of posts is noise. Settings is workspace, publishing and notification preferences, where the switches are native checkboxes with role switch and take effect as they are flipped, and only the typed workspace fields wait for Save. Reports is a library to choose from rather than a report: three recommended cards, then rows of tiles by purpose, and every tile opens a screen the template actually ships, a channel tile setting the rail's filter on the way, since a report library of links that go nowhere is the one empty page that looks full. Cases ships empty on purpose, because the empty queue is the state a new account sees first and the one a case queue exists to return to: four views as one segmented control over a single list, and the list and conversation panes drawn even with nothing in them, so the page reads as a queue at rest rather than a page that failed to load. Every clock is passed in and none is read during render, since a dozen queue times and a dozen inbox ages taken off the current time are a dozen hydration mismatches, and the reach series is generated from a seeded sequence rather than from a random one for the same reason. Motion is the transitions.dev set scoped d3 rather than installed at the host's root: an icon swap on the collapse toggle, colour only transitions on rows that are hit tens of times a session, and one 40ms stagger that plays on mount and never on a filter change, because a figure that restaged every time the period moved would make scrubbing a week unreadable. Every block keeps its reduced motion guard, and reduced motion still fades the plates in rather than having them not arrive.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "dashboard-04",
+    "title": "Remit",
+    "summary": "A money app for holding, sending and scheduling several currencies, laid out the way the best transfer services draw theirs: a 236px rail on the ground with the current row as a raised plate and a glowing marker that slides to it, the content in one inset panel under a breadcrumb top bar, a column capped near 760px, and one violet primary that means move money and nothing else.",
+    "description": "A money app for holding, sending and scheduling several currencies, laid out the way the best transfer services draw theirs: a 236px rail on the ground with the current row as a raised plate and a glowing marker that slides to it, the content in one inset panel under a breadcrumb top bar, a column capped near 760px, and one violet primary that means move money and nothing else. Home carries the total balance estimated in dollars, a staggered row of currency balances and a transfer calculator: thirty days of rate on @bklit/area-chart, two amount rows either of which can be typed into, a swap between them, and the fee and arrival broken out rather than folded into the rate. Working back from a receive amount solves for the send that already includes its own percentage, so both directions agree to the cent, and a node test holds them to it. The send flow is three steps (amount, recipient, review) that slide in from the side you are moving towards, then a success check that plays once. Its cadence picker is a segmented control in a sunken well (once, daily, weekly, monthly, yearly), and a recurring plan picks its first payment with a native date input, then lists its next run on Home, computed on local midnights and clamped at month ends so a plan set on the 31st runs on the 28th in February. Picking a recipient in another currency re-anchors the quote on what leaves the account. Exchange reads one currency pair across the whole screen: a larger chart with a 1D, 1W, 1M and 1Y range control, the move over that range signed and coloured, a conversion between your own balances that debits one and credits the other in a single update and lands in recent activity, and rate alerts whose direction is fixed when they are made, so an alert above today's rate does not quietly become one below it as the rate moves past. Each alert says how far the rate has to go, or that it got there. Every chart is @bklit/area-chart, which pins its y axis to zero for an all positive series, useless for a rate that lives between 1.16 and 1.17, so the series is plotted as its height above a floor just under its own minimum and the floor is added back to every tick and tooltip: the shape is true, only the zero moved. Invest holds stocks, ETFs and fractional real estate in one portfolio: its value over the same four ranges, an allocation donut on @bklit/pie-chart with the total in its hole and a legend that doubles as the hover control, a holdings table (shadcn table, since bklit ships charts only) that filters by kind and reads each property fund's rental yield, and a buy form that takes a one time amount or the same daily, weekly, monthly or yearly schedule the transfer plans use. Picking a holding scrolls back up to the form with it chosen. A one time buy comes out of the USD balance and adds fractional units at today's price; a recurring buy lists its next run beside the others. Cards and accounts carries local account details per currency (routing and account number, IBAN and BIC, sort code, IFSC and UPI) with a copy button on every field whose glyph turns into a tick in place, adding money by bank transfer, debit card or Apple Pay with the card network's fee shown rather than folded in, and drawn card faces with a freeze switch, a month's spend against its limit, and Apple Pay and Google Pay switches. A frozen card cannot pay in either. Only a one time send is held to today's balance; a plan draws when it runs. The palette is pinned to one design system's tokens, light and dark: surfaces lifted by layered shadow rings rather than borders, engraved dividers, a violet focus halo, embossed headings. Those values are also redeclared as the host's own shadcn tokens inside the template, so the borrowed sheet, table and popups wear them without touching anything outside it, and the whole template runs on one pinned clock so dates never differ between the server's render and the browser's.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react",
+      "motion"
+    ]
+  },
+  {
+    "name": "dashboard-05",
+    "title": "Uplink",
+    "summary": "A network operations console at NOC density: a health strip, an interactive topology, a twenty column port matrix, a secure tunnel ledger, an incident timeline and an automation console that will not write to a device until somebody has read the diff.",
+    "description": "A network operations console at NOC density: a health strip, an interactive topology, a twenty column port matrix, a secure tunnel ledger, an incident timeline and an automation console that will not write to a device until somebody has read the diff. Two classes of colour, and the split is the whole item. The neutrals are derived from the host's own background and foreground with color-mix, so the shell takes on any palette and reads in both themes; healthy, degraded, warning, critical and offline are fixed, because a state an operator reads at a glance from across a room cannot drift with whatever palette the host installed. Nothing anywhere carries a state by hue alone: every chip pairs its tone with a glyph and the word, which is what a projector, a night shift and a red green operator have in common, and the one table that maps state to tone to glyph is what every screen draws through. One clock for the whole console: every panel takes a tick as a prop rather than starting an interval of its own, so Pause actually pauses instead of hiding a timer still running behind it, and past 45 seconds the feed says it is stale rather than showing the last good numbers with nothing to mark them. Nothing reads the clock or the random generator during render. A series is a pure function of a seed and that tick, because a couple of hundred numbers that differ between the server's render and the browser's first one is not a warning, it is the subtree being thrown away on every load; and a series mean reverts rather than jumping, since the moment an interface goes from 4.8 Gbps to 19 and back the reader stops believing any figure on the screen. An anomaly is something the demo asks for by name, so the chart, the event stream and the incident are talking about one event by construction rather than by coincidence. The port matrix is one scroller with a sticky header and two sticky columns rather than a frozen table beside a scrolling one, because two tables whose row heights have to agree forever shear the first time a row wraps; border-collapse is separate, or a sticky cell carries the shared border away with it and leaves the column edge behind. Search, filter, sort, density and CSV all run client side over rows that are already in the browser, and the export is exactly what is on screen, since an export that quietly returns everything is the one that lands in a ticket as evidence of something nobody saw. Inspectors open beside a table rather than over it, because an operator inspecting a port is comparing it to its neighbours and a modal is a lid on the comparison. The topology is authored positions in a fixed viewBox, not a force layout: a diagram is a thing operators learn, and one that settles differently on every mount destroys the only property that makes it faster to read than a table. Line weight is utilisation, the cyan flow rides as a second stroke over the link's own state colour, and it is drawn only on the paths actually carrying traffic, since sixteen dash animations is a screensaver and three is a diagram that says which way the traffic is going. The intent console parses with rules rather than a model and returns nothing rather than a guess, because a parse that cannot be explained cannot honestly be approved and one that is right nine times in ten changes a core switch wrongly once. It shows what it understood, then what it would write as a before and after diff, then who it lands on, then simulates, and only then offers approval, and a high risk change cannot be approved unsimulated. Anything that cuts somebody off or takes a link down goes through a confirmation that names the resources, the blast radius and the rollback and will not enable itself until the operator types the name of the thing being changed, because every other control here is one click and the one that takes a core switch off the network cannot also be one click. Incident timelines are five fixed steps rather than a free log, since the question asked of a board like this is always the same one, and root cause confidence is always drawn with the word confidence beside it, because a correlation engine's guess printed flat reads as a finding. Global search is @d2/d2-command with the dialog mounted once by the shell, ranking rather than filtering so a name outscores a hint three to one, and every result lands on a screen with the thing it named already selected. Motion is the transitions.dev set scoped d5: a 40ms stagger on the health strip that plays on mount and never on a tick, a 140ms number pop on the live figures only, an icon swap on the feed control, a sliding pill on every range control and one looping pulse on a 6px dot, and every block keeps its reduced motion guard. Scope is a native select and so is every date, so keyboard, typeahead and the phone's own picker come for free.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "keel-01",
+    "title": "Keel",
+    "summary": "A wallet that keeps crypto, cash and securities in one account, named for the part of a hull that keeps it steady.",
+    "description": "A wallet that keeps crypto, cash and securities in one account, named for the part of a hull that keeps it steady. Each rail entry is its own page, and each page rises in on its own: Overview opens on the balance over a lifted area line for the chosen period; under it sit three live pair cards, each with its day drawn in the coin’s hue and the high and low pinned on the line, an income plate with this month solid and last month dotted, and the last five ledger rows. Its side column holds an exchange plate that buys, sells and swaps with a slider over the balance and a fee offer counting down, a liquid staking offer, and the alerts. Search in the top bar, or ⌘K, opens @d2/d2-command over the block’s own palette and ranks assets, pages and actions, a name match outscoring a hint. A price tape runs under the top bar on every page, stops under the pointer and stands still under reduced motion, and the wide rail opens with a greeting and the last sign in; Wallet has the holdings as a table with a sparkline and an allocation bar per row; Trade takes the full width for candles, a live order book and a ticket; Markets is a market overview with All, Favorites, Top gainers and Top losers tabs, rank, 24h and 7d moves, market cap and volume, and headers that sort and turn round on a second click; Activity splits the ledger into tabs, and its Rewards tab is the empty state; Settings covers profile, display, linked accounts, security and notifications, with currency, hidden balances and the rail width wired to the shell itself. A side column beside the main plates holds what that page acts on: alerts first because a security notice outranks a price, a watchlist that can be starred and unstarred, an allocation ring and the recurring buys. The left rail has two widths, icon and label or icon alone with the label on its title, and the same list is drawn in both, so collapsing never changes what can be reached. Its width is remembered and the transition is gated on the toggle, so a visitor who collapsed it last time gets the narrow rail on first paint rather than watching it close. A small plate at its foot carries one offer and folds to the tile alone when the rail is narrow, with the whole tile as the button. The ticket is the trading half: buy and sell colour the sliding pill rather than the label, market and limit, four size steps that work back from available cash through the fee, a shake on a bad amount and a drawn check on a placed one. A market order fills on the spot and moves the balances and the ledger; a limit order waits in the open list, where an empty list is a line figure, a balance on a plinth whose beam tilts toward the pointer; the same figure stands in the empty Rewards tab. The eye in the top bar veils every private figure with a blur in place rather than a swap to dots, so no column changes width, and prices stay visible because a price is public. Every price on the page is labelled simulated; the receive sheet shows a placeholder address and says so, the send sheet checks the address shape against the network and reviews every line before confirming, and nothing claims to move money. Charts are the vendored bklit set, icons are Hugeicons stroke rounded, marks sit in @d2/d2-tile and plates in @d2/d2-frame. The palette is oklch throughout with no pure white or black, pinned under its own prefix with the host tokens redeclared beneath it so the borrowed primitives dress themselves. Light and dark, reduced motion honoured.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "motion",
+      "@hugeicons/react",
+      "@hugeicons/core-free-icons"
+    ]
+  },
+  {
+    "name": "dashboard-07",
+    "title": "AgentOS",
+    "summary": "An operations console for AI agents running in production, built so every screen answers one of five questions in the order an operator asks them: are the agents working, what are they costing, where are they failing, why, and what to fix next.",
+    "description": "An operations console for AI agents running in production, built so every screen answers one of five questions in the order an operator asks them: are the agents working, what are they costing, where are they failing, why, and what to fix next. Seven screens are built out (overview, agents with a per agent workspace, conversations, performance, evaluations, knowledge, costs, alerts) and the rest are placeholders, because the arrangement and the findings are what there is to see. A placeholder is not a glyph on a plate: each unbuilt section stands an isometric line figure in its place, an object with nothing in it, drawn in one stroke at four weights from the console's own inks. Experiments is three test sieves with bare mesh under the first, Traces is a shelf with one volume missing, Settings is a breaker panel with every lever seated, and each answers the pointer, the gap following it on a spring and the pick moving on a 700ms tween staggered outwards from the part chosen. The hit test reads each part's resting outline and never the pose on screen, so a part moving out from under the pointer cannot flip the choice and flicker, and the one frame loop behind all three sleeps when nothing moves or nothing is on screen. The engine under them is the core of @lucasmarkes/hairline, carried in the item under its MIT notice because the package exports finished figures and not the core a new one is built on. The health panel leads with the worst of six dimensions rather than their average, and the gauge takes that dimension's colour while the number stays the mean: a fleet with five green scores and one critical is not 83% healthy, it is broken in one place, and the colour has to say the second thing. Each dimension carries a score so six different units are comparable in one row, the real reading beside it because nobody has ever fixed a 62, and one line saying what is actually happening. Health and direction are separate fields in the data and never derived from each other, which is the decision the whole palette rests on: handoff rising is up and bad, cost falling is down and good, and inferring the tone from the arrow is how a console ends up congratulating somebody on their error rate. Colour is never the only carrier either, since every health mark pairs its tone with a glyph and the word, and the one looping animation in the item is a ring around a 6px dot on agents that are actually taking traffic. A paused agent gets the dot and no ring, because animating it would say traffic is flowing through something that is switched off. The agent roster and one agent's workspace are a list and a detail that slide, and the direction of travel says which way you moved through the hierarchy rather than just that something changed. The workspace's version timeline is the reason the screen exists: three measures per version on one row with the change that produced them underneath, deltas computed against the neighbour so a version added to the data cannot disagree with the figure beside it, and each delta toned by whether it moved the right way for that measure, since a lower cost is good and a lower resolution is not. Only the agent with a real deployment history has a timeline; the others say so rather than being given three invented versions. The conversation explorer carries a written summary on every row, which is the whole design: a table of ids and durations tells you nothing until you open a transcript, so the only workable strategy is to open twenty, and a written line per row means fifty can be read in the time three took. Its six filters are saved questions rather than values of one dimension, so they combine with AND, each one's test lives in the data module so the chip, the count and the list cannot disagree about what high cost is, and each chip's count is measured against what is already picked rather than against the whole set. The evaluation centre never draws a score without its sample size, because 94% over 40 cases and 94% over 4,000 are not the same claim; thresholds are notches on the bars so passing is a shape rather than seven subtractions; skipped cases sit outside both counts rather than folded into the failures; and the one inverted criterion, where a lower rate is the good one, is marked in the data rather than detected by name. Knowledge gaps are the cheapest screen in the console and the one most products leave out: a topic, its impact in escalations rather than dollars, the clustering confidence, a suggested article and the three answers there are, which are write it, read the conversations, or say it is not a gap. Ignoring is reversible and an ignored gap stays in the list under its own heading, because a gap that vanishes when it is dismissed comes back next week as a surprise. Costs draw per conversation and per resolution together and say which is which: per resolution is the number finance wants and it flatters an agent that escalates everything, since a handed off conversation costs money and never reaches the denominator. Alerts carry cause, evidence, impact and action, always all four, with the evidence as rows a reader can go and check, because an operational alert that cannot show what its claim rests on is a pager nobody trusts twice. Charts are @bklit throughout and each kind is the one that fits its question: @bklit/gauge-chart for the single figure read from across the room and nothing else, since a wall of gauges is a car dashboard; @bklit/area-chart for a window against the window before it, drawn as a dim area behind rather than a line beside; @bklit/line-chart for a series in a panel that carries its comparison in words; @bklit/bar-chart stacked for spend by agent across four, eight or twelve weeks picked in the panel header, because the question is which part of the total moved; @bklit/pie-chart for how the fleet splits by model now, with the legend doubling as the hover control. Every series here is a rate or a latency living in a narrow band, which is exactly what a zero pinned y axis draws as a flat line, so each one is plotted above a floor just under its own minimum and the floor is added back to every tick and tooltip: the shape is true, only the zero moved. Where a filter has no per row data behind it the panel says so in its footer rather than silently ignoring it, since the second time somebody notices a chart did not move they stop trusting the screen. Neutrals are derived from the host's own background and foreground with color-mix so the console takes on any palette and reads in both themes, while the health ladder is pinned and lifted for a dark page. One pinned clock for the whole item and nothing reads the real one during render, so every age and timestamp prints the same string on the server and in the browser. Motion is the transitions.dev set, scoped and frequency scaled: a 40ms stagger on mount and never on a filter change, a 160ms number pop keyed on the value, one pill sliding between labels, alert and gap rows tweening a grid row from 0fr to 1fr so mashing one retargets instead of restarting, the copilot panel travelling its own width, its answer's lines revealing 70ms apart, a shimmer on the one label claiming to be in progress, an icon swap on every copy button and sort glyph, a pure CSS tooltip on every metric definition that opens on focus as well as hover, and every block keeping its reduced motion guard while rail rows carry colour only. Global search is @d2/d2-command with the dialog mounted once by the shell, ranking rather than filtering so a name outscores a hint three to one, and its question rows run the copilot instead of navigating. The period chip is @d2/d2-date-range and the bar's right end is @d2/d2-account-nav, both dressed through their own prefixed seams because both portal under body where this shell's tokens do not resolve. Nav state is local so the item runs inside an iframe, and it is controlled the moment a section and a handler are passed.",
+    "group": "templates",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react",
+      "motion"
+    ]
+  },
+  {
+    "name": "video-feed-01",
+    "title": "Teams Activity",
+    "summary": "A team video feed on X's three columns, where every post is a clip a team shared and there are exactly two things to do with one: like it or share it.",
+    "description": "A team video feed on X's three columns, where every post is a clip a team shared and there are exactly two things to do with one: like it or share it. The rail carries the D2 logo and a search over two filters that combine rather than replace each other, categories and teams, and the search narrows within them rather than resetting them, without restaging the list on every keystroke. IT team and Funny narrows to IT's funny clips; each row counts what it holds, a team row toggles off on a second press, and below md both sets become one row of chips over the feed so a phone never has to open a sheet. Latest, Today's viral and This week are one underline travelling between three labels, measured rather than sized in CSS because the labels are different widths. The two windows are measured off a clock passed in rather than read during render and ordered by likes, and the ordering reads the stored count rather than the count including your own like, so pressing a heart never moves a post out from under the pointer. The side column asks two different questions: most liked is the total, and most trending is likes per hour since posting, which is how a clip from this morning outranks one from yesterday with more likes; choosing either widens the feed back to everything before scrolling to it, since the pick can sit outside the filters on screen. Log in and sign up are one dialog with the same underline between them, drawn on @d2/d2-frame with the mark and the switch line on the tray and the tabs and fields on the plate, its fields @d2/d2-input with filled glyphs; it opens on transitions.dev's modal timing, 250ms up from 0.96 and 150ms back down, and the plate tweens its height between the two forms while the incoming one fades under a 2px blur, and the team picker in sign up is native radios so arrow keys and the group semantics are the platform's; the dialog portals under body, so it carries the block's class across to keep its motion, and submit hands what it collected to the host rather than pretending to be auth. Each team carries one hue wherever it is named, the rail, the chips, the pill on a post, the trending list and the sign up picker, at a step that holds contrast in both themes so no theme twin is needed. Authors are portraits with initials underneath rather than instead, so no frame shows an empty circle and a failed load reveals what was already there. Saved is a view rather than a filter: a bookmark on each clip, the same two-glyph swap as the heart, and a rail row that shows only what was kept. Notices is the one orange row on the rail, because it is the only thing there asking for attention, and it opens a real notice board in the centre column: a framed cork surface with paper notes pinned to it at a small fixed tilt, so it looks pinned by hand but is the same board on every visit, each note a tear-off date leaf, what it says and who pinned it. Notes drop onto their pins 40ms apart as an animation filled backwards only, so once they land the hover lift owns them again, and a note opens in the same D2Frame dialog as the account. The side column becomes the month with a dot on every day something is pinned, a ring on today and an Upcoming list, and choosing a day re-pins the board to it; below lg the month shrinks to this week's strip. Days are UTC date keys throughout, since a notice is about a day rather than an instant, and the month's length comes from day 0 of the next month. The logo is the site's own pair of D2 marks, the saturated one on a light page and the pale one on a dark page. The heart is two glyphs in one grid cell and the filled one arrives on a small overshoot. Share opens the system sheet where there is one and copies the link everywhere else, and the tick appears only when the link actually went somewhere. The media are stills for now, so real clips are a src beside the poster each post already names; the sample stills come from the host's public folder. Every colour but the D2 mark is a host token, since a logo repainted in the host's ink is not that logo, and every motion keeps its reduced motion guard.",
+    "group": "templates",
+    "category": "social",
+    "categoryLabel": "Social",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
+  },
+  {
+    "name": "pricing-01",
+    "title": "Payment Options",
+    "summary": "One plan read three ways: pay in full, spread over twelve months, or pay nothing until the job.",
+    "description": "One plan read three ways: pay in full, spread over twelve months, or pay nothing until the job. The three choices are native radio inputs rather than divs with a click handler, so the roving tab stop, the arrow key walk between options and the form value are all the browser's and none of them had to be written. That is also why the block ships no JavaScript and needs no client boundary: every option states its own cost on the line under it, always visible, so nothing on the card answers to React state and a visitor comparing the three is never one click away from the number they want to compare. The card is a D2 frame rather than a border around a border: the tray is the tinted well a raised plate needs to sit in, and the panel brings the top highlight that no border can draw. The header row takes its horizontal inset as margin rather than padding, so the rule beneath it stops where its own text does instead of running the full width of the plate, which is what keeps it reading as a divider between two questions and not as a seam in the plate itself. The header rule separates the question from the answer to a different one: what is being bought sits at its right end, a crown in the brand tone, the plan name in medium rather than semibold since this registry reserves semibold for its 13px and 14px sizes and at 16px it reads as a shout beside the prompt on the left, and the seller's wordmark. That last one is a slot and not a prop, because a logo is not a shape this block should be guessing, and it defaults to the D2 Studio lockup so the card reads as finished out of the box. The lockup is inlined as two drawings rather than one tinted by a token, for the same reason the hero blocks inline the mark: a registry item cannot ship a file into the installer's public folder, and on light the glyph is a colour wash under a highlight while on dark it is a white to grey sheen with the wash in overlay, which are two constructions and not one construction in two colours. A subheading sits under the page heading on its own measure, since it is the only line long enough to need one. The discount pill takes the fresh token rather than a green of its own, the action takes primary, and the crown takes brand, so the whole card follows a host's palette into either theme with no second copy of anything. On hover the action grows a hairline inside its own fill, which is the first layer of its shadow rather than a border or an outline: a border would grow the button, and an outline sits outside the fill even at a negative offset once a radius is involved. That is also why the elevation ramp is restated on hover and on press: one box shadow property cannot have a single layer changed without naming the rest. The line takes the button's own foreground tone, so it is a light line on the light theme's dark button and a dark line on the dark theme's light one with no second declaration, it is transparent at rest rather than absent so the colour has something to fade from, and it stays through the press because the pointer has not left. The action sits on five stacked drop shadows rather than one blur, a tight contact layer under four progressively wider and fainter ones, so it reads as held above the plate rather than resting on a smudge. The ramp grows on hover and collapses on press, so the button rises to meet the pointer and is pushed back down under it, over 200ms rather than 150 because the hover moves six shadow layers and not only a fill. Its arrow turns from diagonal to straight over the same beat, one path whose shape is animated rather than two crossfaded, since a crossfade shows both arrows at once through the middle and reads as a smudge instead of a turn. That is a geometry property animated as CSS, the same trick the theme toggle uses on its crescent, and it is why the resting arrow is written with explicit line commands rather than the shorter axis ones it could use: two paths interpolate only when their command lists match one for one. Reduced motion keeps the colour and the shadow and drops only the scale and the morph, since it is the movement that has to go and blanking the fade as well would leave the hover with no acknowledgement at all. Motion is colour, the dot and that elevation: the control's ring tints and the dot scales up from half size over 150ms, which is the whole of what a radio has to say, and every one of them drops under reduced motion.",
+    "group": "marketing",
+    "category": "pricing",
+    "categoryLabel": "Pricing",
+    "tier": "pro",
+    "dependencies": [
+      "reicon-react"
+    ]
   }
 ];

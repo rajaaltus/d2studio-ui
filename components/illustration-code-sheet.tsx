@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Code } from "lucide-react";
 import { CodeFrame } from "@/components/docs/code-frame";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,8 @@ import {
 
 // The /illustration cards keep their code out of the page: a button opens the
 // files in a side sheet. A client component so the trigger and the sheet
-// hydrate together rather than across the server boundary.
+// hydrate together rather than across the server boundary. A block with more
+// than one file shows one frame and switches between them from its top bar.
 export function IllustrationCodeSheet({
   title,
   files,
@@ -22,6 +24,9 @@ export function IllustrationCodeSheet({
   title: string;
   files: { html: string; code: string; filename: string }[];
 }) {
+  const [active, setActive] = React.useState(0);
+  const file = files[active] ?? files[0];
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -40,17 +45,127 @@ export function IllustrationCodeSheet({
           </SheetDescription>
         </SheetHeader>
         <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain p-4">
-          {files.map((f) => (
-            <CodeFrame
-              key={f.filename}
-              html={f.html}
-              code={f.code}
-              filename={f.filename}
-              className="min-w-0 shrink-0"
-            />
-          ))}
+          <CodeFrame
+            html={file.html}
+            code={file.code}
+            filename={file.filename}
+            title={
+              files.length > 1 ? (
+                <FileTabs files={files} active={active} onSelect={setActive} />
+              ) : undefined
+            }
+            className="min-w-0 shrink-0"
+          />
         </div>
       </SheetContent>
     </Sheet>
+  );
+}
+
+const basename = (path: string) => path.slice(path.lastIndexOf("/") + 1);
+
+// Tabs named by file (`moon-tile-01.tsx`, `moon-tile-01.css`). One pill sits
+// under the labels and slides to the selected tab on click (transitions.dev
+// "tabs sliding": transform and width, 200ms, strong ease-out). Arrow keys
+// move between tabs the way a tablist should, and snap: a keyboard action
+// never animates. First paint and resizes snap too, so the pill never slides
+// in from the left edge.
+function FileTabs({
+  files,
+  active,
+  onSelect,
+}: {
+  files: { filename: string }[];
+  active: number;
+  onSelect: (i: number) => void;
+}) {
+  const listRef = React.useRef<HTMLDivElement>(null);
+  const pillRef = React.useRef<HTMLSpanElement>(null);
+  const refs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  const animateNext = React.useRef(false);
+
+  // The observer reads the live index from a ref and subscribes once: a new
+  // ResizeObserver fires on observe, which would snap a click's slide.
+  const activeRef = React.useRef(active);
+
+  const place = React.useCallback((animate: boolean) => {
+    const tab = refs.current[activeRef.current];
+    const pill = pillRef.current;
+    if (!tab || !pill) return;
+    if (!animate) pill.style.transition = "none";
+    pill.style.transform = `translateX(${tab.offsetLeft}px)`;
+    pill.style.width = `${tab.offsetWidth}px`;
+    if (!animate) {
+      void pill.offsetWidth;
+      pill.style.transition = "";
+    }
+  }, []);
+
+  React.useLayoutEffect(() => {
+    activeRef.current = active;
+    place(animateNext.current);
+    animateNext.current = false;
+  }, [active, place]);
+
+  React.useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const ro = new ResizeObserver(() => place(false));
+    ro.observe(list);
+    return () => ro.disconnect();
+  }, [place]);
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    const next = (active + step + files.length) % files.length;
+    animateNext.current = false;
+    onSelect(next);
+    refs.current[next]?.focus();
+  };
+
+  return (
+    <div
+      ref={listRef}
+      role="tablist"
+      aria-label="Files"
+      onKeyDown={onKeyDown}
+      className="relative -my-0.5 -ml-2.5 flex min-w-0 items-center gap-0.5 overflow-x-auto p-0.5"
+    >
+      {/* The pill: neutral-50 with a hairline and a tight, close shadow so it
+          lifts off the neutral-200 bar. Dark mirrors it a step lighter than its
+          neutral-800 bar, with a light hairline. */}
+      <span
+        ref={pillRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0.5 left-0 w-0 rounded-[4px] bg-neutral-50 shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)] transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,width] motion-reduce:transition-none dark:bg-neutral-700/60 dark:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]"
+      />
+      {files.map((f, i) => {
+        const selected = i === active;
+        return (
+          <button
+            key={f.filename}
+            ref={(el) => {
+              refs.current[i] = el;
+            }}
+            type="button"
+            role="tab"
+            aria-selected={selected}
+            tabIndex={selected ? 0 : -1}
+            onClick={() => {
+              animateNext.current = true;
+              onSelect(i);
+            }}
+            className={
+              "relative z-[1] shrink-0 rounded-[4px] px-2 py-1 font-mono text-xs transition-[color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none " +
+              (selected ? "text-foreground" : "text-muted-foreground hover:text-foreground")
+            }
+          >
+            {basename(f.filename)}
+          </button>
+        );
+      })}
+    </div>
   );
 }

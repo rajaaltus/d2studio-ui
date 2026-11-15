@@ -60,7 +60,7 @@ export function GithubTvButton({
       rel="noopener noreferrer"
       aria-label={label}
       className={
-        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-200 dark:bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
+        "group relative inline-flex select-none items-center justify-center rounded-[12px] bg-neutral-400/80 dark:bg-neutral-950 transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent" +
         (className ? ` ${className}` : "")
       }
     >
@@ -74,7 +74,7 @@ export function GithubTvButton({
         viewBox="0 0 56 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="block text-border drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] transition-[filter] duration-300 group-hover:drop-shadow-[0_4px_14px_rgba(149,120,200,0.45)]"
+        className="block text-neutral-400 dark:text-border drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] transition-[filter] duration-300 group-hover:drop-shadow-[0_4px_14px_rgba(149,120,200,0.45)]"
       >
         <rect
           x={0.5}
@@ -84,6 +84,7 @@ export function GithubTvButton({
           rx={11.5}
           fill="url(#gh_tv_body_gradient)"
           fillOpacity={0.2}
+          className="hidden dark:block"
         />
         <rect
           x={0.5}
@@ -92,6 +93,17 @@ export function GithubTvButton({
           height={55}
           rx={11.5}
           stroke="currentColor"
+        />
+        {/* Light theme: a smoked-glass backing under the screen tint. On the
+            neutral-200 body the half-opacity tint read as mid grey and the
+            pixels washed out; dark already sits on neutral-950. */}
+        <rect
+          x={4}
+          y={4}
+          width={48}
+          height={48}
+          rx={8}
+          className="fill-neutral-800 dark:fill-transparent"
         />
         <g filter="url(#gh_tv_inner_shadow)">
           <rect
