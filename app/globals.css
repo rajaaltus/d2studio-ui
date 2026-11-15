@@ -657,11 +657,11 @@
    Light theme renders a brushed-silver chip; dark theme an anodised-black IC. */
 .luminous-spinners .chip-body {
   border-radius: 44px;
-  background: radial-gradient(140% 120% at 50% -10%, #f7f7f7 0%, #e3e3e3 50%, #c8c8c8 100%);
+  background: radial-gradient(140% 120% at 50% -10%, #ececec 0%, #d4d4d4 55%, #bababa 100%);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
-    0 28px 56px -20px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.07),
+    0 28px 56px -20px rgba(0, 0, 0, 0.2),
     0 10px 22px -12px rgba(0, 0, 0, 0.12);
 }
 .dark .luminous-spinners .chip-body {
@@ -674,7 +674,7 @@
 }
 
 .luminous-spinners .chip-stud {
-  background: radial-gradient(circle at 50% 30%, #c4c4c4 0%, #8e8e8e 70%);
+  background: radial-gradient(circle at 50% 30%, #9c9c9c 0%, #636363 70%);
   box-shadow:
     inset 0 0.5px 0 0 rgba(255, 255, 255, 0.7),
     0 0 0 0.5px rgba(0, 0, 0, 0.15);
@@ -686,13 +686,24 @@
     0 0 0 0.5px rgba(0, 0, 0, 0.6);
 }
 
+/* Light theme: a smoked-glass window set into the silver body, so the spinner
+   glows the way it does in dark rather than washing out on mid grey. The cell
+   tokens follow the window, not the page, so the off cells read as dark-mode
+   cells. The outer 1px highlight under the lip is what sells the recess. */
 .luminous-spinners .chip-panel {
+  --ls-cell-off: radial-gradient(
+    circle at 35% 30%,
+    oklch(1 0 0 / 0.045),
+    oklch(1 0 0 / 0.015) 60%,
+    transparent 100%
+  );
+  --ls-cell-stroke: oklch(1 0 0 / 0.035);
   border-radius: 30px;
-  background: radial-gradient(120% 110% at 50% 0%, #d8d8d8 0%, #b8b8b8 60%, #a8a8a8 100%);
+  background: radial-gradient(120% 110% at 50% 0%, #262523 0%, #161514 60%, #111111 100%);
   box-shadow:
-    inset 0 1px 2px 0 rgba(0, 0, 0, 0.18),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.05),
-    inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.6);
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 1px 0 0 rgba(255, 255, 255, 0.85);
 }
 .dark .luminous-spinners .chip-panel {
   background: radial-gradient(120% 110% at 50% 0%, #1a1a1a 0%, #0a0a0a 60%, #050505 100%);
@@ -1084,6 +1095,26 @@
   animation: d2-flash 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards;
 }
 
+/* Reduced motion: the sweep becomes a short fade in place (the stripes'
+   guard sits after their rule below). The flash keeps an animation rather than `none`, which would
+   leave the gradient painted at full strength. */
+@keyframes d2-flash-fade {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-d2-flash {
+    animation: d2-flash-fade 0.6s ease-out 1 forwards;
+  }
+}
+
 .d2-nav-blend {
   mix-blend-mode: normal;
 }
@@ -1102,6 +1133,11 @@
 
 .animate-d2-stripes-move {
   animation: d2-stripes-move 4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-d2-stripes-move {
+    animation: none;
+  }
 }
 
 @keyframes d2-holo-shine {
@@ -2929,73 +2965,73 @@
 @media (prefers-reduced-motion: reduce) {
   .pixel-icon--coffee .px.on { animation: none; opacity: 0.42; }
 }
-.pixel-icon--coffee .px-19 { animation-name: pi-coffee-19; }
-.pixel-icon--coffee .px-20 { animation-name: pi-coffee-20; }
-.pixel-icon--coffee .px-22 { animation-name: pi-coffee-22; }
-.pixel-icon--coffee .px-25 { animation-name: pi-coffee-25; }
-.pixel-icon--coffee .px-35 { animation-name: pi-coffee-35; }
-.pixel-icon--coffee .px-36 { animation-name: pi-coffee-36; }
-.pixel-icon--coffee .px-38 { animation-name: pi-coffee-38; }
-.pixel-icon--coffee .px-41 { animation-name: pi-coffee-41; }
-.pixel-icon--coffee .px-81 { animation-name: pi-coffee-81; }
-.pixel-icon--coffee .px-82 { animation-name: pi-coffee-82; }
-.pixel-icon--coffee .px-83 { animation-name: pi-coffee-83; }
-.pixel-icon--coffee .px-84 { animation-name: pi-coffee-84; }
-.pixel-icon--coffee .px-85 { animation-name: pi-coffee-85; }
-.pixel-icon--coffee .px-86 { animation-name: pi-coffee-86; }
-.pixel-icon--coffee .px-87 { animation-name: pi-coffee-87; }
-.pixel-icon--coffee .px-88 { animation-name: pi-coffee-88; }
-.pixel-icon--coffee .px-89 { animation-name: pi-coffee-89; }
-.pixel-icon--coffee .px-90 { animation-name: pi-coffee-90; }
-.pixel-icon--coffee .px-91 { animation-name: pi-coffee-91; }
-.pixel-icon--coffee .px-92 { animation-name: pi-coffee-92; }
-.pixel-icon--coffee .px-93 { animation-name: pi-coffee-93; }
-.pixel-icon--coffee .px-97 { animation-name: pi-coffee-97; }
-.pixel-icon--coffee .px-98 { animation-name: pi-coffee-98; }
-.pixel-icon--coffee .px-107 { animation-name: pi-coffee-107; }
-.pixel-icon--coffee .px-109 { animation-name: pi-coffee-109; }
-.pixel-icon--coffee .px-110 { animation-name: pi-coffee-110; }
-.pixel-icon--coffee .px-113 { animation-name: pi-coffee-113; }
-.pixel-icon--coffee .px-114 { animation-name: pi-coffee-114; }
-.pixel-icon--coffee .px-123 { animation-name: pi-coffee-123; }
-.pixel-icon--coffee .px-126 { animation-name: pi-coffee-126; }
-.pixel-icon--coffee .px-129 { animation-name: pi-coffee-129; }
-.pixel-icon--coffee .px-130 { animation-name: pi-coffee-130; }
-.pixel-icon--coffee .px-139 { animation-name: pi-coffee-139; }
-.pixel-icon--coffee .px-142 { animation-name: pi-coffee-142; }
-.pixel-icon--coffee .px-145 { animation-name: pi-coffee-145; }
-.pixel-icon--coffee .px-146 { animation-name: pi-coffee-146; }
-.pixel-icon--coffee .px-155 { animation-name: pi-coffee-155; }
-.pixel-icon--coffee .px-157 { animation-name: pi-coffee-157; }
-.pixel-icon--coffee .px-158 { animation-name: pi-coffee-158; }
-.pixel-icon--coffee .px-161 { animation-name: pi-coffee-161; }
-.pixel-icon--coffee .px-162 { animation-name: pi-coffee-162; }
-.pixel-icon--coffee .px-171 { animation-name: pi-coffee-171; }
-.pixel-icon--coffee .px-172 { animation-name: pi-coffee-172; }
-.pixel-icon--coffee .px-173 { animation-name: pi-coffee-173; }
-.pixel-icon--coffee .px-177 { animation-name: pi-coffee-177; }
-.pixel-icon--coffee .px-178 { animation-name: pi-coffee-178; }
-.pixel-icon--coffee .px-187 { animation-name: pi-coffee-187; }
-.pixel-icon--coffee .px-193 { animation-name: pi-coffee-193; }
-.pixel-icon--coffee .px-194 { animation-name: pi-coffee-194; }
-.pixel-icon--coffee .px-202 { animation-name: pi-coffee-202; }
-.pixel-icon--coffee .px-203 { animation-name: pi-coffee-203; }
-.pixel-icon--coffee .px-210 { animation-name: pi-coffee-210; }
-.pixel-icon--coffee .px-211 { animation-name: pi-coffee-211; }
-.pixel-icon--coffee .px-212 { animation-name: pi-coffee-212; }
-.pixel-icon--coffee .px-213 { animation-name: pi-coffee-213; }
-.pixel-icon--coffee .px-214 { animation-name: pi-coffee-214; }
-.pixel-icon--coffee .px-215 { animation-name: pi-coffee-215; }
-.pixel-icon--coffee .px-216 { animation-name: pi-coffee-216; }
-.pixel-icon--coffee .px-217 { animation-name: pi-coffee-217; }
-.pixel-icon--coffee .px-218 { animation-name: pi-coffee-218; }
-.pixel-icon--coffee .px-227 { animation-name: pi-coffee-227; }
-.pixel-icon--coffee .px-228 { animation-name: pi-coffee-228; }
-.pixel-icon--coffee .px-229 { animation-name: pi-coffee-229; }
-.pixel-icon--coffee .px-230 { animation-name: pi-coffee-230; }
-.pixel-icon--coffee .px-231 { animation-name: pi-coffee-231; }
-.pixel-icon--coffee .px-232 { animation-name: pi-coffee-232; }
-.pixel-icon--coffee .px-233 { animation-name: pi-coffee-233; }
+.pixel-icon--coffee .pxc-19 { animation-name: pi-coffee-19; }
+.pixel-icon--coffee .pxc-20 { animation-name: pi-coffee-20; }
+.pixel-icon--coffee .pxc-22 { animation-name: pi-coffee-22; }
+.pixel-icon--coffee .pxc-25 { animation-name: pi-coffee-25; }
+.pixel-icon--coffee .pxc-35 { animation-name: pi-coffee-35; }
+.pixel-icon--coffee .pxc-36 { animation-name: pi-coffee-36; }
+.pixel-icon--coffee .pxc-38 { animation-name: pi-coffee-38; }
+.pixel-icon--coffee .pxc-41 { animation-name: pi-coffee-41; }
+.pixel-icon--coffee .pxc-81 { animation-name: pi-coffee-81; }
+.pixel-icon--coffee .pxc-82 { animation-name: pi-coffee-82; }
+.pixel-icon--coffee .pxc-83 { animation-name: pi-coffee-83; }
+.pixel-icon--coffee .pxc-84 { animation-name: pi-coffee-84; }
+.pixel-icon--coffee .pxc-85 { animation-name: pi-coffee-85; }
+.pixel-icon--coffee .pxc-86 { animation-name: pi-coffee-86; }
+.pixel-icon--coffee .pxc-87 { animation-name: pi-coffee-87; }
+.pixel-icon--coffee .pxc-88 { animation-name: pi-coffee-88; }
+.pixel-icon--coffee .pxc-89 { animation-name: pi-coffee-89; }
+.pixel-icon--coffee .pxc-90 { animation-name: pi-coffee-90; }
+.pixel-icon--coffee .pxc-91 { animation-name: pi-coffee-91; }
+.pixel-icon--coffee .pxc-92 { animation-name: pi-coffee-92; }
+.pixel-icon--coffee .pxc-93 { animation-name: pi-coffee-93; }
+.pixel-icon--coffee .pxc-97 { animation-name: pi-coffee-97; }
+.pixel-icon--coffee .pxc-98 { animation-name: pi-coffee-98; }
+.pixel-icon--coffee .pxc-107 { animation-name: pi-coffee-107; }
+.pixel-icon--coffee .pxc-109 { animation-name: pi-coffee-109; }
+.pixel-icon--coffee .pxc-110 { animation-name: pi-coffee-110; }
+.pixel-icon--coffee .pxc-113 { animation-name: pi-coffee-113; }
+.pixel-icon--coffee .pxc-114 { animation-name: pi-coffee-114; }
+.pixel-icon--coffee .pxc-123 { animation-name: pi-coffee-123; }
+.pixel-icon--coffee .pxc-126 { animation-name: pi-coffee-126; }
+.pixel-icon--coffee .pxc-129 { animation-name: pi-coffee-129; }
+.pixel-icon--coffee .pxc-130 { animation-name: pi-coffee-130; }
+.pixel-icon--coffee .pxc-139 { animation-name: pi-coffee-139; }
+.pixel-icon--coffee .pxc-142 { animation-name: pi-coffee-142; }
+.pixel-icon--coffee .pxc-145 { animation-name: pi-coffee-145; }
+.pixel-icon--coffee .pxc-146 { animation-name: pi-coffee-146; }
+.pixel-icon--coffee .pxc-155 { animation-name: pi-coffee-155; }
+.pixel-icon--coffee .pxc-157 { animation-name: pi-coffee-157; }
+.pixel-icon--coffee .pxc-158 { animation-name: pi-coffee-158; }
+.pixel-icon--coffee .pxc-161 { animation-name: pi-coffee-161; }
+.pixel-icon--coffee .pxc-162 { animation-name: pi-coffee-162; }
+.pixel-icon--coffee .pxc-171 { animation-name: pi-coffee-171; }
+.pixel-icon--coffee .pxc-172 { animation-name: pi-coffee-172; }
+.pixel-icon--coffee .pxc-173 { animation-name: pi-coffee-173; }
+.pixel-icon--coffee .pxc-177 { animation-name: pi-coffee-177; }
+.pixel-icon--coffee .pxc-178 { animation-name: pi-coffee-178; }
+.pixel-icon--coffee .pxc-187 { animation-name: pi-coffee-187; }
+.pixel-icon--coffee .pxc-193 { animation-name: pi-coffee-193; }
+.pixel-icon--coffee .pxc-194 { animation-name: pi-coffee-194; }
+.pixel-icon--coffee .pxc-202 { animation-name: pi-coffee-202; }
+.pixel-icon--coffee .pxc-203 { animation-name: pi-coffee-203; }
+.pixel-icon--coffee .pxc-210 { animation-name: pi-coffee-210; }
+.pixel-icon--coffee .pxc-211 { animation-name: pi-coffee-211; }
+.pixel-icon--coffee .pxc-212 { animation-name: pi-coffee-212; }
+.pixel-icon--coffee .pxc-213 { animation-name: pi-coffee-213; }
+.pixel-icon--coffee .pxc-214 { animation-name: pi-coffee-214; }
+.pixel-icon--coffee .pxc-215 { animation-name: pi-coffee-215; }
+.pixel-icon--coffee .pxc-216 { animation-name: pi-coffee-216; }
+.pixel-icon--coffee .pxc-217 { animation-name: pi-coffee-217; }
+.pixel-icon--coffee .pxc-218 { animation-name: pi-coffee-218; }
+.pixel-icon--coffee .pxc-227 { animation-name: pi-coffee-227; }
+.pixel-icon--coffee .pxc-228 { animation-name: pi-coffee-228; }
+.pixel-icon--coffee .pxc-229 { animation-name: pi-coffee-229; }
+.pixel-icon--coffee .pxc-230 { animation-name: pi-coffee-230; }
+.pixel-icon--coffee .pxc-231 { animation-name: pi-coffee-231; }
+.pixel-icon--coffee .pxc-232 { animation-name: pi-coffee-232; }
+.pixel-icon--coffee .pxc-233 { animation-name: pi-coffee-233; }
 
 @keyframes pi-coffee-19 {
   0.00%, 7.13% { opacity: 0.450; }

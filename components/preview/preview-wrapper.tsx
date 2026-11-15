@@ -32,6 +32,8 @@ interface PreviewWrapperProps {
   children: React.ReactNode;
   componentName: string;
   code?: string;
+  /** The built item's files, for the Code tab's download (zip when several). */
+  files?: { path: string; content: string }[];
   className?: string;
   minHeight?: string;
   iframeHeight?: number;
@@ -44,6 +46,7 @@ export function PreviewWrapper({
   children,
   componentName,
   code,
+  files,
   className,
   minHeight = "400px",
   iframeHeight = 930,
@@ -279,6 +282,9 @@ export function PreviewWrapper({
                 code={code}
                 language="tsx"
                 filename={`${componentName}.tsx`}
+                files={files}
+                // Pro code is never offered as a file, only free items.
+                downloadable={accessTier === "free"}
                 withMeta={true}
               />
             ) : (

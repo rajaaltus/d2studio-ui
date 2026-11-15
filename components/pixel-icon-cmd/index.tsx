@@ -326,7 +326,7 @@ export function PixelIconCmd({ className }: PixelIconCmdProps) {
     cells.push(
       <div
         key={i}
-        className={mask.has(i) ? `px on px-${i}` : "px"}
+        className={mask.has(i) ? `px on pxc-${i}` : "px"}
       />,
     );
   }

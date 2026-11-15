@@ -86,18 +86,23 @@ export function FooterIllustrationCard() {
           } as React.CSSProperties
         }
       >
-        {/* Base: dim wordmark */}
+        {/* Base: dim wordmark. Light theme sits a step stronger: at 25%/10% the
+            lower line all but vanished into the near-white page. */}
         <span
-          className={`${WORDMARK_CLASSES} bg-gradient-to-b from-foreground/25 via-foreground/10 to-transparent`}
+          className={`${WORDMARK_CLASSES} bg-gradient-to-b from-foreground/40 via-foreground/[0.18] to-transparent dark:from-foreground/25 dark:via-foreground/10`}
         >
           D2 STUDIO
         </span>
 
-        {/* Light theme: brand gradient reveals following the cursor (default state is gray) */}
+        {/* Light theme: brand gradient reveals following the cursor (default
+            state is gray). Normal blend, not plus-lighter: lightening onto a
+            near-white page only produced a washed pastel. Fades in with a
+            slight blur rather than popping in when the pointer arrives. */}
         <span
-          className="pointer-events-none absolute inset-0 dark:hidden flex items-end justify-center px-4 pt-8 mix-blend-plus-lighter"
+          className="pointer-events-none absolute inset-0 dark:hidden flex items-end justify-center px-4 pt-8 mix-blend-normal transition-[opacity,filter] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-opacity"
           style={{
-            opacity: 0.85,
+            opacity: hovering ? 0.75 : 0,
+            filter: hovering ? "blur(0px)" : "blur(4px)",
             WebkitMaskImage:
               "radial-gradient(circle 220px at var(--reveal-x) var(--reveal-y), black 0%, black 30%, rgba(0,0,0,0.5) 65%, transparent 100%)",
             maskImage:

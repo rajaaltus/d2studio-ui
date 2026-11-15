@@ -72,15 +72,18 @@ function CommandFrame({ prefix, args }: { prefix: string; args: string }) {
   const [manager, choose] = useManager();
   const command = `${prefix}${args}`;
 
+  // Same bar and chip as the code frame and the illustration file tabs. The
+  // pill overrides carry `!`: the `.t-tabs-*` rules in globals.css are
+  // unlayered, so they beat layered utilities on specificity alone.
   return (
     <div className="overflow-hidden rounded-xl border bg-muted/30">
-      <div className="flex items-center justify-between gap-2 border-b px-2 py-1.5">
+      <div className="flex items-center justify-between gap-2 border-b bg-neutral-200/60 px-2 py-1.5 dark:bg-neutral-800/80">
         <SlidingTabs
           value={manager}
           onValueChange={choose}
           tabs={MANAGERS.map(({ value, label }) => ({ value, label }))}
           aria-label="Package manager"
-          className="bg-transparent [&_.t-tab]:px-2 [&_.t-tab]:py-0.5 [&_.t-tab]:font-mono [&_.t-tab]:text-xs [&_.t-tabs-pill]:bg-foreground/[0.07] [&_.t-tabs-pill]:shadow-none"
+          className="bg-neutral-100/80! shadow-[inset_0_0_0_1px_rgb(23_23_23/0.10)]! dark:bg-[oklch(1_0_0/0.05)]! dark:shadow-[inset_0_0_0_1px_oklch(1_0_0/0.06)]! [&_.t-tab]:rounded-[4px]! [&_.t-tab]:px-2 [&_.t-tab]:py-0.5 [&_.t-tab]:font-mono [&_.t-tab]:text-xs [&_.t-tabs-pill]:rounded-[4px]! [&_.t-tabs-pill]:bg-neutral-50! [&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)]! dark:[&_.t-tabs-pill]:bg-neutral-700/60! dark:[&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]!"
         />
         <CopyIconButton value={command} label="Copy command" />
       </div>

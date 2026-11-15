@@ -2,7 +2,7 @@
    own classes, so dropping the file into a project touches nothing else.
 
    The scene keeps the source drawing's night colours in both themes; only the
-   rim follows the page, light grey in light and the source's dark rim in
+   rim follows the page, neutral-300 in light and the source's dark rim in
    dark. The dark test is Tailwind's own: inside `.dark` unless a nearer
    `.theme-light` pins the subtree light. */
 
@@ -22,8 +22,10 @@
   --mt2-glow-deep: #040b4d;
   --mt2-lift: #000000;
   --mt2-lift-strength: 0.75;
-  --mt2-rim-top: #f4f4f7;
-  --mt2-rim-bottom: #dcdce6;
+  --mt2-rim-top: #d4d4d4; /* neutral-300 */
+  --mt2-rim-bottom: #d4d4d4;
+  /* Light: a close, subtle contact shadow that sets the rim off the page. */
+  --mt2-frame-shadow: drop-shadow(0 0.5px 0.75px rgb(23 23 23 / 0.18)) drop-shadow(0 1px 2px rgb(23 23 23 / 0.06));
 
   /* One lap and how many a play runs. The component ends the play at the same
      total, so change both together. */
@@ -34,9 +36,15 @@
 }
 
 .mt2-root:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)) {
+  --mt2-frame-shadow: none;
   --mt2-rim-top: #373535;
   --mt2-rim-bottom: #141313;
 }
+
+.mt2-root > svg {
+  filter: var(--mt2-frame-shadow);
+}
+
 
 .mt2-blend {
   mix-blend-mode: plus-lighter;

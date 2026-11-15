@@ -1,0 +1,53 @@
+/* Particle Owl — the status line on the card head, and the only styling in the
+   block Tailwind cannot express: keyframes. Everything is prefixed po- and
+   nothing here is a bare element or utility selector, so dropping the file into
+   a project touches nothing but this block. Imported by particle-owl.tsx, so it
+   arrives with the component rather than needing a line in the host's
+   globals.css. */
+
+/* Position decreasing, so the tile travels left and the bright band with it.
+   Named for the sweep rather than for .po-status, which is now its only user:
+   the label this was written for is gone, and the animation is the shape, not
+   the element. */
+@keyframes po-shimmer-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* The status line: a monochrome brushed-metal sweep. A narrow specular band
+   travels through the text, the way a highlight crosses a milled edge; the
+   tile is 200% wide and its first and last stop are the same, so the loop
+   never jumps. It sits over the plumage, which is the only colour on the card
+   worth looking at — a second hue here competes with it.
+
+   Looping, unlike globals.css's .t-shimmer, which deliberately stops after
+   three passes: that one marks a pending state, where a highlight still
+   travelling a minute in reads as a stuck page. This line reports work in
+   progress on a card whose particles twinkle forever — here it is the shimmer
+   *stopping* that would read as broken. */
+.po-status {
+  background-image: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: po-shimmer-sweep 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Literal white, not a token: this line is over the plumage, not the page. */
+  .po-status {
+    animation: none;
+    background-image: none;
+    color: rgba(255, 255, 255, 0.92);
+  }
+}

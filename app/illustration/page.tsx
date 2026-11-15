@@ -13,6 +13,11 @@ import RawChip from "@/registry/default/components/raw-chip";
 import MoonTile from "@/registry/default/components/moon-tile-01";
 import MoonWindow from "@/registry/default/components/moon-tile-02";
 import MoonCard from "@/registry/default/components/moon-tile-03";
+import ParticlePortrait from "@/registry/default/components/particle-portrait";
+import ParticleOwl from "@/registry/default/components/particle-owl";
+import ParticleLion from "@/registry/default/components/particle-lion";
+import GithubTv from "@/registry/default/components/github-tv";
+import CoffeeTv from "@/registry/default/components/coffee-tv";
 import { ProCta } from "@/components/blocks/pro-grid";
 import { IllustrationReel } from "@/components/illustration-reel";
 import { proShelfHref } from "@/lib/pro";
@@ -23,6 +28,78 @@ export const metadata: Metadata = {
   description:
     "Power Chip, an animated SVG of a RAW chip powering six tiles, ready to copy and paste. Plus the full illustration library: isometric scenes, particle portraits, logos and screens.",
 };
+
+// The particle and TV cards, moved over from pro. Each ships as a full screen
+// section, so the stage drops that floor (`*:min-h-0!`). The particle `source.ts` files are left out of the code
+// sheet: each is one inlined image, 100kB+ of base64 nobody reads, and the
+// install still carries it.
+const MOVED = [
+  {
+    title: "Particle Portrait",
+    name: "particle-portrait",
+    files: ["particle-portrait.tsx"],
+    art: (
+      <Fit className="aspect-[3/4]">
+        <ParticlePortrait />
+      </Fit>
+    ),
+  },
+  {
+    title: "Particle Owl",
+    name: "particle-owl",
+    files: ["particle-owl.tsx", "particle-owl/particle-owl.css"],
+    art: (
+      <Fit className="aspect-square">
+        <ParticleOwl />
+      </Fit>
+    ),
+  },
+  {
+    title: "Particle Lion",
+    name: "particle-lion",
+    files: ["particle-lion.tsx"],
+    art: (
+      <Fit className="aspect-square">
+        <ParticleLion />
+      </Fit>
+    ),
+  },
+  {
+    title: "GitHub TV",
+    name: "github-tv",
+    files: ["github-tv.tsx", "github-tv/github-card.tsx", "github-tv/github-tv.css"],
+    art: <GithubTv />,
+  },
+  {
+    title: "Coffee TV",
+    name: "coffee-tv",
+    files: ["coffee-tv.tsx", "coffee-tv/coffee-card.tsx", "coffee-tv/coffee-tv.css"],
+    art: (
+      <Fit className="aspect-square">
+        <CoffeeTv />
+      </Fit>
+    ),
+  },
+];
+
+// The particle canvases and the coffee mount are sized by their width, and
+// left in the flow they grow the 4:3 stage to fit. Laid over the stage instead, it takes the stage's height
+// and derives its width from its own aspect ratio.
+function Fit({ className, children }: { className: string; children: React.ReactNode }) {
+  return (
+    <div className="absolute inset-4 flex justify-center">
+      {/* min-w-0: the canvas carries its pixel width as an attribute, which
+          would otherwise set this box's minimum and push it past the stage. */}
+      <div className={cn("h-full min-w-0 *:min-h-0!", className)}>{children}</div>
+    </div>
+  );
+}
+
+const readComponent = (file: string) =>
+  readFile(
+    path.join(process.cwd(), "registry", "default", "components", file),
+    "utf8",
+  );
 
 export default async function IllustrationPage() {
   const [
@@ -70,6 +147,21 @@ export default async function IllustrationPage() {
     highlight(cardSource),
     highlight(cardCss, "css"),
   ]);
+  const moved = await Promise.all(
+    MOVED.map(async (item) => ({
+      ...item,
+      files: await Promise.all(
+        item.files.map(async (file) => {
+          const code = await readComponent(file);
+          return {
+            html: await highlight(code, file.endsWith(".css") ? "css" : undefined),
+            code,
+            filename: `components/${file}`,
+          };
+        }),
+      ),
+    })),
+  );
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background">
@@ -164,6 +256,17 @@ export default async function IllustrationPage() {
         >
           <MoonCard />
         </IllustrationRow>
+
+        {moved.map((item) => (
+          <IllustrationRow
+            key={item.name}
+            title={item.title}
+            name={item.name}
+            files={item.files}
+          >
+            {item.art}
+          </IllustrationRow>
+        ))}
       </section>
 
       <ProIllustrationWall />
@@ -222,7 +325,7 @@ function IllustrationRow({
 // ../pro-d2/lib/blocks.ts), not the mirror's: the mirror only carries what the
 // live site serves, which is a fraction of the library. Recount after a pro
 // release.
-const PRO_ILLUSTRATION_COUNT = 74;
+const PRO_ILLUSTRATION_COUNT = 101;
 
 function ProIllustrationWall() {
   return (

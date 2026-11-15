@@ -3097,7 +3097,7 @@ function ControlGroup({
   children: React.ReactNode;
 }) {
   return (
-    <div className="group/control space-y-2 rounded-lg border border-[var(--ls-border)] bg-gradient-to-b from-black/[0.04] to-black/[0.015] p-3 shadow-[0_1px_0_0_rgba(255,255,255,0.6)_inset,0_1px_2px_0_rgba(0,0,0,0.06)] backdrop-blur-sm transition-colors hover:border-[var(--ls-border)] dark:border-[var(--ls-border)]/70 dark:from-white/[0.05] dark:to-white/[0.015] dark:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_1px_2px_0_rgba(0,0,0,0.25)]">
+    <div className="group/control space-y-2 rounded-lg border border-[var(--ls-border)] bg-[var(--ls-card)] p-3 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] dark:bg-transparent dark:bg-gradient-to-b backdrop-blur-sm transition-colors hover:border-[var(--ls-border)] dark:border-[var(--ls-border)]/70 dark:from-white/[0.05] dark:to-white/[0.015] dark:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_1px_2px_0_rgba(0,0,0,0.25)]">
       <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
         {label}
       </p>
@@ -3198,7 +3198,7 @@ function SliderControl({
   );
 
   return (
-    <div className="space-y-2 rounded-lg border border-[var(--ls-border)] bg-gradient-to-b from-black/[0.04] to-black/[0.015] p-3 shadow-[0_1px_0_0_rgba(255,255,255,0.6)_inset,0_1px_2px_0_rgba(0,0,0,0.06)] transition-colors hover:border-[var(--ls-border)] dark:border-[var(--ls-border)]/70 dark:from-white/[0.05] dark:to-white/[0.015] dark:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_1px_2px_0_rgba(0,0,0,0.25)]">
+    <div className="space-y-2 rounded-lg border border-[var(--ls-border)] bg-[var(--ls-card)] p-3 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] dark:bg-transparent dark:bg-gradient-to-b transition-colors hover:border-[var(--ls-border)] dark:border-[var(--ls-border)]/70 dark:from-white/[0.05] dark:to-white/[0.015] dark:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_1px_2px_0_rgba(0,0,0,0.25)]">
       <div className="flex items-center justify-between">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--ls-muted-foreground)]">
           {label}
@@ -3280,7 +3280,7 @@ function SliderControl({
                 ? ({ ["--lvl-thumb-shadow" as string]: thumbShadow } as React.CSSProperties)
                 : undefined
             }
-            className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-black/10 [&::-webkit-slider-thumb]:shadow-[var(--lvl-thumb-shadow)] [&::-webkit-slider-thumb]:transition-[transform,box-shadow] [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:shadow-md"
+            className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#fafafa] [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-black/15 [&::-webkit-slider-thumb]:shadow-[var(--lvl-thumb-shadow)] [&::-webkit-slider-thumb]:transition-[transform,box-shadow] [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-[#fafafa] [&::-moz-range-thumb]:shadow-md"
           />
         </div>
       ) : (
@@ -3294,7 +3294,7 @@ function SliderControl({
           style={{
             background: `linear-gradient(to right, var(--ls-foreground) 0%, var(--ls-foreground) ${filled}%, var(--ls-border) ${filled}%, var(--ls-border) 100%)`,
           }}
-          className="h-1.5 w-full cursor-pointer appearance-none rounded-full accent-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-[0_1px_3px_rgba(0,0,0,0.5),0_0_0_1px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.9)] [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-black/10 [&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:hover:scale-110 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:shadow-md"
+          className="h-1.5 w-full cursor-pointer appearance-none rounded-full accent-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#fafafa] [&::-webkit-slider-thumb]:shadow-[0_1px_3px_rgba(0,0,0,0.5),0_0_0_1px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.9)] [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-black/15 [&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:hover:scale-110 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-[#fafafa] [&::-moz-range-thumb]:shadow-md"
         />
       )}
       {endLabels && (

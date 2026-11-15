@@ -4502,6 +4502,408 @@ export const PRO_SPINNERS: ProSpinner[] = [
     }
   },
   {
+    "name": "pro-80",
+    "color": "crimson",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": null,
+      "rows": 5,
+      "cols": 5,
+      "interval": 110,
+      "frames": [
+        [
+          12
+        ],
+        [],
+        [
+          12
+        ],
+        [
+          6,
+          8,
+          16,
+          18
+        ],
+        [
+          2,
+          10,
+          14,
+          22
+        ],
+        [
+          0,
+          4,
+          20,
+          24
+        ]
+      ]
+    }
+  },
+  {
+    "name": "pro-81",
+    "color": "hotpink",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": 3,
+      "rows": null,
+      "cols": null,
+      "interval": 90,
+      "frames": [
+        [
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "name": "pro-82",
+    "color": "violet",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": 3,
+      "rows": null,
+      "cols": null,
+      "interval": 90,
+      "frames": [
+        [
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          6
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "name": "pro-83",
+    "color": "blue",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": 3,
+      "rows": null,
+      "cols": null,
+      "interval": 70,
+      "frames": [
+        [
+          0,
+          0
+        ],
+        [],
+        [
+          1,
+          3
+        ],
+        [],
+        [
+          2,
+          4,
+          6
+        ],
+        [],
+        [
+          5,
+          7
+        ],
+        [],
+        [
+          8,
+          8
+        ],
+        [],
+        [
+          5,
+          7
+        ],
+        [],
+        [
+          2,
+          4,
+          6
+        ],
+        [],
+        [
+          1,
+          3
+        ],
+        []
+      ]
+    }
+  },
+  {
+    "name": "pro-84",
+    "color": "crimson",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": 3,
+      "rows": null,
+      "cols": null,
+      "interval": 70,
+      "frames": [
+        [
+          0,
+          8
+        ],
+        [],
+        [
+          1,
+          3,
+          5,
+          7
+        ],
+        [],
+        [
+          2,
+          2,
+          4,
+          4,
+          6,
+          6
+        ],
+        [],
+        [
+          1,
+          3,
+          5,
+          7
+        ],
+        [],
+        [
+          0,
+          8
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "name": "pro-85",
+    "color": "hotpink",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": 3,
+      "rows": null,
+      "cols": null,
+      "interval": 85,
+      "frames": [
+        [
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8
+        ],
+        [],
+        [],
+        [],
+        [
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          4,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          6
+        ],
+        [],
+        [],
+        [],
+        [
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          4,
+          6
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0
+        ],
+        [],
+        [],
+        [],
+        [
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          0,
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2
+        ],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "name": "pro-86",
+    "color": "violet",
+    "animation": null,
+    "shelf": "pro",
+    "pattern": {
+      "size": 3,
+      "rows": null,
+      "cols": null,
+      "interval": 75,
+      "frames": [
+        [
+          0
+        ],
+        [
+          7
+        ],
+        [
+          3
+        ],
+        [],
+        [
+          6
+        ],
+        [
+          1
+        ],
+        [],
+        [
+          4
+        ],
+        [],
+        [
+          2
+        ],
+        [
+          8
+        ],
+        [
+          5
+        ],
+        [],
+        [
+          0
+        ],
+        [
+          7
+        ],
+        [
+          3
+        ],
+        [],
+        [
+          6
+        ],
+        [],
+        [
+          1
+        ],
+        [
+          8
+        ],
+        [
+          4
+        ],
+        [],
+        [
+          5
+        ]
+      ]
+    }
+  },
+  {
     "name": "spiral-in-5",
     "color": "crimson",
     "animation": null,

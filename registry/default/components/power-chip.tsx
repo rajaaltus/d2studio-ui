@@ -99,11 +99,11 @@ const LABEL =
 const MOTION = `
   .d2i-art {
     --d2i-tile-shade: #A1A1AA;
-    --d2i-b1: #0BA5D8;
-    --d2i-b2: #16B33A;
-    --d2i-b3: #E0A800;
-    --d2i-b4: #E0368F;
-    --d2i-b5: #7C4DFF;
+    --d2i-b1: #65C1EA;
+    --d2i-b2: #69CF72;
+    --d2i-b3: #F8C143;
+    --d2i-b4: #FF87BB;
+    --d2i-b5: #B1A7FE;
   }
   .d2i-b1 { stop-color: var(--d2i-b1); }
   .d2i-b2 { stop-color: var(--d2i-b2); }
@@ -115,6 +115,9 @@ const MOTION = `
   .d2i-icon { fill: var(--d2i-icon, #A1A1AA); }
   .d2i-wire-end { stop-color: var(--d2i-wire, #D4D4D8); stop-opacity: 0.45; }
   .d2i-wire-mid { stop-color: var(--d2i-wire-mid, #C4C4CC); }
+  /* Glow is dark only: on the light ground the halo reads as a smudge
+     rather than light, so light keeps the crisp stroke alone. */
+  .dark .d2i-glow { filter: url(#d2i-glow); }
   .dark .d2i-art {
     --d2i-tile: #18181B;
     --d2i-tile-edge: #1F1F23;
@@ -185,7 +188,7 @@ const PowerChip = ({
       stroke="url(#d2i-brand)"
       strokeWidth={2}
       strokeLinecap="round"
-      filter="url(#d2i-glow)"
+      className="d2i-glow"
     >
       {WIRES.map((d, i) => (
         <path key={d} d={d} pathLength={1} className="d2i-out" data-i={i % 3} />
@@ -246,7 +249,7 @@ const PowerChip = ({
         stroke="#27272A"
       />
       <rect
-        className="d2i-charge"
+        className="d2i-charge d2i-glow"
         x={CARD.x + 0.5}
         y={CARD.y + 0.5}
         width={CARD.w - 1}
@@ -254,7 +257,6 @@ const PowerChip = ({
         rx={5.5}
         stroke="url(#d2i-brand)"
         strokeWidth={1.5}
-        filter="url(#d2i-glow)"
       />
     </g>
 
@@ -290,7 +292,7 @@ const PowerChip = ({
           </g>
         </g>
         <rect
-          className="d2i-hit"
+          className="d2i-hit d2i-glow"
           data-i={i % 3}
           x={t.x + 0.5}
           y={t.y + 0.5}
@@ -299,14 +301,13 @@ const PowerChip = ({
           rx={15.5}
           stroke="url(#d2i-brand)"
           strokeWidth={1.5}
-          filter="url(#d2i-glow)"
         />
       </g>
     ))}
 
     <defs>
-      {/* D2 holographic brand gradient across the artboard; deeper stops in
-          light so the pastels hold contrast on a pale ground */}
+      {/* D2 holographic brand gradient across the artboard; lighter pastel stops in
+          light, same hues, no glow */}
       <linearGradient
         id="d2i-brand"
         x1={60}

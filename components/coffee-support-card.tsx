@@ -32,7 +32,7 @@ export function CoffeeSupportCard({
   };
 
   const chipShellClass =
-    "relative rounded-xl p-2 ring-1 ring-inset ring-black/[0.06] dark:ring-white/5 bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800/90 dark:via-neutral-900 dark:to-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.06),0_8px_22px_-10px_rgba(15,23,42,0.22)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.6),0_6px_18px_-8px_rgba(0,0,0,0.6)]";
+    "relative rounded-xl p-2 ring-1 ring-inset ring-black/[0.06] dark:ring-white/5 bg-neutral-200 dark:bg-transparent dark:bg-gradient-to-br dark:from-neutral-800/90 dark:via-neutral-900 dark:to-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.06),0_8px_22px_-10px_rgba(15,23,42,0.22)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.6),0_6px_18px_-8px_rgba(0,0,0,0.6)]";
 
   const chipPin = (
     <>

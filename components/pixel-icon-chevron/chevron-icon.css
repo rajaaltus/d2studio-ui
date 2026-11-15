@@ -38,18 +38,18 @@
     0 0 3px #f8fafc80,
     0 0 6px #f8fafc55;
 }
-.pixel-icon--chevron-right-outline-18 .px-10 { animation-name: pi-chevron-right-outline-18-10; }
-.pixel-icon--chevron-right-outline-18 .px-11 { animation-name: pi-chevron-right-outline-18-11; }
-.pixel-icon--chevron-right-outline-18 .px-19 { animation-name: pi-chevron-right-outline-18-19; }
-.pixel-icon--chevron-right-outline-18 .px-20 { animation-name: pi-chevron-right-outline-18-20; }
-.pixel-icon--chevron-right-outline-18 .px-28 { animation-name: pi-chevron-right-outline-18-28; }
-.pixel-icon--chevron-right-outline-18 .px-29 { animation-name: pi-chevron-right-outline-18-29; }
-.pixel-icon--chevron-right-outline-18 .px-36 { animation-name: pi-chevron-right-outline-18-36; }
-.pixel-icon--chevron-right-outline-18 .px-37 { animation-name: pi-chevron-right-outline-18-37; }
-.pixel-icon--chevron-right-outline-18 .px-43 { animation-name: pi-chevron-right-outline-18-43; }
-.pixel-icon--chevron-right-outline-18 .px-44 { animation-name: pi-chevron-right-outline-18-44; }
-.pixel-icon--chevron-right-outline-18 .px-50 { animation-name: pi-chevron-right-outline-18-50; }
-.pixel-icon--chevron-right-outline-18 .px-51 { animation-name: pi-chevron-right-outline-18-51; }
+.pixel-icon--chevron-right-outline-18 .pxc-10 { animation-name: pi-chevron-right-outline-18-10; }
+.pixel-icon--chevron-right-outline-18 .pxc-11 { animation-name: pi-chevron-right-outline-18-11; }
+.pixel-icon--chevron-right-outline-18 .pxc-19 { animation-name: pi-chevron-right-outline-18-19; }
+.pixel-icon--chevron-right-outline-18 .pxc-20 { animation-name: pi-chevron-right-outline-18-20; }
+.pixel-icon--chevron-right-outline-18 .pxc-28 { animation-name: pi-chevron-right-outline-18-28; }
+.pixel-icon--chevron-right-outline-18 .pxc-29 { animation-name: pi-chevron-right-outline-18-29; }
+.pixel-icon--chevron-right-outline-18 .pxc-36 { animation-name: pi-chevron-right-outline-18-36; }
+.pixel-icon--chevron-right-outline-18 .pxc-37 { animation-name: pi-chevron-right-outline-18-37; }
+.pixel-icon--chevron-right-outline-18 .pxc-43 { animation-name: pi-chevron-right-outline-18-43; }
+.pixel-icon--chevron-right-outline-18 .pxc-44 { animation-name: pi-chevron-right-outline-18-44; }
+.pixel-icon--chevron-right-outline-18 .pxc-50 { animation-name: pi-chevron-right-outline-18-50; }
+.pixel-icon--chevron-right-outline-18 .pxc-51 { animation-name: pi-chevron-right-outline-18-51; }
 
 @keyframes pi-chevron-right-outline-18-10 {
   0.00%, 6.24% { opacity: 0.400; }

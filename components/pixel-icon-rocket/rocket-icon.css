@@ -1,5 +1,7 @@
 /* Pixel-animated rocket icon — drop-in HTML + CSS, no JavaScript. */
-/* Light mode — saturated orange cells with soft halo for visibility on light bg. */
+/* Light mode: the same coral as dark, softened toward the page and with a
+   1px body instead of a glow, so it sits at the weight of the grey line-art
+   icons beside it rather than reading as a red speckle. */
 .pixel-icon--rocket-fill-24 {
   display: inline-grid;
   grid-template-columns: repeat(32, 1px);
@@ -13,15 +15,8 @@
   opacity: 0;
 }
 .pixel-icon--rocket-fill-24 .px.on {
-  background: linear-gradient(
-    135deg,
-    color-mix(in oklab, #ea580c 85%, white),
-    color-mix(in oklab, #ea580c 90%, black)
-  );
-  box-shadow:
-    0 0 1px #ea580c,
-    0 0 3px #f9731680,
-    0 0 6px #f9731655;
+  background: #ea5f3d;
+  box-shadow: 0 0 0 0.5px color-mix(in oklab, #ea5f3d 60%, transparent);
   animation: pi-rocket-pulse 1200ms steps(1, end) infinite;
 }
 

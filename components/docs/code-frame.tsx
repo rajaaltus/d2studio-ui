@@ -3,12 +3,16 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { CopyIconButton } from "./copy-icon-button";
+import { DownloadIconButton } from "./download-icon-button";
 
 /**
  * Server-highlighted code (lib/highlight.ts) in the docs' file frame. Long
  * files open clipped with a fade and expand in place; the fade is a gradient,
  * not a mask, so it stays cheap on a page with several of these. `scroll`
- * caps the height instead and scrolls inside the frame.
+ * caps the height instead and scrolls inside the frame. A frame with a
+ * `filename` also gets a save-as-file button beside copy; `downloadable={false}`
+ * turns it off. `title` replaces the filename in the top bar (the code sheet
+ * puts its file switcher there); download and copy still use `filename`.
  */
 export function CodeFrame({
   html,
@@ -16,6 +20,8 @@ export function CodeFrame({
   filename,
   collapsible = false,
   scroll = false,
+  downloadable = true,
+  title,
   className,
 }: {
   html: string;
@@ -23,6 +29,8 @@ export function CodeFrame({
   filename?: string;
   collapsible?: boolean;
   scroll?: boolean;
+  downloadable?: boolean;
+  title?: React.ReactNode;
   className?: string;
 }) {
   const long = collapsible && code.split("\n").length > 18;
@@ -31,9 +39,14 @@ export function CodeFrame({
   return (
     <div className={cn("overflow-hidden rounded-xl border bg-muted/30", className)}>
       {filename ? (
-        <div className="flex items-center justify-between gap-2 border-b py-1.5 pl-4 pr-2">
-          <span className="truncate font-mono text-xs text-muted-foreground">{filename}</span>
-          <CopyIconButton value={code} label={`Copy ${filename}`} />
+        <div className="flex items-center justify-between gap-2 border-b bg-neutral-200/60 py-1.5 pl-4 pr-2 dark:bg-neutral-800/80">
+          {title ?? (
+            <span className="truncate font-mono text-xs text-muted-foreground">{filename}</span>
+          )}
+          <div className="flex shrink-0 items-center gap-0.5">
+            {downloadable && <DownloadIconButton value={code} filename={filename} />}
+            <CopyIconButton value={code} label={`Copy ${filename}`} />
+          </div>
         </div>
       ) : (
         <CopyIconButton value={code} label="Copy code" className="float-right m-2" />

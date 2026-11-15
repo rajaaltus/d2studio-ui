@@ -19,7 +19,7 @@ export function PixelIconChevron({ className }: PixelIconChevronProps) {
     cells.push(
       <div
         key={i}
-        className={on ? `px on px-${i}` : "px"}
+        className={on ? `px on pxc-${i}` : "px"}
       />,
     );
   }
