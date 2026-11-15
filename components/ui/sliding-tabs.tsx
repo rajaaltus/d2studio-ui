@@ -48,10 +48,22 @@ export function SlidingTabs({
     const active = bar.querySelector<HTMLElement>('[aria-selected="true"]');
     if (!active) return;
 
+    // Measured from client rects, not offsetLeft/offsetWidth: those round to
+    // whole pixels while a tab's width is usually fractional (a 4-letter mono
+    // label is 53.6px), so a rounded pill drifts up to ~0.6px and its inset
+    // in the track reads uneven. Divided by the bar's on-screen scale so a
+    // transformed ancestor (a sheet scaling in) can't skew the numbers.
     const write = () => {
-      pill.style.transform = `translateX(${active.offsetLeft}px)`;
-      pill.style.width = `${active.offsetWidth}px`;
-      pill.style.height = `${active.offsetHeight}px`;
+      const b = bar.getBoundingClientRect();
+      const a = active.getBoundingClientRect();
+      // Layout width from computed style: fractional and untransformed, unlike
+      // offsetWidth, which rounds and would itself skew the ratio.
+      const layoutW = parseFloat(getComputedStyle(bar).width);
+      const scale = layoutW ? b.width / layoutW : 1;
+      const x = (a.left - b.left) / scale - bar.clientLeft + bar.scrollLeft;
+      pill.style.transform = `translateX(${x}px)`;
+      pill.style.width = `${a.width / scale}px`;
+      pill.style.height = `${a.height / scale}px`;
     };
 
     if (animate) {

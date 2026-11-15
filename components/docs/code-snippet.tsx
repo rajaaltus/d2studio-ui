@@ -9,7 +9,7 @@ export function CodeSnippet({
   filename: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border bg-muted/30">
+    <div className="overflow-hidden rounded-[15px] border bg-muted/30">
       <div className="flex items-center justify-between gap-2 border-b bg-neutral-200/60 py-1.5 pl-4 pr-2 dark:bg-neutral-800/80">
         <span className="truncate font-mono text-xs text-muted-foreground">
           {filename}

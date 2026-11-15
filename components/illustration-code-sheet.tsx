@@ -92,9 +92,18 @@ function FileTabs({
     const tab = refs.current[activeRef.current];
     const pill = pillRef.current;
     if (!tab || !pill) return;
+    const list = listRef.current;
+    if (!list) return;
+    // Client rects, not offsetLeft/offsetWidth, which round to whole pixels
+    // and leave the pill up to ~0.75px off a fractional-width tab.
+    const l = list.getBoundingClientRect();
+    const t = tab.getBoundingClientRect();
+    // Layout width from computed style: fractional and untransformed.
+    const layoutW = parseFloat(getComputedStyle(list).width);
+    const scale = layoutW ? l.width / layoutW : 1;
     if (!animate) pill.style.transition = "none";
-    pill.style.transform = `translateX(${tab.offsetLeft}px)`;
-    pill.style.width = `${tab.offsetWidth}px`;
+    pill.style.transform = `translateX(${(t.left - l.left) / scale - list.clientLeft + list.scrollLeft}px)`;
+    pill.style.width = `${t.width / scale}px`;
     if (!animate) {
       void pill.offsetWidth;
       pill.style.transition = "";
@@ -131,15 +140,21 @@ function FileTabs({
       role="tablist"
       aria-label="Files"
       onKeyDown={onKeyDown}
-      className="relative -my-0.5 -ml-2.5 flex min-w-0 items-center gap-0.5 overflow-x-auto p-0.5"
+      className="relative -my-0.5 -ml-3 flex min-w-0 items-center gap-0.5 overflow-x-auto p-0.5"
     >
-      {/* The pill: neutral-50 with a hairline and a tight, close shadow so it
+      {/* Concentric corners: the frame is 15px (code-frame.tsx) and the pill
+          sits 7px in from its outer top and left edges (1px border, header
+          py-1.5, the list's -my-0.5 and -ml-3 against pl-4, plus its p-0.5),
+          so pill and tabs take 15 - 7 = 8px. Change one of those and
+          recompute the other.
+
+          The pill: neutral-50 with a hairline and a tight, close shadow so it
           lifts off the neutral-200 bar. Dark mirrors it a step lighter than its
           neutral-800 bar, with a light hairline. */}
       <span
         ref={pillRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0.5 left-0 w-0 rounded-[4px] bg-neutral-50 shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)] transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,width] motion-reduce:transition-none dark:bg-neutral-700/60 dark:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]"
+        className="pointer-events-none absolute inset-y-0.5 left-0 w-0 rounded-[8px] bg-neutral-50 shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)] transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,width] motion-reduce:transition-none dark:bg-neutral-700/60 dark:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]"
       />
       {files.map((f, i) => {
         const selected = i === active;
@@ -158,7 +173,7 @@ function FileTabs({
               onSelect(i);
             }}
             className={
-              "relative z-[1] shrink-0 rounded-[4px] px-2 py-1 font-mono text-xs transition-[color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none " +
+              "relative z-[1] shrink-0 rounded-[8px] px-2.5 py-1.5 font-mono text-xs transition-[color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none " +
               (selected ? "text-foreground" : "text-muted-foreground hover:text-foreground")
             }
           >

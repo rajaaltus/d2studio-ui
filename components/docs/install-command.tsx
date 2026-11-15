@@ -76,14 +76,24 @@ function CommandFrame({ prefix, args }: { prefix: string; args: string }) {
   // pill overrides carry `!`: the `.t-tabs-*` rules in globals.css are
   // unlayered, so they beat layered utilities on specificity alone.
   return (
-    <div className="overflow-hidden rounded-xl border bg-muted/30">
-      <div className="flex items-center justify-between gap-2 border-b bg-neutral-200/60 px-2 py-1.5 dark:bg-neutral-800/80">
+    // Concentric corners, measured from the frame's outer edge: the bar sits
+    // 7px in on top and left (1px border + py-1.5 / pl-1.5), its .t-tabs
+    // radius is 8px and the pill's 5px (8 - 3px track padding), so the frame
+    // takes 8 + 7 = 15px. Change an inset and recompute the chain.
+    <div className="overflow-hidden rounded-[15px] border bg-muted/30">
+      <div className="flex items-center justify-between gap-2 border-b bg-neutral-200/60 py-1.5 pl-1.5 pr-2 dark:bg-neutral-800/80">
+        {/* Every tab is a whole 54px (the widest label, "pnpm", is 53.6px).
+            Sized to their labels the bar came out 212.625px, so on a 2x screen
+            its right edge fell between device pixels while the pill, a
+            composited layer, snapped to whole ones: the gap right of "bun"
+            read wider than the 3px everywhere else. Whole widths put every
+            edge of bar, tab and pill on the pixel grid. */}
         <SlidingTabs
           value={manager}
           onValueChange={choose}
           tabs={MANAGERS.map(({ value, label }) => ({ value, label }))}
           aria-label="Package manager"
-          className="bg-neutral-100/80! shadow-[inset_0_0_0_1px_rgb(23_23_23/0.10)]! dark:bg-[oklch(1_0_0/0.05)]! dark:shadow-[inset_0_0_0_1px_oklch(1_0_0/0.06)]! [&_.t-tab]:rounded-[4px]! [&_.t-tab]:px-2 [&_.t-tab]:py-0.5 [&_.t-tab]:font-mono [&_.t-tab]:text-xs [&_.t-tabs-pill]:rounded-[4px]! [&_.t-tabs-pill]:bg-neutral-50! [&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)]! dark:[&_.t-tabs-pill]:bg-neutral-700/60! dark:[&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]!"
+          className="bg-neutral-100/80! shadow-[inset_0_0_0_1px_rgb(23_23_23/0.10)]! dark:bg-[oklch(1_0_0/0.05)]! dark:shadow-[inset_0_0_0_1px_oklch(1_0_0/0.06)]! [&_.t-tab]:rounded-[5px]! [&_.t-tab]:w-[54px] [&_.t-tab]:justify-center [&_.t-tab]:px-0 [&_.t-tab]:py-0.5 [&_.t-tab]:font-mono [&_.t-tab]:text-xs [&_.t-tabs-pill]:rounded-[5px]! [&_.t-tabs-pill]:bg-neutral-50! [&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)]! dark:[&_.t-tabs-pill]:bg-neutral-700/60! dark:[&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]!"
         />
         <CopyIconButton value={command} label="Copy command" />
       </div>
