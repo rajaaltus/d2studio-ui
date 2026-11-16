@@ -37,7 +37,9 @@ export function CodeFrame({
   const [open, setOpen] = React.useState(!long);
 
   return (
-    <div className={cn("overflow-hidden rounded-xl border bg-muted/30", className)}>
+    // 15px to match the install frame (install-command.tsx), which takes it
+    // from its concentric bar; the code sheet's file tabs derive from this.
+    <div className={cn("overflow-hidden rounded-[15px] border bg-muted/30", className)}>
       {filename ? (
         <div className="flex items-center justify-between gap-2 border-b bg-neutral-200/60 py-1.5 pl-4 pr-2 dark:bg-neutral-800/80">
           {title ?? (
