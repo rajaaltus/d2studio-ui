@@ -154,7 +154,7 @@ function FileTabs({
       <span
         ref={pillRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0.5 left-0 w-0 rounded-[8px] bg-neutral-50 shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)] transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,width] motion-reduce:transition-none dark:bg-neutral-700/60 dark:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]"
+        className="pointer-events-none absolute inset-y-0.5 left-0 w-0 rounded-[8px] bg-neutral-50 shadow-[0_0_0_1px_oklch(0.205_0_0/0.08),0_1px_1px_0_oklch(0.205_0_0/0.10)] transition-[transform,width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,width] motion-reduce:transition-none dark:bg-neutral-700/60 dark:shadow-[0_0_0_1px_oklch(0.985_0_0/0.08),0_1px_1px_0_oklch(0.145_0_0/0.4)]"
       />
       {files.map((f, i) => {
         const selected = i === active;

@@ -93,7 +93,7 @@ function CommandFrame({ prefix, args }: { prefix: string; args: string }) {
           onValueChange={choose}
           tabs={MANAGERS.map(({ value, label }) => ({ value, label }))}
           aria-label="Package manager"
-          className="bg-neutral-100/80! shadow-[inset_0_0_0_1px_rgb(23_23_23/0.10)]! dark:bg-[oklch(1_0_0/0.05)]! dark:shadow-[inset_0_0_0_1px_oklch(1_0_0/0.06)]! [&_.t-tab]:rounded-[5px]! [&_.t-tab]:w-[54px] [&_.t-tab]:justify-center [&_.t-tab]:px-0 [&_.t-tab]:py-0.5 [&_.t-tab]:font-mono [&_.t-tab]:text-xs [&_.t-tabs-pill]:rounded-[5px]! [&_.t-tabs-pill]:bg-neutral-50! [&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(23_23_23/0.08),0_1px_1px_0_rgb(23_23_23/0.10)]! dark:[&_.t-tabs-pill]:bg-neutral-700/60! dark:[&_.t-tabs-pill]:shadow-[0_0_0_1px_rgb(250_250_250/0.08),0_1px_1px_0_rgb(10_10_10/0.4)]!"
+          className="bg-neutral-100/80! shadow-[inset_0_0_0_1px_oklch(0.205_0_0/0.10)]! dark:bg-[oklch(1_0_0/0.05)]! dark:shadow-[inset_0_0_0_1px_oklch(1_0_0/0.06)]! [&_.t-tab]:rounded-[5px]! [&_.t-tab]:w-[54px] [&_.t-tab]:justify-center [&_.t-tab]:px-0 [&_.t-tab]:py-0.5 [&_.t-tab]:font-mono [&_.t-tab]:text-xs [&_.t-tabs-pill]:rounded-[5px]! [&_.t-tabs-pill]:bg-neutral-50! [&_.t-tabs-pill]:shadow-[0_0_0_1px_oklch(0.205_0_0/0.08),0_1px_1px_0_oklch(0.205_0_0/0.10)]! dark:[&_.t-tabs-pill]:bg-neutral-700/60! dark:[&_.t-tabs-pill]:shadow-[0_0_0_1px_oklch(0.985_0_0/0.08),0_1px_1px_0_oklch(0.145_0_0/0.4)]!"
         />
         <CopyIconButton value={command} label="Copy command" />
       </div>
