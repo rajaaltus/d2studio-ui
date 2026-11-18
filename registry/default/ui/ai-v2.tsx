@@ -255,6 +255,83 @@ const BEAM_CSS = `
 [data-beam="{id}"] { transition: --beam-strength 500ms cubic-bezier(0.23, 1, 0.32, 1); }
 `;
 
+// The visitor sees a person drafting one request per loop: sets play in turn,
+// each with its own small human moment (a rethink, a typo, a restart), then
+// send. Runs only while the card is on screen and the visitor hasn't clicked
+// in to type their own.
+type GhostStep =
+  | { type: string }
+  | { pause: number }
+  | { tap: number } // single Backspace presses
+  | { words: number } // Option+Backspace, one word per press
+  | { hold: true } // Backspace held until the box is empty
+  | { send: true };
+
+const GHOST_SETS: GhostStep[][] = [
+  [
+    { pause: 700 },
+    { type: "Build a pricing section with D2 Studio UI" },
+    { pause: 700 },
+    { send: true },
+  ],
+  [
+    { pause: 700 },
+    { type: "Hero block for a fintech app, bold and" },
+    { pause: 900 },
+    { words: 2 },
+    { pause: 400 },
+    { type: "calm" },
+    { pause: 700 },
+    { send: true },
+  ],
+  [
+    { pause: 700 },
+    { type: "Login form with D2 Studo UI" },
+    { pause: 400 },
+    { tap: 4 },
+    { pause: 200 },
+    { type: "io UI, dark mode" },
+    { pause: 700 },
+    { send: true },
+  ],
+  [
+    { pause: 700 },
+    { type: "Settings page" },
+    { pause: 1000 },
+    { hold: true },
+    { pause: 500 },
+    { type: "Settings page using D2 Studio UI blocks" },
+    { pause: 700 },
+    { send: true },
+  ],
+];
+
+const rand = (min: number, max: number) => min + Math.random() * (max - min);
+
+// Uneven like real hands: a beat after spaces, longer after commas, and the
+// odd hesitation mid-word.
+function keyDelay(ch: string) {
+  let ms = rand(40, 90);
+  if (ch === " ") ms += rand(20, 60);
+  if (ch === ",") ms += rand(120, 200);
+  if (Math.random() < 0.04) ms += rand(150, 300);
+  return ms;
+}
+
+function wait(ms: number, signal: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const id = setTimeout(resolve, ms);
+    signal.addEventListener(
+      "abort",
+      () => {
+        clearTimeout(id);
+        reject(signal.reason);
+      },
+      { once: true },
+    );
+  });
+}
+
 export default function AIWritingAssistanceV2() {
   // The beam needs its theme passed in, so follow the `dark` class the card's own styles key off.
   const isDark = useClientFlag(
@@ -292,14 +369,105 @@ export default function AIWritingAssistanceV2() {
 
   const [focused, setFocused] = React.useState(false);
   const [generating, setGenerating] = React.useState(false);
+  // The ghost typist holds the beam in its typing breath for the whole draft.
+  const [ghostComposing, setGhostComposing] = React.useState(false);
   const phase: BeamPhase = generating
     ? "generating"
-    : focused
+    : focused || ghostComposing
       ? "typing"
       : "idle";
   const beamRef = React.useRef<HTMLDivElement>(null);
   const promptRef = React.useRef<HTMLTextAreaElement>(null);
   const flashRef = React.useRef<HTMLDivElement>(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
+
+  // Ghost typist: null while off (visitor typing, offscreen, reduced motion).
+  const [ghost, setGhost] = React.useState<string | null>(null);
+  const [ghostKeying, setGhostKeying] = React.useState(false);
+  const [promptFocused, setPromptFocused] = React.useState(false);
+  const [inView, setInView] = React.useState(false);
+  const visitorActive = promptFocused || content !== "";
+  // Which set plays next. A ref, so a visitor's interruption resumes the rotation.
+  const ghostSetRef = React.useRef(0);
+
+  React.useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (!inView || visitorActive || reducedMotion) return;
+    const ctl = new AbortController();
+    const sleep = (ms: number) => wait(ms, ctl.signal);
+    let text = "";
+    const put = (next: string) => {
+      text = next;
+      setGhost(next);
+    };
+
+    async function run() {
+      put("");
+      for (;;) {
+        for (const step of GHOST_SETS[ghostSetRef.current]) {
+          if ("pause" in step) {
+            setGhostKeying(false);
+            await sleep(step.pause);
+          } else if ("type" in step) {
+            setGhostComposing(true);
+            setGhostKeying(true);
+            for (const ch of step.type) {
+              put(text + ch);
+              await sleep(keyDelay(ch));
+            }
+          } else if ("tap" in step) {
+            setGhostKeying(true);
+            for (let i = 0; i < step.tap; i++) {
+              put(text.slice(0, -1));
+              await sleep(rand(90, 140));
+            }
+          } else if ("words" in step) {
+            setGhostKeying(true);
+            for (let i = 0; i < step.words && text; i++) {
+              // The last word goes, the space before it stays.
+              put(text.replace(/\S*\s*$/, ""));
+              await sleep(rand(110, 170));
+            }
+          } else if ("hold" in step) {
+            setGhostKeying(true);
+            // Key repeat: one press, the OS repeat delay, then a steady run.
+            put(text.slice(0, -1));
+            await sleep(320);
+            while (text) {
+              put(text.slice(0, -1));
+              await sleep(rand(28, 40));
+            }
+          } else {
+            // Sent: the box empties as the request goes out, like any chat.
+            setGhostKeying(false);
+            setGhostComposing(false);
+            put("");
+            setGenerating(true);
+            ghostSetRef.current = (ghostSetRef.current + 1) % GHOST_SETS.length;
+            await sleep(DEMO_GENERATION_MS + 1400 + 1800);
+          }
+        }
+      }
+    }
+
+    run().catch(() => {});
+    return () => {
+      ctl.abort();
+      setGhost(null);
+      setGhostComposing(false);
+      setGhostKeying(false);
+    };
+  }, [inView, visitorActive, reducedMotion]);
 
   function submit() {
     if (generating || !promptRef.current?.value.trim()) return;
@@ -410,12 +578,16 @@ export default function AIWritingAssistanceV2() {
                     color: transparent;
                     animation: light-crossing 5.3s linear infinite;
                 }
+                /* Ghost caret: solid while keys land, blinks once the typist pauses. */
+                @keyframes ai-caret-blink { 50% { opacity: 0; } }
+                .ai-caret { animation: ai-caret-blink 1.06s steps(1) infinite; }
+                .ai-caret[data-keying] { animation: none; }
             `,
         }}
       />
 
       {/* Main Container */}
-      <div className="w-full max-w-[600px] h-auto shadow-sm dark:shadow-2xl bg-[#F5F5F5] dark:bg-gradient-to-b dark:from-card dark:to-background rounded-[24px] border border-[#E5E5E5] dark:border-border p-2 flex flex-col relative overflow-hidden">
+      <div ref={cardRef} className="w-full max-w-[600px] h-auto shadow-sm dark:shadow-2xl bg-[#F5F5F5] dark:bg-gradient-to-b dark:from-card dark:to-background rounded-[24px] border border-[#E5E5E5] dark:border-border p-2 flex flex-col relative overflow-hidden">
         {/* Content Box, with a Siri-style glow circling it */}
         <BorderBeam
           size="md"
@@ -439,26 +611,45 @@ export default function AIWritingAssistanceV2() {
               boxShadow: "inset 0 0 6px rgba(215, 214, 255, 0.2)",
             }}
           >
-            <textarea
-              ref={promptRef}
-              aria-label="Content prompt"
-              aria-busy={generating}
-              onKeyDown={(e) => {
-                // Cmd+Enter sends (Ctrl+Enter off Mac), as the hint shows; plain Enter keeps a newline. Skip while an IME is composing.
-                if (
-                  e.key !== "Enter" ||
-                  !(e.metaKey || e.ctrlKey) ||
-                  e.nativeEvent.isComposing
-                )
-                  return;
-                e.preventDefault();
-                submit();
-              }}
-              placeholder="Describe the content you want to generate..."
-              className="bg-transparent border-none focus:ring-0 text-black dark:text-white placeholder:text-[#999999] dark:placeholder:text-[#595959] placeholder:font-normal resize-none w-full flex-grow text-[15px] sm:text-[16px] leading-[1.6] outline-none transition-colors duration-200 min-h-[56px]"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
+            <div className="relative flex min-h-[56px] flex-grow">
+              <textarea
+                ref={promptRef}
+                aria-label="Content prompt"
+                aria-busy={generating}
+                onKeyDown={(e) => {
+                  // Cmd+Enter sends (Ctrl+Enter off Mac), as the hint shows; plain Enter keeps a newline. Skip while an IME is composing.
+                  if (
+                    e.key !== "Enter" ||
+                    !(e.metaKey || e.ctrlKey) ||
+                    e.nativeEvent.isComposing
+                  )
+                    return;
+                  e.preventDefault();
+                  submit();
+                }}
+                onFocus={() => setPromptFocused(true)}
+                onBlur={() => setPromptFocused(false)}
+                placeholder={
+                  ghost ? "" : "Describe the content you want to generate..."
+                }
+                className="bg-transparent border-none focus:ring-0 text-black dark:text-neutral-100 placeholder:text-[#999999] dark:placeholder:text-[#595959] placeholder:font-normal resize-none w-full flex-grow text-[15px] sm:text-[16px] leading-[1.6] outline-none transition-colors duration-200 min-h-[56px]"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+              {/* Ghost typist, drawn over the empty textarea so a click hands the box straight to the visitor. */}
+              {ghost !== null && !generating && (
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 whitespace-pre-wrap break-words text-[15px] leading-[1.6] text-black dark:text-neutral-100 sm:text-[16px]"
+                >
+                  {ghost}
+                  <span
+                    data-keying={ghostKeying || undefined}
+                    className="ai-caret ms-px inline-block h-[1.15em] w-[1.5px] translate-y-[0.2em] bg-black dark:bg-neutral-100"
+                  />
+                </div>
+              )}
+            </div>
 
             {/* Action Bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mt-2">
